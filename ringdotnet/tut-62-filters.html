@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An image filter lab · RingDotNet</title>
+<meta name="description" content="A picture is a table of numbers. This lesson holds the pixels in Ring lists, writes each filter as a small function, saves the result as a BMP file written byte by byte, and shows the original and the result side by side.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html" class="cur">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>An image filter lab</h1><p class="lead">A picture is a table of numbers. This lesson holds the pixels in Ring lists, writes each filter as a small function, saves the result as a BMP file written byte by byte, and shows the original and the result side by side.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>a picture as rows of <code>[red, green, blue]</code> numbers,</li><li>filters as functions that take a pixel (or its neighbors) and return a new one,</li><li>why per-pixel calls across the bridge are slow, and a faster way,</li><li>the structure of a <strong>BMP</strong> file and writing it with Ring,</li><li>little-endian numbers,</li><li>showing an image in a <code>PictureBox</code>.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch12_filters.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># an image filter lab - pixels as numbers, filters as small functions, a BMP file written by hand, before and after side by side</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+C_WIDTH = <span class="n">120</span>
+C_HEIGHT = <span class="n">90</span>
+
+oForm = <span class="s">""</span>
+oBefore = <span class="s">""</span>
+oAfter = <span class="s">""</span>
+oInfo = <span class="s">""</span>
+aSource = []              <span class="c"># the pixels of the original: aSource[y][x] = [red, green, blue]</span>
+aResult = []
+cFolder = <span class="s">""</span>
+nFile = <span class="n">0</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oForm = <span class="f">uiForm</span>(<span class="s">"Filter lab"</span>,C_WIDTH * <span class="n">2</span> + <span class="n">60</span>,C_HEIGHT + <span class="n">190</span>)
+	oBefore = <span class="f">uiPictureBox</span>(oForm,<span class="n">10</span>,<span class="n">10</span>,C_WIDTH,C_HEIGHT)
+	oAfter = <span class="f">uiPictureBox</span>(oForm,C_WIDTH + <span class="n">40</span>,<span class="n">10</span>,C_WIDTH,C_HEIGHT)
+	<span class="f">uiLabel</span>(oForm,<span class="s">"Original"</span>,<span class="n">10</span>,C_HEIGHT + <span class="n">14</span>,<span class="n">100</span>,<span class="n">20</span>)
+	<span class="f">uiLabel</span>(oForm,<span class="s">"Result"</span>,C_WIDTH + <span class="n">40</span>,C_HEIGHT + <span class="n">14</span>,<span class="n">100</span>,<span class="n">20</span>)
+	aNames = [<span class="s">"Gray"</span>,<span class="s">"Invert"</span>,<span class="s">"Brighter"</span>,<span class="s">"Darker"</span>,<span class="s">"Sepia"</span>,<span class="s">"Blur"</span>,<span class="s">"Edges"</span>,<span class="s">"Original"</span>]
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> len(aNames)
+		nColumn = (nIndex - <span class="n">1</span>) % <span class="n">4</span>
+		nRow = floor((nIndex - <span class="n">1</span>) / <span class="n">4</span>)
+		<span class="f">uiButton</span>(oForm,aNames[nIndex],<span class="n">10</span> + nColumn * <span class="n">62</span>,C_HEIGHT + <span class="n">44</span> + nRow * <span class="n">32</span>,<span class="n">58</span>,<span class="n">28</span>,<span class="s">"applyFilter('"</span> + aNames[nIndex] + <span class="s">"')"</span>)
+	<span class="k">next</span>
+	oInfo = <span class="f">uiLabel</span>(oForm,<span class="s">""</span>,<span class="n">10</span>,C_HEIGHT + <span class="n">112</span>,C_WIDTH * <span class="n">2</span> + <span class="n">30</span>,<span class="n">22</span>)
+	cFolder = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_filters"</span>])
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cFolder)
+	makeSource()
+	applyFilter(<span class="s">"Original"</span>)
+	<span class="f">uiRun</span>(oForm)
+	<span class="k">try</span>
+		<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])     <span class="c"># the pictures were only needed while the window was open</span>
+	<span class="k">catch</span>
+	<span class="k">done</span>
+
+<span class="c"># ---------------------------------------------------------------- pixels &lt;-&gt; Ring lists</span>
+
+<span class="c"># A picture to work on, made of numbers: a sky that gets lighter near the horizon, a sun, a hill and a house</span>
+<span class="k">func</span> <span class="f">makeSource</span>
+
+	aSource = []
+	<span class="k">for</span> nY = <span class="n">1</span> <span class="k">to</span> C_HEIGHT
+		aRow = []
+		<span class="k">for</span> nX = <span class="n">1</span> <span class="k">to</span> C_WIDTH
+			aRow + pictureColor(nX,nY)
+		<span class="k">next</span>
+		aSource + aRow
+	<span class="k">next</span>
+
+<span class="k">func</span> <span class="f">pictureColor</span> nX, nY
+
+	aColor = [<span class="n">110</span>,<span class="n">170</span>,<span class="n">255</span> - floor(nY * <span class="n">90</span> / C_HEIGHT)]                                    <span class="c"># sky</span>
+	<span class="k">if</span> (nX - <span class="n">94</span>) * (nX - <span class="n">94</span>) + (nY - <span class="n">22</span>) * (nY - <span class="n">22</span>) &lt;= <span class="n">196</span>                              <span class="c"># sun: a circle of radius 14</span>
+		aColor = [<span class="n">255</span>,<span class="n">215</span>,<span class="n">0</span>]
+	<span class="k">ok</span>
+	<span class="k">if</span> nY &gt;= <span class="n">62</span>                                                                           <span class="c"># grass</span>
+		aColor = [<span class="n">34</span>,<span class="n">139</span>,<span class="n">34</span>]
+	<span class="k">ok</span>
+	<span class="k">if</span> nX &gt;= <span class="n">20</span> <span class="k">and</span> nX &lt; <span class="n">60</span> <span class="k">and</span> nY &gt;= <span class="n">40</span> <span class="k">and</span> nY &lt; <span class="n">72</span>                                      <span class="c"># house wall</span>
+		aColor = [<span class="n">178</span>,<span class="n">34</span>,<span class="n">34</span>]
+	<span class="k">ok</span>
+	<span class="k">if</span> nY &gt;= <span class="n">18</span> <span class="k">and</span> nY &lt; <span class="n">40</span> <span class="k">and</span> fabs(nX - <span class="n">40</span>) &lt;= (nY - <span class="n">18</span>) * <span class="n">24</span> / <span class="n">22</span>                    <span class="c"># roof: a triangle with its top at (40, 18)</span>
+		aColor = [<span class="n">47</span>,<span class="n">79</span>,<span class="n">79</span>]
+	<span class="k">ok</span>
+	<span class="k">if</span> nX &gt;= <span class="n">34</span> <span class="k">and</span> nX &lt; <span class="n">46</span> <span class="k">and</span> nY &gt;= <span class="n">52</span> <span class="k">and</span> nY &lt; <span class="n">72</span>                                      <span class="c"># door</span>
+		aColor = [<span class="n">139</span>,<span class="n">69</span>,<span class="n">19</span>]
+	<span class="k">ok</span>
+	<span class="k">return</span> aColor
+
+<span class="c"># A BMP file is simple: a 54 byte header, then the pixels row by row, from the bottom row up, each pixel as blue, green, red.</span>
+<span class="c"># (A row must be a multiple of 4 bytes long: 120 pixels * 3 = 360 is.) .NET reads it with Bitmap.</span>
+<span class="k">func</span> <span class="f">saveBmp</span> aPixels, cFile
+
+	nSize = <span class="n">54</span> + C_WIDTH * C_HEIGHT * <span class="n">3</span>
+	cData = <span class="s">"BM"</span> + le32(nSize) + le32(<span class="n">0</span>) + le32(<span class="n">54</span>)                                        <span class="c"># file header: 14 bytes</span>
+	cData += le32(<span class="n">40</span>) + le32(C_WIDTH) + le32(C_HEIGHT) + le16(<span class="n">1</span>) + le16(<span class="n">24</span>) + le32(<span class="n">0</span>)     <span class="c"># picture header: 40 bytes</span>
+	cData += le32(C_WIDTH * C_HEIGHT * <span class="n">3</span>) + le32(<span class="n">2835</span>) + le32(<span class="n">2835</span>) + le32(<span class="n">0</span>) + le32(<span class="n">0</span>)
+	<span class="k">for</span> nY = C_HEIGHT <span class="k">to</span> <span class="n">1</span> <span class="k">step</span> -<span class="n">1</span>
+		<span class="k">for</span> aPixel <span class="k">in</span> aPixels[nY]
+			cData += char(aPixel[<span class="n">3</span>]) + char(aPixel[<span class="n">2</span>]) + char(aPixel[<span class="n">1</span>])
+		<span class="k">next</span>
+	<span class="k">next</span>
+	write(cFile,cData)
+
+<span class="c"># numbers as little-endian bytes (the least significant byte first)</span>
+<span class="k">func</span> <span class="f">le32</span> nValue
+
+	<span class="k">return</span> char(nValue % <span class="n">256</span>) + char(floor(nValue / <span class="n">256</span>) % <span class="n">256</span>) + char(floor(nValue / <span class="n">65536</span>) % <span class="n">256</span>) + char(floor(nValue / <span class="n">16777216</span>) % <span class="n">256</span>)
+
+<span class="k">func</span> <span class="f">le16</span> nValue
+
+	<span class="k">return</span> char(nValue % <span class="n">256</span>) + char(floor(nValue / <span class="n">256</span>) % <span class="n">256</span>)
+
+<span class="c"># ---------------------------------------------------------------- the filters: each one makes a new list of rows from the old one</span>
+
+<span class="c"># a value kept between 0 and 255 (a color channel cannot be outside)</span>
+<span class="k">func</span> <span class="f">clamp</span> nValue
+
+	<span class="k">if</span> nValue &lt; <span class="n">0</span>
+		<span class="k">return</span> <span class="n">0</span>
+	<span class="k">but</span> nValue &gt; <span class="n">255</span>
+		<span class="k">return</span> <span class="n">255</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> floor(nValue)
+
+<span class="c"># apply cFunction to every pixel: the function gets [r,g,b] and returns [r,g,b]</span>
+<span class="k">func</span> <span class="f">mapPixels</span> aPixels, cFunction
+
+	aRows = []
+	<span class="k">for</span> aRow <span class="k">in</span> aPixels
+		aNew = []
+		<span class="k">for</span> aPixel <span class="k">in</span> aRow
+			aNew + <span class="k">call</span> cFunction(aPixel)
+		<span class="k">next</span>
+		aRows + aNew
+	<span class="k">next</span>
+	<span class="k">return</span> aRows
+
+<span class="k">func</span> <span class="f">grayPixel</span> aPixel
+
+	nGray = floor(aPixel[<span class="n">1</span>] * <span class="n">0.299</span> + aPixel[<span class="n">2</span>] * <span class="n">0.587</span> + aPixel[<span class="n">3</span>] * <span class="n">0.114</span>)      <span class="c"># the eye sees green brighter than blue</span>
+	<span class="k">return</span> [nGray,nGray,nGray]
+
+<span class="k">func</span> <span class="f">invertPixel</span> aPixel
+
+	<span class="k">return</span> [<span class="n">255</span> - aPixel[<span class="n">1</span>],<span class="n">255</span> - aPixel[<span class="n">2</span>],<span class="n">255</span> - aPixel[<span class="n">3</span>]]
+
+<span class="k">func</span> <span class="f">brighterPixel</span> aPixel
+
+	<span class="k">return</span> [clamp(aPixel[<span class="n">1</span>] + <span class="n">40</span>),clamp(aPixel[<span class="n">2</span>] + <span class="n">40</span>),clamp(aPixel[<span class="n">3</span>] + <span class="n">40</span>)]
+
+<span class="k">func</span> <span class="f">darkerPixel</span> aPixel
+
+	<span class="k">return</span> [clamp(aPixel[<span class="n">1</span>] - <span class="n">40</span>),clamp(aPixel[<span class="n">2</span>] - <span class="n">40</span>),clamp(aPixel[<span class="n">3</span>] - <span class="n">40</span>)]
+
+<span class="k">func</span> <span class="f">sepiaPixel</span> aPixel
+
+	nRed = aPixel[<span class="n">1</span>]
+	nGreen = aPixel[<span class="n">2</span>]
+	nBlue = aPixel[<span class="n">3</span>]
+	<span class="k">return</span> [clamp(nRed * <span class="n">0.393</span> + nGreen * <span class="n">0.769</span> + nBlue * <span class="n">0.189</span>),clamp(nRed * <span class="n">0.349</span> + nGreen * <span class="n">0.686</span> + nBlue * <span class="n">0.168</span>),clamp(nRed * <span class="n">0.272</span> + nGreen * <span class="n">0.534</span> + nBlue * <span class="n">0.131</span>)]
+
+<span class="c"># blur: every pixel becomes the average of itself and its 8 neighbors (at the border: only the neighbors that exist)</span>
+<span class="k">func</span> <span class="f">blur</span> aPixels
+
+	aRows = []
+	<span class="k">for</span> nY = <span class="n">1</span> <span class="k">to</span> C_HEIGHT
+		aNew = []
+		<span class="k">for</span> nX = <span class="n">1</span> <span class="k">to</span> C_WIDTH
+			nRed = <span class="n">0</span>
+			nGreen = <span class="n">0</span>
+			nBlue = <span class="n">0</span>
+			nCount = <span class="n">0</span>
+			<span class="k">for</span> nDY = -<span class="n">1</span> <span class="k">to</span> <span class="n">1</span>
+				<span class="k">for</span> nDX = -<span class="n">1</span> <span class="k">to</span> <span class="n">1</span>
+					nNY = nY + nDY
+					nNX = nX + nDX
+					<span class="k">if</span> nNY &gt;= <span class="n">1</span> <span class="k">and</span> nNY &lt;= C_HEIGHT <span class="k">and</span> nNX &gt;= <span class="n">1</span> <span class="k">and</span> nNX &lt;= C_WIDTH
+						nRed += aPixels[nNY][nNX][<span class="n">1</span>]
+						nGreen += aPixels[nNY][nNX][<span class="n">2</span>]
+						nBlue += aPixels[nNY][nNX][<span class="n">3</span>]
+						nCount++
+					<span class="k">ok</span>
+				<span class="k">next</span>
+			<span class="k">next</span>
+			aNew + [floor(nRed / nCount),floor(nGreen / nCount),floor(nBlue / nCount)]
+		<span class="k">next</span>
+		aRows + aNew
+	<span class="k">next</span>
+	<span class="k">return</span> aRows
+
+<span class="c"># edges: the difference between a pixel and its right and lower neighbor; flat areas become black, borders light</span>
+<span class="k">func</span> <span class="f">edges</span> aPixels
+
+	aGray = mapPixels(aPixels,<span class="s">"grayPixel"</span>)
+	aRows = []
+	<span class="k">for</span> nY = <span class="n">1</span> <span class="k">to</span> C_HEIGHT
+		aNew = []
+		<span class="k">for</span> nX = <span class="n">1</span> <span class="k">to</span> C_WIDTH
+			nRight = aGray[nY][min(nX + <span class="n">1</span>,C_WIDTH)][<span class="n">1</span>]
+			nDown = aGray[min(nY + <span class="n">1</span>,C_HEIGHT)][nX][<span class="n">1</span>]
+			nHere = aGray[nY][nX][<span class="n">1</span>]
+			nEdge = clamp(fabs(nHere - nRight) * <span class="n">4</span> + fabs(nHere - nDown) * <span class="n">4</span>)
+			aNew + [nEdge,nEdge,nEdge]
+		<span class="k">next</span>
+		aRows + aNew
+	<span class="k">next</span>
+	<span class="k">return</span> aRows
+
+<span class="c"># ---------------------------------------------------------------- the window</span>
+
+<span class="k">func</span> <span class="f">applyFilter</span> cName
+
+	<span class="k">switch</span> cName
+	<span class="k">on</span> <span class="s">"Gray"</span>
+		aResult = mapPixels(aSource,<span class="s">"grayPixel"</span>)
+	<span class="k">on</span> <span class="s">"Invert"</span>
+		aResult = mapPixels(aSource,<span class="s">"invertPixel"</span>)
+	<span class="k">on</span> <span class="s">"Brighter"</span>
+		aResult = mapPixels(aSource,<span class="s">"brighterPixel"</span>)
+	<span class="k">on</span> <span class="s">"Darker"</span>
+		aResult = mapPixels(aSource,<span class="s">"darkerPixel"</span>)
+	<span class="k">on</span> <span class="s">"Sepia"</span>
+		aResult = mapPixels(aSource,<span class="s">"sepiaPixel"</span>)
+	<span class="k">on</span> <span class="s">"Blur"</span>
+		aResult = blur(aSource)
+	<span class="k">on</span> <span class="s">"Edges"</span>
+		aResult = edges(aSource)
+	<span class="k">other</span>
+		aResult = aSource
+	<span class="k">off</span>
+	showPixels(oBefore,aSource)
+	showPixels(oAfter,aResult)
+	oInfo.Text = <span class="s">"Filter: "</span> + cName
+
+<span class="c"># save the pixels as a BMP file (a new name each time: a file that is shown is locked) and give the picture box that image</span>
+<span class="k">func</span> <span class="f">showPixels</span> oPicture, aPixels
+
+	nFile++
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,<span class="s">"image"</span> + nFile + <span class="s">".bmp"</span>])
+	saveBmp(aPixels,cFile)
+	oPicture.Image = <span class="f">dnNew</span>(<span class="s">"Bitmap"</span>,[ :filename = cFile ])</code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g63.png" alt="The filter lab with sepia" loading="lazy"><figcaption>Sepia: the original on the left, the filtered picture on the right</figcaption></figure>
+<figure class="shot"><img src="img/shots/tut-g63-edges.png" alt="The filter lab with edges" loading="lazy"><figcaption>Edges: flat areas are black, the outlines are light</figcaption></figure>
+
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>dnNew</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="pixels-as-numbers">Pixels as numbers<a class="anchor" href="#pixels-as-numbers">#</a></h3>
+<p><code>aSource[y][x]</code> is <code>[r, g, b]</code>, each from 0 to 255. The sample picture is made by <code>pictureColor</code>, a function that returns the color of a point: a sky that gets lighter near the horizon, a circle for the sun (a point is inside if <code>(x − 94)² + (y − 22)² ≤ 14²</code>), grass, a house and a roof. Everything is plain Ring, so it is fast.</p>
+<h3 id="filters">Filters<a class="anchor" href="#filters">#</a></h3>
+<p>Most filters change each pixel on its own, so <code>mapPixels</code> applies a function to every pixel (<code>call cFunction(aPixel)</code>):</p>
+<div class="tablewrap"><table><thead><tr><th>Filter</th><th>Rule</th></tr></thead><tbody><tr><td><strong>Gray</strong></td><td><code>0.299 r + 0.587 g + 0.114 b</code> — the eye sees green brighter than blue</td></tr><tr><td><strong>Invert</strong></td><td><code>255 − value</code> for each channel</td></tr><tr><td><strong>Brighter / Darker</strong></td><td>add or subtract 40, and <strong>clamp</strong> the result into 0…255</td></tr><tr><td><strong>Sepia</strong></td><td>each new channel is a weighted sum of the old three</td></tr><tr><td><strong>Blur</strong></td><td>each pixel becomes the <strong>average of its 3 × 3 neighborhood</strong></td></tr><tr><td><strong>Edges</strong></td><td>the difference between a pixel and its right and lower neighbor; where the picture is flat the difference is zero (black)</td></tr></tbody></table></div>
+<p>Blur and edges look at neighbors, so they need two nested loops, and they must write into a <strong>new</strong> list: if you changed the picture in place, the next pixel would see already changed neighbors.</p>
+<h3 id="the-slow-way-and-the-fast-way">The slow way and the fast way<a class="anchor" href="#the-slow-way-and-the-fast-way">#</a></h3>
+<p>The obvious way to show the result is <code>Bitmap.SetPixel(x, y, color)</code> for every pixel. Every call crosses the bridge (and creating the color is another call), so the 10,800 pixels of this small picture would take several seconds <em>for each click</em>. See the tutorial <a href="tut-53-speed.html">Speed — measure first</a>: fewer calls win. Instead, the program builds the whole <strong>file</strong> in Ring and lets .NET load it with one call.</p>
+<h3 id="a-bmp-file">A BMP file<a class="anchor" href="#a-bmp-file">#</a></h3>
+<p>A BMP is one of the simplest picture formats:</p>
+<ul><li>a 14-byte file header (<code>"BM"</code>, the file size, where the pixels start),</li><li>a 40-byte picture header (width, height, 24 bits per pixel, ...),</li><li>the pixels: row by row <strong>from the bottom row up</strong>, each pixel as <strong>blue, green, red</strong>, each row padded to a multiple of 4 bytes (120 pixels × 3 = 360 is).</li></ul>
+<p>Numbers in the header are <strong>little-endian</strong>: the least significant byte comes first (<code>le32</code> and <code>le16</code>). The same idea is in the tutorial <a href="tut-45-binary.html">Binary files</a>. A Ring text is a list of bytes, so <code>char(n)</code> builds a byte and <code>write(file, text)</code> writes them.</p>
+<p><code>showPixels</code> writes <code>imageN.bmp</code> and loads it with <code>dnNew("Bitmap",[ :filename = cFile ])</code>. A new name for each image is used because a loaded image keeps its file open; the folder is deleted when the window closes. The self test reads one pixel back from the picture box (the sun, red 255 and blue 0) to prove that the file was written correctly.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch12_filters.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch12_filters.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch12_filters.ring: run with  ring ch12_filters.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	applyFilter(<span class="s">"Gray"</span>)
+	lGray = <span class="k">True</span>
+	<span class="k">for</span> aRow <span class="k">in</span> aResult
+		<span class="k">for</span> aPixel <span class="k">in</span> aRow
+			<span class="k">if</span> aPixel[<span class="n">1</span>] != aPixel[<span class="n">2</span>] <span class="k">or</span> aPixel[<span class="n">2</span>] != aPixel[<span class="n">3</span>]
+				lGray = <span class="k">False</span>
+			<span class="k">ok</span>
+		<span class="k">next</span>
+	<span class="k">next</span>
+	<span class="f">dnAssert</span>(<span class="s">"gray: red, green and blue are equal"</span>,lGray,<span class="k">True</span>)
+	applyFilter(<span class="s">"Invert"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"invert: the sky red channel"</span>,aResult[<span class="n">1</span>][<span class="n">1</span>][<span class="n">1</span>],<span class="n">255</span> - aSource[<span class="n">1</span>][<span class="n">1</span>][<span class="n">1</span>])
+	applyFilter(<span class="s">"Brighter"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"brighter never goes over 255"</span>,clamp(<span class="n">250</span> + <span class="n">40</span>),<span class="n">255</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the white sun cannot get brighter"</span>,aResult[<span class="n">1</span>][<span class="n">1</span>][<span class="n">3</span>] &lt;= <span class="n">255</span>,<span class="k">True</span>)
+	applyFilter(<span class="s">"Blur"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"blur keeps the size"</span>,len(aResult) = C_HEIGHT <span class="k">and</span> len(aResult[<span class="n">1</span>]) = C_WIDTH,<span class="k">True</span>)
+	applyFilter(<span class="s">"Edges"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"a flat area has no edge"</span>,aResult[<span class="n">85</span>][<span class="n">5</span>][<span class="n">1</span>],<span class="n">0</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the house wall has an edge"</span>,aResult[<span class="n">60</span>][<span class="n">20</span>][<span class="n">1</span>] &gt; <span class="n">0</span> <span class="k">or</span> aResult[<span class="n">60</span>][<span class="n">19</span>][<span class="n">1</span>] &gt; <span class="n">0</span>,<span class="k">True</span>)
+	applyFilter(<span class="s">"Original"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"original is unchanged"</span>,aResult[<span class="n">1</span>][<span class="n">1</span>][<span class="n">1</span>],aSource[<span class="n">1</span>][<span class="n">1</span>][<span class="n">1</span>])
+	<span class="f">dnAssert</span>(<span class="s">"the picture box shows a bitmap of the right size"</span>,oAfter.Image.Width = C_WIDTH <span class="k">and</span> oAfter.Image.Height = C_HEIGHT,<span class="k">True</span>)
+	oColor = oAfter.Image.<span class="f">GetPixel</span>(<span class="n">94</span>,<span class="n">22</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the sun was written to the file correctly (red)"</span>,oColor.R,<span class="n">255</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the sun was written to the file correctly (blue)"</span>,oColor.B,<span class="n">0</span>)</code></pre></div>
+<div class="callout tip"><span class="t">Tip</span><p>Try the same with <code>uiPictureBox</code> and a photo of your own: load it with <code>Bitmap</code>, read the pixels once into lists, and use the filters from this tutorial. Reading one pixel at a time is slow, so keep photos small, or look at <code>LockBits</code> for fast access.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>pixels as numbers and filters as functions,</li><li>3 × 3 neighborhoods and writing to a new list,</li><li>clamping,</li><li>writing a BMP file and little-endian numbers,</li><li>avoiding thousands of bridge calls.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a <strong>Threshold</strong> filter: black below 128 gray, white above.</li><li>Add a <strong>Mirror</strong> filter that reverses each row.</li><li>Make <strong>Blur</strong> stronger by repeating it three times.</li><li>Add a button that saves the result with <code>File.Copy</code> to a file chosen with <code>uiSaveFileName</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-63-chat.html">A chat over TCP</a></p>
+<div class="pager"><a href="tut-61-maze.html"><small>Previous</small>A maze</a><a class="next" href="tut-63-chat.html"><small>Next</small>A chat over TCP</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Net.Security · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Net.Security</h1>
+<p class="lead">13 wrapped types. Load them with <code>using { "System.Net.Security" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AuthenticatedStream">AuthenticatedStream</a> <a href="#c-CipherSuitesPolicy">CipherSuitesPolicy</a> <a href="#c-NegotiateAuthentication">NegotiateAuthentication</a> <a href="#c-NegotiateAuthenticationClientOptions">NegotiateAuthenticationClientOptions</a> <a href="#c-NegotiateAuthenticationServerOptions">NegotiateAuthenticationServerOptions</a> <a href="#c-NegotiateStream">NegotiateStream</a> <a href="#c-SslApplicationProtocol">SslApplicationProtocol</a> <a href="#c-SslCertificateTrust">SslCertificateTrust</a> <a href="#c-SslClientAuthenticationOptions">SslClientAuthenticationOptions</a> <a href="#c-SslClientHelloInfo">SslClientHelloInfo</a> <a href="#c-SslServerAuthenticationOptions">SslServerAuthenticationOptions</a> <a href="#c-SslStream">SslStream</a> <a href="#c-SslStreamCertificateContext">SslStreamCertificateContext</a></div><details class="cls" id="c-AuthenticatedStream"><summary><b>AuthenticatedStream</b> <span class="muted">class abstract · extends <a href="System.IO.html#c-Stream">Stream</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.AuthenticatedStream</code> · assembly <code>System.Net.Security</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LeaveInnerStreamOpen</code></td><td><code>bool</code></td><td>read</td><td><code>o.LeaveInnerStreamOpen</code></td></tr><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAuthenticated</code></td></tr><tr><td><code>IsMutuallyAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsMutuallyAuthenticated</code></td></tr><tr><td><code>IsEncrypted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEncrypted</code></td></tr><tr><td><code>IsSigned</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSigned</code></td></tr><tr><td><code>IsServer</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsServer</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CipherSuitesPolicy"><summary><b>CipherSuitesPolicy</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.CipherSuitesPolicy</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CipherSuitesPolicy(IEnumerable&lt;TlsCipherSuite&gt; allowedCipherSuites)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CipherSuitesPolicy(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CipherSuitesPolicy().@New([ :param = value ])</code> or <code>dnNew("CipherSuitesPolicy",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowedCipherSuites</code></td><td><code>IEnumerable&lt;TlsCipherSuite&gt;</code></td><td>read</td><td><code>o.AllowedCipherSuites</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NegotiateAuthentication"><summary><b>NegotiateAuthentication</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.NegotiateAuthentication</code> · assembly <code>System.Net.Security</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NegotiateAuthentication(NegotiateAuthenticationClientOptions clientOptions)</code></td></tr><tr><td><code>new NegotiateAuthentication(NegotiateAuthenticationServerOptions serverOptions)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NegotiateAuthentication(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NegotiateAuthentication().@New([ :param = value ])</code> or <code>dnNew("NegotiateAuthentication",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAuthenticated</code></td></tr><tr><td><code>ProtectionLevel</code></td><td><code>ProtectionLevel</code></td><td>read</td><td><code>o.ProtectionLevel</code></td></tr><tr><td><code>IsSigned</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSigned</code></td></tr><tr><td><code>IsEncrypted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEncrypted</code></td></tr><tr><td><code>IsMutuallyAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsMutuallyAuthenticated</code></td></tr><tr><td><code>IsServer</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsServer</code></td></tr><tr><td><code>Package</code></td><td><code>string</code></td><td>read</td><td><code>o.getPackage()</code></td></tr><tr><td><code>TargetName</code></td><td><code>string</code></td><td>read</td><td><code>o.TargetName</code></td></tr><tr><td><code>RemoteIdentity</code></td><td><code>IIdentity</code></td><td>read</td><td><code>o.RemoteIdentity</code></td></tr><tr><td><code>ImpersonationLevel</code></td><td><code>TokenImpersonationLevel</code></td><td>read</td><td><code>o.ImpersonationLevel</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ComputeIntegrityCheck</code></td><td><code>ComputeIntegrityCheck(p1,p2)</code></td><td><code>void ComputeIntegrityCheck(ReadOnlySpan&lt;byte&gt; message, IBufferWriter&lt;byte&gt; signatureWriter)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetOutgoingBlob</code></td><td><code>GetOutgoingBlob(p1)</code></td><td><code>byte[] GetOutgoingBlob(ReadOnlySpan&lt;byte&gt; incomingBlob, out NegotiateAuthenticationStatusCode statusCode)</code><br><code>string GetOutgoingBlob(string incomingBlob, out NegotiateAuthenticationStatusCode statusCode)</code></td></tr><tr><td><code>Unwrap</code></td><td><code>Unwrap(p1,p2)</code></td><td><code>NegotiateAuthenticationStatusCode Unwrap(ReadOnlySpan&lt;byte&gt; input, IBufferWriter&lt;byte&gt; outputWriter, out bool wasEncrypted)</code></td></tr><tr><td><code>UnwrapInPlace</code></td><td><code>UnwrapInPlace(p1)</code></td><td><code>NegotiateAuthenticationStatusCode UnwrapInPlace(Span&lt;byte&gt; input, out int unwrappedOffset, out int unwrappedLength, out bool wasEncrypted)</code></td></tr><tr><td><code>VerifyIntegrityCheck</code></td><td><code>VerifyIntegrityCheck(p1,p2)</code></td><td><code>bool VerifyIntegrityCheck(ReadOnlySpan&lt;byte&gt; message, ReadOnlySpan&lt;byte&gt; signature)</code></td></tr><tr><td><code>Wrap</code></td><td><code>Wrap(p1,p2,p3)</code></td><td><code>NegotiateAuthenticationStatusCode Wrap(ReadOnlySpan&lt;byte&gt; input, IBufferWriter&lt;byte&gt; outputWriter, bool requestEncryption, out bool isEncrypted)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NegotiateAuthenticationClientOptions"><summary><b>NegotiateAuthenticationClientOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.NegotiateAuthenticationClientOptions</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NegotiateAuthenticationClientOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NegotiateAuthenticationClientOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NegotiateAuthenticationClientOptions().@New([ :param = value ])</code> or <code>dnNew("NegotiateAuthenticationClientOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Package</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getPackage()</code> <code>o.setPackage(v)</code></td></tr><tr><td><code>Credential</code></td><td><code>NetworkCredential</code></td><td>read, write</td><td><code>o.Credential</code> <code>o.Credential = v</code></td></tr><tr><td><code>TargetName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.TargetName</code> <code>o.TargetName = v</code></td></tr><tr><td><code>Binding</code></td><td><code>ChannelBinding</code></td><td>read, write</td><td><code>o.Binding</code> <code>o.Binding = v</code></td></tr><tr><td><code>RequiredProtectionLevel</code></td><td><code>ProtectionLevel</code></td><td>read, write</td><td><code>o.RequiredProtectionLevel</code> <code>o.RequiredProtectionLevel = v</code></td></tr><tr><td><code>RequireMutualAuthentication</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RequireMutualAuthentication</code> <code>o.RequireMutualAuthentication = v</code></td></tr><tr><td><code>AllowedImpersonationLevel</code></td><td><code>TokenImpersonationLevel</code></td><td>read, write</td><td><code>o.AllowedImpersonationLevel</code> <code>o.AllowedImpersonationLevel = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NegotiateAuthenticationServerOptions"><summary><b>NegotiateAuthenticationServerOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.NegotiateAuthenticationServerOptions</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NegotiateAuthenticationServerOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NegotiateAuthenticationServerOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NegotiateAuthenticationServerOptions().@New([ :param = value ])</code> or <code>dnNew("NegotiateAuthenticationServerOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Package</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getPackage()</code> <code>o.setPackage(v)</code></td></tr><tr><td><code>Credential</code></td><td><code>NetworkCredential</code></td><td>read, write</td><td><code>o.Credential</code> <code>o.Credential = v</code></td></tr><tr><td><code>Binding</code></td><td><code>ChannelBinding</code></td><td>read, write</td><td><code>o.Binding</code> <code>o.Binding = v</code></td></tr><tr><td><code>RequiredProtectionLevel</code></td><td><code>ProtectionLevel</code></td><td>read, write</td><td><code>o.RequiredProtectionLevel</code> <code>o.RequiredProtectionLevel = v</code></td></tr><tr><td><code>Policy</code></td><td><code>ExtendedProtectionPolicy</code></td><td>read, write</td><td><code>o.Policy</code> <code>o.Policy = v</code></td></tr><tr><td><code>RequiredImpersonationLevel</code></td><td><code>TokenImpersonationLevel</code></td><td>read, write</td><td><code>o.RequiredImpersonationLevel</code> <code>o.RequiredImpersonationLevel = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NegotiateStream"><summary><b>NegotiateStream</b> <span class="muted">class · extends <a href="#c-AuthenticatedStream">AuthenticatedStream</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.NegotiateStream</code> · assembly <code>System.Net.Security</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NegotiateStream(Stream innerStream)</code></td></tr><tr><td><code>new NegotiateStream(Stream innerStream, bool leaveInnerStreamOpen)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NegotiateStream(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NegotiateStream().@New([ :param = value ])</code> or <code>dnNew("NegotiateStream",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAuthenticated()</code></td></tr><tr><td><code>IsMutuallyAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsMutuallyAuthenticated()</code></td></tr><tr><td><code>IsEncrypted</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsEncrypted()</code></td></tr><tr><td><code>IsSigned</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsSigned()</code></td></tr><tr><td><code>IsServer</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsServer()</code></td></tr><tr><td><code>ImpersonationLevel</code></td><td><code>TokenImpersonationLevel</code></td><td>read</td><td><code>o.ImpersonationLevel</code></td></tr><tr><td><code>RemoteIdentity</code></td><td><code>IIdentity</code></td><td>read</td><td><code>o.RemoteIdentity</code></td></tr><tr><td><code>CanSeek</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanSeek()</code></td></tr><tr><td><code>CanRead</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanRead()</code></td></tr><tr><td><code>CanTimeout</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanTimeout()</code></td></tr><tr><td><code>CanWrite</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanWrite()</code></td></tr><tr><td><code>ReadTimeout</code></td><td><code>int</code></td><td>read, write</td><td><code>o.getReadTimeout()</code> <code>o.setReadTimeout(v)</code></td></tr><tr><td><code>WriteTimeout</code></td><td><code>int</code></td><td>read, write</td><td><code>o.getWriteTimeout()</code> <code>o.setWriteTimeout(v)</code></td></tr><tr><td><code>Length</code></td><td><code>long</code></td><td>read</td><td><code>o.getLength()</code></td></tr><tr><td><code>Position</code></td><td><code>long</code></td><td>read, write</td><td><code>o.getPosition()</code> <code>o.setPosition(v)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsClient</code></td><td><code>AuthenticateAsClient(NULL)</code><br><code>AuthenticateAsClient([ :credential = …, :targetName = … ])</code><br><code>AuthenticateAsClient([ :credential = …, :binding = …, :targetName = … ])</code><br><code>AuthenticateAsClient([ :credential = …, :targetName = …, :requiredProtectionLevel = …, :allowedImpersonationLevel = … ])</code><br><code>AuthenticateAsClient([ :credential = …, :binding = …, :targetName = …, :requiredProtectionLevel = …, :allowedImpersonationLevel = … ])</code></td><td><code>void AuthenticateAsClient()</code><br><code>void AuthenticateAsClient(NetworkCredential credential, string targetName)</code><br><code>void AuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName)</code><br><code>void AuthenticateAsClient(NetworkCredential credential, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel)</code><br><code>void AuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel)</code></td></tr><tr><td><code>AuthenticateAsClientAsync</code></td><td><code>AuthenticateAsClientAsync(NULL)</code><br><code>AuthenticateAsClientAsync([ :credential = …, :targetName = … ])</code><br><code>AuthenticateAsClientAsync([ :credential = …, :binding = …, :targetName = … ])</code><br><code>AuthenticateAsClientAsync([ :credential = …, :targetName = …, :requiredProtectionLevel = …, :allowedImpersonationLevel = … ])</code><br><code>AuthenticateAsClientAsync([ :credential = …, :binding = …, :targetName = …, :requiredProtectionLevel = …, :allowedImpersonationLevel = … ])</code></td><td><code>Task AuthenticateAsClientAsync()</code><br><code>Task AuthenticateAsClientAsync(NetworkCredential credential, string targetName)</code><br><code>Task AuthenticateAsClientAsync(NetworkCredential credential, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel)</code><br><code>Task AuthenticateAsClientAsync(NetworkCredential credential, ChannelBinding binding, string targetName)</code><br><code>Task AuthenticateAsClientAsync(NetworkCredential credential, ChannelBinding binding, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel)</code></td></tr><tr><td><code>AuthenticateAsServer</code></td><td><code>AuthenticateAsServer(NULL)</code><br><code>AuthenticateAsServer(value)</code><br><code>AuthenticateAsServer([ :policy = … ])</code><br><code>AuthenticateAsServer([ :credential = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = … ])</code><br><code>AuthenticateAsServer([ :credential = …, :policy = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = … ])</code></td><td><code>void AuthenticateAsServer()</code><br><code>void AuthenticateAsServer(ExtendedProtectionPolicy policy)</code><br><code>void AuthenticateAsServer(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel)</code><br><code>void AuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel)</code></td></tr><tr><td><code>AuthenticateAsServerAsync</code></td><td><code>AuthenticateAsServerAsync(NULL)</code><br><code>AuthenticateAsServerAsync(value)</code><br><code>AuthenticateAsServerAsync([ :policy = … ])</code><br><code>AuthenticateAsServerAsync([ :credential = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = … ])</code><br><code>AuthenticateAsServerAsync([ :credential = …, :policy = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = … ])</code></td><td><code>Task AuthenticateAsServerAsync()</code><br><code>Task AuthenticateAsServerAsync(ExtendedProtectionPolicy policy)</code><br><code>Task AuthenticateAsServerAsync(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel)</code><br><code>Task AuthenticateAsServerAsync(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel)</code></td></tr><tr><td><code>BeginAuthenticateAsClient</code></td><td><code>BeginAuthenticateAsClient([ :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsClient([ :credential = …, :targetName = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsClient([ :credential = …, :binding = …, :targetName = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsClient([ :credential = …, :targetName = …, :requiredProtectionLevel = …, :allowedImpersonationLevel = …, :asyncCallback = …, :asyncState = … ])</code></td><td><code>IAsyncResult BeginAuthenticateAsClient(AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, string targetName, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginAuthenticateAsServer</code></td><td><code>BeginAuthenticateAsServer([ :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsServer([ :policy = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsServer([ :credential = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsServer([ :credential = …, :policy = …, :requiredProtectionLevel = …, :requiredImpersonationLevel = …, :asyncCallback = …, :asyncState = … ])</code></td><td><code>IAsyncResult BeginAuthenticateAsServer(AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsServer(ExtendedProtectionPolicy policy, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsServer(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginRead</code></td><td><code>BeginRead(p1,p2,p3,p4,p5)</code></td><td><code>IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginWrite</code></td><td><code>BeginWrite(p1,p2,p3,p4,p5)</code></td><td><code>IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr><tr><td><code>EndAuthenticateAsClient</code></td><td><code>EndAuthenticateAsClient(p1)</code></td><td><code>void EndAuthenticateAsClient(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndAuthenticateAsServer</code></td><td><code>EndAuthenticateAsServer(p1)</code></td><td><code>void EndAuthenticateAsServer(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndRead</code></td><td><code>EndRead(p1)</code></td><td><code>int EndRead(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndWrite</code></td><td><code>EndWrite(p1)</code></td><td><code>void EndWrite(IAsyncResult asyncResult)</code></td></tr><tr><td><code>Flush</code></td><td><code>Flush()</code></td><td><code>void Flush()</code></td></tr><tr><td><code>FlushAsync</code></td><td><code>FlushAsync(value)</code><br><code>FlushAsync([ :cancellationToken = … ])</code></td><td><code>Task FlushAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1,p2,p3)</code></td><td><code>int Read(byte[] buffer, int offset, int count)</code></td></tr><tr><td><code>ReadAsync</code></td><td><code>ReadAsync([ :buffer = …, :cancellationToken = … ])</code><br><code>ReadAsync([ :buffer = …, :offset = …, :count = …, :cancellationToken = … ])</code></td><td><code>Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code><br><code>ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Seek</code></td><td><code>Seek(p1,p2)</code></td><td><code>long Seek(long offset, SeekOrigin origin)</code></td></tr><tr><td><code>SetLength</code></td><td><code>SetLength(p1)</code></td><td><code>void SetLength(long value)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2,p3)</code></td><td><code>void Write(byte[] buffer, int offset, int count)</code></td></tr><tr><td><code>WriteAsync</code></td><td><code>WriteAsync([ :buffer = …, :cancellationToken = … ])</code><br><code>WriteAsync([ :buffer = …, :offset = …, :count = …, :cancellationToken = … ])</code></td><td><code>Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code><br><code>ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SslApplicationProtocol"><summary><b>SslApplicationProtocol</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslApplicationProtocol</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SslApplicationProtocol(byte[] protocol)</code></td></tr><tr><td><code>new SslApplicationProtocol(string protocol)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SslApplicationProtocol(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SslApplicationProtocol().@New([ :param = value ])</code> or <code>dnNew("SslApplicationProtocol",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Protocol</code></td><td><code>ReadOnlyMemory&lt;byte&gt;</code></td><td>read</td><td><code>o.Protocol</code></td></tr><tr><td><code>Http3</code></td><td><code>SslApplicationProtocol</code></td><td>read · static</td><td><code>o.Http3</code></td></tr><tr><td><code>Http2</code></td><td><code>SslApplicationProtocol</code></td><td>read · static</td><td><code>o.Http2</code></td></tr><tr><td><code>Http11</code></td><td><code>SslApplicationProtocol</code></td><td>read · static</td><td><code>o.Http11</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(SslApplicationProtocol other)</code><br><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SslCertificateTrust"><summary><b>SslCertificateTrust</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslCertificateTrust</code> · assembly <code>System.Net.Security</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateForX509Collection</code></td><td><code>CreateForX509Collection([ :trustList = …, :sendTrustInHandshake = … ])</code></td><td><code>static SslCertificateTrust CreateForX509Collection(X509Certificate2Collection trustList, bool sendTrustInHandshake = …)</code></td></tr><tr><td><code>CreateForX509Store</code></td><td><code>CreateForX509Store([ :store = …, :sendTrustInHandshake = … ])</code></td><td><code>static SslCertificateTrust CreateForX509Store(X509Store store, bool sendTrustInHandshake = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SslClientAuthenticationOptions"><summary><b>SslClientAuthenticationOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslClientAuthenticationOptions</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SslClientAuthenticationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SslClientAuthenticationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SslClientAuthenticationOptions().@New([ :param = value ])</code> or <code>dnNew("SslClientAuthenticationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowRenegotiation</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowRenegotiation</code> <code>o.AllowRenegotiation = v</code></td></tr><tr><td><code>AllowTlsResume</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowTlsResume</code> <code>o.AllowTlsResume = v</code></td></tr><tr><td><code>LocalCertificateSelectionCallback</code></td><td><code>LocalCertificateSelectionCallback</code></td><td>read, write</td><td><code>o.LocalCertificateSelectionCallback</code> <code>o.LocalCertificateSelectionCallback = v</code></td></tr><tr><td><code>RemoteCertificateValidationCallback</code></td><td><code>RemoteCertificateValidationCallback</code></td><td>read, write</td><td><code>o.RemoteCertificateValidationCallback</code> <code>o.RemoteCertificateValidationCallback = v</code></td></tr><tr><td><code>ApplicationProtocols</code></td><td><code>List&lt;SslApplicationProtocol&gt;</code></td><td>read, write</td><td><code>o.ApplicationProtocols</code> <code>o.ApplicationProtocols = v</code></td></tr><tr><td><code>TargetHost</code></td><td><code>string</code></td><td>read, write</td><td><code>o.TargetHost</code> <code>o.TargetHost = v</code></td></tr><tr><td><code>ClientCertificates</code></td><td><code>X509CertificateCollection</code></td><td>read, write</td><td><code>o.ClientCertificates</code> <code>o.ClientCertificates = v</code></td></tr><tr><td><code>ClientCertificateContext</code></td><td><code>SslStreamCertificateContext</code></td><td>read, write</td><td><code>o.ClientCertificateContext</code> <code>o.ClientCertificateContext = v</code></td></tr><tr><td><code>CertificateRevocationCheckMode</code></td><td><code>X509RevocationMode</code></td><td>read, write</td><td><code>o.CertificateRevocationCheckMode</code> <code>o.CertificateRevocationCheckMode = v</code></td></tr><tr><td><code>EncryptionPolicy</code></td><td><code>EncryptionPolicy</code></td><td>read, write</td><td><code>o.EncryptionPolicy</code> <code>o.EncryptionPolicy = v</code></td></tr><tr><td><code>EnabledSslProtocols</code></td><td><code>SslProtocols</code></td><td>read, write</td><td><code>o.EnabledSslProtocols</code> <code>o.EnabledSslProtocols = v</code></td></tr><tr><td><code>CipherSuitesPolicy</code></td><td><code>CipherSuitesPolicy</code></td><td>read, write</td><td><code>o.CipherSuitesPolicy</code> <code>o.CipherSuitesPolicy = v</code></td></tr><tr><td><code>CertificateChainPolicy</code></td><td><code>X509ChainPolicy</code></td><td>read, write</td><td><code>o.CertificateChainPolicy</code> <code>o.CertificateChainPolicy = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SslClientHelloInfo"><summary><b>SslClientHelloInfo</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslClientHelloInfo</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SslClientHelloInfo(string serverName, SslProtocols sslProtocols)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SslClientHelloInfo(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SslClientHelloInfo().@New([ :param = value ])</code> or <code>dnNew("SslClientHelloInfo",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ServerName</code></td><td><code>string</code></td><td>read</td><td><code>o.ServerName</code></td></tr><tr><td><code>SslProtocols</code></td><td><code>SslProtocols</code></td><td>read</td><td><code>o.SslProtocols</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SslServerAuthenticationOptions"><summary><b>SslServerAuthenticationOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslServerAuthenticationOptions</code> · assembly <code>System.Net.Security</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SslServerAuthenticationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SslServerAuthenticationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SslServerAuthenticationOptions().@New([ :param = value ])</code> or <code>dnNew("SslServerAuthenticationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowRenegotiation</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowRenegotiation</code> <code>o.AllowRenegotiation = v</code></td></tr><tr><td><code>AllowTlsResume</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowTlsResume</code> <code>o.AllowTlsResume = v</code></td></tr><tr><td><code>ClientCertificateRequired</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ClientCertificateRequired</code> <code>o.ClientCertificateRequired = v</code></td></tr><tr><td><code>ApplicationProtocols</code></td><td><code>List&lt;SslApplicationProtocol&gt;</code></td><td>read, write</td><td><code>o.ApplicationProtocols</code> <code>o.ApplicationProtocols = v</code></td></tr><tr><td><code>RemoteCertificateValidationCallback</code></td><td><code>RemoteCertificateValidationCallback</code></td><td>read, write</td><td><code>o.RemoteCertificateValidationCallback</code> <code>o.RemoteCertificateValidationCallback = v</code></td></tr><tr><td><code>ServerCertificateSelectionCallback</code></td><td><code>ServerCertificateSelectionCallback</code></td><td>read, write</td><td><code>o.ServerCertificateSelectionCallback</code> <code>o.ServerCertificateSelectionCallback = v</code></td></tr><tr><td><code>ServerCertificate</code></td><td><code>X509Certificate</code></td><td>read, write</td><td><code>o.ServerCertificate</code> <code>o.ServerCertificate = v</code></td></tr><tr><td><code>ServerCertificateContext</code></td><td><code>SslStreamCertificateContext</code></td><td>read, write</td><td><code>o.ServerCertificateContext</code> <code>o.ServerCertificateContext = v</code></td></tr><tr><td><code>EnabledSslProtocols</code></td><td><code>SslProtocols</code></td><td>read, write</td><td><code>o.EnabledSslProtocols</code> <code>o.EnabledSslProtocols = v</code></td></tr><tr><td><code>CertificateRevocationCheckMode</code></td><td><code>X509RevocationMode</code></td><td>read, write</td><td><code>o.CertificateRevocationCheckMode</code> <code>o.CertificateRevocationCheckMode = v</code></td></tr><tr><td><code>EncryptionPolicy</code></td><td><code>EncryptionPolicy</code></td><td>read, write</td><td><code>o.EncryptionPolicy</code> <code>o.EncryptionPolicy = v</code></td></tr><tr><td><code>CipherSuitesPolicy</code></td><td><code>CipherSuitesPolicy</code></td><td>read, write</td><td><code>o.CipherSuitesPolicy</code> <code>o.CipherSuitesPolicy = v</code></td></tr><tr><td><code>CertificateChainPolicy</code></td><td><code>X509ChainPolicy</code></td><td>read, write</td><td><code>o.CertificateChainPolicy</code> <code>o.CertificateChainPolicy = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SslStream"><summary><b>SslStream</b> <span class="muted">class · extends <a href="#c-AuthenticatedStream">AuthenticatedStream</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslStream</code> · assembly <code>System.Net.Security</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SslStream(Stream innerStream)</code></td></tr><tr><td><code>new SslStream(Stream innerStream, bool leaveInnerStreamOpen)</code></td></tr><tr><td><code>new SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback)</code></td></tr><tr><td><code>new SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback, LocalCertificateSelectionCallback userCertificateSelectionCallback)</code></td></tr><tr><td><code>new SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback, LocalCertificateSelectionCallback userCertificateSelectionCallback, EncryptionPolicy encryptionPolicy)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SslStream(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SslStream().@New([ :param = value ])</code> or <code>dnNew("SslStream",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TransportContext</code></td><td><code>TransportContext</code></td><td>read</td><td><code>o.TransportContext</code></td></tr><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAuthenticated()</code></td></tr><tr><td><code>IsMutuallyAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsMutuallyAuthenticated()</code></td></tr><tr><td><code>IsEncrypted</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsEncrypted()</code></td></tr><tr><td><code>IsSigned</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsSigned()</code></td></tr><tr><td><code>IsServer</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsServer()</code></td></tr><tr><td><code>SslProtocol</code></td><td><code>SslProtocols</code></td><td>read</td><td><code>o.SslProtocol</code></td></tr><tr><td><code>CheckCertRevocationStatus</code></td><td><code>bool</code></td><td>read</td><td><code>o.CheckCertRevocationStatus</code></td></tr><tr><td><code>LocalCertificate</code></td><td><code>X509Certificate</code></td><td>read</td><td><code>o.LocalCertificate</code></td></tr><tr><td><code>RemoteCertificate</code></td><td><code>X509Certificate</code></td><td>read</td><td><code>o.RemoteCertificate</code></td></tr><tr><td><code>NegotiatedApplicationProtocol</code></td><td><code>SslApplicationProtocol</code></td><td>read</td><td><code>o.NegotiatedApplicationProtocol</code></td></tr><tr><td><code>NegotiatedCipherSuite</code></td><td><code>TlsCipherSuite</code></td><td>read</td><td><code>o.NegotiatedCipherSuite</code></td></tr><tr><td><code>CipherAlgorithm</code></td><td><code>CipherAlgorithmType</code></td><td>read</td><td><code>o.CipherAlgorithm</code></td></tr><tr><td><code>CipherStrength</code></td><td><code>int</code></td><td>read</td><td><code>o.CipherStrength</code></td></tr><tr><td><code>HashAlgorithm</code></td><td><code>HashAlgorithmType</code></td><td>read</td><td><code>o.HashAlgorithm</code></td></tr><tr><td><code>HashStrength</code></td><td><code>int</code></td><td>read</td><td><code>o.HashStrength</code></td></tr><tr><td><code>KeyExchangeAlgorithm</code></td><td><code>ExchangeAlgorithmType</code></td><td>read</td><td><code>o.KeyExchangeAlgorithm</code></td></tr><tr><td><code>KeyExchangeStrength</code></td><td><code>int</code></td><td>read</td><td><code>o.KeyExchangeStrength</code></td></tr><tr><td><code>TargetHostName</code></td><td><code>string</code></td><td>read</td><td><code>o.TargetHostName</code></td></tr><tr><td><code>CanSeek</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanSeek()</code></td></tr><tr><td><code>CanRead</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanRead()</code></td></tr><tr><td><code>CanTimeout</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanTimeout()</code></td></tr><tr><td><code>CanWrite</code></td><td><code>bool</code></td><td>read</td><td><code>o.getCanWrite()</code></td></tr><tr><td><code>ReadTimeout</code></td><td><code>int</code></td><td>read, write</td><td><code>o.getReadTimeout()</code> <code>o.setReadTimeout(v)</code></td></tr><tr><td><code>WriteTimeout</code></td><td><code>int</code></td><td>read, write</td><td><code>o.getWriteTimeout()</code> <code>o.setWriteTimeout(v)</code></td></tr><tr><td><code>Length</code></td><td><code>long</code></td><td>read</td><td><code>o.getLength()</code></td></tr><tr><td><code>Position</code></td><td><code>long</code></td><td>read, write</td><td><code>o.getPosition()</code> <code>o.setPosition(v)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsClient</code></td><td><code>AuthenticateAsClient(value)</code><br><code>AuthenticateAsClient([ :targetHost = … ])</code><br><code>AuthenticateAsClient([ :sslClientAuthenticationOptions = … ])</code><br><code>AuthenticateAsClient([ :targetHost = …, :clientCertificates = …, :checkCertificateRevocation = … ])</code><br><code>AuthenticateAsClient([ :targetHost = …, :clientCertificates = …, :enabledSslProtocols = …, :checkCertificateRevocation = … ])</code></td><td><code>void AuthenticateAsClient(string targetHost)</code><br><code>void AuthenticateAsClient(string targetHost, X509CertificateCollection clientCertificates, bool checkCertificateRevocation)</code><br><code>void AuthenticateAsClient(string targetHost, X509CertificateCollection clientCertificates, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)</code><br><code>void AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)</code></td></tr><tr><td><code>AuthenticateAsClientAsync</code></td><td><code>AuthenticateAsClientAsync(value)</code><br><code>AuthenticateAsClientAsync([ :targetHost = … ])</code><br><code>AuthenticateAsClientAsync([ :sslClientAuthenticationOptions = …, :cancellationToken = … ])</code><br><code>AuthenticateAsClientAsync([ :targetHost = …, :clientCertificates = …, :checkCertificateRevocation = … ])</code><br><code>AuthenticateAsClientAsync([ :targetHost = …, :clientCertificates = …, :enabledSslProtocols = …, :checkCertificateRevocation = … ])</code></td><td><code>Task AuthenticateAsClientAsync(string targetHost)</code><br><code>Task AuthenticateAsClientAsync(string targetHost, X509CertificateCollection clientCertificates, bool checkCertificateRevocation)</code><br><code>Task AuthenticateAsClientAsync(string targetHost, X509CertificateCollection clientCertificates, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)</code><br><code>Task AuthenticateAsClientAsync(SslClientAuthenticationOptions sslClientAuthenticationOptions, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>AuthenticateAsServer</code></td><td><code>AuthenticateAsServer(value)</code><br><code>AuthenticateAsServer([ :serverCertificate = … ])</code><br><code>AuthenticateAsServer([ :sslServerAuthenticationOptions = … ])</code><br><code>AuthenticateAsServer([ :serverCertificate = …, :clientCertificateRequired = …, :checkCertificateRevocation = … ])</code><br><code>AuthenticateAsServer([ :serverCertificate = …, :clientCertificateRequired = …, :enabledSslProtocols = …, :checkCertificateRevocation = … ])</code></td><td><code>void AuthenticateAsServer(X509Certificate serverCertificate)</code><br><code>void AuthenticateAsServer(X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation)</code><br><code>void AuthenticateAsServer(X509Certificate serverCertificate, bool clientCertificateRequired, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)</code><br><code>void AuthenticateAsServer(SslServerAuthenticationOptions sslServerAuthenticationOptions)</code></td></tr><tr><td><code>AuthenticateAsServerAsync</code></td><td><code>AuthenticateAsServerAsync(value)</code><br><code>AuthenticateAsServerAsync([ :serverCertificate = … ])</code><br><code>AuthenticateAsServerAsync([ :sslServerAuthenticationOptions = …, :cancellationToken = … ])</code><br><code>AuthenticateAsServerAsync([ :serverCertificate = …, :clientCertificateRequired = …, :checkCertificateRevocation = … ])</code><br><code>AuthenticateAsServerAsync([ :optionsCallback = …, :state = …, :cancellationToken = … ])</code></td><td><code>Task AuthenticateAsServerAsync(X509Certificate serverCertificate)</code><br><code>Task AuthenticateAsServerAsync(X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation)</code><br><code>Task AuthenticateAsServerAsync(X509Certificate serverCertificate, bool clientCertificateRequired, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)</code><br><code>Task AuthenticateAsServerAsync(SslServerAuthenticationOptions sslServerAuthenticationOptions, CancellationToken cancellationToken = …)</code><br><code>Task AuthenticateAsServerAsync(ServerOptionsSelectionCallback optionsCallback, object state, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>BeginAuthenticateAsClient</code></td><td><code>BeginAuthenticateAsClient([ :targetHost = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsClient([ :targetHost = …, :clientCertificates = …, :checkCertificateRevocation = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsClient([ :targetHost = …, :clientCertificates = …, :enabledSslProtocols = …, :checkCertificateRevocation = …, :asyncCallback = …, :asyncState = … ])</code></td><td><code>IAsyncResult BeginAuthenticateAsClient(string targetHost, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(string targetHost, X509CertificateCollection clientCertificates, bool checkCertificateRevocation, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsClient(string targetHost, X509CertificateCollection clientCertificates, SslProtocols enabledSslProtocols, bool checkCertificateRevocation, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginAuthenticateAsServer</code></td><td><code>BeginAuthenticateAsServer([ :serverCertificate = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsServer([ :serverCertificate = …, :clientCertificateRequired = …, :checkCertificateRevocation = …, :asyncCallback = …, :asyncState = … ])</code><br><code>BeginAuthenticateAsServer([ :serverCertificate = …, :clientCertificateRequired = …, :enabledSslProtocols = …, :checkCertificateRevocation = …, :asyncCallback = …, :asyncState = … ])</code></td><td><code>IAsyncResult BeginAuthenticateAsServer(X509Certificate serverCertificate, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsServer(X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation, AsyncCallback asyncCallback, object asyncState)</code><br><code>IAsyncResult BeginAuthenticateAsServer(X509Certificate serverCertificate, bool clientCertificateRequired, SslProtocols enabledSslProtocols, bool checkCertificateRevocation, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginRead</code></td><td><code>BeginRead(p1,p2,p3,p4,p5)</code></td><td><code>IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>BeginWrite</code></td><td><code>BeginWrite(p1,p2,p3,p4,p5)</code></td><td><code>IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr><tr><td><code>EndAuthenticateAsClient</code></td><td><code>EndAuthenticateAsClient(p1)</code></td><td><code>void EndAuthenticateAsClient(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndAuthenticateAsServer</code></td><td><code>EndAuthenticateAsServer(p1)</code></td><td><code>void EndAuthenticateAsServer(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndRead</code></td><td><code>EndRead(p1)</code></td><td><code>int EndRead(IAsyncResult asyncResult)</code></td></tr><tr><td><code>EndWrite</code></td><td><code>EndWrite(p1)</code></td><td><code>void EndWrite(IAsyncResult asyncResult)</code></td></tr><tr><td><code>Flush</code></td><td><code>Flush()</code></td><td><code>void Flush()</code></td></tr><tr><td><code>FlushAsync</code></td><td><code>FlushAsync(value)</code><br><code>FlushAsync([ :cancellationToken = … ])</code></td><td><code>Task FlushAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>NegotiateClientCertificateAsync</code></td><td><code>NegotiateClientCertificateAsync(value)</code><br><code>NegotiateClientCertificateAsync([ :cancellationToken = … ])</code></td><td><code>Task NegotiateClientCertificateAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1,p2,p3)</code></td><td><code>int Read(Span&lt;byte&gt; buffer)</code><br><code>int Read(byte[] buffer, int offset, int count)</code></td></tr><tr><td><code>ReadAsync</code></td><td><code>ReadAsync([ :buffer = …, :cancellationToken = … ])</code><br><code>ReadAsync([ :buffer = …, :offset = …, :count = …, :cancellationToken = … ])</code></td><td><code>Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code><br><code>ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>ReadByte</code></td><td><code>ReadByte()</code></td><td><code>int ReadByte()</code></td></tr><tr><td><code>Seek</code></td><td><code>Seek(p1,p2)</code></td><td><code>long Seek(long offset, SeekOrigin origin)</code></td></tr><tr><td><code>SetLength</code></td><td><code>SetLength(p1)</code></td><td><code>void SetLength(long value)</code></td></tr><tr><td><code>ShutdownAsync</code></td><td><code>ShutdownAsync()</code></td><td><code>Task ShutdownAsync()</code></td></tr><tr><td><code>Write</code></td><td><code>Write(value)</code><br><code>Write([ :buffer = … ])</code><br><code>Write([ :buffer = …, :offset = …, :count = … ])</code></td><td><code>void Write(ReadOnlySpan&lt;byte&gt; buffer)</code><br><code>void Write(byte[] buffer)</code><br><code>void Write(byte[] buffer, int offset, int count)</code></td></tr><tr><td><code>WriteAsync</code></td><td><code>WriteAsync([ :buffer = …, :cancellationToken = … ])</code><br><code>WriteAsync([ :buffer = …, :offset = …, :count = …, :cancellationToken = … ])</code></td><td><code>Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code><br><code>ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>WriteByte</code></td><td><code>WriteByte(p1)</code></td><td><code>void WriteByte(byte value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SslStreamCertificateContext"><summary><b>SslStreamCertificateContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.Security.SslStreamCertificateContext</code> · assembly <code>System.Net.Security</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TargetCertificate</code></td><td><code>X509Certificate2</code></td><td>read</td><td><code>o.TargetCertificate</code></td></tr><tr><td><code>IntermediateCertificates</code></td><td><code>ReadOnlyCollection&lt;X509Certificate2&gt;</code></td><td>read</td><td><code>o.IntermediateCertificates</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create([ :target = …, :additionalCertificates = …, :offline = … ])</code><br><code>Create([ :target = …, :additionalCertificates = …, :offline = …, :trust = … ])</code></td><td><code>static SslStreamCertificateContext Create(X509Certificate2 target, X509Certificate2Collection additionalCertificates, bool offline)</code><br><code>static SslStreamCertificateContext Create(X509Certificate2 target, X509Certificate2Collection additionalCertificates, bool offline = …, SslCertificateTrust trust = …)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

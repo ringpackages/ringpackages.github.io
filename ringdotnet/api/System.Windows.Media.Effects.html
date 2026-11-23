@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Windows.Media.Effects · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Windows.Media.Effects</h1>
+<p class="lead">15 wrapped types. Load them with <code>using { "System.Windows.Media.Effects" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-BevelBitmapEffect">BevelBitmapEffect</a> <a href="#c-BitmapEffect">BitmapEffect</a> <a href="#c-BitmapEffectCollection">BitmapEffectCollection</a> <a href="#c-BitmapEffectCollectionEnumerator">BitmapEffectCollectionEnumerator</a> <a href="#c-BitmapEffectGroup">BitmapEffectGroup</a> <a href="#c-BitmapEffectInput">BitmapEffectInput</a> <a href="#c-BlurBitmapEffect">BlurBitmapEffect</a> <a href="#c-BlurEffect">BlurEffect</a> <a href="#c-DropShadowBitmapEffect">DropShadowBitmapEffect</a> <a href="#c-DropShadowEffect">DropShadowEffect</a> <a href="#c-Effect">Effect</a> <a href="#c-EmbossBitmapEffect">EmbossBitmapEffect</a> <a href="#c-OuterGlowBitmapEffect">OuterGlowBitmapEffect</a> <a href="#c-PixelShader">PixelShader</a> <a href="#c-ShaderEffect">ShaderEffect</a></div><details class="cls" id="c-BevelBitmapEffect"><summary><b>BevelBitmapEffect</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BevelBitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BevelBitmapEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BevelBitmapEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BevelBitmapEffect().@New([ :param = value ])</code> or <code>dnNew("BevelBitmapEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BevelWidth</code></td><td><code>double</code></td><td>read, write</td><td><code>o.BevelWidth</code> <code>o.BevelWidth = v</code></td></tr><tr><td><code>Relief</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Relief</code> <code>o.Relief = v</code></td></tr><tr><td><code>LightAngle</code></td><td><code>double</code></td><td>read, write</td><td><code>o.LightAngle</code> <code>o.LightAngle = v</code></td></tr><tr><td><code>Smoothness</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Smoothness</code> <code>o.Smoothness = v</code></td></tr><tr><td><code>EdgeProfile</code></td><td><code>EdgeProfile</code></td><td>read, write</td><td><code>o.EdgeProfile</code> <code>o.EdgeProfile = v</code></td></tr><tr><td><code>BevelWidthProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BevelWidthProperty</code></td></tr><tr><td><code>ReliefProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ReliefProperty</code></td></tr><tr><td><code>LightAngleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.LightAngleProperty</code></td></tr><tr><td><code>SmoothnessProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SmoothnessProperty</code></td></tr><tr><td><code>EdgeProfileProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.EdgeProfileProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BevelBitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BevelBitmapEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BitmapEffect"><summary><b>BitmapEffect</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BitmapEffect CloneCurrentValue()</code></td></tr><tr><td><code>GetOutput</code></td><td><code>GetOutput(p1)</code></td><td><code>BitmapSource GetOutput(BitmapEffectInput input)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BitmapEffectCollection"><summary><b>BitmapEffectCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BitmapEffectCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BitmapEffectCollection()</code></td></tr><tr><td><code>new BitmapEffectCollection(int capacity)</code></td></tr><tr><td><code>new BitmapEffectCollection(IEnumerable&lt;BitmapEffect&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BitmapEffectCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BitmapEffectCollection().@New([ :param = value ])</code> or <code>dnNew("BitmapEffectCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>BitmapEffect</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(BitmapEffect value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BitmapEffectCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BitmapEffectCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(BitmapEffect value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(BitmapEffect[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>BitmapEffectCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(BitmapEffect value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, BitmapEffect value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(BitmapEffect value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BitmapEffectCollectionEnumerator"><summary><b>BitmapEffectCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BitmapEffectCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>BitmapEffect</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BitmapEffectGroup"><summary><b>BitmapEffectGroup</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BitmapEffectGroup</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BitmapEffectGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BitmapEffectGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BitmapEffectGroup().@New([ :param = value ])</code> or <code>dnNew("BitmapEffectGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Children</code></td><td><code>BitmapEffectCollection</code></td><td>read, write</td><td><code>o.Children</code> <code>o.Children = v</code></td></tr><tr><td><code>ChildrenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildrenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BitmapEffectGroup Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BitmapEffectGroup CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BitmapEffectInput"><summary><b>BitmapEffectInput</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BitmapEffectInput</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BitmapEffectInput()</code></td></tr><tr><td><code>new BitmapEffectInput(BitmapSource input)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BitmapEffectInput(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BitmapEffectInput().@New([ :param = value ])</code> or <code>dnNew("BitmapEffectInput",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Input</code></td><td><code>BitmapSource</code></td><td>read, write</td><td><code>o.Input</code> <code>o.Input = v</code></td></tr><tr><td><code>AreaToApplyEffectUnits</code></td><td><code>BrushMappingMode</code></td><td>read, write</td><td><code>o.AreaToApplyEffectUnits</code> <code>o.AreaToApplyEffectUnits = v</code></td></tr><tr><td><code>AreaToApplyEffect</code></td><td><code>Rect</code></td><td>read, write</td><td><code>o.AreaToApplyEffect</code> <code>o.AreaToApplyEffect = v</code></td></tr><tr><td><code>ContextInputSource</code></td><td><code>BitmapSource</code></td><td>read · static</td><td><code>o.ContextInputSource</code></td></tr><tr><td><code>InputProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.InputProperty</code></td></tr><tr><td><code>AreaToApplyEffectUnitsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AreaToApplyEffectUnitsProperty</code></td></tr><tr><td><code>AreaToApplyEffectProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AreaToApplyEffectProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BitmapEffectInput Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BitmapEffectInput CloneCurrentValue()</code></td></tr><tr><td><code>ShouldSerializeInput</code></td><td><code>ShouldSerializeInput()</code></td><td><code>bool ShouldSerializeInput()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BlurBitmapEffect"><summary><b>BlurBitmapEffect</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BlurBitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BlurBitmapEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BlurBitmapEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BlurBitmapEffect().@New([ :param = value ])</code> or <code>dnNew("BlurBitmapEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Radius</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Radius</code> <code>o.Radius = v</code></td></tr><tr><td><code>KernelType</code></td><td><code>KernelType</code></td><td>read, write</td><td><code>o.KernelType</code> <code>o.KernelType = v</code></td></tr><tr><td><code>RadiusProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RadiusProperty</code></td></tr><tr><td><code>KernelTypeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.KernelTypeProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BlurBitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BlurBitmapEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BlurEffect"><summary><b>BlurEffect</b> <span class="muted">class sealed · extends <a href="#c-Effect">Effect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.BlurEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BlurEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BlurEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BlurEffect().@New([ :param = value ])</code> or <code>dnNew("BlurEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Radius</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Radius</code> <code>o.Radius = v</code></td></tr><tr><td><code>KernelType</code></td><td><code>KernelType</code></td><td>read, write</td><td><code>o.KernelType</code> <code>o.KernelType = v</code></td></tr><tr><td><code>RenderingBias</code></td><td><code>RenderingBias</code></td><td>read, write</td><td><code>o.RenderingBias</code> <code>o.RenderingBias = v</code></td></tr><tr><td><code>RadiusProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RadiusProperty</code></td></tr><tr><td><code>KernelTypeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.KernelTypeProperty</code></td></tr><tr><td><code>RenderingBiasProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RenderingBiasProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>BlurEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>BlurEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DropShadowBitmapEffect"><summary><b>DropShadowBitmapEffect</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.DropShadowBitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DropShadowBitmapEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DropShadowBitmapEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DropShadowBitmapEffect().@New([ :param = value ])</code> or <code>dnNew("DropShadowBitmapEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ShadowDepth</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ShadowDepth</code> <code>o.ShadowDepth = v</code></td></tr><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>Direction</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Direction</code> <code>o.Direction = v</code></td></tr><tr><td><code>Noise</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Noise</code> <code>o.Noise = v</code></td></tr><tr><td><code>Opacity</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Opacity</code> <code>o.Opacity = v</code></td></tr><tr><td><code>Softness</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Softness</code> <code>o.Softness = v</code></td></tr><tr><td><code>ShadowDepthProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ShadowDepthProperty</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr><tr><td><code>DirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DirectionProperty</code></td></tr><tr><td><code>NoiseProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.NoiseProperty</code></td></tr><tr><td><code>OpacityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OpacityProperty</code></td></tr><tr><td><code>SoftnessProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SoftnessProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>DropShadowBitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>DropShadowBitmapEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DropShadowEffect"><summary><b>DropShadowEffect</b> <span class="muted">class sealed · extends <a href="#c-Effect">Effect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.DropShadowEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DropShadowEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DropShadowEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DropShadowEffect().@New([ :param = value ])</code> or <code>dnNew("DropShadowEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ShadowDepth</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ShadowDepth</code> <code>o.ShadowDepth = v</code></td></tr><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>Direction</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Direction</code> <code>o.Direction = v</code></td></tr><tr><td><code>Opacity</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Opacity</code> <code>o.Opacity = v</code></td></tr><tr><td><code>BlurRadius</code></td><td><code>double</code></td><td>read, write</td><td><code>o.BlurRadius</code> <code>o.BlurRadius = v</code></td></tr><tr><td><code>RenderingBias</code></td><td><code>RenderingBias</code></td><td>read, write</td><td><code>o.RenderingBias</code> <code>o.RenderingBias = v</code></td></tr><tr><td><code>ShadowDepthProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ShadowDepthProperty</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr><tr><td><code>DirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DirectionProperty</code></td></tr><tr><td><code>OpacityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OpacityProperty</code></td></tr><tr><td><code>BlurRadiusProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BlurRadiusProperty</code></td></tr><tr><td><code>RenderingBiasProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RenderingBiasProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>DropShadowEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>DropShadowEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Effect"><summary><b>Effect</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.Effect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ImplicitInput</code></td><td><code>Brush</code></td><td>read · static</td><td><code>o.ImplicitInput</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Effect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Effect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EmbossBitmapEffect"><summary><b>EmbossBitmapEffect</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.EmbossBitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EmbossBitmapEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EmbossBitmapEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EmbossBitmapEffect().@New([ :param = value ])</code> or <code>dnNew("EmbossBitmapEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LightAngle</code></td><td><code>double</code></td><td>read, write</td><td><code>o.LightAngle</code> <code>o.LightAngle = v</code></td></tr><tr><td><code>Relief</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Relief</code> <code>o.Relief = v</code></td></tr><tr><td><code>LightAngleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.LightAngleProperty</code></td></tr><tr><td><code>ReliefProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ReliefProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>EmbossBitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>EmbossBitmapEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-OuterGlowBitmapEffect"><summary><b>OuterGlowBitmapEffect</b> <span class="muted">class sealed · extends <a href="#c-BitmapEffect">BitmapEffect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.OuterGlowBitmapEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new OuterGlowBitmapEffect()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new OuterGlowBitmapEffect(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new OuterGlowBitmapEffect().@New([ :param = value ])</code> or <code>dnNew("OuterGlowBitmapEffect",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>GlowColor</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.GlowColor</code> <code>o.GlowColor = v</code></td></tr><tr><td><code>GlowSize</code></td><td><code>double</code></td><td>read, write</td><td><code>o.GlowSize</code> <code>o.GlowSize = v</code></td></tr><tr><td><code>Noise</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Noise</code> <code>o.Noise = v</code></td></tr><tr><td><code>Opacity</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Opacity</code> <code>o.Opacity = v</code></td></tr><tr><td><code>GlowColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.GlowColorProperty</code></td></tr><tr><td><code>GlowSizeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.GlowSizeProperty</code></td></tr><tr><td><code>NoiseProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.NoiseProperty</code></td></tr><tr><td><code>OpacityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OpacityProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>OuterGlowBitmapEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>OuterGlowBitmapEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PixelShader"><summary><b>PixelShader</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.PixelShader</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PixelShader()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PixelShader(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PixelShader().@New([ :param = value ])</code> or <code>dnNew("PixelShader",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UriSource</code></td><td><code>Uri</code></td><td>read, write</td><td><code>o.UriSource</code> <code>o.UriSource = v</code></td></tr><tr><td><code>ShaderRenderMode</code></td><td><code>ShaderRenderMode</code></td><td>read, write</td><td><code>o.ShaderRenderMode</code> <code>o.ShaderRenderMode = v</code></td></tr><tr><td><code>UriSourceProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.UriSourceProperty</code></td></tr><tr><td><code>ShaderRenderModeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ShaderRenderModeProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>PixelShader Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>PixelShader CloneCurrentValue()</code></td></tr><tr><td><code>SetStreamSource</code></td><td><code>SetStreamSource(p1)</code></td><td><code>void SetStreamSource(Stream source)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>InvalidPixelShaderEncountered</code></td><td><code>EventHandler</code></td><td><code>o.setInvalidPixelShaderEncounteredEvent(code)</code> · <code>o.clearInvalidPixelShaderEncounteredEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ShaderEffect"><summary><b>ShaderEffect</b> <span class="muted">class abstract · extends <a href="#c-Effect">Effect</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Effects.ShaderEffect</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>ShaderEffect Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>ShaderEffect CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

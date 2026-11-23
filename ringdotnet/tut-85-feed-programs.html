@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working with other programs · RingDotNet</title>
+<meta name="description" content="A program can start other programs, send them text on their standard input, read what they print, set their environment, check their exit codes, and stop them when they take too long. This lesson does all of it with the Process class.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html" class="cur">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Working with other programs</h1><p class="lead">A program can start other programs, send them text on their standard input, read what they print, set their environment, check their exit codes, and stop them when they take too long. This lesson does all of it with the Process class.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the three streams of a program: <strong>standard input</strong>, <strong>standard output</strong> and <strong>standard error</strong>,</li><li>sending lines to a program and closing its input,</li><li>chaining programs: the output of one is the input of another,</li><li>environment variables and the working folder of the new program,</li><li>exit codes: <code>0</code> means success,</li><li><code>WaitForExit(ms)</code> as a time limit and <code>Kill</code>.</li></ul>
+<p>The tutorial <a href="tut-10-tasks-processes.html">Time, tasks and other programs</a> started programs and the tutorial <a href="tut-37-runner.html">A project: a command runner</a> showed their output in a window. This lesson adds the input side and the control of the new program.</p>
+<div class="callout note"><span class="t">Note</span><p>The program chooses the commands for the system with <code>isWindows()</code>: <code>sort</code>, <code>find</code> and <code>cmd /c</code> on Windows, <code>sort</code>, <code>grep</code> and <code>sh -c</code> on Linux and macOS. The output shown is from Windows.</p></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch06_feed_programs.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># working with other programs - feeding standard input, environment variables, errors and exit codes, a time limit and Kill</span>
+<span class="c">#   (the commands are chosen for the system: sort, find and cmd on Windows; sort, grep and sh on Linux and macOS)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Diagnostics"</span>
+}
+
+<span class="c"># the shell of this system (set in main, used by shellArgs)</span>
+cShell = <span class="s">""</span>
+cShellOption = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># the program that keeps the lines with an "e", and the shell, for this system</span>
+	cFilter = <span class="s">"grep"</span>
+	cFilterArgs = <span class="s">"e"</span>
+	cShell = <span class="s">"sh"</span>
+	cShellOption = <span class="s">"-c"</span>
+	cDirError = <span class="s">"ls this_folder_does_not_exist"</span>
+	cWait = <span class="s">"sleep 5"</span>
+	<span class="k">if</span> isWindows()
+		cFilter = <span class="s">"find"</span>
+		cFilterArgs = <span class="s">'"e"'</span>
+		cShell = <span class="s">"cmd.exe"</span>
+		cShellOption = <span class="s">"/c"</span>
+		cDirError = <span class="s">"dir this_folder_does_not_exist"</span>
+		cWait = <span class="s">"ping -n 6 127.0.0.1 &gt; nul"</span>
+	<span class="k">ok</span>
+
+	<span class="c"># 1. Standard input: send lines to a program that reads its input, close the input, and read what it answers.</span>
+	<span class="c">#    The program "sort" reads lines and prints them sorted.</span>
+	oSort = startProgram(<span class="s">"sort"</span>,<span class="s">""</span>,<span class="k">True</span>)
+	oSort.StandardInput.<span class="f">WriteLine</span>(<span class="s">"pear"</span>)
+	oSort.StandardInput.<span class="f">WriteLine</span>(<span class="s">"apple"</span>)
+	oSort.StandardInput.<span class="f">WriteLine</span>(<span class="s">"fig"</span>)
+	oSort.StandardInput.<span class="f">Close</span>()                            <span class="c"># closing the input tells sort that there is no more</span>
+	cSorted = oSort.StandardOutput.<span class="f">ReadToEnd</span>()
+	oSort.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? <span class="s">"1. sort answered: "</span> + lines(cSorted) + <span class="s">"   (exit code "</span> + oSort.ExitCode + <span class="s">")"</span>
+
+	<span class="c"># 2. Chaining: the output of one program is the input of another. sort, then find keeps the lines that contain an 'e'.</span>
+	oFirst = startProgram(<span class="s">"sort"</span>,<span class="s">""</span>,<span class="k">True</span>)
+	<span class="k">for</span> cFruit <span class="k">in</span> [<span class="s">"fig"</span>,<span class="s">"pear"</span>,<span class="s">"plum"</span>,<span class="s">"apple"</span>,<span class="s">"kiwi"</span>]
+		oFirst.StandardInput.<span class="f">WriteLine</span>(cFruit)
+	<span class="k">next</span>
+	oFirst.StandardInput.<span class="f">Close</span>()
+	cText = oFirst.StandardOutput.<span class="f">ReadToEnd</span>()
+	oFirst.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	oSecond = startProgram(cFilter,cFilterArgs,<span class="k">True</span>)
+	oSecond.StandardInput.<span class="f">Write</span>(cText)
+	oSecond.StandardInput.<span class="f">Close</span>()
+	cFound = oSecond.StandardOutput.<span class="f">ReadToEnd</span>()
+	oSecond.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? nl + <span class="s">"2. sorted, and only the lines with an 'e': "</span> + lines(cFound)
+
+	<span class="c"># 3. Environment variables and the working folder of the new program are set before it starts.</span>
+	cTemp = <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>()
+	cEcho = <span class="s">"echo %GREETING%"</span>
+	<span class="k">if</span> <span class="k">not</span> isWindows()
+		cEcho = <span class="s">"echo $GREETING"</span>
+	<span class="k">ok</span>
+	oInfo = <span class="k">new</span> <span class="t">ProcessStartInfo</span>().@<span class="k">New</span>([ :<span class="t">fileName</span> = cShell, :arguments = shellArgs(cEcho) ])
+	oInfo {
+		UseShellExecute = <span class="k">False</span>
+		RedirectStandardOutput = <span class="k">True</span>
+		CreateNoWindow = <span class="k">True</span>
+	}
+	oInfo.EnvironmentVariables.<span class="f">Add</span>(<span class="s">"GREETING"</span>,<span class="s">"hello from the parent program"</span>)
+	oInfo.WorkingDirectory = cTemp
+	oEnvironment = <span class="k">new</span> <span class="t">Process</span>().<span class="f">Start</span>(oInfo)
+	cGreeting = oEnvironment.StandardOutput.<span class="f">ReadToEnd</span>()
+	oEnvironment.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? nl + <span class="s">"3. the child read the variable that the parent set: "</span> + chomp(cGreeting)
+
+	<span class="c"># 4. Errors: a program writes errors to a SECOND stream (standard error) and ends with an exit code. 0 means success.</span>
+	oFail = startProgram(cShell,shellArgs(cDirError),<span class="k">True</span>)
+	cError = oFail.StandardError.<span class="f">ReadToEnd</span>()
+	oFail.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? nl + <span class="s">"4. a failing command: exit code "</span> + oFail.ExitCode + <span class="s">", standard error says '"</span> + chomp(cError) + <span class="s">"'"</span>
+	oGood = startProgram(cShell,shellArgs(<span class="s">"exit 0"</span>),<span class="k">True</span>)
+	oGood.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? <span class="s">"   a command that succeeds has exit code "</span> + oGood.ExitCode
+
+	<span class="c"># 5. A time limit and Kill: WaitForExit(ms) answers false when the program is still running; Kill stops it.</span>
+	oSlow = startProgram(cShell,shellArgs(cWait),<span class="k">False</span>)
+	lFinished = oSlow.<span class="f">WaitForExit</span>(<span class="n">300</span>)
+	? nl + <span class="s">"5. waited 300 ms for a program that runs about 5 seconds: finished = "</span> + yesNo(lFinished)
+	oSlow.<span class="f">Kill</span>(<span class="k">NULL</span>)
+	oSlow.<span class="f">WaitForExit</span>(<span class="k">NULL</span>)
+	? <span class="s">"   after Kill it has exited: "</span> + yesNo(oSlow.HasExited)
+
+<span class="c"># the arguments that make the shell run a command: cmd /c "command" or sh -c "command"</span>
+<span class="k">func</span> <span class="f">shellArgs</span> cCommand
+
+	<span class="k">return</span> cShellOption + <span class="s">' "'</span> + cCommand + <span class="s">'"'</span>
+
+<span class="c"># start a program; lRedirect = True gives the program's three streams to this program (input, output, error)</span>
+<span class="k">func</span> <span class="f">startProgram</span> cFile, cArguments, lRedirect
+
+	oInfo = <span class="k">new</span> <span class="t">ProcessStartInfo</span>().@<span class="k">New</span>([ :<span class="t">fileName</span> = cFile, :arguments = cArguments ])
+	oInfo.UseShellExecute = <span class="k">False</span>
+	oInfo.CreateNoWindow = <span class="k">True</span>
+	<span class="k">if</span> lRedirect
+		oInfo.RedirectStandardInput = <span class="k">True</span>
+		oInfo.RedirectStandardOutput = <span class="k">True</span>
+		oInfo.RedirectStandardError = <span class="k">True</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="t">Process</span>().<span class="f">Start</span>(oInfo)
+
+<span class="c"># the lines of a text as one line: "apple, fig, pear"</span>
+<span class="k">func</span> <span class="f">lines</span> cText
+
+	cResult = <span class="s">""</span>
+	<span class="k">for</span> cLine <span class="k">in</span> str2list(substr(substr(cText,char(<span class="n">13</span>),<span class="s">""</span>),char(<span class="n">10</span>),nl))
+		<span class="k">if</span> trim(cLine) != <span class="s">""</span>
+			<span class="k">if</span> cResult != <span class="s">""</span>
+				cResult += <span class="s">", "</span>
+			<span class="k">ok</span>
+			cResult += trim(cLine)
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> cResult
+
+<span class="k">func</span> <span class="f">chomp</span> cText
+
+	<span class="k">while</span> right(cText,<span class="n">1</span>) = char(<span class="n">10</span>) <span class="k">or</span> right(cText,<span class="n">1</span>) = char(<span class="n">13</span>) <span class="k">or</span> right(cText,<span class="n">1</span>) = <span class="s">" "</span>
+		cText = left(cText,len(cText) - <span class="n">1</span>)
+	<span class="k">end</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. sort answered: apple, fig, pear   (exit code 0)
+
+2. sorted, and only the lines with an 'e': apple, pear
+
+3. the child read the variable that the parent set: hello from the parent program
+
+4. a failing command: exit code 1, standard error says 'File Not Found'
+   a command that succeeds has exit code 0
+
+5. waited 300 ms for a program that runs about 5 seconds: finished = no
+   after Kill it has exited: yes</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="starting-a-program-with-redirected-streams">Starting a program with redirected streams<a class="anchor" href="#starting-a-program-with-redirected-streams">#</a></h3>
+<p><code>startProgram</code> makes a <code>ProcessStartInfo</code> (the file, the arguments) and sets three things: <code>UseShellExecute = False</code> (needed to redirect), <code>CreateNoWindow</code> (no console window) and, when asked, <code>RedirectStandardInput</code>, <code>RedirectStandardOutput</code> and <code>RedirectStandardError</code>. <code>Process.Start(info)</code> starts it and gives a <code>Process</code>. After that <code>oProcess.StandardInput</code>, <code>StandardOutput</code> and <code>StandardError</code> are stream writers and readers: your program is now the keyboard and the screen of the other program.</p>
+<h3 id="input">Input<a class="anchor" href="#input">#</a></h3>
+<p><code>sort</code> reads lines until its input ends, then prints them sorted. So the program writes the lines (<code>StandardInput.WriteLine</code>) and then <strong>closes the input</strong> (<code>StandardInput.Close()</code>): without <code>Close</code> the other program keeps waiting for more and your program waits for the answer — a <em>deadlock</em>. Then <code>ReadToEnd()</code> reads the whole answer and <code>WaitForExit(NULL)</code> waits for the program to end.</p>
+<h3 id="chaining">Chaining<a class="anchor" href="#chaining">#</a></h3>
+<p>Step 2 is the shell's <code>sort | find "e"</code> written by hand: the output of the first program is written into the input of the second. The pattern is always: write, close, read, wait.</p>
+<div class="callout warn"><span class="t">Warning</span><p>If a program writes a lot to both its output and its error and you read only one of them, the other fills its buffer and the program stops. Read both (one with <code>ReadToEnd()</code> and the other after the program ended, or one in a loop), or redirect only what you need.</p></div>
+<h3 id="environment-and-folder">Environment and folder<a class="anchor" href="#environment-and-folder">#</a></h3>
+<p>A new program gets a copy of the environment of its parent. <code>oInfo.EnvironmentVariables.Add("GREETING", "…")</code> adds a variable that only the child sees; <code>cmd /c echo %GREETING%</code> prints it. <code>WorkingDirectory</code> sets the folder in which the program starts. The folder is put into a variable first because a <code>new</code> on the right side of a property assignment does not keep the assignment (<a href="rules-and-limits.html">Rules and limits</a>).</p>
+<h3 id="exit-codes-and-errors">Exit codes and errors<a class="anchor" href="#exit-codes-and-errors">#</a></h3>
+<p>A program tells its result with an <strong>exit code</strong>: <code>0</code> is success, anything else a problem (the program decides which number means what). A program writes its error messages to the <strong>standard error</strong> stream, separate from its normal output: step 4 reads <code>File Not Found</code> from <code>StandardError</code> and sees exit code <code>1</code>. <code>oProcess.ExitCode</code> is available after the program ended.</p>
+<h3 id="a-time-limit">A time limit<a class="anchor" href="#a-time-limit">#</a></h3>
+<p><code>WaitForExit(300)</code> waits at most 300 ms and answers <em>true</em> if the program ended, <em>false</em> if it is still running. <code>Kill(NULL)</code> stops it at once (use it only when you must: the program gets no chance to clean up); then <code>HasExited</code> is true.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>redirecting the three streams,</li><li>the write, close, read, wait pattern,</li><li>environment variables and <code>WorkingDirectory</code>,</li><li>exit codes and standard error,</li><li><code>WaitForExit(ms)</code> and <code>Kill</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write a function <code>runAndCapture(cFile, cArguments)</code> that returns <code>[exit code, output, error]</code>.</li><li>Run <code>ping</code> with a time limit of two seconds and stop it if it is slower.</li><li>Write a little program that reads lines from its input and prints them in upper case (the child of the tutorial <a href="tut-79-processes-talk.html">Two programs talking</a>) and feed it from the parent.</li><li>Chain three programs: sort, remove duplicates (<code>uniq</code> or <code>sort /unique</code>), count lines.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-79-processes-talk.html">Two programs talking</a></p>
+<div class="pager"><a href="tut-136-tracing.html"><small>Previous</small>Tracing</a><a class="next" href="tut-79-processes-talk.html"><small>Next</small>Two programs talking</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

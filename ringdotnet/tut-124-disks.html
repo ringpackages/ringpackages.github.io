@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disks and free space · RingDotNet</title>
+<meta name="description" content="Before a program writes a big file it can ask how much room the disk has. This lesson uses DriveInfo to list the drives, read their sizes, check that a file will fit, and write a size in a form that people read easily.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html" class="cur">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Disks and free space</h1><p class="lead">Before a program writes a big file it can ask how much room the disk has. This lesson uses DriveInfo to list the drives, read their sizes, check that a file will fit, and write a size in a form that people read easily.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><code>GetDrives()</code> and the drive of a path,</li><li><code>TotalSize</code>, <code>TotalFreeSpace</code> and <strong><code>AvailableFreeSpace</code></strong>,</li><li><code>IsReady</code> and <code>DriveType</code>,</li><li>a check <em>will it fit?</em> before a big write,</li><li>a function that shows bytes as KB, MB, GB and TB,</li><li>why this program prints yes and no for facts about the computer.</li></ul>
+<p>The tutorial <a href="tut-59-paths.html">Paths and the environment</a> gave the special folders and the tutorial <a href="tut-123-file-info.html">File information</a> the size of one file. This lesson is about the disk that holds them.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_disks.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># disks and free space - DriveInfo: the drives of the computer, size, free space, and a check before a big write</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># Drive names, sizes and formats are different on each computer, so this program prints what is true on every computer (counts, yes/no)</span>
+	<span class="c"># and a few sizes that come from its own functions.</span>
+
+	<span class="c"># 1. Sizes for people. A number of bytes such as 1610612736 is hard to read: 1.5 GB is easy. Each step divides by 1024.</span>
+	? <span class="s">"1. formatSize:"</span>
+	<span class="k">for</span> nBytes <span class="k">in</span> [ <span class="n">0</span>, <span class="n">512</span>, <span class="n">1024</span>, <span class="n">1536</span>, <span class="n">1048576</span>, <span class="n">1610612736</span>, <span class="n">5497558138880</span> ]
+		? <span class="s">"   "</span> + padRight(<span class="s">""</span> + nBytes,<span class="n">16</span>) + formatSize(nBytes)
+	<span class="k">next</span>
+
+	<span class="c"># 2. DriveInfo.GetDrives() lists the drives (the letters of Windows, the mounted file systems of Linux and macOS)</span>
+	oAny = <span class="k">new</span> <span class="t">DriveInfo</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetPathRoot</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>()))     <span class="c"># static methods are called through any object of the class</span>
+	aDrives = oAny.<span class="f">GetDrives</span>().<span class="f">toList</span>()
+	nReady = <span class="n">0</span>
+	<span class="k">for</span> oDrive <span class="k">in</span> aDrives
+		<span class="k">if</span> oDrive.IsReady
+			nReady++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	? nl + <span class="s">"2. the computer has drives: "</span> + yesNo(len(aDrives) &gt; <span class="n">0</span>) + <span class="s">", ready to use: "</span> + yesNo(nReady &gt; <span class="n">0</span>)
+
+	<span class="c"># 3. The drive of a folder. The root of a path (the drive letter on Windows, "/" on Linux) is the name of its drive. Here: the folder for</span>
+	<span class="c">#    temporary files.</span>
+	cFolder = <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>()
+	cRoot = <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetPathRoot</span>(cFolder)
+	oDrive = <span class="k">new</span> <span class="t">DriveInfo</span>(cRoot)
+	? nl + <span class="s">"3. the drive of the temporary folder: ready "</span> + yesNo(oDrive.IsReady) + <span class="s">", type "</span> + oDrive.DriveType
+
+	<span class="c"># 4. Sizes: TotalSize is the whole drive, TotalFreeSpace all the free space, AvailableFreeSpace the free space for the current user</span>
+	<span class="c">#    (a disk quota can make it smaller). Always use AvailableFreeSpace when you ask "will it fit?".</span>
+	nTotal = oDrive.TotalSize
+	nFree = oDrive.TotalFreeSpace
+	nAvailable = oDrive.AvailableFreeSpace
+	? nl + <span class="s">"4. the total size is more than the free space: "</span> + yesNo(nTotal &gt; nFree)
+	? <span class="s">"   available for the user is not more than the free space: "</span> + yesNo(nAvailable &lt;= nFree)
+	nPercent = floor(<span class="n">100</span> * nFree / nTotal)
+	? <span class="s">"   the percentage of free space is between 0 and 100: "</span> + yesNo(nPercent &gt;= <span class="n">0</span> <span class="k">and</span> nPercent &lt;= <span class="n">100</span>)
+
+	<span class="c"># 5. Will it fit? A program that writes a big file checks the free space first and says what is needed, instead of failing in the middle.</span>
+	? nl + <span class="s">"5. will it fit?"</span>
+	<span class="k">for</span> nNeeded <span class="k">in</span> [ <span class="n">1048576</span>, <span class="n">5497558138880</span> * <span class="n">1000</span> ]
+		? <span class="s">"   "</span> + padRight(formatSize(nNeeded),<span class="n">14</span>) + fits(oDrive,nNeeded)
+	<span class="k">next</span>
+
+	<span class="c"># 6. A name that is not a drive name raises an error; the program prints the kind of the error.</span>
+	<span class="k">try</span>
+		oOther = <span class="k">new</span> <span class="t">DriveInfo</span>(<span class="s">"?"</span>)
+		? nl + <span class="s">"6. a drive with an impossible name was accepted"</span>
+	<span class="k">catch</span>
+		? nl + <span class="s">"6. a drive with an impossible name: "</span> + errorKind(cCatchError)
+	<span class="k">done</span>
+
+<span class="k">func</span> <span class="f">fits</span> oDrive,nBytes
+
+	nAvailable = oDrive.AvailableFreeSpace
+	<span class="k">if</span> nBytes &lt;= nAvailable
+		<span class="k">return</span> <span class="s">"fits"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"does not fit: "</span> + formatSize(nBytes - nAvailable) + <span class="s">" more is needed"</span>
+
+<span class="c"># 1024 bytes = 1 KB, 1024 KB = 1 MB, ... one decimal, and no decimal for whole bytes</span>
+<span class="k">func</span> <span class="f">formatSize</span> nBytes
+
+	aUnits = [ <span class="s">"bytes"</span>, <span class="s">"KB"</span>, <span class="s">"MB"</span>, <span class="s">"GB"</span>, <span class="s">"TB"</span>, <span class="s">"PB"</span> ]
+	nValue = nBytes
+	nUnit = <span class="n">1</span>
+	<span class="k">while</span> nValue &gt;= <span class="n">1024</span> <span class="k">and</span> nUnit &lt; len(aUnits)
+		nValue = nValue / <span class="n">1024</span>
+		nUnit++
+	<span class="k">end</span>
+	<span class="k">if</span> nUnit = <span class="n">1</span>
+		<span class="k">return</span> <span class="s">""</span> + nBytes + <span class="s">" bytes"</span>
+	<span class="k">ok</span>
+	nTenths = floor(nValue * <span class="n">10</span> + <span class="n">0.5</span>)                   <span class="c"># rounded to one decimal: the whole part, a point, the tenth</span>
+	<span class="k">return</span> <span class="s">""</span> + floor(nTenths / <span class="n">10</span>) + <span class="s">"."</span> + (nTenths % <span class="n">10</span>) + <span class="s">" "</span> + aUnits[nUnit]
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))
+
+<span class="k">func</span> <span class="f">errorKind</span> cMessage
+
+	cText = trim(cMessage)
+	nStart = substr(cText,<span class="s">"DotNet Error: "</span>)
+	<span class="k">if</span> nStart &gt; <span class="n">0</span>
+		cText = substr(cText,nStart + <span class="n">14</span>)
+	<span class="k">ok</span>
+	nEnd = substr(cText,<span class="s">":"</span>)
+	<span class="k">if</span> nEnd &gt; <span class="n">0</span>
+		cText = left(cText,nEnd - <span class="n">1</span>)
+	<span class="k">ok</span>
+	<span class="k">return</span> cText</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. formatSize:
+   0               0 bytes
+   512             512 bytes
+   1024            1.0 KB
+   1536            1.5 KB
+   1048576         1.0 MB
+   1610612736      1.5 GB
+   5497558138880   5.0 TB
+
+2. the computer has drives: yes, ready to use: yes
+
+3. the drive of the temporary folder: ready yes, type Fixed
+
+4. the total size is more than the free space: yes
+   available for the user is not more than the free space: yes
+   the percentage of free space is between 0 and 100: yes
+
+5. will it fit?
+   1.0 MB        fits
+   4.9 PB        does not fit: 4.9 PB more is needed
+
+6. a drive with an impossible name: System.ArgumentException</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="sizes-for-people">Sizes for people<a class="anchor" href="#sizes-for-people">#</a></h3>
+<p><code>formatSize</code> divides by 1024 until the number is smaller than 1024 and writes it with one decimal and a unit: <code>1610612736</code> bytes is <code>1.5 GB</code>. It is a good function to keep in a library of your own: every program that shows a file size or a disk size needs it. (Disk makers count 1000 per step and operating systems 1024; this program uses 1024.)</p>
+<h3 id="the-drives">The drives<a class="anchor" href="#the-drives">#</a></h3>
+<p><code>GetDrives()</code> returns one <code>DriveInfo</code> for each drive: the letters of Windows (<code>C:\</code>), or the mounted file systems of Linux and macOS. It is a static method, called through any object of the class (the program makes one for the drive of the temporary folder). A drive that is not ready (an empty card reader) answers <code>false</code> to <code>IsReady</code>, and reading its sizes raises an error, so check <code>IsReady</code> first.</p>
+<h3 id="the-drive-of-a-folder">The drive of a folder<a class="anchor" href="#the-drive-of-a-folder">#</a></h3>
+<p><code>Path.GetPathRoot(path)</code> gives the root of a path (<code>C:\</code> on Windows, <code>/</code> on Linux) and <code>new DriveInfo(root)</code> describes that drive.</p>
+<h3 id="three-sizes">Three sizes<a class="anchor" href="#three-sizes">#</a></h3>
+<p><code>TotalSize</code> is the capacity, <code>TotalFreeSpace</code> all the free room, and <code>AvailableFreeSpace</code> the free room <strong>for the current user</strong>: a disk quota can make it smaller than the free space. Use <code>AvailableFreeSpace</code> when the question is <em>will it fit?</em>. The sizes are long whole numbers: a Ring number is a double, which keeps every digit up to about nine quadrillion (9 PB), enough for any disk.</p>
+<h3 id="will-it-fit">Will it fit?<a class="anchor" href="#will-it-fit">#</a></h3>
+<p><code>fits(oDrive, nBytes)</code> compares the size with the available space and says how much is missing when it does not fit. A program that makes a backup, a download or an export calls it first, so the user gets a clear message <em>before</em> the work and not an error in the middle of it.</p>
+<h3 id="facts-of-the-computer">Facts of the computer<a class="anchor" href="#facts-of-the-computer">#</a></h3>
+<p>The names, the sizes and the formats of drives are different on each computer, so the program shows only what is true everywhere: there are drives, the free space is smaller than the capacity, a percentage is between 0 and 100. Do the same in tests of your own programs: test the <em>relation</em>, not the number.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>listing drives and finding the drive of a path,</li><li>the three sizes and <code>IsReady</code>,</li><li>checking the space before writing,</li><li>a size in KB, MB, GB and TB.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Print a table of the ready drives with the type, the size and the free space in a readable form.</li><li>Add a bar of ten characters that shows how full each drive is.</li><li>Write <code>waitForSpace(oDrive, nBytes, nSeconds)</code> that checks again each second.</li><li>Use <code>formatSize</code> for the sizes of the files in the tutorial <a href="tut-123-file-info.html">File information</a>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-56-streams.html">Streams and compression</a></p>
+<div class="pager"><a href="tut-123-file-info.html"><small>Previous</small>File information</a><a class="next" href="tut-56-streams.html"><small>Next</small>Streams and compression</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Security.Principal · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Security.Principal</h1>
+<p class="lead">9 wrapped types. Load them with <code>using { "System.Security.Principal" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-IdentityNotMappedException">IdentityNotMappedException</a> <a href="#c-IdentityReference">IdentityReference</a> <a href="#c-IdentityReferenceCollection">IdentityReferenceCollection</a> <a href="#c-IIdentity">IIdentity</a> <a href="#c-IPrincipal">IPrincipal</a> <a href="#c-NTAccount">NTAccount</a> <a href="#c-SecurityIdentifier">SecurityIdentifier</a> <a href="#c-WindowsIdentity">WindowsIdentity</a> <a href="#c-WindowsPrincipal">WindowsPrincipal</a></div><details class="cls" id="c-IdentityNotMappedException"><summary><b>IdentityNotMappedException</b> <span class="muted">class sealed · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.IdentityNotMappedException</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new IdentityNotMappedException()</code></td></tr><tr><td><code>new IdentityNotMappedException(string message)</code></td></tr><tr><td><code>new IdentityNotMappedException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new IdentityNotMappedException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new IdentityNotMappedException().@New([ :param = value ])</code> or <code>dnNew("IdentityNotMappedException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UnmappedIdentities</code></td><td><code>IdentityReferenceCollection</code></td><td>read</td><td><code>o.UnmappedIdentities</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-IdentityReference"><summary><b>IdentityReference</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.IdentityReference</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>IsValidTargetType</code></td><td><code>IsValidTargetType(p1)</code></td><td><code>bool IsValidTargetType(Type targetType)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate(p1)</code></td><td><code>IdentityReference Translate(Type targetType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IdentityReferenceCollection"><summary><b>IdentityReferenceCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.IdentityReferenceCollection</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new IdentityReferenceCollection()</code></td></tr><tr><td><code>new IdentityReferenceCollection(int capacity)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new IdentityReferenceCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new IdentityReferenceCollection().@New([ :param = value ])</code> or <code>dnNew("IdentityReferenceCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>IdentityReference</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(IdentityReference identity)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(IdentityReference identity)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(IdentityReference[] array, int offset)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;IdentityReference&gt; GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(IdentityReference identity)</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate(value)</code><br><code>Translate([ :targetType = … ])</code><br><code>Translate([ :targetType = …, :forceSuccess = … ])</code></td><td><code>IdentityReferenceCollection Translate(Type targetType)</code><br><code>IdentityReferenceCollection Translate(Type targetType, bool forceSuccess)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IIdentity"><summary><b>IIdentity</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.IIdentity</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>AuthenticationType</code></td><td><code>string</code></td><td>read</td><td><code>o.AuthenticationType</code></td></tr><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAuthenticated</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPrincipal"><summary><b>IPrincipal</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.IPrincipal</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Identity</code></td><td><code>IIdentity</code></td><td>read</td><td><code>o.Identity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsInRole</code></td><td><code>IsInRole(p1)</code></td><td><code>bool IsInRole(string role)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NTAccount"><summary><b>NTAccount</b> <span class="muted">class sealed · extends <a href="#c-IdentityReference">IdentityReference</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.NTAccount</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NTAccount(string domainName, string accountName)</code></td></tr><tr><td><code>new NTAccount(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NTAccount(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NTAccount().@New([ :param = value ])</code> or <code>dnNew("NTAccount",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.getValue()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>IsValidTargetType</code></td><td><code>IsValidTargetType(p1)</code></td><td><code>bool IsValidTargetType(Type targetType)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate(p1)</code></td><td><code>IdentityReference Translate(Type targetType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SecurityIdentifier"><summary><b>SecurityIdentifier</b> <span class="muted">class sealed · extends <a href="#c-IdentityReference">IdentityReference</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.SecurityIdentifier</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SecurityIdentifier(string sddlForm)</code></td></tr><tr><td><code>new SecurityIdentifier(byte[] binaryForm, int offset)</code></td></tr><tr><td><code>new SecurityIdentifier(IntPtr binaryForm)</code></td></tr><tr><td><code>new SecurityIdentifier(WellKnownSidType sidType, SecurityIdentifier domainSid)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SecurityIdentifier(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SecurityIdentifier().@New([ :param = value ])</code> or <code>dnNew("SecurityIdentifier",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BinaryLength</code></td><td><code>int</code></td><td>read</td><td><code>o.BinaryLength</code></td></tr><tr><td><code>AccountDomainSid</code></td><td><code>SecurityIdentifier</code></td><td>read</td><td><code>o.AccountDomainSid</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>MinBinaryLength</code></td><td><code>int</code></td><td>read · static</td><td><code>o.MinBinaryLength</code></td></tr><tr><td><code>MaxBinaryLength</code></td><td><code>int</code></td><td>read · static</td><td><code>o.MaxBinaryLength</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CompareTo</code></td><td><code>CompareTo(p1)</code></td><td><code>int CompareTo(SecurityIdentifier sid)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(SecurityIdentifier sid)</code></td></tr><tr><td><code>GetBinaryForm</code></td><td><code>GetBinaryForm(p1,p2)</code></td><td><code>void GetBinaryForm(byte[] binaryForm, int offset)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>IsAccountSid</code></td><td><code>IsAccountSid()</code></td><td><code>bool IsAccountSid()</code></td></tr><tr><td><code>IsEqualDomainSid</code></td><td><code>IsEqualDomainSid(p1)</code></td><td><code>bool IsEqualDomainSid(SecurityIdentifier sid)</code></td></tr><tr><td><code>IsValidTargetType</code></td><td><code>IsValidTargetType(p1)</code></td><td><code>bool IsValidTargetType(Type targetType)</code></td></tr><tr><td><code>IsWellKnown</code></td><td><code>IsWellKnown(p1)</code></td><td><code>bool IsWellKnown(WellKnownSidType type)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate(p1)</code></td><td><code>IdentityReference Translate(Type targetType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WindowsIdentity"><summary><b>WindowsIdentity</b> <span class="muted">class · extends <a href="System.Security.Claims.html#c-ClaimsIdentity">ClaimsIdentity</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.WindowsIdentity</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<p class="muted">Implements: IIdentity, IDisposable, ISerializable, IDeserializationCallback</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WindowsIdentity(IntPtr userToken)</code></td></tr><tr><td><code>new WindowsIdentity(IntPtr userToken, string type)</code></td></tr><tr><td><code>new WindowsIdentity(IntPtr userToken, string type, WindowsAccountType acctType)</code></td></tr><tr><td><code>new WindowsIdentity(IntPtr userToken, string type, WindowsAccountType acctType, bool isAuthenticated)</code></td></tr><tr><td><code>new WindowsIdentity(string sUserPrincipalName)</code></td></tr><tr><td><code>new WindowsIdentity(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WindowsIdentity(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WindowsIdentity().@New([ :param = value ])</code> or <code>dnNew("WindowsIdentity",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AuthenticationType</code></td><td><code>string</code></td><td>read</td><td><code>o.getAuthenticationType()</code></td></tr><tr><td><code>ImpersonationLevel</code></td><td><code>TokenImpersonationLevel</code></td><td>read</td><td><code>o.ImpersonationLevel</code></td></tr><tr><td><code>IsAuthenticated</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAuthenticated()</code></td></tr><tr><td><code>IsGuest</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsGuest</code></td></tr><tr><td><code>IsSystem</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSystem</code></td></tr><tr><td><code>IsAnonymous</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAnonymous</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.getName()</code></td></tr><tr><td><code>Owner</code></td><td><code>SecurityIdentifier</code></td><td>read</td><td><code>o.Owner</code></td></tr><tr><td><code>User</code></td><td><code>SecurityIdentifier</code></td><td>read</td><td><code>o.User</code></td></tr><tr><td><code>Groups</code></td><td><code>IdentityReferenceCollection</code></td><td>read</td><td><code>o.Groups</code></td></tr><tr><td><code>AccessToken</code></td><td><code>SafeAccessTokenHandle</code></td><td>read</td><td><code>o.AccessToken</code></td></tr><tr><td><code>Token</code></td><td><code>IntPtr</code></td><td>read</td><td><code>o.Token</code></td></tr><tr><td><code>UserClaims</code></td><td><code>IEnumerable&lt;Claim&gt;</code></td><td>read</td><td><code>o.UserClaims</code></td></tr><tr><td><code>DeviceClaims</code></td><td><code>IEnumerable&lt;Claim&gt;</code></td><td>read</td><td><code>o.DeviceClaims</code></td></tr><tr><td><code>Claims</code></td><td><code>IEnumerable&lt;Claim&gt;</code></td><td>read</td><td><code>o.getClaims()</code></td></tr><tr><td><code>DefaultIssuer</code></td><td><code>string</code></td><td>constant · static</td><td><code>o.getDefaultIssuer()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>ClaimsIdentity Clone()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetAnonymous</code></td><td><code>GetAnonymous()</code></td><td><code>static WindowsIdentity GetAnonymous()</code></td></tr><tr><td><code>GetCurrent</code></td><td><code>GetCurrent(NULL)</code><br><code>GetCurrent(value)</code><br><code>GetCurrent([ :ifImpersonating = … ])</code><br><code>GetCurrent([ :desiredAccess = … ])</code></td><td><code>static WindowsIdentity GetCurrent()</code><br><code>static WindowsIdentity GetCurrent(bool ifImpersonating)</code><br><code>static WindowsIdentity GetCurrent(TokenAccessLevels desiredAccess)</code></td></tr><tr><td><code>RunImpersonated</code></td><td><code>RunImpersonated(p1,p2)</code></td><td><code>static void RunImpersonated(SafeAccessTokenHandle safeAccessTokenHandle, Action action)</code><br><code>static T RunImpersonated&lt;T&gt;(SafeAccessTokenHandle safeAccessTokenHandle, Func&lt;T&gt; func)</code></td></tr><tr><td><code>RunImpersonatedAsync</code></td><td><code>RunImpersonatedAsync(p1,p2)</code></td><td><code>static Task RunImpersonatedAsync(SafeAccessTokenHandle safeAccessTokenHandle, Func&lt;Task&gt; func)</code><br><code>static Task&lt;T&gt; RunImpersonatedAsync&lt;T&gt;(SafeAccessTokenHandle safeAccessTokenHandle, Func&lt;Task&lt;T&gt;&gt; func)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WindowsPrincipal"><summary><b>WindowsPrincipal</b> <span class="muted">class · extends <a href="System.Security.Claims.html#c-ClaimsPrincipal">ClaimsPrincipal</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Security.Principal.WindowsPrincipal</code> · assembly <code>System.Security.Principal.Windows</code></p>
+<p class="muted">Implements: IPrincipal</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WindowsPrincipal(WindowsIdentity ntIdentity)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WindowsPrincipal(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WindowsPrincipal().@New([ :param = value ])</code> or <code>dnNew("WindowsPrincipal",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Identity</code></td><td><code>IIdentity</code></td><td>read</td><td><code>o.getIdentity()</code></td></tr><tr><td><code>UserClaims</code></td><td><code>IEnumerable&lt;Claim&gt;</code></td><td>read</td><td><code>o.UserClaims</code></td></tr><tr><td><code>DeviceClaims</code></td><td><code>IEnumerable&lt;Claim&gt;</code></td><td>read</td><td><code>o.DeviceClaims</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsInRole</code></td><td><code>IsInRole(p1)</code></td><td><code>bool IsInRole(string role)</code><br><code>bool IsInRole(WindowsBuiltInRole role)</code><br><code>bool IsInRole(int rid)</code><br><code>bool IsInRole(SecurityIdentifier sid)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

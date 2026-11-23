@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASP.NET Core · RingDotNet</title>
+<meta name="description" content="A Kestrel web server whose routes are Ring functions — HTML pages, JSON APIs, forms — plus all of the ASP.NET Core classes for everything else.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html" class="cur">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>ASP.NET Core</h1><p class="lead">A Kestrel web server whose routes are Ring functions — HTML pages, JSON APIs, forms — plus all of the ASP.NET Core classes for everything else.</p>
+<h2 id="a-web-server-in-a-few-lines">A web server in a few lines<a class="anchor" href="#a-web-server-in-a-few-lines">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"RingDotNet.Web"</span> }                       <span class="c"># starts the ASP.NET Core mode and loads the web server</span>
+
+oServer = <span class="k">new</span> <span class="t">WebServer</span>(<span class="s">"http://localhost:5080"</span>)
+oServer.<span class="f">onGet</span>(<span class="s">"/"</span>,<span class="s">"home"</span>)
+oServer.<span class="f">onPost</span>(<span class="s">"/api/echo"</span>,<span class="s">"echo"</span>)
+oServer.<span class="f">run</span>()                                  <span class="c"># serves until stop()</span>
+
+<span class="k">func</span> <span class="f">home</span> oRequest
+
+	<span class="k">return</span> <span class="s">"&lt;h1&gt;Hello&lt;/h1&gt;"</span> + oRequest.<span class="f">path</span>()
+
+<span class="k">func</span> <span class="f">echo</span> oRequest
+
+	<span class="k">return</span> [<span class="n">201</span>,<span class="s">"text/plain"</span>,<span class="s">"you sent "</span> + oRequest.<span class="f">body</span>()]</code></pre></div>
+<p><code>using { "RingDotNet.Web" }</code> starts the ASP.NET Core runtime and loads the web server of RingDotNet (it calls <code>dnUseWeb()</code> for you). A <strong>handler</strong> is a Ring function that receives the request and returns the response.</p>
+<figure class="shot"><img src="img/shots/web-page.png" alt="The page served by the Ring web server" loading="lazy"><figcaption>samples/UsingDotNet/applications/WebApi — a page rendered by a Ring handler</figcaption></figure>
+<h2 id="handlers-and-responses">Handlers and responses<a class="anchor" href="#handlers-and-responses">#</a></h2>
+<p>A handler returns one of:</p>
+<div class="tablewrap"><table><thead><tr><th>Return value</th><th>Response</th></tr></thead><tbody><tr><td>a text</td><td>status 200, <code>text/html</code></td></tr><tr><td><code>[status, contentType, text]</code></td><td>exactly that</td></tr><tr><td><code>webJson(value)</code></td><td>status 200, <code>application/json</code></td></tr></tbody></table></div>
+<p><code>webJson</code> turns a Ring list into a JSON array and a list of <code>[name, value]</code> pairs into a JSON object (nested values too):</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">func</span> <span class="f">listTodos</span> oRequest
+
+	aList = []
+	<span class="k">for</span> aTodo <span class="k">in</span> aTodos
+		aList + [[<span class="s">"id"</span>,aTodo[<span class="n">1</span>]],[<span class="s">"text"</span>,aTodo[<span class="n">2</span>]]]
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="f">webJson</span>(aList)</code></pre></div>
+<figure class="shot"><img src="img/shots/web-json.png" alt="The JSON API response" loading="lazy"><figcaption>GET /api/todos</figcaption></figure>
+<h2 id="the-request">The request<a class="anchor" href="#the-request">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Method</th><th>Returns</th></tr></thead><tbody><tr><td><code>oRequest.method()</code></td><td><code>"GET"</code>, <code>"POST"</code> ...</td></tr><tr><td><code>oRequest.path()</code></td><td><code>/api/todos</code></td></tr><tr><td><code>oRequest.queryString()</code></td><td><code>?id=1</code></td></tr><tr><td><code>oRequest.query("id")</code></td><td>one query value</td></tr><tr><td><code>oRequest.body()</code></td><td>the body as text</td></tr><tr><td><code>oRequest.header("Accept")</code></td><td>a request header</td></tr><tr><td><code>oRequest.form("name")</code></td><td>a form field of a POST</td></tr><tr><td><code>oRequest.setHeader(name, value)</code></td><td>add a response header</td></tr><tr><td><code>oRequest.context()</code></td><td>the ASP.NET <code>HttpContext</code>, for everything else</td></tr></tbody></table></div>
+<h2 id="the-webserver">The WebServer<a class="anchor" href="#the-webserver">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Method</th><th>Does</th></tr></thead><tbody><tr><td><code>new WebServer(url)</code></td><td>starts Kestrel; port <code>0</code> picks a free port</td></tr><tr><td><code>onGet(path, handler)</code>, <code>onPost</code>, <code>onPut</code>, <code>onDelete</code></td><td>routes (<code>route(method, path, handler)</code> for any method)</td></tr><tr><td><code>notFound(handler)</code></td><td>the handler for unknown paths (default: <code>Not found: GET /x</code>)</td></tr><tr><td><code>url()</code></td><td>the real address (when the port was 0)</td></tr><tr><td><code>run()</code></td><td>serve until <code>stop()</code></td></tr><tr><td><code>serveOne(milliseconds)</code></td><td>handle one waiting request; true if one was handled</td></tr><tr><td><code>stop()</code>, <code>close()</code></td><td>stop serving, stop the server</td></tr></tbody></table></div>
+<p>An error raised by a handler becomes a <strong>500</strong> response with the message. <code>nRequests</code> counts the requests served.</p>
+<h2 id="one-ring-thread">One Ring thread<a class="anchor" href="#one-ring-thread">#</a></h2>
+<p>Kestrel runs on .NET threads and Ring code may only run on the Ring thread. So the requests are <strong>queued</strong> and <code>serveOne()</code> / <code>run()</code> take them off the queue on the Ring thread. This is the reason you can use any Ring code and global state in a handler without locks — and also why handlers do not run in parallel.</p>
+<p>You can mix serving with your own loop (for example next to a GUI: name <code>"System.Windows.Forms"</code> and <code>"RingDotNet.Web"</code> in the same <code>using</code> block, or call <code>dnUseAll()</code>):</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">while</span> <span class="k">true</span>
+	oServer.<span class="f">serveOne</span>(<span class="n">100</span>)          <span class="c"># handle a request if one arrives within 100 ms</span>
+	doOtherWork()
+<span class="k">end</span></code></pre></div>
+<h2 id="a-complete-application">A complete application<a class="anchor" href="#a-complete-application">#</a></h2>
+<p><code>samples/UsingDotNet/applications/WebApi</code> is a to-do list with a web page and a JSON API. It tests itself by calling its own server with <code>HttpClient</code>:</p>
+<details class="src"><summary>samples/UsingDotNet/applications/WebApi/WebApi.ring</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/applications/WebApi/WebApi.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A small web application written in Ring on ASP.NET Core: a to-do list with a web page and a JSON API</span>
+<span class="c">#   ring WebApi.ring            then open http://localhost:5080/</span>
+<span class="c">#   GET /api/todos   POST /api/todos (the text is the body)   DELETE /api/todos?id=1</span>
+
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Net.Http"</span>
+	<span class="s">"System.Threading.Tasks"</span>
+	<span class="s">"RingDotNet.Web"</span>
+}
+
+aTodos = []		<span class="c"># [id, text]</span>
+nNextId = <span class="n">1</span>
+oServer = <span class="s">""</span>
+oClient = <span class="s">""</span>
+cUrl = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cAddress = <span class="s">"http://localhost:5080"</span>
+	<span class="k">if</span> isSelfTest()
+		cAddress = <span class="s">"http://127.0.0.1:0"</span>
+	<span class="k">ok</span>
+	oServer = <span class="k">new</span> <span class="t">WebServer</span>(cAddress)
+	oServer.<span class="f">onGet</span>(<span class="s">"/"</span>,<span class="s">"page"</span>)
+	oServer.<span class="f">onGet</span>(<span class="s">"/api/todos"</span>,<span class="s">"listTodos"</span>)
+	oServer.<span class="f">onPost</span>(<span class="s">"/api/todos"</span>,<span class="s">"addTodo"</span>)
+	oServer.<span class="f">onDelete</span>(<span class="s">"/api/todos"</span>,<span class="s">"deleteTodo"</span>)
+	cUrl = oServer.<span class="f">url</span>()
+	<span class="k">if</span> isSelfTest()
+		selfTest()
+	<span class="k">else</span>
+		? <span class="s">"Serving "</span> + cUrl + <span class="s">"  (Ctrl+C to stop)"</span>
+		oServer.<span class="f">run</span>()
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">isSelfTest</span>
+
+	<span class="k">return</span> find(sysargv,<span class="s">"--selftest"</span>) &gt; <span class="n">0</span>
+
+<span class="c"># ---------------------------------------------------------------- handlers</span>
+
+<span class="k">func</span> <span class="f">page</span> oRequest
+
+	cHtml = <span class="s">"&lt;html&gt;&lt;body&gt;&lt;h1&gt;To-do list&lt;/h1&gt;&lt;ul&gt;"</span>
+	<span class="k">for</span> aTodo <span class="k">in</span> aTodos
+		cHtml += <span class="s">"&lt;li&gt;"</span> + aTodo[<span class="n">2</span>] + <span class="s">" &lt;a href='/api/todos?id="</span> + aTodo[<span class="n">1</span>] + <span class="s">"'&gt;(json)&lt;/a&gt;&lt;/li&gt;"</span>
+	<span class="k">next</span>
+	cHtml += <span class="s">"&lt;/ul&gt;&lt;p&gt;POST /api/todos adds one, DELETE /api/todos?id=N removes one.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+	<span class="k">return</span> cHtml
+
+<span class="k">func</span> <span class="f">listTodos</span> oRequest
+
+	aList = []
+	<span class="k">for</span> aTodo <span class="k">in</span> aTodos
+		aList + [[<span class="s">"id"</span>,aTodo[<span class="n">1</span>]],[<span class="s">"text"</span>,aTodo[<span class="n">2</span>]]]
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="f">webJson</span>(aList)
+
+<span class="k">func</span> <span class="f">addTodo</span> oRequest
+
+	cText = trim(oRequest.<span class="f">body</span>())
+	<span class="k">if</span> cText = <span class="s">""</span>
+		<span class="k">return</span> [<span class="n">400</span>,<span class="s">"text/plain"</span>,<span class="s">"The text of the to-do is empty"</span>]
+	<span class="k">ok</span>
+	aTodos + [nNextId,cText]
+	nNextId++
+	<span class="k">return</span> [<span class="n">201</span>,<span class="s">"text/plain"</span>,<span class="s">"added "</span> + (nNextId - <span class="n">1</span>)]
+
+<span class="k">func</span> <span class="f">deleteTodo</span> oRequest
+
+	nId = number(oRequest.<span class="f">query</span>(<span class="s">"id"</span>))
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> len(aTodos)
+		<span class="k">if</span> aTodos[nIndex][<span class="n">1</span>] = nId
+			del(aTodos,nIndex)
+			<span class="k">return</span> [<span class="n">200</span>,<span class="s">"text/plain"</span>,<span class="s">"deleted "</span> + nId]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> [<span class="n">404</span>,<span class="s">"text/plain"</span>,<span class="s">"There is no to-do "</span> + nId]
+
+<span class="c"># ---------------------------------------------------------------- self test: a .NET client talks to the server</span>
+
+<span class="k">func</span> <span class="f">request</span> cMethod, cPath, cBody
+
+	oMessage = <span class="k">new</span> <span class="t">HttpRequestMessage</span>().@<span class="k">New</span>([ :<span class="t">method</span> = <span class="k">new</span> <span class="t">HttpMethod</span>(cMethod), :requestUri = cUrl + cPath ])
+	<span class="k">if</span> cBody != <span class="s">""</span>
+		oMessage.Content = <span class="k">new</span> <span class="t">StringContent</span>(cBody)
+	<span class="k">ok</span>
+	oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
+	oTask = oClient.<span class="f">SendAsync</span>(oMessage)
+	<span class="k">for</span> nTry = <span class="n">1</span> <span class="k">to</span> <span class="n">50</span>
+		<span class="k">if</span> oServer.<span class="f">serveOne</span>(<span class="n">100</span>)
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oResponse = oTask.Result
+	oBody = oResponse.Content.<span class="f">ReadAsStringAsync</span>(<span class="k">NULL</span>)
+	oBody.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">return</span> [statusNumber(oResponse.StatusCode),oBody.Result]
+
+<span class="c"># enums are strings: the status names the example uses</span>
+<span class="k">func</span> <span class="f">statusNumber</span> cName
+
+	<span class="k">switch</span> cName
+	<span class="k">on</span> <span class="s">"OK"</span>			<span class="k">return</span> <span class="n">200</span>
+	<span class="k">on</span> <span class="s">"Created"</span>		<span class="k">return</span> <span class="n">201</span>
+	<span class="k">on</span> <span class="s">"BadRequest"</span>		<span class="k">return</span> <span class="n">400</span>
+	<span class="k">on</span> <span class="s">"NotFound"</span>		<span class="k">return</span> <span class="n">404</span>
+	<span class="k">off</span>
+	<span class="k">return</span> <span class="n">0</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	aResult = request(<span class="s">"GET"</span>,<span class="s">"/api/todos"</span>,<span class="s">""</span>)
+	<span class="f">dnAssert</span>(<span class="s">"empty list"</span>,aResult[<span class="n">2</span>],<span class="s">"[]"</span>)
+	aResult = request(<span class="s">"POST"</span>,<span class="s">"/api/todos"</span>,<span class="s">"write Ring code"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"created"</span>,aResult[<span class="n">1</span>],<span class="n">201</span>)
+	request(<span class="s">"POST"</span>,<span class="s">"/api/todos"</span>,<span class="s">"call ASP.NET"</span>)
+	aResult = request(<span class="s">"POST"</span>,<span class="s">"/api/todos"</span>,<span class="s">"   "</span>)
+	<span class="f">dnAssert</span>(<span class="s">"empty text is a 400"</span>,aResult[<span class="n">1</span>],<span class="n">400</span>)
+	aResult = request(<span class="s">"GET"</span>,<span class="s">"/api/todos"</span>,<span class="s">""</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the JSON list"</span>,aResult[<span class="n">2</span>],<span class="s">'[{"id":1,"text":"write Ring code"},{"id":2,"text":"call ASP.NET"}]'</span>)
+	aResult = request(<span class="s">"DELETE"</span>,<span class="s">"/api/todos?id=1"</span>,<span class="s">""</span>)
+	<span class="f">dnAssert</span>(<span class="s">"deleted"</span>,aResult[<span class="n">2</span>],<span class="s">"deleted 1"</span>)
+	aResult = request(<span class="s">"DELETE"</span>,<span class="s">"/api/todos?id=9"</span>,<span class="s">""</span>)
+	<span class="f">dnAssert</span>(<span class="s">"missing is a 404"</span>,aResult[<span class="n">1</span>],<span class="n">404</span>)
+	aResult = request(<span class="s">"GET"</span>,<span class="s">"/"</span>,<span class="s">""</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the web page lists the to-do"</span>,substr(aResult[<span class="n">2</span>],<span class="s">"call ASP.NET"</span>) &gt; <span class="n">0</span>,<span class="k">True</span>)
+	oServer.<span class="f">close</span>()
+	? <span class="s">"SELFTEST "</span> + iif(nDotNetFail = <span class="n">0</span>,<span class="s">"OK ("</span> + nDotNetPass + <span class="s">" checks)"</span>,<span class="s">"FAILED"</span>)
+
+<span class="k">func</span> <span class="f">iif</span> lCondition, xYes, xNo
+
+	<span class="k">if</span> lCondition
+		<span class="k">return</span> xYes
+	<span class="k">ok</span>
+	<span class="k">return</span> xNo</code></pre></div></details>
+
+<h2 id="all-of-aspnet-core">All of ASP.NET Core<a class="anchor" href="#all-of-aspnet-core">#</a></h2>
+<p>The ASP.NET Core classes are wrapped too: <code>Microsoft.AspNetCore.*</code> (Http, Routing, Authentication, Authorization, Mvc, Builder, Hosting, StaticFiles...), <code>Microsoft.Extensions.*</code> (DependencyInjection, Configuration, Logging, Hosting, Caching...) and <code>Microsoft.Net.Http.Headers</code>. Class names that clash with other namespaces start with <code>Asp</code>. Extension methods (<code>AddSingleton</code>, <code>AddAuthentication</code>, <code>BuildServiceProvider</code>...) are methods of the classes that they extend (<a href="concepts.html#extension-methods">Core concepts</a>).</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>using { <span class="s">"Microsoft.AspNetCore.Http"</span> }
+
+oPath = <span class="k">new</span> <span class="t">PathString</span>().@<span class="k">New</span>([ :<span class="t">value</span> = <span class="s">"/api/items"</span> ])
+? oPath.Value                                   <span class="c"># /api/items</span>
+? oPath.<span class="f">StartsWithSegments</span>(<span class="k">new</span> <span class="t">PathString</span>().@<span class="k">New</span>([ :<span class="t">value</span> = <span class="s">"/api"</span> ]))
+
+oQuery = <span class="k">new</span> <span class="t">QueryString</span>().<span class="f">Create</span>([ :name = <span class="s">"name"</span>, :value = <span class="s">"ring dotnet"</span> ])
+? oQuery.Value                                  <span class="c"># ?name=ring%20dotnet</span></code></pre></div>
+<h2 id="what-is-not-supported">What is not supported<a class="anchor" href="#what-is-not-supported">#</a></h2>
+<ul><li>MVC controllers and Razor pages <strong>written in C#</strong> — the web server is the Ring one.</li><li>Handlers that run in parallel (there is one Ring thread).</li><li>Calling Ring from middleware you wrote in .NET.</li></ul>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="ef.html">Entity Framework Core</a>: the database side of a web program.</li><li>The tutorial chapters <a href="tutorials.html#networking-and-the-web">Networking and the web</a> and <a href="tutorials.html#security">Security</a>.</li></ul>
+<div class="pager"><a href="gallery-wpf.html"><small>Previous</small>WPF samples</a><a class="next" href="ef.html"><small>Next</small>Entity Framework Core</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

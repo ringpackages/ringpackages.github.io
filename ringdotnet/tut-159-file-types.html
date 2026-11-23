@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What kind of file is it? · RingDotNet</title>
+<meta name="description" content="The name of a file is only a habit. Many formats start with a few fixed bytes, the magic number, and a program that wants to know what a file really is reads the first bytes. This lesson builds a signature table, tells text from binary data, finds names that tell a lie, and shows why an upload check must not trust the name.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html" class="cur">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>What kind of file is it?</h1><p class="lead">The name of a file is only a habit. Many formats start with a few fixed bytes, the magic number, and a program that wants to know what a file really is reads the first bytes. This lesson builds a signature table, tells text from binary data, finds names that tell a lie, and shows why an upload check must not trust the name.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><strong>magic numbers</strong>: the first bytes of PNG, GIF, JPEG, ZIP, GZip, PDF and Windows programs,</li><li>reading the <strong>first n bytes</strong> of a file into a byte buffer,</li><li>a <strong>signature table</strong> and the function that uses it,</li><li>telling <strong>text</strong> from <strong>binary</strong> data,</li><li>comparing what the <strong>name</strong> says with what the <strong>bytes</strong> say,</li><li>why an upload check needs the bytes.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_file_types.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># finding out what a file is - the first bytes (magic numbers), a signature table, text or binary, and a file whose name tells a lie</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Text"</span>
+}
+
+aSignatures = []                  <span class="c"># [ name, mime type, the first bytes ]</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oFile = <span class="k">new</span> <span class="t">File</span>()
+	oPath = <span class="k">new</span> <span class="t">Path</span>()
+	cFolder = oPath.<span class="f">Combine</span>([ oPath.<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-types-"</span> + oPath.<span class="f">GetRandomFileName</span>() ])
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cFolder)
+
+	<span class="c"># The NAME of a file is only a habit: anybody can call a picture "notes.txt". Many file formats start with a few fixed bytes, the</span>
+	<span class="c"># MAGIC NUMBER (or signature), and a program that wants to know what a file really is looks at the first bytes.</span>
+	addSignatures()
+
+	<span class="c"># 1. Files made by the program: only the first bytes are real, and the rest is filler (that is all the detection looks at)</span>
+	makeFile(cFolder + <span class="s">"/picture.png"</span>,char(<span class="n">137</span>) + <span class="s">"PNG"</span> + char(<span class="n">13</span>) + char(<span class="n">10</span>) + char(<span class="n">26</span>) + char(<span class="n">10</span>),<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/animation.gif"</span>,<span class="s">"GIF89a"</span>,<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/photo.jpg"</span>,char(<span class="n">255</span>) + char(<span class="n">216</span>) + char(<span class="n">255</span>) + char(<span class="n">224</span>),<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/archive.zip"</span>,<span class="s">"PK"</span> + char(<span class="n">3</span>) + char(<span class="n">4</span>),<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/document.pdf"</span>,<span class="s">"%PDF-1.7"</span>,<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/program.exe"</span>,<span class="s">"MZ"</span> + char(<span class="n">144</span>) + char(<span class="n">0</span>),<span class="s">"filler"</span>)
+	makeFile(cFolder + <span class="s">"/packed.gz"</span>,char(<span class="n">31</span>) + char(<span class="n">139</span>) + char(<span class="n">8</span>),<span class="s">"filler"</span>)
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/readme.txt"</span>, :contents = <span class="s">"Just a text file"</span> + nl ])
+	oFile.<span class="f">WriteAllBytes</span>(cFolder + <span class="s">"/data.bin"</span>,<span class="s">"a"</span> + char(<span class="n">0</span>) + char(<span class="n">1</span>) + char(<span class="n">2</span>) + char(<span class="n">200</span>) + char(<span class="n">201</span>))
+	oFile.<span class="f">WriteAllBytes</span>(cFolder + <span class="s">"/empty.dat"</span>,<span class="s">""</span>)
+	? <span class="s">"1. what each file is:"</span>
+	aNames = sortNames(cFolder)
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		? <span class="s">"   "</span> + padRight(cName,<span class="n">14</span>) + describe(cFolder + <span class="s">"/"</span> + cName)
+	<span class="k">next</span>
+
+	<span class="c"># 2. A file with a wrong name: a PNG picture that is called notes.txt, and a text called photo.jpg. The program compares what the</span>
+	<span class="c">#    NAME says with what the BYTES say.</span>
+	oFile.<span class="f">Move</span>([ :sourceFileName = cFolder + <span class="s">"/picture.png"</span>, :destFileName = cFolder + <span class="s">"/notes.txt"</span> ])
+	oFile.<span class="f">Move</span>([ :sourceFileName = cFolder + <span class="s">"/readme.txt"</span>, :destFileName = cFolder + <span class="s">"/photo2.jpg"</span> ])
+	? nl + <span class="s">"2. names that tell a lie:"</span>
+	<span class="k">for</span> cName <span class="k">in</span> [ <span class="s">"notes.txt"</span>, <span class="s">"photo2.jpg"</span>, <span class="s">"photo.jpg"</span> ]
+		? <span class="s">"   "</span> + padRight(cName,<span class="n">12</span>) + checkName(cFolder + <span class="s">"/"</span> + cName)
+	<span class="k">next</span>
+
+	<span class="c"># 3. Why this is a security matter: a web site that lets users upload "pictures" must not trust the name or the type that the</span>
+	<span class="c">#    browser sends, but look at the bytes. (The bytes can lie too: only the first bytes are checked. A real check opens the picture.)</span>
+	? nl + <span class="s">"3. an upload check: is the file a PNG, a JPEG or a GIF picture?"</span>
+	<span class="k">for</span> cName <span class="k">in</span> [ <span class="s">"notes.txt"</span>, <span class="s">"photo.jpg"</span>, <span class="s">"animation.gif"</span>, <span class="s">"program.exe"</span> ]
+		? <span class="s">"   "</span> + padRight(cName,<span class="n">14</span>) + yesNo(isPicture(cFolder + <span class="s">"/"</span> + cName))
+	<span class="k">next</span>
+
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+
+<span class="c"># the known signatures: the bytes at the start of the file</span>
+<span class="k">func</span> <span class="f">addSignatures</span>
+
+	aSignatures + [ <span class="s">"PNG picture"</span>,<span class="s">"image/png"</span>,char(<span class="n">137</span>) + <span class="s">"PNG"</span> + char(<span class="n">13</span>) + char(<span class="n">10</span>) + char(<span class="n">26</span>) + char(<span class="n">10</span>) ]
+	aSignatures + [ <span class="s">"GIF picture"</span>,<span class="s">"image/gif"</span>,<span class="s">"GIF8"</span> ]
+	aSignatures + [ <span class="s">"JPEG picture"</span>,<span class="s">"image/jpeg"</span>,char(<span class="n">255</span>) + char(<span class="n">216</span>) + char(<span class="n">255</span>) ]
+	aSignatures + [ <span class="s">"ZIP archive"</span>,<span class="s">"application/zip"</span>,<span class="s">"PK"</span> + char(<span class="n">3</span>) + char(<span class="n">4</span>) ]
+	aSignatures + [ <span class="s">"GZip data"</span>,<span class="s">"application/gzip"</span>,char(<span class="n">31</span>) + char(<span class="n">139</span>) ]
+	aSignatures + [ <span class="s">"PDF document"</span>,<span class="s">"application/pdf"</span>,<span class="s">"%PDF-"</span> ]
+	aSignatures + [ <span class="s">"Windows program"</span>,<span class="s">"application/x-msdownload"</span>,<span class="s">"MZ"</span> ]
+
+<span class="k">func</span> <span class="f">makeFile</span> cFile,cStart,cFill
+
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllBytes</span>(cFile,cStart + copy(cFill,<span class="n">20</span>))
+
+<span class="c"># the first nCount bytes of a file (fewer when the file is shorter), read into a byte buffer</span>
+<span class="k">func</span> <span class="f">firstBytes</span> cFile,nCount
+
+	oStream = <span class="f">dnNew</span>(<span class="s">"FileStream"</span>,[ :path = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
+	oBuffer = <span class="f">dnBuffer</span>(nCount)
+	nRead = oStream.<span class="f">Read</span>(oBuffer,<span class="n">0</span>,nCount)
+	oStream.<span class="f">Dispose</span>()
+	<span class="k">return</span> <span class="f">dnBufferBytes</span>(oBuffer,nRead)
+
+<span class="c"># [name, mime type] of a file, from its first bytes</span>
+<span class="k">func</span> <span class="f">detect</span> cFile
+
+	cStart = firstBytes(cFile,<span class="n">16</span>)
+	<span class="k">if</span> len(cStart) = <span class="n">0</span>
+		<span class="k">return</span> [ <span class="s">"empty file"</span>,<span class="s">""</span> ]
+	<span class="k">ok</span>
+	<span class="k">for</span> aSignature <span class="k">in</span> aSignatures
+		<span class="k">if</span> left(cStart,len(aSignature[<span class="n">3</span>])) = aSignature[<span class="n">3</span>]
+			<span class="k">return</span> [ aSignature[<span class="n">1</span>],aSignature[<span class="n">2</span>] ]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">if</span> looksLikeText(cStart)
+		<span class="k">return</span> [ <span class="s">"text"</span>,<span class="s">"text/plain"</span> ]
+	<span class="k">ok</span>
+	<span class="k">return</span> [ <span class="s">"unknown binary data"</span>,<span class="s">"application/octet-stream"</span> ]
+
+<span class="c"># text has no NUL and no control characters except tab, new line and return, and it is valid UTF-8</span>
+<span class="k">func</span> <span class="f">looksLikeText</span> cBytes
+
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> len(cBytes)
+		nCode = ascii(substr(cBytes,i,<span class="n">1</span>))
+		<span class="k">if</span> nCode = <span class="n">0</span> <span class="k">or</span> (nCode &lt; <span class="n">32</span> <span class="k">and</span> nCode != <span class="n">9</span> <span class="k">and</span> nCode != <span class="n">10</span> <span class="k">and</span> nCode != <span class="n">13</span>)
+			<span class="k">return</span> <span class="k">False</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oStrict = <span class="f">dnNew</span>(<span class="s">"UTF8Encoding"</span>,[ <span class="k">False</span>, <span class="k">True</span> ])
+	<span class="k">try</span>
+		oStrict.<span class="f">GetString</span>(cBytes)
+		<span class="k">return</span> <span class="k">True</span>
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="k">False</span>
+	<span class="k">done</span>
+
+<span class="k">func</span> <span class="f">describe</span> cFile
+
+	aType = detect(cFile)
+	<span class="k">if</span> aType[<span class="n">2</span>] = <span class="s">""</span>
+		<span class="k">return</span> aType[<span class="n">1</span>]
+	<span class="k">ok</span>
+	<span class="k">return</span> padRight(aType[<span class="n">1</span>],<span class="n">22</span>) + aType[<span class="n">2</span>]
+
+<span class="c"># what the name says (the extension) and what the bytes say</span>
+<span class="k">func</span> <span class="f">checkName</span> cFile
+
+	cExtension = lower(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetExtension</span>(cFile))
+	aType = detect(cFile)
+	aExpected = [ [<span class="s">".png"</span>,<span class="s">"PNG picture"</span>], [<span class="s">".gif"</span>,<span class="s">"GIF picture"</span>], [<span class="s">".jpg"</span>,<span class="s">"JPEG picture"</span>], [<span class="s">".jpeg"</span>,<span class="s">"JPEG picture"</span>], [<span class="s">".zip"</span>,<span class="s">"ZIP archive"</span>], [<span class="s">".pdf"</span>,<span class="s">"PDF document"</span>], [<span class="s">".gz"</span>,<span class="s">"GZip data"</span>], [<span class="s">".txt"</span>,<span class="s">"text"</span>] ]
+	<span class="k">for</span> aItem <span class="k">in</span> aExpected
+		<span class="k">if</span> aItem[<span class="n">1</span>] = cExtension
+			<span class="k">if</span> aItem[<span class="n">2</span>] = aType[<span class="n">1</span>]
+				<span class="k">return</span> <span class="s">"the name fits the content ("</span> + aType[<span class="n">1</span>] + <span class="s">")"</span>
+			<span class="k">ok</span>
+			<span class="k">return</span> <span class="s">"THE NAME SAYS "</span> + aItem[<span class="n">2</span>] + <span class="s">" BUT THE BYTES SAY "</span> + aType[<span class="n">1</span>]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="s">"unknown extension, the bytes say "</span> + aType[<span class="n">1</span>]
+
+<span class="k">func</span> <span class="f">isPicture</span> cFile
+
+	cMime = detect(cFile)[<span class="n">2</span>]
+	<span class="k">return</span> cMime = <span class="s">"image/png"</span> <span class="k">or</span> cMime = <span class="s">"image/jpeg"</span> <span class="k">or</span> cMime = <span class="s">"image/gif"</span>
+
+<span class="k">func</span> <span class="f">sortNames</span> cFolder
+
+	aList = []
+	<span class="k">for</span> oItem <span class="k">in</span> <span class="k">new</span> <span class="t">DirectoryInfo</span>(cFolder).<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+		aList + oItem.Name
+	<span class="k">next</span>
+	<span class="k">return</span> sort(aList)
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. what each file is:
+   animation.gif GIF picture           image/gif
+   archive.zip   ZIP archive           application/zip
+   data.bin      unknown binary data   application/octet-stream
+   document.pdf  PDF document          application/pdf
+   empty.dat     empty file
+   packed.gz     GZip data             application/gzip
+   photo.jpg     JPEG picture          image/jpeg
+   picture.png   PNG picture           image/png
+   program.exe   Windows program       application/x-msdownload
+   readme.txt    text                  text/plain
+
+2. names that tell a lie:
+   notes.txt   THE NAME SAYS text BUT THE BYTES SAY PNG picture
+   photo2.jpg  THE NAME SAYS JPEG picture BUT THE BYTES SAY text
+   photo.jpg   the name fits the content (JPEG picture)
+
+3. an upload check: is the file a PNG, a JPEG or a GIF picture?
+   notes.txt     yes
+   photo.jpg     yes
+   animation.gif yes
+   program.exe   no</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnNew</code>, <code>dnBuffer</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-first-bytes">The first bytes<a class="anchor" href="#the-first-bytes">#</a></h3>
+<p>A PNG picture always starts with the bytes <code>137 80 78 71 13 10 26 10</code> (the second to the fourth are the letters <code>PNG</code>), a GIF with <code>GIF8</code>, a JPEG with <code>255 216 255</code>, a ZIP file with <code>PK</code> and the codes 3 and 4, a GZip file with <code>31 139</code>, a PDF with <code>%PDF-</code> and a Windows program with <code>MZ</code>. <code>firstBytes</code> opens the file with a <code>FileStream</code>, reads up to 16 bytes into a byte buffer and returns them as a Ring text; it does not read the rest of the file, so it is fast for any size. A file that is shorter than 16 bytes gives fewer bytes, and an empty file gives none.</p>
+<h3 id="the-table">The table<a class="anchor" href="#the-table">#</a></h3>
+<p><code>aSignatures</code> is a Ring list of <code>[name, mime type, start bytes]</code>. <code>detect</code> compares the start of the file with each entry (<code>left(cStart, len(signature)) = signature</code>) and returns the first match. The table is <strong>data</strong>: a new format is a new line. The MIME types are the ones of the tutorial <a href="tut-121-mime-types.html">MIME types</a>, and a web server could send them in the <code>Content-Type</code> header.</p>
+<h3 id="text-or-binary">Text or binary<a class="anchor" href="#text-or-binary">#</a></h3>
+<p>A file that matches no signature is either <strong>text</strong> or <em>unknown binary data</em>. The check is: no NUL byte, no control character except tab and the line ends, and valid UTF-8 (the strict decoder of the tutorial <a href="tut-132-text-encodings.html">Text files and encodings</a>). The program looks only at the first bytes, so a file that is text at the start and binary later is called text; for a real decision look at more bytes.</p>
+<h3 id="the-name-tells-a-lie">The name tells a lie<a class="anchor" href="#the-name-tells-a-lie">#</a></h3>
+<p>The extension is just part of the name. After the program renamed the PNG to <code>notes.txt</code> and the text to <code>photo2.jpg</code>, <code>checkName</code> compares the type that the extension promises with the type that the bytes show, and says <em>THE NAME SAYS text BUT THE BYTES SAY PNG picture</em>. The same file with the right name says that the name fits.</p>
+<h3 id="why-this-is-a-security-matter">Why this is a security matter<a class="anchor" href="#why-this-is-a-security-matter">#</a></h3>
+<p>A web site that lets users upload pictures must not trust the file name or the type that the browser sends, because the sender chooses both. <code>isPicture</code> looks at the bytes: <code>notes.txt</code> is accepted as a picture (it is one), <code>program.exe</code> is refused although a user could have named it <code>photo.png</code>. This is only the <strong>first</strong> check: somebody can put a PNG header in front of other data, so a real service opens the picture with an image library and refuses what it cannot read, and it stores the uploaded file under a name that it makes itself, never under the sender's name or in a folder where files are run.</p>
+<div class="callout note"><span class="t">Note</span><p>The program writes only the first bytes of each sample file (and filler after them), which is all that the detection reads. Real files of these formats have more structure after the signature.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>the first bytes of common formats,</li><li>reading the start of a file into a buffer,</li><li>a signature table and text or binary,</li><li>names that tell a lie and the upload check.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add the signatures of <code>BMP</code> (<code>BM</code>), <code>RAR</code> and <code>7z</code> (look up their first bytes).</li><li>Make <code>detectAll(folder)</code> that prints the type of every file of a folder and lists the files whose name does not fit.</li><li>Detect a text file with a <strong>byte order mark</strong> and tell UTF-8 from UTF-16 (the tutorial <a href="tut-132-text-encodings.html">Text files and encodings</a>).</li><li>Read the first 4 bytes of a ZIP file made by <code>ZipFile.CreateFromDirectory</code> and check <code>PK</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-88-compression.html">Compression</a></p>
+<div class="pager"><a href="tut-157-copy-progress.html"><small>Previous</small>Copying a big file</a><a class="next" href="tut-88-compression.html"><small>Next</small>Compression</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

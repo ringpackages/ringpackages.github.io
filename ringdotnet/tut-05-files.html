@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Files and folders · RingDotNet</title>
+<meta name="description" content="Read and write text files, build paths the right way, get information about files, copy, list and zip — with Path, Directory, File, StreamReader and ZipFile.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html" class="cur">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Files and folders</h1><p class="lead">Read and write text files, build paths the right way, get information about files, copy, list and zip — with Path, Directory, File, StreamReader and ZipFile.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>why you use <code>Path.Combine</code>,</li><li>reading a whole file, line by line, and writing and appending,</li><li>information about a file,</li><li>listing a folder, copying, zipping, cleaning up.</li></ul>
+<h2 id="the-classes">The classes<a class="anchor" href="#the-classes">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Class</th><th>Job</th></tr></thead><tbody><tr><td><code>Path</code></td><td>work with <em>names</em> of files and folders (no disk access)</td></tr><tr><td><code>File</code></td><td>read, write, copy, delete a file in one call</td></tr><tr><td><code>Directory</code></td><td>create, delete, list folders</td></tr><tr><td><code>FileInfo</code></td><td>information about one file: size, name, dates</td></tr><tr><td><code>StreamReader</code> / <code>StreamWriter</code></td><td>read or write a file piece by piece (big files)</td></tr><tr><td><code>ZipFile</code> (<code>System.IO.Compression</code>)</td><td>make and open zip files</td></tr></tbody></table></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch01_files.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># files and folders - Path, Directory, File, reading and writing, zip</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.IO.Compression"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oPath = <span class="k">new</span> <span class="t">Path</span>()
+	oFile = <span class="k">new</span> <span class="t">File</span>()
+	oDirectory = <span class="k">new</span> <span class="t">Directory</span>()
+
+	<span class="c"># Never build paths by joining text: Path.Combine uses the right separator</span>
+	cFolder = oPath.<span class="f">Combine</span>([oPath.<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_files"</span>])
+	<span class="k">if</span> oDirectory.<span class="f">Exists</span>(cFolder)
+		oDirectory.<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+	<span class="k">ok</span>
+	oDirectory.<span class="f">CreateDirectory</span>(cFolder)
+	? <span class="s">"Folder created     : "</span> + oDirectory.<span class="f">Exists</span>(cFolder)
+
+	<span class="c"># Write a text file and read it back</span>
+	cNotes = oPath.<span class="f">Combine</span>([cFolder,<span class="s">"notes.txt"</span>])
+	oFile.<span class="f">WriteAllText</span>([ :path = cNotes, :contents = <span class="s">"first line"</span> + windowsnl() + <span class="s">"second line"</span> + windowsnl() + <span class="s">"third line"</span> ])
+	? <span class="s">"File exists        : "</span> + oFile.<span class="f">Exists</span>(cNotes)
+	? <span class="s">"All the text       : "</span> + len(oFile.<span class="f">ReadAllText</span>(cNotes)) + <span class="s">" characters"</span>
+	aLines = oFile.<span class="f">ReadAllLines</span>(cNotes).<span class="f">toList</span>()
+	? <span class="s">"Lines              : "</span> + len(aLines) + <span class="s">", the last is '"</span> + aLines[len(aLines)] + <span class="s">"'"</span>
+
+	<span class="c"># Append without erasing</span>
+	oFile.<span class="f">AppendAllText</span>([ :path = cNotes, :contents = windowsnl() + <span class="s">"fourth line"</span> ])
+	? <span class="s">"After appending    : "</span> + len(oFile.<span class="f">ReadAllLines</span>(cNotes).<span class="f">toList</span>()) + <span class="s">" lines"</span>
+
+	<span class="c"># Read a big file line by line with a reader</span>
+	oReader = <span class="k">new</span> <span class="t">StreamReader</span>(cNotes)
+	nCount = <span class="n">0</span>
+	<span class="k">while</span> <span class="k">not</span> oReader.EndOfStream
+		oReader.<span class="f">ReadLine</span>()
+		nCount++
+	<span class="k">end</span>
+	oReader.<span class="f">Close</span>()
+	? <span class="s">"Counted with reader: "</span> + nCount
+
+	<span class="c"># Information about a file</span>
+	oInfo = <span class="k">new</span> <span class="t">FileInfo</span>(cNotes)
+	? <span class="s">"Name and size      : "</span> + oInfo.Name + <span class="s">", "</span> + oInfo.Length + <span class="s">" bytes"</span>
+	? <span class="s">"Extension          : "</span> + oPath.<span class="f">GetExtension</span>(cNotes)
+	? <span class="s">"File name only     : "</span> + oPath.<span class="f">GetFileNameWithoutExtension</span>(cNotes)
+
+	<span class="c"># Copy a file and list the folder</span>
+	oFile.<span class="f">Copy</span>([ :sourceFileName = cNotes, :destFileName = oPath.<span class="f">Combine</span>([cFolder,<span class="s">"copy.txt"</span>]) ])
+	? <span class="s">"Files in the folder: "</span> + len(oDirectory.<span class="f">GetFiles</span>(cFolder).<span class="f">toList</span>())
+
+	<span class="c"># Zip a folder and unzip it somewhere else</span>
+	cZip = oPath.<span class="f">Combine</span>([oPath.<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_files.zip"</span>])
+	<span class="k">if</span> oFile.<span class="f">Exists</span>(cZip)
+		oFile.<span class="f">Delete</span>(cZip)
+	<span class="k">ok</span>
+	<span class="k">new</span> <span class="t">ZipFile</span>().<span class="f">CreateFromDirectory</span>([ :sourceDirectoryName = cFolder, :destinationArchiveFileName = cZip ])
+	? <span class="s">"Zip size           : "</span> + <span class="k">new</span> <span class="t">FileInfo</span>(cZip).Length + <span class="s">" bytes"</span>
+	oFile.<span class="f">Delete</span>(cZip)
+
+	<span class="c"># Clean up</span>
+	oDirectory.<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+	? <span class="s">"Cleaned up         : "</span> + (<span class="k">not</span> oDirectory.<span class="f">Exists</span>(cFolder))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Folder created     : 1
+File exists        : 1
+All the text       : 35 characters
+Lines              : 3, the last is 'third line'
+After appending    : 4 lines
+Counted with reader: 4
+Name and size      : notes.txt, 48 bytes
+Extension          : .txt
+File name only     : notes
+Files in the folder: 2
+Zip size           : 278 bytes
+Cleaned up         : 1</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="paths">Paths<a class="anchor" href="#paths">#</a></h3>
+<p>Never build a path by joining texts with <code>/</code> or <code>\</code>. <code>Path.Combine([a,b])</code> uses the right separator for the computer, and <code>Path.GetTempPath()</code> gives a folder where temporary files are allowed. Other <code>Path</code> helpers: <code>GetFileName</code>, <code>GetExtension</code>, <code>GetFileNameWithoutExtension</code>, <code>GetDirectoryName</code>. They only work on the <em>text</em> of a path; the file does not have to exist.</p>
+<h3 id="ask-before-you-act">Ask before you act<a class="anchor" href="#ask-before-you-act">#</a></h3>
+<p><code>Directory.Exists(cFolder)</code> and <code>File.Exists(cFile)</code> return true or false. <code>Directory.Delete([ :path = cFolder, :recursive = True ])</code> deletes a folder and everything in it. <code>Delete</code> has a version with one parameter (an empty folder only) and one with two; the list of <em>named arguments</em> chooses the second.</p>
+<h3 id="reading-and-writing">Reading and writing<a class="anchor" href="#reading-and-writing">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Need</th><th>Call</th></tr></thead><tbody><tr><td>the whole file as one text</td><td><code>File.ReadAllText(path)</code></td></tr><tr><td>the lines as a collection</td><td><code>File.ReadAllLines(path).toList()</code></td></tr><tr><td>write (overwrites)</td><td><code>File.WriteAllText([ :path = p, :contents = text ])</code></td></tr><tr><td>add at the end</td><td><code>File.AppendAllText([ :path = p, :contents = text ])</code></td></tr></tbody></table></div>
+<p><code>windowsnl()</code> is Ring's line break for Windows (carriage return plus line feed).</p>
+<h3 id="big-files-a-reader">Big files: a reader<a class="anchor" href="#big-files-a-reader">#</a></h3>
+<p><code>ReadAllText</code> loads everything into memory. For a big file use a <code>StreamReader</code>: <code>ReadLine()</code> returns the next line, <code>EndOfStream</code> is true at the end, and <strong><code>Close()</code> must be called</strong> to release the file.</p>
+<h3 id="information-copy-list">Information, copy, list<a class="anchor" href="#information-copy-list">#</a></h3>
+<p><code>FileInfo</code> gives <code>Name</code>, <code>Length</code> (the size in bytes), dates. <code>File.Copy([ :sourceFileName = from, :destFileName = to ])</code>, <code>Directory.GetFiles(folder)</code> and <code>File.Delete(path)</code> do what they say. <code>Write</code> and <code>Copy</code> have several versions, so they take a list of named values, like <code>Round</code> in the last lesson.</p>
+<h3 id="zip">Zip<a class="anchor" href="#zip">#</a></h3>
+<p><code>ZipFile.CreateFromDirectory([ :sourceDirectoryName = folder, :destinationArchiveFileName = zipFile ])</code> compresses a whole folder; <code>ZipFile.ExtractToDirectory</code> opens it again.</p>
+<h3 id="clean-up">Clean up<a class="anchor" href="#clean-up">#</a></h3>
+<p>A program that creates temporary files deletes them at the end. This tutorial's last line checks that the folder is gone.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>build paths with <code>Path</code>, not with <code>+</code>,</li><li>ask <code>Exists</code> before you read,</li><li>use a reader for big files and always close it,</li><li><code>FileInfo</code> gives the facts about a file.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write a program that counts the lines in every <code>.ring</code> file of a folder (<code>Directory.GetFiles([ :path = cFolder, :searchPattern = "*.ring" ])</code>).</li><li>Copy a file to the Documents folder (<code>Environment.GetFolderPath("MyDocuments")</code>).</li><li>Find the biggest file in a folder with <code>FileInfo.Length</code>.</li><li>Write a log: each run appends a line with the date and time.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-06-json-xml.html">JSON and XML</a></p>
+<div class="pager"><a href="tut-04-collections.html"><small>Previous</small>Collections and LINQ</a><a class="next" href="tut-06-json-xml.html"><small>Next</small>JSON and XML</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

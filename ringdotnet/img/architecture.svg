@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" width="800" height="370" role="img" aria-label="Architecture of RingDotNet">
+<rect width="800" height="370" rx="14" fill="#fbfbfd" stroke="#e3e5ef"/>
+<g transform="translate(20,20)">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b3fd1"/><stop offset="1" stop-color="#00a3b4"/></linearGradient></defs>
+<g font-family="Segoe UI, system-ui, sans-serif" font-size="14">
+<rect x="20" y="10" width="720" height="54" rx="12" fill="#ece8fc" stroke="#5b3fd1"/>
+<text x="380" y="34" text-anchor="middle" fill="#1e2030" font-weight="700">Your Ring program</text>
+<text x="380" y="53" text-anchor="middle" fill="#5f6480" font-size="12.5">oSB = new StringBuilder("Hi")   ·   oForm.Text = "Hello"   ·   oBtn.setClickEvent("...")</text>
+<rect x="20" y="84" width="720" height="54" rx="12" fill="#f1f2f8" stroke="#e3e5ef"/>
+<text x="380" y="108" text-anchor="middle" fill="#1e2030" font-weight="700">dotnetlib (Ring library)</text>
+<text x="380" y="127" text-anchor="middle" fill="#5f6480" font-size="12.5">generated wrapper classes · using · dnCallback · gui.ring · wpf.ring · web.ring · data.ring</text>
+<rect x="20" y="158" width="720" height="54" rx="12" fill="#f1f2f8" stroke="#e3e5ef"/>
+<text x="380" y="182" text-anchor="middle" fill="#1e2030" font-weight="700">ring_dotnet.dll (C extension)</text>
+<text x="380" y="201" text-anchor="middle" fill="#5f6480" font-size="12.5">starts the runtime through hostfxr · sends requests · runs Ring callbacks</text>
+<rect x="20" y="232" width="720" height="40" rx="12" fill="url(#g1)"/>
+<text x="380" y="257" text-anchor="middle" fill="#fff" font-weight="700">RingDotNet.Bridge.dll (C#): reflection, handle table, type conversion, delegates</text>
+<rect x="20" y="288" width="230" height="34" rx="10" fill="#ffffff" stroke="#e3e5ef"/><text x="135" y="310" text-anchor="middle" fill="#1e2030">.NET class library</text>
+<rect x="265" y="288" width="230" height="34" rx="10" fill="#ffffff" stroke="#e3e5ef"/><text x="380" y="310" text-anchor="middle" fill="#1e2030">WinForms · WPF · ASP.NET · EF</text>
+<rect x="510" y="288" width="230" height="34" rx="10" fill="#ffffff" stroke="#e3e5ef"/><text x="625" y="310" text-anchor="middle" fill="#1e2030">Your DLLs and NuGet packages</text>
+</g></g>
+</svg>

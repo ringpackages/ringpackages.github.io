@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Function index · RingDotNet</title>
+<meta name="description" content="Every function and class method of the Ring library, generated from the source files — with the comment that documents it.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html" class="cur">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Function index</h1><p class="lead">Every function and class method of the Ring library, generated from the source files — with the comment that documents it.</p>
+<p>This page is generated from the comments in <code>libraries/dotnetlib/*.ring</code>. Search it with the box at the top of the page.</p>
+<h2 id="core-functionsring">Core (functions.ring)<a class="anchor" href="#core-functionsring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>dnRequest(cOperation, aParameters)</code></td><td>Send a request to the bridge: dnRequest("call", [oTarget, "Method", arg1, ...]), returns one value. The common answers (a text, a number, a yes/no, one object) are read directly, without making a list of items.</td></tr><tr><td><code>dnSend(cOperation, nHandle, cName, cArgs)</code></td><td>The request of a generated method for a member of an object: the operation and the name are ready wire items ("s4:call", "s6:Append"), the handle is a number (0 is the null object) and the arguments are packed. It makes the same request text as dnRequest, without a list and a DotNetObject for the target (about 40% of the time of a call).</td></tr><tr><td><code>dnExchange(cRequest)</code></td><td>Send a request text to the bridge and read the answer</td></tr><tr><td><code>dnFinish(dn_cResponse)</code></td><td>The answer of the bridge (one item, or a list of items) as a Ring value</td></tr><tr><td><code>dnFlush()</code></td><td>The handles of the objects that Ring freed are released in groups (the next .NET call does it when 32 are waiting). dnFlush() releases them now. Ring frees an object a little after the last variable that held it is gone; callgc() (called in the same function) makes it free the objects at once. So to let go of a big object now (or before you look at the memory of .NET with GC.GetTotalMemory) write:  oBig = NULL  callgc()  dnFlush()</td></tr><tr><td><code>dnHandleCount()</code></td><td>The number of .NET objects that Ring holds now (handles in the table of the bridge): a test of the release of handles compares it before and after the objects were dropped (call callgc() and dnFlush() first)</td></tr><tr><td><code>dnVersion()</code></td><td>Version of the .NET runtime that is hosted in this process</td></tr><tr><td><code>dnLoad(cPath)</code></td><td>Load an assembly (.dll) from a path, returns the assembly name</td></tr><tr><td><code>dnLoadName(dn_cName)</code></td><td>Load an assembly by name (for example "System.Xml")</td></tr><tr><td><code>dnType(cTypeName)</code></td><td>Get a type (to call its static members), for example dnType("System.Math")</td></tr><tr><td><code>dnNew(cTypeName, aParameters)</code></td><td>Create a .NET object: dnNew("System.Text.StringBuilder", ["Hello"]) The arguments can be named: dnNew("StringBuilder",[ :value = "Hello", :capacity = 64 ]) chooses the constructor by the parameter names (the order does not matter). The class is a full .NET type name or the name of a generated Ring class (see dnImport)</td></tr><tr><td><code>dnStatic(cTypeName, cMethod, aParameters)</code></td><td>Call a static method: dnStatic("System.Math", "Max", [3, 9])</td></tr><tr><td><code>dnObj(dn_xInfo)</code></td><td>The answer of dotnet_callo (a call that returns an object): the extension answers the text "&lt;handle&gt;|&lt;type&gt;|&lt;base type&gt;..." and the Ring function wraps it as the generated class of the type; null is 0; any other answer is the list [1, answer] that dnFinish reads.</td></tr><tr><td><code>dnMakePrototype(dn_cFactory)</code></td><td>Make the ready object of the class of a factory function (no handle, no guard) once, and keep it in aDotNetPrototypes</td></tr><tr><td><code>dnAny(dn_aAnswer)</code></td><td>The answer of dotnet_calla (any answer): the extension answers a text, a number or a yes/no itself and an object as the list [2, "&lt;handle&gt;|&lt;type&gt;..."]</td></tr><tr><td><code>dnTypeHandle(cTypeName)</code></td><td>The handle of the type object of a type name, made once (the generated static methods pass it as a number: returning the cached type object itself would copy it at every call)</td></tr><tr><td><code>dnTypeItem(cTypeName)</code></td><td>The wire item of a type (its handle), made once for each type name</td></tr><tr><td><code>dnNewHandle(cOperation, cTypeName, cArgs)</code></td><td>Make an object and read its handle from the answer: the answer is a number, so the object is not wrapped for Ring (0: a value such as an Int32 has no object, its class is used for static members)</td></tr><tr><td><code>dnIsNamed(aValue)</code></td><td>True for a list of [name, value] pairs, the way Ring passes named arguments: [ :server = "x", :port = 80 ]  ([] too)</td></tr><tr><td><code>dnCreateNamed(cTypeName, aNamed)</code></td><td>The handle of an object created with named arguments (used by generated code)</td></tr><tr><td><code>dnDescribe(cTypeName)</code></td><td>Public API of a type (used by tools/dotnettools/gendotnet.ring)</td></tr><tr><td><code>dnCallback(cCode)</code></td><td>Ring code callable from .NET: dnCallback("? aDotNetArgs[1]") or dnCallback("myfunc"), then pass it where a delegate is expected. Code in a text reads the arguments from aDotNetArgs and sets xDotNetResult. The NAME of a function is called with the list of the arguments (func myfunc aArgs) and its return value is the result. The code is compiled once into a function (the same code gives the same function). A callback runs on the Ring thread, while a call from Ring is running (see the page "Rules and limits").</td></tr><tr><td><code>dnUseDesktop()</code></td><td>Use Windows Forms / WPF (adds the Windows Desktop runtime). Call it before any other .NET call.</td></tr><tr><td><code>dnImport(cNamespace)</code></td><td>Load the generated Ring classes of a .NET namespace: dnImport("System.IO"). using { "System.IO" } calls it for each name.</td></tr><tr><td><code>dnImportFrom(cFolder, cNamespace)</code></td><td>Load classes generated by tools/dotnettools/wrapassembly.ring for your own assembly: dnImportFrom("myclasses/","MyCompany.Tools")</td></tr><tr><td><code>dnGenericName(cType, aArguments)</code></td><td>Name of a closed generic type: dnGenericName("System.Collections.Generic.List",["System.Int32"])</td></tr><tr><td><code>dnBox(cType, nValue)</code></td><td>A value of an exact .NET type for a parameter of type object: a whole number that goes to an object is an Int32 (Ring has one kind of number), so dnBox("System.Double",10) is the Double 10, dnBox("System.Int64",5) the Int64 5 (also Single, Decimal, Byte ...)</td></tr><tr><td><code>dnNewGeneric(cType, aArguments, aParameters)</code></td><td>Create an object of a generic type without a generated class (a DotNetObject: use callMethod/getProp)</td></tr><tr><td><code>dnAssert(dn_cName, xActual, xExpected)</code></td><td>Simple test helpers: dnAssert("name",actual,expected) ... dnTestSummary(). Numbers are compared with a small tolerance, texts exactly (binary data too: a text can hold any byte). A failure prints one line: FAIL: name expected &lt;..&gt; got &lt;..&gt;</td></tr><tr><td><code>dnTestSummary()</code></td><td>Print "TESTS: n passed, m failed" and return the number of failures</td></tr><tr><td><code>dnRegisterClass(cType, cClass, nInit)</code></td><td>Register a generated class: objects of this .NET type are returned as instances of the Ring class</td></tr><tr><td><code>dnLoadClassIndex()</code></td><td>The index of the generated classes ([type, namespace] pairs) is a file of about six thousand entries: it is loaded when it is first needed (an object comes back whose class is not loaded yet), not when a program starts</td></tr><tr><td><code>dnAddClassIndex(dn_aItems)</code></td><td>Called by the index files that the generators write: dnAddClassIndex([ ["System.IO.File","System.IO"], ... ])</td></tr><tr><td><code>dnBuildIndexMap()</code></td><td>The index of the generated classes as a hash table (type --&gt; namespace); built once, when it is first needed</td></tr><tr><td><code>dnWrapInto(cInfo)</code></td><td>The same, but the object is left in the global oDotNetNew (returning it would copy it once more: a class can have 100 attributes)</td></tr><tr><td><code>dnFindFactory(dn_cChain)</code></td><td>The factory function for a chain "type|base type|..." (the most specific type first: a type that is not imported yet is imported on demand before a less specific one is used), or "-" when no class is known</td></tr><tr><td><code>dnEnsureExt(dn_cClass)</code></td><td>The static class with the extension methods that a generated method calls: its assembly is loaded by the bridge the first time</td></tr><tr><td><code>dnNull()</code></td><td>The .NET null: oPictureBox.Image = dnNull()</td></tr><tr><td><code>dnIsNull(dn_xValue)</code></td><td>Is the value the .NET null? True for a null object, false for every other value (a number, a text, a list, an object that is not null)</td></tr><tr><td><code>dnBuffer(xSizeOrBytes)</code></td><td>A byte buffer that .NET can fill: oBuffer = dnBuffer(1024) makes a byte[] of 1024 bytes, dnBuffer("bytes") one with the bytes of a text. A byte[] that .NET returns is a Ring text (a copy), and a Ring text passed in is a new array, so a method that FILLS an array (Stream.Read, Socket.Receive...) needs this object: pass it as the byte[] parameter and read what was written with dnBufferBytes. n = oStream.Read(oBuffer,0,1024)         cBytes = dnBufferBytes(oBuffer,n)</td></tr><tr><td><code>dnBufferBytes(oBuffer, nCount)</code></td><td>The first nCount bytes of a buffer as a Ring text (use the number that Read or Receive returned; dnBufferSize(oBuffer) for all of them)</td></tr><tr><td><code>dnBufferSize(oBuffer)</code></td><td>The size of a buffer in bytes</td></tr><tr><td><code>dnUseWeb()</code></td><td>Use ASP.NET Core (adds the ASP.NET runtime and loads the web server of RingDotNet). Call it before any other .NET call.</td></tr><tr><td><code>dnUseAll()</code></td><td>Windows Forms / WPF and ASP.NET Core together (using { } starts it when the names of both are used). Call it before any other .NET call.</td></tr><tr><td><code>dnUseData()</code></td><td>Use Entity Framework Core with SQLite (loads the data assembly of RingDotNet and its packages)</td></tr><tr><td><code>dnLoadSelfTest()</code></td><td>The checks of a program with a window are kept in a file of their own, so the sample stays a clean program: next to the program, the file selftest/&lt;name of the program&gt;.ring defines func selfTest(). When the program runs with --selftest, uiRun() (or wpfRun()) loads that file, runs selfTest() once the window is shown, closes the window and prints the result. Returns True when such a file was loaded.</td></tr></tbody></table></div>
+<h2 id="dotnetobject-and-friends-classesring">DotNetObject and friends (classes.ring)<a class="anchor" href="#dotnetobject-and-friends-classesring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>DotNetObject.init(pHandle)</code></td><td>(the parameter has another name: "this.nHandle = ..." would run Ring's property setter machinery, which breaks an outer assignment like oForm.Text = new Path().GetFileName(...))</td></tr><tr><td><code>DotNetObject.dnDefaultObject(cTypeName)</code></td><td>The default object of a class (used by the class body of the generated classes, for "new X" without parentheses)</td></tr><tr><td><code>DotNetObject.isNull()</code></td><td>True for the null reference</td></tr><tr><td><code>DotNetObject.callMethod(cMethod, aParameters)</code></td><td>Call a method by its name: oObject.callMethod("Append", ["text"]). It works for every .NET object, also when no class was generated.</td></tr><tr><td><code>DotNetObject.callGeneric(cMethod, aTypeArguments, aParameters)</code></td><td>Call a generic method whose type argument only its result shows (JsonConvert.DeserializeObject&lt;T&gt;(json)): the type arguments are a list of type names, then the arguments: oType.callGeneric("DeserializeObject",["System.Collections.Generic.List`1[[System.String]]"],[cJson])</td></tr><tr><td><code>DotNetObject.convertTo(cType)</code></td><td>The conversion of the object to a .NET type with the operators op_Implicit / op_Explicit (the cast of C#): oToken.convertTo("System.String")</td></tr><tr><td><code>DotNetObject.getProp(cMember)</code></td><td>Read a property or a field</td></tr><tr><td><code>DotNetObject.setProp(cMember, xValue)</code></td><td>Write a property or a field</td></tr><tr><td><code>DotNetObject.toString()</code></td><td>ToString() of the object</td></tr><tr><td><code>DotNetObject.typeName()</code></td><td>Full name of the .NET type</td></tr><tr><td><code>DotNetObject.toList()</code></td><td>Copy the items of an array or collection to a Ring list</td></tr><tr><td><code>DotNetObject.asyncEnumerator()</code></td><td>An IAsyncEnumerable (a method that returns one has no await foreach in Ring): toList() reads all the items. One item at a time: oEnum = oStream.asyncEnumerator()    while oEnum.asyncNext()  ? oEnum.Current  end    oEnum.asyncDispose()</td></tr><tr><td><code>DotNetObject.asyncNext()</code></td><td>Wait for the next item of an async enumerator: true when there is one (it is Current), false at the end</td></tr><tr><td><code>DotNetObject.asyncDispose()</code></td><td>End an async enumerator (toList does it by itself)</td></tr><tr><td><code>DotNetObject.release()</code></td><td>Release the reference kept by the bridge now (the object is not used after this). Ring releases it by itself when the last variable that holds the object is gone (see oDotNetGuard); this is only needed to let go of a big object at once.</td></tr><tr><td><code>DotNetOwned.init(pHandle)</code></td><td>a .NET object that Ring owns: pHandle is its handle, which is released when the Ring object is dropped</td></tr><tr><td><code>DotNetCallback.init(pCode)</code></td><td>keep the Ring code (a text of code or the name of a function) that .NET runs when it calls the delegate</td></tr></tbody></table></div>
+<h2 id="linq-linqring">LINQ (linq.ring)<a class="anchor" href="#linq-linqring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>dnQuery(xSource)</code></td><td>A query on a Ring list or a .NET collection: dnQuery(aList).Where("...").ToList()</td></tr><tr><td><code>DotNetQuery.init(xSource)</code></td><td>a query on xSource, a Ring list or a .NET collection (made by dnQuery)</td></tr><tr><td><code>DotNetQuery.Where(cCode)</code></td><td>the items for which the code gives true</td></tr><tr><td><code>DotNetQuery.Select(cCode)</code></td><td>the code applied to every item (the results are the new items)</td></tr><tr><td><code>DotNetQuery.SelectMany(cCode)</code></td><td>the code gives a list for every item; the lists are joined into one</td></tr><tr><td><code>DotNetQuery.OrderBy(cCode)</code></td><td>sort by the value that the code gives for an item</td></tr><tr><td><code>DotNetQuery.OrderByDescending(cCode)</code></td><td>sort by the value that the code gives, the largest first</td></tr><tr><td><code>DotNetQuery.ThenBy(cCode)</code></td><td>after OrderBy: sort items with the same value by another value</td></tr><tr><td><code>DotNetQuery.ThenByDescending(cCode)</code></td><td>after OrderBy: sort items with the same value by another value, the largest first</td></tr><tr><td><code>DotNetQuery.TakeWhile(cCode)</code></td><td>the items from the start, while the code gives true</td></tr><tr><td><code>DotNetQuery.SkipWhile(cCode)</code></td><td>leave out the items from the start, while the code gives true</td></tr><tr><td><code>DotNetQuery.Take(nCount)</code></td><td>the first nCount items</td></tr><tr><td><code>DotNetQuery.Skip(nCount)</code></td><td>leave out the first nCount items</td></tr><tr><td><code>DotNetQuery.Distinct()</code></td><td>every value once</td></tr><tr><td><code>DotNetQuery.Reverse()</code></td><td>the items in the opposite order</td></tr><tr><td><code>DotNetQuery.Concat(oOther)</code></td><td>the items followed by the items of oOther (a query, a list or a .NET collection)</td></tr><tr><td><code>DotNetQuery.Union(oOther)</code></td><td>the values of both sources, every value once</td></tr><tr><td><code>DotNetQuery.Intersect(oOther)</code></td><td>the values that both sources have</td></tr><tr><td><code>DotNetQuery.Except(oOther)</code></td><td>the values of this source that oOther does not have</td></tr><tr><td><code>DotNetQuery.ToList()</code></td><td>run the query: the result as a Ring list</td></tr><tr><td><code>DotNetQuery.Count()</code></td><td>the number of items</td></tr><tr><td><code>DotNetQuery.CountWhere(cCode)</code></td><td>the number of items for which the code gives true</td></tr><tr><td><code>DotNetQuery.Any(cCode)</code></td><td>1 when the code gives true for at least one item</td></tr><tr><td><code>DotNetQuery.All(cCode)</code></td><td>1 when the code gives true for every item</td></tr><tr><td><code>DotNetQuery.Contains(xValue)</code></td><td>1 when the source has the value xValue</td></tr><tr><td><code>DotNetQuery.First()</code></td><td>the first item (an error when there is none)</td></tr><tr><td><code>DotNetQuery.FirstWhere(cCode)</code></td><td>the first item for which the code gives true</td></tr><tr><td><code>DotNetQuery.Last()</code></td><td>the last item (an error when there is none)</td></tr><tr><td><code>DotNetQuery.ElementAt(nIndex)</code></td><td>the item at the zero-based position nIndex</td></tr><tr><td><code>DotNetQuery.Sum(cCode)</code></td><td>Sum, Min, Max and Average are computed on the selected values (cCode = "" for the items themselves)</td></tr><tr><td><code>DotNetQuery.Average(cCode)</code></td><td>the average of the selected values (cCode = "" for the items themselves)</td></tr><tr><td><code>DotNetQuery.Min(cCode)</code></td><td>the smallest of the selected values (cCode = "" for the items themselves)</td></tr><tr><td><code>DotNetQuery.Max(cCode)</code></td><td>the largest of the selected values (cCode = "" for the items themselves)</td></tr><tr><td><code>DotNetQuery.dnSelected(cCode)</code></td><td>the values that the code selects (the items themselves for ""), as a Ring list: used by Sum, Average, Min and Max</td></tr></tbody></table></div>
+<h2 id="windows-forms-helpers-guiring">Windows Forms helpers (gui.ring)<a class="anchor" href="#windows-forms-helpers-guiring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>uiForm(cTitle, nWidth, nHeight)</code></td><td>A form with a client area of nWidth x nHeight, centered on the screen</td></tr><tr><td><code>uiLabel(oParent, cText, nX, nY, nWidth, nHeight)</code></td><td>A label with a text, placed at (nX, nY) in the parent (a form or a container)</td></tr><tr><td><code>uiButton(oParent, cText, nX, nY, nWidth, nHeight, cClickCode)</code></td><td>A button; cClickCode is Ring code run on click ("" for none)</td></tr><tr><td><code>uiTextBox(oParent, nX, nY, nWidth, nHeight)</code></td><td>A one-line text box (uiMemo has several lines); read and write its Text</td></tr><tr><td><code>uiMemo(oParent, nX, nY, nWidth, nHeight)</code></td><td>A text box with several lines, scroll bars, Enter and Tab keys, and no word wrap</td></tr><tr><td><code>uiCheckBox(oParent, cText, nX, nY, nWidth, nHeight, cClickCode)</code></td><td>A check box; cClickCode is Ring code run on a click ("" for none); Checked is its state</td></tr><tr><td><code>uiListBox(oParent, nX, nY, nWidth, nHeight)</code></td><td>A list box: Items.Add(text) adds an item, SelectedIndex is the chosen one (-1 for none)</td></tr><tr><td><code>uiComboBox(oParent, nX, nY, nWidth, aItems)</code></td><td>A drop-down list that is filled from the Ring list aItems; the first item is chosen</td></tr><tr><td><code>uiPanel(oParent, nX, nY, nWidth, nHeight)</code></td><td>A panel: a container for other controls (give it as the parent)</td></tr><tr><td><code>uiPictureBox(oParent, nX, nY, nWidth, nHeight)</code></td><td>A picture box that shows a UiCanvas</td></tr><tr><td><code>uiTimer(nMilliseconds, cCode)</code></td><td>A timer that runs Ring code every nMilliseconds (call .Start() / .Stop())</td></tr><tr><td><code>uiMenu(oForm, aMenus)</code></td><td>A menu: uiMenu(oForm,[["File",[["Open","openFile()"],["-",""],["Exit","oForm.Close()"]]], ["Help",[["About","showAbout()"]]]])</td></tr><tr><td><code>uiGameKeys(oForm, cCode)</code></td><td>every control reports the arrow keys, Space and Enter as KeyDown events of the form: uiGameKeys(oForm,"keyPressed(aDotNetArgs[2].KeyCode)"), called after the controls were added</td></tr><tr><td><code>uiInputKeys(oParent)</code></td><td>Make the arrow keys (and Enter, Escape) arrive as KeyDown events on every control of the container</td></tr><tr><td><code>uiSendKeys(oForm, cKeys)</code></td><td>Type keys into the form like a user does, for tests: "12{+}30{ENTER}", "{LEFT}", " " (SendKeys syntax: {LEFT} {RIGHT} {UP} {DOWN} {ENTER} {ESC} {BACKSPACE} {TAB} {DELETE}, {+} for a plus sign). The keys are posted to the focused control of THIS form, so they go through the real Windows Forms key processing and can never reach another program (SendKeys would).</td></tr><tr><td><code>uiRGB(nRed, nGreen, nBlue)</code></td><td>A color from its red, green and blue parts (0 to 255)</td></tr><tr><td><code>uiColor(cName)</code></td><td>A color from its name: uiColor("Red")</td></tr><tr><td><code>uiFont(cName, nSize, lBold)</code></td><td>A font of a family and size (lBold = true for bold): uiFont("Segoe UI",12,false)</td></tr><tr><td><code>uiMessage(cText, cTitle)</code></td><td>A message box (printed instead when running as a test)</td></tr><tr><td><code>uiAsk(cText, cTitle)</code></td><td>Yes/No question: true for Yes (a test prints the question and answers yes)</td></tr><tr><td><code>uiOpenFileName(cTitle, cFilter)</code></td><td>Open file dialog: returns the file name or ""</td></tr><tr><td><code>uiSaveFileName(cTitle, cFilter)</code></td><td>Save file dialog: returns the file name or ""</td></tr><tr><td><code>uiNumber(nValue)</code></td><td>A number as text without Ring's fixed decimals: 2.5 --&gt; "2.5", 1e21 --&gt; "1E+21" (uses .NET)</td></tr><tr><td><code>uiQuiet(oForm)</code></td><td>A form that runs as a test is invisible and not in the taskbar (set the environment variable RINGDOTNET_SHOW to see it)</td></tr><tr><td><code>uiRun(oForm)</code></td><td>Show the form and run the message loop. When running as a test (--selftest) the form closes itself after 30 seconds, and the checks in selftest/&lt;program&gt;.ring next to the program run once the form is shown (see dnLoadSelfTest); the result is printed at the end.</td></tr><tr><td><code>uiTest(oForm, cCode)</code></td><td>The automatic part of an application: when running as a test, cCode runs once the form is shown and the form closes afterwards. The form must be in the global variable oForm (the code that closes it is oForm.Close()).</td></tr><tr><td><code>uiEnd()</code></td><td>Print the result of a test run: "SELFTEST OK" or the failures (call after uiRun)</td></tr><tr><td><code>UiCanvas.init(oPictureBox)</code></td><td>draw on a new bitmap of the size of the picture box, and show it there</td></tr><tr><td><code>UiCanvas.color(xColor)</code></td><td>A color is a name ("Red"), "#RRGGBB" or a .NET Color object</td></tr><tr><td><code>UiCanvas.brush(xColor)</code></td><td>a solid brush for a color (a name, "#RRGGBB" or a .NET Color); the brush of a name is made once</td></tr><tr><td><code>UiCanvas.pen(xColor, nPenWidth)</code></td><td>a pen for a color and a width; the pen of a name and width is made once</td></tr><tr><td><code>UiCanvas.clear(xColor)</code></td><td>fill the whole bitmap with a color</td></tr><tr><td><code>UiCanvas.fillRect(nX, nY, nW, nH, xColor)</code></td><td>a filled rectangle with its corner at nX, nY</td></tr><tr><td><code>UiCanvas.drawRect(nX, nY, nW, nH, xColor)</code></td><td>the outline of a rectangle with its corner at nX, nY</td></tr><tr><td><code>UiCanvas.fillCircle(nX, nY, nRadius, xColor)</code></td><td>a filled circle around the center nX, nY</td></tr><tr><td><code>UiCanvas.drawCircle(nX, nY, nRadius, xColor)</code></td><td>the outline of a circle around the center nX, nY</td></tr><tr><td><code>UiCanvas.fillEllipse(nX, nY, nW, nH, xColor)</code></td><td>a filled ellipse in the rectangle that has its corner at nX, nY</td></tr><tr><td><code>UiCanvas.line(nX1, nY1, nX2, nY2, xColor, nPenWidth)</code></td><td>a line from nX1, nY1 to nX2, nY2 with the pen width nPenWidth</td></tr><tr><td><code>UiCanvas.text(cText, nX, nY, xColor, nSize)</code></td><td>text with the corner of its box at nX, nY; nSize is the font size (Segoe UI)</td></tr><tr><td><code>UiCanvas.show()</code></td><td>Refresh the picture box after drawing</td></tr><tr><td><code>UiCanvas.pixel(nX, nY)</code></td><td>the color of the pixel at nX, nY as a hex text (ffRRGGBB), for tests</td></tr><tr><td><code>UiCanvas.close()</code></td><td>release the graphics of the canvas</td></tr></tbody></table></div>
+<h2 id="wpf-helpers-wpfring">WPF helpers (wpf.ring)<a class="anchor" href="#wpf-helpers-wpfring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>wpfWindow(cTitle, nWidth, nHeight)</code></td><td>A window of nWidth x nHeight, centered on the screen</td></tr><tr><td><code>wpfXaml(cXaml)</code></td><td>Build the objects of a XAML text: wpfXaml('&lt;Button xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Content="Hi"/&gt;')</td></tr><tr><td><code>wpfFind(oRoot, cName)</code></td><td>The element called cName (x:Name / Name in XAML) inside oRoot</td></tr><tr><td><code>wpfBrush(cColor)</code></td><td>A brush from a name or a code: wpfBrush("Red"), wpfBrush("#336699")</td></tr><tr><td><code>wpfColor(cColor)</code></td><td>A color from a name or a code</td></tr><tr><td><code>wpfLabel(cText)</code></td><td>A Label (a content control, the class WpfLabel) with a text</td></tr><tr><td><code>wpfText(cText)</code></td><td>A TextBlock (a plain text) with a text</td></tr><tr><td><code>wpfButton(cText, cClickCode)</code></td><td>A button; cClickCode is Ring code run when it is clicked</td></tr><tr><td><code>wpfQuiet(oWindow)</code></td><td>A window that runs as a test is invisible and not in the taskbar (set the environment variable RINGDOTNET_SHOW to see it)</td></tr><tr><td><code>wpfRun(oWindow)</code></td><td>Show the window and run the message loop until it is closed (modal; works more than once in a program). With --selftest the checks in selftest/&lt;program&gt;.ring next to the program run once the window is rendered (see dnLoadSelfTest), and the result is printed at the end.</td></tr><tr><td><code>wpfTest(oWindow, cCode)</code></td><td>The automatic part of a program: when running as a test, cCode runs once the window is rendered and the window closes afterwards. The window must be in the global variable oWindow (the code that closes it is oWindow.Close()).</td></tr><tr><td><code>wpfEnd()</code></td><td>Print the result of a test run ("SELFTEST OK" or "SELFTEST FAILED")</td></tr><tr><td><code>wpfPixel(oElement, nWidth, nHeight, nX, nY)</code></td><td>The color of a pixel of a rendered element: "ffff0000" is opaque red (needs System.Drawing to read the picture)</td></tr></tbody></table></div>
+<h2 id="web-server-webring">Web server (web.ring)<a class="anchor" href="#web-server-webring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>webJson(xValue)</code></td><td>The response of a handler as JSON: a Ring list, or a list of [name, value] pairs for a JSON object</td></tr><tr><td><code>RingRequest.init(pHandle)</code></td><td>a request that the server received; pHandle is its handle</td></tr><tr><td><code>RingRequest.method()</code></td><td>the HTTP method: "GET", "POST"...</td></tr><tr><td><code>RingRequest.path()</code></td><td>the path of the address, without the query string: "/api/echo"</td></tr><tr><td><code>RingRequest.queryString()</code></td><td>the whole query string: "q=ring&amp;page=2"</td></tr><tr><td><code>RingRequest.query(cName)</code></td><td>a query string value: /search?q=ring --&gt; query("q")</td></tr><tr><td><code>RingRequest.body()</code></td><td>the body of the request as a text</td></tr><tr><td><code>RingRequest.header(cName)</code></td><td>the value of the request header cName</td></tr><tr><td><code>RingRequest.form(cName)</code></td><td>the value of the field cName of a posted form</td></tr><tr><td><code>RingRequest.setHeader(cName, cValue)</code></td><td>add a header to the response</td></tr><tr><td><code>RingRequest.context()</code></td><td>the ASP.NET HttpContext for everything else</td></tr><tr><td><code>RingRequest.respond(nStatus, cType, cBody)</code></td><td>send the response: the status code, the content type and the text</td></tr><tr><td><code>WebServer.init(cUrl)</code></td><td>start a Kestrel server that listens at cUrl: "http://localhost:5080" (port 0 chooses a free port)</td></tr><tr><td><code>WebServer.url()</code></td><td>the real address (when the port was 0)</td></tr><tr><td><code>WebServer.route(cMethod, cPath, cHandler)</code></td><td>handler: the name of a Ring function that receives a RingRequest and returns the response</td></tr><tr><td><code>WebServer.onGet(cPath, cHandler)</code></td><td>the Ring function cHandler answers the GET requests of the path cPath</td></tr><tr><td><code>WebServer.onPost(cPath, cHandler)</code></td><td>the Ring function cHandler answers the POST requests of the path cPath</td></tr><tr><td><code>WebServer.onPut(cPath, cHandler)</code></td><td>the Ring function cHandler answers the PUT requests of the path cPath</td></tr><tr><td><code>WebServer.onDelete(cPath, cHandler)</code></td><td>the Ring function cHandler answers the DELETE requests of the path cPath</td></tr><tr><td><code>WebServer.notFound(cHandler)</code></td><td>the Ring function cHandler answers the requests that no route has</td></tr><tr><td><code>WebServer.serveOne(nMilliseconds)</code></td><td>handle one request if one is waiting (waits up to nMilliseconds); true when a request was handled</td></tr><tr><td><code>WebServer.sendResponse(xResponse)</code></td><td>send what a handler returned: a text (200, text/html) or [status, contentType, text]</td></tr><tr><td><code>WebServer.run()</code></td><td>serve requests until stop() is called</td></tr><tr><td><code>WebServer.stop()</code></td><td>make run() end (call it from a handler)</td></tr><tr><td><code>WebServer.close()</code></td><td>stop serving and shut the server down</td></tr></tbody></table></div>
+<h2 id="entity-framework-dataring">Entity Framework (data.ring)<a class="anchor" href="#entity-framework-dataring">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><code>dbValue(aRow, cColumn)</code></td><td>The value of a column in a row: dbValue(aRow,"Name")</td></tr><tr><td><code>dbWait(oTask)</code></td><td>wait for a Task of the async methods and return its result</td></tr><tr><td><code>RingDatabase.init(cConnection, aSchema)</code></td><td>cConnection is a SQLite connection string ("Data Source=people.db") or starts with the provider: "inmemory:shop", "sqlserver:Server=.;Database=x;...", "postgres:Host=...", "mysql:Server=..." (those need the EF Core package of the provider next to RingDotNet.Data.dll)</td></tr><tr><td><code>RingDatabase.insert(cTable, aValues)</code></td><td>add a row, returns the key</td></tr><tr><td><code>RingDatabase.byKey(cTable, xKey)</code></td><td>the row with the key, or "" when there is none</td></tr><tr><td><code>RingDatabase.all(cTable)</code></td><td>all the rows of a table</td></tr><tr><td><code>RingDatabase.where(cTable, cCondition, aParameters)</code></td><td>rows that match a SQL condition with {0} {1} ... parameters</td></tr><tr><td><code>RingDatabase.update(cTable, xKey, aValues)</code></td><td>change the columns of the row with the key xKey: aValues = [[name, value], ...]</td></tr><tr><td><code>RingDatabase.remove(cTable, xKey)</code></td><td>delete the row with the key xKey</td></tr><tr><td><code>RingDatabase.count(cTable)</code></td><td>the number of rows of a table</td></tr><tr><td><code>RingDatabase.execute(cSql, aParameters)</code></td><td>a SQL statement that changes data (parameters are {0} {1} ...): returns the number of rows</td></tr><tr><td><code>RingDatabase.scalar(cSql)</code></td><td>the first value of a SQL query</td></tr><tr><td><code>RingDatabase.children(cParentTable, xKey, cChildTable)</code></td><td>the rows of cChildTable that belong to the row cParentTable/xKey (the child table has a column with ["references","ParentTable"])</td></tr><tr><td><code>RingDatabase.parent(cChildTable, xKey, cParentTable)</code></td><td>the row of cParentTable that the row cChildTable/xKey belongs to, or ""</td></tr><tr><td><code>RingDatabase.include(cTable, cRelatedTable)</code></td><td>all the rows of cTable with their related rows: [[row, children or parent row], ...]</td></tr><tr><td><code>RingDatabase.query(cTable, aSpec)</code></td><td>a query built as a LINQ expression tree (works with every provider): oDb.query("Customers",[ ["where",["and",["Age","&gt;",30],["City","in",["Cairo","Giza"]]]], ["orderby",[["Age","desc"]]], ["skip",10], ["take",5], ["select",["Name","Age"]] ]) conditions: [column, op, value] with op = != &lt; &lt;= &gt; &gt;= contains startswith endswith in isnull notnull; ["and",c1,c2,...] ["or",c1,c2,...] ["not",c]</td></tr><tr><td><code>RingDatabase.aggregate(cTable, cFunction, cColumn, aCondition)</code></td><td>count, sum, min, max or average of a column for the rows that match a condition ([] = all rows)</td></tr><tr><td><code>RingDatabase.countWhere(cTable, aCondition)</code></td><td>the number of rows that match the condition aCondition</td></tr><tr><td><code>RingDatabase.sum(cTable, cColumn, aCondition)</code></td><td>the sum of a column for the rows that match the condition ([] = all rows)</td></tr><tr><td><code>RingDatabase.min(cTable, cColumn, aCondition)</code></td><td>the smallest value of a column for the rows that match the condition ([] = all rows)</td></tr><tr><td><code>RingDatabase.max(cTable, cColumn, aCondition)</code></td><td>the largest value of a column for the rows that match the condition ([] = all rows)</td></tr><tr><td><code>RingDatabase.average(cTable, cColumn, aCondition)</code></td><td>the average of a column for the rows that match the condition ([] = all rows)</td></tr><tr><td><code>RingDatabase.groupCount(cTable, cColumn, aCondition)</code></td><td>[[value, count], ...] for each value of a column</td></tr><tr><td><code>RingDatabase.sqlRows(cSql, aParameters)</code></td><td>the rows of any SELECT (any columns, joins, groups) as lists of [column, value]: sqlRows("SELECT City, COUNT(*) AS N FROM Customers GROUP BY City",[])</td></tr><tr><td><code>RingDatabase.onSaving(oCallback)</code></td><td>hooks: Ring functions (dnCallback("name")) that run when changes are saved or SQL is executed; the function gets the list of arguments oDb.onSaving(dnCallback("checkChanges"))   # func checkChanges aArgs: aArgs[1] = [[table, state, row], ...]; return a text to cancel the save oDb.onSaved(dnCallback("afterSave"))       # aArgs[1] = the number of rows oDb.onLog(dnCallback("showSql"))           # aArgs[1] = the SQL text</td></tr><tr><td><code>RingDatabase.onSaved(oCallback)</code></td><td>hook: the callback runs after the changes were saved; aArgs[1] = the number of rows</td></tr><tr><td><code>RingDatabase.onLog(oCallback)</code></td><td>hook: the callback gets every SQL text that EF Core runs</td></tr><tr><td><code>RingDatabase.pendingChanges()</code></td><td>the changes waiting to be saved (with autoSave(false)): [[table, "Added"|"Modified"|"Deleted", row], ...]</td></tr><tr><td><code>RingDatabase.migrate()</code></td><td>migrations: bring an existing database in line with the model (creates the missing tables, columns and indexes); returns the list of changes, for example ["add column Users.Email"]</td></tr><tr><td><code>RingDatabase.apply(cName, cSql)</code></td><td>a named change (SQL) that is applied once: returns 1 when it was applied now, 0 when it had been applied before</td></tr><tr><td><code>RingDatabase.applied()</code></td><td>the names of the applied changes</td></tr><tr><td><code>RingDatabase.begin()</code></td><td>transactions: begin() ... commit() or rollback(); an error in commit() undoes everything</td></tr><tr><td><code>RingDatabase.commit()</code></td><td>save the changes of the transaction that begin() started</td></tr><tr><td><code>RingDatabase.rollback()</code></td><td>undo the changes of the transaction that begin() started</td></tr><tr><td><code>RingDatabase.inTransaction()</code></td><td>1 while a transaction that begin() started is open</td></tr><tr><td><code>RingDatabase.insertAsync(cTable, aValues)</code></td><td>async versions return a .NET Task: dbWait(oTask) waits and returns the result</td></tr><tr><td><code>RingDatabase.allAsync(cTable)</code></td><td>async all(): a .NET Task</td></tr><tr><td><code>RingDatabase.whereAsync(cTable, cCondition, aParameters)</code></td><td>async where(): a .NET Task</td></tr><tr><td><code>RingDatabase.countAsync(cTable)</code></td><td>async count(): a .NET Task</td></tr><tr><td><code>RingDatabase.saveAsync()</code></td><td>async save(): a .NET Task</td></tr><tr><td><code>RingDatabase.autoSave(lAuto)</code></td><td>autoSave(false): changes are written when save() is called (one batch)</td></tr><tr><td><code>RingDatabase.save()</code></td><td>write the pending changes (after autoSave(false))</td></tr><tr><td><code>RingDatabase.discard()</code></td><td>forget the changes that were not saved (a failed save does this by itself)</td></tr><tr><td><code>RingDatabase.columnInfo(cTable, cColumn)</code></td><td>a column of the model: [["name",..],["type",..],["key",..],["nullable",..],["required",..],["unique",..],["index",..],["maxlength",..]]</td></tr><tr><td><code>RingDatabase.context()</code></td><td>the EF Core DbContext (a DotNetObject) for everything else</td></tr><tr><td><code>RingDatabase.close()</code></td><td>release the database context and the connection</td></tr><tr><td><code>RingEntityDb.init(cConnection, aSchema)</code></td><td>open the database; aSchema describes the tables, which become .NET classes (the same schema lists as RingDatabase)</td></tr><tr><td><code>RingEntityDb.newEntity(cTable)</code></td><td>a new entity (a DotNetObject of the generated class)</td></tr><tr><td><code>RingEntityDb.entityType(cTable)</code></td><td>the .NET class (System.Type) of a table</td></tr><tr><td><code>RingEntityDb.properties(cTable)</code></td><td>the names of the properties of a table (columns, then navigations)</td></tr><tr><td><code>RingEntityDb.add(oEntity)</code></td><td>add an entity (with the entities it refers to); returns the key</td></tr><tr><td><code>RingEntityDb.remove(oEntity)</code></td><td>delete an entity</td></tr><tr><td><code>RingEntityDb.find(cTable, xKey)</code></td><td>the entity with the key (a list for a composite key), or ""</td></tr><tr><td><code>RingEntityDb.query(cTable, aSpec)</code></td><td>the entities that match a query: same specification as RingDatabase.query, plus ["include",["Navigation","Other.Nested"]]</td></tr><tr><td><code>RingEntityDb.all(cTable)</code></td><td>all the entities of a table</td></tr><tr><td><code>RingEntityDb.count(cTable, aCondition)</code></td><td>the number of entities of a table that match the condition aCondition ([] = all)</td></tr><tr><td><code>RingEntityDb.getValue(oEntity, cProperty)</code></td><td>read / write a property of an entity (dates are texts, bytes are hex texts)</td></tr><tr><td><code>RingEntityDb.setValue(oEntity, cProperty, xValue)</code></td><td>set a property of an entity</td></tr><tr><td><code>RingEntityDb.toRow(oEntity)</code></td><td>the columns of an entity as [[name, value], ...]; fill() sets columns from such a list</td></tr><tr><td><code>RingEntityDb.fill(oEntity, aValues)</code></td><td>set several columns of an entity from [[name, value], ...]</td></tr><tr><td><code>RingEntityDb.save()</code></td><td>write the changes of the tracked entities</td></tr><tr><td><code>RingEntityDb.autoSave(lAuto)</code></td><td>autoSave(false): the changes are written when save() is called</td></tr><tr><td><code>RingEntityDb.discard()</code></td><td>forget the changes that were not saved</td></tr><tr><td><code>RingEntityDb.begin()</code></td><td>start a transaction</td></tr><tr><td><code>RingEntityDb.commit()</code></td><td>save the changes of the transaction</td></tr><tr><td><code>RingEntityDb.rollback()</code></td><td>undo the changes of the transaction</td></tr><tr><td><code>RingEntityDb.context()</code></td><td>the EF Core DbContext (a DotNetObject) for everything else</td></tr><tr><td><code>RingEntityDb.close()</code></td><td>release the database context and the connection</td></tr></tbody></table></div>
+<h2 id="generated-classes">Generated classes<a class="anchor" href="#generated-classes">#</a></h2>
+<p>The wrapper classes are generated; there are two files for each namespace in <code>libraries/dotnetlib/generated/</code> (a loader and the classes). The members of a class are the members of the .NET class (see the <a href="https://learn.microsoft.com/dotnet/api/">.NET documentation</a>), named by the <a href="concepts.html#naming-rules">rules</a>. To see the Ring name of a method, open its class file or call <code>dnDescribe("Namespace.Type")</code>.</p>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="api.html">Class reference</a>: every wrapped class, one page for each namespace.</li><li><a href="concepts.html">Core concepts</a>: how to read the names.</li></ul>
+<div class="pager"><a href="rules-and-limits.html"><small>Previous</small>Rules and limits</a><a class="next" href="api.html"><small>Next</small>Class reference</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

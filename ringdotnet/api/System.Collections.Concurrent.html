@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Collections.Concurrent · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Collections.Concurrent</h1>
+<p class="lead">15 wrapped types. Load them with <code>using { "System.Collections.Concurrent" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-BlockingCollection">BlockingCollection</a> <a href="#c-BlockingObjectCollection">BlockingObjectCollection</a> <a href="#c-ConcurrentBag">ConcurrentBag</a> <a href="#c-ConcurrentDictionary">ConcurrentDictionary</a> <a href="#c-ConcurrentDictionaryAlternateLookup">ConcurrentDictionaryAlternateLookup</a> <a href="#c-ConcurrentObjectBag">ConcurrentObjectBag</a> <a href="#c-ConcurrentObjectDictionary">ConcurrentObjectDictionary</a> <a href="#c-ConcurrentObjectQueue">ConcurrentObjectQueue</a> <a href="#c-ConcurrentObjectStack">ConcurrentObjectStack</a> <a href="#c-ConcurrentStack">ConcurrentStack</a> <a href="#c-ConcurrentStringDictionary">ConcurrentStringDictionary</a> <a href="#c-ConcurrentStringQueue">ConcurrentStringQueue</a> <a href="#c-OrderablePartitioner">OrderablePartitioner</a> <a href="#c-Partitioner">Partitioner</a> <a href="#c-Partitioner1">Partitioner1</a></div><details class="cls" id="c-BlockingCollection"><summary><b>BlockingCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.BlockingCollection`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BoundedCapacity</code></td><td><code>int</code></td><td>read</td><td><code>o.BoundedCapacity</code></td></tr><tr><td><code>IsAddingCompleted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAddingCompleted</code></td></tr><tr><td><code>IsCompleted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCompleted</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BlockingObjectCollection"><summary><b>BlockingObjectCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.BlockingCollection`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BlockingObjectCollection()</code></td></tr><tr><td><code>new BlockingObjectCollection(int boundedCapacity)</code></td></tr><tr><td><code>new BlockingObjectCollection(IProducerConsumerCollection&lt;object&gt; collection, int boundedCapacity)</code></td></tr><tr><td><code>new BlockingObjectCollection(IProducerConsumerCollection&lt;object&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BlockingObjectCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BlockingObjectCollection().@New([ :param = value ])</code> or <code>dnNew("BlockingObjectCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BoundedCapacity</code></td><td><code>int</code></td><td>read</td><td><code>o.BoundedCapacity</code></td></tr><tr><td><code>IsAddingCompleted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAddingCompleted</code></td></tr><tr><td><code>IsCompleted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCompleted</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(value)</code><br><code>Add([ :item = … ])</code><br><code>Add([ :item = …, :cancellationToken = … ])</code></td><td><code>void Add(object item)</code><br><code>void Add(object item, CancellationToken cancellationToken)</code></td></tr><tr><td><code>AddToAny</code></td><td><code>AddToAny([ :collections = …, :item = … ])</code><br><code>AddToAny([ :collections = …, :item = …, :cancellationToken = … ])</code></td><td><code>static int AddToAny(BlockingCollection&lt;object&gt;[] collections, object item)</code><br><code>static int AddToAny(BlockingCollection&lt;object&gt;[] collections, object item, CancellationToken cancellationToken)</code></td></tr><tr><td><code>CompleteAdding</code></td><td><code>CompleteAdding()</code></td><td><code>void CompleteAdding()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(object[] array, int index)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetConsumingEnumerable</code></td><td><code>GetConsumingEnumerable(NULL)</code><br><code>GetConsumingEnumerable(value)</code><br><code>GetConsumingEnumerable([ :cancellationToken = … ])</code></td><td><code>IEnumerable&lt;object&gt; GetConsumingEnumerable()</code><br><code>IEnumerable&lt;object&gt; GetConsumingEnumerable(CancellationToken cancellationToken)</code></td></tr><tr><td><code>Take</code></td><td><code>Take(NULL)</code><br><code>Take(value)</code><br><code>Take([ :cancellationToken = … ])</code></td><td><code>object Take()</code><br><code>object Take(CancellationToken cancellationToken)</code></td></tr><tr><td><code>TakeFromAny</code></td><td><code>TakeFromAny([ :collections = …, :item = … ])</code><br><code>TakeFromAny([ :collections = …, :item = …, :cancellationToken = … ])</code></td><td><code>static int TakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item)</code><br><code>static int TakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item, CancellationToken cancellationToken)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr><tr><td><code>TryAdd</code></td><td><code>TryAdd(value)</code><br><code>TryAdd([ :item = … ])</code><br><code>TryAdd([ :item = …, :timeout = … ])</code><br><code>TryAdd([ :item = …, :millisecondsTimeout = … ])</code><br><code>TryAdd([ :item = …, :millisecondsTimeout = …, :cancellationToken = … ])</code></td><td><code>bool TryAdd(object item)</code><br><code>bool TryAdd(object item, TimeSpan timeout)</code><br><code>bool TryAdd(object item, int millisecondsTimeout)</code><br><code>bool TryAdd(object item, int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr><tr><td><code>TryAddToAny</code></td><td><code>TryAddToAny([ :collections = …, :item = … ])</code><br><code>TryAddToAny([ :collections = …, :item = …, :timeout = … ])</code><br><code>TryAddToAny([ :collections = …, :item = …, :millisecondsTimeout = … ])</code><br><code>TryAddToAny([ :collections = …, :item = …, :millisecondsTimeout = …, :cancellationToken = … ])</code></td><td><code>static int TryAddToAny(BlockingCollection&lt;object&gt;[] collections, object item)</code><br><code>static int TryAddToAny(BlockingCollection&lt;object&gt;[] collections, object item, TimeSpan timeout)</code><br><code>static int TryAddToAny(BlockingCollection&lt;object&gt;[] collections, object item, int millisecondsTimeout)</code><br><code>static int TryAddToAny(BlockingCollection&lt;object&gt;[] collections, object item, int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr><tr><td><code>TryTake</code></td><td><code>TryTake(value)</code><br><code>TryTake([ :item = … ])</code><br><code>TryTake([ :item = …, :timeout = … ])</code><br><code>TryTake([ :item = …, :millisecondsTimeout = … ])</code><br><code>TryTake([ :item = …, :millisecondsTimeout = …, :cancellationToken = … ])</code></td><td><code>bool TryTake(out object item)</code><br><code>bool TryTake(out object item, TimeSpan timeout)</code><br><code>bool TryTake(out object item, int millisecondsTimeout)</code><br><code>bool TryTake(out object item, int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr><tr><td><code>TryTakeFromAny</code></td><td><code>TryTakeFromAny([ :collections = …, :item = … ])</code><br><code>TryTakeFromAny([ :collections = …, :item = …, :timeout = … ])</code><br><code>TryTakeFromAny([ :collections = …, :item = …, :millisecondsTimeout = … ])</code><br><code>TryTakeFromAny([ :collections = …, :item = …, :millisecondsTimeout = …, :cancellationToken = … ])</code></td><td><code>static int TryTakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item)</code><br><code>static int TryTakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item, TimeSpan timeout)</code><br><code>static int TryTakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item, int millisecondsTimeout)</code><br><code>static int TryTakeFromAny(BlockingCollection&lt;object&gt;[] collections, out object item, int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentBag"><summary><b>ConcurrentBag</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentBag`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentDictionary"><summary><b>ConcurrentDictionary</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentDictionary`2</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, IDictionary, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Comparer</code></td><td><code>IEqualityComparer&lt;TKey&gt;</code></td><td>read</td><td><code>o.Comparer</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection&lt;TKey&gt;</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection&lt;TValue&gt;</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(TKey key)</code> → <code>TValue</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddOrUpdate</code></td><td><code>AddOrUpdate([ :key = …, :addValueFactory = …, :updateValueFactory = …, :factoryArgument = … ])</code></td><td><code>TValue AddOrUpdate&lt;TArg&gt;(TKey key, Func&lt;TKey, TArg, TValue&gt; addValueFactory, Func&lt;TKey, TValue, TArg, TValue&gt; updateValueFactory, TArg factoryArgument)</code></td></tr><tr><td><code>GetAlternateLookup</code></td><td><code>GetAlternateLookup(NULL)</code></td><td><code>AlternateLookup&lt;TKey, TValue, TAlternateKey&gt; GetAlternateLookup&lt;TAlternateKey&gt;()</code></td></tr><tr><td><code>GetOrAdd</code></td><td><code>GetOrAdd([ :key = …, :valueFactory = …, :factoryArgument = … ])</code></td><td><code>TValue GetOrAdd&lt;TArg&gt;(TKey key, Func&lt;TKey, TArg, TValue&gt; valueFactory, TArg factoryArgument)</code></td></tr><tr><td><code>TryGetAlternateLookup</code></td><td><code>TryGetAlternateLookup()</code></td><td><code>bool TryGetAlternateLookup&lt;TAlternateKey&gt;(out AlternateLookup&lt;TKey, TValue, TAlternateKey&gt; lookup)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentDictionaryAlternateLookup"><summary><b>ConcurrentDictionaryAlternateLookup</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentDictionary`2+AlternateLookup`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Dictionary</code></td><td><code>ConcurrentDictionary&lt;TKey, TValue&gt;</code></td><td>read</td><td><code>o.Dictionary</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(TAlternateKey key)</code> → <code>TValue</code> · <code>o.SetItem(key,value)</code></p>
+</div></details>
+<details class="cls" id="c-ConcurrentObjectBag"><summary><b>ConcurrentObjectBag</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentBag`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentObjectBag()</code></td></tr><tr><td><code>new ConcurrentObjectBag(IEnumerable&lt;object&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentObjectBag(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentObjectBag().@New([ :param = value ])</code> or <code>dnNew("ConcurrentObjectBag",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(object item)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(object[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;object&gt; GetEnumerator()</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr><tr><td><code>TryPeek</code></td><td><code>TryPeek()</code></td><td><code>bool TryPeek(out object result)</code></td></tr><tr><td><code>TryTake</code></td><td><code>TryTake()</code></td><td><code>bool TryTake(out object result)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentObjectDictionary"><summary><b>ConcurrentObjectDictionary</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentDictionary`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, IDictionary, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentObjectDictionary()</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(int concurrencyLevel, int capacity)</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt; collection)</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt; collection, IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(int concurrencyLevel, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt; collection, IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentObjectDictionary(int concurrencyLevel, int capacity, IEqualityComparer&lt;string&gt; comparer)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentObjectDictionary(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentObjectDictionary().@New([ :param = value ])</code> or <code>dnNew("ConcurrentObjectDictionary",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Comparer</code></td><td><code>IEqualityComparer&lt;string&gt;</code></td><td>read</td><td><code>o.Comparer</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection&lt;string&gt;</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection&lt;object&gt;</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddOrUpdate</code></td><td><code>AddOrUpdate([ :key = …, :addValueFactory = …, :updateValueFactory = … ])</code><br><code>AddOrUpdate([ :key = …, :addValue = …, :updateValueFactory = … ])</code><br><code>AddOrUpdate([ :key = …, :addValueFactory = …, :updateValueFactory = …, :factoryArgument = … ])</code></td><td><code>object AddOrUpdate&lt;TArg&gt;(string key, Func&lt;string, TArg, object&gt; addValueFactory, Func&lt;string, object, TArg, object&gt; updateValueFactory, TArg factoryArgument)</code><br><code>object AddOrUpdate(string key, Func&lt;string, object&gt; addValueFactory, Func&lt;string, object, object&gt; updateValueFactory)</code><br><code>object AddOrUpdate(string key, object addValue, Func&lt;string, object, object&gt; updateValueFactory)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(string key)</code></td></tr><tr><td><code>GetAlternateLookup</code></td><td><code>GetAlternateLookup(NULL)</code></td><td><code>AlternateLookup&lt;string, object, TAlternateKey&gt; GetAlternateLookup&lt;TAlternateKey&gt;()</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;KeyValuePair&lt;string, object&gt;&gt; GetEnumerator()</code></td></tr><tr><td><code>GetOrAdd</code></td><td><code>GetOrAdd([ :key = …, :valueFactory = … ])</code><br><code>GetOrAdd([ :key = …, :value = … ])</code><br><code>GetOrAdd([ :key = …, :valueFactory = …, :factoryArgument = … ])</code></td><td><code>object GetOrAdd(string key, Func&lt;string, object&gt; valueFactory)</code><br><code>object GetOrAdd&lt;TArg&gt;(string key, Func&lt;string, TArg, object&gt; valueFactory, TArg factoryArgument)</code><br><code>object GetOrAdd(string key, object value)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>KeyValuePair&lt;string, object&gt;[] ToArray()</code></td></tr><tr><td><code>TryAdd</code></td><td><code>TryAdd(p1,p2)</code></td><td><code>bool TryAdd(string key, object value)</code></td></tr><tr><td><code>TryGetAlternateLookup</code></td><td><code>TryGetAlternateLookup()</code></td><td><code>bool TryGetAlternateLookup&lt;TAlternateKey&gt;(out AlternateLookup&lt;string, object, TAlternateKey&gt; lookup)</code></td></tr><tr><td><code>TryGetValue</code></td><td><code>TryGetValue(p1)</code></td><td><code>bool TryGetValue(string key, out object value)</code></td></tr><tr><td><code>TryRemove</code></td><td><code>TryRemove(p1)</code></td><td><code>bool TryRemove(string key, out object value)</code><br><code>bool TryRemove(KeyValuePair&lt;string, object&gt; item)</code></td></tr><tr><td><code>TryUpdate</code></td><td><code>TryUpdate(p1,p2,p3)</code></td><td><code>bool TryUpdate(string key, object newValue, object comparisonValue)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentObjectQueue"><summary><b>ConcurrentObjectQueue</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentQueue`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentObjectQueue()</code></td></tr><tr><td><code>new ConcurrentObjectQueue(IEnumerable&lt;object&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentObjectQueue(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentObjectQueue().@New([ :param = value ])</code> or <code>dnNew("ConcurrentObjectQueue",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(object[] array, int index)</code></td></tr><tr><td><code>Enqueue</code></td><td><code>Enqueue(p1)</code></td><td><code>void Enqueue(object item)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;object&gt; GetEnumerator()</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr><tr><td><code>TryDequeue</code></td><td><code>TryDequeue()</code></td><td><code>bool TryDequeue(out object result)</code></td></tr><tr><td><code>TryPeek</code></td><td><code>TryPeek()</code></td><td><code>bool TryPeek(out object result)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentObjectStack"><summary><b>ConcurrentObjectStack</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentStack`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentObjectStack()</code></td></tr><tr><td><code>new ConcurrentObjectStack(IEnumerable&lt;object&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentObjectStack(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentObjectStack().@New([ :param = value ])</code> or <code>dnNew("ConcurrentObjectStack",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(object[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;object&gt; GetEnumerator()</code></td></tr><tr><td><code>Push</code></td><td><code>Push(p1)</code></td><td><code>void Push(object item)</code></td></tr><tr><td><code>PushRange</code></td><td><code>PushRange(value)</code><br><code>PushRange([ :items = … ])</code><br><code>PushRange([ :items = …, :startIndex = …, :count = … ])</code></td><td><code>void PushRange(object[] items)</code><br><code>void PushRange(object[] items, int startIndex, int count)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr><tr><td><code>TryPeek</code></td><td><code>TryPeek()</code></td><td><code>bool TryPeek(out object result)</code></td></tr><tr><td><code>TryPop</code></td><td><code>TryPop()</code></td><td><code>bool TryPop(out object result)</code></td></tr><tr><td><code>TryPopRange</code></td><td><code>TryPopRange(value)</code><br><code>TryPopRange([ :items = … ])</code><br><code>TryPopRange([ :items = …, :startIndex = …, :count = … ])</code></td><td><code>int TryPopRange(object[] items)</code><br><code>int TryPopRange(object[] items, int startIndex, int count)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentStack"><summary><b>ConcurrentStack</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentStack`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentStringDictionary"><summary><b>ConcurrentStringDictionary</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentDictionary`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Collections.Concurrent</code></p>
+<p class="muted">Implements: IEnumerable, IDictionary, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentStringDictionary()</code></td></tr><tr><td><code>new ConcurrentStringDictionary(int concurrencyLevel, int capacity)</code></td></tr><tr><td><code>new ConcurrentStringDictionary(IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; collection)</code></td></tr><tr><td><code>new ConcurrentStringDictionary(IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentStringDictionary(IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; collection, IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentStringDictionary(int concurrencyLevel, IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; collection, IEqualityComparer&lt;string&gt; comparer)</code></td></tr><tr><td><code>new ConcurrentStringDictionary(int concurrencyLevel, int capacity, IEqualityComparer&lt;string&gt; comparer)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentStringDictionary(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentStringDictionary().@New([ :param = value ])</code> or <code>dnNew("ConcurrentStringDictionary",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Comparer</code></td><td><code>IEqualityComparer&lt;string&gt;</code></td><td>read</td><td><code>o.Comparer</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection&lt;string&gt;</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection&lt;string&gt;</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddOrUpdate</code></td><td><code>AddOrUpdate([ :key = …, :addValueFactory = …, :updateValueFactory = … ])</code><br><code>AddOrUpdate([ :key = …, :addValue = …, :updateValueFactory = … ])</code><br><code>AddOrUpdate([ :key = …, :addValueFactory = …, :updateValueFactory = …, :factoryArgument = … ])</code></td><td><code>string AddOrUpdate&lt;TArg&gt;(string key, Func&lt;string, TArg, string&gt; addValueFactory, Func&lt;string, string, TArg, string&gt; updateValueFactory, TArg factoryArgument)</code><br><code>string AddOrUpdate(string key, Func&lt;string, string&gt; addValueFactory, Func&lt;string, string, string&gt; updateValueFactory)</code><br><code>string AddOrUpdate(string key, string addValue, Func&lt;string, string, string&gt; updateValueFactory)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(string key)</code></td></tr><tr><td><code>GetAlternateLookup</code></td><td><code>GetAlternateLookup(NULL)</code></td><td><code>AlternateLookup&lt;string, string, TAlternateKey&gt; GetAlternateLookup&lt;TAlternateKey&gt;()</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;KeyValuePair&lt;string, string&gt;&gt; GetEnumerator()</code></td></tr><tr><td><code>GetOrAdd</code></td><td><code>GetOrAdd([ :key = …, :valueFactory = … ])</code><br><code>GetOrAdd([ :key = …, :value = … ])</code><br><code>GetOrAdd([ :key = …, :valueFactory = …, :factoryArgument = … ])</code></td><td><code>string GetOrAdd(string key, Func&lt;string, string&gt; valueFactory)</code><br><code>string GetOrAdd&lt;TArg&gt;(string key, Func&lt;string, TArg, string&gt; valueFactory, TArg factoryArgument)</code><br><code>string GetOrAdd(string key, string value)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>KeyValuePair&lt;string, string&gt;[] ToArray()</code></td></tr><tr><td><code>TryAdd</code></td><td><code>TryAdd(p1,p2)</code></td><td><code>bool TryAdd(string key, string value)</code></td></tr><tr><td><code>TryGetAlternateLookup</code></td><td><code>TryGetAlternateLookup()</code></td><td><code>bool TryGetAlternateLookup&lt;TAlternateKey&gt;(out AlternateLookup&lt;string, string, TAlternateKey&gt; lookup)</code></td></tr><tr><td><code>TryGetValue</code></td><td><code>TryGetValue(p1)</code></td><td><code>bool TryGetValue(string key, out string value)</code></td></tr><tr><td><code>TryRemove</code></td><td><code>TryRemove(p1)</code></td><td><code>bool TryRemove(string key, out string value)</code><br><code>bool TryRemove(KeyValuePair&lt;string, string&gt; item)</code></td></tr><tr><td><code>TryUpdate</code></td><td><code>TryUpdate(p1,p2,p3)</code></td><td><code>bool TryUpdate(string key, string newValue, string comparisonValue)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrentStringQueue"><summary><b>ConcurrentStringQueue</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.ConcurrentQueue`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IEnumerable, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrentStringQueue()</code></td></tr><tr><td><code>new ConcurrentStringQueue(IEnumerable&lt;string&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrentStringQueue(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrentStringQueue().@New([ :param = value ])</code> or <code>dnNew("ConcurrentStringQueue",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(string[] array, int index)</code></td></tr><tr><td><code>Enqueue</code></td><td><code>Enqueue(p1)</code></td><td><code>void Enqueue(string item)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;string&gt; GetEnumerator()</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>string[] ToArray()</code></td></tr><tr><td><code>TryDequeue</code></td><td><code>TryDequeue()</code></td><td><code>bool TryDequeue(out string result)</code></td></tr><tr><td><code>TryPeek</code></td><td><code>TryPeek()</code></td><td><code>bool TryPeek(out string result)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-OrderablePartitioner"><summary><b>OrderablePartitioner</b> <span class="muted">class abstract · extends Partitioner&lt;TSource&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.OrderablePartitioner`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>KeysOrderedInEachPartition</code></td><td><code>bool</code></td><td>read</td><td><code>o.KeysOrderedInEachPartition</code></td></tr><tr><td><code>KeysOrderedAcrossPartitions</code></td><td><code>bool</code></td><td>read</td><td><code>o.KeysOrderedAcrossPartitions</code></td></tr><tr><td><code>KeysNormalized</code></td><td><code>bool</code></td><td>read</td><td><code>o.KeysNormalized</code></td></tr><tr><td><code>SupportsDynamicPartitions</code></td><td><code>bool</code></td><td>read</td><td><code>o.getSupportsDynamicPartitions()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Partitioner"><summary><b>Partitioner</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.Partitioner</code> · assembly <code>System.Collections.Concurrent</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(value)</code><br><code>Create([ :source = … ])</code><br><code>Create([ :list = …, :loadBalance = … ])</code><br><code>Create([ :array = …, :loadBalance = … ])</code><br><code>Create([ :source = …, :partitionerOptions = … ])</code></td><td><code>static OrderablePartitioner&lt;TSource&gt; Create&lt;TSource&gt;(IList&lt;TSource&gt; list, bool loadBalance)</code><br><code>static OrderablePartitioner&lt;TSource&gt; Create&lt;TSource&gt;(TSource[] array, bool loadBalance)</code><br><code>static OrderablePartitioner&lt;TSource&gt; Create&lt;TSource&gt;(IEnumerable&lt;TSource&gt; source)</code><br><code>static OrderablePartitioner&lt;TSource&gt; Create&lt;TSource&gt;(IEnumerable&lt;TSource&gt; source, EnumerablePartitionerOptions partitionerOptions)</code><br><code>static OrderablePartitioner&lt;Tuple&lt;long, long&gt;&gt; Create(long fromInclusive, long toExclusive)</code><br><code>static OrderablePartitioner&lt;Tuple&lt;long, long&gt;&gt; Create(long fromInclusive, long toExclusive, long rangeSize)</code><br><code>static OrderablePartitioner&lt;Tuple&lt;int, int&gt;&gt; Create(int fromInclusive, int toExclusive)</code><br><code>static OrderablePartitioner&lt;Tuple&lt;int, int&gt;&gt; Create(int fromInclusive, int toExclusive, int rangeSize)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Partitioner1"><summary><b>Partitioner1</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Concurrent.Partitioner`1</code> · assembly <code>System.Collections.Concurrent</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SupportsDynamicPartitions</code></td><td><code>bool</code></td><td>read</td><td><code>o.SupportsDynamicPartitions</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

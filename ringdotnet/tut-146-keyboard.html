@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The keyboard in a form · RingDotNet</title>
+<meta name="description" content="A form feels right when the keyboard works: only digits in an age box, Enter for OK and Escape for Cancel, Tab in a sensible order, access keys on the labels and the text selected when a box gets the focus. This lesson sets all of them and tests them with real key presses.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html" class="cur">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>The keyboard in a form</h1><p class="lead">A form feels right when the keyboard works: only digits in an age box, Enter for OK and Escape for Cancel, Tab in a sensible order, access keys on the labels and the text selected when a box gets the focus. This lesson sets all of them and tests them with real key presses.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the <strong>KeyPress</strong> event: <code>KeyChar</code> and <code>Handled</code>,</li><li><code>MaxLength</code>,</li><li><code>AcceptButton</code> and <code>CancelButton</code>: the buttons of the Enter and Escape keys,</li><li>the <strong>tab order</strong> (<code>TabIndex</code>),</li><li><strong>access keys</strong>: the <code>&amp;</code> in a label,</li><li>selecting all the text when a box gets the focus (<code>Enter</code> event, <code>SelectAll</code>),</li><li>typing keys in a test with <code>uiSendKeys</code>.</li></ul>
+<p>The tutorial <a href="tut-14-animation.html">Drawing and animation</a> used <code>KeyDown</code> for a game. A data form uses the keyboard in other ways.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch10_keyboard.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the keyboard in a form - KeyPress to allow only digits, the Enter and Escape buttons, the tab order, the access keys and select-all</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+<span class="c"># controls and state that the event code uses are global variables</span>
+oForm = <span class="s">""</span>
+oName = <span class="s">""</span>
+oAge = <span class="s">""</span>
+oOk = <span class="s">""</span>
+oCancel = <span class="s">""</span>
+oResult = <span class="s">""</span>
+nRejected = <span class="n">0</span>                     <span class="c"># how many keys the age box refused</span>
+lClosed = <span class="k">False</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oForm = <span class="f">uiForm</span>(<span class="s">"Keyboard"</span>,<span class="n">360</span>,<span class="n">230</span>)
+
+	<span class="c"># An ACCESS KEY: the &amp; in front of a letter underlines it, and Alt + that letter moves the focus to the NEXT control in the tab order</span>
+	<span class="c"># (a label cannot take the focus itself). So the label comes just before its text box.</span>
+	<span class="f">uiLabel</span>(oForm,<span class="s">"&amp;Name"</span>,<span class="n">20</span>,<span class="n">22</span>,<span class="n">80</span>,<span class="n">22</span>)
+	oName = <span class="f">uiTextBox</span>(oForm,<span class="n">110</span>,<span class="n">20</span>,<span class="n">220</span>,<span class="n">24</span>)
+	<span class="f">uiLabel</span>(oForm,<span class="s">"&amp;Age"</span>,<span class="n">20</span>,<span class="n">58</span>,<span class="n">80</span>,<span class="n">22</span>)
+	oAge = <span class="f">uiTextBox</span>(oForm,<span class="n">110</span>,<span class="n">56</span>,<span class="n">60</span>,<span class="n">24</span>)
+	oAge.MaxLength = <span class="n">3</span>                                   <span class="c"># at most 3 characters, whatever is typed or pasted</span>
+
+	<span class="c"># KeyPress runs for each character that is typed, before it reaches the text box. Handled = True throws the character away.</span>
+	oAge.<span class="f">setKeyPressEvent</span>(<span class="s">"filterKey(aDotNetArgs[2])"</span>)
+
+	oOk = <span class="f">uiButton</span>(oForm,<span class="s">"OK"</span>,<span class="n">110</span>,<span class="n">100</span>,<span class="n">90</span>,<span class="n">30</span>,<span class="s">"accept()"</span>)
+	oCancel = <span class="f">uiButton</span>(oForm,<span class="s">"Cancel"</span>,<span class="n">210</span>,<span class="n">100</span>,<span class="n">90</span>,<span class="n">30</span>,<span class="s">"oForm.Close()"</span>)
+	<span class="c"># Enter presses the AcceptButton from any control, and Escape presses the CancelButton: the two keys that every dialog has</span>
+	oForm.AcceptButton = oOk
+	oForm.CancelButton = oCancel
+	oResult = <span class="f">uiLabel</span>(oForm,<span class="s">""</span>,<span class="n">20</span>,<span class="n">150</span>,<span class="n">320</span>,<span class="n">44</span>)
+	oForm.<span class="f">setFormClosedEvent</span>(<span class="s">"lClosed = True"</span>)
+
+	<span class="c"># the first control with the focus, and the select-all of the text when the user comes to a box with Tab</span>
+	oName.TabIndex = <span class="n">1</span>
+	oAge.TabIndex = <span class="n">2</span>
+	oOk.TabIndex = <span class="n">3</span>
+	oCancel.TabIndex = <span class="n">4</span>
+	oName.<span class="f">setEnterEvent</span>(<span class="s">"oName.SelectAll()"</span>)
+	oAge.<span class="f">setEnterEvent</span>(<span class="s">"oAge.SelectAll()"</span>)
+
+	<span class="f">uiRun</span>(oForm)
+
+<span class="c"># The argument of KeyPress has KeyChar (the character) and Handled. Digits and the Backspace key are accepted; everything else is refused.</span>
+<span class="k">func</span> <span class="f">filterKey</span> oArgs
+
+	cChar = oArgs.KeyChar
+	nCode = <span class="n">0</span>
+	<span class="k">if</span> len(cChar) = <span class="n">1</span>
+		nCode = ascii(cChar)                              <span class="c"># a character of the keyboard layout that is not in ASCII (a letter of another</span>
+	<span class="k">ok</span>                                                    <span class="c"># language) arrives as a text of more bytes: it has the code 0 and is refused</span>
+	lDigit = nCode &gt;= <span class="n">48</span> <span class="k">and</span> nCode &lt;= <span class="n">57</span>
+	lBackspace = nCode = <span class="n">8</span>
+	<span class="k">if</span> <span class="k">not</span> lDigit <span class="k">and</span> <span class="k">not</span> lBackspace
+		oArgs.Handled = <span class="k">True</span>
+		nRejected++
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">accept</span>
+
+	<span class="k">if</span> trim(oName.Text) = <span class="s">""</span> <span class="k">or</span> oAge.Text = <span class="s">""</span>
+		oResult.Text = <span class="s">"Please fill in both boxes"</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	oResult.Text = trim(oName.Text) + <span class="s">" is "</span> + oAge.Text + <span class="s">" years old"</span></code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g146.png" alt="The keyboard form" loading="lazy"><figcaption>The form after OK was pressed</figcaption></figure>
+
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="only-digits">Only digits<a class="anchor" href="#only-digits">#</a></h3>
+<p><code>KeyPress</code> runs for each character that the user types, <strong>before</strong> it reaches the box. The event argument (<code>aDotNetArgs[2]</code>, passed to <code>filterKey</code>) has <code>KeyChar</code>, the character, and <code>Handled</code>: when the function sets <code>Handled = True</code> the character is thrown away. The function accepts the digits (codes 48 to 57) and the Backspace key (code 8) and refuses all the rest. This filter works for typing; text that is <em>pasted</em> does not go through <code>KeyPress</code>, so a real program also checks the value at the end (the <code>Validating</code> event, or the check in the OK button).</p>
+<h3 id="maxlength">MaxLength<a class="anchor" href="#maxlength">#</a></h3>
+<p><code>MaxLength = 3</code> limits the number of characters, whatever the user types or pastes. It is the simplest limit and needs no code.</p>
+<h3 id="enter-and-escape">Enter and Escape<a class="anchor" href="#enter-and-escape">#</a></h3>
+<p><code>oForm.AcceptButton = oOk</code> makes <strong>Enter</strong> press the OK button from any box; <code>CancelButton</code> makes <strong>Escape</strong> press Cancel. The test types Enter with the name empty and gets the message <em>Please fill in both boxes</em>; with the name typed, the same Enter shows the result. Escape closes the form. These two properties are all that a dialog needs.</p>
+<h3 id="tab-order">Tab order<a class="anchor" href="#tab-order">#</a></h3>
+<p>The <strong>Tab</strong> key moves the focus to the control with the next <code>TabIndex</code>. Controls get the order in which they were added, and <code>TabIndex</code> makes it explicit: name, age, OK, Cancel. A form with a wrong tab order is a common reason for complaints. The test checks the order by pressing Tab in the name box and asking which control has the focus.</p>
+<h3 id="access-keys">Access keys<a class="anchor" href="#access-keys">#</a></h3>
+<p>In a label the <code>&amp;</code> underlines the next letter: <code>&amp;Name</code> shows &lt;u&gt;N&lt;/u&gt;ame (Windows draws the underline only after the user presses Alt, as in the picture), and <strong>Alt+N</strong> moves the focus to the control that follows the label in the tab order (a label itself cannot take the focus, so it passes it on). This is why each label is created just before its box. Buttons use the same marks (<code>&amp;OK</code>) and press themselves.</p>
+<h3 id="select-all-on-entering">Select all on entering<a class="anchor" href="#select-all-on-entering">#</a></h3>
+<p>The <code>Enter</code> event of a box (not the key!) runs when the box gets the focus; <code>SelectAll()</code> selects its text, so the user can type over it. Many programs do this for every text box.</p>
+<h3 id="typing-keys-in-a-test">Typing keys in a test<a class="anchor" href="#typing-keys-in-a-test">#</a></h3>
+<p><code>uiSendKeys(oForm, "1a2-3")</code> posts the keys to the focused control of <strong>this form</strong> through the real key processing, so <code>KeyPress</code>, <code>MaxLength</code>, <code>AcceptButton</code> and <code>Tab</code> work as they do for a user, and the keys can never reach another program. The test types the letters and the minus sign between the digits, and only <code>123</code> stays; two characters were refused (<code>nRejected</code> counts them: the letter and the minus sign). A fourth digit is stopped by <code>MaxLength</code>, and Backspace works because the filter lets it through. The letters that a test types depend on the <strong>keyboard layout</strong> of the computer: the key <em>A</em> gives <code>ش</code> on an Arabic layout. That character is not ASCII, so it arrives as a text of two bytes, and <code>filterKey</code> gives it the code 0 and refuses it, like any other character that is not a digit. For the same reason the test sets the name with <code>Text</code> and types only digits and the keys <code>{ENTER}</code>, <code>{TAB}</code>, <code>{ESC}</code> and <code>{BACKSPACE}</code>, which do not depend on the layout.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch10_keyboard.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch10_keyboard.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch10_keyboard.ring: run with  ring ch10_keyboard.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	<span class="c"># the keys go to the box that has the focus, through the real key processing</span>
+	oForm.ActiveControl = oAge
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"1a2-3"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"only digits"</span>,oAge.Text,<span class="s">"123"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the other keys were refused"</span>,nRejected,<span class="n">2</span>)
+
+	<span class="c"># MaxLength: a fourth digit is not accepted</span>
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"9"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"at most three characters"</span>,oAge.Text,<span class="s">"123"</span>)
+
+	<span class="c"># Backspace works, because the filter lets it through</span>
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"{BACKSPACE}"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"backspace"</span>,oAge.Text,<span class="s">"12"</span>)
+
+	<span class="c"># Enter presses the OK button (the AcceptButton) from any box: with the name empty the program asks for it</span>
+	oForm.ActiveControl = oAge
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"{ENTER}"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"an empty name"</span>,oResult.Text,<span class="s">"Please fill in both boxes"</span>)
+	oName.Text = <span class="s">"Ann"</span>                                   <span class="c"># (letters typed by a test depend on the keyboard layout of the computer, so it is set)</span>
+	oForm.ActiveControl = oName
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"{ENTER}"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the result"</span>,oResult.Text,<span class="s">"Ann is 12 years old"</span>)
+
+	<span class="c"># the tab order: Tab goes name -&gt; age -&gt; OK</span>
+	oForm.ActiveControl = oName
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"{TAB}"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"tab to the age box"</span>,oForm.ActiveControl.TabIndex,<span class="n">2</span>)
+
+	<span class="c"># Escape presses the CancelButton: the form closes</span>
+	<span class="f">uiSendKeys</span>(oForm,<span class="s">"{ESC}"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"escape closed the form"</span>,lClosed,<span class="k">True</span>)</code></pre></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>filtering the characters of a box,</li><li>Enter and Escape buttons,</li><li>the tab order and access keys,</li><li>select-all on entering,</li><li>testing with real key presses.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Allow one decimal point in a box for prices, but only one.</li><li>Change the access keys: <code>&amp;Name</code> and <code>N&amp;ame</code> are different, and two labels with the same key move through the controls in turn.</li><li>Make the OK button disabled until both boxes have text.</li><li>Use the <code>Validating</code> event of the age box to refuse a value over 150.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-23-layout.html">Layout and richer controls</a></p>
+<div class="pager"><a href="tut-128-inputs.html"><small>Previous</small>More input controls</a><a class="next" href="tut-23-layout.html"><small>Next</small>Layout and controls</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

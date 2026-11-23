@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protecting data · RingDotNet</title>
+<meta name="description" content="Many programs hand a small piece of data to the outside and take it back later: a cookie, a "remember me" value, a link in an e-mail. The Data Protection API encrypts and signs such data for you, without keys to manage. This lesson protects and unprotects text, shows purposes, tampering and key folders, and makes tokens that expire.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html" class="cur">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Protecting data</h1><p class="lead">Many programs hand a small piece of data to the outside and take it back later: a cookie, a "remember me" value, a link in an e-mail. The Data Protection API encrypts and signs such data for you, without keys to manage. This lesson protects and unprotects text, shows purposes, tampering and key folders, and makes tokens that expire.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what the <strong>Data Protection API</strong> does and when to use it,</li><li><code>Protect</code> and <code>Unprotect</code>,</li><li><strong>purposes</strong>: tokens for one use cannot be used for another,</li><li>why a changed token is refused,</li><li>keys in a folder, and what happens with other keys,</li><li>time-limited tokens.</li></ul>
+<p>The tutorial <a href="tut-08-security.html">Hashing and encryption</a> and the tutorial <a href="tut-78-crypto.html">Protecting and signing messages</a> used the cryptography classes directly: you choose the algorithm, the key and the mode, and every choice is a chance for a mistake. The Data Protection API is the <strong>high-level</strong> tool: you give it a text, it gives you a token.</p>
+<div class="callout note"><span class="t">Note</span><p>The API is part of the ASP.NET Core runtime, so the program has <code>"RingDotNet.Web"</code> in its <code>using { }</code> (<a href="getting-started.html">Getting started</a>).</p></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch08_data_protection.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># protecting data - the Data Protection API: purposes, tampering, keys on disk, and values that expire</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Threading"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"RingDotNet.Web"</span>                  <span class="c"># the Data Protection API is part of the ASP.NET Core runtime: this line starts it</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cExt = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions"</span>
+	cProviderType = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionProvider"</span>
+
+	<span class="c"># The Data Protection API encrypts and signs small pieces of data (a cookie, a token, a "remember me" value, a link in an e-mail)</span>
+	<span class="c"># without you handling keys, algorithms or initialization vectors. It makes keys, keeps them in a folder, renews them,</span>
+	<span class="c"># and encrypts with AES and signs with HMAC. ASP.NET Core uses it for its cookies and tokens.</span>
+	cKeys = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_protection_keys"</span>])
+	<span class="k">if</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">Exists</span>(cKeys)
+		<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cKeys, :recursive = <span class="k">True</span> ])
+	<span class="k">ok</span>
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cKeys)
+	oProvider = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys)])
+
+	<span class="c"># 1. A protector is made for a PURPOSE (a text that names what the data is for). Protect turns a text into an unreadable token</span>
+	<span class="c">#    and Unprotect gives the text back.</span>
+	oProtector = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	cToken = <span class="f">dnStatic</span>(cExt,<span class="s">"Protect"</span>,[oProtector,<span class="s">"user=ann;role=admin"</span>])
+	? <span class="s">"1. the protected text starts with CfDJ8 (every token of this API does): "</span> + (left(cToken,<span class="n">5</span>) = <span class="s">"CfDJ8"</span>)
+	? <span class="s">"   it does not show the data: "</span> + (substr(cToken,<span class="s">"ann"</span>) = <span class="n">0</span>) + <span class="s">", and it is longer than the data: "</span> + (len(cToken) &gt; <span class="n">40</span>)
+	? <span class="s">"   Unprotect gives back: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken])
+
+	<span class="c"># 2. The same data protected twice gives different tokens (a random value is part of each one), but both unprotect to the same text</span>
+	cToken2 = <span class="f">dnStatic</span>(cExt,<span class="s">"Protect"</span>,[oProtector,<span class="s">"user=ann;role=admin"</span>])
+	? nl + <span class="s">"2. two tokens of the same text are different: "</span> + (cToken != cToken2) + <span class="s">"; the second also gives: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken2])
+
+	<span class="c"># 3. Purposes keep uses apart: a token made for "tutorial.cookies" cannot be opened with the protector of "tutorial.password-reset".</span>
+	<span class="c">#    So a stolen cookie value does not work as a reset link, even though the same keys are used.</span>
+	oOther = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.password-reset"</span>])
+	? nl + <span class="s">"3. unprotect with another purpose: "</span> + tryUnprotect(cExt,oOther,cToken)
+
+	<span class="c"># 4. Tampering: change one character of the token and the check fails. The data can not be modified, only replaced by a valid token.</span>
+	cTampered = left(cToken,<span class="n">20</span>) + changeChar(substr(cToken,<span class="n">21</span>,<span class="n">1</span>)) + substr(cToken,<span class="n">22</span>)
+	? nl + <span class="s">"4. unprotect a token with one changed character: "</span> + tryUnprotect(cExt,oProtector,cTampered)
+
+	<span class="c"># 5. The keys are on disk, so a NEW provider on the same folder opens the old tokens (after a restart of the program, or in another</span>
+	<span class="c">#    copy of it). Without the key folder the tokens can not be opened: it is as secret as a password.</span>
+	aFiles = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cKeys)
+	oProvider2 = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys)])
+	oProtector2 = oProvider2.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	? nl + <span class="s">"5. key files in the folder: "</span> + len(aFiles.<span class="f">toList</span>()) + <span class="s">", a second provider on the same folder opens the token: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector2,cToken])
+	cOtherFolder = cKeys + <span class="s">"_other"</span>
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cOtherFolder)
+	oStranger = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cOtherFolder)]).<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	? <span class="s">"   a provider with other keys: "</span> + tryUnprotect(cExt,oStranger,cToken)
+
+	<span class="c"># 6. Time limits: a token that is valid for a short time only (a link in an e-mail, a one-time code)</span>
+	cAdvanced = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionAdvancedExtensions"</span>          <span class="c"># (in the Extensions assembly of the API)</span>
+	oLimited = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"ToTimeLimitedDataProtector"</span>,[oProtector])
+	cShort = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"Protect"</span>,[oLimited,<span class="s">"reset:42"</span>,<span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(<span class="n">1200</span>)])
+	? nl + <span class="s">"6. a token that is valid for 1.2 seconds: now "</span> + tryUnprotectLimited(cAdvanced,oLimited,cShort)
+	<span class="k">new</span> <span class="t">Thread</span>().<span class="f">Sleep</span>(<span class="n">2000</span>)
+	? <span class="s">"   after 2 seconds: "</span> + tryUnprotectLimited(cAdvanced,oLimited,cShort)
+
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cKeys, :recursive = <span class="k">True</span> ])
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cOtherFolder, :recursive = <span class="k">True</span> ])
+
+<span class="k">func</span> <span class="f">tryUnprotect</span> cExt,oProtector,cToken
+
+	<span class="k">try</span>
+		<span class="k">return</span> <span class="s">"valid, it gives '"</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken]) + <span class="s">"'"</span>
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="s">"refused (a cryptographic error)"</span>
+	<span class="k">done</span>
+
+<span class="k">func</span> <span class="f">changeChar</span> cChar
+
+	<span class="k">if</span> cChar = <span class="s">"A"</span>
+		<span class="k">return</span> <span class="s">"B"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"A"</span>
+
+<span class="c"># the time-limited protector also gives the time when the token expires (an out value: the answer is a list)</span>
+<span class="k">func</span> <span class="f">tryUnprotectLimited</span> cAdvanced,oLimited,cToken
+
+	<span class="k">try</span>
+		aResult = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"Unprotect"</span>,[oLimited,cToken])
+		<span class="k">if</span> islist(aResult)
+			<span class="k">return</span> <span class="s">"valid, it gives '"</span> + aResult[<span class="n">1</span>] + <span class="s">"'"</span>
+		<span class="k">ok</span>
+		<span class="k">return</span> <span class="s">"valid, it gives '"</span> + aResult + <span class="s">"'"</span>
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="s">"refused (it expired or it is not valid)"</span>
+	<span class="k">done</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the protected text starts with CfDJ8 (every token of this API does): 1
+   it does not show the data: 1, and it is longer than the data: 1
+   Unprotect gives back: user=ann;role=admin
+
+2. two tokens of the same text are different: 1; the second also gives: user=ann;role=admin
+
+3. unprotect with another purpose: refused (a cryptographic error)
+
+4. unprotect a token with one changed character: refused (a cryptographic error)
+
+5. key files in the folder: 1, a second provider on the same folder opens the token: user=ann;role=admin
+   a provider with other keys: refused (a cryptographic error)
+
+6. a token that is valid for 1.2 seconds: now valid, it gives 'reset:42'
+   after 2 seconds: refused (it expired or it is not valid)</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnStatic</code>, <code>callMethod</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="a-provider-and-a-protector">A provider and a protector<a class="anchor" href="#a-provider-and-a-protector">#</a></h3>
+<p><code>DataProtectionProvider.Create(folder)</code> makes a provider whose <strong>keys are kept in the folder</strong> as files (it makes the first key itself and renews keys before they expire). <code>CreateProtector("purpose")</code> makes a protector for a purpose. <code>Protect(text)</code> returns a <strong>token</strong>: encrypted with AES and signed, so nobody can read it and nobody can change it. <code>Unprotect(token)</code> returns the text. <code>Protect</code> and <code>Unprotect</code> for texts are extension methods, so they are called with <code>dnStatic("...DataProtectionCommonExtensions","Protect",[protector,text])</code> (the tutorial <a href="tut-109-memory-cache.html">Caching</a>); <code>CreateProtector</code> is a method of the provider object.</p>
+<p>Every token of this API starts with <code>CfDJ8</code>, the Base64 text of a fixed header, and it does not show the data. A random value is part of each token, so protecting the same text twice gives two different tokens that both open to the same text.</p>
+<h3 id="purposes">Purposes<a class="anchor" href="#purposes">#</a></h3>
+<p>A <strong>purpose</strong> is a text that names what the token is for (<code>"tutorial.cookies"</code>, <code>"tutorial.password-reset"</code>). A token made for one purpose cannot be opened by the protector of another purpose, even with the same keys. So a user who copies a cookie value into a reset link gets an error. Use a different purpose for every kind of token in your program, written like a namespace (<code>company.app.feature</code>).</p>
+<h3 id="tampering">Tampering<a class="anchor" href="#tampering">#</a></h3>
+<p>Changing one character of a token makes <code>Unprotect</code> raise a cryptographic error (the signature does not fit). The program catches it with <code>try</code> and prints <em>refused</em>. You cannot make a <em>different valid</em> token without the key, so a token can carry data that the <strong>user must not change</strong>, for example the user id in a cookie. Remember what this does <strong>not</strong> protect against: a token can be <strong>copied</strong> and used again by someone who has it (a <em>replay</em>), so tokens that open a door (a reset link) should expire and be used once.</p>
+<h3 id="keys">Keys<a class="anchor" href="#keys">#</a></h3>
+<p>The key folder is the secret. A second provider on the <strong>same folder</strong> opens the old tokens (after a restart, or from another copy of the program that shares the folder); a provider with <strong>other keys</strong> refuses them (step 5). That is what you want: protect the folder like a password, back it up, and share it between the servers that must open each other's tokens. In a real program choose a folder outside the project, with strict rights, and never put it in version control. Keys are <strong>renewed</strong> every 90 days by default and old keys stay available for opening old tokens.</p>
+<h3 id="time-limited-tokens">Time-limited tokens<a class="anchor" href="#time-limited-tokens">#</a></h3>
+<p><code>ToTimeLimitedDataProtector</code> makes a protector whose <code>Protect(text, lifetime)</code> adds an expiration time inside the token. Before the time the token opens; after it, <code>Unprotect</code> raises an error. Use it for password-reset links, e-mail confirmations and one-time codes. The check happens inside the token, so the server does not need to keep a list. These methods are in the <code>DataProtectionAdvancedExtensions</code> class.</p>
+<div class="callout warn"><span class="t">Warning</span><p>This API is for data that <strong>you</strong> give out and take back. It is not a way to store passwords (use a slow password hash, the tutorial <a href="tut-49-login.html">Login, sessions and cookies</a>) and not a replacement for the encryption of a database.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>Protect</code> and <code>Unprotect</code> encrypt and sign small values,</li><li>a purpose keeps uses apart,</li><li>a changed token is refused,</li><li>the key folder is the secret and can be shared,</li><li>time-limited tokens expire by themselves.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Make a "remember me" cookie: protect the user id and the time, and write a function that reads it back or answers <em>not valid</em>.</li><li>Make a password-reset link that is valid for 15 minutes (the tutorial <a href="tut-63-chat.html">A chat over TCP</a> shows a small server to send it from).</li><li>Look at the key file in the folder: it is XML. Which parts are readable and which are not?</li><li>Protect a long text (10 000 characters) and look at the size of the token.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-49-login.html">Login, sessions and cookies</a></p>
+<div class="pager"><a href="tut-116-certificates.html"><small>Previous</small>Certificates</a><a class="next" href="tut-49-login.html"><small>Next</small>Login and sessions</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

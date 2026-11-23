@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working with text · RingDotNet</title>
+<meta name="description" content="Ring already has good text functions. This lesson shows when to use Ring's own, and what .NET adds — joining, formatting, building long texts, regular expressions, Base64 and encodings.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html" class="cur">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Working with text</h1><p class="lead">Ring already has good text functions. This lesson shows when to use Ring's own, and what .NET adds — joining, formatting, building long texts, regular expressions, Base64 and encodings.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>which text jobs Ring does by itself and which need .NET,</li><li><code>String</code> helpers (<code>Join</code>, <code>Format</code>, <code>Compare</code>, <code>IsNullOrWhiteSpace</code>),</li><li><code>StringBuilder</code> for long texts,</li><li>regular expressions with <code>Regex</code>,</li><li>Base64 and UTF-8.</li></ul>
+<h2 id="texts-between-ring-and-net">Texts between Ring and .NET<a class="anchor" href="#texts-between-ring-and-net">#</a></h2>
+<p>A Ring text is a .NET <code>string</code> as soon as you pass it to a .NET method. A .NET method that returns a string gives you a Ring text.</p>
+<p>One rule is important: <strong>a .NET string is not an object in Ring</strong>, it is just a Ring text. That means a .NET <em>instance</em> method such as <code>Trim()</code> is not called on it. For those jobs Ring has its own functions: <code>trim()</code>, <code>upper()</code>, <code>lower()</code>, <code>substr()</code>, <code>left()</code>. Use <strong>Ring's functions for the basics</strong>, and .NET for what Ring does not include. The <em>static</em> methods of the class <code>String</code> (<code>Join</code>, <code>Format</code>...) work fine because they take the text as an argument.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch01_text.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># working with text - Ring text functions, String helpers, StringBuilder, regular expressions, encodings</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Text"</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+	<span class="s">"System.Globalization"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># Ring already has many text functions: use them for the basics</span>
+	cSentence = <span class="s">"  The quick brown fox  "</span>
+	? <span class="s">"Ring trim/upper : ["</span> + upper(trim(cSentence)) + <span class="s">"]"</span>
+	aWords = str2list(substr(trim(cSentence),<span class="s">" "</span>,nl))
+	? <span class="s">"Ring words      : "</span> + len(aWords)
+
+	<span class="c"># .NET adds more helpers. String's static methods:</span>
+	oString = <span class="k">new</span> <span class="t">String</span>()
+	? <span class="s">"Join            : "</span> + oString.<span class="f">Join</span>([ :separator = <span class="s">"-"</span>, :value = aWords ])
+	? <span class="s">"Format          : "</span> + oString.<span class="f">Format</span>([ :format = <span class="s">"{0} has {1} items"</span>, :arg0 = <span class="s">"The list"</span>, :arg1 = <span class="n">3</span> ])
+	? <span class="s">"Empty or blank? : "</span> + oString.<span class="f">IsNullOrWhiteSpace</span>(<span class="s">"   "</span>)
+	? <span class="s">"Compare (a &lt; b) : "</span> + oString.<span class="f">Compare</span>([ :strA = <span class="s">"apple"</span>, :strB = <span class="s">"banana"</span> ])
+
+	<span class="c"># Title case needs the culture of the user</span>
+	oText = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"en-US"</span>).TextInfo
+	? <span class="s">"Title case      : "</span> + oText.<span class="f">ToTitleCase</span>(<span class="s">"ring meets dot net"</span>)
+
+	<span class="c"># Building a long text efficiently: StringBuilder</span>
+	oBuilder = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">""</span>)
+	<span class="k">for</span> nLine = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
+		oBuilder.<span class="f">Append</span>(<span class="s">"line "</span> + nLine)
+		oBuilder.<span class="f">AppendLine</span>(<span class="k">NULL</span>)
+	<span class="k">next</span>
+	? <span class="s">"StringBuilder   : "</span> + len(oBuilder.<span class="f">ToString</span>()) + <span class="s">" characters"</span>
+
+	<span class="c"># Numbers in other bases, and Base64</span>
+	? <span class="s">"255 in hex      : "</span> + <span class="k">new</span> <span class="t">Convert</span>().<span class="f">Format</span>([ :value = <span class="n">255</span>, :toBase = <span class="n">16</span> ])
+	? <span class="s">"Base64          : "</span> + <span class="k">new</span> <span class="t">Convert</span>().<span class="f">ToBase64String</span>(<span class="s">"Ring"</span>)
+
+	<span class="c"># Regular expressions: patterns for text</span>
+	oEmail = <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"[a-z]+@[a-z]+\.com"</span>)
+	cMail = <span class="s">"write to ann@example.com or bob@test.com today"</span>
+	oMatches = oEmail.<span class="f">Matches</span>(cMail)
+	? <span class="s">"E-mails found   : "</span> + oMatches.Count
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oMatches.Count - <span class="n">1</span>
+		? <span class="s">"  "</span> + oMatches.<span class="f">Item</span>(nIndex).Value
+	<span class="k">next</span>
+	? <span class="s">"Replaced        : "</span> + oEmail.<span class="f">Replace</span>([ :input = cMail, :replacement = <span class="s">"&lt;hidden&gt;"</span> ])
+	? <span class="s">"Is it a number? : "</span> + <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"^[0-9]+$"</span>).<span class="f">IsMatch</span>(<span class="s">"12345"</span>) + <span class="s">" "</span> + <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"^[0-9]+$"</span>).<span class="f">IsMatch</span>(<span class="s">"12x45"</span>)
+
+	<span class="c"># Encodings: text &lt;-&gt; bytes</span>
+	oUtf8 = <span class="k">new</span> <span class="t">Encoding</span>().UTF8
+	? <span class="s">"UTF-8 bytes     : "</span> + len(oUtf8.<span class="f">GetBytes</span>(<span class="s">"Ring"</span>)) + <span class="s">" for Ring, "</span> + len(oUtf8.<span class="f">GetBytes</span>(<span class="s">"Ring é"</span>)) + <span class="s">" with an accent"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Ring trim/upper : [THE QUICK BROWN FOX]
+Ring words      : 4
+Join            : The-quick-brown-fox
+Format          : The list has 3 items
+Empty or blank? : 1
+Compare (a &lt; b) : -1
+Title case      : Ring Meets Dot Net
+StringBuilder   : 24 characters
+255 in hex      : ff
+Base64          : UmluZw==
+E-mails found   : 2
+  ann@example.com
+  bob@test.com
+Replaced        : write to &lt;hidden&gt; or &lt;hidden&gt; today
+Is it a number? : 1 0
+UTF-8 bytes     : 4 for Ring, 7 with an accent</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="ring-first">Ring first<a class="anchor" href="#ring-first">#</a></h3>
+<p><code>upper(trim(cSentence))</code> is Ring. The words are found by turning spaces into new lines and reading each line as an item: <code>str2list(substr(cSentence," ",nl))</code>.</p>
+<h3 id="strings-static-helpers">String's static helpers<a class="anchor" href="#strings-static-helpers">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Call</th><th>Result</th></tr></thead><tbody><tr><td><code>oString.Join([ :separator = "-", :value = aWords ])</code></td><td>all the words with <code>-</code> between them</td></tr><tr><td><code>oString.Format([ :format = "{0} has {1} items", :arg0 = "The list", :arg1 = 3 ])</code></td><td><code>{0}</code>, <code>{1}</code> are replaced by the arguments</td></tr><tr><td><code>oString.IsNullOrWhiteSpace("   ")</code></td><td>true for empty or blank text</td></tr><tr><td><code>oString.Compare([ :strA = "apple", :strB = "banana" ])</code></td><td><code>-1</code> if the first sorts before the second, <code>0</code> if equal, <code>1</code> if after</td></tr></tbody></table></div>
+<p><code>Join</code>, <code>Format</code> and <code>Compare</code> exist in several forms, so in Ring each is one method that takes a list of named values (the names are the parameter names in the .NET documentation): for <code>Format</code> the pattern (<code>format</code>) and the values (<code>arg0</code>, <code>arg1</code>).</p>
+<h3 id="title-case-needs-a-culture">Title case needs a culture<a class="anchor" href="#title-case-needs-a-culture">#</a></h3>
+<p>Capital letters depend on the language. <code>new CultureInfo("en-US").TextInfo.ToTitleCase(...)</code> makes <code>Ring Meets Dot Net</code>. A <em>culture</em> describes how a language writes text, numbers and dates.</p>
+<h3 id="stringbuilder-for-long-texts">StringBuilder for long texts<a class="anchor" href="#stringbuilder-for-long-texts">#</a></h3>
+<p>Adding to a Ring text in a loop copies the text every time. A <code>StringBuilder</code> grows in place, so use it when you build a big text (a report, a file). <code>AppendLine(NULL)</code> adds a new line; <code>NULL</code> means "no argument" for a method that has several versions.</p>
+<h3 id="base64-and-numbers-in-other-bases">Base64 and numbers in other bases<a class="anchor" href="#base64-and-numbers-in-other-bases">#</a></h3>
+<p><code>Convert.Format([ :value = 255, :toBase = 16 ])</code> writes a number in base 16 (<code>ff</code>). <code>Convert.ToBase64String("Ring")</code> encodes bytes as text (<code>UmluZw==</code>); Base64 is how binary data is sent in e-mail and web pages.</p>
+<h3 id="regular-expressions">Regular expressions<a class="anchor" href="#regular-expressions">#</a></h3>
+<p>A <em>regular expression</em> (regex) is a pattern for text. <code>[a-z]+@[a-z]+\.com</code> means "letters, an @, letters, <code>.com</code>". <code>Regex</code> can:</p>
+<div class="tablewrap"><table><thead><tr><th>Method</th><th>Job</th></tr></thead><tbody><tr><td><code>Matches(text)</code></td><td>find all the places that match</td></tr><tr><td><code>Replace([ :input = text, :replacement = r ])</code></td><td>replace every match</td></tr><tr><td><code>IsMatch(text)</code></td><td>does the text match?</td></tr></tbody></table></div>
+<p><code>^[0-9]+$</code> means "only digits from the start to the end": the text <code>12345</code> matches, <code>12x45</code> does not.</p>
+<h3 id="encodings">Encodings<a class="anchor" href="#encodings">#</a></h3>
+<p>A computer stores bytes, not letters. An <em>encoding</em> says how letters become bytes. <strong>UTF-8</strong> is the standard: <code>Ring</code> is 4 bytes, but <code>Ring é</code> is 7, because <code>é</code> needs two bytes.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>Use Ring's own functions for basic text work; call <code>String</code>'s static helpers when you need <code>Join</code>, <code>Format</code>, <code>Compare</code>.</li><li><code>StringBuilder</code> builds long texts efficiently.</li><li><code>Regex</code> finds, tests and replaces patterns.</li><li>Text, bytes and encodings are different things.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Use <code>Regex</code> to find every number in <code>"I have 3 cats and 12 fish"</code>. (Pattern: <code>[0-9]+</code>.)</li><li>Use <code>String.Format</code> with a list of named values to print <code>Ann is 31 years old</code> from the values <code>"Ann"</code> and <code>31</code>.</li><li>Write a function <code>isEmail(cText)</code> that returns true when <code>Regex.IsMatch</code> says the text looks like <code>name@site.com</code>.</li><li>Encode your name to Base64 with <code>Convert.ToBase64String</code>, then decode it with <code>Convert.FromBase64String</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-03-numbers-dates.html">Numbers, dates and times</a></p>
+<div class="pager"><a href="tut-01-first-look.html"><small>Previous</small>A first look</a><a class="next" href="tut-03-numbers-dates.html"><small>Next</small>Numbers, dates, times</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

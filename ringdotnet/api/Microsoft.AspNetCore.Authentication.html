@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.AspNetCore.Authentication · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.AspNetCore.Authentication</h1>
+<p class="lead">60 wrapped types. Load them with <code>using { "Microsoft.AspNetCore.Authentication" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AccessDeniedContext">AccessDeniedContext</a> <a href="#c-AuthenticateResult">AuthenticateResult</a> <a href="#c-AuthenticationBuilder">AuthenticationBuilder</a> <a href="#c-AuthenticationConfigurationProviderExtensions">AuthenticationConfigurationProviderExtensions</a> <a href="#c-AuthenticationFailureException">AuthenticationFailureException</a> <a href="#c-AuthenticationFeature">AuthenticationFeature</a> <a href="#c-AuthenticationHandler">AuthenticationHandler</a> <a href="#c-AuthenticationHandlerProvider">AuthenticationHandlerProvider</a> <a href="#c-AuthenticationHttpContextExtensions">AuthenticationHttpContextExtensions</a> <a href="#c-AuthenticationMiddleware">AuthenticationMiddleware</a> <a href="#c-AuthenticationOptions">AuthenticationOptions</a> <a href="#c-AuthenticationProperties">AuthenticationProperties</a> <a href="#c-AuthenticationScheme">AuthenticationScheme</a> <a href="#c-AuthenticationSchemeBuilder">AuthenticationSchemeBuilder</a> <a href="#c-AuthenticationSchemeOptions">AuthenticationSchemeOptions</a> <a href="#c-AuthenticationSchemeProvider">AuthenticationSchemeProvider</a> <a href="#c-AuthenticationService">AuthenticationService</a> <a href="#c-AuthenticationTicket">AuthenticationTicket</a> <a href="#c-AuthenticationToken">AuthenticationToken</a> <a href="#c-AuthenticationTokenExtensions">AuthenticationTokenExtensions</a> <a href="#c-Base64UrlTextEncoder">Base64UrlTextEncoder</a> <a href="#c-BaseContext">BaseContext</a> <a href="#c-ClaimActionCollectionMapExtensions">ClaimActionCollectionMapExtensions</a> <a href="#c-HandleRequestContext">HandleRequestContext</a> <a href="#c-HandleRequestResult">HandleRequestResult</a> <a href="#c-IAuthenticateResultFeature">IAuthenticateResultFeature</a> <a href="#c-IAuthenticationConfigurationProvider">IAuthenticationConfigurationProvider</a> <a href="#c-IAuthenticationFeature">IAuthenticationFeature</a> <a href="#c-IAuthenticationHandler">IAuthenticationHandler</a> <a href="#c-IAuthenticationHandlerProvider">IAuthenticationHandlerProvider</a> <a href="#c-IAuthenticationRequestHandler">IAuthenticationRequestHandler</a> <a href="#c-IAuthenticationSchemeProvider">IAuthenticationSchemeProvider</a> <a href="#c-IAuthenticationService">IAuthenticationService</a> <a href="#c-IAuthenticationSignInHandler">IAuthenticationSignInHandler</a> <a href="#c-IAuthenticationSignOutHandler">IAuthenticationSignOutHandler</a> <a href="#c-IClaimsTransformation">IClaimsTransformation</a> <a href="#c-IDataSerializer">IDataSerializer</a> <a href="#c-ISecureDataFormat">ISecureDataFormat</a> <a href="#c-JsonDocumentAuthExtensions">JsonDocumentAuthExtensions</a> <a href="#c-NoopClaimsTransformation">NoopClaimsTransformation</a> <a href="#c-PolicySchemeHandler">PolicySchemeHandler</a> <a href="#c-PolicySchemeOptions">PolicySchemeOptions</a> <a href="#c-PrincipalContext">PrincipalContext</a> <a href="#c-PropertiesContext">PropertiesContext</a> <a href="#c-PropertiesDataFormat">PropertiesDataFormat</a> <a href="#c-PropertiesSerializer">PropertiesSerializer</a> <a href="#c-RedirectContext">RedirectContext</a> <a href="#c-RemoteAuthenticationContext">RemoteAuthenticationContext</a> <a href="#c-RemoteAuthenticationEvents">RemoteAuthenticationEvents</a> <a href="#c-RemoteAuthenticationHandler">RemoteAuthenticationHandler</a> <a href="#c-RemoteAuthenticationOptions">RemoteAuthenticationOptions</a> <a href="#c-RemoteFailureContext">RemoteFailureContext</a> <a href="#c-RequestPathBaseCookieBuilder">RequestPathBaseCookieBuilder</a> <a href="#c-ResultContext">ResultContext</a> <a href="#c-SecureDataFormat">SecureDataFormat</a> <a href="#c-SignInAuthenticationHandler">SignInAuthenticationHandler</a> <a href="#c-SignOutAuthenticationHandler">SignOutAuthenticationHandler</a> <a href="#c-TicketDataFormat">TicketDataFormat</a> <a href="#c-TicketReceivedContext">TicketReceivedContext</a> <a href="#c-TicketSerializer">TicketSerializer</a></div><details class="cls" id="c-AccessDeniedContext"><summary><b>AccessDeniedContext</b> <span class="muted">class · extends HandleRequestContext&lt;RemoteAuthenticationOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AccessDeniedContext</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AccessDeniedContext(HttpContext context, AuthenticationScheme scheme, RemoteAuthenticationOptions options)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AccessDeniedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AccessDeniedContext().@New([ :param = value ])</code> or <code>dnNew("AccessDeniedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AccessDeniedPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.AccessDeniedPath</code> <code>o.AccessDeniedPath = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read, write</td><td><code>o.Properties</code> <code>o.Properties = v</code></td></tr><tr><td><code>ReturnUrl</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReturnUrl</code> <code>o.ReturnUrl = v</code></td></tr><tr><td><code>ReturnUrlParameter</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReturnUrlParameter</code> <code>o.ReturnUrlParameter = v</code></td></tr><tr><td><code>Result</code></td><td><code>HandleRequestResult</code></td><td>read</td><td><code>o.getResult()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>RemoteAuthenticationOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>HandleResponse</code></td><td><code>HandleResponse()</code></td><td><code>void HandleResponse()</code></td></tr><tr><td><code>SkipHandler</code></td><td><code>SkipHandler()</code></td><td><code>void SkipHandler()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AuthenticateResult"><summary><b>AuthenticateResult</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticateResult</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Succeeded</code></td><td><code>bool</code></td><td>read</td><td><code>o.Succeeded</code></td></tr><tr><td><code>Ticket</code></td><td><code>AuthenticationTicket</code></td><td>read</td><td><code>o.Ticket</code></td></tr><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read</td><td><code>o.Principal</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>Failure</code></td><td><code>Exception</code></td><td>read</td><td><code>o.Failure</code></td></tr><tr><td><code>None</code></td><td><code>bool</code></td><td>read</td><td><code>o.None</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AuthenticateResult Clone()</code></td></tr><tr><td><code>Fail</code></td><td><code>Fail(value)</code><br><code>Fail([ :failure = … ])</code><br><code>Fail([ :failureMessage = … ])</code><br><code>Fail([ :failure = …, :properties = … ])</code><br><code>Fail([ :failureMessage = …, :properties = … ])</code></td><td><code>static AuthenticateResult Fail(Exception failure)</code><br><code>static AuthenticateResult Fail(Exception failure, AuthenticationProperties properties)</code><br><code>static AuthenticateResult Fail(string failureMessage)</code><br><code>static AuthenticateResult Fail(string failureMessage, AuthenticationProperties properties)</code></td></tr><tr><td><code>NoResult</code></td><td><code>NoResult()</code></td><td><code>static AuthenticateResult NoResult()</code></td></tr><tr><td><code>Success</code></td><td><code>Success(p1)</code></td><td><code>static AuthenticateResult Success(AuthenticationTicket ticket)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationBuilder"><summary><b>AuthenticationBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationBuilder</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationBuilder(IServiceCollection services)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationBuilder().@New([ :param = value ])</code> or <code>dnNew("AuthenticationBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Services</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.Services</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddPolicyScheme</code></td><td><code>AddPolicyScheme(p1,p2,p3)</code></td><td><code>AuthenticationBuilder AddPolicyScheme(string authenticationScheme, string displayName, Action&lt;PolicySchemeOptions&gt; configureOptions)</code></td></tr><tr><td><code>AddRemoteScheme</code></td><td><code>AddRemoteScheme([ :authenticationScheme = …, :displayName = …, :configureOptions = … ])</code></td><td><code>AuthenticationBuilder AddRemoteScheme&lt;TOptions, THandler&gt;(string authenticationScheme, string displayName, Action&lt;TOptions&gt; configureOptions)</code></td></tr><tr><td><code>AddScheme</code></td><td><code>AddScheme([ :authenticationScheme = …, :configureOptions = … ])</code><br><code>AddScheme([ :authenticationScheme = …, :displayName = …, :configureOptions = … ])</code></td><td><code>AuthenticationBuilder AddScheme&lt;TOptions, THandler&gt;(string authenticationScheme, string displayName, Action&lt;TOptions&gt; configureOptions)</code><br><code>AuthenticationBuilder AddScheme&lt;TOptions, THandler&gt;(string authenticationScheme, Action&lt;TOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationConfigurationProviderExtensions"><summary><b>AuthenticationConfigurationProviderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationConfigurationProviderExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetSchemeConfiguration</code></td><td><code>GetSchemeConfiguration(p1,p2)</code></td><td><code>static IConfiguration GetSchemeConfiguration(IAuthenticationConfigurationProvider provider, string authenticationScheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationFailureException"><summary><b>AuthenticationFailureException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationFailureException</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationFailureException(string message)</code></td></tr><tr><td><code>new AuthenticationFailureException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationFailureException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationFailureException().@New([ :param = value ])</code> or <code>dnNew("AuthenticationFailureException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AuthenticationFeature"><summary><b>AuthenticationFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationFeature</code> · assembly <code>Microsoft.AspNetCore.Authentication.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationFeature().@New([ :param = value ])</code> or <code>dnNew("AuthenticationFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OriginalPathBase</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.OriginalPathBase</code> <code>o.OriginalPathBase = v</code></td></tr><tr><td><code>OriginalPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.OriginalPath</code> <code>o.OriginalPath = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationHandler"><summary><b>AuthenticationHandler</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationHandler`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.Scheme</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.Options</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationHandlerProvider"><summary><b>AuthenticationHandlerProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider</code> · assembly <code>Microsoft.AspNetCore.Authentication.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationHandlerProvider(IAuthenticationSchemeProvider schemes)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationHandlerProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationHandlerProvider().@New([ :param = value ])</code> or <code>dnNew("AuthenticationHandlerProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Schemes</code></td><td><code>IAuthenticationSchemeProvider</code></td><td>read</td><td><code>o.Schemes</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetHandlerAsync</code></td><td><code>GetHandlerAsync(p1,p2)</code></td><td><code>Task&lt;IAuthenticationHandler&gt; GetHandlerAsync(HttpContext context, string authenticationScheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationHttpContextExtensions"><summary><b>AuthenticationHttpContextExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsync</code></td><td><code>AuthenticateAsync(value)</code><br><code>AuthenticateAsync([ :context = … ])</code><br><code>AuthenticateAsync([ :context = …, :scheme = … ])</code></td><td><code>static Task&lt;AuthenticateResult&gt; AuthenticateAsync(HttpContext context)</code><br><code>static Task&lt;AuthenticateResult&gt; AuthenticateAsync(HttpContext context, string scheme)</code></td></tr><tr><td><code>ChallengeAsync</code></td><td><code>ChallengeAsync(value)</code><br><code>ChallengeAsync([ :context = … ])</code><br><code>ChallengeAsync([ :context = …, :scheme = … ])</code><br><code>ChallengeAsync([ :context = …, :properties = … ])</code><br><code>ChallengeAsync([ :context = …, :scheme = …, :properties = … ])</code></td><td><code>static Task ChallengeAsync(HttpContext context, string scheme)</code><br><code>static Task ChallengeAsync(HttpContext context)</code><br><code>static Task ChallengeAsync(HttpContext context, AuthenticationProperties properties)</code><br><code>static Task ChallengeAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>ForbidAsync</code></td><td><code>ForbidAsync(value)</code><br><code>ForbidAsync([ :context = … ])</code><br><code>ForbidAsync([ :context = …, :scheme = … ])</code><br><code>ForbidAsync([ :context = …, :properties = … ])</code><br><code>ForbidAsync([ :context = …, :scheme = …, :properties = … ])</code></td><td><code>static Task ForbidAsync(HttpContext context, string scheme)</code><br><code>static Task ForbidAsync(HttpContext context)</code><br><code>static Task ForbidAsync(HttpContext context, AuthenticationProperties properties)</code><br><code>static Task ForbidAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>GetTokenAsync</code></td><td><code>GetTokenAsync([ :context = …, :tokenName = … ])</code><br><code>GetTokenAsync([ :context = …, :scheme = …, :tokenName = … ])</code></td><td><code>static Task&lt;string&gt; GetTokenAsync(HttpContext context, string scheme, string tokenName)</code><br><code>static Task&lt;string&gt; GetTokenAsync(HttpContext context, string tokenName)</code></td></tr><tr><td><code>SignInAsync</code></td><td><code>SignInAsync([ :context = …, :principal = … ])</code><br><code>SignInAsync([ :context = …, :scheme = …, :principal = … ])</code><br><code>SignInAsync([ :context = …, :principal = …, :properties = … ])</code><br><code>SignInAsync([ :context = …, :scheme = …, :principal = …, :properties = … ])</code></td><td><code>static Task SignInAsync(HttpContext context, string scheme, ClaimsPrincipal principal)</code><br><code>static Task SignInAsync(HttpContext context, ClaimsPrincipal principal)</code><br><code>static Task SignInAsync(HttpContext context, ClaimsPrincipal principal, AuthenticationProperties properties)</code><br><code>static Task SignInAsync(HttpContext context, string scheme, ClaimsPrincipal principal, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignOutAsync</code></td><td><code>SignOutAsync(value)</code><br><code>SignOutAsync([ :context = … ])</code><br><code>SignOutAsync([ :context = …, :properties = … ])</code><br><code>SignOutAsync([ :context = …, :scheme = … ])</code><br><code>SignOutAsync([ :context = …, :scheme = …, :properties = … ])</code></td><td><code>static Task SignOutAsync(HttpContext context)</code><br><code>static Task SignOutAsync(HttpContext context, AuthenticationProperties properties)</code><br><code>static Task SignOutAsync(HttpContext context, string scheme)</code><br><code>static Task SignOutAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationMiddleware"><summary><b>AuthenticationMiddleware</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationMiddleware</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationMiddleware(RequestDelegate next, IAuthenticationSchemeProvider schemes)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationMiddleware(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationMiddleware().@New([ :param = value ])</code> or <code>dnNew("AuthenticationMiddleware",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Schemes</code></td><td><code>IAuthenticationSchemeProvider</code></td><td>read, write</td><td><code>o.Schemes</code> <code>o.Schemes = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>Invoke(p1)</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationOptions"><summary><b>AuthenticationOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationOptions</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationOptions().@New([ :param = value ])</code> or <code>dnNew("AuthenticationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Schemes</code></td><td><code>IEnumerable&lt;AuthenticationSchemeBuilder&gt;</code></td><td>read</td><td><code>o.Schemes</code></td></tr><tr><td><code>SchemeMap</code></td><td><code>IDictionary&lt;string, AuthenticationSchemeBuilder&gt;</code></td><td>read</td><td><code>o.SchemeMap</code></td></tr><tr><td><code>DefaultScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultScheme</code> <code>o.DefaultScheme = v</code></td></tr><tr><td><code>DefaultAuthenticateScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultAuthenticateScheme</code> <code>o.DefaultAuthenticateScheme = v</code></td></tr><tr><td><code>DefaultSignInScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultSignInScheme</code> <code>o.DefaultSignInScheme = v</code></td></tr><tr><td><code>DefaultSignOutScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultSignOutScheme</code> <code>o.DefaultSignOutScheme = v</code></td></tr><tr><td><code>DefaultChallengeScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultChallengeScheme</code> <code>o.DefaultChallengeScheme = v</code></td></tr><tr><td><code>DefaultForbidScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultForbidScheme</code> <code>o.DefaultForbidScheme = v</code></td></tr><tr><td><code>RequireAuthenticatedSignIn</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RequireAuthenticatedSignIn</code> <code>o.RequireAuthenticatedSignIn = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddScheme</code></td><td><code>AddScheme(p1,p2)</code></td><td><code>void AddScheme(string name, Action&lt;AuthenticationSchemeBuilder&gt; configureBuilder)</code><br><code>void AddScheme&lt;THandler&gt;(string name, string displayName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationProperties"><summary><b>AuthenticationProperties</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationProperties</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationProperties()</code></td></tr><tr><td><code>new AuthenticationProperties(IDictionary&lt;string, string&gt; items)</code></td></tr><tr><td><code>new AuthenticationProperties(IDictionary&lt;string, string&gt; items, IDictionary&lt;string, object&gt; parameters)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationProperties(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationProperties().@New([ :param = value ])</code> or <code>dnNew("AuthenticationProperties",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>IDictionary&lt;string, string&gt;</code></td><td>read</td><td><code>o.Items</code></td></tr><tr><td><code>Parameters</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.Parameters</code></td></tr><tr><td><code>IsPersistent</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsPersistent</code> <code>o.IsPersistent = v</code></td></tr><tr><td><code>RedirectUri</code></td><td><code>string</code></td><td>read, write</td><td><code>o.RedirectUri</code> <code>o.RedirectUri = v</code></td></tr><tr><td><code>IssuedUtc</code></td><td><code>DateTimeOffset?</code></td><td>read, write</td><td><code>o.IssuedUtc</code> <code>o.IssuedUtc = v</code></td></tr><tr><td><code>ExpiresUtc</code></td><td><code>DateTimeOffset?</code></td><td>read, write</td><td><code>o.ExpiresUtc</code> <code>o.ExpiresUtc = v</code></td></tr><tr><td><code>AllowRefresh</code></td><td><code>bool?</code></td><td>read, write</td><td><code>o.AllowRefresh</code> <code>o.AllowRefresh = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AuthenticationProperties Clone()</code></td></tr><tr><td><code>GetParameter</code></td><td><code>GetParameter(value)</code><br><code>GetParameter([ :key = … ])</code></td><td><code>T GetParameter&lt;T&gt;(string key)</code></td></tr><tr><td><code>GetString</code></td><td><code>GetString(p1)</code></td><td><code>string GetString(string key)</code></td></tr><tr><td><code>SetParameter</code></td><td><code>SetParameter(p1,p2)</code></td><td><code>void SetParameter&lt;T&gt;(string key, T value)</code></td></tr><tr><td><code>SetString</code></td><td><code>SetString(p1,p2)</code></td><td><code>void SetString(string key, string value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationScheme"><summary><b>AuthenticationScheme</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationScheme</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationScheme(string name, string displayName, Type handlerType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationScheme(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationScheme().@New([ :param = value ])</code> or <code>dnNew("AuthenticationScheme",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read</td><td><code>o.DisplayName</code></td></tr><tr><td><code>HandlerType</code></td><td><code>Type</code></td><td>read</td><td><code>o.HandlerType</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationSchemeBuilder"><summary><b>AuthenticationSchemeBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationSchemeBuilder</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationSchemeBuilder(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationSchemeBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationSchemeBuilder().@New([ :param = value ])</code> or <code>dnNew("AuthenticationSchemeBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DisplayName</code> <code>o.DisplayName = v</code></td></tr><tr><td><code>HandlerType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.HandlerType</code> <code>o.HandlerType = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>AuthenticationScheme Build()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationSchemeOptions"><summary><b>AuthenticationSchemeOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationSchemeOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationSchemeOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationSchemeOptions().@New([ :param = value ])</code> or <code>dnNew("AuthenticationSchemeOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ClaimsIssuer</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ClaimsIssuer</code> <code>o.ClaimsIssuer = v</code></td></tr><tr><td><code>Events</code></td><td><code>object</code></td><td>read, write</td><td><code>o.Events</code> <code>o.Events = v</code></td></tr><tr><td><code>EventsType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.EventsType</code> <code>o.EventsType = v</code></td></tr><tr><td><code>ForwardDefault</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardDefault</code> <code>o.ForwardDefault = v</code></td></tr><tr><td><code>ForwardAuthenticate</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardAuthenticate</code> <code>o.ForwardAuthenticate = v</code></td></tr><tr><td><code>ForwardChallenge</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardChallenge</code> <code>o.ForwardChallenge = v</code></td></tr><tr><td><code>ForwardForbid</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardForbid</code> <code>o.ForwardForbid = v</code></td></tr><tr><td><code>ForwardSignIn</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardSignIn</code> <code>o.ForwardSignIn = v</code></td></tr><tr><td><code>ForwardSignOut</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardSignOut</code> <code>o.ForwardSignOut = v</code></td></tr><tr><td><code>ForwardDefaultSelector</code></td><td><code>Func&lt;HttpContext, string&gt;</code></td><td>read, write</td><td><code>o.ForwardDefaultSelector</code> <code>o.ForwardDefaultSelector = v</code></td></tr><tr><td><code>TimeProvider</code></td><td><code>TimeProvider</code></td><td>read, write</td><td><code>o.TimeProvider</code> <code>o.TimeProvider = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(NULL)</code><br><code>Validate(value)</code><br><code>Validate([ :scheme = … ])</code></td><td><code>void Validate()</code><br><code>void Validate(string scheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationSchemeProvider"><summary><b>AuthenticationSchemeProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider</code> · assembly <code>Microsoft.AspNetCore.Authentication.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationSchemeProvider(IOptions&lt;AuthenticationOptions&gt; options)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationSchemeProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationSchemeProvider().@New([ :param = value ])</code> or <code>dnNew("AuthenticationSchemeProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddScheme</code></td><td><code>AddScheme(p1)</code></td><td><code>void AddScheme(AuthenticationScheme scheme)</code></td></tr><tr><td><code>GetAllSchemesAsync</code></td><td><code>GetAllSchemesAsync()</code></td><td><code>Task&lt;IEnumerable&lt;AuthenticationScheme&gt;&gt; GetAllSchemesAsync()</code></td></tr><tr><td><code>GetDefaultAuthenticateSchemeAsync</code></td><td><code>GetDefaultAuthenticateSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultAuthenticateSchemeAsync()</code></td></tr><tr><td><code>GetDefaultChallengeSchemeAsync</code></td><td><code>GetDefaultChallengeSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultChallengeSchemeAsync()</code></td></tr><tr><td><code>GetDefaultForbidSchemeAsync</code></td><td><code>GetDefaultForbidSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultForbidSchemeAsync()</code></td></tr><tr><td><code>GetDefaultSignInSchemeAsync</code></td><td><code>GetDefaultSignInSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultSignInSchemeAsync()</code></td></tr><tr><td><code>GetDefaultSignOutSchemeAsync</code></td><td><code>GetDefaultSignOutSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultSignOutSchemeAsync()</code></td></tr><tr><td><code>GetRequestHandlerSchemesAsync</code></td><td><code>GetRequestHandlerSchemesAsync()</code></td><td><code>Task&lt;IEnumerable&lt;AuthenticationScheme&gt;&gt; GetRequestHandlerSchemesAsync()</code></td></tr><tr><td><code>GetSchemeAsync</code></td><td><code>GetSchemeAsync(p1)</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetSchemeAsync(string name)</code></td></tr><tr><td><code>RemoveScheme</code></td><td><code>RemoveScheme(p1)</code></td><td><code>void RemoveScheme(string name)</code></td></tr><tr><td><code>TryAddScheme</code></td><td><code>TryAddScheme(p1)</code></td><td><code>bool TryAddScheme(AuthenticationScheme scheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationService"><summary><b>AuthenticationService</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationService</code> · assembly <code>Microsoft.AspNetCore.Authentication.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationService(IAuthenticationSchemeProvider schemes, IAuthenticationHandlerProvider handlers, IClaimsTransformation transform, IOptions&lt;AuthenticationOptions&gt; options)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationService(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationService().@New([ :param = value ])</code> or <code>dnNew("AuthenticationService",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Schemes</code></td><td><code>IAuthenticationSchemeProvider</code></td><td>read</td><td><code>o.Schemes</code></td></tr><tr><td><code>Handlers</code></td><td><code>IAuthenticationHandlerProvider</code></td><td>read</td><td><code>o.Handlers</code></td></tr><tr><td><code>Transform</code></td><td><code>IClaimsTransformation</code></td><td>read</td><td><code>o.Transform</code></td></tr><tr><td><code>Options</code></td><td><code>AuthenticationOptions</code></td><td>read</td><td><code>o.Options</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsync</code></td><td><code>AuthenticateAsync(p1,p2)</code></td><td><code>Task&lt;AuthenticateResult&gt; AuthenticateAsync(HttpContext context, string scheme)</code></td></tr><tr><td><code>ChallengeAsync</code></td><td><code>ChallengeAsync(p1,p2,p3)</code></td><td><code>Task ChallengeAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>ForbidAsync</code></td><td><code>ForbidAsync(p1,p2,p3)</code></td><td><code>Task ForbidAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignInAsync</code></td><td><code>SignInAsync(p1,p2,p3,p4)</code></td><td><code>Task SignInAsync(HttpContext context, string scheme, ClaimsPrincipal principal, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignOutAsync</code></td><td><code>SignOutAsync(p1,p2,p3)</code></td><td><code>Task SignOutAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationTicket"><summary><b>AuthenticationTicket</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationTicket</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationTicket(ClaimsPrincipal principal, AuthenticationProperties properties, string authenticationScheme)</code></td></tr><tr><td><code>new AuthenticationTicket(ClaimsPrincipal principal, string authenticationScheme)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationTicket(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationTicket().@New([ :param = value ])</code> or <code>dnNew("AuthenticationTicket",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AuthenticationScheme</code></td><td><code>string</code></td><td>read</td><td><code>o.AuthenticationScheme</code></td></tr><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read</td><td><code>o.Principal</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AuthenticationTicket Clone()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationToken"><summary><b>AuthenticationToken</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationToken</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthenticationToken()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthenticationToken(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthenticationToken().@New([ :param = value ])</code> or <code>dnNew("AuthenticationToken",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthenticationTokenExtensions"><summary><b>AuthenticationTokenExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetTokenAsync</code></td><td><code>GetTokenAsync([ :auth = …, :context = …, :tokenName = … ])</code><br><code>GetTokenAsync([ :auth = …, :context = …, :scheme = …, :tokenName = … ])</code></td><td><code>static Task&lt;string&gt; GetTokenAsync(IAuthenticationService auth, HttpContext context, string tokenName)</code><br><code>static Task&lt;string&gt; GetTokenAsync(IAuthenticationService auth, HttpContext context, string scheme, string tokenName)</code></td></tr><tr><td><code>GetTokens</code></td><td><code>GetTokens(p1)</code></td><td><code>static IEnumerable&lt;AuthenticationToken&gt; GetTokens(AuthenticationProperties properties)</code></td></tr><tr><td><code>GetTokenValue</code></td><td><code>GetTokenValue(p1,p2)</code></td><td><code>static string GetTokenValue(AuthenticationProperties properties, string tokenName)</code></td></tr><tr><td><code>StoreTokens</code></td><td><code>StoreTokens(p1,p2)</code></td><td><code>static void StoreTokens(AuthenticationProperties properties, IEnumerable&lt;AuthenticationToken&gt; tokens)</code></td></tr><tr><td><code>UpdateTokenValue</code></td><td><code>UpdateTokenValue(p1,p2,p3)</code></td><td><code>static bool UpdateTokenValue(AuthenticationProperties properties, string tokenName, string tokenValue)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Base64UrlTextEncoder"><summary><b>Base64UrlTextEncoder</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.Base64UrlTextEncoder</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Decode</code></td><td><code>Decode(p1)</code></td><td><code>static byte[] Decode(string text)</code></td></tr><tr><td><code>Encode</code></td><td><code>Encode(p1)</code></td><td><code>static string Encode(byte[] data)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BaseContext"><summary><b>BaseContext</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.BaseContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.Scheme</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.Options</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.HttpContext</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.Request</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.Response</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ClaimActionCollectionMapExtensions"><summary><b>ClaimActionCollectionMapExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication.OAuth</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DeleteClaim</code></td><td><code>DeleteClaim(p1,p2)</code></td><td><code>static void DeleteClaim(ClaimActionCollection collection, string claimType)</code></td></tr><tr><td><code>DeleteClaims</code></td><td><code>DeleteClaims(p1,p2)</code></td><td><code>static void DeleteClaims(ClaimActionCollection collection, string[] claimTypes)</code></td></tr><tr><td><code>MapAll</code></td><td><code>MapAll(p1)</code></td><td><code>static void MapAll(ClaimActionCollection collection)</code></td></tr><tr><td><code>MapAllExcept</code></td><td><code>MapAllExcept(p1,p2)</code></td><td><code>static void MapAllExcept(ClaimActionCollection collection, string[] exclusions)</code></td></tr><tr><td><code>MapCustomJson</code></td><td><code>MapCustomJson([ :collection = …, :claimType = …, :resolver = … ])</code><br><code>MapCustomJson([ :collection = …, :claimType = …, :valueType = …, :resolver = … ])</code></td><td><code>static void MapCustomJson(ClaimActionCollection collection, string claimType, Func&lt;JsonElement, string&gt; resolver)</code><br><code>static void MapCustomJson(ClaimActionCollection collection, string claimType, string valueType, Func&lt;JsonElement, string&gt; resolver)</code></td></tr><tr><td><code>MapJsonKey</code></td><td><code>MapJsonKey([ :collection = …, :claimType = …, :jsonKey = … ])</code><br><code>MapJsonKey([ :collection = …, :claimType = …, :jsonKey = …, :valueType = … ])</code></td><td><code>static void MapJsonKey(ClaimActionCollection collection, string claimType, string jsonKey)</code><br><code>static void MapJsonKey(ClaimActionCollection collection, string claimType, string jsonKey, string valueType)</code></td></tr><tr><td><code>MapJsonSubKey</code></td><td><code>MapJsonSubKey([ :collection = …, :claimType = …, :jsonKey = …, :subKey = … ])</code><br><code>MapJsonSubKey([ :collection = …, :claimType = …, :jsonKey = …, :subKey = …, :valueType = … ])</code></td><td><code>static void MapJsonSubKey(ClaimActionCollection collection, string claimType, string jsonKey, string subKey)</code><br><code>static void MapJsonSubKey(ClaimActionCollection collection, string claimType, string jsonKey, string subKey, string valueType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HandleRequestContext"><summary><b>HandleRequestContext</b> <span class="muted">class · extends BaseContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.HandleRequestContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Result</code></td><td><code>HandleRequestResult</code></td><td>read</td><td><code>o.Result</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-HandleRequestResult"><summary><b>HandleRequestResult</b> <span class="muted">class · extends <a href="#c-AuthenticateResult">AuthenticateResult</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.HandleRequestResult</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HandleRequestResult()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HandleRequestResult(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HandleRequestResult().@New([ :param = value ])</code> or <code>dnNew("HandleRequestResult",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Handled</code></td><td><code>bool</code></td><td>read</td><td><code>o.Handled</code></td></tr><tr><td><code>Skipped</code></td><td><code>bool</code></td><td>read</td><td><code>o.Skipped</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Fail</code></td><td><code>Fail(value)</code><br><code>Fail([ :failure = … ])</code><br><code>Fail([ :failureMessage = … ])</code><br><code>Fail([ :failure = …, :properties = … ])</code><br><code>Fail([ :failureMessage = …, :properties = … ])</code></td><td><code>static HandleRequestResult Fail(Exception failure)</code><br><code>static HandleRequestResult Fail(Exception failure, AuthenticationProperties properties)</code><br><code>static HandleRequestResult Fail(string failureMessage)</code><br><code>static HandleRequestResult Fail(string failureMessage, AuthenticationProperties properties)</code></td></tr><tr><td><code>Handle</code></td><td><code>Handle()</code></td><td><code>static HandleRequestResult Handle()</code></td></tr><tr><td><code>NoResult</code></td><td><code>NoResult()</code></td><td><code>static HandleRequestResult NoResult()</code></td></tr><tr><td><code>SkipHandler</code></td><td><code>SkipHandler()</code></td><td><code>static HandleRequestResult SkipHandler()</code></td></tr><tr><td><code>Success</code></td><td><code>Success(p1)</code></td><td><code>static HandleRequestResult Success(AuthenticationTicket ticket)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-IAuthenticateResultFeature"><summary><b>IAuthenticateResultFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticateResultFeature</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AuthenticateResult</code></td><td><code>AuthenticateResult</code></td><td>read, write</td><td><code>o.AuthenticateResult</code> <code>o.AuthenticateResult = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationConfigurationProvider"><summary><b>IAuthenticationConfigurationProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationConfigurationProvider</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AuthenticationConfiguration</code></td><td><code>IConfiguration</code></td><td>read</td><td><code>o.AuthenticationConfiguration</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationFeature"><summary><b>IAuthenticationFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationFeature</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OriginalPathBase</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.OriginalPathBase</code> <code>o.OriginalPathBase = v</code></td></tr><tr><td><code>OriginalPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.OriginalPath</code> <code>o.OriginalPath = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationHandler"><summary><b>IAuthenticationHandler</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationHandler</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsync</code></td><td><code>AuthenticateAsync()</code></td><td><code>Task&lt;AuthenticateResult&gt; AuthenticateAsync()</code></td></tr><tr><td><code>ChallengeAsync</code></td><td><code>ChallengeAsync(p1)</code></td><td><code>Task ChallengeAsync(AuthenticationProperties properties)</code></td></tr><tr><td><code>ForbidAsync</code></td><td><code>ForbidAsync(p1)</code></td><td><code>Task ForbidAsync(AuthenticationProperties properties)</code></td></tr><tr><td><code>InitializeAsync</code></td><td><code>InitializeAsync(p1,p2)</code></td><td><code>Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationHandlerProvider"><summary><b>IAuthenticationHandlerProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationHandlerProvider</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetHandlerAsync</code></td><td><code>GetHandlerAsync(p1,p2)</code></td><td><code>Task&lt;IAuthenticationHandler&gt; GetHandlerAsync(HttpContext context, string authenticationScheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationRequestHandler"><summary><b>IAuthenticationRequestHandler</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationRequestHandler</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>HandleRequestAsync</code></td><td><code>HandleRequestAsync()</code></td><td><code>Task&lt;bool&gt; HandleRequestAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationSchemeProvider"><summary><b>IAuthenticationSchemeProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddScheme</code></td><td><code>AddScheme(p1)</code></td><td><code>void AddScheme(AuthenticationScheme scheme)</code></td></tr><tr><td><code>GetAllSchemesAsync</code></td><td><code>GetAllSchemesAsync()</code></td><td><code>Task&lt;IEnumerable&lt;AuthenticationScheme&gt;&gt; GetAllSchemesAsync()</code></td></tr><tr><td><code>GetDefaultAuthenticateSchemeAsync</code></td><td><code>GetDefaultAuthenticateSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultAuthenticateSchemeAsync()</code></td></tr><tr><td><code>GetDefaultChallengeSchemeAsync</code></td><td><code>GetDefaultChallengeSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultChallengeSchemeAsync()</code></td></tr><tr><td><code>GetDefaultForbidSchemeAsync</code></td><td><code>GetDefaultForbidSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultForbidSchemeAsync()</code></td></tr><tr><td><code>GetDefaultSignInSchemeAsync</code></td><td><code>GetDefaultSignInSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultSignInSchemeAsync()</code></td></tr><tr><td><code>GetDefaultSignOutSchemeAsync</code></td><td><code>GetDefaultSignOutSchemeAsync()</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetDefaultSignOutSchemeAsync()</code></td></tr><tr><td><code>GetRequestHandlerSchemesAsync</code></td><td><code>GetRequestHandlerSchemesAsync()</code></td><td><code>Task&lt;IEnumerable&lt;AuthenticationScheme&gt;&gt; GetRequestHandlerSchemesAsync()</code></td></tr><tr><td><code>GetSchemeAsync</code></td><td><code>GetSchemeAsync(p1)</code></td><td><code>Task&lt;AuthenticationScheme&gt; GetSchemeAsync(string name)</code></td></tr><tr><td><code>RemoveScheme</code></td><td><code>RemoveScheme(p1)</code></td><td><code>void RemoveScheme(string name)</code></td></tr><tr><td><code>TryAddScheme</code></td><td><code>TryAddScheme(p1)</code></td><td><code>bool TryAddScheme(AuthenticationScheme scheme)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationService"><summary><b>IAuthenticationService</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationService</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsync</code></td><td><code>AuthenticateAsync(p1,p2)</code></td><td><code>Task&lt;AuthenticateResult&gt; AuthenticateAsync(HttpContext context, string scheme)</code></td></tr><tr><td><code>ChallengeAsync</code></td><td><code>ChallengeAsync(p1,p2,p3)</code></td><td><code>Task ChallengeAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>ForbidAsync</code></td><td><code>ForbidAsync(p1,p2,p3)</code></td><td><code>Task ForbidAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignInAsync</code></td><td><code>SignInAsync(p1,p2,p3,p4)</code></td><td><code>Task SignInAsync(HttpContext context, string scheme, ClaimsPrincipal principal, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignOutAsync</code></td><td><code>SignOutAsync(p1,p2,p3)</code></td><td><code>Task SignOutAsync(HttpContext context, string scheme, AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationSignInHandler"><summary><b>IAuthenticationSignInHandler</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationSignInHandler</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SignInAsync</code></td><td><code>SignInAsync(p1,p2)</code></td><td><code>Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthenticationSignOutHandler"><summary><b>IAuthenticationSignOutHandler</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IAuthenticationSignOutHandler</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SignOutAsync</code></td><td><code>SignOutAsync(p1)</code></td><td><code>Task SignOutAsync(AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IClaimsTransformation"><summary><b>IClaimsTransformation</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IClaimsTransformation</code> · assembly <code>Microsoft.AspNetCore.Authentication.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TransformAsync</code></td><td><code>TransformAsync(p1)</code></td><td><code>Task&lt;ClaimsPrincipal&gt; TransformAsync(ClaimsPrincipal principal)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDataSerializer"><summary><b>IDataSerializer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.IDataSerializer`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+</div></details>
+<details class="cls" id="c-ISecureDataFormat"><summary><b>ISecureDataFormat</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.ISecureDataFormat`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+</div></details>
+<details class="cls" id="c-JsonDocumentAuthExtensions"><summary><b>JsonDocumentAuthExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.JsonDocumentAuthExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetString</code></td><td><code>GetString(p1,p2)</code></td><td><code>static string GetString(JsonElement element, string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NoopClaimsTransformation"><summary><b>NoopClaimsTransformation</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.NoopClaimsTransformation</code> · assembly <code>Microsoft.AspNetCore.Authentication.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NoopClaimsTransformation()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NoopClaimsTransformation(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NoopClaimsTransformation().@New([ :param = value ])</code> or <code>dnNew("NoopClaimsTransformation",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TransformAsync</code></td><td><code>TransformAsync(p1)</code></td><td><code>Task&lt;ClaimsPrincipal&gt; TransformAsync(ClaimsPrincipal principal)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PolicySchemeHandler"><summary><b>PolicySchemeHandler</b> <span class="muted">class · extends SignInAuthenticationHandler&lt;PolicySchemeOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PolicySchemeHandler</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PolicySchemeHandler(IOptionsMonitor&lt;PolicySchemeOptions&gt; options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)</code></td></tr><tr><td><code>new PolicySchemeHandler(IOptionsMonitor&lt;PolicySchemeOptions&gt; options, ILoggerFactory logger, UrlEncoder encoder)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PolicySchemeHandler(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PolicySchemeHandler().@New([ :param = value ])</code> or <code>dnNew("PolicySchemeHandler",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>PolicySchemeOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AuthenticateAsync</code></td><td><code>AuthenticateAsync()</code></td><td><code>Task&lt;AuthenticateResult&gt; AuthenticateAsync()</code></td></tr><tr><td><code>ChallengeAsync</code></td><td><code>ChallengeAsync(p1)</code></td><td><code>Task ChallengeAsync(AuthenticationProperties properties)</code></td></tr><tr><td><code>ForbidAsync</code></td><td><code>ForbidAsync(p1)</code></td><td><code>Task ForbidAsync(AuthenticationProperties properties)</code></td></tr><tr><td><code>InitializeAsync</code></td><td><code>InitializeAsync(p1,p2)</code></td><td><code>Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)</code></td></tr><tr><td><code>SignInAsync</code></td><td><code>SignInAsync(p1,p2)</code></td><td><code>Task SignInAsync(ClaimsPrincipal user, AuthenticationProperties properties)</code></td></tr><tr><td><code>SignOutAsync</code></td><td><code>SignOutAsync(p1)</code></td><td><code>Task SignOutAsync(AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PolicySchemeOptions"><summary><b>PolicySchemeOptions</b> <span class="muted">class · extends <a href="#c-AuthenticationSchemeOptions">AuthenticationSchemeOptions</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PolicySchemeOptions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PolicySchemeOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PolicySchemeOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PolicySchemeOptions().@New([ :param = value ])</code> or <code>dnNew("PolicySchemeOptions",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PrincipalContext"><summary><b>PrincipalContext</b> <span class="muted">class abstract · extends PropertiesContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PrincipalContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read, write</td><td><code>o.Principal</code> <code>o.Principal = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read</td><td><code>o.getProperties()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PropertiesContext"><summary><b>PropertiesContext</b> <span class="muted">class abstract · extends BaseContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PropertiesContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PropertiesDataFormat"><summary><b>PropertiesDataFormat</b> <span class="muted">class · extends SecureDataFormat&lt;AuthenticationProperties&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PropertiesDataFormat</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PropertiesDataFormat(IDataProtector protector)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PropertiesDataFormat(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PropertiesDataFormat().@New([ :param = value ])</code> or <code>dnNew("PropertiesDataFormat",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Protect</code></td><td><code>Protect(value)</code><br><code>Protect([ :data = … ])</code><br><code>Protect([ :data = …, :purpose = … ])</code></td><td><code>string Protect(AuthenticationProperties data)</code><br><code>string Protect(AuthenticationProperties data, string purpose)</code></td></tr><tr><td><code>Unprotect</code></td><td><code>Unprotect(value)</code><br><code>Unprotect([ :protectedText = … ])</code><br><code>Unprotect([ :protectedText = …, :purpose = … ])</code></td><td><code>AuthenticationProperties Unprotect(string protectedText)</code><br><code>AuthenticationProperties Unprotect(string protectedText, string purpose)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PropertiesSerializer"><summary><b>PropertiesSerializer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.PropertiesSerializer</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PropertiesSerializer()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PropertiesSerializer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PropertiesSerializer().@New([ :param = value ])</code> or <code>dnNew("PropertiesSerializer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Default</code></td><td><code>PropertiesSerializer</code></td><td>read · static</td><td><code>o.Default</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Deserialize</code></td><td><code>Deserialize(p1)</code></td><td><code>AuthenticationProperties Deserialize(byte[] data)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1)</code></td><td><code>AuthenticationProperties Read(BinaryReader reader)</code></td></tr><tr><td><code>Serialize</code></td><td><code>Serialize(p1)</code></td><td><code>byte[] Serialize(AuthenticationProperties model)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2)</code></td><td><code>void Write(BinaryWriter writer, AuthenticationProperties properties)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RedirectContext"><summary><b>RedirectContext</b> <span class="muted">class · extends PropertiesContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RedirectContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RedirectUri</code></td><td><code>string</code></td><td>read, write</td><td><code>o.RedirectUri</code> <code>o.RedirectUri = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read</td><td><code>o.getProperties()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RemoteAuthenticationContext"><summary><b>RemoteAuthenticationContext</b> <span class="muted">class abstract · extends HandleRequestContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RemoteAuthenticationContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read, write</td><td><code>o.Principal</code> <code>o.Principal = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read, write</td><td><code>o.Properties</code> <code>o.Properties = v</code></td></tr><tr><td><code>Result</code></td><td><code>HandleRequestResult</code></td><td>read</td><td><code>o.getResult()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RemoteAuthenticationEvents"><summary><b>RemoteAuthenticationEvents</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RemoteAuthenticationEvents</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RemoteAuthenticationEvents()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RemoteAuthenticationEvents(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RemoteAuthenticationEvents().@New([ :param = value ])</code> or <code>dnNew("RemoteAuthenticationEvents",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OnAccessDenied</code></td><td><code>Func&lt;AccessDeniedContext, Task&gt;</code></td><td>read, write</td><td><code>o.OnAccessDenied</code> <code>o.OnAccessDenied = v</code></td></tr><tr><td><code>OnRemoteFailure</code></td><td><code>Func&lt;RemoteFailureContext, Task&gt;</code></td><td>read, write</td><td><code>o.OnRemoteFailure</code> <code>o.OnRemoteFailure = v</code></td></tr><tr><td><code>OnTicketReceived</code></td><td><code>Func&lt;TicketReceivedContext, Task&gt;</code></td><td>read, write</td><td><code>o.OnTicketReceived</code> <code>o.OnTicketReceived = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AccessDenied</code></td><td><code>AccessDenied(p1)</code></td><td><code>Task AccessDenied(AccessDeniedContext context)</code></td></tr><tr><td><code>RemoteFailure</code></td><td><code>RemoteFailure(p1)</code></td><td><code>Task RemoteFailure(RemoteFailureContext context)</code></td></tr><tr><td><code>TicketReceived</code></td><td><code>TicketReceived(p1)</code></td><td><code>Task TicketReceived(TicketReceivedContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RemoteAuthenticationHandler"><summary><b>RemoteAuthenticationHandler</b> <span class="muted">class abstract · extends AuthenticationHandler&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RemoteAuthenticationOptions"><summary><b>RemoteAuthenticationOptions</b> <span class="muted">class · extends <a href="#c-AuthenticationSchemeOptions">AuthenticationSchemeOptions</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RemoteAuthenticationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RemoteAuthenticationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RemoteAuthenticationOptions().@New([ :param = value ])</code> or <code>dnNew("RemoteAuthenticationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BackchannelTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.BackchannelTimeout</code> <code>o.BackchannelTimeout = v</code></td></tr><tr><td><code>BackchannelHttpHandler</code></td><td><code>HttpMessageHandler</code></td><td>read, write</td><td><code>o.BackchannelHttpHandler</code> <code>o.BackchannelHttpHandler = v</code></td></tr><tr><td><code>Backchannel</code></td><td><code>HttpClient</code></td><td>read, write</td><td><code>o.Backchannel</code> <code>o.Backchannel = v</code></td></tr><tr><td><code>DataProtectionProvider</code></td><td><code>IDataProtectionProvider</code></td><td>read, write</td><td><code>o.DataProtectionProvider</code> <code>o.DataProtectionProvider = v</code></td></tr><tr><td><code>CallbackPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.CallbackPath</code> <code>o.CallbackPath = v</code></td></tr><tr><td><code>AccessDeniedPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.AccessDeniedPath</code> <code>o.AccessDeniedPath = v</code></td></tr><tr><td><code>ReturnUrlParameter</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReturnUrlParameter</code> <code>o.ReturnUrlParameter = v</code></td></tr><tr><td><code>SignInScheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.SignInScheme</code> <code>o.SignInScheme = v</code></td></tr><tr><td><code>RemoteAuthenticationTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.RemoteAuthenticationTimeout</code> <code>o.RemoteAuthenticationTimeout = v</code></td></tr><tr><td><code>Events</code></td><td><code>RemoteAuthenticationEvents</code></td><td>read, write</td><td><code>o.getEvents()</code> <code>o.setEvents(v)</code></td></tr><tr><td><code>SaveTokens</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SaveTokens</code> <code>o.SaveTokens = v</code></td></tr><tr><td><code>CorrelationCookie</code></td><td><code>CookieBuilder</code></td><td>read, write</td><td><code>o.CorrelationCookie</code> <code>o.CorrelationCookie = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(NULL)</code><br><code>Validate(value)</code><br><code>Validate([ :scheme = … ])</code></td><td><code>void Validate(string scheme)</code><br><code>void Validate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RemoteFailureContext"><summary><b>RemoteFailureContext</b> <span class="muted">class · extends HandleRequestContext&lt;RemoteAuthenticationOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RemoteFailureContext</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RemoteFailureContext(HttpContext context, AuthenticationScheme scheme, RemoteAuthenticationOptions options, Exception failure)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RemoteFailureContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RemoteFailureContext().@New([ :param = value ])</code> or <code>dnNew("RemoteFailureContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Failure</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Failure</code> <code>o.Failure = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read, write</td><td><code>o.Properties</code> <code>o.Properties = v</code></td></tr><tr><td><code>Result</code></td><td><code>HandleRequestResult</code></td><td>read</td><td><code>o.getResult()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>RemoteAuthenticationOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>HandleResponse</code></td><td><code>HandleResponse()</code></td><td><code>void HandleResponse()</code></td></tr><tr><td><code>SkipHandler</code></td><td><code>SkipHandler()</code></td><td><code>void SkipHandler()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RequestPathBaseCookieBuilder"><summary><b>RequestPathBaseCookieBuilder</b> <span class="muted">class · extends <a href="Microsoft.AspNetCore.Http.html#c-CookieBuilder">CookieBuilder</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.RequestPathBaseCookieBuilder</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequestPathBaseCookieBuilder()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequestPathBaseCookieBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequestPathBaseCookieBuilder().@New([ :param = value ])</code> or <code>dnNew("RequestPathBaseCookieBuilder",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build([ :context = …, :expiresFrom = … ])</code></td><td><code>CookieOptions Build(HttpContext context, DateTimeOffset expiresFrom)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResultContext"><summary><b>ResultContext</b> <span class="muted">class abstract · extends BaseContext&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.ResultContext`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read, write</td><td><code>o.Principal</code> <code>o.Principal = v</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read, write</td><td><code>o.Properties</code> <code>o.Properties = v</code></td></tr><tr><td><code>Result</code></td><td><code>AuthenticateResult</code></td><td>read</td><td><code>o.Result</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SecureDataFormat"><summary><b>SecureDataFormat</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.SecureDataFormat`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+</div></details>
+<details class="cls" id="c-SignInAuthenticationHandler"><summary><b>SignInAuthenticationHandler</b> <span class="muted">class abstract · extends SignOutAuthenticationHandler&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.SignInAuthenticationHandler`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SignOutAuthenticationHandler"><summary><b>SignOutAuthenticationHandler</b> <span class="muted">class abstract · extends AuthenticationHandler&lt;TOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.SignOutAuthenticationHandler`1</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>TOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TicketDataFormat"><summary><b>TicketDataFormat</b> <span class="muted">class · extends SecureDataFormat&lt;AuthenticationTicket&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.TicketDataFormat</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TicketDataFormat(IDataProtector protector)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TicketDataFormat(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TicketDataFormat().@New([ :param = value ])</code> or <code>dnNew("TicketDataFormat",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Protect</code></td><td><code>Protect(value)</code><br><code>Protect([ :data = … ])</code><br><code>Protect([ :data = …, :purpose = … ])</code></td><td><code>string Protect(AuthenticationTicket data)</code><br><code>string Protect(AuthenticationTicket data, string purpose)</code></td></tr><tr><td><code>Unprotect</code></td><td><code>Unprotect(value)</code><br><code>Unprotect([ :protectedText = … ])</code><br><code>Unprotect([ :protectedText = …, :purpose = … ])</code></td><td><code>AuthenticationTicket Unprotect(string protectedText)</code><br><code>AuthenticationTicket Unprotect(string protectedText, string purpose)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TicketReceivedContext"><summary><b>TicketReceivedContext</b> <span class="muted">class · extends RemoteAuthenticationContext&lt;RemoteAuthenticationOptions&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.TicketReceivedContext</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TicketReceivedContext(HttpContext context, AuthenticationScheme scheme, RemoteAuthenticationOptions options, AuthenticationTicket ticket)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TicketReceivedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TicketReceivedContext().@New([ :param = value ])</code> or <code>dnNew("TicketReceivedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ReturnUri</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReturnUri</code> <code>o.ReturnUri = v</code></td></tr><tr><td><code>Principal</code></td><td><code>ClaimsPrincipal</code></td><td>read, write</td><td><code>o.getPrincipal()</code> <code>o.setPrincipal(v)</code></td></tr><tr><td><code>Properties</code></td><td><code>AuthenticationProperties</code></td><td>read, write</td><td><code>o.getProperties()</code> <code>o.setProperties(v)</code></td></tr><tr><td><code>Result</code></td><td><code>HandleRequestResult</code></td><td>read</td><td><code>o.getResult()</code></td></tr><tr><td><code>Scheme</code></td><td><code>AuthenticationScheme</code></td><td>read</td><td><code>o.getScheme()</code></td></tr><tr><td><code>Options</code></td><td><code>RemoteAuthenticationOptions</code></td><td>read</td><td><code>o.getOptions()</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.getHttpContext()</code></td></tr><tr><td><code>Request</code></td><td><code>HttpRequest</code></td><td>read</td><td><code>o.getRequest()</code></td></tr><tr><td><code>Response</code></td><td><code>HttpResponse</code></td><td>read</td><td><code>o.getResponse()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Fail</code></td><td><code>Fail(p1)</code></td><td><code>void Fail(Exception failure)</code><br><code>void Fail(string failureMessage)</code></td></tr><tr><td><code>HandleResponse</code></td><td><code>HandleResponse()</code></td><td><code>void HandleResponse()</code></td></tr><tr><td><code>SkipHandler</code></td><td><code>SkipHandler()</code></td><td><code>void SkipHandler()</code></td></tr><tr><td><code>Success</code></td><td><code>Success()</code></td><td><code>void Success()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TicketSerializer"><summary><b>TicketSerializer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Authentication.TicketSerializer</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TicketSerializer()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TicketSerializer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TicketSerializer().@New([ :param = value ])</code> or <code>dnNew("TicketSerializer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Default</code></td><td><code>TicketSerializer</code></td><td>read · static</td><td><code>o.Default</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Deserialize</code></td><td><code>Deserialize(p1)</code></td><td><code>AuthenticationTicket Deserialize(byte[] data)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1)</code></td><td><code>AuthenticationTicket Read(BinaryReader reader)</code></td></tr><tr><td><code>Serialize</code></td><td><code>Serialize(p1)</code></td><td><code>byte[] Serialize(AuthenticationTicket ticket)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2)</code></td><td><code>void Write(BinaryWriter writer, AuthenticationTicket ticket)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

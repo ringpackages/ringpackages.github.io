@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rounding and the Math class · RingDotNet</title>
+<meta name="description" content="Rounding looks simple until a total is a cent wrong. This lesson uses the Math class for the two rounding modes, for the digits after the point, for Floor, Ceiling and Truncate, for limits with Clamp, powers and logarithms, and shows how the rounding rule changes the total of a bill.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html" class="cur">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Rounding and the Math class</h1><p class="lead">Rounding looks simple until a total is a cent wrong. This lesson uses the Math class for the two rounding modes, for the digits after the point, for Floor, Ceiling and Truncate, for limits with Clamp, powers and logarithms, and shows how the rounding rule changes the total of a bill.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><code>Round</code> and its <strong>modes</strong>: <code>ToEven</code> and <code>AwayFromZero</code>,</li><li><code>Round</code> with a number of digits,</li><li><code>Floor</code>, <code>Ceiling</code> and <code>Truncate</code>, and what they do to negative numbers,</li><li>the remainder operator <code>%</code>,</li><li>keeping a number between a minimum and a maximum,</li><li><code>Sign</code>, <code>Abs</code>, <code>Pow</code>, <code>Sqrt</code>, <code>Cbrt</code> and the logarithms,</li><li>why money needs <strong>one</strong> rounding rule.</li></ul>
+<p>The tutorial <a href="tut-03-numbers-dates.html">Numbers, dates and times</a> used the basic functions and the tutorial <a href="tut-57-money.html">Money</a> showed why money needs care. This lesson is about the rules of rounding.</p>
+<div class="callout note"><span class="t">Note</span><p>Ring shows a number with two decimals unless you change it with <code>decimals(n)</code>. The program uses <code>decimals(3)</code> for the step with digits, so that the third decimal is visible.</p></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch03_rounding.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># rounding and the Math class - Round with its modes, Floor, Ceiling, Truncate, DivRem, Clamp, Sign and the rounding of money</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oMath = <span class="k">new</span> <span class="t">Math</span>()
+
+	<span class="c"># 1. Round has a MODE for the numbers that are exactly in the middle (x.5). "ToEven" (the default of .NET, called banker's rounding) goes to</span>
+	<span class="c">#    the even neighbor, so that rounding many numbers does not push the total up; "AwayFromZero" is the rule taught at school.</span>
+	? <span class="s">"1. Round of x.5 with the two modes:"</span>
+	? <span class="s">"   "</span> + padRight(<span class="s">"value"</span>,<span class="n">8</span>) + padRight(<span class="s">"ToEven"</span>,<span class="n">9</span>) + <span class="s">"AwayFromZero"</span>
+	<span class="k">for</span> nValue <span class="k">in</span> [ <span class="n">0.5</span>, <span class="n">1.5</span>, <span class="n">2.5</span>, <span class="n">3.5</span>, -<span class="n">0.5</span>, -<span class="n">1.5</span>, -<span class="n">2.5</span> ]
+		nEven = oMath.<span class="f">Round</span>([ :value = nValue, :mode = <span class="s">"ToEven"</span> ])
+		nAway = oMath.<span class="f">Round</span>([ :value = nValue, :mode = <span class="s">"AwayFromZero"</span> ])
+		? <span class="s">"   "</span> + padRight(<span class="s">""</span> + nValue,<span class="n">8</span>) + padRight(<span class="s">""</span> + nEven,<span class="n">9</span>) + nAway
+	<span class="k">next</span>
+
+	<span class="c"># 2. Digits after the point: Round(value, digits). The modes work for the middle of the digit too: 0.125 is in the middle between 0.12 and 0.13.</span>
+	<span class="c">#    ToEven chooses 0.12 (the last digit 2 is even) and AwayFromZero chooses 0.13; 0.135 is in the middle between 0.13 and 0.14: ToEven</span>
+	<span class="c">#    chooses 0.14 (4 is even).</span>
+	? nl + <span class="s">"2. Round with digits:"</span>
+	decimals(<span class="n">3</span>)                                         <span class="c"># Ring shows two decimals by default: show three for this step</span>
+	? <span class="s">"   Round(3.14159, 2)             = "</span> + oMath.<span class="f">Round</span>([ :value = <span class="n">3.14159</span>, :digits = <span class="n">2</span> ])
+	<span class="k">for</span> nValue <span class="k">in</span> [ <span class="n">0.125</span>, <span class="n">0.135</span> ]
+		nEven = oMath.<span class="f">Round</span>([ :value = nValue, :digits = <span class="n">2</span>, :mode = <span class="s">"ToEven"</span> ])
+		nAway = oMath.<span class="f">Round</span>([ :value = nValue, :digits = <span class="n">2</span>, :mode = <span class="s">"AwayFromZero"</span> ])
+		? <span class="s">"   Round("</span> + nValue + <span class="s">", 2): ToEven "</span> + nEven + <span class="s">", AwayFromZero "</span> + nAway
+	<span class="k">next</span>
+	decimals(<span class="n">2</span>)
+
+	<span class="c"># 3. Floor, Ceiling and Truncate: three other ways to a whole number. They differ only for negative numbers.</span>
+	? nl + <span class="s">"3. Floor, Ceiling, Truncate:"</span>
+	? <span class="s">"   "</span> + padRight(<span class="s">"value"</span>,<span class="n">8</span>) + padRight(<span class="s">"Floor"</span>,<span class="n">7</span>) + padRight(<span class="s">"Ceiling"</span>,<span class="n">9</span>) + <span class="s">"Truncate"</span>
+	<span class="k">for</span> nValue <span class="k">in</span> [ <span class="n">2.7</span>, <span class="n">2.2</span>, -<span class="n">2.2</span>, -<span class="n">2.7</span> ]
+		? <span class="s">"   "</span> + padRight(<span class="s">""</span> + nValue,<span class="n">8</span>) + padRight(<span class="s">""</span> + oMath.<span class="f">Floor</span>(nValue),<span class="n">7</span>) + padRight(<span class="s">""</span> + oMath.<span class="f">Ceiling</span>(nValue),<span class="n">9</span>) + oMath.<span class="f">Truncate</span>(nValue)
+	<span class="k">next</span>
+	? <span class="s">"   Floor goes down, Ceiling goes up, Truncate cuts the decimals (toward zero)."</span>
+
+	<span class="c"># 4. Division with a remainder. Ring has the operator % for the remainder; the sign of the remainder follows the sign of the first number.</span>
+	? nl + <span class="s">"4. division with a remainder:"</span>
+	? <span class="s">"   17 / 5 = "</span> + floor(<span class="n">17</span> / <span class="n">5</span>) + <span class="s">" remainder "</span> + (<span class="n">17</span> % <span class="n">5</span>)
+	? <span class="s">"   -17 / 5 = "</span> + oMath.<span class="f">Truncate</span>(-<span class="n">17</span> / <span class="n">5</span>) + <span class="s">" remainder "</span> + (-<span class="n">17</span> % <span class="n">5</span>) + <span class="s">"  (the remainder has the sign of -17)"</span>
+
+	<span class="c"># 5. Limits: Clamp keeps a number between a minimum and a maximum, Sign gives -1, 0 or 1, Abs the size without the sign</span>
+	? nl + <span class="s">"5. Clamp, Sign, Abs:"</span>
+	<span class="k">for</span> nValue <span class="k">in</span> [ -<span class="n">5</span>, <span class="n">40</span>, <span class="n">250</span> ]
+		? <span class="s">"   Clamp("</span> + padRight(<span class="s">""</span> + nValue,<span class="n">4</span>) + <span class="s">", 0, 100) = "</span> + oMath.<span class="f">Clamp</span>(nValue,<span class="n">0</span>,<span class="n">100</span>)
+	<span class="k">next</span>
+	? <span class="s">"   Sign(-8) = "</span> + oMath.<span class="f">Sign</span>(-<span class="n">8</span>) + <span class="s">", Sign(0) = "</span> + oMath.<span class="f">Sign</span>(<span class="n">0</span>) + <span class="s">", Sign(8) = "</span> + oMath.<span class="f">Sign</span>(<span class="n">8</span>) + <span class="s">", Abs(-8) = "</span> + oMath.<span class="f">Abs</span>(-<span class="n">8</span>)
+
+	<span class="c"># 6. Powers and roots: Pow, Sqrt, Cbrt, Log, Log10, Exp and the constants PI and E</span>
+	? nl + <span class="s">"6. powers and logarithms:"</span>
+	? <span class="s">"   Pow(2, 10) = "</span> + oMath.<span class="f">Pow</span>(<span class="n">2</span>,<span class="n">10</span>) + <span class="s">", Sqrt(144) = "</span> + oMath.<span class="f">Sqrt</span>(<span class="n">144</span>) + <span class="s">", Cbrt(27) = "</span> + oMath.<span class="f">Cbrt</span>(<span class="n">27</span>)
+	? <span class="s">"   Log10(1000) = "</span> + oMath.<span class="f">Log10</span>(<span class="n">1000</span>) + <span class="s">", Log2(1024) = "</span> + oMath.<span class="f">Log2</span>(<span class="n">1024</span>) + <span class="s">", Log(E) = "</span> + oMath.<span class="f">Log</span>(<span class="n">2.718281828459045</span>)
+
+	<span class="c"># 7. Rounding money: the total of many prices should not be wrong by a cent. The same prices rounded in two ways give two totals.</span>
+	? nl + <span class="s">"7. ten items of 0.125 each (one eighth of a unit):"</span>
+	nEvenTotal = <span class="n">0</span>
+	nAwayTotal = <span class="n">0</span>
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> <span class="n">10</span>
+		nEvenTotal += oMath.<span class="f">Round</span>([ :value = <span class="n">0.125</span>, :digits = <span class="n">2</span>, :mode = <span class="s">"ToEven"</span> ])
+		nAwayTotal += oMath.<span class="f">Round</span>([ :value = <span class="n">0.125</span>, :digits = <span class="n">2</span>, :mode = <span class="s">"AwayFromZero"</span> ])
+	<span class="k">next</span>
+	? <span class="s">"   rounded to cents with ToEven:       "</span> + nEvenTotal + <span class="s">"   (the exact total is 1.25)"</span>
+	? <span class="s">"   rounded to cents with AwayFromZero: "</span> + nAwayTotal
+	? <span class="s">"   A shop uses ONE rule everywhere and rounds only the final amount, or the amount of each line, as the law of the country says."</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. Round of x.5 with the two modes:
+   value   ToEven   AwayFromZero
+   0.50    0        1
+   1.50    2        2
+   2.50    2        3
+   3.50    4        4
+   -0.50   0        -1
+   -1.50   -2       -2
+   -2.50   -2       -3
+
+2. Round with digits:
+   Round(3.14159, 2)             = 3.140
+   Round(0.125, 2): ToEven 0.120, AwayFromZero 0.130
+   Round(0.135, 2): ToEven 0.140, AwayFromZero 0.140
+
+3. Floor, Ceiling, Truncate:
+   value   Floor  Ceiling  Truncate
+   2.70    2      3        2
+   2.20    2      3        2
+   -2.20   -3     -2       -2
+   -2.70   -3     -2       -2
+   Floor goes down, Ceiling goes up, Truncate cuts the decimals (toward zero).
+
+4. division with a remainder:
+   17 / 5 = 3 remainder 2
+   -17 / 5 = -3 remainder -2  (the remainder has the sign of -17)
+
+5. Clamp, Sign, Abs:
+   Clamp(-5  , 0, 100) = 0
+   Clamp(40  , 0, 100) = 40
+   Clamp(250 , 0, 100) = 100
+   Sign(-8) = -1, Sign(0) = 0, Sign(8) = 1, Abs(-8) = 8
+
+6. powers and logarithms:
+   Pow(2, 10) = 1024, Sqrt(144) = 12, Cbrt(27) = 3
+   Log10(1000) = 3, Log2(1024) = 10, Log(E) = 1
+
+7. ten items of 0.125 each (one eighth of a unit):
+   rounded to cents with ToEven:       1.20   (the exact total is 1.25)
+   rounded to cents with AwayFromZero: 1.30
+   A shop uses ONE rule everywhere and rounds only the final amount, or the amount of each line, as the law of the country says.</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="two-modes-for-the-middle">Two modes for the middle<a class="anchor" href="#two-modes-for-the-middle">#</a></h3>
+<p>A number that is exactly in the middle between two whole numbers (<code>2.5</code>) must go one way. <strong><code>ToEven</code></strong> (the default of .NET, also called <em>banker's rounding</em>) goes to the neighbor that is even: <code>0.5</code> and <code>2.5</code> go down, <code>1.5</code> and <code>3.5</code> go up. Over many numbers the errors cancel, so the sum of the rounded numbers stays close to the real sum. <strong><code>AwayFromZero</code></strong> is the rule taught at school: <code>2.5</code> becomes <code>3</code> and <code>-2.5</code> becomes <code>-3</code>. The mode is a text, written in the named values of the call: <code>Round([ :value = 2.5, :mode = "AwayFromZero" ])</code>.</p>
+<h3 id="digits">Digits<a class="anchor" href="#digits">#</a></h3>
+<p><code>:digits = 2</code> rounds to hundredths. The middle of a digit follows the same modes: <code>0.125</code> is between <code>0.12</code> and <code>0.13</code>, and <code>ToEven</code> chooses <code>0.12</code>.</p>
+<h3 id="floor-ceiling-truncate">Floor, Ceiling, Truncate<a class="anchor" href="#floor-ceiling-truncate">#</a></h3>
+<p>All three give a whole number and differ only for negative numbers: <code>Floor</code> goes down (<code>-2.2</code> becomes <code>-3</code>), <code>Ceiling</code> goes up (<code>-2.2</code> becomes <code>-2</code>) and <code>Truncate</code> cuts the decimals (<code>-2.2</code> becomes <code>-2</code>). Ring has its own <code>floor()</code>; <code>Math</code> adds <code>Ceiling</code> and <code>Truncate</code>.</p>
+<h3 id="the-remainder">The remainder<a class="anchor" href="#the-remainder">#</a></h3>
+<p><code>17 % 5</code> is <code>2</code>. For a negative first number the remainder is negative too (<code>-17 % 5</code> is <code>-2</code>), as in C# and Java. When you need a result that is never negative (the index of a circular list, for example) add the divisor and take the remainder again: <code>((n % m) + m) % m</code>.</p>
+<h3 id="limits">Limits<a class="anchor" href="#limits">#</a></h3>
+<p><code>Clamp(value, min, max)</code> keeps a value inside a range: a volume from 0 to 100, a color part from 0 to 255. <code>Sign</code> gives <code>-1</code>, <code>0</code> or <code>1</code>, and <code>Abs</code> the size without the sign.</p>
+<h3 id="powers-and-logarithms">Powers and logarithms<a class="anchor" href="#powers-and-logarithms">#</a></h3>
+<p><code>Pow(2, 10)</code> is <code>1024</code>, <code>Sqrt(144)</code> is <code>12</code>, <code>Cbrt(27)</code> is <code>3</code> (the cube root). <code>Log10(1000)</code> is <code>3</code>, <code>Log2(1024)</code> is <code>10</code>, and <code>Log(x)</code> is the natural logarithm. The constants are <code>Math.PI</code> and <code>Math.E</code>.</p>
+<h3 id="rounding-money">Rounding money<a class="anchor" href="#rounding-money">#</a></h3>
+<p>Ten items of <code>0.125</code> cost <code>1.25</code>. Each item rounded to cents with <code>ToEven</code> is <code>0.12</code>, so the total is <code>1.20</code>; with <code>AwayFromZero</code> each is <code>0.13</code> and the total is <code>1.30</code>. The right answer depends on the rule that the shop (or the law of the country) uses, and it must be <strong>the same rule everywhere</strong> in the program: round each line, or round only the final amount, but never mix them. For exact amounts keep money in whole cents (<code>125</code> for <code>1.25</code>), as the tutorial <a href="tut-57-money.html">Money</a> does.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>Round</code> with <code>ToEven</code> and <code>AwayFromZero</code>, with and without digits,</li><li><code>Floor</code>, <code>Ceiling</code> and <code>Truncate</code>,</li><li>the remainder of negative numbers,</li><li>limits with <code>Clamp</code>,</li><li>one rounding rule for money.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write <code>roundToStep(value, step)</code> that rounds to the nearest <code>0.05</code> (the smallest coin) and test it with <code>1.02</code> and <code>1.03</code>.</li><li>Write <code>mod(n, m)</code> that is never negative and use it for the days of a week.</li><li>Add the prices <code>19.99</code>, <code>5.49</code> and <code>0.5</code> rounded to cents with both modes.</li><li>Print <code>Log2</code> of the powers of two from 1 to 1024 in a table.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-90-big-numbers.html">Big numbers</a></p>
+<div class="pager"><a href="tut-101-number-types.html"><small>Previous</small>Number types</a><a class="next" href="tut-90-big-numbers.html"><small>Next</small>Big numbers</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

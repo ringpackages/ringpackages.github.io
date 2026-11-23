@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Databases step by step · RingDotNet</title>
+<meta name="description" content="Store data that survives the end of the program. Describe tables, add and read rows, search, connect tables, ask questions, group a transaction, and keep everything in a file.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html" class="cur">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Databases step by step</h1><p class="lead">Store data that survives the end of the program. Describe tables, add and read rows, search, connect tables, ask questions, group a transaction, and keep everything in a file.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a database, a table, a row and a key are,</li><li>describing tables as data and creating them,</li><li>insert, read, update, delete,</li><li>searching safely with SQL parameters,</li><li>relations between tables,</li><li>queries, aggregates, transactions and file databases.</li></ul>
+<h2 id="database-words">Database words<a class="anchor" href="#database-words">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td><strong>table</strong></td><td>a list of rows of the same shape (like a spreadsheet sheet)</td></tr><tr><td><strong>column</strong></td><td>one field of every row (<code>Title</code>, <code>Year</code>)</td></tr><tr><td><strong>row</strong></td><td>one record</td></tr><tr><td><strong>key</strong></td><td>a column that identifies a row (<code>Id</code>); the database numbers it for you</td></tr><tr><td><strong>foreign key</strong></td><td>a column that holds the key of a row in <em>another</em> table (<code>AuthorId</code>)</td></tr><tr><td><strong>SQL</strong></td><td>the language of databases; you only need a little of it</td></tr></tbody></table></div>
+<p>RingDotNet uses <strong>Entity Framework Core</strong> with <strong>SQLite</strong>, a database in one file (or in memory). You describe the tables as Ring data; there is no SQL to write for normal work.</p>
+<h2 id="part-1-tables-rows-searches">Part 1: tables, rows, searches<a class="anchor" href="#part-1-tables-rows-searches">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_library.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># databases step by step - a library catalog with Entity Framework Core</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"RingDotNet.Data"</span> }
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># STEP 1. Describe the tables: [table name, [ [column, type, isKey, options], ... ]]</span>
+	aSchema = [
+		[<span class="s">"Authors"</span>,[
+			[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],                                   <span class="c"># a key of type int is numbered by the database</span>
+			[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>,[[<span class="s">"required"</span>,<span class="n">1</span>],[<span class="s">"unique"</span>,<span class="n">1</span>]]]
+		]],
+		[<span class="s">"Books"</span>,[
+			[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],
+			[<span class="s">"Title"</span>,<span class="s">"string"</span>,<span class="n">0</span>,[[<span class="s">"required"</span>,<span class="n">1</span>],[<span class="s">"maxlength"</span>,<span class="n">80</span>]]],
+			[<span class="s">"Year"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"nullable"</span>,<span class="n">1</span>]]],
+			[<span class="s">"Copies"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"default"</span>,<span class="n">1</span>]]],
+			[<span class="s">"AuthorId"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"references"</span>,<span class="s">"Authors"</span>],[<span class="s">"ondelete"</span>,<span class="s">"cascade"</span>]]]    <span class="c"># a foreign key</span>
+		]]
+	]
+	oDb = <span class="k">new</span> <span class="t">RingDatabase</span>(<span class="s">"Data Source=:memory:"</span>,aSchema)     <span class="c"># a SQLite database in memory</span>
+	? <span class="s">"STEP 1: the database exists"</span>
+
+	<span class="c"># STEP 2. Add rows. insert() gives back the key</span>
+	nTolkien = oDb.<span class="f">insert</span>(<span class="s">"Authors"</span>,[[<span class="s">"Name"</span>,<span class="s">"J.R.R. Tolkien"</span>]])
+	nLewis = oDb.<span class="f">insert</span>(<span class="s">"Authors"</span>,[[<span class="s">"Name"</span>,<span class="s">"C.S. Lewis"</span>]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Hobbit"</span>],[<span class="s">"Year"</span>,<span class="n">1937</span>],[<span class="s">"AuthorId"</span>,nTolkien],[<span class="s">"Copies"</span>,<span class="n">3</span>]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Fellowship of the Ring"</span>],[<span class="s">"Year"</span>,<span class="n">1954</span>],[<span class="s">"AuthorId"</span>,nTolkien]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Lion, the Witch and the Wardrobe"</span>],[<span class="s">"Year"</span>,<span class="n">1950</span>],[<span class="s">"AuthorId"</span>,nLewis]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"A book with no year"</span>],[<span class="s">"AuthorId"</span>,nLewis]])
+	? <span class="s">"STEP 2: "</span> + oDb.<span class="f">count</span>(<span class="s">"Authors"</span>) + <span class="s">" authors, "</span> + oDb.<span class="f">count</span>(<span class="s">"Books"</span>) + <span class="s">" books"</span>
+
+	<span class="c"># STEP 3. Read rows. A row is a list of [column, value] pairs: dbValue() reads one column</span>
+	aRow = oDb.<span class="f">byKey</span>(<span class="s">"Books"</span>,<span class="n">1</span>)
+	? nl + <span class="s">"STEP 3: book 1 is "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"Title"</span>) + <span class="s">", copies "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"Copies"</span>)
+	? <span class="s">"        book 4 has year ["</span> + <span class="f">dbValue</span>(oDb.<span class="f">byKey</span>(<span class="s">"Books"</span>,<span class="n">4</span>),<span class="s">"Year"</span>) + <span class="s">"] (empty: the column allows no value)"</span>
+
+	<span class="c"># STEP 4. Search with a SQL condition: {0} and {1} are parameters, never paste text into SQL yourself</span>
+	? nl + <span class="s">"STEP 4: books after 1940:"</span>
+	<span class="k">for</span> aBook <span class="k">in</span> oDb.<span class="f">where</span>(<span class="s">"Books"</span>,<span class="s">"Year &gt; {0}"</span>,[<span class="n">1940</span>])
+		? <span class="s">"        "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>) + <span class="s">" ("</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Year"</span>) + <span class="s">")"</span>
+	<span class="k">next</span>
+
+	<span class="c"># STEP 5. Change and delete</span>
+	oDb.<span class="f">update</span>(<span class="s">"Books"</span>,<span class="n">4</span>,[[<span class="s">"Year"</span>,<span class="n">1951</span>],[<span class="s">"Title"</span>,<span class="s">"Prince Caspian"</span>]])
+	? nl + <span class="s">"STEP 5: book 4 is now "</span> + <span class="f">dbValue</span>(oDb.<span class="f">byKey</span>(<span class="s">"Books"</span>,<span class="n">4</span>),<span class="s">"Title"</span>)
+	oDb.<span class="f">remove</span>(<span class="s">"Books"</span>,<span class="n">2</span>)
+	? <span class="s">"        books left: "</span> + oDb.<span class="f">count</span>(<span class="s">"Books"</span>)
+
+	<span class="c"># STEP 6. Mistakes are errors that you can catch: the database refuses wrong data</span>
+	<span class="k">try</span>
+		oDb.<span class="f">insert</span>(<span class="s">"Authors"</span>,[[<span class="s">"Name"</span>,<span class="s">"C.S. Lewis"</span>]])          <span class="c"># the name must be unique</span>
+	<span class="k">catch</span>
+		? nl + <span class="s">"STEP 6: a duplicate author is refused"</span>
+	<span class="k">done</span>
+	<span class="k">try</span>
+		oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"Orphan"</span>],[<span class="s">"AuthorId"</span>,<span class="n">99</span>]])   <span class="c"># there is no author 99</span>
+	<span class="k">catch</span>
+		? <span class="s">"        a book of a missing author is refused"</span>
+	<span class="k">done</span>
+	oDb.<span class="f">close</span>()</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>STEP 1: the database exists
+STEP 2: 2 authors, 4 books
+
+STEP 3: book 1 is The Hobbit, copies 3
+        book 4 has year [] (empty: the column allows no value)
+
+STEP 4: books after 1940:
+        The Fellowship of the Ring (1954)
+        The Lion, the Witch and the Wardrobe (1950)
+
+STEP 5: book 4 is now Prince Caspian
+        books left: 3
+
+STEP 6: a duplicate author is refused
+        a book of a missing author is refused</code></pre></div>
+<h3 id="step-by-step">Step by step<a class="anchor" href="#step-by-step">#</a></h3>
+<p><strong>Step 1 — the schema.</strong> A table is <code>[name, [columns]]</code>; a column is <code>[name, type, isKey, options]</code>. Types: <code>int long double decimal string bool datetime bytes</code>. <code>["Id","int",1]</code> is a key, numbered automatically. Options make rules the database enforces:</p>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>Rule</th></tr></thead><tbody><tr><td><code>["required",1]</code></td><td>a value must be given</td></tr><tr><td><code>["unique",1]</code></td><td>no two rows may have the same value</td></tr><tr><td><code>["maxlength",80]</code></td><td>at most 80 characters</td></tr><tr><td><code>["nullable",1]</code></td><td>the value may be missing (a number can be empty)</td></tr><tr><td><code>["default",1]</code></td><td>the value to use when none is given</td></tr><tr><td><code>["references","Authors"]</code></td><td>the value must be the key of a row in <code>Authors</code></td></tr><tr><td><code>["ondelete","cascade"]</code></td><td>deleting the author deletes the books too</td></tr></tbody></table></div>
+<p><strong>Step 2 — add rows.</strong> <code>insert(table, values)</code> takes a list of <code>[column, value]</code> pairs and returns the new key. <code>count</code> counts the rows.</p>
+<p><strong>Step 3 — read rows.</strong> A row is a list of <code>[column, value]</code> pairs; <code>dbValue(aRow,"Title")</code> reads one column, and returns <code>""</code> for a missing value.</p>
+<p><strong>Step 4 — search.</strong> <code>where(table, condition, parameters)</code> takes SQL such as <code>Year &gt; {0}</code> and the values for <code>{0}</code>, <code>{1}</code>... as a list. <strong>Always pass values as parameters</strong>: they are never mixed into the SQL text, so a user typing <code>x' OR '1'='1</code> cannot break your query (this attack is called <em>SQL injection</em>).</p>
+<p><strong>Step 5 — change and delete.</strong> <code>update(table, key, values)</code> changes columns of one row; <code>remove(table, key)</code> deletes it.</p>
+<p><strong>Step 6 — mistakes are errors.</strong> The database refuses a duplicate in a <code>unique</code> column and a foreign key that points to nothing. Catch the error with <code>try</code>/<code>catch</code>.</p>
+<h2 id="part-2-relations-queries-transactions-files">Part 2: relations, queries, transactions, files<a class="anchor" href="#part-2-relations-queries-transactions-files">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_library_queries.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the tutorial "Databases step by step", part 2: relations, queries, transactions and a file database</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.IO"</span>
+	<span class="s">"RingDotNet.Data"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_library.db"</span>])
+	<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+		<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+	<span class="k">ok</span>
+	aSchema = [
+		[<span class="s">"Authors"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>,[[<span class="s">"required"</span>,<span class="n">1</span>]]]]],
+		[<span class="s">"Books"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Title"</span>,<span class="s">"string"</span>,<span class="n">0</span>],[<span class="s">"Year"</span>,<span class="s">"int"</span>,<span class="n">0</span>],[<span class="s">"Stars"</span>,<span class="s">"double"</span>,<span class="n">0</span>],
+			[<span class="s">"AuthorId"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"references"</span>,<span class="s">"Authors"</span>],[<span class="s">"ondelete"</span>,<span class="s">"cascade"</span>]]]]]
+	]
+	oDb = <span class="k">new</span> <span class="t">RingDatabase</span>(<span class="s">"Data Source="</span> + cFile,aSchema)    <span class="c"># a file: the data stays after the program ends</span>
+	nTolkien = oDb.<span class="f">insert</span>(<span class="s">"Authors"</span>,[[<span class="s">"Name"</span>,<span class="s">"Tolkien"</span>]])
+	nLewis = oDb.<span class="f">insert</span>(<span class="s">"Authors"</span>,[[<span class="s">"Name"</span>,<span class="s">"Lewis"</span>]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Hobbit"</span>],[<span class="s">"Year"</span>,<span class="n">1937</span>],[<span class="s">"Stars"</span>,<span class="n">4.7</span>],[<span class="s">"AuthorId"</span>,nTolkien]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Fellowship of the Ring"</span>],[<span class="s">"Year"</span>,<span class="n">1954</span>],[<span class="s">"Stars"</span>,<span class="n">4.8</span>],[<span class="s">"AuthorId"</span>,nTolkien]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"The Silmarillion"</span>],[<span class="s">"Year"</span>,<span class="n">1977</span>],[<span class="s">"Stars"</span>,<span class="n">4.1</span>],[<span class="s">"AuthorId"</span>,nTolkien]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"Narnia"</span>],[<span class="s">"Year"</span>,<span class="n">1950</span>],[<span class="s">"Stars"</span>,<span class="n">4.5</span>],[<span class="s">"AuthorId"</span>,nLewis]])
+
+	<span class="c"># RELATIONS: the rows that belong to a row</span>
+	? <span class="s">"Books by Tolkien:"</span>
+	<span class="k">for</span> aBook <span class="k">in</span> oDb.<span class="f">children</span>(<span class="s">"Authors"</span>,nTolkien,<span class="s">"Books"</span>)
+		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>)
+	<span class="k">next</span>
+	? <span class="s">"Narnia was written by "</span> + <span class="f">dbValue</span>(oDb.<span class="f">parent</span>(<span class="s">"Books"</span>,<span class="n">4</span>,<span class="s">"Authors"</span>),<span class="s">"Name"</span>)
+	? nl + <span class="s">"Authors with their books:"</span>
+	<span class="k">for</span> aItem <span class="k">in</span> oDb.<span class="f">include</span>(<span class="s">"Authors"</span>,<span class="s">"Books"</span>)
+		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aItem[<span class="n">1</span>],<span class="s">"Name"</span>) + <span class="s">": "</span> + len(aItem[<span class="n">2</span>]) + <span class="s">" book(s)"</span>
+	<span class="k">next</span>
+
+	<span class="c"># QUERIES: filter, sort and page with a query written as data</span>
+	aBest = oDb.<span class="f">query</span>(<span class="s">"Books"</span>,[
+		[<span class="s">"where"</span>,[<span class="s">"Stars"</span>,<span class="s">"&gt;="</span>,<span class="n">4.5</span>]],
+		[<span class="s">"orderby"</span>,[[<span class="s">"Year"</span>,<span class="s">"desc"</span>]]],
+		[<span class="s">"select"</span>,[<span class="s">"Title"</span>,<span class="s">"Year"</span>]]
+	])
+	? nl + <span class="s">"Books with at least 4.5 stars, newest first:"</span>
+	<span class="k">for</span> aBook <span class="k">in</span> aBest
+		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Year"</span>) + <span class="s">"  "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>)
+	<span class="k">next</span>
+	? nl + <span class="s">"Average stars : "</span> + oDb.<span class="f">average</span>(<span class="s">"Books"</span>,<span class="s">"Stars"</span>,[])
+	? <span class="s">"Best rating   : "</span> + oDb.<span class="f">max</span>(<span class="s">"Books"</span>,<span class="s">"Stars"</span>,[])
+	? <span class="s">"Books per author:"</span>
+	<span class="k">for</span> aGroup <span class="k">in</span> oDb.<span class="f">groupCount</span>(<span class="s">"Books"</span>,<span class="s">"AuthorId"</span>,[])
+		? <span class="s">"  author "</span> + aGroup[<span class="n">1</span>] + <span class="s">" -&gt; "</span> + aGroup[<span class="n">2</span>]
+	<span class="k">next</span>
+
+	<span class="c"># TRANSACTIONS: all or nothing</span>
+	oDb.<span class="f">begin</span>()
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"Draft 1"</span>],[<span class="s">"Year"</span>,<span class="n">2024</span>],[<span class="s">"Stars"</span>,<span class="n">1</span>],[<span class="s">"AuthorId"</span>,nLewis]])
+	oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"Draft 2"</span>],[<span class="s">"Year"</span>,<span class="n">2024</span>],[<span class="s">"Stars"</span>,<span class="n">1</span>],[<span class="s">"AuthorId"</span>,nLewis]])
+	? nl + <span class="s">"Books inside the transaction: "</span> + oDb.<span class="f">count</span>(<span class="s">"Books"</span>)
+	oDb.<span class="f">rollback</span>()
+	? <span class="s">"Books after rollback        : "</span> + oDb.<span class="f">count</span>(<span class="s">"Books"</span>)
+
+	<span class="c"># THE FILE: close the database, open it again, the data is still there</span>
+	oDb.<span class="f">close</span>()
+	oAgain = <span class="k">new</span> <span class="t">RingDatabase</span>(<span class="s">"Data Source="</span> + cFile,aSchema)
+	? nl + <span class="s">"After reopening the file: "</span> + oAgain.<span class="f">count</span>(<span class="s">"Books"</span>) + <span class="s">" books"</span>
+	oAgain.<span class="f">close</span>()
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Books by Tolkien:
+  The Hobbit
+  The Fellowship of the Ring
+  The Silmarillion
+Narnia was written by Lewis
+
+Authors with their books:
+  Tolkien: 3 book(s)
+  Lewis: 1 book(s)
+
+Books with at least 4.5 stars, newest first:
+  1954  The Fellowship of the Ring
+  1950  Narnia
+  1937  The Hobbit
+
+Average stars : 4.53
+Best rating   : 4.80
+Books per author:
+  author 1 -&gt; 3
+  author 2 -&gt; 1
+
+Books inside the transaction: 6
+Books after rollback        : 4
+
+After reopening the file: 4 books</code></pre></div>
+<h3 id="relations">Relations<a class="anchor" href="#relations">#</a></h3>
+<p><code>children("Authors", key, "Books")</code> gives the books of an author; <code>parent("Books", key, "Authors")</code> gives the author of a book; <code>include("Authors","Books")</code> gives every author with their books in one call.</p>
+<h3 id="queries-as-data">Queries as data<a class="anchor" href="#queries-as-data">#</a></h3>
+<p>For more than a simple condition, write the query as a list:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oDb.<span class="f">query</span>(<span class="s">"Books"</span>,[
+	[<span class="s">"where"</span>,[<span class="s">"Stars"</span>,<span class="s">"&gt;="</span>,<span class="n">4.5</span>]],
+	[<span class="s">"orderby"</span>,[[<span class="s">"Year"</span>,<span class="s">"desc"</span>]]],
+	[<span class="s">"select"</span>,[<span class="s">"Title"</span>,<span class="s">"Year"</span>]]
+])</code></pre></div>
+<p>A condition is <code>[column, operator, value]</code> with <code>= != &lt; &lt;= &gt; &gt;= contains startswith endswith in isnull notnull</code>, and can be combined with <code>["and", c1, c2]</code>, <code>["or", ...]</code>, <code>["not", c]</code>. <code>sum</code>, <code>min</code>, <code>max</code>, <code>average</code>, <code>countWhere</code> and <code>groupCount</code> summarise.</p>
+<h3 id="transactions">Transactions<a class="anchor" href="#transactions">#</a></h3>
+<p>A <strong>transaction</strong> groups changes: <code>begin()</code>, several changes, then <code>commit()</code> to keep them or <code>rollback()</code> to cancel all. The program adds two drafts, sees six books, rolls back and sees four again.</p>
+<h3 id="a-file-database">A file database<a class="anchor" href="#a-file-database">#</a></h3>
+<p><code>"Data Source=" + cFile</code> stores the database in a file. The program closes it, opens it again and finds the four books: the data survives the program.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>describe the schema as data, let the database enforce the rules,</li><li>parameters, never pasted text,</li><li>relations with foreign keys,</li><li>queries, aggregates, transactions, files.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a <code>Members</code> table and a <code>Loans</code> table (a member borrows a book) and list who has which book.</li><li>Write a function that lists the authors with no books.</li><li>Use <code>migrate()</code> after adding a <code>Pages</code> column to the schema (<a href="ef.html#migrations">Entity Framework</a>).</li><li>Use <code>RingEntityDb</code> for the same data and compare (<a href="ef.html#real-entity-classes">Entity Framework</a>).</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-30-tables.html">Tabular data</a></p>
+<div class="pager"><a href="tut-114-rate-limiting.html"><small>Previous</small>Rate limiting</a><a class="next" href="tut-30-tables.html"><small>Next</small>Tabular data</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

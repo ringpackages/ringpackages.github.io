@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Route templates · RingDotNet</title>
+<meta name="description" content="A web program decides what to do from the path of the address. A route template describes such a path with named parts — users/{id}/orders/{orderId?} — and the routing classes of ASP.NET Core match paths against it and read the values. This lesson uses them with required, optional, default and catch-all parts, and chooses between several routes.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html" class="cur">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Route templates</h1><p class="lead">A web program decides what to do from the path of the address. A route template describes such a path with named parts — users/{id}/orders/{orderId?} — and the routing classes of ASP.NET Core match paths against it and read the values. This lesson uses them with required, optional, default and catch-all parts, and chooses between several routes.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the syntax of a <strong>route template</strong>,</li><li>required parts, optional parts (<code>?</code>), default values (<code>=</code>), catch-all parts (<code>*</code>),</li><li><code>TemplateParser</code> and <code>TemplateMatcher</code>,</li><li>reading the <strong>values</strong> of the parts,</li><li>why the <strong>order</strong> of routes matters,</li><li>what a template does <em>not</em> do.</li></ul>
+<p>The tutorial <a href="tut-16-web-service.html">A web service with a database</a> and the tutorial <a href="tut-55-miniweb.html">A tiny web framework</a> made small web servers with simple routes. Real programs have many routes with parts that change (<code>/users/42</code>, <code>/users/43</code>). Templates are the standard way to write them, and the same classes work in your own Ring program.</p>
+<div class="callout note"><span class="t">Note</span><p>The routing classes are part of the ASP.NET Core runtime, so the program has <code>"RingDotNet.Web"</code> in its <code>using { }</code> (<a href="getting-started.html">Getting started</a>).</p></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch07_routes.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># route templates - "users/{id}/orders/{orderId?}", optional and default values, catch-all parameters, and choosing a route</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"RingDotNet.Web"</span>                  <span class="c"># the routing classes are part of the ASP.NET Core runtime: this line starts it</span>
+}
+
+cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># A web program decides what to do from the PATH of the address: /users/42 shows user 42, /files/docs/a/b.txt shows a file. A ROUTE</span>
+	<span class="c"># TEMPLATE describes such a path with named parts in braces. ASP.NET Core uses them for every route; the same classes work here.</span>
+	<span class="c"># {id}             a required part, its value is read into "id"</span>
+	<span class="c"># {orderId?}       an optional part</span>
+	<span class="c"># {page=1}         a part with a default value</span>
+	<span class="c"># {*path}          the catch-all: everything that is left, with its slashes</span>
+	<span class="c"># {id:int}         a constraint (a router checks it: only whole numbers): the template keeps it as a name</span>
+	? <span class="s">"1. the templates and their parts:"</span>
+	<span class="k">for</span> cRoute <span class="k">in</span> [<span class="s">"users/{id}/orders/{orderId?}"</span>,<span class="s">"products/{category}/{page=1}"</span>,<span class="s">"files/{*path}"</span>,<span class="s">"items/{id:int}"</span>]
+		oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cRoute])
+		cParts = <span class="s">""</span>
+		<span class="k">for</span> oPart <span class="k">in</span> oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+			cKind = <span class="s">"required"</span>
+			<span class="k">if</span> oPart.<span class="f">getProp</span>(<span class="s">"IsOptional"</span>)
+				cKind = <span class="s">"optional"</span>
+			<span class="k">ok</span>
+			<span class="k">if</span> oPart.<span class="f">getProp</span>(<span class="s">"IsCatchAll"</span>)
+				cKind = <span class="s">"catch-all"</span>
+			<span class="k">ok</span>
+			xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)          <span class="c"># a text, or the null object when there is no default</span>
+			<span class="k">if</span> <span class="k">not</span> isObject(xDefault)
+				cKind = <span class="s">"default "</span> + xDefault
+			<span class="k">ok</span>
+			cParts += oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" ("</span> + cKind + <span class="s">")  "</span>
+		<span class="k">next</span>
+		? <span class="s">"   "</span> + padRight(cRoute,<span class="n">32</span>) + cParts
+	<span class="k">next</span>
+
+	<span class="c"># 2. Matching a path. TryMatch answers yes or no and fills a dictionary with the values of the parts.</span>
+	? nl + <span class="s">"2. users/{id}/orders/{orderId?} against some paths:"</span>
+	<span class="k">for</span> cPath <span class="k">in</span> [<span class="s">"/users/42/orders/7"</span>,<span class="s">"/users/42/orders"</span>,<span class="s">"/users/42"</span>,<span class="s">"/users/42/orders/7/extra"</span>,<span class="s">"/USERS/5/ORDERS/9"</span>]
+		? <span class="s">"   "</span> + padRight(cPath,<span class="n">28</span>) + showMatch(<span class="s">"users/{id}/orders/{orderId?}"</span>,cPath)
+	<span class="k">next</span>
+
+	<span class="c"># 3. Defaults and the catch-all</span>
+	? nl + <span class="s">"3. products/{category}/{page=1}:"</span>
+	<span class="k">for</span> cPath <span class="k">in</span> [<span class="s">"/products/shoes"</span>,<span class="s">"/products/shoes/3"</span>]
+		? <span class="s">"   "</span> + padRight(cPath,<span class="n">28</span>) + showMatch(<span class="s">"products/{category}/{page=1}"</span>,cPath)
+	<span class="k">next</span>
+	? nl + <span class="s">"   files/{*path} takes the rest of the path, with its slashes:"</span>
+	<span class="k">for</span> cPath <span class="k">in</span> [<span class="s">"/files/readme.txt"</span>,<span class="s">"/files/docs/guide/intro.md"</span>]
+		? <span class="s">"   "</span> + padRight(cPath,<span class="n">28</span>) + showMatch(<span class="s">"files/{*path}"</span>,cPath)
+	<span class="k">next</span>
+
+	<span class="c"># 4. A list of routes: the program tries them in order and uses the first that matches. Put the most specific routes first.</span>
+	aTable = [ [<span class="s">"users/{id}/orders/{orderId?}"</span>,<span class="s">"show the orders of a user"</span>], [<span class="s">"users/{id}"</span>,<span class="s">"show a user"</span>], [<span class="s">"files/{*path}"</span>,<span class="s">"send a file"</span>], [<span class="s">"{page}"</span>,<span class="s">"show a page"</span>] ]
+	? nl + <span class="s">"4. which route handles which path:"</span>
+	<span class="k">for</span> cPath <span class="k">in</span> [<span class="s">"/users/42"</span>,<span class="s">"/users/42/orders/7"</span>,<span class="s">"/files/a/b.png"</span>,<span class="s">"/about"</span>,<span class="s">"/users"</span>]
+		? <span class="s">"   "</span> + padRight(cPath,<span class="n">24</span>) + chooseRoute(aTable,cPath)
+	<span class="k">next</span>
+
+<span class="c"># the dictionary of values for a template and a path, as text; "no match" when the path does not fit the template</span>
+<span class="k">func</span> <span class="f">showMatch</span> cTemplate,cPath
+
+	oValues = <span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[])
+	<span class="k">if</span> <span class="k">not</span> matches(cTemplate,cPath,oValues)
+		<span class="k">return</span> <span class="s">"no match"</span>
+	<span class="k">ok</span>
+	cText = <span class="s">""</span>
+	<span class="k">for</span> cKey <span class="k">in</span> sort(oValues.Keys.<span class="f">toList</span>())
+		cText += cKey + <span class="s">" = "</span> + oValues.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[cKey]) + <span class="s">"   "</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="s">"match   "</span> + cText
+
+<span class="k">func</span> <span class="f">matches</span> cTemplate,cPath,oValues
+
+	oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cTemplate])
+	<span class="c"># the defaults of the template ({page=1}) are given to the matcher: a part with a default may be missing at the END of the path</span>
+	oDefaults = <span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[])
+	<span class="k">for</span> oPart <span class="k">in</span> oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+		xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)
+		<span class="k">if</span> <span class="k">not</span> isObject(xDefault)
+			oDefaults.<span class="f">Add</span>(oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>),xDefault)
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oMatcher = <span class="f">dnNew</span>(cRouting + <span class="s">"Template.TemplateMatcher"</span>,[oTemplate,oDefaults])
+	oPath = <span class="f">dnNew</span>(<span class="s">"Microsoft.AspNetCore.Http.PathString"</span>,[cPath])
+	<span class="k">return</span> oMatcher.<span class="f">callMethod</span>(<span class="s">"TryMatch"</span>,[oPath,oValues])
+
+<span class="k">func</span> <span class="f">chooseRoute</span> aTable,cPath
+
+	<span class="k">for</span> aRoute <span class="k">in</span> aTable
+		<span class="k">if</span> matches(aRoute[<span class="n">1</span>],cPath,<span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[]))
+			<span class="k">return</span> aRoute[<span class="n">1</span>] + <span class="s">"  -&gt;  "</span> + aRoute[<span class="n">2</span>]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="s">"(no route: 404 not found)"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the templates and their parts:
+   users/{id}/orders/{orderId?}    id (required)  orderId (optional)  
+   products/{category}/{page=1}    category (required)  page (default 1)  
+   files/{*path}                   path (catch-all)  
+   items/{id:int}                  id (required)  
+
+2. users/{id}/orders/{orderId?} against some paths:
+   /users/42/orders/7          match   id = 42   orderId = 7   
+   /users/42/orders            match   id = 42   
+   /users/42                   no match
+   /users/42/orders/7/extra    no match
+   /USERS/5/ORDERS/9           match   id = 5   orderId = 9   
+
+3. products/{category}/{page=1}:
+   /products/shoes             match   category = shoes   page = 1   
+   /products/shoes/3           match   category = shoes   page = 3   
+
+   files/{*path} takes the rest of the path, with its slashes:
+   /files/readme.txt           match   path = readme.txt   
+   /files/docs/guide/intro.md  match   path = docs/guide/intro.md   
+
+4. which route handles which path:
+   /users/42               users/{id}  -&gt;  show a user
+   /users/42/orders/7      users/{id}/orders/{orderId?}  -&gt;  show the orders of a user
+   /files/a/b.png          files/{*path}  -&gt;  send a file
+   /about                  {page}  -&gt;  show a page
+   /users                  {page}  -&gt;  show a page</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnNew</code>, <code>dnStatic</code>, <code>callMethod</code>, <code>getProp</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-syntax">The syntax<a class="anchor" href="#the-syntax">#</a></h3>
+<p>A template is a path whose parts are either <strong>literal text</strong> (<code>users</code>, <code>orders</code>: matched without regard to case) or <strong>parameters</strong> in braces:</p>
+<div class="tablewrap"><table><thead><tr><th>Written</th><th>Meaning</th></tr></thead><tbody><tr><td><code>{id}</code></td><td>required: one part of the path</td></tr><tr><td><code>{orderId?}</code></td><td><strong>optional</strong>: it may be missing at the end</td></tr><tr><td><code>{page=1}</code></td><td>has a <strong>default value</strong>: it may be missing at the end, and then the value is <code>1</code></td></tr><tr><td><code>{*path}</code></td><td><strong>catch-all</strong>: everything that is left, with its slashes</td></tr><tr><td><code>{id:int}</code></td><td>has a <strong>constraint</strong> (here: a whole number)</td></tr></tbody></table></div>
+<p><code>TemplateParser.Parse(text)</code> reads a template into an object whose <code>Parameters</code> list each part with its <code>Name</code>, <code>IsOptional</code>, <code>IsCatchAll</code> and <code>DefaultValue</code> (a text, or the null object when there is no default). Step 1 prints them. The template <code>items/{id:int}</code> keeps the constraint as part of the parameter (<code>InlineConstraints</code>); <strong>a matcher does not apply constraints</strong>: the router that uses the template checks them afterwards (the program would test that <code>id</code> is a number before it uses it).</p>
+<h3 id="matching">Matching<a class="anchor" href="#matching">#</a></h3>
+<p><code>TemplateMatcher</code> is made from the template and a dictionary of <strong>defaults</strong>. <code>TryMatch(path, values)</code> answers <em>yes</em> or <em>no</em> and fills <code>values</code> (a <code>RouteValueDictionary</code>) with the part names and their values. The path is a <code>PathString</code> and must start with <code>/</code>. In step 2: <code>/users/42/orders/7</code> matches with <code>id = 42</code> and <code>orderId = 7</code>; <code>/users/42/orders</code> matches because <code>orderId</code> is optional (and gets no value); <code>/users/42</code> does <strong>not</strong> match this template, because the literal part <code>orders</code> is missing; <code>/users/42/orders/7/extra</code> does not match because there is a part too many; and the capital letters in <code>/USERS/5/ORDERS/9</code> do not matter.</p>
+<p>Defaults are important for <code>{page=1}</code>: the matcher needs them in its dictionary, so the program copies the defaults of the parameters into one (<code>oDefaults</code>). With that, <code>/products/shoes</code> matches with <code>page = 1</code>, and <code>/products/shoes/3</code> with <code>page = 3</code>. The values come back as text, even for numbers; convert them (<code>number()</code>) and check them.</p>
+<h3 id="the-catch-all">The catch-all<a class="anchor" href="#the-catch-all">#</a></h3>
+<p><code>{*path}</code> takes <strong>all the rest</strong>, including the slashes: <code>/files/docs/guide/intro.md</code> gives <code>path = docs/guide/intro.md</code>. It is used for files, proxies and single-page applications. Because it takes everything, the program that uses it <strong>must check the value</strong> (no <code>..</code>, no absolute path) before it opens a file (the tutorial <a href="tut-59-paths.html">Paths and the environment</a>).</p>
+<h3 id="many-routes">Many routes<a class="anchor" href="#many-routes">#</a></h3>
+<p>A program has a list of routes and uses the <strong>first one that matches</strong>, as in step 4. So the order is part of the program: put the most specific routes first and the general ones last. <code>/users/42</code> goes to <code>users/{id}</code>, <code>/users/42/orders/7</code> to the route with orders, and <code>/about</code> to <code>{page}</code>. Notice <code>/users</code>: it does not fit <code>users/{id}</code> (the id is missing), so it falls through to <code>{page}</code> and shows a page called <em>users</em>. A route <code>users</code> listed before <code>{page}</code> makes the choice explicit. When no route matches, the answer is <em>404 Not Found</em>.</p>
+<h3 id="what-a-template-does-not-do">What a template does not do<a class="anchor" href="#what-a-template-does-not-do">#</a></h3>
+<p>A template describes the <strong>path</strong>. It does not read the query string (<code>?page=2</code>, the tutorial <a href="tut-64-urls.html">URLs and encodings</a>), the method (GET or POST), the headers or the body. A program matches the path first, then looks at the method and the rest. ASP.NET also uses the templates the other way round, to <strong>make</strong> addresses from values (<code>TemplateBinder</code>), so a link is never written by hand.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>templates with literal and parameter parts,</li><li>optional (<code>?</code>), default (<code>=</code>) and catch-all (<code>*</code>) parameters,</li><li><code>TemplateParser</code>, <code>TemplateMatcher</code> and <code>RouteValueDictionary</code>,</li><li>values are text and must be checked,</li><li>the first matching route wins, so the order matters.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Make the table of routes for a small shop (<code>/</code>, <code>/products</code>, <code>/products/{id}</code>, <code>/cart</code>, <code>/checkout</code>) and test ten paths.</li><li>Add a check to the <code>{id:int}</code> route: refuse the match when the value is not a number.</li><li>Put the routes in the web server of the tutorial <a href="tut-55-miniweb.html">A tiny web framework</a> and answer 404 when none matches.</li><li>Write <code>isSafePath(value)</code> for a catch-all <code>{*path}</code> and test <code>../secret.txt</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-150-shortener.html">A project: a link shortener</a></p>
+<div class="pager"><a href="tut-55-miniweb.html"><small>Previous</small>A tiny web framework</a><a class="next" href="tut-150-shortener.html"><small>Next</small>A link shortener</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

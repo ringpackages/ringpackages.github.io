@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HttpClient in depth · RingDotNet</title>
+<meta name="description" content="Headers in both directions, status codes that are answers and not errors, EnsureSuccessStatusCode, canceling a request, and saving a download to a file without holding it in memory. A small server in the same program makes it work without the internet.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html" class="cur">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>HttpClient in depth</h1><p class="lead">Headers in both directions, status codes that are answers and not errors, EnsureSuccessStatusCode, canceling a request, and saving a download to a file without holding it in memory. A small server in the same program makes it work without the internet.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>one <code>HttpClient</code> for the whole program, and <code>DefaultRequestHeaders</code>,</li><li>reading response headers and the content type,</li><li>status codes: an answer of <code>404</code> is not an error,</li><li><code>EnsureSuccessStatusCode</code> when "not OK" must stop the program,</li><li>canceling a request that takes too long,</li><li>saving a download with <code>CopyToAsync</code>.</li></ul>
+<p>The tutorial <a href="tut-39-rest-client.html">A REST client</a> made a first REST client; the tutorial <a href="tut-09-http.html">HTTP</a> explained HTTP. This lesson adds what you need for real services.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<p>The service is a small <code>WebServer</code> that runs in the same program (the client code is the same for a real service; only the address differs).</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch07_http_client.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># HttpClient in depth - headers both ways, status codes, errors, time limits, cancelling and saving a download</span>
+<span class="c">#   (a small server runs inside the program, so no internet is needed; the client code is what you write for a real service)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Net.Http"</span>
+	<span class="s">"System.Threading"</span>
+	<span class="s">"RingDotNet.Web"</span>
+}
+
+oServer = <span class="s">""</span>
+oClient = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oServer = <span class="k">new</span> <span class="t">WebServer</span>(<span class="s">"http://127.0.0.1:0"</span>)
+	oServer.<span class="f">onGet</span>(<span class="s">"/echo"</span>,<span class="s">"echoPage"</span>)
+	oServer.<span class="f">onGet</span>(<span class="s">"/status"</span>,<span class="s">"statusPage"</span>)
+	oServer.<span class="f">onGet</span>(<span class="s">"/slow"</span>,<span class="s">"slowPage"</span>)
+	oServer.<span class="f">onGet</span>(<span class="s">"/file"</span>,<span class="s">"filePage"</span>)
+
+	<span class="c"># One HttpClient for the whole program: it keeps connections open. DefaultRequestHeaders are sent with EVERY request.</span>
+	oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
+	oClient.Timeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">10</span>)
+	oClient.DefaultRequestHeaders.<span class="f">Add</span>(<span class="s">"X-Client"</span>,<span class="s">"ringdotnet-http-client"</span>)
+	oClient.DefaultRequestHeaders.<span class="f">Add</span>(<span class="s">"Accept"</span>,<span class="s">"text/plain"</span>)
+
+	<span class="c"># 1. Headers in both directions. The client sent X-Client; the server answers with its own header X-Server and a content type.</span>
+	oResponse = fetchPage(<span class="s">"/echo?name=Ann"</span>)
+	? <span class="s">"1. status: "</span> + oResponse.StatusCode + <span class="s">", body: "</span> + bodyOf(oResponse)
+	? <span class="s">"   the server's header X-Server: "</span> + oResponse.Headers.<span class="f">GetValues</span>(<span class="s">"X-Server"</span>).<span class="f">toList</span>()[<span class="n">1</span>]
+	? <span class="s">"   content type: "</span> + oResponse.Content.Headers.ContentType.<span class="f">ToString</span>()
+
+	<span class="c"># 2. Status codes. A code of the 200s means success; anything else is an ANSWER, not an error: the call itself worked.</span>
+	? nl + <span class="s">"2. what the server says for different codes:"</span>
+	<span class="k">for</span> nCode <span class="k">in</span> [<span class="n">200</span>,<span class="n">201</span>,<span class="n">404</span>,<span class="n">500</span>]
+		oResponse = fetchPage(<span class="s">"/status?code="</span> + nCode)
+		? <span class="s">"   "</span> + nCode + <span class="s">" -&gt; "</span> + oResponse.StatusCode + <span class="s">" ("</span> + oResponse.ReasonPhrase + <span class="s">"), success: "</span> + yesNo(oResponse.IsSuccessStatusCode)
+	<span class="k">next</span>
+
+	<span class="c"># 3. EnsureSuccessStatusCode turns a bad status into an error. Use it when "not OK" means "stop here".</span>
+	oResponse = fetchPage(<span class="s">"/status?code=404"</span>)
+	<span class="k">try</span>
+		oResponse.<span class="f">EnsureSuccessStatusCode</span>()
+		? nl + <span class="s">"3. (no error)"</span>
+	<span class="k">catch</span>
+		? nl + <span class="s">"3. EnsureSuccessStatusCode raised: "</span> + substr(left(cCatchError,<span class="n">70</span>),nl,<span class="s">" "</span>)
+	<span class="k">done</span>
+
+	<span class="c"># 4. Canceling. A request that takes too long can be canceled: CancelAfter(ms) on a CancellationTokenSource, and its Token goes</span>
+	<span class="c">#    with the request. The slow page is never served (nobody calls serveOne), so the request has to be canceled.</span>
+	oSource = <span class="k">new</span> <span class="t">CancellationTokenSource</span>()
+	oSource.<span class="f">CancelAfter</span>(<span class="n">300</span>)
+	oTask = oClient.<span class="f">GetAsync</span>([ :requestUri = oServer.<span class="f">url</span>() + <span class="s">"/slow"</span>, :cancellationToken = oSource.Token ])
+	lCanceled = <span class="k">False</span>
+	<span class="k">try</span>
+		oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">catch</span>
+		lCanceled = <span class="k">True</span>
+	<span class="k">done</span>
+	? nl + <span class="s">"4. a request canceled after 300 ms: canceled = "</span> + yesNo(lCanceled) + <span class="s">", the task says canceled: "</span> + yesNo(oTask.IsCanceled)
+	oSource.<span class="f">Dispose</span>()
+
+	<span class="c"># 5. Save a download to a file: copy the content to a FileStream. The whole body is never held in memory.</span>
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_http_client.txt"</span>])
+	oResponse = fetchPage(<span class="s">"/file"</span>)
+	oStream = <span class="k">new</span> <span class="t">File</span>().<span class="f">Create</span>(cFile)
+	oCopy = oResponse.Content.<span class="f">CopyToAsync</span>(oStream)
+	oCopy.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oStream.<span class="f">Dispose</span>()
+	? nl + <span class="s">"5. the download was saved: "</span> + <span class="k">new</span> <span class="t">FileInfo</span>(cFile).Length + <span class="s">" bytes, the first line is '"</span> + <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cFile).<span class="f">toList</span>()[<span class="n">1</span>] + <span class="s">"'"</span>
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+
+	oServer.<span class="f">close</span>()
+
+<span class="c"># send a GET request, serve it (the server lives in this program) and return the HttpResponseMessage</span>
+<span class="k">func</span> <span class="f">fetchPage</span> cPath
+
+	oTask = oClient.<span class="f">GetAsync</span>(oServer.<span class="f">url</span>() + cPath)
+	<span class="k">for</span> nTry = <span class="n">1</span> <span class="k">to</span> <span class="n">100</span>
+		oServer.<span class="f">serveOne</span>(<span class="n">50</span>)                   <span class="c"># serve what is waiting (also requests that nobody waits for any more)</span>
+		<span class="k">if</span> oTask.IsCompleted
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">return</span> oTask.Result
+
+<span class="k">func</span> <span class="f">bodyOf</span> oResponse
+
+	oBody = oResponse.Content.<span class="f">ReadAsStringAsync</span>(<span class="k">NULL</span>)
+	oBody.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">return</span> oBody.Result
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="c"># ---------------------------------------------------------------- the pages of the little server</span>
+
+<span class="k">func</span> <span class="f">echoPage</span> oRequest
+
+	oRequest.<span class="f">setHeader</span>(<span class="s">"X-Server"</span>,<span class="s">"ring"</span>)
+	<span class="k">return</span> [<span class="n">200</span>,<span class="s">"text/plain"</span>,<span class="s">"hello "</span> + oRequest.<span class="f">query</span>(<span class="s">"name"</span>) + <span class="s">", your header X-Client was: "</span> + oRequest.<span class="f">header</span>(<span class="s">"X-Client"</span>)]
+
+<span class="k">func</span> <span class="f">statusPage</span> oRequest
+
+	<span class="k">return</span> [number(oRequest.<span class="f">query</span>(<span class="s">"code"</span>)),<span class="s">"text/plain"</span>,<span class="s">"status page"</span>]
+
+<span class="k">func</span> <span class="f">slowPage</span> oRequest
+
+	<span class="k">return</span> [<span class="n">200</span>,<span class="s">"text/plain"</span>,<span class="s">"never sent"</span>]
+
+<span class="k">func</span> <span class="f">filePage</span> oRequest
+
+	cText = <span class="s">"first line of the file"</span> + nl
+	<span class="k">for</span> nLine = <span class="n">2</span> <span class="k">to</span> <span class="n">400</span>
+		cText += <span class="s">"line number "</span> + nLine + <span class="s">" of a long file"</span> + nl
+	<span class="k">next</span>
+	<span class="k">return</span> [<span class="n">200</span>,<span class="s">"text/plain"</span>,cText]</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. status: OK, body: hello Ann, your header X-Client was: ringdotnet-http-client
+   the server's header X-Server: ring
+   content type: text/plain; charset=utf-8
+
+2. what the server says for different codes:
+   200 -&gt; OK (OK), success: yes
+   201 -&gt; Created (Created), success: yes
+   404 -&gt; NotFound (Not Found), success: no
+   500 -&gt; InternalServerError (Internal Server Error), success: no
+
+3. EnsureSuccessStatusCode raised: DotNet Error: System.Net.Http.HttpRequestException: Response status co
+
+4. a request canceled after 300 ms: canceled = yes, the task says canceled: yes
+
+5. the download was saved: 12286 bytes, the first line is 'first line of the file'</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="one-client">One client<a class="anchor" href="#one-client">#</a></h3>
+<p>Create <strong>one</strong> <code>HttpClient</code> and use it for all requests: it keeps connections open and is meant to be shared. Creating a client for each request wastes connections. <code>DefaultRequestHeaders.Add("X-Client", …)</code> adds headers that go with <strong>every</strong> request (a user agent, an API key, <code>Accept</code>). The timeout of ten seconds protects the program from a server that never answers.</p>
+<h3 id="headers">Headers<a class="anchor" href="#headers">#</a></h3>
+<p>Step 1 shows both directions. The request carried <code>X-Client</code>; the page read it with <code>oRequest.header("X-Client")</code>. The page set its own header with <code>oRequest.setHeader("X-Server","ring")</code>, and the client reads it with <code>oResponse.Headers.GetValues("X-Server")</code> (a header can have several values, so it gives a collection: <code>.toList()[1]</code> is the first). Headers about the <em>body</em> are on <code>oResponse.Content.Headers</code>: <code>ContentType</code> says what kind of data it is and in which encoding.</p>
+<h3 id="status-codes">Status codes<a class="anchor" href="#status-codes">#</a></h3>
+<p><code>oResponse.StatusCode</code> is a text (<code>OK</code>, <code>Created</code>, <code>NotFound</code>, <code>InternalServerError</code>), <code>ReasonPhrase</code> the standard words, and <code>IsSuccessStatusCode</code> is true for the 200s. A <code>404</code> is <strong>an answer from the server</strong>: the request worked, the thing is not there. Your program decides what that means.</p>
+<h3 id="ensuresuccessstatuscode">EnsureSuccessStatusCode<a class="anchor" href="#ensuresuccessstatuscode">#</a></h3>
+<p>When <em>anything but success</em> means "stop", call <code>oResponse.EnsureSuccessStatusCode()</code>: it raises an <code>HttpRequestException</code> that says which code came, and your <code>try</code> / <code>catch</code> handles it in one place (the tutorial <a href="tut-07-errors.html">When things go wrong</a>).</p>
+<h3 id="canceling">Canceling<a class="anchor" href="#canceling">#</a></h3>
+<p>A <code>CancellationTokenSource</code> (the tutorial <a href="tut-83-tasks-waiting.html">Tasks that wait</a>) with <code>CancelAfter(300)</code> and its token in <code>GetAsync([ :requestUri = …, :cancellationToken = oSource.Token ])</code> cancels a request that is not finished after 300 ms. In the tutorial the <code>/slow</code> page is simply never served, so only the cancel can end it; the task ends <em>canceled</em> and <code>Wait</code> raises an error. This is how a window program offers a <strong>Cancel</strong> button: the click calls <code>oSource.Cancel()</code>.</p>
+<div class="callout note"><span class="t">Note</span><p>The little server lives in this program and handles requests only while the program calls <code>serveOne</code>. The helper <code>fetchPage</code> keeps serving until its own request is finished, so it also serves requests of earlier, canceled calls. A real server runs elsewhere and does not need that.</p></div>
+<h3 id="saving-a-download">Saving a download<a class="anchor" href="#saving-a-download">#</a></h3>
+<p><code>oResponse.Content.CopyToAsync(oStream)</code> copies the body into a file stream in pieces; <code>Wait(NULL)</code> waits for it. A big file is never held in memory as a whole. Dispose the stream afterwards. For a really big download ask for the headers first (<code>HttpCompletionOption.ResponseHeadersRead</code>) so that the body is not buffered before you copy it.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>one shared <code>HttpClient</code>, default headers,</li><li>request and response headers, <code>ContentType</code>,</li><li><code>StatusCode</code>, <code>ReasonPhrase</code>, <code>IsSuccessStatusCode</code>,</li><li><code>EnsureSuccessStatusCode</code>,</li><li>canceling with a token,</li><li><code>CopyToAsync</code> to a file.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a header <code>Authorization</code> with a fake token and let the server answer <code>401</code> when it is missing.</li><li>Download the file with <code>ResponseHeadersRead</code> and print the <code>ContentLength</code> from the headers before copying.</li><li>Send three requests together and wait with <code>WhenAll</code> (the tutorial <a href="tut-83-tasks-waiting.html">Tasks that wait</a>).</li><li>Retry a request three times with a pause when the status is <code>503</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-39-rest-client.html">A REST client</a></p>
+<div class="pager"><a href="tut-156-websockets.html"><small>Previous</small>WebSockets</a><a class="next" href="tut-39-rest-client.html"><small>Next</small>A REST client</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Threading · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Threading</h1>
+<p class="lead">56 wrapped types. Load them with <code>using { "System.Threading" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AbandonedMutexException">AbandonedMutexException</a> <a href="#c-AsyncFlowControl">AsyncFlowControl</a> <a href="#c-AsyncLocal">AsyncLocal</a> <a href="#c-AsyncLocalValueChangedArgs">AsyncLocalValueChangedArgs</a> <a href="#c-AutoResetEvent">AutoResetEvent</a> <a href="#c-Barrier">Barrier</a> <a href="#c-BarrierPostPhaseException">BarrierPostPhaseException</a> <a href="#c-CancellationToken">CancellationToken</a> <a href="#c-CancellationTokenRegistration">CancellationTokenRegistration</a> <a href="#c-CancellationTokenSource">CancellationTokenSource</a> <a href="#c-CompressedStack">CompressedStack</a> <a href="#c-CountdownEvent">CountdownEvent</a> <a href="#c-EventWaitHandle">EventWaitHandle</a> <a href="#c-ExecutionContext">ExecutionContext</a> <a href="#c-HostExecutionContext">HostExecutionContext</a> <a href="#c-HostExecutionContextManager">HostExecutionContextManager</a> <a href="#c-Interlocked">Interlocked</a> <a href="#c-IThreadPoolWorkItem">IThreadPoolWorkItem</a> <a href="#c-ITimer">ITimer</a> <a href="#c-LazyInitializer">LazyInitializer</a> <a href="#c-Lock">Lock</a> <a href="#c-LockCookie">LockCookie</a> <a href="#c-LockRecursionException">LockRecursionException</a> <a href="#c-ManualResetEvent">ManualResetEvent</a> <a href="#c-ManualResetEventSlim">ManualResetEventSlim</a> <a href="#c-Monitor">Monitor</a> <a href="#c-Mutex">Mutex</a> <a href="#c-NativeOverlapped">NativeOverlapped</a> <a href="#c-Overlapped">Overlapped</a> <a href="#c-PeriodicTimer">PeriodicTimer</a> <a href="#c-PreAllocatedOverlapped">PreAllocatedOverlapped</a> <a href="#c-ReaderWriterLock">ReaderWriterLock</a> <a href="#c-ReaderWriterLockSlim">ReaderWriterLockSlim</a> <a href="#c-RegisteredWaitHandle">RegisteredWaitHandle</a> <a href="#c-Semaphore">Semaphore</a> <a href="#c-SemaphoreFullException">SemaphoreFullException</a> <a href="#c-SemaphoreSlim">SemaphoreSlim</a> <a href="#c-SpinLock">SpinLock</a> <a href="#c-SpinWait">SpinWait</a> <a href="#c-SynchronizationContext">SynchronizationContext</a> <a href="#c-SynchronizationLockException">SynchronizationLockException</a> <a href="#c-Thread">Thread</a> <a href="#c-ThreadAbortException">ThreadAbortException</a> <a href="#c-ThreadExceptionEventArgs">ThreadExceptionEventArgs</a> <a href="#c-ThreadInterruptedException">ThreadInterruptedException</a> <a href="#c-ThreadLocal">ThreadLocal</a> <a href="#c-ThreadPool">ThreadPool</a> <a href="#c-ThreadPoolBoundHandle">ThreadPoolBoundHandle</a> <a href="#c-ThreadStartException">ThreadStartException</a> <a href="#c-ThreadStateException">ThreadStateException</a> <a href="#c-Timeout">Timeout</a> <a href="#c-Timer">Timer</a> <a href="#c-Volatile">Volatile</a> <a href="#c-WaitHandle">WaitHandle</a> <a href="#c-WaitHandleCannotBeOpenedException">WaitHandleCannotBeOpenedException</a> <a href="#c-WaitHandleExtensions">WaitHandleExtensions</a></div><details class="cls" id="c-AbandonedMutexException"><summary><b>AbandonedMutexException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.AbandonedMutexException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AbandonedMutexException()</code></td></tr><tr><td><code>new AbandonedMutexException(string message)</code></td></tr><tr><td><code>new AbandonedMutexException(string message, Exception inner)</code></td></tr><tr><td><code>new AbandonedMutexException(int location, WaitHandle handle)</code></td></tr><tr><td><code>new AbandonedMutexException(string message, int location, WaitHandle handle)</code></td></tr><tr><td><code>new AbandonedMutexException(string message, Exception inner, int location, WaitHandle handle)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AbandonedMutexException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AbandonedMutexException().@New([ :param = value ])</code> or <code>dnNew("AbandonedMutexException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Mutex</code></td><td><code>Mutex</code></td><td>read</td><td><code>o.Mutex</code></td></tr><tr><td><code>MutexIndex</code></td><td><code>int</code></td><td>read</td><td><code>o.MutexIndex</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AsyncFlowControl"><summary><b>AsyncFlowControl</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.AsyncFlowControl</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(AsyncFlowControl obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Undo</code></td><td><code>Undo()</code></td><td><code>void Undo()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AsyncLocal"><summary><b>AsyncLocal</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.AsyncLocal`1</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>T</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AsyncLocalValueChangedArgs"><summary><b>AsyncLocalValueChangedArgs</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.AsyncLocalValueChangedArgs`1</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PreviousValue</code></td><td><code>T</code></td><td>read</td><td><code>o.PreviousValue</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>T</code></td><td>read</td><td><code>o.CurrentValue</code></td></tr><tr><td><code>ThreadContextChanged</code></td><td><code>bool</code></td><td>read</td><td><code>o.ThreadContextChanged</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AutoResetEvent"><summary><b>AutoResetEvent</b> <span class="muted">class sealed · extends <a href="#c-EventWaitHandle">EventWaitHandle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.AutoResetEvent</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AutoResetEvent(bool initialState)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AutoResetEvent(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AutoResetEvent().@New([ :param = value ])</code> or <code>dnNew("AutoResetEvent",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Barrier"><summary><b>Barrier</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Barrier</code> · assembly <code>System.Threading</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Barrier(int participantCount)</code></td></tr><tr><td><code>new Barrier(int participantCount, Action&lt;Barrier&gt; postPhaseAction)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Barrier(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Barrier().@New([ :param = value ])</code> or <code>dnNew("Barrier",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ParticipantsRemaining</code></td><td><code>int</code></td><td>read</td><td><code>o.ParticipantsRemaining</code></td></tr><tr><td><code>ParticipantCount</code></td><td><code>int</code></td><td>read</td><td><code>o.ParticipantCount</code></td></tr><tr><td><code>CurrentPhaseNumber</code></td><td><code>long</code></td><td>read</td><td><code>o.CurrentPhaseNumber</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddParticipant</code></td><td><code>AddParticipant()</code></td><td><code>long AddParticipant()</code></td></tr><tr><td><code>AddParticipants</code></td><td><code>AddParticipants(p1)</code></td><td><code>long AddParticipants(int participantCount)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>RemoveParticipant</code></td><td><code>RemoveParticipant()</code></td><td><code>void RemoveParticipant()</code></td></tr><tr><td><code>RemoveParticipants</code></td><td><code>RemoveParticipants(p1)</code></td><td><code>void RemoveParticipants(int participantCount)</code></td></tr><tr><td><code>SignalAndWait</code></td><td><code>SignalAndWait(NULL)</code><br><code>SignalAndWait(value)</code><br><code>SignalAndWait([ :cancellationToken = … ])</code><br><code>SignalAndWait([ :timeout = … ])</code><br><code>SignalAndWait([ :millisecondsTimeout = … ])</code><br><code>SignalAndWait([ :timeout = …, :cancellationToken = … ])</code></td><td><code>void SignalAndWait()</code><br><code>void SignalAndWait(CancellationToken cancellationToken)</code><br><code>bool SignalAndWait(TimeSpan timeout)</code><br><code>bool SignalAndWait(TimeSpan timeout, CancellationToken cancellationToken)</code><br><code>bool SignalAndWait(int millisecondsTimeout)</code><br><code>bool SignalAndWait(int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BarrierPostPhaseException"><summary><b>BarrierPostPhaseException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.BarrierPostPhaseException</code> · assembly <code>System.Threading</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BarrierPostPhaseException()</code></td></tr><tr><td><code>new BarrierPostPhaseException(Exception innerException)</code></td></tr><tr><td><code>new BarrierPostPhaseException(string message)</code></td></tr><tr><td><code>new BarrierPostPhaseException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BarrierPostPhaseException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BarrierPostPhaseException().@New([ :param = value ])</code> or <code>dnNew("BarrierPostPhaseException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CancellationToken"><summary><b>CancellationToken</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.CancellationToken</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CancellationToken(bool canceled)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CancellationToken(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CancellationToken().@New([ :param = value ])</code> or <code>dnNew("CancellationToken",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsCancellationRequested</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCancellationRequested</code></td></tr><tr><td><code>CanBeCanceled</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanBeCanceled</code></td></tr><tr><td><code>WaitHandle</code></td><td><code>WaitHandle</code></td><td>read</td><td><code>o.WaitHandle</code></td></tr><tr><td><code>None</code></td><td><code>CancellationToken</code></td><td>read · static</td><td><code>o.None</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(CancellationToken other)</code><br><code>bool Equals(object other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Register</code></td><td><code>Register(value)</code><br><code>Register([ :callback = … ])</code><br><code>Register([ :callback = …, :useSynchronizationContext = … ])</code><br><code>Register([ :callback = …, :state = … ])</code><br><code>Register([ :callback = …, :state = …, :useSynchronizationContext = … ])</code></td><td><code>CancellationTokenRegistration Register(Action callback)</code><br><code>CancellationTokenRegistration Register(Action callback, bool useSynchronizationContext)</code><br><code>CancellationTokenRegistration Register(Action&lt;object&gt; callback, object state)</code><br><code>CancellationTokenRegistration Register(Action&lt;object, CancellationToken&gt; callback, object state)</code><br><code>CancellationTokenRegistration Register(Action&lt;object&gt; callback, object state, bool useSynchronizationContext)</code></td></tr><tr><td><code>ThrowIfCancellationRequested</code></td><td><code>ThrowIfCancellationRequested()</code></td><td><code>void ThrowIfCancellationRequested()</code></td></tr><tr><td><code>UnsafeRegister</code></td><td><code>UnsafeRegister(p1,p2)</code></td><td><code>CancellationTokenRegistration UnsafeRegister(Action&lt;object&gt; callback, object state)</code><br><code>CancellationTokenRegistration UnsafeRegister(Action&lt;object, CancellationToken&gt; callback, object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CancellationTokenRegistration"><summary><b>CancellationTokenRegistration</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.CancellationTokenRegistration</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Token</code></td><td><code>CancellationToken</code></td><td>read</td><td><code>o.Token</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(CancellationTokenRegistration other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Unregister</code></td><td><code>Unregister()</code></td><td><code>bool Unregister()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CancellationTokenSource"><summary><b>CancellationTokenSource</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.CancellationTokenSource</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CancellationTokenSource()</code></td></tr><tr><td><code>new CancellationTokenSource(TimeSpan delay)</code></td></tr><tr><td><code>new CancellationTokenSource(TimeSpan delay, TimeProvider timeProvider)</code></td></tr><tr><td><code>new CancellationTokenSource(int millisecondsDelay)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CancellationTokenSource(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CancellationTokenSource().@New([ :param = value ])</code> or <code>dnNew("CancellationTokenSource",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsCancellationRequested</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCancellationRequested</code></td></tr><tr><td><code>Token</code></td><td><code>CancellationToken</code></td><td>read</td><td><code>o.Token</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Cancel</code></td><td><code>Cancel(NULL)</code><br><code>Cancel(value)</code><br><code>Cancel([ :throwOnFirstException = … ])</code></td><td><code>void Cancel()</code><br><code>void Cancel(bool throwOnFirstException)</code></td></tr><tr><td><code>CancelAfter</code></td><td><code>CancelAfter(p1)</code></td><td><code>void CancelAfter(TimeSpan delay)</code><br><code>void CancelAfter(int millisecondsDelay)</code></td></tr><tr><td><code>CancelAsync</code></td><td><code>CancelAsync()</code></td><td><code>Task CancelAsync()</code></td></tr><tr><td><code>CreateLinkedTokenSource</code></td><td><code>CreateLinkedTokenSource(value)</code><br><code>CreateLinkedTokenSource([ :token = … ])</code><br><code>CreateLinkedTokenSource([ :tokens = … ])</code><br><code>CreateLinkedTokenSource([ :token1 = …, :token2 = … ])</code></td><td><code>static CancellationTokenSource CreateLinkedTokenSource(CancellationToken token1, CancellationToken token2)</code><br><code>static CancellationTokenSource CreateLinkedTokenSource(CancellationToken token)</code><br><code>static CancellationTokenSource CreateLinkedTokenSource(CancellationToken[] tokens)</code><br><code>static CancellationTokenSource CreateLinkedTokenSource(ReadOnlySpan&lt;CancellationToken&gt; tokens)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>TryReset</code></td><td><code>TryReset()</code></td><td><code>bool TryReset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CompressedStack"><summary><b>CompressedStack</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.CompressedStack</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Capture</code></td><td><code>Capture()</code></td><td><code>static CompressedStack Capture()</code></td></tr><tr><td><code>CreateCopy</code></td><td><code>CreateCopy()</code></td><td><code>CompressedStack CreateCopy()</code></td></tr><tr><td><code>GetCompressedStack</code></td><td><code>GetCompressedStack()</code></td><td><code>static CompressedStack GetCompressedStack()</code></td></tr><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr><tr><td><code>Run</code></td><td><code>Run(p1,p2,p3)</code></td><td><code>static void Run(CompressedStack compressedStack, ContextCallback callback, object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CountdownEvent"><summary><b>CountdownEvent</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.CountdownEvent</code> · assembly <code>System.Threading</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CountdownEvent(int initialCount)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CountdownEvent(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CountdownEvent().@New([ :param = value ])</code> or <code>dnNew("CountdownEvent",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CurrentCount</code></td><td><code>int</code></td><td>read</td><td><code>o.CurrentCount</code></td></tr><tr><td><code>InitialCount</code></td><td><code>int</code></td><td>read</td><td><code>o.InitialCount</code></td></tr><tr><td><code>IsSet</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSet</code></td></tr><tr><td><code>WaitHandle</code></td><td><code>WaitHandle</code></td><td>read</td><td><code>o.WaitHandle</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddCount</code></td><td><code>AddCount(NULL)</code><br><code>AddCount(value)</code><br><code>AddCount([ :signalCount = … ])</code></td><td><code>void AddCount()</code><br><code>void AddCount(int signalCount)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset(NULL)</code><br><code>Reset(value)</code><br><code>Reset([ :count = … ])</code></td><td><code>void Reset()</code><br><code>void Reset(int count)</code></td></tr><tr><td><code>Signal</code></td><td><code>Signal(NULL)</code><br><code>Signal(value)</code><br><code>Signal([ :signalCount = … ])</code></td><td><code>bool Signal()</code><br><code>bool Signal(int signalCount)</code></td></tr><tr><td><code>TryAddCount</code></td><td><code>TryAddCount(NULL)</code><br><code>TryAddCount(value)</code><br><code>TryAddCount([ :signalCount = … ])</code></td><td><code>bool TryAddCount()</code><br><code>bool TryAddCount(int signalCount)</code></td></tr><tr><td><code>Wait</code></td><td><code>Wait(NULL)</code><br><code>Wait(value)</code><br><code>Wait([ :cancellationToken = … ])</code><br><code>Wait([ :timeout = … ])</code><br><code>Wait([ :millisecondsTimeout = … ])</code><br><code>Wait([ :timeout = …, :cancellationToken = … ])</code></td><td><code>void Wait()</code><br><code>void Wait(CancellationToken cancellationToken)</code><br><code>bool Wait(TimeSpan timeout)</code><br><code>bool Wait(TimeSpan timeout, CancellationToken cancellationToken)</code><br><code>bool Wait(int millisecondsTimeout)</code><br><code>bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EventWaitHandle"><summary><b>EventWaitHandle</b> <span class="muted">class · extends <a href="#c-WaitHandle">WaitHandle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.EventWaitHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EventWaitHandle(bool initialState, EventResetMode mode)</code></td></tr><tr><td><code>new EventWaitHandle(bool initialState, EventResetMode mode, string name)</code></td></tr><tr><td><code>new EventWaitHandle(bool initialState, EventResetMode mode, string name, out bool createdNew)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EventWaitHandle(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EventWaitHandle().@New([ :param = value ])</code> or <code>dnNew("EventWaitHandle",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OpenExisting</code></td><td><code>OpenExisting(p1)</code></td><td><code>static EventWaitHandle OpenExisting(string name)</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>bool Reset()</code></td></tr><tr><td><code>Set</code></td><td><code>Set()</code></td><td><code>bool Set()</code></td></tr><tr><td><code>TryOpenExisting</code></td><td><code>TryOpenExisting(p1)</code></td><td><code>static bool TryOpenExisting(string name, out EventWaitHandle result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ExecutionContext"><summary><b>ExecutionContext</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ExecutionContext</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable, ISerializable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Capture</code></td><td><code>Capture()</code></td><td><code>static ExecutionContext Capture()</code></td></tr><tr><td><code>CreateCopy</code></td><td><code>CreateCopy()</code></td><td><code>ExecutionContext CreateCopy()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr><tr><td><code>IsFlowSuppressed</code></td><td><code>IsFlowSuppressed()</code></td><td><code>static bool IsFlowSuppressed()</code></td></tr><tr><td><code>Restore</code></td><td><code>Restore(p1)</code></td><td><code>static void Restore(ExecutionContext executionContext)</code></td></tr><tr><td><code>RestoreFlow</code></td><td><code>RestoreFlow()</code></td><td><code>static void RestoreFlow()</code></td></tr><tr><td><code>Run</code></td><td><code>Run(p1,p2,p3)</code></td><td><code>static void Run(ExecutionContext executionContext, ContextCallback callback, object state)</code></td></tr><tr><td><code>SuppressFlow</code></td><td><code>SuppressFlow()</code></td><td><code>static AsyncFlowControl SuppressFlow()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostExecutionContext"><summary><b>HostExecutionContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.HostExecutionContext</code> · assembly <code>System.Threading</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostExecutionContext()</code></td></tr><tr><td><code>new HostExecutionContext(object state)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostExecutionContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostExecutionContext().@New([ :param = value ])</code> or <code>dnNew("HostExecutionContext",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateCopy</code></td><td><code>CreateCopy()</code></td><td><code>HostExecutionContext CreateCopy()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose(NULL)</code><br><code>Dispose(value)</code><br><code>Dispose([ :disposing = … ])</code></td><td><code>void Dispose()</code><br><code>void Dispose(bool disposing)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostExecutionContextManager"><summary><b>HostExecutionContextManager</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.HostExecutionContextManager</code> · assembly <code>System.Threading</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostExecutionContextManager()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostExecutionContextManager(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostExecutionContextManager().@New([ :param = value ])</code> or <code>dnNew("HostExecutionContextManager",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Capture</code></td><td><code>Capture()</code></td><td><code>HostExecutionContext Capture()</code></td></tr><tr><td><code>Revert</code></td><td><code>Revert(p1)</code></td><td><code>void Revert(object previousState)</code></td></tr><tr><td><code>SetHostExecutionContext</code></td><td><code>SetHostExecutionContext(p1)</code></td><td><code>object SetHostExecutionContext(HostExecutionContext hostExecutionContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Interlocked"><summary><b>Interlocked</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Interlocked</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static int Add(ref int location1, int value)</code><br><code>static long Add(ref long location1, long value)</code><br><code>static uint Add(ref uint location1, uint value)</code><br><code>static ulong Add(ref ulong location1, ulong value)</code></td></tr><tr><td><code>And</code></td><td><code>@And(p1,p2)</code></td><td><code>static int And(ref int location1, int value)</code><br><code>static uint And(ref uint location1, uint value)</code><br><code>static long And(ref long location1, long value)</code><br><code>static ulong And(ref ulong location1, ulong value)</code></td></tr><tr><td><code>CompareExchange</code></td><td><code>CompareExchange(p1,p2,p3)</code></td><td><code>static int CompareExchange(ref int location1, int value, int comparand)</code><br><code>static long CompareExchange(ref long location1, long value, long comparand)</code><br><code>static object CompareExchange(ref object location1, object value, object comparand)</code><br><code>static sbyte CompareExchange(ref sbyte location1, sbyte value, sbyte comparand)</code><br><code>static short CompareExchange(ref short location1, short value, short comparand)</code><br><code>static byte CompareExchange(ref byte location1, byte value, byte comparand)</code><br><code>static ushort CompareExchange(ref ushort location1, ushort value, ushort comparand)</code><br><code>static uint CompareExchange(ref uint location1, uint value, uint comparand)</code><br><code>static ulong CompareExchange(ref ulong location1, ulong value, ulong comparand)</code><br><code>static float CompareExchange(ref float location1, float value, float comparand)</code><br><code>static double CompareExchange(ref double location1, double value, double comparand)</code><br><code>static IntPtr CompareExchange(ref IntPtr location1, IntPtr value, IntPtr comparand)</code><br><code>static UIntPtr CompareExchange(ref UIntPtr location1, UIntPtr value, UIntPtr comparand)</code><br><code>static T CompareExchange&lt;T&gt;(ref T location1, T value, T comparand)</code></td></tr><tr><td><code>Decrement</code></td><td><code>Decrement(p1)</code></td><td><code>static int Decrement(ref int location)</code><br><code>static long Decrement(ref long location)</code><br><code>static uint Decrement(ref uint location)</code><br><code>static ulong Decrement(ref ulong location)</code></td></tr><tr><td><code>Exchange</code></td><td><code>Exchange(p1,p2)</code></td><td><code>static int Exchange(ref int location1, int value)</code><br><code>static long Exchange(ref long location1, long value)</code><br><code>static object Exchange(ref object location1, object value)</code><br><code>static sbyte Exchange(ref sbyte location1, sbyte value)</code><br><code>static short Exchange(ref short location1, short value)</code><br><code>static byte Exchange(ref byte location1, byte value)</code><br><code>static ushort Exchange(ref ushort location1, ushort value)</code><br><code>static uint Exchange(ref uint location1, uint value)</code><br><code>static ulong Exchange(ref ulong location1, ulong value)</code><br><code>static float Exchange(ref float location1, float value)</code><br><code>static double Exchange(ref double location1, double value)</code><br><code>static IntPtr Exchange(ref IntPtr location1, IntPtr value)</code><br><code>static UIntPtr Exchange(ref UIntPtr location1, UIntPtr value)</code><br><code>static T Exchange&lt;T&gt;(ref T location1, T value)</code></td></tr><tr><td><code>Increment</code></td><td><code>Increment(p1)</code></td><td><code>static int Increment(ref int location)</code><br><code>static long Increment(ref long location)</code><br><code>static uint Increment(ref uint location)</code><br><code>static ulong Increment(ref ulong location)</code></td></tr><tr><td><code>MemoryBarrier</code></td><td><code>MemoryBarrier()</code></td><td><code>static void MemoryBarrier()</code></td></tr><tr><td><code>MemoryBarrierProcessWide</code></td><td><code>MemoryBarrierProcessWide()</code></td><td><code>static void MemoryBarrierProcessWide()</code></td></tr><tr><td><code>Or</code></td><td><code>@Or(p1,p2)</code></td><td><code>static int Or(ref int location1, int value)</code><br><code>static uint Or(ref uint location1, uint value)</code><br><code>static long Or(ref long location1, long value)</code><br><code>static ulong Or(ref ulong location1, ulong value)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1)</code></td><td><code>static long Read(ref long location)</code><br><code>static ulong Read(ref ulong location)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IThreadPoolWorkItem"><summary><b>IThreadPoolWorkItem</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.IThreadPoolWorkItem</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Execute</code></td><td><code>Execute()</code></td><td><code>void Execute()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ITimer"><summary><b>ITimer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ITimer</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Change</code></td><td><code>Change(p1,p2)</code></td><td><code>bool Change(TimeSpan dueTime, TimeSpan period)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LazyInitializer"><summary><b>LazyInitializer</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.LazyInitializer</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>EnsureInitialized</code></td><td><code>EnsureInitialized(value)</code><br><code>EnsureInitialized([ :target = … ])</code><br><code>EnsureInitialized([ :target = …, :valueFactory = … ])</code><br><code>EnsureInitialized([ :target = …, :initialized = …, :syncLock = … ])</code><br><code>EnsureInitialized([ :target = …, :syncLock = …, :valueFactory = … ])</code></td><td><code>static T EnsureInitialized&lt;T&gt;(ref T target)</code><br><code>static T EnsureInitialized&lt;T&gt;(ref T target, Func&lt;T&gt; valueFactory)</code><br><code>static T EnsureInitialized&lt;T&gt;(ref T target, ref bool initialized, ref object syncLock)</code><br><code>static T EnsureInitialized&lt;T&gt;(ref T target, ref bool initialized, ref object syncLock, Func&lt;T&gt; valueFactory)</code><br><code>static T EnsureInitialized&lt;T&gt;(ref T target, ref object syncLock, Func&lt;T&gt; valueFactory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Lock"><summary><b>Lock</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Lock</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Lock()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Lock(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Lock().@New([ :param = value ])</code> or <code>dnNew("Lock",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsHeldByCurrentThread</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsHeldByCurrentThread</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Enter</code></td><td><code>Enter()</code></td><td><code>void Enter()</code></td></tr><tr><td><code>EnterScope</code></td><td><code>EnterScope()</code></td><td><code>Lock.Scope EnterScope()</code></td></tr><tr><td><code>Exit</code></td><td><code>@Exit()</code></td><td><code>void Exit()</code></td></tr><tr><td><code>TryEnter</code></td><td><code>TryEnter(NULL)</code><br><code>TryEnter(value)</code><br><code>TryEnter([ :millisecondsTimeout = … ])</code><br><code>TryEnter([ :timeout = … ])</code></td><td><code>bool TryEnter()</code><br><code>bool TryEnter(int millisecondsTimeout)</code><br><code>bool TryEnter(TimeSpan timeout)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LockCookie"><summary><b>LockCookie</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.LockCookie</code> · assembly <code>System.Threading</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(LockCookie obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LockRecursionException"><summary><b>LockRecursionException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.LockRecursionException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LockRecursionException()</code></td></tr><tr><td><code>new LockRecursionException(string message)</code></td></tr><tr><td><code>new LockRecursionException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LockRecursionException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LockRecursionException().@New([ :param = value ])</code> or <code>dnNew("LockRecursionException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ManualResetEvent"><summary><b>ManualResetEvent</b> <span class="muted">class sealed · extends <a href="#c-EventWaitHandle">EventWaitHandle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ManualResetEvent</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ManualResetEvent(bool initialState)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ManualResetEvent(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ManualResetEvent().@New([ :param = value ])</code> or <code>dnNew("ManualResetEvent",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ManualResetEventSlim"><summary><b>ManualResetEventSlim</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ManualResetEventSlim</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ManualResetEventSlim()</code></td></tr><tr><td><code>new ManualResetEventSlim(bool initialState)</code></td></tr><tr><td><code>new ManualResetEventSlim(bool initialState, int spinCount)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ManualResetEventSlim(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ManualResetEventSlim().@New([ :param = value ])</code> or <code>dnNew("ManualResetEventSlim",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WaitHandle</code></td><td><code>WaitHandle</code></td><td>read</td><td><code>o.WaitHandle</code></td></tr><tr><td><code>IsSet</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSet</code></td></tr><tr><td><code>SpinCount</code></td><td><code>int</code></td><td>read</td><td><code>o.SpinCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr><tr><td><code>Set</code></td><td><code>Set()</code></td><td><code>void Set()</code></td></tr><tr><td><code>Wait</code></td><td><code>Wait(NULL)</code><br><code>Wait(value)</code><br><code>Wait([ :cancellationToken = … ])</code><br><code>Wait([ :timeout = … ])</code><br><code>Wait([ :millisecondsTimeout = … ])</code><br><code>Wait([ :timeout = …, :cancellationToken = … ])</code></td><td><code>void Wait()</code><br><code>void Wait(CancellationToken cancellationToken)</code><br><code>bool Wait(TimeSpan timeout)</code><br><code>bool Wait(TimeSpan timeout, CancellationToken cancellationToken)</code><br><code>bool Wait(int millisecondsTimeout)</code><br><code>bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Monitor"><summary><b>Monitor</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Monitor</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LockContentionCount</code></td><td><code>long</code></td><td>read · static</td><td><code>o.LockContentionCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Enter</code></td><td><code>Enter(value)</code><br><code>Enter([ :obj = … ])</code><br><code>Enter([ :obj = …, :lockTaken = … ])</code></td><td><code>static void Enter(object obj)</code><br><code>static void Enter(object obj, ref bool lockTaken)</code></td></tr><tr><td><code>Exit</code></td><td><code>@Exit(p1)</code></td><td><code>static void Exit(object obj)</code></td></tr><tr><td><code>IsEntered</code></td><td><code>IsEntered(p1)</code></td><td><code>static bool IsEntered(object obj)</code></td></tr><tr><td><code>Pulse</code></td><td><code>Pulse(p1)</code></td><td><code>static void Pulse(object obj)</code></td></tr><tr><td><code>PulseAll</code></td><td><code>PulseAll(p1)</code></td><td><code>static void PulseAll(object obj)</code></td></tr><tr><td><code>TryEnter</code></td><td><code>TryEnter(value)</code><br><code>TryEnter([ :obj = … ])</code><br><code>TryEnter([ :obj = …, :lockTaken = … ])</code><br><code>TryEnter([ :obj = …, :millisecondsTimeout = … ])</code><br><code>TryEnter([ :obj = …, :timeout = … ])</code></td><td><code>static bool TryEnter(object obj)</code><br><code>static void TryEnter(object obj, ref bool lockTaken)</code><br><code>static bool TryEnter(object obj, int millisecondsTimeout)</code><br><code>static void TryEnter(object obj, int millisecondsTimeout, ref bool lockTaken)</code><br><code>static bool TryEnter(object obj, TimeSpan timeout)</code><br><code>static void TryEnter(object obj, TimeSpan timeout, ref bool lockTaken)</code></td></tr><tr><td><code>Wait</code></td><td><code>Wait(value)</code><br><code>Wait([ :obj = … ])</code><br><code>Wait([ :obj = …, :millisecondsTimeout = … ])</code><br><code>Wait([ :obj = …, :timeout = … ])</code><br><code>Wait([ :obj = …, :millisecondsTimeout = …, :exitContext = … ])</code></td><td><code>static bool Wait(object obj, int millisecondsTimeout)</code><br><code>static bool Wait(object obj, TimeSpan timeout)</code><br><code>static bool Wait(object obj)</code><br><code>static bool Wait(object obj, int millisecondsTimeout, bool exitContext)</code><br><code>static bool Wait(object obj, TimeSpan timeout, bool exitContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Mutex"><summary><b>Mutex</b> <span class="muted">class sealed · extends <a href="#c-WaitHandle">WaitHandle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Mutex</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Mutex(bool initiallyOwned, string name, out bool createdNew)</code></td></tr><tr><td><code>new Mutex(bool initiallyOwned, string name)</code></td></tr><tr><td><code>new Mutex(bool initiallyOwned)</code></td></tr><tr><td><code>new Mutex()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Mutex(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Mutex().@New([ :param = value ])</code> or <code>dnNew("Mutex",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OpenExisting</code></td><td><code>OpenExisting(p1)</code></td><td><code>static Mutex OpenExisting(string name)</code></td></tr><tr><td><code>ReleaseMutex</code></td><td><code>ReleaseMutex()</code></td><td><code>void ReleaseMutex()</code></td></tr><tr><td><code>TryOpenExisting</code></td><td><code>TryOpenExisting(p1)</code></td><td><code>static bool TryOpenExisting(string name, out Mutex result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-NativeOverlapped"><summary><b>NativeOverlapped</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.NativeOverlapped</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>InternalLow</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.InternalLow</code> <code>o.InternalLow = v</code></td></tr><tr><td><code>InternalHigh</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.InternalHigh</code> <code>o.InternalHigh = v</code></td></tr><tr><td><code>OffsetLow</code></td><td><code>int</code></td><td>read, write</td><td><code>o.OffsetLow</code> <code>o.OffsetLow = v</code></td></tr><tr><td><code>OffsetHigh</code></td><td><code>int</code></td><td>read, write</td><td><code>o.OffsetHigh</code> <code>o.OffsetHigh = v</code></td></tr><tr><td><code>EventHandle</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.EventHandle</code> <code>o.EventHandle = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Overlapped"><summary><b>Overlapped</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Overlapped</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Overlapped()</code></td></tr><tr><td><code>new Overlapped(int offsetLo, int offsetHi, IntPtr hEvent, IAsyncResult ar)</code></td></tr><tr><td><code>new Overlapped(int offsetLo, int offsetHi, int hEvent, IAsyncResult ar)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Overlapped(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Overlapped().@New([ :param = value ])</code> or <code>dnNew("Overlapped",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AsyncResult</code></td><td><code>IAsyncResult</code></td><td>read, write</td><td><code>o.AsyncResult</code> <code>o.AsyncResult = v</code></td></tr><tr><td><code>OffsetLow</code></td><td><code>int</code></td><td>read, write</td><td><code>o.OffsetLow</code> <code>o.OffsetLow = v</code></td></tr><tr><td><code>OffsetHigh</code></td><td><code>int</code></td><td>read, write</td><td><code>o.OffsetHigh</code> <code>o.OffsetHigh = v</code></td></tr><tr><td><code>EventHandle</code></td><td><code>int</code></td><td>read, write</td><td><code>o.EventHandle</code> <code>o.EventHandle = v</code></td></tr><tr><td><code>EventHandleIntPtr</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.EventHandleIntPtr</code> <code>o.EventHandleIntPtr = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Free</code></td><td><code>Free(p1)</code></td><td><code>static void Free(NativeOverlapped* nativeOverlappedPtr)</code></td></tr><tr><td><code>Pack</code></td><td><code>Pack(value)</code><br><code>Pack([ :iocb = … ])</code><br><code>Pack([ :iocb = …, :userData = … ])</code></td><td><code>NativeOverlapped* Pack(IOCompletionCallback iocb)</code><br><code>NativeOverlapped* Pack(IOCompletionCallback iocb, object userData)</code></td></tr><tr><td><code>Unpack</code></td><td><code>Unpack(p1)</code></td><td><code>static Overlapped Unpack(NativeOverlapped* nativeOverlappedPtr)</code></td></tr><tr><td><code>UnsafePack</code></td><td><code>UnsafePack(value)</code><br><code>UnsafePack([ :iocb = … ])</code><br><code>UnsafePack([ :iocb = …, :userData = … ])</code></td><td><code>NativeOverlapped* UnsafePack(IOCompletionCallback iocb)</code><br><code>NativeOverlapped* UnsafePack(IOCompletionCallback iocb, object userData)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PeriodicTimer"><summary><b>PeriodicTimer</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.PeriodicTimer</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PeriodicTimer(TimeSpan period)</code></td></tr><tr><td><code>new PeriodicTimer(TimeSpan period, TimeProvider timeProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PeriodicTimer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PeriodicTimer().@New([ :param = value ])</code> or <code>dnNew("PeriodicTimer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Period</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.Period</code> <code>o.Period = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>WaitForNextTickAsync</code></td><td><code>WaitForNextTickAsync(value)</code><br><code>WaitForNextTickAsync([ :cancellationToken = … ])</code></td><td><code>ValueTask&lt;bool&gt; WaitForNextTickAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PreAllocatedOverlapped"><summary><b>PreAllocatedOverlapped</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.PreAllocatedOverlapped</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PreAllocatedOverlapped(IOCompletionCallback callback, object state, object pinData)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PreAllocatedOverlapped(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PreAllocatedOverlapped().@New([ :param = value ])</code> or <code>dnNew("PreAllocatedOverlapped",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>UnsafeCreate</code></td><td><code>UnsafeCreate(p1,p2,p3)</code></td><td><code>static PreAllocatedOverlapped UnsafeCreate(IOCompletionCallback callback, object state, object pinData)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ReaderWriterLock"><summary><b>ReaderWriterLock</b> <span class="muted">class sealed · extends CriticalFinalizerObject</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ReaderWriterLock</code> · assembly <code>System.Threading</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ReaderWriterLock()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ReaderWriterLock(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ReaderWriterLock().@New([ :param = value ])</code> or <code>dnNew("ReaderWriterLock",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReaderLockHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReaderLockHeld</code></td></tr><tr><td><code>IsWriterLockHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsWriterLockHeld</code></td></tr><tr><td><code>WriterSeqNum</code></td><td><code>int</code></td><td>read</td><td><code>o.WriterSeqNum</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AcquireReaderLock</code></td><td><code>AcquireReaderLock(p1)</code></td><td><code>void AcquireReaderLock(int millisecondsTimeout)</code><br><code>void AcquireReaderLock(TimeSpan timeout)</code></td></tr><tr><td><code>AcquireWriterLock</code></td><td><code>AcquireWriterLock(p1)</code></td><td><code>void AcquireWriterLock(int millisecondsTimeout)</code><br><code>void AcquireWriterLock(TimeSpan timeout)</code></td></tr><tr><td><code>AnyWritersSince</code></td><td><code>AnyWritersSince(p1)</code></td><td><code>bool AnyWritersSince(int seqNum)</code></td></tr><tr><td><code>DowngradeFromWriterLock</code></td><td><code>DowngradeFromWriterLock(p1)</code></td><td><code>void DowngradeFromWriterLock(ref LockCookie lockCookie)</code></td></tr><tr><td><code>ReleaseLock</code></td><td><code>ReleaseLock()</code></td><td><code>LockCookie ReleaseLock()</code></td></tr><tr><td><code>ReleaseReaderLock</code></td><td><code>ReleaseReaderLock()</code></td><td><code>void ReleaseReaderLock()</code></td></tr><tr><td><code>ReleaseWriterLock</code></td><td><code>ReleaseWriterLock()</code></td><td><code>void ReleaseWriterLock()</code></td></tr><tr><td><code>RestoreLock</code></td><td><code>RestoreLock(p1)</code></td><td><code>void RestoreLock(ref LockCookie lockCookie)</code></td></tr><tr><td><code>UpgradeToWriterLock</code></td><td><code>UpgradeToWriterLock(p1)</code></td><td><code>LockCookie UpgradeToWriterLock(int millisecondsTimeout)</code><br><code>LockCookie UpgradeToWriterLock(TimeSpan timeout)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ReaderWriterLockSlim"><summary><b>ReaderWriterLockSlim</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ReaderWriterLockSlim</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ReaderWriterLockSlim()</code></td></tr><tr><td><code>new ReaderWriterLockSlim(LockRecursionPolicy recursionPolicy)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ReaderWriterLockSlim(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ReaderWriterLockSlim().@New([ :param = value ])</code> or <code>dnNew("ReaderWriterLockSlim",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadLockHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadLockHeld</code></td></tr><tr><td><code>IsUpgradeableReadLockHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsUpgradeableReadLockHeld</code></td></tr><tr><td><code>IsWriteLockHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsWriteLockHeld</code></td></tr><tr><td><code>RecursionPolicy</code></td><td><code>LockRecursionPolicy</code></td><td>read</td><td><code>o.RecursionPolicy</code></td></tr><tr><td><code>CurrentReadCount</code></td><td><code>int</code></td><td>read</td><td><code>o.CurrentReadCount</code></td></tr><tr><td><code>RecursiveReadCount</code></td><td><code>int</code></td><td>read</td><td><code>o.RecursiveReadCount</code></td></tr><tr><td><code>RecursiveUpgradeCount</code></td><td><code>int</code></td><td>read</td><td><code>o.RecursiveUpgradeCount</code></td></tr><tr><td><code>RecursiveWriteCount</code></td><td><code>int</code></td><td>read</td><td><code>o.RecursiveWriteCount</code></td></tr><tr><td><code>WaitingReadCount</code></td><td><code>int</code></td><td>read</td><td><code>o.WaitingReadCount</code></td></tr><tr><td><code>WaitingUpgradeCount</code></td><td><code>int</code></td><td>read</td><td><code>o.WaitingUpgradeCount</code></td></tr><tr><td><code>WaitingWriteCount</code></td><td><code>int</code></td><td>read</td><td><code>o.WaitingWriteCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>EnterReadLock</code></td><td><code>EnterReadLock()</code></td><td><code>void EnterReadLock()</code></td></tr><tr><td><code>EnterUpgradeableReadLock</code></td><td><code>EnterUpgradeableReadLock()</code></td><td><code>void EnterUpgradeableReadLock()</code></td></tr><tr><td><code>EnterWriteLock</code></td><td><code>EnterWriteLock()</code></td><td><code>void EnterWriteLock()</code></td></tr><tr><td><code>ExitReadLock</code></td><td><code>ExitReadLock()</code></td><td><code>void ExitReadLock()</code></td></tr><tr><td><code>ExitUpgradeableReadLock</code></td><td><code>ExitUpgradeableReadLock()</code></td><td><code>void ExitUpgradeableReadLock()</code></td></tr><tr><td><code>ExitWriteLock</code></td><td><code>ExitWriteLock()</code></td><td><code>void ExitWriteLock()</code></td></tr><tr><td><code>TryEnterReadLock</code></td><td><code>TryEnterReadLock(p1)</code></td><td><code>bool TryEnterReadLock(TimeSpan timeout)</code><br><code>bool TryEnterReadLock(int millisecondsTimeout)</code></td></tr><tr><td><code>TryEnterUpgradeableReadLock</code></td><td><code>TryEnterUpgradeableReadLock(p1)</code></td><td><code>bool TryEnterUpgradeableReadLock(TimeSpan timeout)</code><br><code>bool TryEnterUpgradeableReadLock(int millisecondsTimeout)</code></td></tr><tr><td><code>TryEnterWriteLock</code></td><td><code>TryEnterWriteLock(p1)</code></td><td><code>bool TryEnterWriteLock(TimeSpan timeout)</code><br><code>bool TryEnterWriteLock(int millisecondsTimeout)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RegisteredWaitHandle"><summary><b>RegisteredWaitHandle</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.RegisteredWaitHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Unregister</code></td><td><code>Unregister(p1)</code></td><td><code>bool Unregister(WaitHandle waitObject)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Semaphore"><summary><b>Semaphore</b> <span class="muted">class sealed · extends <a href="#c-WaitHandle">WaitHandle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Semaphore</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Semaphore(int initialCount, int maximumCount)</code></td></tr><tr><td><code>new Semaphore(int initialCount, int maximumCount, string name)</code></td></tr><tr><td><code>new Semaphore(int initialCount, int maximumCount, string name, out bool createdNew)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Semaphore(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Semaphore().@New([ :param = value ])</code> or <code>dnNew("Semaphore",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OpenExisting</code></td><td><code>OpenExisting(p1)</code></td><td><code>static Semaphore OpenExisting(string name)</code></td></tr><tr><td><code>Release</code></td><td><code>callMethod("Release",[])</code><br><code>callMethod("Release",[p1])</code></td><td><code>int Release()</code><br><code>int Release(int releaseCount)</code></td></tr><tr><td><code>TryOpenExisting</code></td><td><code>TryOpenExisting(p1)</code></td><td><code>static bool TryOpenExisting(string name, out Semaphore result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SemaphoreFullException"><summary><b>SemaphoreFullException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SemaphoreFullException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SemaphoreFullException()</code></td></tr><tr><td><code>new SemaphoreFullException(string message)</code></td></tr><tr><td><code>new SemaphoreFullException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SemaphoreFullException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SemaphoreFullException().@New([ :param = value ])</code> or <code>dnNew("SemaphoreFullException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SemaphoreSlim"><summary><b>SemaphoreSlim</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SemaphoreSlim</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SemaphoreSlim(int initialCount)</code></td></tr><tr><td><code>new SemaphoreSlim(int initialCount, int maxCount)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SemaphoreSlim(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SemaphoreSlim().@New([ :param = value ])</code> or <code>dnNew("SemaphoreSlim",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CurrentCount</code></td><td><code>int</code></td><td>read</td><td><code>o.CurrentCount</code></td></tr><tr><td><code>AvailableWaitHandle</code></td><td><code>WaitHandle</code></td><td>read</td><td><code>o.AvailableWaitHandle</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Release</code></td><td><code>callMethod("Release",[])</code><br><code>callMethod("Release",[p1])</code></td><td><code>int Release()</code><br><code>int Release(int releaseCount)</code></td></tr><tr><td><code>Wait</code></td><td><code>Wait(NULL)</code><br><code>Wait(value)</code><br><code>Wait([ :cancellationToken = … ])</code><br><code>Wait([ :timeout = … ])</code><br><code>Wait([ :millisecondsTimeout = … ])</code><br><code>Wait([ :timeout = …, :cancellationToken = … ])</code></td><td><code>void Wait()</code><br><code>void Wait(CancellationToken cancellationToken)</code><br><code>bool Wait(TimeSpan timeout)</code><br><code>bool Wait(TimeSpan timeout, CancellationToken cancellationToken)</code><br><code>bool Wait(int millisecondsTimeout)</code><br><code>bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr><tr><td><code>WaitAsync</code></td><td><code>WaitAsync(NULL)</code><br><code>WaitAsync(value)</code><br><code>WaitAsync([ :cancellationToken = … ])</code><br><code>WaitAsync([ :millisecondsTimeout = … ])</code><br><code>WaitAsync([ :timeout = … ])</code><br><code>WaitAsync([ :timeout = …, :cancellationToken = … ])</code></td><td><code>Task WaitAsync()</code><br><code>Task WaitAsync(CancellationToken cancellationToken)</code><br><code>Task&lt;bool&gt; WaitAsync(int millisecondsTimeout)</code><br><code>Task&lt;bool&gt; WaitAsync(TimeSpan timeout)</code><br><code>Task&lt;bool&gt; WaitAsync(TimeSpan timeout, CancellationToken cancellationToken)</code><br><code>Task&lt;bool&gt; WaitAsync(int millisecondsTimeout, CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SpinLock"><summary><b>SpinLock</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SpinLock</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SpinLock(bool enableThreadOwnerTracking)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SpinLock(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SpinLock().@New([ :param = value ])</code> or <code>dnNew("SpinLock",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsHeld</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsHeld</code></td></tr><tr><td><code>IsHeldByCurrentThread</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsHeldByCurrentThread</code></td></tr><tr><td><code>IsThreadOwnerTrackingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsThreadOwnerTrackingEnabled</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Enter</code></td><td><code>Enter(p1)</code></td><td><code>void Enter(ref bool lockTaken)</code></td></tr><tr><td><code>Exit</code></td><td><code>@Exit(NULL)</code><br><code>@Exit(value)</code><br><code>@Exit([ :useMemoryBarrier = … ])</code></td><td><code>void Exit()</code><br><code>void Exit(bool useMemoryBarrier)</code></td></tr><tr><td><code>TryEnter</code></td><td><code>TryEnter(value)</code><br><code>TryEnter([ :lockTaken = … ])</code><br><code>TryEnter([ :timeout = …, :lockTaken = … ])</code><br><code>TryEnter([ :millisecondsTimeout = …, :lockTaken = … ])</code></td><td><code>void TryEnter(ref bool lockTaken)</code><br><code>void TryEnter(TimeSpan timeout, ref bool lockTaken)</code><br><code>void TryEnter(int millisecondsTimeout, ref bool lockTaken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SpinWait"><summary><b>SpinWait</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SpinWait</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>NextSpinWillYield</code></td><td><code>bool</code></td><td>read</td><td><code>o.NextSpinWillYield</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr><tr><td><code>SpinOnce</code></td><td><code>SpinOnce(NULL)</code><br><code>SpinOnce(value)</code><br><code>SpinOnce([ :sleep1Threshold = … ])</code></td><td><code>void SpinOnce()</code><br><code>void SpinOnce(int sleep1Threshold)</code></td></tr><tr><td><code>SpinUntil</code></td><td><code>SpinUntil(value)</code><br><code>SpinUntil([ :condition = … ])</code><br><code>SpinUntil([ :condition = …, :timeout = … ])</code><br><code>SpinUntil([ :condition = …, :millisecondsTimeout = … ])</code></td><td><code>static void SpinUntil(Func&lt;bool&gt; condition)</code><br><code>static bool SpinUntil(Func&lt;bool&gt; condition, TimeSpan timeout)</code><br><code>static bool SpinUntil(Func&lt;bool&gt; condition, int millisecondsTimeout)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SynchronizationContext"><summary><b>SynchronizationContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SynchronizationContext</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SynchronizationContext()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SynchronizationContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SynchronizationContext().@New([ :param = value ])</code> or <code>dnNew("SynchronizationContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>SynchronizationContext</code></td><td>read · static</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateCopy</code></td><td><code>CreateCopy()</code></td><td><code>SynchronizationContext CreateCopy()</code></td></tr><tr><td><code>IsWaitNotificationRequired</code></td><td><code>IsWaitNotificationRequired()</code></td><td><code>bool IsWaitNotificationRequired()</code></td></tr><tr><td><code>OperationCompleted</code></td><td><code>OperationCompleted()</code></td><td><code>void OperationCompleted()</code></td></tr><tr><td><code>OperationStarted</code></td><td><code>OperationStarted()</code></td><td><code>void OperationStarted()</code></td></tr><tr><td><code>Post</code></td><td><code>Post(p1,p2)</code></td><td><code>void Post(SendOrPostCallback d, object state)</code></td></tr><tr><td><code>Send</code></td><td><code>Send(p1,p2)</code></td><td><code>void Send(SendOrPostCallback d, object state)</code></td></tr><tr><td><code>SetSynchronizationContext</code></td><td><code>SetSynchronizationContext(p1)</code></td><td><code>static void SetSynchronizationContext(SynchronizationContext syncContext)</code></td></tr><tr><td><code>Wait</code></td><td><code>Wait(p1,p2,p3)</code></td><td><code>int Wait(IntPtr[] waitHandles, bool waitAll, int millisecondsTimeout)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SynchronizationLockException"><summary><b>SynchronizationLockException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.SynchronizationLockException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SynchronizationLockException()</code></td></tr><tr><td><code>new SynchronizationLockException(string message)</code></td></tr><tr><td><code>new SynchronizationLockException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SynchronizationLockException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SynchronizationLockException().@New([ :param = value ])</code> or <code>dnNew("SynchronizationLockException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Thread"><summary><b>Thread</b> <span class="muted">class sealed · extends CriticalFinalizerObject</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Thread</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Thread(ThreadStart start)</code></td></tr><tr><td><code>new Thread(ThreadStart start, int maxStackSize)</code></td></tr><tr><td><code>new Thread(ParameterizedThreadStart start)</code></td></tr><tr><td><code>new Thread(ParameterizedThreadStart start, int maxStackSize)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Thread(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Thread().@New([ :param = value ])</code> or <code>dnNew("Thread",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ManagedThreadId</code></td><td><code>int</code></td><td>read</td><td><code>o.ManagedThreadId</code></td></tr><tr><td><code>IsAlive</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAlive</code></td></tr><tr><td><code>IsBackground</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsBackground</code> <code>o.IsBackground = v</code></td></tr><tr><td><code>IsThreadPoolThread</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsThreadPoolThread</code></td></tr><tr><td><code>Priority</code></td><td><code>ThreadPriority</code></td><td>read, write</td><td><code>o.Priority</code> <code>o.Priority = v</code></td></tr><tr><td><code>ThreadState</code></td><td><code>ThreadState</code></td><td>read</td><td><code>o.ThreadState</code></td></tr><tr><td><code>CurrentCulture</code></td><td><code>CultureInfo</code></td><td>read, write</td><td><code>o.CurrentCulture</code> <code>o.CurrentCulture = v</code></td></tr><tr><td><code>CurrentUICulture</code></td><td><code>CultureInfo</code></td><td>read, write</td><td><code>o.CurrentUICulture</code> <code>o.CurrentUICulture = v</code></td></tr><tr><td><code>ExecutionContext</code></td><td><code>ExecutionContext</code></td><td>read</td><td><code>o.ExecutionContext</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>ApartmentState</code></td><td><code>ApartmentState</code></td><td>read, write</td><td><code>o.ApartmentState</code> <code>o.ApartmentState = v</code></td></tr><tr><td><code>CurrentPrincipal</code></td><td><code>IPrincipal</code></td><td>read, write · static</td><td><code>o.CurrentPrincipal</code> <code>o.CurrentPrincipal = v</code></td></tr><tr><td><code>CurrentThread</code></td><td><code>Thread</code></td><td>read · static</td><td><code>o.CurrentThread</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abort</code></td><td><code>Abort(NULL)</code><br><code>Abort(value)</code><br><code>Abort([ :stateInfo = … ])</code></td><td><code>void Abort()</code><br><code>void Abort(object stateInfo)</code></td></tr><tr><td><code>AllocateDataSlot</code></td><td><code>AllocateDataSlot()</code></td><td><code>static LocalDataStoreSlot AllocateDataSlot()</code></td></tr><tr><td><code>AllocateNamedDataSlot</code></td><td><code>AllocateNamedDataSlot(p1)</code></td><td><code>static LocalDataStoreSlot AllocateNamedDataSlot(string name)</code></td></tr><tr><td><code>BeginCriticalRegion</code></td><td><code>BeginCriticalRegion()</code></td><td><code>static void BeginCriticalRegion()</code></td></tr><tr><td><code>BeginThreadAffinity</code></td><td><code>BeginThreadAffinity()</code></td><td><code>static void BeginThreadAffinity()</code></td></tr><tr><td><code>DisableComObjectEagerCleanup</code></td><td><code>DisableComObjectEagerCleanup()</code></td><td><code>void DisableComObjectEagerCleanup()</code></td></tr><tr><td><code>EndCriticalRegion</code></td><td><code>EndCriticalRegion()</code></td><td><code>static void EndCriticalRegion()</code></td></tr><tr><td><code>EndThreadAffinity</code></td><td><code>EndThreadAffinity()</code></td><td><code>static void EndThreadAffinity()</code></td></tr><tr><td><code>FreeNamedDataSlot</code></td><td><code>FreeNamedDataSlot(p1)</code></td><td><code>static void FreeNamedDataSlot(string name)</code></td></tr><tr><td><code>GetApartmentState</code></td><td><code>@GetApartmentState()</code></td><td><code>ApartmentState GetApartmentState()</code></td></tr><tr><td><code>GetCompressedStack</code></td><td><code>GetCompressedStack()</code></td><td><code>CompressedStack GetCompressedStack()</code></td></tr><tr><td><code>GetCurrentProcessorId</code></td><td><code>GetCurrentProcessorId()</code></td><td><code>static int GetCurrentProcessorId()</code></td></tr><tr><td><code>GetData</code></td><td><code>GetData(p1)</code></td><td><code>static object GetData(LocalDataStoreSlot slot)</code></td></tr><tr><td><code>GetDomain</code></td><td><code>GetDomain()</code></td><td><code>static AppDomain GetDomain()</code></td></tr><tr><td><code>GetDomainID</code></td><td><code>GetDomainID()</code></td><td><code>static int GetDomainID()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>GetNamedDataSlot</code></td><td><code>GetNamedDataSlot(p1)</code></td><td><code>static LocalDataStoreSlot GetNamedDataSlot(string name)</code></td></tr><tr><td><code>Interrupt</code></td><td><code>Interrupt()</code></td><td><code>void Interrupt()</code></td></tr><tr><td><code>Join</code></td><td><code>Join(NULL)</code><br><code>Join(value)</code><br><code>Join([ :millisecondsTimeout = … ])</code><br><code>Join([ :timeout = … ])</code></td><td><code>bool Join(int millisecondsTimeout)</code><br><code>void Join()</code><br><code>bool Join(TimeSpan timeout)</code></td></tr><tr><td><code>MemoryBarrier</code></td><td><code>MemoryBarrier()</code></td><td><code>static void MemoryBarrier()</code></td></tr><tr><td><code>ResetAbort</code></td><td><code>ResetAbort()</code></td><td><code>static void ResetAbort()</code></td></tr><tr><td><code>Resume</code></td><td><code>Resume()</code></td><td><code>void Resume()</code></td></tr><tr><td><code>SetApartmentState</code></td><td><code>@SetApartmentState(p1)</code></td><td><code>void SetApartmentState(ApartmentState state)</code></td></tr><tr><td><code>SetCompressedStack</code></td><td><code>SetCompressedStack(p1)</code></td><td><code>void SetCompressedStack(CompressedStack stack)</code></td></tr><tr><td><code>SetData</code></td><td><code>SetData(p1,p2)</code></td><td><code>static void SetData(LocalDataStoreSlot slot, object data)</code></td></tr><tr><td><code>Sleep</code></td><td><code>Sleep(p1)</code></td><td><code>static void Sleep(int millisecondsTimeout)</code><br><code>static void Sleep(TimeSpan timeout)</code></td></tr><tr><td><code>SpinWait</code></td><td><code>SpinWait(p1)</code></td><td><code>static void SpinWait(int iterations)</code></td></tr><tr><td><code>Start</code></td><td><code>Start(NULL)</code><br><code>Start(value)</code><br><code>Start([ :parameter = … ])</code></td><td><code>void Start(object parameter)</code><br><code>void Start()</code></td></tr><tr><td><code>Suspend</code></td><td><code>Suspend()</code></td><td><code>void Suspend()</code></td></tr><tr><td><code>TrySetApartmentState</code></td><td><code>TrySetApartmentState(p1)</code></td><td><code>bool TrySetApartmentState(ApartmentState state)</code></td></tr><tr><td><code>UnsafeStart</code></td><td><code>UnsafeStart(NULL)</code><br><code>UnsafeStart(value)</code><br><code>UnsafeStart([ :parameter = … ])</code></td><td><code>void UnsafeStart(object parameter)</code><br><code>void UnsafeStart()</code></td></tr><tr><td><code>VolatileRead</code></td><td><code>VolatileRead(p1)</code></td><td><code>static byte VolatileRead(ref byte address)</code><br><code>static double VolatileRead(ref double address)</code><br><code>static short VolatileRead(ref short address)</code><br><code>static int VolatileRead(ref int address)</code><br><code>static long VolatileRead(ref long address)</code><br><code>static IntPtr VolatileRead(ref IntPtr address)</code><br><code>static object VolatileRead(ref object address)</code><br><code>static sbyte VolatileRead(ref sbyte address)</code><br><code>static float VolatileRead(ref float address)</code><br><code>static ushort VolatileRead(ref ushort address)</code><br><code>static uint VolatileRead(ref uint address)</code><br><code>static ulong VolatileRead(ref ulong address)</code><br><code>static UIntPtr VolatileRead(ref UIntPtr address)</code></td></tr><tr><td><code>VolatileWrite</code></td><td><code>VolatileWrite(p1,p2)</code></td><td><code>static void VolatileWrite(ref byte address, byte value)</code><br><code>static void VolatileWrite(ref double address, double value)</code><br><code>static void VolatileWrite(ref short address, short value)</code><br><code>static void VolatileWrite(ref int address, int value)</code><br><code>static void VolatileWrite(ref long address, long value)</code><br><code>static void VolatileWrite(ref IntPtr address, IntPtr value)</code><br><code>static void VolatileWrite(ref object address, object value)</code><br><code>static void VolatileWrite(ref sbyte address, sbyte value)</code><br><code>static void VolatileWrite(ref float address, float value)</code><br><code>static void VolatileWrite(ref ushort address, ushort value)</code><br><code>static void VolatileWrite(ref uint address, uint value)</code><br><code>static void VolatileWrite(ref ulong address, ulong value)</code><br><code>static void VolatileWrite(ref UIntPtr address, UIntPtr value)</code></td></tr><tr><td><code>Yield</code></td><td><code>Yield()</code></td><td><code>static bool Yield()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ThreadAbortException"><summary><b>ThreadAbortException</b> <span class="muted">class sealed · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadAbortException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ExceptionState</code></td><td><code>object</code></td><td>read</td><td><code>o.ExceptionState</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ThreadExceptionEventArgs"><summary><b>ThreadExceptionEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadExceptionEventArgs</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ThreadExceptionEventArgs(Exception t)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ThreadExceptionEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ThreadExceptionEventArgs().@New([ :param = value ])</code> or <code>dnNew("ThreadExceptionEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read</td><td><code>o.Exception</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ThreadInterruptedException"><summary><b>ThreadInterruptedException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadInterruptedException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ThreadInterruptedException()</code></td></tr><tr><td><code>new ThreadInterruptedException(string message)</code></td></tr><tr><td><code>new ThreadInterruptedException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ThreadInterruptedException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ThreadInterruptedException().@New([ :param = value ])</code> or <code>dnNew("ThreadInterruptedException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ThreadLocal"><summary><b>ThreadLocal</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadLocal`1</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>T</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr><tr><td><code>Values</code></td><td><code>IList&lt;T&gt;</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>IsValueCreated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsValueCreated</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ThreadPool"><summary><b>ThreadPool</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadPool</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PendingWorkItemCount</code></td><td><code>long</code></td><td>read · static</td><td><code>o.PendingWorkItemCount</code></td></tr><tr><td><code>ThreadCount</code></td><td><code>int</code></td><td>read · static</td><td><code>o.ThreadCount</code></td></tr><tr><td><code>CompletedWorkItemCount</code></td><td><code>long</code></td><td>read · static</td><td><code>o.CompletedWorkItemCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BindHandle</code></td><td><code>BindHandle(p1)</code></td><td><code>static bool BindHandle(IntPtr osHandle)</code><br><code>static bool BindHandle(SafeHandle osHandle)</code></td></tr><tr><td><code>GetAvailableThreads</code></td><td><code>GetAvailableThreads()</code></td><td><code>static void GetAvailableThreads(out int workerThreads, out int completionPortThreads)</code></td></tr><tr><td><code>GetMaxThreads</code></td><td><code>GetMaxThreads()</code></td><td><code>static void GetMaxThreads(out int workerThreads, out int completionPortThreads)</code></td></tr><tr><td><code>GetMinThreads</code></td><td><code>GetMinThreads()</code></td><td><code>static void GetMinThreads(out int workerThreads, out int completionPortThreads)</code></td></tr><tr><td><code>QueueUserWorkItem</code></td><td><code>QueueUserWorkItem(value)</code><br><code>QueueUserWorkItem([ :callBack = … ])</code><br><code>QueueUserWorkItem([ :callBack = …, :state = … ])</code><br><code>QueueUserWorkItem([ :callBack = …, :state = …, :preferLocal = … ])</code></td><td><code>static bool QueueUserWorkItem(WaitCallback callBack)</code><br><code>static bool QueueUserWorkItem(WaitCallback callBack, object state)</code><br><code>static bool QueueUserWorkItem&lt;TState&gt;(Action&lt;TState&gt; callBack, TState state, bool preferLocal)</code></td></tr><tr><td><code>RegisterWaitForSingleObject</code></td><td><code>RegisterWaitForSingleObject(p1,p2,p3,p4,p5)</code></td><td><code>static RegisteredWaitHandle RegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, uint millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle RegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, int millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle RegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, long millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle RegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, TimeSpan timeout, bool executeOnlyOnce)</code></td></tr><tr><td><code>SetMaxThreads</code></td><td><code>SetMaxThreads(p1,p2)</code></td><td><code>static bool SetMaxThreads(int workerThreads, int completionPortThreads)</code></td></tr><tr><td><code>SetMinThreads</code></td><td><code>SetMinThreads(p1,p2)</code></td><td><code>static bool SetMinThreads(int workerThreads, int completionPortThreads)</code></td></tr><tr><td><code>UnsafeQueueNativeOverlapped</code></td><td><code>UnsafeQueueNativeOverlapped(p1)</code></td><td><code>static bool UnsafeQueueNativeOverlapped(NativeOverlapped* overlapped)</code></td></tr><tr><td><code>UnsafeQueueUserWorkItem</code></td><td><code>UnsafeQueueUserWorkItem([ :callBack = …, :state = … ])</code><br><code>UnsafeQueueUserWorkItem([ :callBack = …, :preferLocal = … ])</code><br><code>UnsafeQueueUserWorkItem([ :callBack = …, :state = …, :preferLocal = … ])</code></td><td><code>static bool UnsafeQueueUserWorkItem&lt;TState&gt;(Action&lt;TState&gt; callBack, TState state, bool preferLocal)</code><br><code>static bool UnsafeQueueUserWorkItem(WaitCallback callBack, object state)</code><br><code>static bool UnsafeQueueUserWorkItem(IThreadPoolWorkItem callBack, bool preferLocal)</code></td></tr><tr><td><code>UnsafeRegisterWaitForSingleObject</code></td><td><code>UnsafeRegisterWaitForSingleObject(p1,p2,p3,p4,p5)</code></td><td><code>static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, uint millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, int millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, long millisecondsTimeOutInterval, bool executeOnlyOnce)</code><br><code>static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, TimeSpan timeout, bool executeOnlyOnce)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ThreadPoolBoundHandle"><summary><b>ThreadPoolBoundHandle</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadPoolBoundHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Handle</code></td><td><code>SafeHandle</code></td><td>read</td><td><code>o.Handle</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AllocateNativeOverlapped</code></td><td><code>AllocateNativeOverlapped(value)</code><br><code>AllocateNativeOverlapped([ :preAllocated = … ])</code><br><code>AllocateNativeOverlapped([ :callback = …, :state = …, :pinData = … ])</code></td><td><code>NativeOverlapped* AllocateNativeOverlapped(IOCompletionCallback callback, object state, object pinData)</code><br><code>NativeOverlapped* AllocateNativeOverlapped(PreAllocatedOverlapped preAllocated)</code></td></tr><tr><td><code>BindHandle</code></td><td><code>BindHandle(p1)</code></td><td><code>static ThreadPoolBoundHandle BindHandle(SafeHandle handle)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>FreeNativeOverlapped</code></td><td><code>FreeNativeOverlapped(p1)</code></td><td><code>void FreeNativeOverlapped(NativeOverlapped* overlapped)</code></td></tr><tr><td><code>GetNativeOverlappedState</code></td><td><code>GetNativeOverlappedState(p1)</code></td><td><code>static object GetNativeOverlappedState(NativeOverlapped* overlapped)</code></td></tr><tr><td><code>UnsafeAllocateNativeOverlapped</code></td><td><code>UnsafeAllocateNativeOverlapped(p1,p2,p3)</code></td><td><code>NativeOverlapped* UnsafeAllocateNativeOverlapped(IOCompletionCallback callback, object state, object pinData)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ThreadStartException"><summary><b>ThreadStartException</b> <span class="muted">class sealed · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadStartException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ThreadStateException"><summary><b>ThreadStateException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.ThreadStateException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ThreadStateException()</code></td></tr><tr><td><code>new ThreadStateException(string message)</code></td></tr><tr><td><code>new ThreadStateException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ThreadStateException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ThreadStateException().@New([ :param = value ])</code> or <code>dnNew("ThreadStateException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Timeout"><summary><b>Timeout</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Timeout</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>InfiniteTimeSpan</code></td><td><code>TimeSpan</code></td><td>read · static</td><td><code>o.InfiniteTimeSpan</code></td></tr><tr><td><code>Infinite</code></td><td><code>int</code></td><td>constant · static</td><td><code>o.Infinite</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Timer"><summary><b>Timer</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Timer</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable, ITimer</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Timer(TimerCallback callback, object state, int dueTime, int period)</code></td></tr><tr><td><code>new Timer(TimerCallback callback, object state, TimeSpan dueTime, TimeSpan period)</code></td></tr><tr><td><code>new Timer(TimerCallback callback, object state, uint dueTime, uint period)</code></td></tr><tr><td><code>new Timer(TimerCallback callback, object state, long dueTime, long period)</code></td></tr><tr><td><code>new Timer(TimerCallback callback)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Timer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Timer().@New([ :param = value ])</code> or <code>dnNew("Timer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActiveCount</code></td><td><code>long</code></td><td>read · static</td><td><code>o.ActiveCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Change</code></td><td><code>Change(p1,p2)</code></td><td><code>bool Change(int dueTime, int period)</code><br><code>bool Change(TimeSpan dueTime, TimeSpan period)</code><br><code>bool Change(uint dueTime, uint period)</code><br><code>bool Change(long dueTime, long period)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose(NULL)</code><br><code>Dispose(value)</code><br><code>Dispose([ :notifyObject = … ])</code></td><td><code>bool Dispose(WaitHandle notifyObject)</code><br><code>void Dispose()</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Volatile"><summary><b>Volatile</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.Volatile</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Read</code></td><td><code>Read(p1)</code></td><td><code>static bool Read(ref bool location)</code><br><code>static byte Read(ref byte location)</code><br><code>static double Read(ref double location)</code><br><code>static short Read(ref short location)</code><br><code>static int Read(ref int location)</code><br><code>static long Read(ref long location)</code><br><code>static IntPtr Read(ref IntPtr location)</code><br><code>static sbyte Read(ref sbyte location)</code><br><code>static float Read(ref float location)</code><br><code>static ushort Read(ref ushort location)</code><br><code>static uint Read(ref uint location)</code><br><code>static ulong Read(ref ulong location)</code><br><code>static UIntPtr Read(ref UIntPtr location)</code><br><code>static T Read&lt;T&gt;(ref T location)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2)</code></td><td><code>static void Write(ref bool location, bool value)</code><br><code>static void Write(ref byte location, byte value)</code><br><code>static void Write(ref double location, double value)</code><br><code>static void Write(ref short location, short value)</code><br><code>static void Write(ref int location, int value)</code><br><code>static void Write(ref long location, long value)</code><br><code>static void Write(ref IntPtr location, IntPtr value)</code><br><code>static void Write(ref sbyte location, sbyte value)</code><br><code>static void Write(ref float location, float value)</code><br><code>static void Write(ref ushort location, ushort value)</code><br><code>static void Write(ref uint location, uint value)</code><br><code>static void Write(ref ulong location, ulong value)</code><br><code>static void Write(ref UIntPtr location, UIntPtr value)</code><br><code>static void Write&lt;T&gt;(ref T location, T value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WaitHandle"><summary><b>WaitHandle</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.WaitHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Handle</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.Handle</code> <code>o.Handle = v</code></td></tr><tr><td><code>SafeWaitHandle</code></td><td><code>SafeWaitHandle</code></td><td>read, write</td><td><code>o.SafeWaitHandle</code> <code>o.SafeWaitHandle = v</code></td></tr><tr><td><code>WaitTimeout</code></td><td><code>int</code></td><td>constant · static</td><td><code>o.WaitTimeout</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Close</code></td><td><code>Close()</code></td><td><code>void Close()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>SignalAndWait</code></td><td><code>SignalAndWait([ :toSignal = …, :toWaitOn = … ])</code><br><code>SignalAndWait([ :toSignal = …, :toWaitOn = …, :timeout = …, :exitContext = … ])</code><br><code>SignalAndWait([ :toSignal = …, :toWaitOn = …, :millisecondsTimeout = …, :exitContext = … ])</code></td><td><code>static bool SignalAndWait(WaitHandle toSignal, WaitHandle toWaitOn)</code><br><code>static bool SignalAndWait(WaitHandle toSignal, WaitHandle toWaitOn, TimeSpan timeout, bool exitContext)</code><br><code>static bool SignalAndWait(WaitHandle toSignal, WaitHandle toWaitOn, int millisecondsTimeout, bool exitContext)</code></td></tr><tr><td><code>WaitAll</code></td><td><code>WaitAll(value)</code><br><code>WaitAll([ :waitHandles = … ])</code><br><code>WaitAll([ :waitHandles = …, :millisecondsTimeout = … ])</code><br><code>WaitAll([ :waitHandles = …, :timeout = … ])</code><br><code>WaitAll([ :waitHandles = …, :millisecondsTimeout = …, :exitContext = … ])</code></td><td><code>static bool WaitAll(WaitHandle[] waitHandles, int millisecondsTimeout)</code><br><code>static bool WaitAll(WaitHandle[] waitHandles, TimeSpan timeout)</code><br><code>static bool WaitAll(WaitHandle[] waitHandles)</code><br><code>static bool WaitAll(WaitHandle[] waitHandles, int millisecondsTimeout, bool exitContext)</code><br><code>static bool WaitAll(WaitHandle[] waitHandles, TimeSpan timeout, bool exitContext)</code></td></tr><tr><td><code>WaitAny</code></td><td><code>WaitAny(value)</code><br><code>WaitAny([ :waitHandles = … ])</code><br><code>WaitAny([ :waitHandles = …, :millisecondsTimeout = … ])</code><br><code>WaitAny([ :waitHandles = …, :timeout = … ])</code><br><code>WaitAny([ :waitHandles = …, :millisecondsTimeout = …, :exitContext = … ])</code></td><td><code>static int WaitAny(WaitHandle[] waitHandles, int millisecondsTimeout)</code><br><code>static int WaitAny(WaitHandle[] waitHandles, TimeSpan timeout)</code><br><code>static int WaitAny(WaitHandle[] waitHandles)</code><br><code>static int WaitAny(WaitHandle[] waitHandles, int millisecondsTimeout, bool exitContext)</code><br><code>static int WaitAny(WaitHandle[] waitHandles, TimeSpan timeout, bool exitContext)</code></td></tr><tr><td><code>WaitOne</code></td><td><code>WaitOne(NULL)</code><br><code>WaitOne(value)</code><br><code>WaitOne([ :millisecondsTimeout = … ])</code><br><code>WaitOne([ :timeout = … ])</code><br><code>WaitOne([ :millisecondsTimeout = …, :exitContext = … ])</code><br><code>WaitOne([ :timeout = …, :exitContext = … ])</code></td><td><code>bool WaitOne(int millisecondsTimeout)</code><br><code>bool WaitOne(TimeSpan timeout)</code><br><code>bool WaitOne()</code><br><code>bool WaitOne(int millisecondsTimeout, bool exitContext)</code><br><code>bool WaitOne(TimeSpan timeout, bool exitContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WaitHandleCannotBeOpenedException"><summary><b>WaitHandleCannotBeOpenedException</b> <span class="muted">class · extends <a href="System.html#c-ApplicationException">ApplicationException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.WaitHandleCannotBeOpenedException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WaitHandleCannotBeOpenedException()</code></td></tr><tr><td><code>new WaitHandleCannotBeOpenedException(string message)</code></td></tr><tr><td><code>new WaitHandleCannotBeOpenedException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WaitHandleCannotBeOpenedException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WaitHandleCannotBeOpenedException().@New([ :param = value ])</code> or <code>dnNew("WaitHandleCannotBeOpenedException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WaitHandleExtensions"><summary><b>WaitHandleExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Threading.WaitHandleExtensions</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetSafeWaitHandle</code></td><td><code>GetSafeWaitHandle(p1)</code></td><td><code>static SafeWaitHandle GetSafeWaitHandle(WaitHandle waitHandle)</code></td></tr><tr><td><code>SetSafeWaitHandle</code></td><td><code>SetSafeWaitHandle(p1,p2)</code></td><td><code>static void SetSafeWaitHandle(WaitHandle waitHandle, SafeWaitHandle value)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

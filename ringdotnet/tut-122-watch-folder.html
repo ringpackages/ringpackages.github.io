@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watching a folder · RingDotNet</title>
+<meta name="description" content="A program can wait until something happens in a folder — a file is created, changed, renamed or deleted — instead of looking at the folder again and again. This lesson uses FileSystemWatcher, with a second copy of the program that makes the changes.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html" class="cur">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Watching a folder</h1><p class="lead">A program can wait until something happens in a folder — a file is created, changed, renamed or deleted — instead of looking at the folder again and again. This lesson uses FileSystemWatcher, with a second copy of the program that makes the changes.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a <code>FileSystemWatcher</code> reports: <strong>Created</strong>, <strong>Changed</strong>, <strong>Renamed</strong> and <strong>Deleted</strong>,</li><li>the folder, the <strong>filter</strong> (<code>*.txt</code>) and the subfolders,</li><li><code>WaitForChanged</code> with a time limit,</li><li>why a change that happens while the program is not waiting is not reported,</li><li>a child program that makes the changes (the pattern of the tutorial <a href="tut-79-processes-talk.html">Two programs talking</a>).</li></ul>
+<p>Programs that watch folders are everywhere: a build tool that starts when a file is saved, an editor that notices that a file was changed by another program, a program that processes the files that other programs drop into an <em>inbox</em> folder.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_watch_folder.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Watching a folder - FileSystemWatcher: waiting for files to be created, changed, renamed and deleted</span>
+<span class="c">#   ring ch05_watch_folder.ring            the parent: it watches a folder and starts a second copy of this program (the child) that changes it</span>
+<span class="c">#   ring ch05_watch_folder.ring --child    the child (the parent starts it, you do not)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Diagnostics"</span>
+	<span class="s">"System.Threading.Tasks"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="k">if</span> find(sysargv,<span class="s">"--child"</span>) &gt; <span class="n">0</span>
+		child(sysargv[len(sysargv)])
+		<span class="k">return</span>
+	<span class="k">ok</span>
+
+	<span class="c"># A FileSystemWatcher tells a program that something happened in a folder: a file was created, changed, renamed or deleted. A program</span>
+	<span class="c"># that shows the files of a folder, a build tool that starts when a source file is saved, or a program that waits for files to arrive</span>
+	<span class="c"># in a folder uses it, instead of looking at the folder again and again.</span>
+
+	<span class="c"># 1. A folder to watch. The name comes from the system (it is different each time), so the program prints only what is the same each time.</span>
+	oPath = <span class="k">new</span> <span class="t">Path</span>()
+	cFolder = oPath.<span class="f">Combine</span>([ oPath.<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-watch-"</span> + oPath.<span class="f">GetRandomFileName</span>() ])
+	oDirectory = <span class="k">new</span> <span class="t">Directory</span>()
+	oDirectory.<span class="f">CreateDirectory</span>(cFolder)
+	? <span class="s">"1. a folder to watch was created"</span>
+
+	<span class="c"># 2. The watcher: the folder, and the file names that interest us ("*.txt"). IncludeSubdirectories = True would watch the folders below too.</span>
+	oWatcher = <span class="k">new</span> <span class="t">FileSystemWatcher</span>().@<span class="k">New</span>([ :<span class="t">path</span> = cFolder, :filter = <span class="s">"*.txt"</span> ])
+	oWatcher.IncludeSubdirectories = <span class="k">False</span>
+	? <span class="s">"2. watching: "</span> + oWatcher.Filter + <span class="s">", subfolders: no"</span>
+
+	<span class="c"># 3. Start the child. It waits a moment, and then it creates a file, writes into it, renames it and deletes it, with a pause</span>
+	<span class="c">#    between the steps.</span>
+	oInfo = <span class="k">new</span> <span class="t">ProcessStartInfo</span>().@<span class="k">New</span>([ :<span class="t">fileName</span> = exefilename(), :arguments = <span class="s">'"'</span> + filename() + <span class="s">'" --child "'</span> + cFolder + <span class="s">'"'</span> ])
+	oInfo.UseShellExecute = <span class="k">False</span>
+	oInfo.CreateNoWindow = <span class="k">True</span>
+	oChild = <span class="k">new</span> <span class="t">Process</span>().<span class="f">Start</span>(oInfo)
+	? <span class="s">"3. the child was started"</span>
+
+	<span class="c"># 4. Wait for the changes. WaitForChanged waits for the next change (or for the time limit, here 4 seconds) and returns what happened.</span>
+	<span class="c">#    A change that happens while the program is NOT waiting is not reported: this is why the child makes a pause between the steps.</span>
+	? nl + <span class="s">"4. what happened:"</span>
+	aSeen = []
+	<span class="k">while</span> <span class="k">True</span>
+		oResult = oWatcher.<span class="f">WaitForChanged</span>([ :changeType = <span class="s">"All"</span>, :timeout = <span class="n">4000</span> ])
+		<span class="k">if</span> oResult.TimedOut
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+		cLine = describe(oResult)
+		<span class="c"># one write can raise a few "Changed" events: the same line is printed once</span>
+		<span class="k">if</span> len(aSeen) = <span class="n">0</span> <span class="k">or</span> aSeen[len(aSeen)] != cLine
+			? <span class="s">"   "</span> + cLine
+			aSeen + cLine
+		<span class="k">ok</span>
+		<span class="k">if</span> oResult.ChangeType = <span class="s">"Deleted"</span>
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">end</span>
+	oChild.<span class="f">WaitForExit</span>(<span class="n">5000</span>)
+
+	<span class="c"># 5. Clean up</span>
+	oWatcher.<span class="f">Dispose</span>()
+	oDirectory.<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+	? nl + <span class="s">"5. the folder was deleted; the child's exit code: "</span> + oChild.ExitCode
+
+<span class="c"># what a change tells: the kind of change and the name (a rename also has the old name)</span>
+<span class="k">func</span> <span class="f">describe</span> oResult
+
+	cKind = <span class="s">""</span> + oResult.ChangeType
+	<span class="k">if</span> cKind = <span class="s">"Renamed"</span>
+		<span class="k">return</span> <span class="s">"Renamed   "</span> + oResult.OldName + <span class="s">" -&gt; "</span> + oResult.Name
+	<span class="k">ok</span>
+	<span class="k">return</span> padRight(cKind,<span class="n">10</span>) + oResult.Name
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))
+
+<span class="c"># ---------------------------------------------------------------- the child</span>
+<span class="k">func</span> <span class="f">child</span> cFolder
+
+	oFile = <span class="k">new</span> <span class="t">File</span>()
+	pause(<span class="n">1000</span>)
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/note.txt"</span>, :contents = <span class="s">"first"</span> ])
+	pause(<span class="n">600</span>)
+	oFile.<span class="f">AppendAllText</span>([ :path = cFolder + <span class="s">"/note.txt"</span>, :contents = <span class="s">" and more"</span> ])
+	pause(<span class="n">600</span>)
+	oFile.<span class="f">Move</span>([ :sourceFileName = cFolder + <span class="s">"/note.txt"</span>, :destFileName = cFolder + <span class="s">"/done.txt"</span> ])
+	pause(<span class="n">600</span>)
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/ignored.log"</span>, :contents = <span class="s">"not a .txt file"</span> ])    <span class="c"># the filter *.txt does not match: no event</span>
+	pause(<span class="n">600</span>)
+	oFile.<span class="f">Delete</span>(cFolder + <span class="s">"/done.txt"</span>)
+
+<span class="k">func</span> <span class="f">pause</span> nMilliseconds
+
+	<span class="k">new</span> <span class="t">Task</span>().<span class="f">Delay</span>(nMilliseconds).<span class="f">Wait</span>(<span class="k">NULL</span>)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. a folder to watch was created
+2. watching: *.txt, subfolders: no
+3. the child was started
+
+4. what happened:
+   Created   note.txt
+   Changed   note.txt
+   Renamed   note.txt -&gt; done.txt
+   Deleted   done.txt
+
+5. the folder was deleted; the child's exit code: 0</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="two-programs">Two programs<a class="anchor" href="#two-programs">#</a></h3>
+<p>A watcher has nothing to report if nobody changes the folder, and the program that waits cannot change it at the same moment. So the program starts a second copy of itself with <code>--child</code> and the name of the folder. The child waits a second, then creates <code>note.txt</code>, appends to it, renames it to <code>done.txt</code>, writes a file that the filter does not match, and deletes <code>done.txt</code>, with a pause between the steps. The parent only watches.</p>
+<h3 id="the-watcher">The watcher<a class="anchor" href="#the-watcher">#</a></h3>
+<p><code>new FileSystemWatcher().@New([ :path = cFolder, :filter = "*.txt" ])</code> watches one folder. The filter is a file name pattern: only the names that match it are reported (it has <code>*</code> and <code>?</code>; the tutorial <a href="tut-112-globbing.html">File patterns (globbing)</a> shows richer patterns for your own code). <code>IncludeSubdirectories = True</code> watches the folders below as well. Each change is a <strong>kind</strong> (<code>Created</code>, <code>Changed</code>, <code>Renamed</code>, <code>Deleted</code>) and the name of the file; a rename also has the old name.</p>
+<h3 id="waiting-for-a-change">Waiting for a change<a class="anchor" href="#waiting-for-a-change">#</a></h3>
+<p><code>WaitForChanged([ :changeType = "All", :timeout = 4000 ])</code> waits for the next change and returns an object with <code>ChangeType</code>, <code>Name</code>, <code>OldName</code> and <code>TimedOut</code>. After four seconds without a change <code>TimedOut</code> is true and the loop ends. The <code>ignored.log</code> file does not match the filter, so the parent sees nothing for it.</p>
+<div class="callout note"><span class="t">Note</span><p>A watcher reports only the changes that happen <strong>while the program waits for them</strong>. Between two calls of <code>WaitForChanged</code> a change is not reported, so this style fits a loop that does nothing else, and tests. A program with a window or a server can use the <em>events</em> of the watcher (<code>Created</code>, <code>Changed</code>, <code>Deleted</code>, <code>Renamed</code>), which .NET raises on its own threads; Ring code runs on the Ring thread only, so such a program uses a timer and looks at the folder (the tutorial <a href="tut-34-timers.html">Timers and progress</a>).</p></div>
+<h3 id="one-write-several-events">One write, several events<a class="anchor" href="#one-write-several-events">#</a></h3>
+<p>Saving a file can raise more than one <code>Changed</code> event (the content and the time are written separately). The program prints a line only when it differs from the last one. Real programs do the same, and often wait a little (a <em>debounce</em>) so that a big save counts as one change.</p>
+<h3 id="clean-up">Clean up<a class="anchor" href="#clean-up">#</a></h3>
+<p><code>Dispose()</code> ends the watching. The program deletes the folder it made with <code>Directory.Delete([ :path = ..., :recursive = True ])</code>.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a watcher reports created, changed, renamed and deleted files,</li><li>the filter and the subfolders,</li><li><code>WaitForChanged</code> and its time limit,</li><li>one change can raise several events,</li><li>a child program is a good way to test a watcher.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Remove the filter (<code>*</code>) and look at the extra event for <code>ignored.log</code>.</li><li>Set <code>IncludeSubdirectories = True</code> and make the child write into a subfolder.</li><li>Make a loop that copies each new <code>.txt</code> file of an inbox folder to an <code>archive</code> folder.</li><li>Count the <code>Changed</code> events for one <code>AppendAllText</code> call.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-21-log-analyzer.html">A project: analyze a log file</a></p>
+<div class="pager"><a href="tut-112-globbing.html"><small>Previous</small>File patterns (globbing)</a><a class="next" href="tut-21-log-analyzer.html"><small>Next</small>A log analyzer</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

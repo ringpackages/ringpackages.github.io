@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WPF menus and tabs · RingDotNet</title>
+<meta name="description" content="Menus, tabs, a status bar, combo boxes, date pickers and expanders are the parts of most WPF windows. This lesson writes them in XAML, connects menu items to Ring code, shows and hides the status bar with a checkable item, and tests every part.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html" class="cur">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>WPF menus and tabs</h1><p class="lead">Menus, tabs, a status bar, combo boxes, date pickers and expanders are the parts of most WPF windows. This lesson writes them in XAML, connects menu items to Ring code, shows and hides the status bar with a checkable item, and tests every part.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>a <code>DockPanel</code> with a <code>Menu</code> at the top and a <code>StatusBar</code> at the bottom,</li><li><code>MenuItem</code>: <code>Header</code> (with <code>_</code> for the key), separators and <code>InputGestureText</code>,</li><li>a <strong>checkable</strong> menu item and its <code>Checked</code> and <code>Unchecked</code> events,</li><li><code>TabControl</code>, <code>TabItem</code> and the <code>SelectionChanged</code> event,</li><li><code>ComboBox</code>, <code>DatePicker</code> and <code>Expander</code>,</li><li><code>Visibility</code>: <code>Visible</code> and <code>Collapsed</code>,</li><li>clicking a menu item in a test by raising its <code>Click</code> event.</li></ul>
+<p>The tutorial <a href="tut-38-wpf-layout.html">WPF layout and styles</a> used a <code>Grid</code>; this lesson uses the controls of a normal application window.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch11_wpf_menu.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># WPF menus and tabs - Menu and MenuItem, a checkable item, a TabControl, an Expander, a ComboBox and a DatePicker in XAML</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.Windows"</span>
+	<span class="s">"System.Windows.Controls"</span>
+	<span class="s">"System"</span>
+}
+
+oWindow = <span class="s">""</span>
+nNew = <span class="n">0</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># XAML describes the window as a tree: a DockPanel puts the menu at the top, a StatusBar at the bottom and the rest in the middle.</span>
+	<span class="c"># Every element that the program uses has an x:Name, and wpfFind(oWindow,"name") finds it.</span>
+	cXaml = <span class="s">'&lt;Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Menus and tabs" Width="460" Height="380" Background="#F4F2FB"&gt;'</span>
+	cXaml += <span class="s">'&lt;DockPanel&gt;'</span>
+	cXaml += <span class="s">'&lt;Menu DockPanel.Dock="Top"&gt;'</span>
+	cXaml += <span class="s">'&lt;MenuItem Header="_File"&gt;&lt;MenuItem x:Name="newItem" Header="_New" InputGestureText="Ctrl+N"/&gt;&lt;Separator/&gt;&lt;MenuItem x:Name="exitItem" Header="E_xit"/&gt;&lt;/MenuItem&gt;'</span>
+	cXaml += <span class="s">'&lt;MenuItem Header="_View"&gt;&lt;MenuItem x:Name="statusItem" Header="_Status bar" IsCheckable="True" IsChecked="True"/&gt;&lt;/MenuItem&gt;'</span>
+	cXaml += <span class="s">'&lt;/Menu&gt;'</span>
+	cXaml += <span class="s">'&lt;StatusBar x:Name="status" DockPanel.Dock="Bottom"&gt;&lt;TextBlock x:Name="message" Text="Ready"/&gt;&lt;/StatusBar&gt;'</span>
+	cXaml += <span class="s">'&lt;TabControl x:Name="tabs" Margin="8"&gt;'</span>
+	cXaml += <span class="s">'&lt;TabItem Header="Orders"&gt;&lt;StackPanel Margin="12"&gt;'</span>
+	cXaml += <span class="s">'&lt;TextBlock Text="Delivery"/&gt;'</span>
+	cXaml += <span class="s">'&lt;ComboBox x:Name="speed" Margin="0,4,0,10"&gt;&lt;ComboBoxItem Content="Normal" IsSelected="True"/&gt;&lt;ComboBoxItem Content="Fast"/&gt;&lt;ComboBoxItem Content="Overnight"/&gt;&lt;/ComboBox&gt;'</span>
+	cXaml += <span class="s">'&lt;TextBlock Text="Date"/&gt;'</span>
+	cXaml += <span class="s">'&lt;DatePicker x:Name="day" Margin="0,4,0,10"/&gt;'</span>
+	cXaml += <span class="s">'&lt;Expander x:Name="more" Header="More options"&gt;&lt;CheckBox x:Name="gift" Content="Gift wrap" Margin="8"/&gt;&lt;/Expander&gt;'</span>
+	cXaml += <span class="s">'&lt;/StackPanel&gt;&lt;/TabItem&gt;'</span>
+	cXaml += <span class="s">'&lt;TabItem Header="About"&gt;&lt;TextBlock Margin="12" Text="A window made of a menu, tabs and a status bar."/&gt;&lt;/TabItem&gt;'</span>
+	cXaml += <span class="s">'&lt;/TabControl&gt;'</span>
+	cXaml += <span class="s">'&lt;/DockPanel&gt;&lt;/Window&gt;'</span>
+	oWindow = <span class="f">wpfXaml</span>(cXaml)
+
+	<span class="c"># a menu item has a Click event, like a button</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"newItem"</span>).<span class="f">setClickEvent</span>(<span class="s">"newOrder()"</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"exitItem"</span>).<span class="f">setClickEvent</span>(<span class="s">"say('Exit was chosen')"</span>)
+	<span class="c"># a checkable item has IsChecked; its Checked and Unchecked events tell when the user changes it</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"statusItem"</span>).<span class="f">setCheckedEvent</span>(<span class="s">"showStatusBar(True)"</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"statusItem"</span>).<span class="f">setUncheckedEvent</span>(<span class="s">"showStatusBar(False)"</span>)
+	<span class="c"># a tab control raises SelectionChanged when the user chooses another tab</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"tabs"</span>).<span class="f">setSelectionChangedEvent</span>(<span class="s">"say('Tab ' + wpfFind(oWindow,'tabs').SelectedIndex)"</span>)
+
+	<span class="f">wpfRun</span>(oWindow)
+
+<span class="k">func</span> <span class="f">say</span> cText
+
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"message"</span>).Text = cText
+
+<span class="k">func</span> <span class="f">newOrder</span>
+
+	nNew++
+	say(<span class="s">"New order "</span> + nNew)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"gift"</span>).IsChecked = <span class="k">False</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"speed"</span>).SelectedIndex = <span class="n">0</span>
+
+<span class="c"># Visibility is Visible or Collapsed (the space of a collapsed element is not kept)</span>
+<span class="k">func</span> <span class="f">showStatusBar</span> lVisible
+
+	<span class="k">if</span> lVisible
+		<span class="f">wpfFind</span>(oWindow,<span class="s">"status"</span>).Visibility = <span class="s">"Visible"</span>
+	<span class="k">else</span>
+		<span class="f">wpfFind</span>(oWindow,<span class="s">"status"</span>).Visibility = <span class="s">"Collapsed"</span>
+	<span class="k">ok</span></code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g140.png" alt="The window with the menu and the tabs" loading="lazy"><figcaption>The window with the menu and the tabs</figcaption></figure>
+
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-layout">The layout<a class="anchor" href="#the-layout">#</a></h3>
+<p>A <code>DockPanel</code> places each child on a side of the window: the menu goes to the <code>Top</code> and the status bar to the <code>Bottom</code> (<code>DockPanel.Dock</code>), and the last child (the tab control) fills what is left. Everything that the program uses has an <code>x:Name</code>, so <code>wpfFind(oWindow, "name")</code> finds it.</p>
+<h3 id="menus">Menus<a class="anchor" href="#menus">#</a></h3>
+<p>In <code>Header="_File"</code> the underscore marks the access key: the user presses Alt+F. A <code>MenuItem</code> inside another is a submenu entry; <code>&lt;Separator/&gt;</code> draws a line; <code>InputGestureText="Ctrl+N"</code> shows the shortcut text (a shortcut itself needs a <em>command</em>, which is written with an <code>InputBindings</code> element in XAML or a <code>KeyDown</code> handler). <code>setClickEvent("newOrder()")</code> runs Ring code when the item is chosen, as for a button.</p>
+<h3 id="a-checkable-item">A checkable item<a class="anchor" href="#a-checkable-item">#</a></h3>
+<p><code>IsCheckable="True"</code> gives the item a check mark, and <code>IsChecked</code> is its state. The events <code>Checked</code> and <code>Unchecked</code> run when the user (or the program) changes it. Here the item <em>Status bar</em> shows or hides the status bar by setting <code>Visibility</code> to <code>"Visible"</code> or <code>"Collapsed"</code>. <code>Collapsed</code> takes no space; <code>Hidden</code> (the other value) keeps the empty space.</p>
+<h3 id="tabs">Tabs<a class="anchor" href="#tabs">#</a></h3>
+<p>A <code>TabControl</code> has <code>TabItem</code> children. Each one has a <code>Header</code> (the title of the tab) and a content: here a <code>StackPanel</code> with controls and a <code>TextBlock</code>. <code>SelectedIndex</code> says which tab is shown and can be set from the program; <code>SelectionChanged</code> runs when it changes. The event handler of a tab control also runs for the <em>list controls inside it</em> (a combo box raises its own <code>SelectionChanged</code>, and the event travels up), so a handler that shows the tab should check that the tab control raised it when the tabs hold lists.</p>
+<h3 id="combo-box-date-picker-expander">Combo box, date picker, expander<a class="anchor" href="#combo-box-date-picker-expander">#</a></h3>
+<p>A <code>ComboBox</code> has items (<code>ComboBoxItem</code>); <code>IsSelected="True"</code> chooses one at the start, <code>SelectedIndex</code> chooses by number and <code>Text</code> reads the chosen text. A <code>DatePicker</code> has <code>SelectedDate</code> (a <code>DateTime</code>, empty until the user chooses) and a calendar drop-down. An <code>Expander</code> shows its content when <code>IsExpanded</code> is true: it keeps rarely used options out of the way.</p>
+<h3 id="testing">Testing<a class="anchor" href="#testing">#</a></h3>
+<p>The test cannot click a menu with a mouse, so it raises the <code>Click</code> event of the item itself: <code>RaiseEvent(new RoutedEventArgs().@New([ :routedEvent = new MenuItem().ClickEvent ]))</code>. After each action it reads the property that should have changed: the status text, the <code>Visibility</code> of the status bar, the selected tab, the chosen speed. The menu item <em>New</em> resets the combo box and the check box, and the test checks that too.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch11_wpf_menu.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch11_wpf_menu.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch11_wpf_menu.ring: run with  ring ch11_wpf_menu.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="c"># a menu item is clicked by raising its Click event, as a user would</span>
+<span class="k">func</span> <span class="f">clickItem</span> cName
+
+	<span class="f">wpfFind</span>(oWindow,cName).<span class="f">RaiseEvent</span>(<span class="k">new</span> <span class="t">RoutedEventArgs</span>().@<span class="k">New</span>([ :<span class="t">routedEvent</span> = <span class="k">new</span> <span class="t">MenuItem</span>().ClickEvent ]))
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	<span class="c"># a menu item runs its code</span>
+	clickItem(<span class="s">"newItem"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"new order"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"message"</span>).Text,<span class="s">"New order 1"</span>)
+	clickItem(<span class="s">"exitItem"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"exit"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"message"</span>).Text,<span class="s">"Exit was chosen"</span>)
+
+	<span class="c"># a checkable item: unchecking hides the status bar, checking shows it</span>
+	<span class="f">dnAssert</span>(<span class="s">"the status bar is visible"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"status"</span>).Visibility,<span class="s">"Visible"</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"statusItem"</span>).IsChecked = <span class="k">False</span>
+	<span class="f">dnAssert</span>(<span class="s">"the status bar is hidden"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"status"</span>).Visibility,<span class="s">"Collapsed"</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"statusItem"</span>).IsChecked = <span class="k">True</span>
+	<span class="f">dnAssert</span>(<span class="s">"the status bar is back"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"status"</span>).Visibility,<span class="s">"Visible"</span>)
+
+	<span class="c"># the tabs</span>
+	<span class="f">dnAssert</span>(<span class="s">"the first tab"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"tabs"</span>).SelectedIndex,<span class="n">0</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"tabs"</span>).SelectedIndex = <span class="n">1</span>
+	<span class="f">dnAssert</span>(<span class="s">"the tab changed"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"message"</span>).Text,<span class="s">"Tab 1"</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"tabs"</span>).SelectedIndex = <span class="n">0</span>
+
+	<span class="c"># a combo box, an expander and a check box inside it</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"speed"</span>).SelectedIndex = <span class="n">2</span>
+	<span class="f">dnAssert</span>(<span class="s">"the chosen speed"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"speed"</span>).Text,<span class="s">"Overnight"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the expander is closed"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"more"</span>).IsExpanded,<span class="k">False</span>)
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"more"</span>).IsExpanded = <span class="k">True</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"gift"</span>).IsChecked = <span class="k">True</span>
+	<span class="f">dnAssert</span>(<span class="s">"gift wrap"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"gift"</span>).IsChecked,<span class="k">True</span>)
+
+	<span class="c"># a date picker: SelectedDate is a DateTime (empty until a date is chosen)</span>
+	<span class="f">wpfFind</span>(oWindow,<span class="s">"day"</span>).SelectedDate = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2030</span>,<span class="n">5</span>,<span class="n">10</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the chosen date"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"day"</span>).SelectedDate.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>),<span class="s">"2030-05-10"</span>)
+
+	<span class="c"># the menu item New puts everything back</span>
+	clickItem(<span class="s">"newItem"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the speed is reset"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"speed"</span>).SelectedIndex,<span class="n">0</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the gift is reset"</span>,<span class="f">wpfFind</span>(oWindow,<span class="s">"gift"</span>).IsChecked,<span class="k">False</span>)</code></pre></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a window with a menu, tabs and a status bar in XAML,</li><li>menu items, separators and a checkable item,</li><li>tabs, combo boxes, date pickers and expanders,</li><li><code>Visibility</code>,</li><li>testing menu items by raising <code>Click</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a menu <em>Edit</em> with <em>Copy</em> and <em>Paste</em> that use the text of a <code>TextBox</code>.</li><li>Add a context menu to the text block of the <em>About</em> tab (<code>ContextMenu</code> inside the element).</li><li>Add a third tab with a <code>ListBox</code> and show the number of items in the status bar.</li><li>Make <em>Exit</em> close the window (<code>oWindow.Close()</code>).</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a></p>
+<div class="pager"><a href="tut-131-wpf-binding.html"><small>Previous</small>WPF data binding</a><a class="next" href="tut-148-wpf-lists.html"><small>Next</small>WPF lists and dynamic content</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

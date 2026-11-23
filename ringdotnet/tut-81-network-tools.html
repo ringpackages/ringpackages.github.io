@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network tools · RingDotNet</title>
+<meta name="description" content="IP addresses, names, ping, network interfaces and "is this port open?" — the classes behind everyday network tools. Everything in this lesson runs on your own computer, so it works without internet.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html" class="cur">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Network tools</h1><p class="lead">IP addresses, names, ping, network interfaces and "is this port open?" — the classes behind everyday network tools. Everything in this lesson runs on your own computer, so it works without internet.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><code>IPAddress</code>: parsing, families (IPv4, IPv6), loopback,</li><li><code>TryParse</code> and other methods with <code>out</code> parameters,</li><li><code>IPEndPoint</code>: an address and a port,</li><li><code>Dns.GetHostEntry</code>,</li><li><code>Ping</code>,</li><li><code>NetworkInterface</code>,</li><li>checking whether a port accepts connections, with a time limit.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch07_network_tools.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># network tools - IP addresses, DNS, ping, network interfaces and checking whether a port is open (all on this computer)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Net"</span>
+	<span class="s">"System.Net.Sockets"</span>
+	<span class="s">"System.Net.NetworkInformation"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. IPAddress parses an address and knows its family. A method with an "out" parameter returns a list: [success, the address].</span>
+	oParser = <span class="k">new</span> <span class="t">IPAddress</span>()
+	oAddress = oParser.<span class="f">Parse</span>(<span class="s">"192.168.1.20"</span>)
+	cBytes = oAddress.<span class="f">GetAddressBytes</span>()                                  <span class="c"># the 4 bytes of an IPv4 address (a byte[] is a Ring text)</span>
+	? <span class="s">"1. "</span> + oAddress.<span class="f">ToString</span>() + <span class="s">" is "</span> + oAddress.AddressFamily + <span class="s">", "</span> + len(cBytes) + <span class="s">" bytes, the first is "</span> + ascii(cBytes[<span class="n">1</span>])
+	aGood = oParser.<span class="f">TryParse</span>(<span class="s">"10.0.0.7"</span>)
+	aBad = oParser.<span class="f">TryParse</span>(<span class="s">"999.1.1.1"</span>)
+	? <span class="s">"   TryParse('10.0.0.7'): "</span> + yesNo(aGood[<span class="n">1</span>]) + <span class="s">", TryParse('999.1.1.1'): "</span> + yesNo(aBad[<span class="n">1</span>])
+	oV6 = oParser.<span class="f">Parse</span>(<span class="s">"::1"</span>)
+	? <span class="s">"   '::1' is "</span> + oV6.AddressFamily + <span class="s">", loopback: "</span> + yesNo(oParser.<span class="f">IsLoopback</span>(oV6))
+	? <span class="s">"   private address 192.168.1.20 is not the loopback: "</span> + yesNo(<span class="k">not</span> oParser.<span class="f">IsLoopback</span>(oAddress))
+
+	<span class="c"># 2. An address plus a port is an IPEndPoint.</span>
+	oEndPoint = <span class="k">new</span> <span class="t">IPEndPoint</span>(oAddress,<span class="n">8080</span>)
+	? nl + <span class="s">"2. the endpoint "</span> + oEndPoint.<span class="f">ToString</span>() + <span class="s">": address "</span> + oEndPoint.Address.<span class="f">ToString</span>() + <span class="s">", port "</span> + oEndPoint.Port
+
+	<span class="c"># 3. DNS: names to addresses. "localhost" is always known, also without a network.</span>
+	oHost = <span class="k">new</span> <span class="t">Dns</span>().<span class="f">GetHostEntry</span>(<span class="s">"localhost"</span>)
+	aAddresses = oHost.AddressList.<span class="f">toList</span>()
+	? nl + <span class="s">"3. localhost has "</span> + len(aAddresses) + <span class="s">" address(es); the first is a loopback address: "</span> + yesNo(oParser.<span class="f">IsLoopback</span>(aAddresses[<span class="n">1</span>]))
+
+	<span class="c"># 4. Ping: an ICMP echo. The reply has a status and the round trip time in milliseconds.</span>
+	oPing = <span class="k">new</span> <span class="t">Ping</span>()
+	oReply = oPing.<span class="f">Send</span>(<span class="s">"127.0.0.1"</span>)
+	? nl + <span class="s">"4. ping 127.0.0.1: "</span> + oReply.Status + <span class="s">", the answer came from "</span> + oReply.Address.<span class="f">ToString</span>() + <span class="s">", fast (under 100 ms): "</span> + yesNo(oReply.RoundtripTime &lt; <span class="n">100</span>)
+	oPing.<span class="f">Dispose</span>()
+
+	<span class="c"># 5. The network interfaces of this computer (the types are text: Ethernet, Wireless80211, Loopback...)</span>
+	aInterfaces = <span class="k">new</span> <span class="t">NetworkInterface</span>().<span class="f">GetAllNetworkInterfaces</span>().<span class="f">toList</span>()
+	lLoopback = <span class="k">False</span>
+	<span class="k">for</span> oInterface <span class="k">in</span> aInterfaces
+		<span class="k">if</span> oInterface.NetworkInterfaceType = <span class="s">"Loopback"</span>
+			lLoopback = <span class="k">True</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	? nl + <span class="s">"5. the computer has network interfaces: "</span> + yesNo(len(aInterfaces) &gt; <span class="n">0</span>) + <span class="s">"; one of them is the loopback: "</span> + yesNo(lLoopback)
+
+	<span class="c"># 6. Is a port open? Start a listener on a free port: connecting works. Connect to a port where nobody listens: it is refused.</span>
+	oListener = <span class="k">new</span> <span class="t">TcpListener</span>(oParser.Loopback,<span class="n">0</span>)
+	oListener.<span class="f">Start</span>(<span class="k">NULL</span>)
+	nOpenPort = oListener.LocalEndpoint.Port
+	? nl + <span class="s">"6. a listener is on a port that the system chose: port is open = "</span> + yesNo(portIsOpen(<span class="s">"127.0.0.1"</span>,nOpenPort))
+	oListener.<span class="f">Stop</span>()
+	? <span class="s">"   after Stop the same port is open = "</span> + yesNo(portIsOpen(<span class="s">"127.0.0.1"</span>,nOpenPort))
+
+<span class="c"># true when a TCP connection to the address and port is accepted within half a second</span>
+<span class="k">func</span> <span class="f">portIsOpen</span> cAddress, nPort
+
+	oClient = <span class="k">new</span> <span class="t">TcpClient</span>()
+	lOpen = <span class="k">False</span>
+	<span class="k">try</span>
+		oTask = oClient.<span class="f">ConnectAsync</span>([ :host = cAddress, :port = nPort ])
+		lOpen = oTask.<span class="f">Wait</span>(<span class="n">500</span>) <span class="k">and</span> oClient.Connected
+	<span class="k">catch</span>
+		lOpen = <span class="k">False</span>                          <span class="c"># refused or failed: the error is the answer</span>
+	<span class="k">done</span>
+	oClient.<span class="f">Dispose</span>()
+	<span class="k">return</span> lOpen
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. 192.168.1.20 is InterNetwork, 4 bytes, the first is 192
+   TryParse('10.0.0.7'): yes, TryParse('999.1.1.1'): no
+   '::1' is InterNetworkV6, loopback: yes
+   private address 192.168.1.20 is not the loopback: yes
+
+2. the endpoint 192.168.1.20:8080: address 192.168.1.20, port 8080
+
+3. localhost has 2 address(es); the first is a loopback address: yes
+
+4. ping 127.0.0.1: Success, the answer came from 127.0.0.1, fast (under 100 ms): yes
+
+5. the computer has network interfaces: yes; one of them is the loopback: yes
+
+6. a listener is on a port that the system chose: port is open = yes
+   after Stop the same port is open = no</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="addresses-and-out-parameters">Addresses and <code>out</code> parameters<a class="anchor" href="#addresses-and-out-parameters">#</a></h3>
+<p><code>IPAddress.Parse("192.168.1.20")</code> gives an object. <code>GetAddressBytes()</code> returns the four bytes as a Ring text (a <code>byte[]</code> is a text in this package), so <code>ascii(cBytes[1])</code> is 192. <code>AddressFamily</code> is <code>InterNetwork</code> for IPv4 and <code>InterNetworkV6</code> for IPv6, and <code>IsLoopback</code> tests for <code>127.0.0.1</code> and <code>::1</code>.</p>
+<p><code>IPAddress.TryParse(text, out address)</code> answers <em>yes or no</em> without raising an error. In .NET the address comes back through an <code>out</code> parameter; in Ring <strong>a method with <code>out</code> parameters returns a list</strong>: <code>[ success, the address ]</code>. So <code>aGood = oParser.TryParse("10.0.0.7")</code> gives <code>aGood[1]</code> = 1 and <code>aGood[2]</code> = the address. The same applies to every <code>TryParse</code> and <code>TryGetValue</code> of .NET.</p>
+<h3 id="endpoints">Endpoints<a class="anchor" href="#endpoints">#</a></h3>
+<p>An <code>IPEndPoint</code> is an address plus a port. It is made with <code>new IPEndPoint(address, 8080)</code>.</p>
+<h3 id="dns">DNS<a class="anchor" href="#dns">#</a></h3>
+<p><code>Dns.GetHostEntry("localhost")</code> returns the names and addresses of a host. <code>localhost</code> is known without a network (usually both <code>127.0.0.1</code> and <code>::1</code>). A real name such as <code>example.com</code> needs the internet and can take seconds or raise an error: wrap it in <code>try</code> / <code>catch</code>.</p>
+<h3 id="ping">Ping<a class="anchor" href="#ping">#</a></h3>
+<p><code>Ping.Send("127.0.0.1")</code> sends an ICMP echo and returns a <code>PingReply</code> with <code>Status</code> (<code>Success</code>, <code>TimedOut</code>, ...), <code>RoundtripTime</code> in milliseconds and <code>Address</code>. Pinging 127.0.0.1 tests only your own network software; ping a real host to test a connection, and give <code>Send</code> a timeout.</p>
+<h3 id="interfaces">Interfaces<a class="anchor" href="#interfaces">#</a></h3>
+<p><code>NetworkInterface.GetAllNetworkInterfaces()</code> lists the network cards (and virtual ones). <code>NetworkInterfaceType</code> is a text: <code>Ethernet</code>, <code>Wireless80211</code>, <code>Loopback</code>... Their addresses and speeds are properties too; this lesson only counts them, because the details are about <em>your</em> computer.</p>
+<h3 id="is-the-port-open">Is the port open?<a class="anchor" href="#is-the-port-open">#</a></h3>
+<p>The last step starts a <code>TcpListener</code> on port 0 (the system chooses a free port) and checks it with <code>portIsOpen</code>: <code>ConnectAsync([ :host = address, :port = port ])</code> starts the connection, <code>Task.Wait(500)</code> waits at most half a second, and a refused connection raises an error that the <code>try</code> turns into <em>no</em>. While the listener runs the answer is <em>yes</em>; after <code>Stop()</code> it is <em>no</em>. This is the whole idea of a port scanner — and the reason for the rules below.</p>
+<div class="callout warn"><span class="t">Warning</span><p>Only test ports of computers that are yours or that you have permission to test. Scanning other people's computers can be a crime and is always rude. This tutorial only touches <code>127.0.0.1</code>.</p></div>
+<div class="callout note"><span class="t">Note</span><p>The <code>catch</code> in <code>portIsOpen</code> also catches errors in the Ring code (a misspelled method name, for example), which then look like "port closed". While you develop, print <code>cCatchError</code> in the <code>catch</code> block.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>IPAddress</code>, <code>IPEndPoint</code>,</li><li><code>out</code> parameters come back as a list,</li><li><code>Dns</code>, <code>Ping</code>, <code>NetworkInterface</code>,</li><li>a connection test with a time limit.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write <code>waitForPort(address, port, seconds)</code> that tries every 200 ms and returns when the port opens.</li><li>List the open ports of 127.0.0.1 between 8000 and 8010 after starting two listeners.</li><li>Ping <code>127.0.0.1</code> five times and print the average round trip.</li><li>Resolve a real host name with <code>Dns.GetHostEntry</code> and handle the error when there is no network.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-102-ip-networks.html">IP networks</a></p>
+<div class="pager"><a href="tut-118-registry.html"><small>Previous</small>The Windows Registry</a><a class="next" href="tut-102-ip-networks.html"><small>Next</small>IP networks</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

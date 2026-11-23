@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caching · RingDotNet</title>
+<meta name="description" content="A cache keeps the result of slow work for a while, so the next request gets it at once. This lesson uses MemoryCache with absolute and sliding expiration, GetOrCreate with a Ring function that makes the value, and Remove and Clear — and says when a cache is the wrong tool.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html" class="cur">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Caching</h1><p class="lead">A cache keeps the result of slow work for a while, so the next request gets it at once. This lesson uses MemoryCache with absolute and sliding expiration, GetOrCreate with a Ring function that makes the value, and Remove and Clear — and says when a cache is the wrong tool.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a cache is and when it helps,</li><li><code>MemoryCache</code>: <code>Set</code>, <code>TryGetValue</code>, <code>Remove</code>, <code>Clear</code>, <code>Count</code>,</li><li><strong>absolute</strong> and <strong>sliding</strong> expiration,</li><li><code>GetOrCreate</code>: make the value only when it is missing,</li><li>extension methods, which are methods of the cache,</li><li>the rules that keep a cache safe.</li></ul>
+<p>The tutorial <a href="tut-53-speed.html">Speed — measure first</a> measured how fast calls are. The fastest call is the one you do not make: a result that was already calculated, fetched or read can be reused.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_memory_cache.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># caching - MemoryCache, absolute and sliding expiration, remove and update, and when a cache is a bad idea</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Threading"</span>
+	<span class="s">"Microsoft.Extensions.Caching.Memory"</span>
+}
+
+nRuns = <span class="n">0</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># A cache keeps the result of slow work (a database query, a web request, a big calculation) for a while, so the next request</span>
+	<span class="c"># gets it at once. MemoryCache keeps the values in memory, with a key for each one and rules for when a value must go.</span>
+	oCache = <span class="k">new</span> <span class="t">MemoryCache</span>(<span class="k">new</span> <span class="t">MemoryCacheOptions</span>())
+
+	<span class="c"># 1. Set stores a value under a key. TryGetValue answers [ found, value ].</span>
+	cacheSet(oCache,<span class="s">"user:1"</span>,<span class="s">"Ann"</span>,<span class="k">NULL</span>)
+	aResult = oCache.<span class="f">TryGetValue</span>(<span class="s">"user:1"</span>)
+	? <span class="s">"1. found: "</span> + aResult[<span class="n">1</span>] + <span class="s">", value: "</span> + aResult[<span class="n">2</span>]
+	? <span class="s">"   a key that was never stored: found = "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"user:99"</span>)[<span class="n">1</span>]
+	? <span class="s">"   entries in the cache: "</span> + oCache.Count
+
+	<span class="c"># 2. Absolute expiration: the value lives for a fixed time after it was stored. After that it is gone, even if it was used.</span>
+	oOptions = <span class="k">new</span> <span class="t">MemoryCacheEntryOptions</span>()
+	oOptions.AbsoluteExpirationRelativeToNow = <span class="f">dnStatic</span>(<span class="s">"System.TimeSpan"</span>,<span class="s">"FromMilliseconds"</span>,[<span class="n">500</span>])
+	cacheSet(oCache,<span class="s">"price"</span>,<span class="n">9.99</span>,oOptions)
+	? nl + <span class="s">"2. right after storing, the price is there:  "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"price"</span>)[<span class="n">1</span>]
+	sleepMs(<span class="n">900</span>)
+	? <span class="s">"   after 900 ms (the limit was 500 ms):   "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"price"</span>)[<span class="n">1</span>]
+
+	<span class="c"># 3. Sliding expiration: the time starts again every time the value is READ. A value that is used often stays, one that is</span>
+	<span class="c">#    not used goes. (Good for sessions and for caches of things that are used in bursts.)</span>
+	oSliding = <span class="k">new</span> <span class="t">MemoryCacheEntryOptions</span>()
+	oSliding.SlidingExpiration = <span class="f">dnStatic</span>(<span class="s">"System.TimeSpan"</span>,<span class="s">"FromMilliseconds"</span>,[<span class="n">1000</span>])
+	cacheSet(oCache,<span class="s">"session"</span>,<span class="s">"token-123"</span>,oSliding)
+	cResult = <span class="s">""</span>
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> <span class="n">4</span>
+		sleepMs(<span class="n">300</span>)                                  <span class="c"># 300 ms each time: less than 1000, so every read renews the time</span>
+		cResult += <span class="s">""</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"session"</span>)[<span class="n">1</span>] + <span class="s">" "</span>
+	<span class="k">next</span>
+	? nl + <span class="s">"3. read every 300 ms with sliding time of 1000 ms: "</span> + cResult + <span class="s">"(it stays: 1 = found)"</span>
+	sleepMs(<span class="n">1500</span>)
+	? <span class="s">"   not read for 1500 ms: found = "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"session"</span>)[<span class="n">1</span>]
+
+	<span class="c"># 4. GetOrCreate: "give me the value, and make it if it is missing". The function that makes the value is the slow work: it runs</span>
+	<span class="c">#    only on the first request (a Ring function that .NET calls during this call).</span>
+	cFirst = oCache.<span class="f">GetOrCreate</span>([ :key = <span class="s">"report"</span>, :factory = <span class="f">dnCallback</span>(<span class="s">"slowReport"</span>) ])
+	cSecond = oCache.<span class="f">GetOrCreate</span>([ :key = <span class="s">"report"</span>, :factory = <span class="f">dnCallback</span>(<span class="s">"slowReport"</span>) ])
+	? nl + <span class="s">"4. the report was made "</span> + nRuns + <span class="s">" time(s) for two requests: "</span> + cFirst + <span class="s">" / "</span> + cSecond
+
+	<span class="c"># 5. Remove and Clear (Compact removes a part): a value that changed in the database must leave the cache, or the old one is served</span>
+	oCache.<span class="f">Remove</span>(<span class="s">"user:1"</span>)
+	? nl + <span class="s">"5. after Remove, user:1 is found: "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"user:1"</span>)[<span class="n">1</span>]
+	oCache.<span class="f">Clear</span>()
+	? <span class="s">"   after Clear, entries: "</span> + oCache.Count
+
+	<span class="c"># 6. A cache does not know when the real data changes. Two rules: never cache what must be exact (a bank balance), and give every</span>
+	<span class="c">#    value an expiration, so that the worst case is a value that is a few seconds old.</span>
+	oCache.<span class="f">Dispose</span>()
+
+<span class="k">func</span> <span class="f">sleepMs</span> nMilliseconds
+
+	<span class="k">new</span> <span class="t">Thread</span>().<span class="f">Sleep</span>(nMilliseconds)
+
+<span class="k">func</span> <span class="f">slowReport</span> aArguments
+
+	nRuns++                         <span class="c"># (nRuns is a global variable of the program)</span>
+	<span class="k">return</span> <span class="s">"report #"</span> + nRuns
+
+<span class="c"># Set has two forms: with and without the options of the entry</span>
+<span class="k">func</span> <span class="f">cacheSet</span> oCache,cKey,xValue,oOptions
+
+	<span class="k">if</span> isNull(oOptions)
+		<span class="k">return</span> oCache.<span class="f">Set</span>([ :key = cKey, :value = xValue ])
+	<span class="k">ok</span>
+	<span class="k">return</span> oCache.<span class="f">Set</span>([ :key = cKey, :value = xValue, :options = oOptions ])</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. found: 1, value: Ann
+   a key that was never stored: found = 0
+   entries in the cache: 1
+
+2. right after storing, the price is there:  1
+   after 900 ms (the limit was 500 ms):   0
+
+3. read every 300 ms with sliding time of 1000 ms: 1 1 1 1 (it stays: 1 = found)
+   not read for 1500 ms: found = 0
+
+4. the report was made 1 time(s) for two requests: report #1 / report #1
+
+5. after Remove, user:1 is found: 0
+   after Clear, entries: 0</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>dnStatic</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-cache">The cache<a class="anchor" href="#the-cache">#</a></h3>
+<p><code>MemoryCache</code> (namespace <code>Microsoft.Extensions.Caching.Memory</code>) is a dictionary with rules. Each value has a <strong>key</strong> (a text such as <code>"user:1"</code>) and may have an expiration. <code>TryGetValue(key)</code> answers <code>[ found, value ]</code> (the tutorial <a href="tut-81-network-tools.html">Network tools</a> explains the out value). A cache is made with options (<code>MemoryCacheOptions</code>), for example a size limit; the defaults are fine for this lesson.</p>
+<h3 id="extension-methods">Extension methods<a class="anchor" href="#extension-methods">#</a></h3>
+<p><code>Set</code> and <code>GetOrCreate</code> are <strong>extension methods</strong> of the static class <code>CacheExtensions</code>, not methods of <code>MemoryCache</code> itself, but the class <code>MemoryCache</code> has them, so they are called on the cache like its own methods: <code>oCache.Set([ :key = "user:1", :value = "Ann" ])</code>. They have several forms (with or without the options of the entry), so a name takes one parameter: the <strong>names</strong> of the parameters choose the form, as for every overloaded method (<a href="concepts.html">Core concepts</a>). The program wraps <code>Set</code> in the function <code>cacheSet</code>. The same holds for many helpers of <code>Microsoft.Extensions.*</code>; the class reference lists them with the class that they extend (<a href="api.html">Class reference</a>).</p>
+<h3 id="absolute-expiration">Absolute expiration<a class="anchor" href="#absolute-expiration">#</a></h3>
+<p><code>AbsoluteExpirationRelativeToNow = TimeSpan</code> removes the value a fixed time after it was stored, even if it was used all the time. After 900 ms a value with a limit of 500 ms is gone. Use it when the value goes <strong>stale</strong>: a price list, a weather report, a result of a query that can change.</p>
+<h3 id="sliding-expiration">Sliding expiration<a class="anchor" href="#sliding-expiration">#</a></h3>
+<p><code>SlidingExpiration = TimeSpan</code> starts the time again every time the value is <strong>read</strong>. In step 3 the session is read every 300 ms and the limit is 1000 ms, so it stays; after 1500 ms without a read it is gone. Use it for things that should live while they are used: sessions, a cache of recent items. A value with only a sliding time can live for ever if it is always used, so combine it with an absolute limit (both can be set) when the data must be renewed.</p>
+<h3 id="getorcreate">GetOrCreate<a class="anchor" href="#getorcreate">#</a></h3>
+<p><code>GetOrCreate(key, factory)</code> says: <em>give me the value, and make it if it is missing</em>. The factory is the slow work. It is a Ring function that .NET calls during the call, made with <code>dnCallback("slowReport")</code>; it receives the arguments in a list and returns the value. For two requests the report is made <strong>once</strong>. (In a program with many threads two requests could both find the value missing and both make it; <code>MemoryCache</code> does not stop that, a cache that must make a value exactly once needs a lock.)</p>
+<h3 id="remove-and-clear">Remove and Clear<a class="anchor" href="#remove-and-clear">#</a></h3>
+<p>When the real data changes (a record is updated in the database), remove its key (<code>Remove</code>), or the old value is served until it expires. <code>Clear</code> removes everything; <code>Compact(0.25)</code> removes a part. A change, then <code>Remove</code>, then the next read makes the fresh value: that is the usual pattern.</p>
+<h3 id="when-not-to-cache">When not to cache<a class="anchor" href="#when-not-to-cache">#</a></h3>
+<p>A cache gives <strong>old</strong> data on purpose. Do not cache what must be exact (a bank balance, a stock count at the moment of an order), give every value an expiration so that the worst case is a value that is only a few seconds old, and watch the size: a cache without a limit that keeps a value for every user is a memory leak (the tutorial <a href="tut-98-memory.html">Memory and the garbage collector</a>). Also remember that the cache lives <em>inside the program</em>: two copies of the program have two caches that can disagree.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a cache is a dictionary with expiration rules,</li><li><code>Set</code> and <code>GetOrCreate</code> are extension methods, called as methods of the cache,</li><li>absolute expiration for stale data, sliding expiration for data in use,</li><li><code>GetOrCreate</code> with a Ring function as the factory,</li><li>remove entries when the data changes, and know what not to cache.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Cache the result of a slow function (the tutorial <a href="tut-53-speed.html">Speed — measure first</a>) and measure the time of the first and the second call.</li><li>Combine a sliding and an absolute expiration for a session.</li><li>Count how often <code>GetOrCreate</code> found the value (a <em>hit</em>) and how often it made it (a <em>miss</em>) and print the hit rate.</li><li>Set a size limit (<code>MemoryCacheOptions.SizeLimit</code>) and see what happens when entries are added without a size.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-110-dependency-injection.html">Dependency injection</a></p>
+<div class="pager"><a href="tut-111-configuration.html"><small>Previous</small>Configuration</a><a class="next" href="tut-110-dependency-injection.html"><small>Next</small>Dependency injection</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

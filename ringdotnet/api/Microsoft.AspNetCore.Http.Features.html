@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.AspNetCore.Http.Features · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.AspNetCore.Http.Features</h1>
+<p class="lead">57 wrapped types. Load them with <code>using { "Microsoft.AspNetCore.Http.Features" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-DefaultSessionFeature">DefaultSessionFeature</a> <a href="#c-FeatureCollection">FeatureCollection</a> <a href="#c-FeatureCollectionExtensions">FeatureCollectionExtensions</a> <a href="#c-FeatureReference">FeatureReference</a> <a href="#c-FeatureReferences">FeatureReferences</a> <a href="#c-FormFeature">FormFeature</a> <a href="#c-FormOptions">FormOptions</a> <a href="#c-HttpConnectionFeature">HttpConnectionFeature</a> <a href="#c-HttpRequestFeature">HttpRequestFeature</a> <a href="#c-HttpRequestIdentifierFeature">HttpRequestIdentifierFeature</a> <a href="#c-HttpRequestLifetimeFeature">HttpRequestLifetimeFeature</a> <a href="#c-HttpResponseFeature">HttpResponseFeature</a> <a href="#c-IBadRequestExceptionFeature">IBadRequestExceptionFeature</a> <a href="#c-IEndpointFeature">IEndpointFeature</a> <a href="#c-IFeatureCollection">IFeatureCollection</a> <a href="#c-IFormFeature">IFormFeature</a> <a href="#c-IHttpActivityFeature">IHttpActivityFeature</a> <a href="#c-IHttpBodyControlFeature">IHttpBodyControlFeature</a> <a href="#c-IHttpConnectionFeature">IHttpConnectionFeature</a> <a href="#c-IHttpExtendedConnectFeature">IHttpExtendedConnectFeature</a> <a href="#c-IHttpMaxRequestBodySizeFeature">IHttpMaxRequestBodySizeFeature</a> <a href="#c-IHttpMetricsTagsFeature">IHttpMetricsTagsFeature</a> <a href="#c-IHttpRequestBodyDetectionFeature">IHttpRequestBodyDetectionFeature</a> <a href="#c-IHttpRequestFeature">IHttpRequestFeature</a> <a href="#c-IHttpRequestIdentifierFeature">IHttpRequestIdentifierFeature</a> <a href="#c-IHttpRequestLifetimeFeature">IHttpRequestLifetimeFeature</a> <a href="#c-IHttpRequestTrailersFeature">IHttpRequestTrailersFeature</a> <a href="#c-IHttpResetFeature">IHttpResetFeature</a> <a href="#c-IHttpResponseBodyFeature">IHttpResponseBodyFeature</a> <a href="#c-IHttpResponseFeature">IHttpResponseFeature</a> <a href="#c-IHttpResponseTrailersFeature">IHttpResponseTrailersFeature</a> <a href="#c-IHttpsCompressionFeature">IHttpsCompressionFeature</a> <a href="#c-IHttpUpgradeFeature">IHttpUpgradeFeature</a> <a href="#c-IHttpWebSocketFeature">IHttpWebSocketFeature</a> <a href="#c-IHttpWebTransportFeature">IHttpWebTransportFeature</a> <a href="#c-IItemsFeature">IItemsFeature</a> <a href="#c-IQueryFeature">IQueryFeature</a> <a href="#c-IRequestBodyPipeFeature">IRequestBodyPipeFeature</a> <a href="#c-IRequestCookiesFeature">IRequestCookiesFeature</a> <a href="#c-IResponseCookiesFeature">IResponseCookiesFeature</a> <a href="#c-IRouteValuesFeature">IRouteValuesFeature</a> <a href="#c-IServerVariablesFeature">IServerVariablesFeature</a> <a href="#c-IServiceProvidersFeature">IServiceProvidersFeature</a> <a href="#c-ISessionFeature">ISessionFeature</a> <a href="#c-ItemsFeature">ItemsFeature</a> <a href="#c-ITlsConnectionFeature">ITlsConnectionFeature</a> <a href="#c-ITlsTokenBindingFeature">ITlsTokenBindingFeature</a> <a href="#c-ITrackingConsentFeature">ITrackingConsentFeature</a> <a href="#c-IWebTransportSession">IWebTransportSession</a> <a href="#c-QueryFeature">QueryFeature</a> <a href="#c-RequestBodyPipeFeature">RequestBodyPipeFeature</a> <a href="#c-RequestCookiesFeature">RequestCookiesFeature</a> <a href="#c-RequestServicesFeature">RequestServicesFeature</a> <a href="#c-ResponseCookiesFeature">ResponseCookiesFeature</a> <a href="#c-RouteValuesFeature">RouteValuesFeature</a> <a href="#c-ServiceProvidersFeature">ServiceProvidersFeature</a> <a href="#c-TlsConnectionFeature">TlsConnectionFeature</a></div><details class="cls" id="c-DefaultSessionFeature"><summary><b>DefaultSessionFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.DefaultSessionFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultSessionFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultSessionFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultSessionFeature().@New([ :param = value ])</code> or <code>dnNew("DefaultSessionFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Session</code></td><td><code>ISession</code></td><td>read, write</td><td><code>o.Session</code> <code>o.Session = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FeatureCollection"><summary><b>FeatureCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FeatureCollection</code> · assembly <code>Microsoft.Extensions.Features</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FeatureCollection()</code></td></tr><tr><td><code>new FeatureCollection(int initialCapacity)</code></td></tr><tr><td><code>new FeatureCollection(IFeatureCollection defaults)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FeatureCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FeatureCollection().@New([ :param = value ])</code> or <code>dnNew("FeatureCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Revision</code></td><td><code>int</code></td><td>read</td><td><code>o.Revision</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(Type key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Get</code></td><td><code>@Get(NULL)</code></td><td><code>TFeature Get&lt;TFeature&gt;()</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;KeyValuePair&lt;Type, object&gt;&gt; GetEnumerator()</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1)</code></td><td><code>void Set&lt;TFeature&gt;(TFeature instance)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FeatureCollectionExtensions"><summary><b>FeatureCollectionExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FeatureCollectionExtensions</code> · assembly <code>Microsoft.Extensions.Features</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetRequiredFeature</code></td><td><code>GetRequiredFeature(value)</code><br><code>GetRequiredFeature([ :featureCollection = … ])</code><br><code>GetRequiredFeature([ :featureCollection = …, :key = … ])</code></td><td><code>static TFeature GetRequiredFeature&lt;TFeature&gt;(IFeatureCollection featureCollection)</code><br><code>static object GetRequiredFeature(IFeatureCollection featureCollection, Type key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FeatureReference"><summary><b>FeatureReference</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FeatureReference`1</code> · assembly <code>Microsoft.Extensions.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Default</code></td><td><code>FeatureReference&lt;T&gt;</code></td><td>read · static</td><td><span class="muted">—</span></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FeatureReferences"><summary><b>FeatureReferences</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FeatureReferences`1</code> · assembly <code>Microsoft.Extensions.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Collection</code></td><td><code>IFeatureCollection</code></td><td>read</td><td><code>o.Collection</code></td></tr><tr><td><code>Revision</code></td><td><code>int</code></td><td>read</td><td><code>o.Revision</code></td></tr><tr><td><code>Cache</code></td><td><code>TCache</code></td><td>read, write</td><td><code>o.Cache</code> <code>o.Cache = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Fetch</code></td><td><code>Fetch([ :cached = …, :factory = … ])</code><br><code>Fetch([ :cached = …, :state = …, :factory = … ])</code></td><td><code>TFeature Fetch&lt;TFeature, TState&gt;(ref TFeature cached, TState state, Func&lt;TState, TFeature&gt; factory)</code><br><code>TFeature Fetch&lt;TFeature&gt;(ref TFeature cached, Func&lt;IFeatureCollection, TFeature&gt; factory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FormFeature"><summary><b>FormFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FormFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormFeature(IFormCollection form)</code></td></tr><tr><td><code>new FormFeature(HttpRequest request)</code></td></tr><tr><td><code>new FormFeature(HttpRequest request, FormOptions options)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormFeature().@New([ :param = value ])</code> or <code>dnNew("FormFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HasFormContentType</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasFormContentType</code></td></tr><tr><td><code>Form</code></td><td><code>IFormCollection</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ReadForm</code></td><td><code>ReadForm()</code></td><td><code>IFormCollection ReadForm()</code></td></tr><tr><td><code>ReadFormAsync</code></td><td><code>ReadFormAsync(NULL)</code><br><code>ReadFormAsync(value)</code><br><code>ReadFormAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;IFormCollection&gt; ReadFormAsync()</code><br><code>Task&lt;IFormCollection&gt; ReadFormAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FormOptions"><summary><b>FormOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.FormOptions</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormOptions().@New([ :param = value ])</code> or <code>dnNew("FormOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BufferBody</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.BufferBody</code> <code>o.BufferBody = v</code></td></tr><tr><td><code>MemoryBufferThreshold</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MemoryBufferThreshold</code> <code>o.MemoryBufferThreshold = v</code></td></tr><tr><td><code>BufferBodyLengthLimit</code></td><td><code>long</code></td><td>read, write</td><td><code>o.BufferBodyLengthLimit</code> <code>o.BufferBodyLengthLimit = v</code></td></tr><tr><td><code>ValueCountLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.ValueCountLimit</code> <code>o.ValueCountLimit = v</code></td></tr><tr><td><code>KeyLengthLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.KeyLengthLimit</code> <code>o.KeyLengthLimit = v</code></td></tr><tr><td><code>ValueLengthLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.ValueLengthLimit</code> <code>o.ValueLengthLimit = v</code></td></tr><tr><td><code>MultipartBoundaryLengthLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MultipartBoundaryLengthLimit</code> <code>o.MultipartBoundaryLengthLimit = v</code></td></tr><tr><td><code>MultipartHeadersCountLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MultipartHeadersCountLimit</code> <code>o.MultipartHeadersCountLimit = v</code></td></tr><tr><td><code>MultipartHeadersLengthLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MultipartHeadersLengthLimit</code> <code>o.MultipartHeadersLengthLimit = v</code></td></tr><tr><td><code>MultipartBodyLengthLimit</code></td><td><code>long</code></td><td>read, write</td><td><code>o.MultipartBodyLengthLimit</code> <code>o.MultipartBodyLengthLimit = v</code></td></tr><tr><td><code>DefaultMemoryBufferThreshold</code></td><td><code>int</code></td><td>constant · static</td><td><code>o.DefaultMemoryBufferThreshold</code></td></tr><tr><td><code>DefaultBufferBodyLengthLimit</code></td><td><code>int</code></td><td>constant · static</td><td><code>o.DefaultBufferBodyLengthLimit</code></td></tr><tr><td><code>DefaultMultipartBoundaryLengthLimit</code></td><td><code>int</code></td><td>constant · static</td><td><code>o.DefaultMultipartBoundaryLengthLimit</code></td></tr><tr><td><code>DefaultMultipartBodyLengthLimit</code></td><td><code>long</code></td><td>constant · static</td><td><code>o.DefaultMultipartBodyLengthLimit</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpConnectionFeature"><summary><b>HttpConnectionFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.HttpConnectionFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpConnectionFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpConnectionFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpConnectionFeature().@New([ :param = value ])</code> or <code>dnNew("HttpConnectionFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ConnectionId</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ConnectionId</code> <code>o.ConnectionId = v</code></td></tr><tr><td><code>LocalIpAddress</code></td><td><code>IPAddress</code></td><td>read, write</td><td><code>o.LocalIpAddress</code> <code>o.LocalIpAddress = v</code></td></tr><tr><td><code>LocalPort</code></td><td><code>int</code></td><td>read, write</td><td><code>o.LocalPort</code> <code>o.LocalPort = v</code></td></tr><tr><td><code>RemoteIpAddress</code></td><td><code>IPAddress</code></td><td>read, write</td><td><code>o.RemoteIpAddress</code> <code>o.RemoteIpAddress = v</code></td></tr><tr><td><code>RemotePort</code></td><td><code>int</code></td><td>read, write</td><td><code>o.RemotePort</code> <code>o.RemotePort = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpRequestFeature"><summary><b>HttpRequestFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.HttpRequestFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpRequestFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpRequestFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpRequestFeature().@New([ :param = value ])</code> or <code>dnNew("HttpRequestFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Protocol</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Protocol</code> <code>o.Protocol = v</code></td></tr><tr><td><code>Scheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Scheme</code> <code>o.Scheme = v</code></td></tr><tr><td><code>Method</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Method</code> <code>o.Method = v</code></td></tr><tr><td><code>PathBase</code></td><td><code>string</code></td><td>read, write</td><td><code>o.PathBase</code> <code>o.PathBase = v</code></td></tr><tr><td><code>Path</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Path</code> <code>o.Path = v</code></td></tr><tr><td><code>QueryString</code></td><td><code>string</code></td><td>read, write</td><td><code>o.QueryString</code> <code>o.QueryString = v</code></td></tr><tr><td><code>RawTarget</code></td><td><code>string</code></td><td>read, write</td><td><code>o.RawTarget</code> <code>o.RawTarget = v</code></td></tr><tr><td><code>Headers</code></td><td><code>IHeaderDictionary</code></td><td>read, write</td><td><code>o.Headers</code> <code>o.Headers = v</code></td></tr><tr><td><code>Body</code></td><td><code>Stream</code></td><td>read, write</td><td><code>o.Body</code> <code>o.Body = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpRequestIdentifierFeature"><summary><b>HttpRequestIdentifierFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.HttpRequestIdentifierFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpRequestIdentifierFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpRequestIdentifierFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpRequestIdentifierFeature().@New([ :param = value ])</code> or <code>dnNew("HttpRequestIdentifierFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TraceIdentifier</code></td><td><code>string</code></td><td>read, write</td><td><code>o.TraceIdentifier</code> <code>o.TraceIdentifier = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpRequestLifetimeFeature"><summary><b>HttpRequestLifetimeFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpRequestLifetimeFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpRequestLifetimeFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpRequestLifetimeFeature().@New([ :param = value ])</code> or <code>dnNew("HttpRequestLifetimeFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestAborted</code></td><td><code>CancellationToken</code></td><td>read, write</td><td><code>o.RequestAborted</code> <code>o.RequestAborted = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abort</code></td><td><code>Abort()</code></td><td><code>void Abort()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpResponseFeature"><summary><b>HttpResponseFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.HttpResponseFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpResponseFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpResponseFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpResponseFeature().@New([ :param = value ])</code> or <code>dnNew("HttpResponseFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>StatusCode</code></td><td><code>int</code></td><td>read, write</td><td><code>o.StatusCode</code> <code>o.StatusCode = v</code></td></tr><tr><td><code>ReasonPhrase</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReasonPhrase</code> <code>o.ReasonPhrase = v</code></td></tr><tr><td><code>Headers</code></td><td><code>IHeaderDictionary</code></td><td>read, write</td><td><code>o.Headers</code> <code>o.Headers = v</code></td></tr><tr><td><code>Body</code></td><td><code>Stream</code></td><td>read, write</td><td><code>o.Body</code> <code>o.Body = v</code></td></tr><tr><td><code>HasStarted</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasStarted</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnCompleted</code></td><td><code>OnCompleted(p1,p2)</code></td><td><code>void OnCompleted(Func&lt;object, Task&gt; callback, object state)</code></td></tr><tr><td><code>OnStarting</code></td><td><code>OnStarting(p1,p2)</code></td><td><code>void OnStarting(Func&lt;object, Task&gt; callback, object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IBadRequestExceptionFeature"><summary><b>IBadRequestExceptionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IBadRequestExceptionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Error</code></td><td><code>Exception</code></td><td>read</td><td><code>o.Error</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEndpointFeature"><summary><b>IEndpointFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IEndpointFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Endpoint</code></td><td><code>Endpoint</code></td><td>read, write</td><td><code>o.Endpoint</code> <code>o.Endpoint = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IFeatureCollection"><summary><b>IFeatureCollection</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IFeatureCollection</code> · assembly <code>Microsoft.Extensions.Features</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>Revision</code></td><td><code>int</code></td><td>read</td><td><code>o.Revision</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(Type key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Get</code></td><td><code>@Get(NULL)</code></td><td><code>TFeature Get&lt;TFeature&gt;()</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1)</code></td><td><code>void Set&lt;TFeature&gt;(TFeature instance)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IFormFeature"><summary><b>IFormFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IFormFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HasFormContentType</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasFormContentType</code></td></tr><tr><td><code>Form</code></td><td><code>IFormCollection</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ReadForm</code></td><td><code>ReadForm()</code></td><td><code>IFormCollection ReadForm()</code></td></tr><tr><td><code>ReadFormAsync</code></td><td><code>ReadFormAsync(p1)</code></td><td><code>Task&lt;IFormCollection&gt; ReadFormAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpActivityFeature"><summary><b>IHttpActivityFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpActivityFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Activity</code></td><td><code>Activity</code></td><td>read, write</td><td><code>o.Activity</code> <code>o.Activity = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpBodyControlFeature"><summary><b>IHttpBodyControlFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpBodyControlFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowSynchronousIO</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowSynchronousIO</code> <code>o.AllowSynchronousIO = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpConnectionFeature"><summary><b>IHttpConnectionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ConnectionId</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ConnectionId</code> <code>o.ConnectionId = v</code></td></tr><tr><td><code>RemoteIpAddress</code></td><td><code>IPAddress</code></td><td>read, write</td><td><code>o.RemoteIpAddress</code> <code>o.RemoteIpAddress = v</code></td></tr><tr><td><code>LocalIpAddress</code></td><td><code>IPAddress</code></td><td>read, write</td><td><code>o.LocalIpAddress</code> <code>o.LocalIpAddress = v</code></td></tr><tr><td><code>RemotePort</code></td><td><code>int</code></td><td>read, write</td><td><code>o.RemotePort</code> <code>o.RemotePort = v</code></td></tr><tr><td><code>LocalPort</code></td><td><code>int</code></td><td>read, write</td><td><code>o.LocalPort</code> <code>o.LocalPort = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpExtendedConnectFeature"><summary><b>IHttpExtendedConnectFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpExtendedConnectFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsExtendedConnect</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsExtendedConnect</code></td></tr><tr><td><code>Protocol</code></td><td><code>string</code></td><td>read</td><td><code>o.Protocol</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AcceptAsync</code></td><td><code>AcceptAsync()</code></td><td><code>ValueTask&lt;Stream&gt; AcceptAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpMaxRequestBodySizeFeature"><summary><b>IHttpMaxRequestBodySizeFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>MaxRequestBodySize</code></td><td><code>long?</code></td><td>read, write</td><td><code>o.MaxRequestBodySize</code> <code>o.MaxRequestBodySize = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpMetricsTagsFeature"><summary><b>IHttpMetricsTagsFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Tags</code></td><td><code>ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;</code></td><td>read</td><td><code>o.Tags</code></td></tr><tr><td><code>MetricsDisabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.MetricsDisabled</code> <code>o.MetricsDisabled = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpRequestBodyDetectionFeature"><summary><b>IHttpRequestBodyDetectionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CanHaveBody</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanHaveBody</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpRequestFeature"><summary><b>IHttpRequestFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpRequestFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Protocol</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Protocol</code> <code>o.Protocol = v</code></td></tr><tr><td><code>Scheme</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Scheme</code> <code>o.Scheme = v</code></td></tr><tr><td><code>Method</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Method</code> <code>o.Method = v</code></td></tr><tr><td><code>PathBase</code></td><td><code>string</code></td><td>read, write</td><td><code>o.PathBase</code> <code>o.PathBase = v</code></td></tr><tr><td><code>Path</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Path</code> <code>o.Path = v</code></td></tr><tr><td><code>QueryString</code></td><td><code>string</code></td><td>read, write</td><td><code>o.QueryString</code> <code>o.QueryString = v</code></td></tr><tr><td><code>RawTarget</code></td><td><code>string</code></td><td>read, write</td><td><code>o.RawTarget</code> <code>o.RawTarget = v</code></td></tr><tr><td><code>Headers</code></td><td><code>IHeaderDictionary</code></td><td>read, write</td><td><code>o.Headers</code> <code>o.Headers = v</code></td></tr><tr><td><code>Body</code></td><td><code>Stream</code></td><td>read, write</td><td><code>o.Body</code> <code>o.Body = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpRequestIdentifierFeature"><summary><b>IHttpRequestIdentifierFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpRequestIdentifierFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TraceIdentifier</code></td><td><code>string</code></td><td>read, write</td><td><code>o.TraceIdentifier</code> <code>o.TraceIdentifier = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpRequestLifetimeFeature"><summary><b>IHttpRequestLifetimeFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestAborted</code></td><td><code>CancellationToken</code></td><td>read, write</td><td><code>o.RequestAborted</code> <code>o.RequestAborted = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abort</code></td><td><code>Abort()</code></td><td><code>void Abort()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpRequestTrailersFeature"><summary><b>IHttpRequestTrailersFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpRequestTrailersFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Available</code></td><td><code>bool</code></td><td>read</td><td><code>o.Available</code></td></tr><tr><td><code>Trailers</code></td><td><code>IHeaderDictionary</code></td><td>read</td><td><code>o.Trailers</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpResetFeature"><summary><b>IHttpResetFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpResetFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Reset</code></td><td><code>Reset(p1)</code></td><td><code>void Reset(int errorCode)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpResponseBodyFeature"><summary><b>IHttpResponseBodyFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Stream</code></td><td><code>Stream</code></td><td>read</td><td><code>o.Stream</code></td></tr><tr><td><code>Writer</code></td><td><code>PipeWriter</code></td><td>read</td><td><code>o.Writer</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CompleteAsync</code></td><td><code>CompleteAsync()</code></td><td><code>Task CompleteAsync()</code></td></tr><tr><td><code>DisableBuffering</code></td><td><code>DisableBuffering()</code></td><td><code>void DisableBuffering()</code></td></tr><tr><td><code>SendFileAsync</code></td><td><code>SendFileAsync([ :path = …, :offset = …, :count = …, :cancellationToken = … ])</code></td><td><code>Task SendFileAsync(string path, long offset, long? count, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>StartAsync</code></td><td><code>StartAsync(value)</code><br><code>StartAsync([ :cancellationToken = … ])</code></td><td><code>Task StartAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpResponseFeature"><summary><b>IHttpResponseFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpResponseFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>StatusCode</code></td><td><code>int</code></td><td>read, write</td><td><code>o.StatusCode</code> <code>o.StatusCode = v</code></td></tr><tr><td><code>ReasonPhrase</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ReasonPhrase</code> <code>o.ReasonPhrase = v</code></td></tr><tr><td><code>Headers</code></td><td><code>IHeaderDictionary</code></td><td>read, write</td><td><code>o.Headers</code> <code>o.Headers = v</code></td></tr><tr><td><code>Body</code></td><td><code>Stream</code></td><td>read, write</td><td><code>o.Body</code> <code>o.Body = v</code></td></tr><tr><td><code>HasStarted</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasStarted</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnCompleted</code></td><td><code>OnCompleted(p1,p2)</code></td><td><code>void OnCompleted(Func&lt;object, Task&gt; callback, object state)</code></td></tr><tr><td><code>OnStarting</code></td><td><code>OnStarting(p1,p2)</code></td><td><code>void OnStarting(Func&lt;object, Task&gt; callback, object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpResponseTrailersFeature"><summary><b>IHttpResponseTrailersFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpResponseTrailersFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Trailers</code></td><td><code>IHeaderDictionary</code></td><td>read, write</td><td><code>o.Trailers</code> <code>o.Trailers = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpsCompressionFeature"><summary><b>IHttpsCompressionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpsCompressionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Mode</code></td><td><code>HttpsCompressionMode</code></td><td>read, write</td><td><code>o.Mode</code> <code>o.Mode = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpUpgradeFeature"><summary><b>IHttpUpgradeFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsUpgradableRequest</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsUpgradableRequest</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UpgradeAsync</code></td><td><code>UpgradeAsync()</code></td><td><code>Task&lt;Stream&gt; UpgradeAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpWebSocketFeature"><summary><b>IHttpWebSocketFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsWebSocketRequest</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsWebSocketRequest</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AcceptAsync</code></td><td><code>AcceptAsync(p1)</code></td><td><code>Task&lt;WebSocket&gt; AcceptAsync(WebSocketAcceptContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHttpWebTransportFeature"><summary><b>IHttpWebTransportFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IHttpWebTransportFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsWebTransportRequest</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsWebTransportRequest</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AcceptAsync</code></td><td><code>AcceptAsync(value)</code><br><code>AcceptAsync([ :cancellationToken = … ])</code></td><td><code>ValueTask&lt;IWebTransportSession&gt; AcceptAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IItemsFeature"><summary><b>IItemsFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IItemsFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read, write</td><td><code>o.Items</code> <code>o.Items = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IQueryFeature"><summary><b>IQueryFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IQueryFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Query</code></td><td><code>IQueryCollection</code></td><td>read, write</td><td><code>o.Query</code> <code>o.Query = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRequestBodyPipeFeature"><summary><b>IRequestBodyPipeFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IRequestBodyPipeFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Reader</code></td><td><code>PipeReader</code></td><td>read</td><td><code>o.Reader</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRequestCookiesFeature"><summary><b>IRequestCookiesFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IRequestCookiesFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Cookies</code></td><td><code>IRequestCookieCollection</code></td><td>read, write</td><td><code>o.Cookies</code> <code>o.Cookies = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IResponseCookiesFeature"><summary><b>IResponseCookiesFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IResponseCookiesFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Cookies</code></td><td><code>IResponseCookies</code></td><td>read</td><td><code>o.Cookies</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRouteValuesFeature"><summary><b>IRouteValuesFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IRouteValuesFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RouteValues</code></td><td><code>RouteValueDictionary</code></td><td>read, write</td><td><code>o.RouteValues</code> <code>o.RouteValues = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IServerVariablesFeature"><summary><b>IServerVariablesFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IServerVariablesFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Indexer</h4><p><code>o.Item(string variableName)</code> → <code>string</code> · <code>o.SetItem(variableName,value)</code></p>
+</div></details>
+<details class="cls" id="c-IServiceProvidersFeature"><summary><b>IServiceProvidersFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IServiceProvidersFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.RequestServices</code> <code>o.RequestServices = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ISessionFeature"><summary><b>ISessionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ISessionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Session</code></td><td><code>ISession</code></td><td>read, write</td><td><code>o.Session</code> <code>o.Session = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ItemsFeature"><summary><b>ItemsFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ItemsFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ItemsFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ItemsFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ItemsFeature().@New([ :param = value ])</code> or <code>dnNew("ItemsFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read, write</td><td><code>o.Items</code> <code>o.Items = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ITlsConnectionFeature"><summary><b>ITlsConnectionFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ClientCertificate</code></td><td><code>X509Certificate2</code></td><td>read, write</td><td><code>o.ClientCertificate</code> <code>o.ClientCertificate = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetClientCertificateAsync</code></td><td><code>GetClientCertificateAsync(p1)</code></td><td><code>Task&lt;X509Certificate2&gt; GetClientCertificateAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ITlsTokenBindingFeature"><summary><b>ITlsTokenBindingFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ITlsTokenBindingFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetProvidedTokenBindingId</code></td><td><code>GetProvidedTokenBindingId()</code></td><td><code>byte[] GetProvidedTokenBindingId()</code></td></tr><tr><td><code>GetReferredTokenBindingId</code></td><td><code>GetReferredTokenBindingId()</code></td><td><code>byte[] GetReferredTokenBindingId()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ITrackingConsentFeature"><summary><b>ITrackingConsentFeature</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ITrackingConsentFeature</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsConsentNeeded</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsConsentNeeded</code></td></tr><tr><td><code>HasConsent</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasConsent</code></td></tr><tr><td><code>CanTrack</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanTrack</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateConsentCookie</code></td><td><code>CreateConsentCookie()</code></td><td><code>string CreateConsentCookie()</code></td></tr><tr><td><code>GrantConsent</code></td><td><code>GrantConsent()</code></td><td><code>void GrantConsent()</code></td></tr><tr><td><code>WithdrawConsent</code></td><td><code>WithdrawConsent()</code></td><td><code>void WithdrawConsent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IWebTransportSession"><summary><b>IWebTransportSession</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.IWebTransportSession</code> · assembly <code>Microsoft.AspNetCore.Http.Features</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SessionId</code></td><td><code>long</code></td><td>read</td><td><code>o.SessionId</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abort</code></td><td><code>Abort(p1)</code></td><td><code>void Abort(int errorCode)</code></td></tr><tr><td><code>AcceptStreamAsync</code></td><td><code>AcceptStreamAsync(value)</code><br><code>AcceptStreamAsync([ :cancellationToken = … ])</code></td><td><code>ValueTask&lt;ConnectionContext&gt; AcceptStreamAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>OpenUnidirectionalStreamAsync</code></td><td><code>OpenUnidirectionalStreamAsync(value)</code><br><code>OpenUnidirectionalStreamAsync([ :cancellationToken = … ])</code></td><td><code>ValueTask&lt;ConnectionContext&gt; OpenUnidirectionalStreamAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-QueryFeature"><summary><b>QueryFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.QueryFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new QueryFeature(IQueryCollection query)</code></td></tr><tr><td><code>new QueryFeature(IFeatureCollection features)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new QueryFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new QueryFeature().@New([ :param = value ])</code> or <code>dnNew("QueryFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Query</code></td><td><code>IQueryCollection</code></td><td>read, write</td><td><code>o.Query</code> <code>o.Query = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestBodyPipeFeature"><summary><b>RequestBodyPipeFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.RequestBodyPipeFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequestBodyPipeFeature(HttpContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequestBodyPipeFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequestBodyPipeFeature().@New([ :param = value ])</code> or <code>dnNew("RequestBodyPipeFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Reader</code></td><td><code>PipeReader</code></td><td>read</td><td><code>o.Reader</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestCookiesFeature"><summary><b>RequestCookiesFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.RequestCookiesFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequestCookiesFeature(IRequestCookieCollection cookies)</code></td></tr><tr><td><code>new RequestCookiesFeature(IFeatureCollection features)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequestCookiesFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequestCookiesFeature().@New([ :param = value ])</code> or <code>dnNew("RequestCookiesFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Cookies</code></td><td><code>IRequestCookieCollection</code></td><td>read, write</td><td><code>o.Cookies</code> <code>o.Cookies = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestServicesFeature"><summary><b>RequestServicesFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.RequestServicesFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequestServicesFeature(HttpContext context, IServiceScopeFactory scopeFactory)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequestServicesFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequestServicesFeature().@New([ :param = value ])</code> or <code>dnNew("RequestServicesFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.RequestServices</code> <code>o.RequestServices = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ResponseCookiesFeature"><summary><b>ResponseCookiesFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResponseCookiesFeature(IFeatureCollection features)</code></td></tr><tr><td><code>new ResponseCookiesFeature(IFeatureCollection features, ObjectPool&lt;StringBuilder&gt; builderPool)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResponseCookiesFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResponseCookiesFeature().@New([ :param = value ])</code> or <code>dnNew("ResponseCookiesFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Cookies</code></td><td><code>IResponseCookies</code></td><td>read</td><td><code>o.Cookies</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RouteValuesFeature"><summary><b>RouteValuesFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.RouteValuesFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RouteValuesFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RouteValuesFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RouteValuesFeature().@New([ :param = value ])</code> or <code>dnNew("RouteValuesFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RouteValues</code></td><td><code>RouteValueDictionary</code></td><td>read, write</td><td><code>o.RouteValues</code> <code>o.RouteValues = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ServiceProvidersFeature"><summary><b>ServiceProvidersFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.ServiceProvidersFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ServiceProvidersFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ServiceProvidersFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ServiceProvidersFeature().@New([ :param = value ])</code> or <code>dnNew("ServiceProvidersFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.RequestServices</code> <code>o.RequestServices = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TlsConnectionFeature"><summary><b>TlsConnectionFeature</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Http.Features.TlsConnectionFeature</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TlsConnectionFeature()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TlsConnectionFeature(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TlsConnectionFeature().@New([ :param = value ])</code> or <code>dnNew("TlsConnectionFeature",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ClientCertificate</code></td><td><code>X509Certificate2</code></td><td>read, write</td><td><code>o.ClientCertificate</code> <code>o.ClientCertificate = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetClientCertificateAsync</code></td><td><code>GetClientCertificateAsync(p1)</code></td><td><code>Task&lt;X509Certificate2&gt; GetClientCertificateAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

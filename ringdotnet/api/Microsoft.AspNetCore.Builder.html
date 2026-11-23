@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.AspNetCore.Builder · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.AspNetCore.Builder</h1>
+<p class="lead">106 wrapped types. Load them with <code>using { "Microsoft.AspNetCore.Builder" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AntiforgeryApplicationBuilderExtensions">AntiforgeryApplicationBuilderExtensions</a> <a href="#c-ApplicationBuilder">ApplicationBuilder</a> <a href="#c-ApplicationBuilderExtensions">ApplicationBuilderExtensions</a> <a href="#c-AuthAppBuilderExtensions">AuthAppBuilderExtensions</a> <a href="#c-AuthorizationAppBuilderExtensions">AuthorizationAppBuilderExtensions</a> <a href="#c-AuthorizationEndpointConventionBuilderExtensions">AuthorizationEndpointConventionBuilderExtensions</a> <a href="#c-CertificateForwardingBuilderExtensions">CertificateForwardingBuilderExtensions</a> <a href="#c-ComponentEndpointConventionBuilder">ComponentEndpointConventionBuilder</a> <a href="#c-ComponentEndpointRouteBuilderExtensions">ComponentEndpointRouteBuilderExtensions</a> <a href="#c-ConfigureHostBuilder">ConfigureHostBuilder</a> <a href="#c-ConfigureWebHostBuilder">ConfigureWebHostBuilder</a> <a href="#c-ConnectionEndpointRouteBuilder">ConnectionEndpointRouteBuilder</a> <a href="#c-ConnectionEndpointRouteBuilderExtensions">ConnectionEndpointRouteBuilderExtensions</a> <a href="#c-ControllerActionEndpointConventionBuilder">ControllerActionEndpointConventionBuilder</a> <a href="#c-ControllerActionEndpointConventionBuilderResourceCollectionExtensions">ControllerActionEndpointConventionBuilderResourceCollectionExtensions</a> <a href="#c-ControllerEndpointRouteBuilderExtensions">ControllerEndpointRouteBuilderExtensions</a> <a href="#c-CookiePolicyAppBuilderExtensions">CookiePolicyAppBuilderExtensions</a> <a href="#c-CookiePolicyOptions">CookiePolicyOptions</a> <a href="#c-CorsEndpointConventionBuilderExtensions">CorsEndpointConventionBuilderExtensions</a> <a href="#c-CorsMiddlewareExtensions">CorsMiddlewareExtensions</a> <a href="#c-DefaultFilesExtensions">DefaultFilesExtensions</a> <a href="#c-DefaultFilesOptions">DefaultFilesOptions</a> <a href="#c-DeveloperExceptionPageExtensions">DeveloperExceptionPageExtensions</a> <a href="#c-DeveloperExceptionPageOptions">DeveloperExceptionPageOptions</a> <a href="#c-DirectoryBrowserExtensions">DirectoryBrowserExtensions</a> <a href="#c-DirectoryBrowserOptions">DirectoryBrowserOptions</a> <a href="#c-EndpointBuilder">EndpointBuilder</a> <a href="#c-EndpointRouteBuilderExtensions">EndpointRouteBuilderExtensions</a> <a href="#c-EndpointRoutingApplicationBuilderExtensions">EndpointRoutingApplicationBuilderExtensions</a> <a href="#c-ExceptionHandlerExtensions">ExceptionHandlerExtensions</a> <a href="#c-ExceptionHandlerOptions">ExceptionHandlerOptions</a> <a href="#c-FallbackEndpointRouteBuilderExtensions">FallbackEndpointRouteBuilderExtensions</a> <a href="#c-FileServerExtensions">FileServerExtensions</a> <a href="#c-FileServerOptions">FileServerOptions</a> <a href="#c-ForwardedHeadersExtensions">ForwardedHeadersExtensions</a> <a href="#c-ForwardedHeadersOptions">ForwardedHeadersOptions</a> <a href="#c-HealthCheckApplicationBuilderExtensions">HealthCheckApplicationBuilderExtensions</a> <a href="#c-HealthCheckEndpointRouteBuilderExtensions">HealthCheckEndpointRouteBuilderExtensions</a> <a href="#c-HostFilteringBuilderExtensions">HostFilteringBuilderExtensions</a> <a href="#c-HostFilteringServicesExtensions">HostFilteringServicesExtensions</a> <a href="#c-HstsBuilderExtensions">HstsBuilderExtensions</a> <a href="#c-HstsServicesExtensions">HstsServicesExtensions</a> <a href="#c-HttpLoggingBuilderExtensions">HttpLoggingBuilderExtensions</a> <a href="#c-HttpLoggingEndpointConventionBuilderExtensions">HttpLoggingEndpointConventionBuilderExtensions</a> <a href="#c-HttpMethodOverrideExtensions">HttpMethodOverrideExtensions</a> <a href="#c-HttpMethodOverrideOptions">HttpMethodOverrideOptions</a> <a href="#c-HttpMetricsEndpointConventionBuilderExtensions">HttpMetricsEndpointConventionBuilderExtensions</a> <a href="#c-HttpsPolicyBuilderExtensions">HttpsPolicyBuilderExtensions</a> <a href="#c-HttpsRedirectionServicesExtensions">HttpsRedirectionServicesExtensions</a> <a href="#c-HubEndpointConventionBuilder">HubEndpointConventionBuilder</a> <a href="#c-HubEndpointRouteBuilderExtensions">HubEndpointRouteBuilderExtensions</a> <a href="#c-IApplicationBuilder">IApplicationBuilder</a> <a href="#c-IEndpointConventionBuilder">IEndpointConventionBuilder</a> <a href="#c-IHubEndpointConventionBuilder">IHubEndpointConventionBuilder</a> <a href="#c-IISOptions">IISOptions</a> <a href="#c-IISServerOptions">IISServerOptions</a> <a href="#c-MapExtensions">MapExtensions</a> <a href="#c-MapRouteRouteBuilderExtensions">MapRouteRouteBuilderExtensions</a> <a href="#c-MapWhenExtensions">MapWhenExtensions</a> <a href="#c-MvcApplicationBuilderExtensions">MvcApplicationBuilderExtensions</a> <a href="#c-MvcAreaRouteBuilderExtensions">MvcAreaRouteBuilderExtensions</a> <a href="#c-OutputCacheApplicationBuilderExtensions">OutputCacheApplicationBuilderExtensions</a> <a href="#c-PageActionEndpointConventionBuilder">PageActionEndpointConventionBuilder</a> <a href="#c-PageActionEndpointConventionBuilderResourceCollectionExtensions">PageActionEndpointConventionBuilderResourceCollectionExtensions</a> <a href="#c-RateLimiterApplicationBuilderExtensions">RateLimiterApplicationBuilderExtensions</a> <a href="#c-RateLimiterEndpointConventionBuilderExtensions">RateLimiterEndpointConventionBuilderExtensions</a> <a href="#c-RateLimiterServiceCollectionExtensions">RateLimiterServiceCollectionExtensions</a> <a href="#c-RazorComponentsEndpointConventionBuilder">RazorComponentsEndpointConventionBuilder</a> <a href="#c-RazorComponentsEndpointConventionBuilderExtensions">RazorComponentsEndpointConventionBuilderExtensions</a> <a href="#c-RazorComponentsEndpointRouteBuilderExtensions">RazorComponentsEndpointRouteBuilderExtensions</a> <a href="#c-RazorPagesEndpointRouteBuilderExtensions">RazorPagesEndpointRouteBuilderExtensions</a> <a href="#c-RequestDecompressionBuilderExtensions">RequestDecompressionBuilderExtensions</a> <a href="#c-RequestLocalizationOptions">RequestLocalizationOptions</a> <a href="#c-RequestLocalizationOptionsExtensions">RequestLocalizationOptionsExtensions</a> <a href="#c-RequestTimeoutsIApplicationBuilderExtensions">RequestTimeoutsIApplicationBuilderExtensions</a> <a href="#c-RequestTimeoutsIEndpointConventionBuilderExtensions">RequestTimeoutsIEndpointConventionBuilderExtensions</a> <a href="#c-ResponseCachingExtensions">ResponseCachingExtensions</a> <a href="#c-ResponseCompressionBuilderExtensions">ResponseCompressionBuilderExtensions</a> <a href="#c-ResponseCompressionServicesExtensions">ResponseCompressionServicesExtensions</a> <a href="#c-RewriteBuilderExtensions">RewriteBuilderExtensions</a> <a href="#c-RouteHandlerBuilder">RouteHandlerBuilder</a> <a href="#c-RouterMiddleware">RouterMiddleware</a> <a href="#c-RouteShortCircuitEndpointConventionBuilderExtensions">RouteShortCircuitEndpointConventionBuilderExtensions</a> <a href="#c-RoutingBuilderExtensions">RoutingBuilderExtensions</a> <a href="#c-RoutingEndpointConventionBuilderExtensions">RoutingEndpointConventionBuilderExtensions</a> <a href="#c-RunExtensions">RunExtensions</a> <a href="#c-ServerRazorComponentsEndpointConventionBuilderExtensions">ServerRazorComponentsEndpointConventionBuilderExtensions</a> <a href="#c-SessionMiddlewareExtensions">SessionMiddlewareExtensions</a> <a href="#c-SessionOptions">SessionOptions</a> <a href="#c-StaticAssetsEndpointRouteBuilderExtensions">StaticAssetsEndpointRouteBuilderExtensions</a> <a href="#c-StaticFileExtensions">StaticFileExtensions</a> <a href="#c-StaticFileOptions">StaticFileOptions</a> <a href="#c-StaticFilesEndpointRouteBuilderExtensions">StaticFilesEndpointRouteBuilderExtensions</a> <a href="#c-StatusCodePagesExtensions">StatusCodePagesExtensions</a> <a href="#c-StatusCodePagesOptions">StatusCodePagesOptions</a> <a href="#c-UseExtensions">UseExtensions</a> <a href="#c-UseMiddlewareExtensions">UseMiddlewareExtensions</a> <a href="#c-UsePathBaseExtensions">UsePathBaseExtensions</a> <a href="#c-UseWhenExtensions">UseWhenExtensions</a> <a href="#c-WebApplication">WebApplication</a> <a href="#c-WebApplicationBuilder">WebApplicationBuilder</a> <a href="#c-WebApplicationOptions">WebApplicationOptions</a> <a href="#c-WebSocketMiddlewareExtensions">WebSocketMiddlewareExtensions</a> <a href="#c-WebSocketOptions">WebSocketOptions</a> <a href="#c-WelcomePageExtensions">WelcomePageExtensions</a> <a href="#c-WelcomePageOptions">WelcomePageOptions</a></div><details class="cls" id="c-AntiforgeryApplicationBuilderExtensions"><summary><b>AntiforgeryApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Antiforgery</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseAntiforgery</code></td><td><code>UseAntiforgery(p1)</code></td><td><code>static IApplicationBuilder UseAntiforgery(IApplicationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ApplicationBuilder"><summary><b>ApplicationBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ApplicationBuilder</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ApplicationBuilder(IServiceProvider serviceProvider)</code></td></tr><tr><td><code>new ApplicationBuilder(IServiceProvider serviceProvider, object server)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ApplicationBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ApplicationBuilder().@New([ :param = value ])</code> or <code>dnNew("ApplicationBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ApplicationServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.ApplicationServices</code> <code>o.ApplicationServices = v</code></td></tr><tr><td><code>ServerFeatures</code></td><td><code>IFeatureCollection</code></td><td>read</td><td><code>o.ServerFeatures</code></td></tr><tr><td><code>Properties</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>RequestDelegate Build()</code></td></tr><tr><td><code>New</code></td><td><code>callMethod("New",[])</code></td><td><code>IApplicationBuilder New()</code></td></tr><tr><td><code>Use</code></td><td><code>Use(p1)</code></td><td><code>IApplicationBuilder Use(Func&lt;RequestDelegate, RequestDelegate&gt; middleware)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ApplicationBuilderExtensions"><summary><b>ApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Localization</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRequestLocalization</code></td><td><code>UseRequestLocalization(value)</code><br><code>UseRequestLocalization([ :app = … ])</code><br><code>UseRequestLocalization([ :app = …, :options = … ])</code><br><code>UseRequestLocalization([ :app = …, :optionsAction = … ])</code><br><code>UseRequestLocalization([ :app = …, :cultures = … ])</code></td><td><code>static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app, RequestLocalizationOptions options)</code><br><code>static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app, Action&lt;RequestLocalizationOptions&gt; optionsAction)</code><br><code>static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app, string[] cultures)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthAppBuilderExtensions"><summary><b>AuthAppBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Authentication</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseAuthentication</code></td><td><code>UseAuthentication(p1)</code></td><td><code>static IApplicationBuilder UseAuthentication(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthorizationAppBuilderExtensions"><summary><b>AuthorizationAppBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Authorization.Policy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseAuthorization</code></td><td><code>UseAuthorization(p1)</code></td><td><code>static IApplicationBuilder UseAuthorization(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AuthorizationEndpointConventionBuilderExtensions"><summary><b>AuthorizationEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Authorization.Policy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AllowAnonymous</code></td><td><code>AllowAnonymous(p1)</code></td><td><code>static TBuilder AllowAnonymous&lt;TBuilder&gt;(TBuilder builder)</code></td></tr><tr><td><code>RequireAuthorization</code></td><td><code>RequireAuthorization(value)</code><br><code>RequireAuthorization([ :builder = … ])</code><br><code>RequireAuthorization([ :builder = …, :policyNames = … ])</code><br><code>RequireAuthorization([ :builder = …, :authorizeData = … ])</code><br><code>RequireAuthorization([ :builder = …, :policy = … ])</code></td><td><code>static TBuilder RequireAuthorization&lt;TBuilder&gt;(TBuilder builder)</code><br><code>static TBuilder RequireAuthorization&lt;TBuilder&gt;(TBuilder builder, string[] policyNames)</code><br><code>static TBuilder RequireAuthorization&lt;TBuilder&gt;(TBuilder builder, IAuthorizeData[] authorizeData)</code><br><code>static TBuilder RequireAuthorization&lt;TBuilder&gt;(TBuilder builder, AuthorizationPolicy policy)</code><br><code>static TBuilder RequireAuthorization&lt;TBuilder&gt;(TBuilder builder, Action&lt;AuthorizationPolicyBuilder&gt; configurePolicy)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CertificateForwardingBuilderExtensions"><summary><b>CertificateForwardingBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpOverrides</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseCertificateForwarding</code></td><td><code>UseCertificateForwarding(p1)</code></td><td><code>static IApplicationBuilder UseCertificateForwarding(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ComponentEndpointConventionBuilder"><summary><b>ComponentEndpointConventionBuilder</b> <span class="pill">no reflection data</span></summary></details>
+<details class="cls" id="c-ComponentEndpointRouteBuilderExtensions"><summary><b>ComponentEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Components.Server</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapBlazorHub</code></td><td><code>MapBlazorHub(value)</code><br><code>MapBlazorHub([ :endpoints = … ])</code><br><code>MapBlazorHub([ :endpoints = …, :path = … ])</code><br><code>MapBlazorHub([ :endpoints = …, :configureOptions = … ])</code><br><code>MapBlazorHub([ :endpoints = …, :path = …, :configureOptions = … ])</code></td><td><code>static ComponentEndpointConventionBuilder MapBlazorHub(IEndpointRouteBuilder endpoints)</code><br><code>static ComponentEndpointConventionBuilder MapBlazorHub(IEndpointRouteBuilder endpoints, string path)</code><br><code>static ComponentEndpointConventionBuilder MapBlazorHub(IEndpointRouteBuilder endpoints, Action&lt;HttpConnectionDispatcherOptions&gt; configureOptions)</code><br><code>static ComponentEndpointConventionBuilder MapBlazorHub(IEndpointRouteBuilder endpoints, string path, Action&lt;HttpConnectionDispatcherOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigureHostBuilder"><summary><b>ConfigureHostBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ConfigureHostBuilder</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureAppConfiguration</code></td><td><code>ConfigureAppConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureAppConfiguration(Action&lt;HostBuilderContext, IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer(p1)</code></td><td><code>IHostBuilder ConfigureContainer&lt;TContainerBuilder&gt;(Action&lt;HostBuilderContext, TContainerBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureHostConfiguration</code></td><td><code>ConfigureHostConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureHostConfiguration(Action&lt;IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureServices</code></td><td><code>ConfigureServices(p1)</code></td><td><code>IHostBuilder ConfigureServices(Action&lt;HostBuilderContext, IServiceCollection&gt; configureDelegate)</code></td></tr><tr><td><code>UseServiceProviderFactory</code></td><td><code>UseServiceProviderFactory(p1)</code></td><td><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(IServiceProviderFactory&lt;TContainerBuilder&gt; factory)</code><br><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(Func&lt;HostBuilderContext, IServiceProviderFactory&lt;TContainerBuilder&gt;&gt; factory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigureWebHostBuilder"><summary><b>ConfigureWebHostBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ConfigureWebHostBuilder</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureAppConfiguration</code></td><td><code>ConfigureAppConfiguration(p1)</code></td><td><code>IWebHostBuilder ConfigureAppConfiguration(Action&lt;WebHostBuilderContext, IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureServices</code></td><td><code>ConfigureServices(p1)</code></td><td><code>IWebHostBuilder ConfigureServices(Action&lt;WebHostBuilderContext, IServiceCollection&gt; configureServices)</code><br><code>IWebHostBuilder ConfigureServices(Action&lt;IServiceCollection&gt; configureServices)</code></td></tr><tr><td><code>GetSetting</code></td><td><code>GetSetting(p1)</code></td><td><code>string GetSetting(string key)</code></td></tr><tr><td><code>UseSetting</code></td><td><code>UseSetting(p1,p2)</code></td><td><code>IWebHostBuilder UseSetting(string key, string value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConnectionEndpointRouteBuilder"><summary><b>ConnectionEndpointRouteBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ConnectionEndpointRouteBuilder</code> · assembly <code>Microsoft.AspNetCore.Http.Connections</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finalConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConnectionEndpointRouteBuilderExtensions"><summary><b>ConnectionEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ConnectionEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Connections</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapConnectionHandler</code></td><td><code>MapConnectionHandler([ :endpoints = …, :pattern = … ])</code><br><code>MapConnectionHandler([ :endpoints = …, :pattern = …, :configureOptions = … ])</code></td><td><code>static ConnectionEndpointRouteBuilder MapConnectionHandler&lt;TConnectionHandler&gt;(IEndpointRouteBuilder endpoints, string pattern)</code><br><code>static ConnectionEndpointRouteBuilder MapConnectionHandler&lt;TConnectionHandler&gt;(IEndpointRouteBuilder endpoints, string pattern, Action&lt;HttpConnectionDispatcherOptions&gt; configureOptions)</code></td></tr><tr><td><code>MapConnections</code></td><td><code>MapConnections([ :endpoints = …, :pattern = …, :configure = … ])</code><br><code>MapConnections([ :endpoints = …, :pattern = …, :options = …, :configure = … ])</code></td><td><code>static ConnectionEndpointRouteBuilder MapConnections(IEndpointRouteBuilder endpoints, string pattern, Action&lt;IConnectionBuilder&gt; configure)</code><br><code>static ConnectionEndpointRouteBuilder MapConnections(IEndpointRouteBuilder endpoints, string pattern, HttpConnectionDispatcherOptions options, Action&lt;IConnectionBuilder&gt; configure)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ControllerActionEndpointConventionBuilder"><summary><b>ControllerActionEndpointConventionBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ControllerActionEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finalConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ControllerActionEndpointConventionBuilderResourceCollectionExtensions"><summary><b>ControllerActionEndpointConventionBuilderResourceCollectionExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ControllerActionEndpointConventionBuilderResourceCollectionExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.ViewFeatures</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>WithStaticAssets</code></td><td><code>WithStaticAssets([ :builder = …, :manifestPath = … ])</code></td><td><code>static ControllerActionEndpointConventionBuilder WithStaticAssets(ControllerActionEndpointConventionBuilder builder, string manifestPath = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ControllerEndpointRouteBuilderExtensions"><summary><b>ControllerEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapAreaControllerRoute</code></td><td><code>MapAreaControllerRoute([ :endpoints = …, :name = …, :areaName = …, :pattern = …, :defaults = …, :constraints = …, :dataTokens = … ])</code></td><td><code>static ControllerActionEndpointConventionBuilder MapAreaControllerRoute(IEndpointRouteBuilder endpoints, string name, string areaName, string pattern, object defaults = …, object constraints = …, object dataTokens = …)</code></td></tr><tr><td><code>MapControllerRoute</code></td><td><code>MapControllerRoute([ :endpoints = …, :name = …, :pattern = …, :defaults = …, :constraints = …, :dataTokens = … ])</code></td><td><code>static ControllerActionEndpointConventionBuilder MapControllerRoute(IEndpointRouteBuilder endpoints, string name, string pattern, object defaults = …, object constraints = …, object dataTokens = …)</code></td></tr><tr><td><code>MapControllers</code></td><td><code>MapControllers(p1)</code></td><td><code>static ControllerActionEndpointConventionBuilder MapControllers(IEndpointRouteBuilder endpoints)</code></td></tr><tr><td><code>MapDefaultControllerRoute</code></td><td><code>MapDefaultControllerRoute(p1)</code></td><td><code>static ControllerActionEndpointConventionBuilder MapDefaultControllerRoute(IEndpointRouteBuilder endpoints)</code></td></tr><tr><td><code>MapDynamicControllerRoute</code></td><td><code>MapDynamicControllerRoute([ :endpoints = …, :pattern = … ])</code><br><code>MapDynamicControllerRoute([ :endpoints = …, :pattern = …, :state = … ])</code><br><code>MapDynamicControllerRoute([ :endpoints = …, :pattern = …, :state = …, :order = … ])</code></td><td><code>static void MapDynamicControllerRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern)</code><br><code>static void MapDynamicControllerRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern, object state)</code><br><code>static void MapDynamicControllerRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern, object state, int order)</code></td></tr><tr><td><code>MapFallbackToAreaController</code></td><td><code>MapFallbackToAreaController([ :endpoints = …, :action = …, :controller = …, :area = … ])</code><br><code>MapFallbackToAreaController([ :endpoints = …, :pattern = …, :action = …, :controller = …, :area = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallbackToAreaController(IEndpointRouteBuilder endpoints, string action, string controller, string area)</code><br><code>static IEndpointConventionBuilder MapFallbackToAreaController(IEndpointRouteBuilder endpoints, string pattern, string action, string controller, string area)</code></td></tr><tr><td><code>MapFallbackToController</code></td><td><code>MapFallbackToController([ :endpoints = …, :action = …, :controller = … ])</code><br><code>MapFallbackToController([ :endpoints = …, :pattern = …, :action = …, :controller = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallbackToController(IEndpointRouteBuilder endpoints, string action, string controller)</code><br><code>static IEndpointConventionBuilder MapFallbackToController(IEndpointRouteBuilder endpoints, string pattern, string action, string controller)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CookiePolicyAppBuilderExtensions"><summary><b>CookiePolicyAppBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.CookiePolicy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseCookiePolicy</code></td><td><code>UseCookiePolicy(value)</code><br><code>UseCookiePolicy([ :app = … ])</code><br><code>UseCookiePolicy([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseCookiePolicy(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseCookiePolicy(IApplicationBuilder app, CookiePolicyOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CookiePolicyOptions"><summary><b>CookiePolicyOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.CookiePolicyOptions</code> · assembly <code>Microsoft.AspNetCore.CookiePolicy</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CookiePolicyOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CookiePolicyOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CookiePolicyOptions().@New([ :param = value ])</code> or <code>dnNew("CookiePolicyOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MinimumSameSitePolicy</code></td><td><code>SameSiteMode</code></td><td>read, write</td><td><code>o.MinimumSameSitePolicy</code> <code>o.MinimumSameSitePolicy = v</code></td></tr><tr><td><code>HttpOnly</code></td><td><code>HttpOnlyPolicy</code></td><td>read, write</td><td><code>o.HttpOnly</code> <code>o.HttpOnly = v</code></td></tr><tr><td><code>Secure</code></td><td><code>CookieSecurePolicy</code></td><td>read, write</td><td><code>o.Secure</code> <code>o.Secure = v</code></td></tr><tr><td><code>ConsentCookie</code></td><td><code>CookieBuilder</code></td><td>read, write</td><td><code>o.ConsentCookie</code> <code>o.ConsentCookie = v</code></td></tr><tr><td><code>ConsentCookieValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ConsentCookieValue</code> <code>o.ConsentCookieValue = v</code></td></tr><tr><td><code>CheckConsentNeeded</code></td><td><code>Func&lt;HttpContext, bool&gt;</code></td><td>read, write</td><td><code>o.CheckConsentNeeded</code> <code>o.CheckConsentNeeded = v</code></td></tr><tr><td><code>OnAppendCookie</code></td><td><code>Action&lt;AppendCookieContext&gt;</code></td><td>read, write</td><td><code>o.OnAppendCookie</code> <code>o.OnAppendCookie = v</code></td></tr><tr><td><code>OnDeleteCookie</code></td><td><code>Action&lt;DeleteCookieContext&gt;</code></td><td>read, write</td><td><code>o.OnDeleteCookie</code> <code>o.OnDeleteCookie = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CorsEndpointConventionBuilderExtensions"><summary><b>CorsEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Cors</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>RequireCors</code></td><td><code>RequireCors(value)</code><br><code>RequireCors([ :builder = … ])</code><br><code>RequireCors([ :builder = …, :policyName = … ])</code><br><code>RequireCors([ :builder = …, :configurePolicy = … ])</code></td><td><code>static TBuilder RequireCors&lt;TBuilder&gt;(TBuilder builder)</code><br><code>static TBuilder RequireCors&lt;TBuilder&gt;(TBuilder builder, string policyName)</code><br><code>static TBuilder RequireCors&lt;TBuilder&gt;(TBuilder builder, Action&lt;CorsPolicyBuilder&gt; configurePolicy)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CorsMiddlewareExtensions"><summary><b>CorsMiddlewareExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions</code> · assembly <code>Microsoft.AspNetCore.Cors</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseCors</code></td><td><code>UseCors(value)</code><br><code>UseCors([ :app = … ])</code><br><code>UseCors([ :app = …, :policyName = … ])</code><br><code>UseCors([ :app = …, :configurePolicy = … ])</code></td><td><code>static IApplicationBuilder UseCors(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseCors(IApplicationBuilder app, string policyName)</code><br><code>static IApplicationBuilder UseCors(IApplicationBuilder app, Action&lt;CorsPolicyBuilder&gt; configurePolicy)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DefaultFilesExtensions"><summary><b>DefaultFilesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DefaultFilesExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseDefaultFiles</code></td><td><code>UseDefaultFiles(value)</code><br><code>UseDefaultFiles([ :app = … ])</code><br><code>UseDefaultFiles([ :app = …, :requestPath = … ])</code><br><code>UseDefaultFiles([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app, string requestPath)</code><br><code>static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app, DefaultFilesOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DefaultFilesOptions"><summary><b>DefaultFilesOptions</b> <span class="muted">class · extends SharedOptionsBase</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DefaultFilesOptions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultFilesOptions()</code></td></tr><tr><td><code>new DefaultFilesOptions(SharedOptions sharedOptions)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultFilesOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultFilesOptions().@New([ :param = value ])</code> or <code>dnNew("DefaultFilesOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DefaultFileNames</code></td><td><code>IList&lt;string&gt;</code></td><td>read, write</td><td><code>o.DefaultFileNames</code> <code>o.DefaultFileNames = v</code></td></tr><tr><td><code>RequestPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.RequestPath</code> <code>o.RequestPath = v</code></td></tr><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr><tr><td><code>RedirectToAppendTrailingSlash</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RedirectToAppendTrailingSlash</code> <code>o.RedirectToAppendTrailingSlash = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DeveloperExceptionPageExtensions"><summary><b>DeveloperExceptionPageExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseDeveloperExceptionPage</code></td><td><code>UseDeveloperExceptionPage(value)</code><br><code>UseDeveloperExceptionPage([ :app = … ])</code><br><code>UseDeveloperExceptionPage([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseDeveloperExceptionPage(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseDeveloperExceptionPage(IApplicationBuilder app, DeveloperExceptionPageOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DeveloperExceptionPageOptions"><summary><b>DeveloperExceptionPageOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DeveloperExceptionPageOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DeveloperExceptionPageOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DeveloperExceptionPageOptions().@New([ :param = value ])</code> or <code>dnNew("DeveloperExceptionPageOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SourceCodeLineCount</code></td><td><code>int</code></td><td>read, write</td><td><code>o.SourceCodeLineCount</code> <code>o.SourceCodeLineCount = v</code></td></tr><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DirectoryBrowserExtensions"><summary><b>DirectoryBrowserExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseDirectoryBrowser</code></td><td><code>UseDirectoryBrowser(value)</code><br><code>UseDirectoryBrowser([ :app = … ])</code><br><code>UseDirectoryBrowser([ :app = …, :requestPath = … ])</code><br><code>UseDirectoryBrowser([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app, string requestPath)</code><br><code>static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app, DirectoryBrowserOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DirectoryBrowserOptions"><summary><b>DirectoryBrowserOptions</b> <span class="muted">class · extends SharedOptionsBase</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.DirectoryBrowserOptions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DirectoryBrowserOptions()</code></td></tr><tr><td><code>new DirectoryBrowserOptions(SharedOptions sharedOptions)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DirectoryBrowserOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DirectoryBrowserOptions().@New([ :param = value ])</code> or <code>dnNew("DirectoryBrowserOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Formatter</code></td><td><code>IDirectoryFormatter</code></td><td>read, write</td><td><code>o.Formatter</code> <code>o.Formatter = v</code></td></tr><tr><td><code>RequestPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.RequestPath</code> <code>o.RequestPath = v</code></td></tr><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr><tr><td><code>RedirectToAppendTrailingSlash</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RedirectToAppendTrailingSlash</code> <code>o.RedirectToAppendTrailingSlash = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EndpointBuilder"><summary><b>EndpointBuilder</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.EndpointBuilder</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FilterFactories</code></td><td><code>IList&lt;Func&lt;EndpointFilterFactoryContext, EndpointFilterDelegate, EndpointFilterDelegate&gt;&gt;</code></td><td>read</td><td><code>o.FilterFactories</code></td></tr><tr><td><code>RequestDelegate</code></td><td><code>RequestDelegate</code></td><td>read, write</td><td><code>o.RequestDelegate</code> <code>o.RequestDelegate = v</code></td></tr><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DisplayName</code> <code>o.DisplayName = v</code></td></tr><tr><td><code>Metadata</code></td><td><code>IList&lt;object&gt;</code></td><td>read</td><td><code>o.Metadata</code></td></tr><tr><td><code>ApplicationServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.ApplicationServices</code> <code>o.ApplicationServices = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>Endpoint Build()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EndpointRouteBuilderExtensions"><summary><b>EndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Map</code></td><td><code>Map(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder Map(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static IEndpointConventionBuilder Map(IEndpointRouteBuilder endpoints, RoutePattern pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder Map(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code><br><code>static RouteHandlerBuilder Map(IEndpointRouteBuilder endpoints, RoutePattern pattern, Delegate handler)</code></td></tr><tr><td><code>MapDelete</code></td><td><code>MapDelete(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder MapDelete(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapDelete(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr><tr><td><code>MapFallback</code></td><td><code>MapFallback([ :endpoints = …, :handler = … ])</code><br><code>MapFallback([ :endpoints = …, :pattern = …, :handler = … ])</code></td><td><code>static RouteHandlerBuilder MapFallback(IEndpointRouteBuilder endpoints, Delegate handler)</code><br><code>static RouteHandlerBuilder MapFallback(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr><tr><td><code>MapGet</code></td><td><code>MapGet(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder MapGet(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapGet(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr><tr><td><code>MapGroup</code></td><td><code>MapGroup(p1,p2)</code></td><td><code>static RouteGroupBuilder MapGroup(IEndpointRouteBuilder endpoints, string prefix)</code><br><code>static RouteGroupBuilder MapGroup(IEndpointRouteBuilder endpoints, RoutePattern prefix)</code></td></tr><tr><td><code>MapMethods</code></td><td><code>MapMethods(p1,p2,p3,p4)</code></td><td><code>static IEndpointConventionBuilder MapMethods(IEndpointRouteBuilder endpoints, string pattern, IEnumerable&lt;string&gt; httpMethods, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapMethods(IEndpointRouteBuilder endpoints, string pattern, IEnumerable&lt;string&gt; httpMethods, Delegate handler)</code></td></tr><tr><td><code>MapPatch</code></td><td><code>MapPatch(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder MapPatch(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapPatch(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr><tr><td><code>MapPost</code></td><td><code>MapPost(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder MapPost(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapPost(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr><tr><td><code>MapPut</code></td><td><code>MapPut(p1,p2,p3)</code></td><td><code>static IEndpointConventionBuilder MapPut(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code><br><code>static RouteHandlerBuilder MapPut(IEndpointRouteBuilder endpoints, string pattern, Delegate handler)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EndpointRoutingApplicationBuilderExtensions"><summary><b>EndpointRoutingApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseEndpoints</code></td><td><code>UseEndpoints(p1,p2)</code></td><td><code>static IApplicationBuilder UseEndpoints(IApplicationBuilder builder, Action&lt;IEndpointRouteBuilder&gt; configure)</code></td></tr><tr><td><code>UseRouting</code></td><td><code>UseRouting(p1)</code></td><td><code>static IApplicationBuilder UseRouting(IApplicationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ExceptionHandlerExtensions"><summary><b>ExceptionHandlerExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseExceptionHandler</code></td><td><code>UseExceptionHandler(value)</code><br><code>UseExceptionHandler([ :app = … ])</code><br><code>UseExceptionHandler([ :app = …, :errorHandlingPath = … ])</code><br><code>UseExceptionHandler([ :app = …, :configure = … ])</code><br><code>UseExceptionHandler([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, string errorHandlingPath)</code><br><code>static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, string errorHandlingPath, bool createScopeForErrors)</code><br><code>static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, Action&lt;IApplicationBuilder&gt; configure)</code><br><code>static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, ExceptionHandlerOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ExceptionHandlerOptions"><summary><b>ExceptionHandlerOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ExceptionHandlerOptions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ExceptionHandlerOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ExceptionHandlerOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ExceptionHandlerOptions().@New([ :param = value ])</code> or <code>dnNew("ExceptionHandlerOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ExceptionHandlingPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.ExceptionHandlingPath</code> <code>o.ExceptionHandlingPath = v</code></td></tr><tr><td><code>CreateScopeForErrors</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.CreateScopeForErrors</code> <code>o.CreateScopeForErrors = v</code></td></tr><tr><td><code>ExceptionHandler</code></td><td><code>RequestDelegate</code></td><td>read, write</td><td><code>o.ExceptionHandler</code> <code>o.ExceptionHandler = v</code></td></tr><tr><td><code>AllowStatusCode404Response</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowStatusCode404Response</code> <code>o.AllowStatusCode404Response = v</code></td></tr><tr><td><code>StatusCodeSelector</code></td><td><code>Func&lt;Exception, int&gt;</code></td><td>read, write</td><td><code>o.StatusCodeSelector</code> <code>o.StatusCodeSelector = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FallbackEndpointRouteBuilderExtensions"><summary><b>FallbackEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.FallbackEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DefaultPattern</code></td><td><code>string</code></td><td>read · static</td><td><code>o.DefaultPattern</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapFallback</code></td><td><code>MapFallback([ :endpoints = …, :requestDelegate = … ])</code><br><code>MapFallback([ :endpoints = …, :pattern = …, :requestDelegate = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallback(IEndpointRouteBuilder endpoints, RequestDelegate requestDelegate)</code><br><code>static IEndpointConventionBuilder MapFallback(IEndpointRouteBuilder endpoints, string pattern, RequestDelegate requestDelegate)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FileServerExtensions"><summary><b>FileServerExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.FileServerExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseFileServer</code></td><td><code>UseFileServer(value)</code><br><code>UseFileServer([ :app = … ])</code><br><code>UseFileServer([ :app = …, :enableDirectoryBrowsing = … ])</code><br><code>UseFileServer([ :app = …, :requestPath = … ])</code><br><code>UseFileServer([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseFileServer(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseFileServer(IApplicationBuilder app, bool enableDirectoryBrowsing)</code><br><code>static IApplicationBuilder UseFileServer(IApplicationBuilder app, string requestPath)</code><br><code>static IApplicationBuilder UseFileServer(IApplicationBuilder app, FileServerOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FileServerOptions"><summary><b>FileServerOptions</b> <span class="muted">class · extends SharedOptionsBase</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.FileServerOptions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FileServerOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FileServerOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FileServerOptions().@New([ :param = value ])</code> or <code>dnNew("FileServerOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>StaticFileOptions</code></td><td><code>StaticFileOptions</code></td><td>read</td><td><code>o.StaticFileOptions</code></td></tr><tr><td><code>DirectoryBrowserOptions</code></td><td><code>DirectoryBrowserOptions</code></td><td>read</td><td><code>o.DirectoryBrowserOptions</code></td></tr><tr><td><code>DefaultFilesOptions</code></td><td><code>DefaultFilesOptions</code></td><td>read</td><td><code>o.DefaultFilesOptions</code></td></tr><tr><td><code>EnableDirectoryBrowsing</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.EnableDirectoryBrowsing</code> <code>o.EnableDirectoryBrowsing = v</code></td></tr><tr><td><code>EnableDefaultFiles</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.EnableDefaultFiles</code> <code>o.EnableDefaultFiles = v</code></td></tr><tr><td><code>RequestPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.RequestPath</code> <code>o.RequestPath = v</code></td></tr><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr><tr><td><code>RedirectToAppendTrailingSlash</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RedirectToAppendTrailingSlash</code> <code>o.RedirectToAppendTrailingSlash = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ForwardedHeadersExtensions"><summary><b>ForwardedHeadersExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpOverrides</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseForwardedHeaders</code></td><td><code>UseForwardedHeaders(value)</code><br><code>UseForwardedHeaders([ :builder = … ])</code><br><code>UseForwardedHeaders([ :builder = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseForwardedHeaders(IApplicationBuilder builder)</code><br><code>static IApplicationBuilder UseForwardedHeaders(IApplicationBuilder builder, ForwardedHeadersOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ForwardedHeadersOptions"><summary><b>ForwardedHeadersOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ForwardedHeadersOptions</code> · assembly <code>Microsoft.AspNetCore.HttpOverrides</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ForwardedHeadersOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ForwardedHeadersOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ForwardedHeadersOptions().@New([ :param = value ])</code> or <code>dnNew("ForwardedHeadersOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ForwardedForHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardedForHeaderName</code> <code>o.ForwardedForHeaderName = v</code></td></tr><tr><td><code>ForwardedHostHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardedHostHeaderName</code> <code>o.ForwardedHostHeaderName = v</code></td></tr><tr><td><code>ForwardedProtoHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardedProtoHeaderName</code> <code>o.ForwardedProtoHeaderName = v</code></td></tr><tr><td><code>ForwardedPrefixHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ForwardedPrefixHeaderName</code> <code>o.ForwardedPrefixHeaderName = v</code></td></tr><tr><td><code>OriginalForHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.OriginalForHeaderName</code> <code>o.OriginalForHeaderName = v</code></td></tr><tr><td><code>OriginalHostHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.OriginalHostHeaderName</code> <code>o.OriginalHostHeaderName = v</code></td></tr><tr><td><code>OriginalProtoHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.OriginalProtoHeaderName</code> <code>o.OriginalProtoHeaderName = v</code></td></tr><tr><td><code>OriginalPrefixHeaderName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.OriginalPrefixHeaderName</code> <code>o.OriginalPrefixHeaderName = v</code></td></tr><tr><td><code>ForwardedHeaders</code></td><td><code>ForwardedHeaders</code></td><td>read, write</td><td><code>o.ForwardedHeaders</code> <code>o.ForwardedHeaders = v</code></td></tr><tr><td><code>ForwardLimit</code></td><td><code>int?</code></td><td>read, write</td><td><code>o.ForwardLimit</code> <code>o.ForwardLimit = v</code></td></tr><tr><td><code>KnownProxies</code></td><td><code>IList&lt;IPAddress&gt;</code></td><td>read</td><td><code>o.KnownProxies</code></td></tr><tr><td><code>KnownNetworks</code></td><td><code>IList&lt;IPNetwork&gt;</code></td><td>read</td><td><code>o.KnownNetworks</code></td></tr><tr><td><code>AllowedHosts</code></td><td><code>IList&lt;string&gt;</code></td><td>read, write</td><td><code>o.AllowedHosts</code> <code>o.AllowedHosts = v</code></td></tr><tr><td><code>RequireHeaderSymmetry</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RequireHeaderSymmetry</code> <code>o.RequireHeaderSymmetry = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HealthCheckApplicationBuilderExtensions"><summary><b>HealthCheckApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics.HealthChecks</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHealthChecks</code></td><td><code>UseHealthChecks([ :app = …, :path = … ])</code><br><code>UseHealthChecks([ :app = …, :path = …, :options = … ])</code><br><code>UseHealthChecks([ :app = …, :path = …, :port = … ])</code><br><code>UseHealthChecks([ :app = …, :path = …, :port = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path)</code><br><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path, HealthCheckOptions options)</code><br><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path, int port)</code><br><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path, string port)</code><br><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path, int port, HealthCheckOptions options)</code><br><code>static IApplicationBuilder UseHealthChecks(IApplicationBuilder app, PathString path, string port, HealthCheckOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HealthCheckEndpointRouteBuilderExtensions"><summary><b>HealthCheckEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics.HealthChecks</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapHealthChecks</code></td><td><code>MapHealthChecks([ :endpoints = …, :pattern = … ])</code><br><code>MapHealthChecks([ :endpoints = …, :pattern = …, :options = … ])</code></td><td><code>static IEndpointConventionBuilder MapHealthChecks(IEndpointRouteBuilder endpoints, string pattern)</code><br><code>static IEndpointConventionBuilder MapHealthChecks(IEndpointRouteBuilder endpoints, string pattern, HealthCheckOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostFilteringBuilderExtensions"><summary><b>HostFilteringBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HostFilteringBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HostFiltering</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHostFiltering</code></td><td><code>UseHostFiltering(p1)</code></td><td><code>static IApplicationBuilder UseHostFiltering(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostFilteringServicesExtensions"><summary><b>HostFilteringServicesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions</code> · assembly <code>Microsoft.AspNetCore.HostFiltering</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddHostFiltering</code></td><td><code>AddHostFiltering(p1,p2)</code></td><td><code>static IServiceCollection AddHostFiltering(IServiceCollection services, Action&lt;HostFilteringOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HstsBuilderExtensions"><summary><b>HstsBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HstsBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpsPolicy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHsts</code></td><td><code>UseHsts(p1)</code></td><td><code>static IApplicationBuilder UseHsts(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HstsServicesExtensions"><summary><b>HstsServicesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HstsServicesExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpsPolicy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddHsts</code></td><td><code>AddHsts(p1,p2)</code></td><td><code>static IServiceCollection AddHsts(IServiceCollection services, Action&lt;HstsOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpLoggingBuilderExtensions"><summary><b>HttpLoggingBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpLogging</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHttpLogging</code></td><td><code>UseHttpLogging(p1)</code></td><td><code>static IApplicationBuilder UseHttpLogging(IApplicationBuilder app)</code></td></tr><tr><td><code>UseW3CLogging</code></td><td><code>UseW3CLogging(p1)</code></td><td><code>static IApplicationBuilder UseW3CLogging(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpLoggingEndpointConventionBuilderExtensions"><summary><b>HttpLoggingEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpLogging</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>WithHttpLogging</code></td><td><code>WithHttpLogging([ :builder = …, :loggingFields = …, :requestBodyLogLimit = …, :responseBodyLogLimit = … ])</code></td><td><code>static TBuilder WithHttpLogging&lt;TBuilder&gt;(TBuilder builder, HttpLoggingFields loggingFields, int? requestBodyLogLimit = …, int? responseBodyLogLimit = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpMethodOverrideExtensions"><summary><b>HttpMethodOverrideExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpOverrides</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHttpMethodOverride</code></td><td><code>UseHttpMethodOverride(value)</code><br><code>UseHttpMethodOverride([ :builder = … ])</code><br><code>UseHttpMethodOverride([ :builder = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseHttpMethodOverride(IApplicationBuilder builder)</code><br><code>static IApplicationBuilder UseHttpMethodOverride(IApplicationBuilder builder, HttpMethodOverrideOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpMethodOverrideOptions"><summary><b>HttpMethodOverrideOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpMethodOverrideOptions</code> · assembly <code>Microsoft.AspNetCore.HttpOverrides</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HttpMethodOverrideOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HttpMethodOverrideOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HttpMethodOverrideOptions().@New([ :param = value ])</code> or <code>dnNew("HttpMethodOverrideOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FormFieldName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.FormFieldName</code> <code>o.FormFieldName = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpMetricsEndpointConventionBuilderExtensions"><summary><b>HttpMetricsEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpMetricsEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Extensions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DisableHttpMetrics</code></td><td><code>DisableHttpMetrics(p1)</code></td><td><code>static TBuilder DisableHttpMetrics&lt;TBuilder&gt;(TBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpsPolicyBuilderExtensions"><summary><b>HttpsPolicyBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpsPolicy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseHttpsRedirection</code></td><td><code>UseHttpsRedirection(p1)</code></td><td><code>static IApplicationBuilder UseHttpsRedirection(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HttpsRedirectionServicesExtensions"><summary><b>HttpsRedirectionServicesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions</code> · assembly <code>Microsoft.AspNetCore.HttpsPolicy</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddHttpsRedirection</code></td><td><code>AddHttpsRedirection(p1,p2)</code></td><td><code>static IServiceCollection AddHttpsRedirection(IServiceCollection services, Action&lt;HttpsRedirectionOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HubEndpointConventionBuilder"><summary><b>HubEndpointConventionBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HubEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.SignalR</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finalConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HubEndpointRouteBuilderExtensions"><summary><b>HubEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.SignalR</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapHub</code></td><td><code>MapHub([ :endpoints = …, :pattern = … ])</code><br><code>MapHub([ :endpoints = …, :pattern = …, :configureOptions = … ])</code></td><td><code>static HubEndpointConventionBuilder MapHub&lt;THub&gt;(IEndpointRouteBuilder endpoints, string pattern)</code><br><code>static HubEndpointConventionBuilder MapHub&lt;THub&gt;(IEndpointRouteBuilder endpoints, string pattern, Action&lt;HttpConnectionDispatcherOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IApplicationBuilder"><summary><b>IApplicationBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.IApplicationBuilder</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ApplicationServices</code></td><td><code>IServiceProvider</code></td><td>read, write</td><td><code>o.ApplicationServices</code> <code>o.ApplicationServices = v</code></td></tr><tr><td><code>ServerFeatures</code></td><td><code>IFeatureCollection</code></td><td>read</td><td><code>o.ServerFeatures</code></td></tr><tr><td><code>Properties</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>RequestDelegate Build()</code></td></tr><tr><td><code>New</code></td><td><code>callMethod("New",[])</code></td><td><code>IApplicationBuilder New()</code></td></tr><tr><td><code>Use</code></td><td><code>Use(p1)</code></td><td><code>IApplicationBuilder Use(Func&lt;RequestDelegate, RequestDelegate&gt; middleware)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEndpointConventionBuilder"><summary><b>IEndpointConventionBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.IEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finallyConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHubEndpointConventionBuilder"><summary><b>IHubEndpointConventionBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.IHubEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.SignalR</code></p>
+</div></details>
+<details class="cls" id="c-IISOptions"><summary><b>IISOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.IISOptions</code> · assembly <code>Microsoft.AspNetCore.Server.IISIntegration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new IISOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new IISOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new IISOptions().@New([ :param = value ])</code> or <code>dnNew("IISOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AutomaticAuthentication</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutomaticAuthentication</code> <code>o.AutomaticAuthentication = v</code></td></tr><tr><td><code>AuthenticationDisplayName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AuthenticationDisplayName</code> <code>o.AuthenticationDisplayName = v</code></td></tr><tr><td><code>ForwardClientCertificate</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ForwardClientCertificate</code> <code>o.ForwardClientCertificate = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IISServerOptions"><summary><b>IISServerOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.IISServerOptions</code> · assembly <code>Microsoft.AspNetCore.Server.IIS</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new IISServerOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new IISServerOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new IISServerOptions().@New([ :param = value ])</code> or <code>dnNew("IISServerOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowSynchronousIO</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowSynchronousIO</code> <code>o.AllowSynchronousIO = v</code></td></tr><tr><td><code>AutomaticAuthentication</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutomaticAuthentication</code> <code>o.AutomaticAuthentication = v</code></td></tr><tr><td><code>AuthenticationDisplayName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AuthenticationDisplayName</code> <code>o.AuthenticationDisplayName = v</code></td></tr><tr><td><code>MaxRequestBodyBufferSize</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MaxRequestBodyBufferSize</code> <code>o.MaxRequestBodyBufferSize = v</code></td></tr><tr><td><code>MaxRequestBodySize</code></td><td><code>long?</code></td><td>read, write</td><td><code>o.MaxRequestBodySize</code> <code>o.MaxRequestBodySize = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MapExtensions"><summary><b>MapExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.MapExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Map</code></td><td><code>Map([ :app = …, :pathMatch = …, :configuration = … ])</code><br><code>Map([ :app = …, :pathMatch = …, :preserveMatchedPathSegment = …, :configuration = … ])</code></td><td><code>static IApplicationBuilder Map(IApplicationBuilder app, string pathMatch, Action&lt;IApplicationBuilder&gt; configuration)</code><br><code>static IApplicationBuilder Map(IApplicationBuilder app, PathString pathMatch, Action&lt;IApplicationBuilder&gt; configuration)</code><br><code>static IApplicationBuilder Map(IApplicationBuilder app, PathString pathMatch, bool preserveMatchedPathSegment, Action&lt;IApplicationBuilder&gt; configuration)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MapRouteRouteBuilderExtensions"><summary><b>MapRouteRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapRoute</code></td><td><code>MapRoute([ :routeBuilder = …, :name = …, :template = … ])</code><br><code>MapRoute([ :routeBuilder = …, :name = …, :template = …, :defaults = … ])</code><br><code>MapRoute([ :routeBuilder = …, :name = …, :template = …, :defaults = …, :constraints = … ])</code><br><code>MapRoute([ :routeBuilder = …, :name = …, :template = …, :defaults = …, :constraints = …, :dataTokens = … ])</code></td><td><code>static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template)</code><br><code>static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults)</code><br><code>static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints)</code><br><code>static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints, object dataTokens)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MapWhenExtensions"><summary><b>MapWhenExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.MapWhenExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapWhen</code></td><td><code>MapWhen(p1,p2,p3)</code></td><td><code>static IApplicationBuilder MapWhen(IApplicationBuilder app, Func&lt;HttpContext, bool&gt; predicate, Action&lt;IApplicationBuilder&gt; configuration)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MvcApplicationBuilderExtensions"><summary><b>MvcApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseMvc</code></td><td><code>UseMvc(value)</code><br><code>UseMvc([ :app = … ])</code><br><code>UseMvc([ :app = …, :configureRoutes = … ])</code></td><td><code>static IApplicationBuilder UseMvc(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseMvc(IApplicationBuilder app, Action&lt;IRouteBuilder&gt; configureRoutes)</code></td></tr><tr><td><code>UseMvcWithDefaultRoute</code></td><td><code>UseMvcWithDefaultRoute(p1)</code></td><td><code>static IApplicationBuilder UseMvcWithDefaultRoute(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MvcAreaRouteBuilderExtensions"><summary><b>MvcAreaRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapAreaRoute</code></td><td><code>MapAreaRoute([ :routeBuilder = …, :name = …, :areaName = …, :template = … ])</code><br><code>MapAreaRoute([ :routeBuilder = …, :name = …, :areaName = …, :template = …, :defaults = … ])</code><br><code>MapAreaRoute([ :routeBuilder = …, :name = …, :areaName = …, :template = …, :defaults = …, :constraints = … ])</code><br><code>MapAreaRoute([ :routeBuilder = …, :name = …, :areaName = …, :template = …, :defaults = …, :constraints = …, :dataTokens = … ])</code></td><td><code>static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template)</code><br><code>static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults)</code><br><code>static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints)</code><br><code>static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints, object dataTokens)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-OutputCacheApplicationBuilderExtensions"><summary><b>OutputCacheApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.OutputCaching</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseOutputCache</code></td><td><code>UseOutputCache(p1)</code></td><td><code>static IApplicationBuilder UseOutputCache(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PageActionEndpointConventionBuilder"><summary><b>PageActionEndpointConventionBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.PageActionEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finalConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PageActionEndpointConventionBuilderResourceCollectionExtensions"><summary><b>PageActionEndpointConventionBuilderResourceCollectionExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.PageActionEndpointConventionBuilderResourceCollectionExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>WithStaticAssets</code></td><td><code>WithStaticAssets([ :builder = …, :manifestPath = … ])</code></td><td><code>static PageActionEndpointConventionBuilder WithStaticAssets(PageActionEndpointConventionBuilder builder, string manifestPath = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RateLimiterApplicationBuilderExtensions"><summary><b>RateLimiterApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.RateLimiting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRateLimiter</code></td><td><code>UseRateLimiter(value)</code><br><code>UseRateLimiter([ :app = … ])</code><br><code>UseRateLimiter([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseRateLimiter(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseRateLimiter(IApplicationBuilder app, RateLimiterOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RateLimiterEndpointConventionBuilderExtensions"><summary><b>RateLimiterEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.RateLimiting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DisableRateLimiting</code></td><td><code>DisableRateLimiting(p1)</code></td><td><code>static TBuilder DisableRateLimiting&lt;TBuilder&gt;(TBuilder builder)</code></td></tr><tr><td><code>RequireRateLimiting</code></td><td><code>RequireRateLimiting(p1,p2)</code></td><td><code>static TBuilder RequireRateLimiting&lt;TBuilder&gt;(TBuilder builder, string policyName)</code><br><code>static TBuilder RequireRateLimiting&lt;TBuilder, TPartitionKey&gt;(TBuilder builder, IRateLimiterPolicy&lt;TPartitionKey&gt; policy)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RateLimiterServiceCollectionExtensions"><summary><b>RateLimiterServiceCollectionExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RateLimiterServiceCollectionExtensions</code> · assembly <code>Microsoft.AspNetCore.RateLimiting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddRateLimiter</code></td><td><code>AddRateLimiter(value)</code><br><code>AddRateLimiter([ :services = … ])</code><br><code>AddRateLimiter([ :services = …, :configureOptions = … ])</code></td><td><code>static IServiceCollection AddRateLimiter(IServiceCollection services, Action&lt;RateLimiterOptions&gt; configureOptions)</code><br><code>static IServiceCollection AddRateLimiter(IServiceCollection services)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RazorComponentsEndpointConventionBuilder"><summary><b>RazorComponentsEndpointConventionBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder</code> · assembly <code>Microsoft.AspNetCore.Components.Endpoints</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finallyConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RazorComponentsEndpointConventionBuilderExtensions"><summary><b>RazorComponentsEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Components.Endpoints</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddAdditionalAssemblies</code></td><td><code>AddAdditionalAssemblies(p1,p2)</code></td><td><code>static RazorComponentsEndpointConventionBuilder AddAdditionalAssemblies(RazorComponentsEndpointConventionBuilder builder, Assembly[] assemblies)</code></td></tr><tr><td><code>WithStaticAssets</code></td><td><code>WithStaticAssets([ :builder = …, :manifestPath = … ])</code></td><td><code>static RazorComponentsEndpointConventionBuilder WithStaticAssets(RazorComponentsEndpointConventionBuilder builder, string manifestPath = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RazorComponentsEndpointRouteBuilderExtensions"><summary><b>RazorComponentsEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Components.Endpoints</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapRazorComponents</code></td><td><code>MapRazorComponents(value)</code><br><code>MapRazorComponents([ :endpoints = … ])</code></td><td><code>static RazorComponentsEndpointConventionBuilder MapRazorComponents&lt;TRootComponent&gt;(IEndpointRouteBuilder endpoints)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RazorPagesEndpointRouteBuilderExtensions"><summary><b>RazorPagesEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapDynamicPageRoute</code></td><td><code>MapDynamicPageRoute([ :endpoints = …, :pattern = … ])</code><br><code>MapDynamicPageRoute([ :endpoints = …, :pattern = …, :state = … ])</code><br><code>MapDynamicPageRoute([ :endpoints = …, :pattern = …, :state = …, :order = … ])</code></td><td><code>static void MapDynamicPageRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern)</code><br><code>static void MapDynamicPageRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern, object state)</code><br><code>static void MapDynamicPageRoute&lt;TTransformer&gt;(IEndpointRouteBuilder endpoints, string pattern, object state, int order)</code></td></tr><tr><td><code>MapFallbackToAreaPage</code></td><td><code>MapFallbackToAreaPage([ :endpoints = …, :page = …, :area = … ])</code><br><code>MapFallbackToAreaPage([ :endpoints = …, :pattern = …, :page = …, :area = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallbackToAreaPage(IEndpointRouteBuilder endpoints, string page, string area)</code><br><code>static IEndpointConventionBuilder MapFallbackToAreaPage(IEndpointRouteBuilder endpoints, string pattern, string page, string area)</code></td></tr><tr><td><code>MapFallbackToPage</code></td><td><code>MapFallbackToPage([ :endpoints = …, :page = … ])</code><br><code>MapFallbackToPage([ :endpoints = …, :pattern = …, :page = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallbackToPage(IEndpointRouteBuilder endpoints, string page)</code><br><code>static IEndpointConventionBuilder MapFallbackToPage(IEndpointRouteBuilder endpoints, string pattern, string page)</code></td></tr><tr><td><code>MapRazorPages</code></td><td><code>MapRazorPages(p1)</code></td><td><code>static PageActionEndpointConventionBuilder MapRazorPages(IEndpointRouteBuilder endpoints)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestDecompressionBuilderExtensions"><summary><b>RequestDecompressionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RequestDecompressionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.RequestDecompression</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRequestDecompression</code></td><td><code>UseRequestDecompression(p1)</code></td><td><code>static IApplicationBuilder UseRequestDecompression(IApplicationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestLocalizationOptions"><summary><b>RequestLocalizationOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RequestLocalizationOptions</code> · assembly <code>Microsoft.AspNetCore.Localization</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequestLocalizationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequestLocalizationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequestLocalizationOptions().@New([ :param = value ])</code> or <code>dnNew("RequestLocalizationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CultureInfoUseUserOverride</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.CultureInfoUseUserOverride</code> <code>o.CultureInfoUseUserOverride = v</code></td></tr><tr><td><code>DefaultRequestCulture</code></td><td><code>RequestCulture</code></td><td>read, write</td><td><code>o.DefaultRequestCulture</code> <code>o.DefaultRequestCulture = v</code></td></tr><tr><td><code>FallBackToParentCultures</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.FallBackToParentCultures</code> <code>o.FallBackToParentCultures = v</code></td></tr><tr><td><code>FallBackToParentUICultures</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.FallBackToParentUICultures</code> <code>o.FallBackToParentUICultures = v</code></td></tr><tr><td><code>ApplyCurrentCultureToResponseHeaders</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ApplyCurrentCultureToResponseHeaders</code> <code>o.ApplyCurrentCultureToResponseHeaders = v</code></td></tr><tr><td><code>SupportedCultures</code></td><td><code>IList&lt;CultureInfo&gt;</code></td><td>read, write</td><td><code>o.SupportedCultures</code> <code>o.SupportedCultures = v</code></td></tr><tr><td><code>SupportedUICultures</code></td><td><code>IList&lt;CultureInfo&gt;</code></td><td>read, write</td><td><code>o.SupportedUICultures</code> <code>o.SupportedUICultures = v</code></td></tr><tr><td><code>RequestCultureProviders</code></td><td><code>IList&lt;IRequestCultureProvider&gt;</code></td><td>read, write</td><td><code>o.RequestCultureProviders</code> <code>o.RequestCultureProviders = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddSupportedCultures</code></td><td><code>AddSupportedCultures(p1)</code></td><td><code>RequestLocalizationOptions AddSupportedCultures(string[] cultures)</code></td></tr><tr><td><code>AddSupportedUICultures</code></td><td><code>AddSupportedUICultures(p1)</code></td><td><code>RequestLocalizationOptions AddSupportedUICultures(string[] uiCultures)</code></td></tr><tr><td><code>SetDefaultCulture</code></td><td><code>SetDefaultCulture(p1)</code></td><td><code>RequestLocalizationOptions SetDefaultCulture(string defaultCulture)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestLocalizationOptionsExtensions"><summary><b>RequestLocalizationOptionsExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions</code> · assembly <code>Microsoft.AspNetCore.Localization</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddInitialRequestCultureProvider</code></td><td><code>AddInitialRequestCultureProvider(p1,p2)</code></td><td><code>static RequestLocalizationOptions AddInitialRequestCultureProvider(RequestLocalizationOptions requestLocalizationOptions, RequestCultureProvider requestCultureProvider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestTimeoutsIApplicationBuilderExtensions"><summary><b>RequestTimeoutsIApplicationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRequestTimeouts</code></td><td><code>UseRequestTimeouts(p1)</code></td><td><code>static IApplicationBuilder UseRequestTimeouts(IApplicationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RequestTimeoutsIEndpointConventionBuilderExtensions"><summary><b>RequestTimeoutsIEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Http</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DisableRequestTimeout</code></td><td><code>DisableRequestTimeout(p1)</code></td><td><code>static IEndpointConventionBuilder DisableRequestTimeout(IEndpointConventionBuilder builder)</code></td></tr><tr><td><code>WithRequestTimeout</code></td><td><code>WithRequestTimeout(p1,p2)</code></td><td><code>static IEndpointConventionBuilder WithRequestTimeout(IEndpointConventionBuilder builder, TimeSpan timeout)</code><br><code>static IEndpointConventionBuilder WithRequestTimeout(IEndpointConventionBuilder builder, string policyName)</code><br><code>static IEndpointConventionBuilder WithRequestTimeout(IEndpointConventionBuilder builder, RequestTimeoutPolicy policy)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ResponseCachingExtensions"><summary><b>ResponseCachingExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ResponseCachingExtensions</code> · assembly <code>Microsoft.AspNetCore.ResponseCaching</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseResponseCaching</code></td><td><code>UseResponseCaching(p1)</code></td><td><code>static IApplicationBuilder UseResponseCaching(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ResponseCompressionBuilderExtensions"><summary><b>ResponseCompressionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.ResponseCompression</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseResponseCompression</code></td><td><code>UseResponseCompression(p1)</code></td><td><code>static IApplicationBuilder UseResponseCompression(IApplicationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ResponseCompressionServicesExtensions"><summary><b>ResponseCompressionServicesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ResponseCompressionServicesExtensions</code> · assembly <code>Microsoft.AspNetCore.ResponseCompression</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddResponseCompression</code></td><td><code>AddResponseCompression(value)</code><br><code>AddResponseCompression([ :services = … ])</code><br><code>AddResponseCompression([ :services = …, :configureOptions = … ])</code></td><td><code>static IServiceCollection AddResponseCompression(IServiceCollection services)</code><br><code>static IServiceCollection AddResponseCompression(IServiceCollection services, Action&lt;ResponseCompressionOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RewriteBuilderExtensions"><summary><b>RewriteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RewriteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Rewrite</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRewriter</code></td><td><code>UseRewriter(value)</code><br><code>UseRewriter([ :app = … ])</code><br><code>UseRewriter([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseRewriter(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseRewriter(IApplicationBuilder app, RewriteOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RouteHandlerBuilder"><summary><b>RouteHandlerBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RouteHandlerBuilder</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RouteHandlerBuilder(IEnumerable&lt;IEndpointConventionBuilder&gt; endpointConventionBuilders)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RouteHandlerBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RouteHandlerBuilder().@New([ :param = value ])</code> or <code>dnNew("RouteHandlerBuilder",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Action&lt;EndpointBuilder&gt; convention)</code></td></tr><tr><td><code>Finally</code></td><td><code>Finally(p1)</code></td><td><code>void Finally(Action&lt;EndpointBuilder&gt; finalConvention)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RouterMiddleware"><summary><b>RouterMiddleware</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RouterMiddleware</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RouterMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IRouter router)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RouterMiddleware(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RouterMiddleware().@New([ :param = value ])</code> or <code>dnNew("RouterMiddleware",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>Invoke(p1)</code></td><td><code>Task Invoke(HttpContext httpContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RouteShortCircuitEndpointConventionBuilderExtensions"><summary><b>RouteShortCircuitEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ShortCircuit</code></td><td><code>ShortCircuit([ :builder = …, :statusCode = … ])</code></td><td><code>static IEndpointConventionBuilder ShortCircuit(IEndpointConventionBuilder builder, int? statusCode = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RoutingBuilderExtensions"><summary><b>RoutingBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RoutingBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseRouter</code></td><td><code>UseRouter(p1,p2)</code></td><td><code>static IApplicationBuilder UseRouter(IApplicationBuilder builder, IRouter router)</code><br><code>static IApplicationBuilder UseRouter(IApplicationBuilder builder, Action&lt;IRouteBuilder&gt; action)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RoutingEndpointConventionBuilderExtensions"><summary><b>RoutingEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Routing</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>DisableAntiforgery</code></td><td><code>DisableAntiforgery(p1)</code></td><td><code>static TBuilder DisableAntiforgery&lt;TBuilder&gt;(TBuilder builder)</code></td></tr><tr><td><code>RequireHost</code></td><td><code>RequireHost(p1,p2)</code></td><td><code>static TBuilder RequireHost&lt;TBuilder&gt;(TBuilder builder, string[] hosts)</code></td></tr><tr><td><code>WithDisplayName</code></td><td><code>WithDisplayName(p1,p2)</code></td><td><code>static TBuilder WithDisplayName&lt;TBuilder&gt;(TBuilder builder, string displayName)</code><br><code>static TBuilder WithDisplayName&lt;TBuilder&gt;(TBuilder builder, Func&lt;EndpointBuilder, string&gt; func)</code></td></tr><tr><td><code>WithFormMappingOptions</code></td><td><code>WithFormMappingOptions([ :builder = …, :maxCollectionSize = …, :maxRecursionDepth = …, :maxKeySize = … ])</code></td><td><code>static TBuilder WithFormMappingOptions&lt;TBuilder&gt;(TBuilder builder, int? maxCollectionSize = …, int? maxRecursionDepth = …, int? maxKeySize = …)</code></td></tr><tr><td><code>WithFormOptions</code></td><td><code>WithFormOptions([ :builder = …, :bufferBody = …, :memoryBufferThreshold = …, :bufferBodyLengthLimit = …, :valueCountLimit = …, :keyLengthLimit = …, :valueLengthLimit = …, :multipartBoundaryLengthLimit = …, :multipartHeadersCountLimit = …, :multipartHeadersLengthLimit = …, :multipartBodyLengthLimit = … ])</code></td><td><code>static TBuilder WithFormOptions&lt;TBuilder&gt;(TBuilder builder, bool? bufferBody = …, int? memoryBufferThreshold = …, long? bufferBodyLengthLimit = …, int? valueCountLimit = …, int? keyLengthLimit = …, int? valueLengthLimit = …, int? multipartBoundaryLengthLimit = …, int? multipartHeadersCountLimit = …, int? multipartHeadersLengthLimit = …, long? multipartBodyLengthLimit = …)</code></td></tr><tr><td><code>WithGroupName</code></td><td><code>WithGroupName(p1,p2)</code></td><td><code>static TBuilder WithGroupName&lt;TBuilder&gt;(TBuilder builder, string endpointGroupName)</code></td></tr><tr><td><code>WithMetadata</code></td><td><code>WithMetadata(p1,p2)</code></td><td><code>static TBuilder WithMetadata&lt;TBuilder&gt;(TBuilder builder, object[] items)</code></td></tr><tr><td><code>WithName</code></td><td><code>WithName(p1,p2)</code></td><td><code>static TBuilder WithName&lt;TBuilder&gt;(TBuilder builder, string endpointName)</code></td></tr><tr><td><code>WithOrder</code></td><td><code>WithOrder(p1,p2)</code></td><td><code>static TBuilder WithOrder&lt;TBuilder&gt;(TBuilder builder, int order)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RunExtensions"><summary><b>RunExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.RunExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Run</code></td><td><code>Run(p1,p2)</code></td><td><code>static void Run(IApplicationBuilder app, RequestDelegate handler)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ServerRazorComponentsEndpointConventionBuilderExtensions"><summary><b>ServerRazorComponentsEndpointConventionBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Components.Server</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddInteractiveServerRenderMode</code></td><td><code>AddInteractiveServerRenderMode(value)</code><br><code>AddInteractiveServerRenderMode([ :builder = … ])</code><br><code>AddInteractiveServerRenderMode([ :builder = …, :configure = … ])</code></td><td><code>static RazorComponentsEndpointConventionBuilder AddInteractiveServerRenderMode(RazorComponentsEndpointConventionBuilder builder)</code><br><code>static RazorComponentsEndpointConventionBuilder AddInteractiveServerRenderMode(RazorComponentsEndpointConventionBuilder builder, Action&lt;ServerComponentsEndpointOptions&gt; configure)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SessionMiddlewareExtensions"><summary><b>SessionMiddlewareExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions</code> · assembly <code>Microsoft.AspNetCore.Session</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseSession</code></td><td><code>UseSession(value)</code><br><code>UseSession([ :app = … ])</code><br><code>UseSession([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseSession(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseSession(IApplicationBuilder app, SessionOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SessionOptions"><summary><b>SessionOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.SessionOptions</code> · assembly <code>Microsoft.AspNetCore.Session</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SessionOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SessionOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SessionOptions().@New([ :param = value ])</code> or <code>dnNew("SessionOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Cookie</code></td><td><code>CookieBuilder</code></td><td>read, write</td><td><code>o.Cookie</code> <code>o.Cookie = v</code></td></tr><tr><td><code>IdleTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.IdleTimeout</code> <code>o.IdleTimeout = v</code></td></tr><tr><td><code>IOTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.IOTimeout</code> <code>o.IOTimeout = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StaticAssetsEndpointRouteBuilderExtensions"><summary><b>StaticAssetsEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticAssets</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapStaticAssets</code></td><td><code>MapStaticAssets([ :endpoints = …, :staticAssetsManifestPath = … ])</code></td><td><code>static StaticAssetsEndpointConventionBuilder MapStaticAssets(IEndpointRouteBuilder endpoints, string staticAssetsManifestPath = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StaticFileExtensions"><summary><b>StaticFileExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StaticFileExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseStaticFiles</code></td><td><code>UseStaticFiles(value)</code><br><code>UseStaticFiles([ :app = … ])</code><br><code>UseStaticFiles([ :app = …, :requestPath = … ])</code><br><code>UseStaticFiles([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseStaticFiles(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseStaticFiles(IApplicationBuilder app, string requestPath)</code><br><code>static IApplicationBuilder UseStaticFiles(IApplicationBuilder app, StaticFileOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StaticFileOptions"><summary><b>StaticFileOptions</b> <span class="muted">class · extends SharedOptionsBase</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StaticFileOptions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StaticFileOptions()</code></td></tr><tr><td><code>new StaticFileOptions(SharedOptions sharedOptions)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StaticFileOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StaticFileOptions().@New([ :param = value ])</code> or <code>dnNew("StaticFileOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ContentTypeProvider</code></td><td><code>IContentTypeProvider</code></td><td>read, write</td><td><code>o.ContentTypeProvider</code> <code>o.ContentTypeProvider = v</code></td></tr><tr><td><code>DefaultContentType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultContentType</code> <code>o.DefaultContentType = v</code></td></tr><tr><td><code>ServeUnknownFileTypes</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ServeUnknownFileTypes</code> <code>o.ServeUnknownFileTypes = v</code></td></tr><tr><td><code>HttpsCompression</code></td><td><code>HttpsCompressionMode</code></td><td>read, write</td><td><code>o.HttpsCompression</code> <code>o.HttpsCompression = v</code></td></tr><tr><td><code>OnPrepareResponse</code></td><td><code>Action&lt;StaticFileResponseContext&gt;</code></td><td>read, write</td><td><code>o.OnPrepareResponse</code> <code>o.OnPrepareResponse = v</code></td></tr><tr><td><code>OnPrepareResponseAsync</code></td><td><code>Func&lt;StaticFileResponseContext, Task&gt;</code></td><td>read, write</td><td><code>o.OnPrepareResponseAsync</code> <code>o.OnPrepareResponseAsync = v</code></td></tr><tr><td><code>RequestPath</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.RequestPath</code> <code>o.RequestPath = v</code></td></tr><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr><tr><td><code>RedirectToAppendTrailingSlash</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.RedirectToAppendTrailingSlash</code> <code>o.RedirectToAppendTrailingSlash = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StaticFilesEndpointRouteBuilderExtensions"><summary><b>StaticFilesEndpointRouteBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MapFallbackToFile</code></td><td><code>MapFallbackToFile([ :endpoints = …, :filePath = … ])</code><br><code>MapFallbackToFile([ :endpoints = …, :filePath = …, :options = … ])</code><br><code>MapFallbackToFile([ :endpoints = …, :pattern = …, :filePath = … ])</code><br><code>MapFallbackToFile([ :endpoints = …, :pattern = …, :filePath = …, :options = … ])</code></td><td><code>static IEndpointConventionBuilder MapFallbackToFile(IEndpointRouteBuilder endpoints, string filePath)</code><br><code>static IEndpointConventionBuilder MapFallbackToFile(IEndpointRouteBuilder endpoints, string filePath, StaticFileOptions options)</code><br><code>static IEndpointConventionBuilder MapFallbackToFile(IEndpointRouteBuilder endpoints, string pattern, string filePath)</code><br><code>static IEndpointConventionBuilder MapFallbackToFile(IEndpointRouteBuilder endpoints, string pattern, string filePath, StaticFileOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StatusCodePagesExtensions"><summary><b>StatusCodePagesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StatusCodePagesExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseStatusCodePages</code></td><td><code>UseStatusCodePages(value)</code><br><code>UseStatusCodePages([ :app = … ])</code><br><code>UseStatusCodePages([ :app = …, :options = … ])</code><br><code>UseStatusCodePages([ :app = …, :handler = … ])</code><br><code>UseStatusCodePages([ :app = …, :configuration = … ])</code></td><td><code>static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, StatusCodePagesOptions options)</code><br><code>static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, Func&lt;StatusCodeContext, Task&gt; handler)</code><br><code>static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, string contentType, string bodyFormat)</code><br><code>static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, Action&lt;IApplicationBuilder&gt; configuration)</code></td></tr><tr><td><code>UseStatusCodePagesWithRedirects</code></td><td><code>UseStatusCodePagesWithRedirects(p1,p2)</code></td><td><code>static IApplicationBuilder UseStatusCodePagesWithRedirects(IApplicationBuilder app, string locationFormat)</code></td></tr><tr><td><code>UseStatusCodePagesWithReExecute</code></td><td><code>UseStatusCodePagesWithReExecute([ :app = …, :pathFormat = …, :queryFormat = … ])</code></td><td><code>static IApplicationBuilder UseStatusCodePagesWithReExecute(IApplicationBuilder app, string pathFormat, string queryFormat = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StatusCodePagesOptions"><summary><b>StatusCodePagesOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.StatusCodePagesOptions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StatusCodePagesOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StatusCodePagesOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StatusCodePagesOptions().@New([ :param = value ])</code> or <code>dnNew("StatusCodePagesOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HandleAsync</code></td><td><code>Func&lt;StatusCodeContext, Task&gt;</code></td><td>read, write</td><td><code>o.HandleAsync</code> <code>o.HandleAsync = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UseExtensions"><summary><b>UseExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.UseExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Use</code></td><td><code>Use(p1,p2)</code></td><td><code>static IApplicationBuilder Use(IApplicationBuilder app, Func&lt;HttpContext, Func&lt;Task&gt;, Task&gt; middleware)</code><br><code>static IApplicationBuilder Use(IApplicationBuilder app, Func&lt;HttpContext, RequestDelegate, Task&gt; middleware)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UseMiddlewareExtensions"><summary><b>UseMiddlewareExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.UseMiddlewareExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseMiddleware</code></td><td><code>UseMiddleware([ :app = …, :args = … ])</code><br><code>UseMiddleware([ :app = …, :middleware = …, :args = … ])</code></td><td><code>static IApplicationBuilder UseMiddleware&lt;TMiddleware&gt;(IApplicationBuilder app, object[] args)</code><br><code>static IApplicationBuilder UseMiddleware(IApplicationBuilder app, Type middleware, object[] args)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UsePathBaseExtensions"><summary><b>UsePathBaseExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.UsePathBaseExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UsePathBase</code></td><td><code>UsePathBase(p1,p2)</code></td><td><code>static IApplicationBuilder UsePathBase(IApplicationBuilder app, PathString pathBase)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UseWhenExtensions"><summary><b>UseWhenExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.UseWhenExtensions</code> · assembly <code>Microsoft.AspNetCore.Http.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseWhen</code></td><td><code>UseWhen(p1,p2,p3)</code></td><td><code>static IApplicationBuilder UseWhen(IApplicationBuilder app, Func&lt;HttpContext, bool&gt; predicate, Action&lt;IApplicationBuilder&gt; configuration)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebApplication"><summary><b>WebApplication</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WebApplication</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<p class="muted">Implements: IDisposable, IAsyncDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Services</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.Services</code></td></tr><tr><td><code>Configuration</code></td><td><code>IConfiguration</code></td><td>read</td><td><code>o.Configuration</code></td></tr><tr><td><code>Environment</code></td><td><code>IWebHostEnvironment</code></td><td>read</td><td><code>o.Environment</code></td></tr><tr><td><code>Lifetime</code></td><td><code>IHostApplicationLifetime</code></td><td>read</td><td><code>o.Lifetime</code></td></tr><tr><td><code>Logger</code></td><td><code>ILogger</code></td><td>read</td><td><code>o.Logger</code></td></tr><tr><td><code>Urls</code></td><td><code>ICollection&lt;string&gt;</code></td><td>read</td><td><code>o.Urls</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(value)</code><br><code>Create([ :args = … ])</code></td><td><code>static WebApplication Create(string[] args = …)</code></td></tr><tr><td><code>CreateBuilder</code></td><td><code>CreateBuilder(NULL)</code><br><code>CreateBuilder(value)</code><br><code>CreateBuilder([ :args = … ])</code><br><code>CreateBuilder([ :options = … ])</code></td><td><code>static WebApplicationBuilder CreateBuilder()</code><br><code>static WebApplicationBuilder CreateBuilder(string[] args)</code><br><code>static WebApplicationBuilder CreateBuilder(WebApplicationOptions options)</code></td></tr><tr><td><code>CreateEmptyBuilder</code></td><td><code>CreateEmptyBuilder(p1)</code></td><td><code>static WebApplicationBuilder CreateEmptyBuilder(WebApplicationOptions options)</code></td></tr><tr><td><code>CreateSlimBuilder</code></td><td><code>CreateSlimBuilder(NULL)</code><br><code>CreateSlimBuilder(value)</code><br><code>CreateSlimBuilder([ :args = … ])</code><br><code>CreateSlimBuilder([ :options = … ])</code></td><td><code>static WebApplicationBuilder CreateSlimBuilder()</code><br><code>static WebApplicationBuilder CreateSlimBuilder(string[] args)</code><br><code>static WebApplicationBuilder CreateSlimBuilder(WebApplicationOptions options)</code></td></tr><tr><td><code>DisposeAsync</code></td><td><code>DisposeAsync()</code></td><td><code>ValueTask DisposeAsync()</code></td></tr><tr><td><code>Run</code></td><td><code>Run(value)</code><br><code>Run([ :url = … ])</code></td><td><code>void Run(string url = …)</code></td></tr><tr><td><code>RunAsync</code></td><td><code>RunAsync(value)</code><br><code>RunAsync([ :url = … ])</code></td><td><code>Task RunAsync(string url = …)</code></td></tr><tr><td><code>StartAsync</code></td><td><code>StartAsync(value)</code><br><code>StartAsync([ :cancellationToken = … ])</code></td><td><code>Task StartAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>StopAsync</code></td><td><code>StopAsync(value)</code><br><code>StopAsync([ :cancellationToken = … ])</code></td><td><code>Task StopAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Use</code></td><td><code>Use(p1)</code></td><td><code>IApplicationBuilder Use(Func&lt;RequestDelegate, RequestDelegate&gt; middleware)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebApplicationBuilder"><summary><b>WebApplicationBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WebApplicationBuilder</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Environment</code></td><td><code>IWebHostEnvironment</code></td><td>read</td><td><code>o.Environment</code></td></tr><tr><td><code>Services</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.Services</code></td></tr><tr><td><code>Configuration</code></td><td><code>ConfigurationManager</code></td><td>read</td><td><code>o.Configuration</code></td></tr><tr><td><code>Logging</code></td><td><code>ILoggingBuilder</code></td><td>read</td><td><code>o.Logging</code></td></tr><tr><td><code>Metrics</code></td><td><code>IMetricsBuilder</code></td><td>read</td><td><code>o.Metrics</code></td></tr><tr><td><code>WebHost</code></td><td><code>ConfigureWebHostBuilder</code></td><td>read</td><td><code>o.WebHost</code></td></tr><tr><td><code>Host</code></td><td><code>ConfigureHostBuilder</code></td><td>read</td><td><code>o.Host</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>WebApplication Build()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebApplicationOptions"><summary><b>WebApplicationOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WebApplicationOptions</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WebApplicationOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WebApplicationOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WebApplicationOptions().@New([ :param = value ])</code> or <code>dnNew("WebApplicationOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Args</code></td><td><code>string[]</code></td><td>read, write</td><td><code>o.Args</code> <code>o.Args = v</code></td></tr><tr><td><code>EnvironmentName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EnvironmentName</code> <code>o.EnvironmentName = v</code></td></tr><tr><td><code>ApplicationName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ApplicationName</code> <code>o.ApplicationName = v</code></td></tr><tr><td><code>ContentRootPath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ContentRootPath</code> <code>o.ContentRootPath = v</code></td></tr><tr><td><code>WebRootPath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.WebRootPath</code> <code>o.WebRootPath = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebSocketMiddlewareExtensions"><summary><b>WebSocketMiddlewareExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions</code> · assembly <code>Microsoft.AspNetCore.WebSockets</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseWebSockets</code></td><td><code>UseWebSockets(value)</code><br><code>UseWebSockets([ :app = … ])</code><br><code>UseWebSockets([ :app = …, :options = … ])</code></td><td><code>static IApplicationBuilder UseWebSockets(IApplicationBuilder app)</code><br><code>static IApplicationBuilder UseWebSockets(IApplicationBuilder app, WebSocketOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebSocketOptions"><summary><b>WebSocketOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WebSocketOptions</code> · assembly <code>Microsoft.AspNetCore.WebSockets</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WebSocketOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WebSocketOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WebSocketOptions().@New([ :param = value ])</code> or <code>dnNew("WebSocketOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>KeepAliveInterval</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.KeepAliveInterval</code> <code>o.KeepAliveInterval = v</code></td></tr><tr><td><code>KeepAliveTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.KeepAliveTimeout</code> <code>o.KeepAliveTimeout = v</code></td></tr><tr><td><code>ReceiveBufferSize</code></td><td><code>int</code></td><td>read, write</td><td><code>o.ReceiveBufferSize</code> <code>o.ReceiveBufferSize = v</code></td></tr><tr><td><code>AllowedOrigins</code></td><td><code>IList&lt;string&gt;</code></td><td>read</td><td><code>o.AllowedOrigins</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WelcomePageExtensions"><summary><b>WelcomePageExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WelcomePageExtensions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>UseWelcomePage</code></td><td><code>UseWelcomePage(value)</code><br><code>UseWelcomePage([ :app = … ])</code><br><code>UseWelcomePage([ :app = …, :options = … ])</code><br><code>UseWelcomePage([ :app = …, :path = … ])</code></td><td><code>static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, WelcomePageOptions options)</code><br><code>static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, PathString path)</code><br><code>static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, string path)</code><br><code>static IApplicationBuilder UseWelcomePage(IApplicationBuilder app)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WelcomePageOptions"><summary><b>WelcomePageOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Builder.WelcomePageOptions</code> · assembly <code>Microsoft.AspNetCore.Diagnostics</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WelcomePageOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WelcomePageOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WelcomePageOptions().@New([ :param = value ])</code> or <code>dnNew("WelcomePageOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Path</code></td><td><code>PathString</code></td><td>read, write</td><td><code>o.Path</code> <code>o.Path = v</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules and limits · RingDotNet</title>
+<meta name="description" content="How Ring behaves when it works with .NET objects, why, and what to write — plus what RingDotNet does not support.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html" class="cur">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Rules and limits</h1><p class="lead">How Ring behaves when it works with .NET objects, why, and what to write — plus what RingDotNet does not support.</p>
+<h2 id="ring-rules-for-net-code">Ring rules for .NET code<a class="anchor" href="#ring-rules-for-net-code">#</a></h2>
+<h3 id="use-parentheses-with-new-when-you-pass-arguments">Use parentheses with <code>new</code> when you pass arguments<a class="anchor" href="#use-parentheses-with-new-when-you-pass-arguments">#</a></h3>
+<p><code>new StringBuilder("x")</code> — <strong>with</strong> parentheses, because Ring calls <code>init()</code> only then. A class without arguments works both ways (<code>new MemoryStream</code>, <code>new MemoryStream()</code>). For <code>StringBuilder</code>, <code>Random</code> and <code>Version</code>, which take an optional first argument, write <code>new StringBuilder</code> or <code>new StringBuilder("x")</code>, not <code>new StringBuilder()</code>.</p>
+<h3 id="event-code-can-only-see-global-variables">Event code can only see global variables<a class="anchor" href="#event-code-can-only-see-global-variables">#</a></h3>
+<p>The code of an event (<code>setClickEvent("...")</code>) runs outside the function that set it up. Create the widgets and the program state as <strong>globals</strong> at the top, then assign them inside <code>func main</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oForm = <span class="s">""</span>
+oCount = <span class="s">""</span>
+nClicks = <span class="n">0</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oForm = <span class="f">uiForm</span>(<span class="s">"Counter"</span>,<span class="n">260</span>,<span class="n">130</span>)
+	oCount = <span class="f">uiLabel</span>(oForm,<span class="s">"0"</span>,<span class="n">20</span>,<span class="n">15</span>,<span class="n">220</span>,<span class="n">24</span>)
+	<span class="f">uiButton</span>(oForm,<span class="s">"Click"</span>,<span class="n">20</span>,<span class="n">50</span>,<span class="n">100</span>,<span class="n">32</span>,<span class="s">"nClicks++ oCount.Text = '' + nClicks"</span>)</code></pre></div>
+<h3 id="names-inside-braces-belong-to-the-object-first">Names inside braces belong to the object first<a class="anchor" href="#names-inside-braces-belong-to-the-object-first">#</a></h3>
+<p>In <code>oForm { Text = cTitle }</code> Ring looks for <code>Text</code> and <code>cTitle</code> as members of <code>oForm</code> before it looks for variables. A variable named like a member of the object (<code>text</code>, <code>width</code>, <code>count</code>...) is then read as that member. Use prefixed names (<code>cText</code>, <code>nWidth</code>) for your variables.</p>
+<h3 id="put-the-program-in-functions">Put the program in functions<a class="anchor" href="#put-the-program-in-functions">#</a></h3>
+<p>In Ring a <strong>global variable named like an attribute</strong> (<code>x</code>, <code>width</code>, <code>text</code>...) is read first when <code>obj.x</code> is evaluated, and a function that assigns a name that exists as a global changes that global. Write <code>func main</code> and keep only what event code needs global.</p>
+<h3 id="keywords-are-not-available-as-names">Keywords are not available as names<a class="anchor" href="#keywords-are-not-available-as-names">#</a></h3>
+<p><code>ok</code>, <code>step</code>, <code>from</code>, <code>to</code>, <code>load</code>, <code>call</code>, <code>get</code>, <code>set</code>, <code>put</code>, <code>on</code>, <code>off</code>... are Ring keywords, so they are not used as variable or function names, in any letter case. <code>oK</code> is <code>ok</code>. This is about your own names. In the generated classes a method that Ring reserves after a dot gets an <code>@</code> at the start (<code>@ForEach</code>, <code>@Next</code>), and a property with such a name is read with <code>getProp</code> and set with <code>setProp</code>.</p>
+<p>Do not define your own functions named like built-ins the library uses (<code>isNumber</code>, <code>len</code>...).</p>
+<h3 id="define-functions-after-the-main-code">Define functions after the main code<a class="anchor" href="#define-functions-after-the-main-code">#</a></h3>
+<p>A <code>func</code> at the top of a file takes the rest of the file as its body. Put the main code first (or put it in <code>func main</code> and call it at the end).</p>
+<h3 id="new-stringbuildernull-for-the-parameterless-constructor"><code>new StringBuilder(NULL)</code> for the parameterless constructor<a class="anchor" href="#new-stringbuildernull-for-the-parameterless-constructor">#</a></h3>
+<p>Ring checks the number of arguments of <code>init()</code>. The classes whose <code>init</code> takes a value (<code>StringBuilder</code>, <code>Random</code>, <code>Version</code>) therefore use <code>NULL</code> for the parameterless constructor: <code>new StringBuilder(NULL)</code>, <code>new Random(NULL)</code>. With a value it is as usual: <code>new StringBuilder("Hello")</code>, <code>new Random(42)</code>.</p>
+<h3 id="a-variable-name-that-starts-like-a-keyword">A variable name that starts like a keyword<a class="anchor" href="#a-variable-name-that-starts-like-a-keyword">#</a></h3>
+<p>Ring names are not case sensitive and the words <code>or</code>, <code>if</code>, <code>to</code>, <code>in</code>, <code>do</code>... are keywords. <code>oR = new StreamReader(...)</code> is read as <code>or = ...</code>, so such names are written longer (<code>oReader</code>, <code>oRd</code>).</p>
+<h3 id="using-objects-during-definition-x-new-classmethodx">Using objects during definition: <code>x = new Class().Method(x)</code><a class="anchor" href="#using-objects-during-definition-x-new-classmethodx">#</a></h3>
+<p>This is a <strong>Ring feature</strong> (since Ring 1.19, <a href="https://ring-lang.github.io/doc1.28/oop.html#using-objects-during-definition">Using objects during definition</a>): in an assignment <code>x = new Class(...)</code>, the new object is stored in <code>x</code> <em>first</em>, so that it can be used while the rest of the expression is evaluated. Then the rest of the expression runs (a method call, an operator) and its result is stored in <code>x</code> again. This makes it possible to use the object (for example with an overloaded operator) during its own definition, but it means that the variable you are assigning already holds the <strong>new object</strong> when the arguments are evaluated:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>cText = <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"a"</span>).<span class="f">Replace</span>([ :input = cText, :replacement = <span class="s">"b"</span> ])      <span class="c"># error: cText already holds the Regex object</span>
+cResult = <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"a"</span>).<span class="f">Replace</span>([ :input = cText, :replacement = <span class="s">"b"</span> ])    <span class="c"># works: a different variable</span></code></pre></div>
+<p>Write the result to a <strong>different</strong> variable (see the tutorial <a href="tut-47-markdown.html">A project: Markdown to HTML</a>).</p>
+<h3 id="a-list-of-text-value-pairs-passed-alone-is-read-as-named-arguments">A list of <code>[text, value]</code> pairs passed alone is read as named arguments<a class="anchor" href="#a-list-of-text-value-pairs-passed-alone-is-read-as-named-arguments">#</a></h3>
+<p>A method with overloads reads a single list of <code>[text, value]</code> pairs as <strong>named arguments</strong>. <code>Serialize([["Buy milk",1],["Walk",0]])</code> would look for a parameter called "Buy milk". Put something that is not a text first in each pair, or wrap the list in another list, so that it is passed as a value (the tutorial <a href="tut-24-todo.html">A project: a to-do list that remembers</a>).</p>
+<h3 id="dnnull"><code>dnNull()</code><a class="anchor" href="#dnnull">#</a></h3>
+<p><code>dnNull()</code> is the .NET null: <code>oPictureBox.Image = dnNull()</code>. A method that returns null gives an object that is the null: <code>dnIsNull(value)</code> is true for it and false for any other value, whatever its type.</p>
+<h2 id="net-rules">.NET rules<a class="anchor" href="#net-rules">#</a></h2>
+<h3 id="put-the-using-block-before-the-first-net-call">Put the <code>using</code> block before the first .NET call<a class="anchor" href="#put-the-using-block-before-the-first-net-call">#</a></h3>
+<p>The runtime mode (desktop, web, both) is chosen by the <code>using { }</code> block (or by <code>dnUseDesktop()</code>, <code>dnUseWeb()</code>, <code>dnUseAll()</code>) and must come <strong>before any other .NET call</strong>: the first call starts the runtime and the mode does not change afterwards. If a program needs both Windows Forms/WPF and ASP.NET Core, name both in the first <code>using</code> block.</p>
+<h3 id="callbacks-run-on-the-ring-thread-only">Callbacks run on the Ring thread only<a class="anchor" href="#callbacks-run-on-the-ring-thread-only">#</a></h3>
+<p>Events from timers on other threads (<code>System.Threading.Timer</code>, <code>Task.Run(...)</code>) do not run Ring code; they print a message on stderr instead. Use the Windows Forms <code>Timer</code> (<code>uiTimer</code>) or wait for tasks on the Ring thread. The web server queues requests for the same reason.</p>
+<h3 id="value-types-are-returned-by-value">Value types are returned by value<a class="anchor" href="#value-types-are-returned-by-value">#</a></h3>
+<p><code>oForm.Location</code> returns a copy of the <code>Point</code>. Change it by assigning a new value: <code>oForm.Location = new Point(10,20)</code>.</p>
+<h3 id="enums-are-strings">Enums are strings<a class="anchor" href="#enums-are-strings">#</a></h3>
+<p><code>oForm.WindowState = "Maximized"</code>, <code>oForm.FormBorderStyle = "FixedDialog"</code>.</p>
+<h3 id="binary-data">Binary data<a class="anchor" href="#binary-data">#</a></h3>
+<p>A Ring text can hold any byte (a NUL, bytes that are not valid UTF-8), so a <code>byte[]</code> that .NET returns is a Ring text and nothing is lost; a text that is passed to a <code>byte[]</code> parameter becomes the same bytes. Only the Entity Framework layer is different: <code>bytes</code> columns are hex texts.</p>
+<p>A method that <strong>fills</strong> an array that you pass in (<code>Stream.Read(buffer, 0, n)</code>, <code>Socket.Receive</code>) needs a live array, because a Ring text is copied when it goes in and a returned array is copied when it comes out. Use a byte buffer: <code>oBuffer = dnBuffer(1024)</code>, <code>n = oStream.Read(oBuffer, 0, 1024)</code>, <code>cBytes = dnBufferBytes(oBuffer, n)</code>. The same object is the way to pass a <code>byte[]</code> where the parameter has the type <code>object</code>.</p>
+<h3 id="tracked-ef-rows">Tracked EF rows<a class="anchor" href="#tracked-ef-rows">#</a></h3>
+<p><code>RingDatabase.byKey</code> returns the tracked row. After a raw SQL change (<code>execute</code>, <code>apply</code>) call <code>discard()</code> to read the new values.</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Not supported</th><th>Why / what to do</th></tr></thead><tbody><tr><td>Declaring .NET classes or interfaces in Ring</td><td>Ring is not compiled to .NET. Write them in C#, build a DLL and <a href="own-assemblies.html">wrap it</a>.</td></tr><tr><td>.NET members named like some Ring words (<code>Get</code>, <code>And</code>, <code>Or</code>, <code>Not</code>, <code>Next</code>, <code>End</code>, <code>If</code>, <code>For</code>, <code>New</code>, <code>Load</code>, <code>Call</code>, <code>Put</code>, <code>Give</code>, <code>See</code>)</td><td>Ring reserves these after a dot (others, such as <code>From</code>, <code>To</code>, <code>Set</code>, <code>Step</code>, <code>In</code>, <code>On</code>, <code>Off</code>, are fine). A method gets an <code>@</code> at the start (<code>@Next</code>, <code>@Call</code>); a property is read with <code>getProp("Name")</code> and <code>setProp("Name", value)</code>; a method that kept its name is called with <code>callMethod</code>.</td></tr><tr><td>Ring code on .NET threads</td><td>One Ring thread. Use callbacks only during calls, or queue work as the web server does.</td></tr><tr><td>Holding a <code>ref</code> struct, a <code>Span&lt;T&gt;</code> or a pointer in a Ring variable</td><td>They live on the stack of a call, so Ring cannot keep them. The bridge makes them for the call from values (a text, bytes, a list, an address or a buffer) and answers what they hold (an array, a text, a list of items). What a method does to a ref struct is lost, and the address of a buffer is valid during the call only: <a href="advanced-types.html">Advanced .NET types</a>.</td></tr><tr><td>Lambdas and expression trees written in Ring</td><td>Callbacks give delegates; EF queries are data (<a href="ef.html">Entity Framework</a>).</td></tr><tr><td>Linux/macOS Windows Forms and WPF</td><td>Those frameworks are Windows-only. The rest of the bridge is tested on Linux (Ubuntu 24.04, x64) as well as on Windows; macOS is not tested yet.</td></tr><tr><td>EF providers other than SQLite and in-memory</td><td>Loaded by name from their packages; untested.</td></tr><tr><td>MVC controllers and Razor written in C#</td><td>The web server is the Ring one.</td></tr></tbody></table></div>
+<h2 id="troubleshooting">Troubleshooting<a class="anchor" href="#troubleshooting">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Message</th><th>Cause</th></tr></thead><tbody><tr><td><code>Runtime Error in loading the dynamic library</code></td><td><code>ring_dotnet.dll</code> is not on the PATH. Add the package <code>bin</code> folder, or install the package into the Ring folder.</td></tr><tr><td><code>DotNet Error: No generated classes for the namespace X</code></td><td>the name is wrong, or the namespace is not in the manifest — see <a href="generator.html">Class generator</a>.</td></tr><tr><td><code>Error in property name, property not found: x</code></td><td>a global variable named like the attribute, or an object that is a plain <code>DotNetObject</code> (use <code>getProp("x")</code>).</td></tr><tr><td><code>Calling function with less number of parameters</code></td><td>a constructor that needs arguments: <code>new DateTime(2024,12,25)</code>; or an overloaded method called with no argument: write <code>NULL</code> (<code>oList.Sort(NULL)</code>).</td></tr><tr><td><code>Calling function with extra number of parameters</code></td><td>a method that has overloads takes one argument: a value, <code>NULL</code>, or a list of <code>:name = value</code>; for several arguments in order use <code>callMethod("Name",[a, b])</code> (<a href="concepts.html#arguments-in-order-with-callmethod">Core concepts</a>).</td></tr><tr><td><code>Calling Method without definition: name</code></td><td>the object is a plain <code>DotNetObject</code> that has no class for its type: use <code>callMethod("Name",[...])</code> and <code>getProp("Name")</code>; or the name is a Ring keyword: use <code>@Name</code>.</td></tr><tr><td><code>Object does not support operator overloading</code></td><td>the value is a .NET array or collection that came back as an object: <code>toList()</code> copies it into a Ring list.</td></tr><tr><td><code>Trying to destroy the object using the self reference</code></td><td>an attribute of a library class has the same name as a global variable of your program.</td></tr><tr><td>An event handler does nothing</td><td>the code uses a local variable — only globals are visible; or the handler runs on another thread.</td></tr><tr><td><code>The callback '...' was ignored</code></td><td>a callback fired outside a call or from another thread.</td></tr></tbody></table></div>
+<p>Set <code>RINGDOTNET_TRACE=1</code> to see the .NET stack trace of an error.</p>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="reference.html">Function index</a> and the <a href="api.html">Class reference</a>: look up a function or a class.</li><li><a href="concepts.html">Core concepts</a>: the naming rules behind most of the points above.</li><li><a href="ring-intro.html">Quick introduction to Ring</a>: if the problem is the language and not .NET.</li></ul>
+<div class="pager"><a href="testing.html"><small>Previous</small>Testing</a><a class="next" href="reference.html"><small>Next</small>Function index</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

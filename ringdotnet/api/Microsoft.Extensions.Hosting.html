@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.Extensions.Hosting · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.Extensions.Hosting</h1>
+<p class="lead">27 wrapped types. Load them with <code>using { "Microsoft.Extensions.Hosting" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AspHostingEnvironmentExtensions">AspHostingEnvironmentExtensions</a> <a href="#c-BackgroundService">BackgroundService</a> <a href="#c-ConsoleLifetimeOptions">ConsoleLifetimeOptions</a> <a href="#c-Environments">Environments</a> <a href="#c-GenericHostBuilderExtensions">GenericHostBuilderExtensions</a> <a href="#c-GenericHostWebHostBuilderExtensions">GenericHostWebHostBuilderExtensions</a> <a href="#c-Host">Host</a> <a href="#c-HostAbortedException">HostAbortedException</a> <a href="#c-HostApplicationBuilder">HostApplicationBuilder</a> <a href="#c-HostApplicationBuilderSettings">HostApplicationBuilderSettings</a> <a href="#c-HostBuilder">HostBuilder</a> <a href="#c-HostBuilderContext">HostBuilderContext</a> <a href="#c-HostDefaults">HostDefaults</a> <a href="#c-HostEnvironmentEnvExtensions">HostEnvironmentEnvExtensions</a> <a href="#c-HostingAbstractionsHostBuilderExtensions">HostingAbstractionsHostBuilderExtensions</a> <a href="#c-HostingAbstractionsHostExtensions">HostingAbstractionsHostExtensions</a> <a href="#c-HostingHostBuilderExtensions">HostingHostBuilderExtensions</a> <a href="#c-HostOptions">HostOptions</a> <a href="#c-IHost">IHost</a> <a href="#c-IHostApplicationBuilder">IHostApplicationBuilder</a> <a href="#c-IHostApplicationLifetime">IHostApplicationLifetime</a> <a href="#c-IHostBuilder">IHostBuilder</a> <a href="#c-IHostedLifecycleService">IHostedLifecycleService</a> <a href="#c-IHostedService">IHostedService</a> <a href="#c-IHostEnvironment">IHostEnvironment</a> <a href="#c-IHostLifetime">IHostLifetime</a> <a href="#c-WebHostBuilderOptions">WebHostBuilderOptions</a></div><details class="cls" id="c-AspHostingEnvironmentExtensions"><summary><b>AspHostingEnvironmentExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostingEnvironmentExtensions</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsDevelopment</code></td><td><code>IsDevelopment(p1)</code></td><td><code>static bool IsDevelopment(IHostingEnvironment hostingEnvironment)</code></td></tr><tr><td><code>IsEnvironment</code></td><td><code>IsEnvironment(p1,p2)</code></td><td><code>static bool IsEnvironment(IHostingEnvironment hostingEnvironment, string environmentName)</code></td></tr><tr><td><code>IsProduction</code></td><td><code>IsProduction(p1)</code></td><td><code>static bool IsProduction(IHostingEnvironment hostingEnvironment)</code></td></tr><tr><td><code>IsStaging</code></td><td><code>IsStaging(p1)</code></td><td><code>static bool IsStaging(IHostingEnvironment hostingEnvironment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BackgroundService"><summary><b>BackgroundService</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.BackgroundService</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ExecuteTask</code></td><td><code>Task</code></td><td>read</td><td><code>o.ExecuteTask</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>StartAsync</code></td><td><code>StartAsync(p1)</code></td><td><code>Task StartAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>StopAsync</code></td><td><code>StopAsync(p1)</code></td><td><code>Task StopAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConsoleLifetimeOptions"><summary><b>ConsoleLifetimeOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.ConsoleLifetimeOptions</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConsoleLifetimeOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConsoleLifetimeOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConsoleLifetimeOptions().@New([ :param = value ])</code> or <code>dnNew("ConsoleLifetimeOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SuppressStatusMessages</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SuppressStatusMessages</code> <code>o.SuppressStatusMessages = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Environments"><summary><b>Environments</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.Environments</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Development</code></td><td><code>string</code></td><td>read · static</td><td><code>o.Development</code></td></tr><tr><td><code>Staging</code></td><td><code>string</code></td><td>read · static</td><td><code>o.Staging</code></td></tr><tr><td><code>Production</code></td><td><code>string</code></td><td>read · static</td><td><code>o.Production</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GenericHostBuilderExtensions"><summary><b>GenericHostBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.GenericHostBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureWebHostDefaults</code></td><td><code>ConfigureWebHostDefaults([ :builder = …, :configure = … ])</code><br><code>ConfigureWebHostDefaults([ :builder = …, :configure = …, :configureOptions = … ])</code></td><td><code>static IHostBuilder ConfigureWebHostDefaults(IHostBuilder builder, Action&lt;IWebHostBuilder&gt; configure)</code><br><code>static IHostBuilder ConfigureWebHostDefaults(IHostBuilder builder, Action&lt;IWebHostBuilder&gt; configure, Action&lt;WebHostBuilderOptions&gt; configureOptions)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GenericHostWebHostBuilderExtensions"><summary><b>GenericHostWebHostBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions</code> · assembly <code>Microsoft.AspNetCore.Hosting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureSlimWebHost</code></td><td><code>ConfigureSlimWebHost(p1,p2,p3)</code></td><td><code>static IHostBuilder ConfigureSlimWebHost(IHostBuilder builder, Action&lt;IWebHostBuilder&gt; configure, Action&lt;WebHostBuilderOptions&gt; configureWebHostBuilder)</code></td></tr><tr><td><code>ConfigureWebHost</code></td><td><code>ConfigureWebHost([ :builder = …, :configure = … ])</code><br><code>ConfigureWebHost([ :builder = …, :configure = …, :configureWebHostBuilder = … ])</code></td><td><code>static IHostBuilder ConfigureWebHost(IHostBuilder builder, Action&lt;IWebHostBuilder&gt; configure)</code><br><code>static IHostBuilder ConfigureWebHost(IHostBuilder builder, Action&lt;IWebHostBuilder&gt; configure, Action&lt;WebHostBuilderOptions&gt; configureWebHostBuilder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Host"><summary><b>Host</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.Host</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateApplicationBuilder</code></td><td><code>CreateApplicationBuilder(NULL)</code><br><code>CreateApplicationBuilder(value)</code><br><code>CreateApplicationBuilder([ :args = … ])</code><br><code>CreateApplicationBuilder([ :settings = … ])</code></td><td><code>static HostApplicationBuilder CreateApplicationBuilder()</code><br><code>static HostApplicationBuilder CreateApplicationBuilder(string[] args)</code><br><code>static HostApplicationBuilder CreateApplicationBuilder(HostApplicationBuilderSettings settings)</code></td></tr><tr><td><code>CreateDefaultBuilder</code></td><td><code>CreateDefaultBuilder(NULL)</code><br><code>CreateDefaultBuilder(value)</code><br><code>CreateDefaultBuilder([ :args = … ])</code></td><td><code>static IHostBuilder CreateDefaultBuilder()</code><br><code>static IHostBuilder CreateDefaultBuilder(string[] args)</code></td></tr><tr><td><code>CreateEmptyApplicationBuilder</code></td><td><code>CreateEmptyApplicationBuilder(p1)</code></td><td><code>static HostApplicationBuilder CreateEmptyApplicationBuilder(HostApplicationBuilderSettings settings)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostAbortedException"><summary><b>HostAbortedException</b> <span class="muted">class sealed · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostAbortedException</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostAbortedException()</code></td></tr><tr><td><code>new HostAbortedException(string message)</code></td></tr><tr><td><code>new HostAbortedException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostAbortedException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostAbortedException().@New([ :param = value ])</code> or <code>dnNew("HostAbortedException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-HostApplicationBuilder"><summary><b>HostApplicationBuilder</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostApplicationBuilder</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostApplicationBuilder()</code></td></tr><tr><td><code>new HostApplicationBuilder(string[] args)</code></td></tr><tr><td><code>new HostApplicationBuilder(HostApplicationBuilderSettings settings)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostApplicationBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostApplicationBuilder().@New([ :param = value ])</code> or <code>dnNew("HostApplicationBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Environment</code></td><td><code>IHostEnvironment</code></td><td>read</td><td><code>o.Environment</code></td></tr><tr><td><code>Configuration</code></td><td><code>ConfigurationManager</code></td><td>read</td><td><code>o.Configuration</code></td></tr><tr><td><code>Services</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.Services</code></td></tr><tr><td><code>Logging</code></td><td><code>ILoggingBuilder</code></td><td>read</td><td><code>o.Logging</code></td></tr><tr><td><code>Metrics</code></td><td><code>IMetricsBuilder</code></td><td>read</td><td><code>o.Metrics</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>IHost Build()</code></td></tr><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer([ :factory = …, :configure = … ])</code></td><td><code>void ConfigureContainer&lt;TContainerBuilder&gt;(IServiceProviderFactory&lt;TContainerBuilder&gt; factory, Action&lt;TContainerBuilder&gt; configure = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostApplicationBuilderSettings"><summary><b>HostApplicationBuilderSettings</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostApplicationBuilderSettings</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostApplicationBuilderSettings()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostApplicationBuilderSettings(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostApplicationBuilderSettings().@New([ :param = value ])</code> or <code>dnNew("HostApplicationBuilderSettings",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DisableDefaults</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.DisableDefaults</code> <code>o.DisableDefaults = v</code></td></tr><tr><td><code>Args</code></td><td><code>string[]</code></td><td>read, write</td><td><code>o.Args</code> <code>o.Args = v</code></td></tr><tr><td><code>Configuration</code></td><td><code>ConfigurationManager</code></td><td>read, write</td><td><code>o.Configuration</code> <code>o.Configuration = v</code></td></tr><tr><td><code>EnvironmentName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EnvironmentName</code> <code>o.EnvironmentName = v</code></td></tr><tr><td><code>ApplicationName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ApplicationName</code> <code>o.ApplicationName = v</code></td></tr><tr><td><code>ContentRootPath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ContentRootPath</code> <code>o.ContentRootPath = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostBuilder"><summary><b>HostBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostBuilder</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostBuilder()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostBuilder().@New([ :param = value ])</code> or <code>dnNew("HostBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>IHost Build()</code></td></tr><tr><td><code>ConfigureAppConfiguration</code></td><td><code>ConfigureAppConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureAppConfiguration(Action&lt;HostBuilderContext, IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer(p1)</code></td><td><code>IHostBuilder ConfigureContainer&lt;TContainerBuilder&gt;(Action&lt;HostBuilderContext, TContainerBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureHostConfiguration</code></td><td><code>ConfigureHostConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureHostConfiguration(Action&lt;IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureServices</code></td><td><code>ConfigureServices(p1)</code></td><td><code>IHostBuilder ConfigureServices(Action&lt;HostBuilderContext, IServiceCollection&gt; configureDelegate)</code></td></tr><tr><td><code>UseServiceProviderFactory</code></td><td><code>UseServiceProviderFactory(p1)</code></td><td><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(IServiceProviderFactory&lt;TContainerBuilder&gt; factory)</code><br><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(Func&lt;HostBuilderContext, IServiceProviderFactory&lt;TContainerBuilder&gt;&gt; factory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostBuilderContext"><summary><b>HostBuilderContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostBuilderContext</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostBuilderContext(IDictionary&lt;object, object&gt; properties)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostBuilderContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostBuilderContext().@New([ :param = value ])</code> or <code>dnNew("HostBuilderContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HostingEnvironment</code></td><td><code>IHostEnvironment</code></td><td>read, write</td><td><code>o.HostingEnvironment</code> <code>o.HostingEnvironment = v</code></td></tr><tr><td><code>Configuration</code></td><td><code>IConfiguration</code></td><td>read, write</td><td><code>o.Configuration</code> <code>o.Configuration = v</code></td></tr><tr><td><code>Properties</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostDefaults"><summary><b>HostDefaults</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostDefaults</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ApplicationKey</code></td><td><code>string</code></td><td>read · static</td><td><code>o.ApplicationKey</code></td></tr><tr><td><code>EnvironmentKey</code></td><td><code>string</code></td><td>read · static</td><td><code>o.EnvironmentKey</code></td></tr><tr><td><code>ContentRootKey</code></td><td><code>string</code></td><td>read · static</td><td><code>o.ContentRootKey</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostEnvironmentEnvExtensions"><summary><b>HostEnvironmentEnvExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsDevelopment</code></td><td><code>IsDevelopment(p1)</code></td><td><code>static bool IsDevelopment(IHostEnvironment hostEnvironment)</code></td></tr><tr><td><code>IsEnvironment</code></td><td><code>IsEnvironment(p1,p2)</code></td><td><code>static bool IsEnvironment(IHostEnvironment hostEnvironment, string environmentName)</code></td></tr><tr><td><code>IsProduction</code></td><td><code>IsProduction(p1)</code></td><td><code>static bool IsProduction(IHostEnvironment hostEnvironment)</code></td></tr><tr><td><code>IsStaging</code></td><td><code>IsStaging(p1)</code></td><td><code>static bool IsStaging(IHostEnvironment hostEnvironment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostingAbstractionsHostBuilderExtensions"><summary><b>HostingAbstractionsHostBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostingAbstractionsHostBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Start</code></td><td><code>Start(p1)</code></td><td><code>static IHost Start(IHostBuilder hostBuilder)</code></td></tr><tr><td><code>StartAsync</code></td><td><code>StartAsync([ :hostBuilder = …, :cancellationToken = … ])</code></td><td><code>static Task&lt;IHost&gt; StartAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostingAbstractionsHostExtensions"><summary><b>HostingAbstractionsHostExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Run</code></td><td><code>Run(p1)</code></td><td><code>static void Run(IHost host)</code></td></tr><tr><td><code>RunAsync</code></td><td><code>RunAsync([ :host = …, :token = … ])</code></td><td><code>static Task RunAsync(IHost host, CancellationToken token = …)</code></td></tr><tr><td><code>Start</code></td><td><code>Start(p1)</code></td><td><code>static void Start(IHost host)</code></td></tr><tr><td><code>StopAsync</code></td><td><code>StopAsync(p1,p2)</code></td><td><code>static Task StopAsync(IHost host, TimeSpan timeout)</code></td></tr><tr><td><code>WaitForShutdown</code></td><td><code>WaitForShutdown(p1)</code></td><td><code>static void WaitForShutdown(IHost host)</code></td></tr><tr><td><code>WaitForShutdownAsync</code></td><td><code>WaitForShutdownAsync([ :host = …, :token = … ])</code></td><td><code>static Task WaitForShutdownAsync(IHost host, CancellationToken token = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostingHostBuilderExtensions"><summary><b>HostingHostBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostingHostBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureAppConfiguration</code></td><td><code>ConfigureAppConfiguration(p1,p2)</code></td><td><code>static IHostBuilder ConfigureAppConfiguration(IHostBuilder hostBuilder, Action&lt;IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer(p1,p2)</code></td><td><code>static IHostBuilder ConfigureContainer&lt;TContainerBuilder&gt;(IHostBuilder hostBuilder, Action&lt;TContainerBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureDefaults</code></td><td><code>ConfigureDefaults(p1,p2)</code></td><td><code>static IHostBuilder ConfigureDefaults(IHostBuilder builder, string[] args)</code></td></tr><tr><td><code>ConfigureHostOptions</code></td><td><code>ConfigureHostOptions(p1,p2)</code></td><td><code>static IHostBuilder ConfigureHostOptions(IHostBuilder hostBuilder, Action&lt;HostBuilderContext, HostOptions&gt; configureOptions)</code><br><code>static IHostBuilder ConfigureHostOptions(IHostBuilder hostBuilder, Action&lt;HostOptions&gt; configureOptions)</code></td></tr><tr><td><code>ConfigureLogging</code></td><td><code>ConfigureLogging(p1,p2)</code></td><td><code>static IHostBuilder ConfigureLogging(IHostBuilder hostBuilder, Action&lt;HostBuilderContext, ILoggingBuilder&gt; configureLogging)</code><br><code>static IHostBuilder ConfigureLogging(IHostBuilder hostBuilder, Action&lt;ILoggingBuilder&gt; configureLogging)</code></td></tr><tr><td><code>ConfigureMetrics</code></td><td><code>ConfigureMetrics(p1,p2)</code></td><td><code>static IHostBuilder ConfigureMetrics(IHostBuilder hostBuilder, Action&lt;IMetricsBuilder&gt; configureMetrics)</code><br><code>static IHostBuilder ConfigureMetrics(IHostBuilder hostBuilder, Action&lt;HostBuilderContext, IMetricsBuilder&gt; configureMetrics)</code></td></tr><tr><td><code>ConfigureServices</code></td><td><code>ConfigureServices(p1,p2)</code></td><td><code>static IHostBuilder ConfigureServices(IHostBuilder hostBuilder, Action&lt;IServiceCollection&gt; configureDelegate)</code></td></tr><tr><td><code>RunConsoleAsync</code></td><td><code>RunConsoleAsync([ :hostBuilder = …, :cancellationToken = … ])</code><br><code>RunConsoleAsync([ :hostBuilder = …, :configureOptions = …, :cancellationToken = … ])</code></td><td><code>static Task RunConsoleAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken = …)</code><br><code>static Task RunConsoleAsync(IHostBuilder hostBuilder, Action&lt;ConsoleLifetimeOptions&gt; configureOptions, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>UseConsoleLifetime</code></td><td><code>UseConsoleLifetime(value)</code><br><code>UseConsoleLifetime([ :hostBuilder = … ])</code><br><code>UseConsoleLifetime([ :hostBuilder = …, :configureOptions = … ])</code></td><td><code>static IHostBuilder UseConsoleLifetime(IHostBuilder hostBuilder)</code><br><code>static IHostBuilder UseConsoleLifetime(IHostBuilder hostBuilder, Action&lt;ConsoleLifetimeOptions&gt; configureOptions)</code></td></tr><tr><td><code>UseContentRoot</code></td><td><code>UseContentRoot(p1,p2)</code></td><td><code>static IHostBuilder UseContentRoot(IHostBuilder hostBuilder, string contentRoot)</code></td></tr><tr><td><code>UseDefaultServiceProvider</code></td><td><code>UseDefaultServiceProvider(p1,p2)</code></td><td><code>static IHostBuilder UseDefaultServiceProvider(IHostBuilder hostBuilder, Action&lt;ServiceProviderOptions&gt; configure)</code><br><code>static IHostBuilder UseDefaultServiceProvider(IHostBuilder hostBuilder, Action&lt;HostBuilderContext, ServiceProviderOptions&gt; configure)</code></td></tr><tr><td><code>UseEnvironment</code></td><td><code>UseEnvironment(p1,p2)</code></td><td><code>static IHostBuilder UseEnvironment(IHostBuilder hostBuilder, string environment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HostOptions"><summary><b>HostOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.HostOptions</code> · assembly <code>Microsoft.Extensions.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HostOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HostOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HostOptions().@New([ :param = value ])</code> or <code>dnNew("HostOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ShutdownTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.ShutdownTimeout</code> <code>o.ShutdownTimeout = v</code></td></tr><tr><td><code>StartupTimeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.StartupTimeout</code> <code>o.StartupTimeout = v</code></td></tr><tr><td><code>ServicesStartConcurrently</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ServicesStartConcurrently</code> <code>o.ServicesStartConcurrently = v</code></td></tr><tr><td><code>ServicesStopConcurrently</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ServicesStopConcurrently</code> <code>o.ServicesStopConcurrently = v</code></td></tr><tr><td><code>BackgroundServiceExceptionBehavior</code></td><td><code>BackgroundServiceExceptionBehavior</code></td><td>read, write</td><td><code>o.BackgroundServiceExceptionBehavior</code> <code>o.BackgroundServiceExceptionBehavior = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHost"><summary><b>IHost</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHost</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Services</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.Services</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>StartAsync</code></td><td><code>StartAsync(value)</code><br><code>StartAsync([ :cancellationToken = … ])</code></td><td><code>Task StartAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>StopAsync</code></td><td><code>StopAsync(value)</code><br><code>StopAsync([ :cancellationToken = … ])</code></td><td><code>Task StopAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostApplicationBuilder"><summary><b>IHostApplicationBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostApplicationBuilder</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>Configuration</code></td><td><code>IConfigurationManager</code></td><td>read</td><td><code>o.Configuration</code></td></tr><tr><td><code>Environment</code></td><td><code>IHostEnvironment</code></td><td>read</td><td><code>o.Environment</code></td></tr><tr><td><code>Logging</code></td><td><code>ILoggingBuilder</code></td><td>read</td><td><code>o.Logging</code></td></tr><tr><td><code>Metrics</code></td><td><code>IMetricsBuilder</code></td><td>read</td><td><code>o.Metrics</code></td></tr><tr><td><code>Services</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.Services</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer([ :factory = …, :configure = … ])</code></td><td><code>void ConfigureContainer&lt;TContainerBuilder&gt;(IServiceProviderFactory&lt;TContainerBuilder&gt; factory, Action&lt;TContainerBuilder&gt; configure = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostApplicationLifetime"><summary><b>IHostApplicationLifetime</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostApplicationLifetime</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ApplicationStarted</code></td><td><code>CancellationToken</code></td><td>read</td><td><code>o.ApplicationStarted</code></td></tr><tr><td><code>ApplicationStopping</code></td><td><code>CancellationToken</code></td><td>read</td><td><code>o.ApplicationStopping</code></td></tr><tr><td><code>ApplicationStopped</code></td><td><code>CancellationToken</code></td><td>read</td><td><code>o.ApplicationStopped</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>StopApplication</code></td><td><code>StopApplication()</code></td><td><code>void StopApplication()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostBuilder"><summary><b>IHostBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostBuilder</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>IHost Build()</code></td></tr><tr><td><code>ConfigureAppConfiguration</code></td><td><code>ConfigureAppConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureAppConfiguration(Action&lt;HostBuilderContext, IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureContainer</code></td><td><code>ConfigureContainer(p1)</code></td><td><code>IHostBuilder ConfigureContainer&lt;TContainerBuilder&gt;(Action&lt;HostBuilderContext, TContainerBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureHostConfiguration</code></td><td><code>ConfigureHostConfiguration(p1)</code></td><td><code>IHostBuilder ConfigureHostConfiguration(Action&lt;IConfigurationBuilder&gt; configureDelegate)</code></td></tr><tr><td><code>ConfigureServices</code></td><td><code>ConfigureServices(p1)</code></td><td><code>IHostBuilder ConfigureServices(Action&lt;HostBuilderContext, IServiceCollection&gt; configureDelegate)</code></td></tr><tr><td><code>UseServiceProviderFactory</code></td><td><code>UseServiceProviderFactory(p1)</code></td><td><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(IServiceProviderFactory&lt;TContainerBuilder&gt; factory)</code><br><code>IHostBuilder UseServiceProviderFactory&lt;TContainerBuilder&gt;(Func&lt;HostBuilderContext, IServiceProviderFactory&lt;TContainerBuilder&gt;&gt; factory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostedLifecycleService"><summary><b>IHostedLifecycleService</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostedLifecycleService</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>StartedAsync</code></td><td><code>StartedAsync(p1)</code></td><td><code>Task StartedAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>StartingAsync</code></td><td><code>StartingAsync(p1)</code></td><td><code>Task StartingAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>StoppedAsync</code></td><td><code>StoppedAsync(p1)</code></td><td><code>Task StoppedAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>StoppingAsync</code></td><td><code>StoppingAsync(p1)</code></td><td><code>Task StoppingAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostedService"><summary><b>IHostedService</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostedService</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>StartAsync</code></td><td><code>StartAsync(p1)</code></td><td><code>Task StartAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>StopAsync</code></td><td><code>StopAsync(p1)</code></td><td><code>Task StopAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostEnvironment"><summary><b>IHostEnvironment</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostEnvironment</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EnvironmentName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EnvironmentName</code> <code>o.EnvironmentName = v</code></td></tr><tr><td><code>ApplicationName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ApplicationName</code> <code>o.ApplicationName = v</code></td></tr><tr><td><code>ContentRootPath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ContentRootPath</code> <code>o.ContentRootPath = v</code></td></tr><tr><td><code>ContentRootFileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.ContentRootFileProvider</code> <code>o.ContentRootFileProvider = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHostLifetime"><summary><b>IHostLifetime</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.IHostLifetime</code> · assembly <code>Microsoft.Extensions.Hosting.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>StopAsync</code></td><td><code>StopAsync(p1)</code></td><td><code>Task StopAsync(CancellationToken cancellationToken)</code></td></tr><tr><td><code>WaitForStartAsync</code></td><td><code>WaitForStartAsync(p1)</code></td><td><code>Task WaitForStartAsync(CancellationToken cancellationToken)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WebHostBuilderOptions"><summary><b>WebHostBuilderOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Hosting.WebHostBuilderOptions</code> · assembly <code>Microsoft.AspNetCore.Hosting</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WebHostBuilderOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WebHostBuilderOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WebHostBuilderOptions().@New([ :param = value ])</code> or <code>dnNew("WebHostBuilderOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SuppressEnvironmentConfiguration</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SuppressEnvironmentConfiguration</code> <code>o.SuppressEnvironmentConfiguration = v</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

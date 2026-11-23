@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Net.NetworkInformation · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Net.NetworkInformation</h1>
+<p class="lead">30 wrapped types. Load them with <code>using { "System.Net.NetworkInformation" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-GatewayIPAddressInformation">GatewayIPAddressInformation</a> <a href="#c-GatewayIPAddressInformationCollection">GatewayIPAddressInformationCollection</a> <a href="#c-IcmpV4Statistics">IcmpV4Statistics</a> <a href="#c-IcmpV6Statistics">IcmpV6Statistics</a> <a href="#c-IPAddressInformation">IPAddressInformation</a> <a href="#c-IPAddressInformationCollection">IPAddressInformationCollection</a> <a href="#c-IPGlobalProperties">IPGlobalProperties</a> <a href="#c-IPGlobalStatistics">IPGlobalStatistics</a> <a href="#c-IPInterfaceProperties">IPInterfaceProperties</a> <a href="#c-IPInterfaceStatistics">IPInterfaceStatistics</a> <a href="#c-IPv4InterfaceProperties">IPv4InterfaceProperties</a> <a href="#c-IPv4InterfaceStatistics">IPv4InterfaceStatistics</a> <a href="#c-IPv6InterfaceProperties">IPv6InterfaceProperties</a> <a href="#c-MulticastIPAddressInformation">MulticastIPAddressInformation</a> <a href="#c-MulticastIPAddressInformationCollection">MulticastIPAddressInformationCollection</a> <a href="#c-NetworkAvailabilityEventArgs">NetworkAvailabilityEventArgs</a> <a href="#c-NetworkChange">NetworkChange</a> <a href="#c-NetworkInformationException">NetworkInformationException</a> <a href="#c-NetworkInterface">NetworkInterface</a> <a href="#c-PhysicalAddress">PhysicalAddress</a> <a href="#c-Ping">Ping</a> <a href="#c-PingCompletedEventArgs">PingCompletedEventArgs</a> <a href="#c-PingException">PingException</a> <a href="#c-PingOptions">PingOptions</a> <a href="#c-PingReply">PingReply</a> <a href="#c-TcpConnectionInformation">TcpConnectionInformation</a> <a href="#c-TcpStatistics">TcpStatistics</a> <a href="#c-UdpStatistics">UdpStatistics</a> <a href="#c-UnicastIPAddressInformation">UnicastIPAddressInformation</a> <a href="#c-UnicastIPAddressInformationCollection">UnicastIPAddressInformationCollection</a></div><details class="cls" id="c-GatewayIPAddressInformation"><summary><b>GatewayIPAddressInformation</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.GatewayIPAddressInformation</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Address</code></td><td><code>IPAddress</code></td><td>read</td><td><code>o.Address</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GatewayIPAddressInformationCollection"><summary><b>GatewayIPAddressInformationCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.GatewayIPAddressInformationCollection</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>GatewayIPAddressInformation</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(GatewayIPAddressInformation address)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(GatewayIPAddressInformation address)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(GatewayIPAddressInformation[] array, int offset)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;GatewayIPAddressInformation&gt; GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(GatewayIPAddressInformation address)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IcmpV4Statistics"><summary><b>IcmpV4Statistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IcmpV4Statistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AddressMaskRepliesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressMaskRepliesReceived</code></td></tr><tr><td><code>AddressMaskRepliesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressMaskRepliesSent</code></td></tr><tr><td><code>AddressMaskRequestsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressMaskRequestsReceived</code></td></tr><tr><td><code>AddressMaskRequestsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressMaskRequestsSent</code></td></tr><tr><td><code>DestinationUnreachableMessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.DestinationUnreachableMessagesReceived</code></td></tr><tr><td><code>DestinationUnreachableMessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.DestinationUnreachableMessagesSent</code></td></tr><tr><td><code>EchoRepliesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRepliesReceived</code></td></tr><tr><td><code>EchoRepliesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRepliesSent</code></td></tr><tr><td><code>EchoRequestsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRequestsReceived</code></td></tr><tr><td><code>EchoRequestsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRequestsSent</code></td></tr><tr><td><code>ErrorsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.ErrorsReceived</code></td></tr><tr><td><code>ErrorsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.ErrorsSent</code></td></tr><tr><td><code>MessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.MessagesReceived</code></td></tr><tr><td><code>MessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.MessagesSent</code></td></tr><tr><td><code>ParameterProblemsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.ParameterProblemsReceived</code></td></tr><tr><td><code>ParameterProblemsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.ParameterProblemsSent</code></td></tr><tr><td><code>RedirectsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.RedirectsReceived</code></td></tr><tr><td><code>RedirectsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.RedirectsSent</code></td></tr><tr><td><code>SourceQuenchesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.SourceQuenchesReceived</code></td></tr><tr><td><code>SourceQuenchesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.SourceQuenchesSent</code></td></tr><tr><td><code>TimeExceededMessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.TimeExceededMessagesReceived</code></td></tr><tr><td><code>TimeExceededMessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.TimeExceededMessagesSent</code></td></tr><tr><td><code>TimestampRepliesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.TimestampRepliesReceived</code></td></tr><tr><td><code>TimestampRepliesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.TimestampRepliesSent</code></td></tr><tr><td><code>TimestampRequestsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.TimestampRequestsReceived</code></td></tr><tr><td><code>TimestampRequestsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.TimestampRequestsSent</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IcmpV6Statistics"><summary><b>IcmpV6Statistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IcmpV6Statistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DestinationUnreachableMessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.DestinationUnreachableMessagesReceived</code></td></tr><tr><td><code>DestinationUnreachableMessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.DestinationUnreachableMessagesSent</code></td></tr><tr><td><code>EchoRepliesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRepliesReceived</code></td></tr><tr><td><code>EchoRepliesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRepliesSent</code></td></tr><tr><td><code>EchoRequestsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRequestsReceived</code></td></tr><tr><td><code>EchoRequestsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.EchoRequestsSent</code></td></tr><tr><td><code>ErrorsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.ErrorsReceived</code></td></tr><tr><td><code>ErrorsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.ErrorsSent</code></td></tr><tr><td><code>MembershipQueriesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipQueriesReceived</code></td></tr><tr><td><code>MembershipQueriesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipQueriesSent</code></td></tr><tr><td><code>MembershipReductionsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipReductionsReceived</code></td></tr><tr><td><code>MembershipReductionsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipReductionsSent</code></td></tr><tr><td><code>MembershipReportsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipReportsReceived</code></td></tr><tr><td><code>MembershipReportsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.MembershipReportsSent</code></td></tr><tr><td><code>MessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.MessagesReceived</code></td></tr><tr><td><code>MessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.MessagesSent</code></td></tr><tr><td><code>NeighborAdvertisementsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.NeighborAdvertisementsReceived</code></td></tr><tr><td><code>NeighborAdvertisementsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.NeighborAdvertisementsSent</code></td></tr><tr><td><code>NeighborSolicitsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.NeighborSolicitsReceived</code></td></tr><tr><td><code>NeighborSolicitsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.NeighborSolicitsSent</code></td></tr><tr><td><code>PacketTooBigMessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketTooBigMessagesReceived</code></td></tr><tr><td><code>PacketTooBigMessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketTooBigMessagesSent</code></td></tr><tr><td><code>ParameterProblemsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.ParameterProblemsReceived</code></td></tr><tr><td><code>ParameterProblemsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.ParameterProblemsSent</code></td></tr><tr><td><code>RedirectsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.RedirectsReceived</code></td></tr><tr><td><code>RedirectsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.RedirectsSent</code></td></tr><tr><td><code>RouterAdvertisementsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.RouterAdvertisementsReceived</code></td></tr><tr><td><code>RouterAdvertisementsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.RouterAdvertisementsSent</code></td></tr><tr><td><code>RouterSolicitsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.RouterSolicitsReceived</code></td></tr><tr><td><code>RouterSolicitsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.RouterSolicitsSent</code></td></tr><tr><td><code>TimeExceededMessagesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.TimeExceededMessagesReceived</code></td></tr><tr><td><code>TimeExceededMessagesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.TimeExceededMessagesSent</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPAddressInformation"><summary><b>IPAddressInformation</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPAddressInformation</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Address</code></td><td><code>IPAddress</code></td><td>read</td><td><code>o.Address</code></td></tr><tr><td><code>IsDnsEligible</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDnsEligible</code></td></tr><tr><td><code>IsTransient</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsTransient</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPAddressInformationCollection"><summary><b>IPAddressInformationCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPAddressInformationCollection</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>IPAddressInformation</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(IPAddressInformation address)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(IPAddressInformation address)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(IPAddressInformation[] array, int offset)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;IPAddressInformation&gt; GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(IPAddressInformation address)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPGlobalProperties"><summary><b>IPGlobalProperties</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPGlobalProperties</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DhcpScopeName</code></td><td><code>string</code></td><td>read</td><td><code>o.DhcpScopeName</code></td></tr><tr><td><code>DomainName</code></td><td><code>string</code></td><td>read</td><td><code>o.DomainName</code></td></tr><tr><td><code>HostName</code></td><td><code>string</code></td><td>read</td><td><code>o.HostName</code></td></tr><tr><td><code>IsWinsProxy</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsWinsProxy</code></td></tr><tr><td><code>NodeType</code></td><td><code>NetBiosNodeType</code></td><td>read</td><td><code>o.NodeType</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BeginGetUnicastAddresses</code></td><td><code>BeginGetUnicastAddresses(p1,p2)</code></td><td><code>IAsyncResult BeginGetUnicastAddresses(AsyncCallback callback, object state)</code></td></tr><tr><td><code>EndGetUnicastAddresses</code></td><td><code>EndGetUnicastAddresses(p1)</code></td><td><code>UnicastIPAddressInformationCollection EndGetUnicastAddresses(IAsyncResult asyncResult)</code></td></tr><tr><td><code>GetActiveTcpConnections</code></td><td><code>GetActiveTcpConnections()</code></td><td><code>TcpConnectionInformation[] GetActiveTcpConnections()</code></td></tr><tr><td><code>GetActiveTcpListeners</code></td><td><code>GetActiveTcpListeners()</code></td><td><code>IPEndPoint[] GetActiveTcpListeners()</code></td></tr><tr><td><code>GetActiveUdpListeners</code></td><td><code>GetActiveUdpListeners()</code></td><td><code>IPEndPoint[] GetActiveUdpListeners()</code></td></tr><tr><td><code>GetIcmpV4Statistics</code></td><td><code>GetIcmpV4Statistics()</code></td><td><code>IcmpV4Statistics GetIcmpV4Statistics()</code></td></tr><tr><td><code>GetIcmpV6Statistics</code></td><td><code>GetIcmpV6Statistics()</code></td><td><code>IcmpV6Statistics GetIcmpV6Statistics()</code></td></tr><tr><td><code>GetIPGlobalProperties</code></td><td><code>GetIPGlobalProperties()</code></td><td><code>static IPGlobalProperties GetIPGlobalProperties()</code></td></tr><tr><td><code>GetIPv4GlobalStatistics</code></td><td><code>GetIPv4GlobalStatistics()</code></td><td><code>IPGlobalStatistics GetIPv4GlobalStatistics()</code></td></tr><tr><td><code>GetIPv6GlobalStatistics</code></td><td><code>GetIPv6GlobalStatistics()</code></td><td><code>IPGlobalStatistics GetIPv6GlobalStatistics()</code></td></tr><tr><td><code>GetTcpIPv4Statistics</code></td><td><code>GetTcpIPv4Statistics()</code></td><td><code>TcpStatistics GetTcpIPv4Statistics()</code></td></tr><tr><td><code>GetTcpIPv6Statistics</code></td><td><code>GetTcpIPv6Statistics()</code></td><td><code>TcpStatistics GetTcpIPv6Statistics()</code></td></tr><tr><td><code>GetUdpIPv4Statistics</code></td><td><code>GetUdpIPv4Statistics()</code></td><td><code>UdpStatistics GetUdpIPv4Statistics()</code></td></tr><tr><td><code>GetUdpIPv6Statistics</code></td><td><code>GetUdpIPv6Statistics()</code></td><td><code>UdpStatistics GetUdpIPv6Statistics()</code></td></tr><tr><td><code>GetUnicastAddresses</code></td><td><code>GetUnicastAddresses()</code></td><td><code>UnicastIPAddressInformationCollection GetUnicastAddresses()</code></td></tr><tr><td><code>GetUnicastAddressesAsync</code></td><td><code>GetUnicastAddressesAsync()</code></td><td><code>Task&lt;UnicastIPAddressInformationCollection&gt; GetUnicastAddressesAsync()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPGlobalStatistics"><summary><b>IPGlobalStatistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPGlobalStatistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DefaultTtl</code></td><td><code>int</code></td><td>read</td><td><code>o.DefaultTtl</code></td></tr><tr><td><code>ForwardingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.ForwardingEnabled</code></td></tr><tr><td><code>NumberOfInterfaces</code></td><td><code>int</code></td><td>read</td><td><code>o.NumberOfInterfaces</code></td></tr><tr><td><code>NumberOfIPAddresses</code></td><td><code>int</code></td><td>read</td><td><code>o.NumberOfIPAddresses</code></td></tr><tr><td><code>OutputPacketRequests</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputPacketRequests</code></td></tr><tr><td><code>OutputPacketRoutingDiscards</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputPacketRoutingDiscards</code></td></tr><tr><td><code>OutputPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputPacketsDiscarded</code></td></tr><tr><td><code>OutputPacketsWithNoRoute</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputPacketsWithNoRoute</code></td></tr><tr><td><code>PacketFragmentFailures</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketFragmentFailures</code></td></tr><tr><td><code>PacketReassembliesRequired</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketReassembliesRequired</code></td></tr><tr><td><code>PacketReassemblyFailures</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketReassemblyFailures</code></td></tr><tr><td><code>PacketReassemblyTimeout</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketReassemblyTimeout</code></td></tr><tr><td><code>PacketsFragmented</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketsFragmented</code></td></tr><tr><td><code>PacketsReassembled</code></td><td><code>long</code></td><td>read</td><td><code>o.PacketsReassembled</code></td></tr><tr><td><code>ReceivedPackets</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPackets</code></td></tr><tr><td><code>ReceivedPacketsDelivered</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsDelivered</code></td></tr><tr><td><code>ReceivedPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsDiscarded</code></td></tr><tr><td><code>ReceivedPacketsForwarded</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsForwarded</code></td></tr><tr><td><code>ReceivedPacketsWithAddressErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsWithAddressErrors</code></td></tr><tr><td><code>ReceivedPacketsWithHeadersErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsWithHeadersErrors</code></td></tr><tr><td><code>ReceivedPacketsWithUnknownProtocol</code></td><td><code>long</code></td><td>read</td><td><code>o.ReceivedPacketsWithUnknownProtocol</code></td></tr><tr><td><code>NumberOfRoutes</code></td><td><code>int</code></td><td>read</td><td><code>o.NumberOfRoutes</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPInterfaceProperties"><summary><b>IPInterfaceProperties</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPInterfaceProperties</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsDnsEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDnsEnabled</code></td></tr><tr><td><code>DnsSuffix</code></td><td><code>string</code></td><td>read</td><td><code>o.DnsSuffix</code></td></tr><tr><td><code>IsDynamicDnsEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDynamicDnsEnabled</code></td></tr><tr><td><code>UnicastAddresses</code></td><td><code>UnicastIPAddressInformationCollection</code></td><td>read</td><td><code>o.UnicastAddresses</code></td></tr><tr><td><code>MulticastAddresses</code></td><td><code>MulticastIPAddressInformationCollection</code></td><td>read</td><td><code>o.MulticastAddresses</code></td></tr><tr><td><code>AnycastAddresses</code></td><td><code>IPAddressInformationCollection</code></td><td>read</td><td><code>o.AnycastAddresses</code></td></tr><tr><td><code>DnsAddresses</code></td><td><code>IPAddressCollection</code></td><td>read</td><td><code>o.DnsAddresses</code></td></tr><tr><td><code>GatewayAddresses</code></td><td><code>GatewayIPAddressInformationCollection</code></td><td>read</td><td><code>o.GatewayAddresses</code></td></tr><tr><td><code>DhcpServerAddresses</code></td><td><code>IPAddressCollection</code></td><td>read</td><td><code>o.DhcpServerAddresses</code></td></tr><tr><td><code>WinsServersAddresses</code></td><td><code>IPAddressCollection</code></td><td>read</td><td><code>o.WinsServersAddresses</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetIPv4Properties</code></td><td><code>GetIPv4Properties()</code></td><td><code>IPv4InterfaceProperties GetIPv4Properties()</code></td></tr><tr><td><code>GetIPv6Properties</code></td><td><code>GetIPv6Properties()</code></td><td><code>IPv6InterfaceProperties GetIPv6Properties()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPInterfaceStatistics"><summary><b>IPInterfaceStatistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPInterfaceStatistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BytesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.BytesReceived</code></td></tr><tr><td><code>BytesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.BytesSent</code></td></tr><tr><td><code>IncomingPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingPacketsDiscarded</code></td></tr><tr><td><code>IncomingPacketsWithErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingPacketsWithErrors</code></td></tr><tr><td><code>IncomingUnknownProtocolPackets</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingUnknownProtocolPackets</code></td></tr><tr><td><code>NonUnicastPacketsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.NonUnicastPacketsReceived</code></td></tr><tr><td><code>NonUnicastPacketsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.NonUnicastPacketsSent</code></td></tr><tr><td><code>OutgoingPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.OutgoingPacketsDiscarded</code></td></tr><tr><td><code>OutgoingPacketsWithErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.OutgoingPacketsWithErrors</code></td></tr><tr><td><code>OutputQueueLength</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputQueueLength</code></td></tr><tr><td><code>UnicastPacketsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.UnicastPacketsReceived</code></td></tr><tr><td><code>UnicastPacketsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.UnicastPacketsSent</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPv4InterfaceProperties"><summary><b>IPv4InterfaceProperties</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPv4InterfaceProperties</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UsesWins</code></td><td><code>bool</code></td><td>read</td><td><code>o.UsesWins</code></td></tr><tr><td><code>IsDhcpEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDhcpEnabled</code></td></tr><tr><td><code>IsAutomaticPrivateAddressingActive</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAutomaticPrivateAddressingActive</code></td></tr><tr><td><code>IsAutomaticPrivateAddressingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAutomaticPrivateAddressingEnabled</code></td></tr><tr><td><code>Index</code></td><td><code>int</code></td><td>read</td><td><code>o.Index</code></td></tr><tr><td><code>IsForwardingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsForwardingEnabled</code></td></tr><tr><td><code>Mtu</code></td><td><code>int</code></td><td>read</td><td><code>o.Mtu</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPv4InterfaceStatistics"><summary><b>IPv4InterfaceStatistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPv4InterfaceStatistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BytesReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.BytesReceived</code></td></tr><tr><td><code>BytesSent</code></td><td><code>long</code></td><td>read</td><td><code>o.BytesSent</code></td></tr><tr><td><code>IncomingPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingPacketsDiscarded</code></td></tr><tr><td><code>IncomingPacketsWithErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingPacketsWithErrors</code></td></tr><tr><td><code>IncomingUnknownProtocolPackets</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingUnknownProtocolPackets</code></td></tr><tr><td><code>NonUnicastPacketsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.NonUnicastPacketsReceived</code></td></tr><tr><td><code>NonUnicastPacketsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.NonUnicastPacketsSent</code></td></tr><tr><td><code>OutgoingPacketsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.OutgoingPacketsDiscarded</code></td></tr><tr><td><code>OutgoingPacketsWithErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.OutgoingPacketsWithErrors</code></td></tr><tr><td><code>OutputQueueLength</code></td><td><code>long</code></td><td>read</td><td><code>o.OutputQueueLength</code></td></tr><tr><td><code>UnicastPacketsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.UnicastPacketsReceived</code></td></tr><tr><td><code>UnicastPacketsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.UnicastPacketsSent</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPv6InterfaceProperties"><summary><b>IPv6InterfaceProperties</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.IPv6InterfaceProperties</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Index</code></td><td><code>int</code></td><td>read</td><td><code>o.Index</code></td></tr><tr><td><code>Mtu</code></td><td><code>int</code></td><td>read</td><td><code>o.Mtu</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetScopeId</code></td><td><code>GetScopeId(p1)</code></td><td><code>long GetScopeId(ScopeLevel scopeLevel)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MulticastIPAddressInformation"><summary><b>MulticastIPAddressInformation</b> <span class="muted">class abstract · extends <a href="#c-IPAddressInformation">IPAddressInformation</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.MulticastIPAddressInformation</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AddressPreferredLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressPreferredLifetime</code></td></tr><tr><td><code>AddressValidLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressValidLifetime</code></td></tr><tr><td><code>DhcpLeaseLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.DhcpLeaseLifetime</code></td></tr><tr><td><code>DuplicateAddressDetectionState</code></td><td><code>DuplicateAddressDetectionState</code></td><td>read</td><td><code>o.DuplicateAddressDetectionState</code></td></tr><tr><td><code>PrefixOrigin</code></td><td><code>PrefixOrigin</code></td><td>read</td><td><code>o.PrefixOrigin</code></td></tr><tr><td><code>SuffixOrigin</code></td><td><code>SuffixOrigin</code></td><td>read</td><td><code>o.SuffixOrigin</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MulticastIPAddressInformationCollection"><summary><b>MulticastIPAddressInformationCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.MulticastIPAddressInformationCollection</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>MulticastIPAddressInformation</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(MulticastIPAddressInformation address)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(MulticastIPAddressInformation address)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(MulticastIPAddressInformation[] array, int offset)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;MulticastIPAddressInformation&gt; GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(MulticastIPAddressInformation address)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NetworkAvailabilityEventArgs"><summary><b>NetworkAvailabilityEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.NetworkAvailabilityEventArgs</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAvailable</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAvailable</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-NetworkChange"><summary><b>NetworkChange</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.NetworkChange</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NetworkChange()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NetworkChange(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NetworkChange().@New([ :param = value ])</code> or <code>dnNew("NetworkChange",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>RegisterNetworkChange</code></td><td><code>RegisterNetworkChange(p1)</code></td><td><code>static void RegisterNetworkChange(NetworkChange nc)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>NetworkAvailabilityChanged</code></td><td><code>NetworkAvailabilityChangedEventHandler</code></td><td><code>o.setNetworkAvailabilityChangedEvent(code)</code> · <code>o.clearNetworkAvailabilityChangedEvent()</code></td></tr><tr><td><code>NetworkAddressChanged</code></td><td><code>NetworkAddressChangedEventHandler</code></td><td><code>o.setNetworkAddressChangedEvent(code)</code> · <code>o.clearNetworkAddressChangedEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NetworkInformationException"><summary><b>NetworkInformationException</b> <span class="muted">class · extends <a href="System.ComponentModel.html#c-Win32Exception">Win32Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.NetworkInformationException</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NetworkInformationException()</code></td></tr><tr><td><code>new NetworkInformationException(int errorCode)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NetworkInformationException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NetworkInformationException().@New([ :param = value ])</code> or <code>dnNew("NetworkInformationException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ErrorCode</code></td><td><code>int</code></td><td>read</td><td><code>o.getErrorCode()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-NetworkInterface"><summary><b>NetworkInterface</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.NetworkInterface</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Id</code></td><td><code>string</code></td><td>read</td><td><code>o.Id</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>Description</code></td><td><code>string</code></td><td>read</td><td><code>o.Description</code></td></tr><tr><td><code>OperationalStatus</code></td><td><code>OperationalStatus</code></td><td>read</td><td><code>o.OperationalStatus</code></td></tr><tr><td><code>Speed</code></td><td><code>long</code></td><td>read</td><td><code>o.Speed</code></td></tr><tr><td><code>IsReceiveOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReceiveOnly</code></td></tr><tr><td><code>SupportsMulticast</code></td><td><code>bool</code></td><td>read</td><td><code>o.SupportsMulticast</code></td></tr><tr><td><code>NetworkInterfaceType</code></td><td><code>NetworkInterfaceType</code></td><td>read</td><td><code>o.NetworkInterfaceType</code></td></tr><tr><td><code>IPv6LoopbackInterfaceIndex</code></td><td><code>int</code></td><td>read · static</td><td><code>o.IPv6LoopbackInterfaceIndex</code></td></tr><tr><td><code>LoopbackInterfaceIndex</code></td><td><code>int</code></td><td>read · static</td><td><code>o.LoopbackInterfaceIndex</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetAllNetworkInterfaces</code></td><td><code>GetAllNetworkInterfaces()</code></td><td><code>static NetworkInterface[] GetAllNetworkInterfaces()</code></td></tr><tr><td><code>GetIPProperties</code></td><td><code>GetIPProperties()</code></td><td><code>IPInterfaceProperties GetIPProperties()</code></td></tr><tr><td><code>GetIPStatistics</code></td><td><code>GetIPStatistics()</code></td><td><code>IPInterfaceStatistics GetIPStatistics()</code></td></tr><tr><td><code>GetIPv4Statistics</code></td><td><code>GetIPv4Statistics()</code></td><td><code>IPv4InterfaceStatistics GetIPv4Statistics()</code></td></tr><tr><td><code>GetIsNetworkAvailable</code></td><td><code>GetIsNetworkAvailable()</code></td><td><code>static bool GetIsNetworkAvailable()</code></td></tr><tr><td><code>GetPhysicalAddress</code></td><td><code>GetPhysicalAddress()</code></td><td><code>PhysicalAddress GetPhysicalAddress()</code></td></tr><tr><td><code>Supports</code></td><td><code>Supports(p1)</code></td><td><code>bool Supports(NetworkInterfaceComponent networkInterfaceComponent)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PhysicalAddress"><summary><b>PhysicalAddress</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.PhysicalAddress</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PhysicalAddress(byte[] address)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PhysicalAddress(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PhysicalAddress().@New([ :param = value ])</code> or <code>dnNew("PhysicalAddress",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>None</code></td><td><code>PhysicalAddress</code></td><td>read · static</td><td><code>o.None</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object comparand)</code></td></tr><tr><td><code>GetAddressBytes</code></td><td><code>GetAddressBytes()</code></td><td><code>byte[] GetAddressBytes()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static PhysicalAddress Parse(string address)</code><br><code>static PhysicalAddress Parse(ReadOnlySpan&lt;char&gt; address)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>TryParse</code></td><td><code>TryParse(p1)</code></td><td><code>static bool TryParse(string address, out PhysicalAddress value)</code><br><code>static bool TryParse(ReadOnlySpan&lt;char&gt; address, out PhysicalAddress value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Ping"><summary><b>Ping</b> <span class="muted">class · extends <a href="System.ComponentModel.html#c-Component">Component</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.Ping</code> · assembly <code>System.Net.Ping</code></p>
+<p class="muted">Implements: IComponent, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Ping()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Ping(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Ping().@New([ :param = value ])</code> or <code>dnNew("Ping",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Send</code></td><td><code>Send(value)</code><br><code>Send([ :hostNameOrAddress = … ])</code><br><code>Send([ :address = … ])</code><br><code>Send([ :hostNameOrAddress = …, :timeout = … ])</code><br><code>Send([ :address = …, :timeout = … ])</code></td><td><code>PingReply Send(string hostNameOrAddress)</code><br><code>PingReply Send(string hostNameOrAddress, int timeout)</code><br><code>PingReply Send(IPAddress address)</code><br><code>PingReply Send(IPAddress address, int timeout)</code><br><code>PingReply Send(string hostNameOrAddress, int timeout, byte[] buffer)</code><br><code>PingReply Send(IPAddress address, int timeout, byte[] buffer)</code><br><code>PingReply Send(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options)</code><br><code>PingReply Send(IPAddress address, int timeout, byte[] buffer, PingOptions options)</code><br><code>PingReply Send(IPAddress address, TimeSpan timeout, byte[] buffer = …, PingOptions options = …)</code><br><code>PingReply Send(string hostNameOrAddress, TimeSpan timeout, byte[] buffer = …, PingOptions options = …)</code></td></tr><tr><td><code>SendAsync</code></td><td><code>SendAsync([ :hostNameOrAddress = …, :userToken = … ])</code><br><code>SendAsync([ :address = …, :userToken = … ])</code><br><code>SendAsync([ :hostNameOrAddress = …, :timeout = …, :userToken = … ])</code><br><code>SendAsync([ :address = …, :timeout = …, :userToken = … ])</code></td><td><code>void SendAsync(string hostNameOrAddress, object userToken)</code><br><code>void SendAsync(string hostNameOrAddress, int timeout, object userToken)</code><br><code>void SendAsync(IPAddress address, object userToken)</code><br><code>void SendAsync(IPAddress address, int timeout, object userToken)</code><br><code>void SendAsync(string hostNameOrAddress, int timeout, byte[] buffer, object userToken)</code><br><code>void SendAsync(IPAddress address, int timeout, byte[] buffer, object userToken)</code><br><code>void SendAsync(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options, object userToken)</code><br><code>void SendAsync(IPAddress address, int timeout, byte[] buffer, PingOptions options, object userToken)</code></td></tr><tr><td><code>SendAsyncCancel</code></td><td><code>SendAsyncCancel()</code></td><td><code>void SendAsyncCancel()</code></td></tr><tr><td><code>SendPingAsync</code></td><td><code>SendPingAsync(value)</code><br><code>SendPingAsync([ :address = … ])</code><br><code>SendPingAsync([ :hostNameOrAddress = … ])</code><br><code>SendPingAsync([ :address = …, :timeout = … ])</code><br><code>SendPingAsync([ :hostNameOrAddress = …, :timeout = … ])</code></td><td><code>Task&lt;PingReply&gt; SendPingAsync(IPAddress address)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(string hostNameOrAddress)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(IPAddress address, int timeout)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(string hostNameOrAddress, int timeout)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(IPAddress address, int timeout, byte[] buffer)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(string hostNameOrAddress, int timeout, byte[] buffer)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(IPAddress address, int timeout, byte[] buffer, PingOptions options)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(IPAddress address, TimeSpan timeout, byte[] buffer = …, PingOptions options = …, CancellationToken cancellationToken = …)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options)</code><br><code>Task&lt;PingReply&gt; SendPingAsync(string hostNameOrAddress, TimeSpan timeout, byte[] buffer = …, PingOptions options = …, CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PingCompleted</code></td><td><code>PingCompletedEventHandler</code></td><td><code>o.setPingCompletedEvent(code)</code> · <code>o.clearPingCompletedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PingCompletedEventArgs"><summary><b>PingCompletedEventArgs</b> <span class="muted">class · extends <a href="System.ComponentModel.html#c-AsyncCompletedEventArgs">AsyncCompletedEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.PingCompletedEventArgs</code> · assembly <code>System.Net.Ping</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Reply</code></td><td><code>PingReply</code></td><td>read</td><td><code>o.Reply</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PingException"><summary><b>PingException</b> <span class="muted">class · extends <a href="System.html#c-InvalidOperationException">InvalidOperationException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.PingException</code> · assembly <code>System.Net.Ping</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PingException(string message)</code></td></tr><tr><td><code>new PingException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PingException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PingException().@New([ :param = value ])</code> or <code>dnNew("PingException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PingOptions"><summary><b>PingOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.PingOptions</code> · assembly <code>System.Net.Ping</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PingOptions()</code></td></tr><tr><td><code>new PingOptions(int ttl, bool dontFragment)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PingOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PingOptions().@New([ :param = value ])</code> or <code>dnNew("PingOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Ttl</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Ttl</code> <code>o.Ttl = v</code></td></tr><tr><td><code>DontFragment</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.DontFragment</code> <code>o.DontFragment = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PingReply"><summary><b>PingReply</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.PingReply</code> · assembly <code>System.Net.Ping</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Status</code></td><td><code>IPStatus</code></td><td>read</td><td><code>o.Status</code></td></tr><tr><td><code>Address</code></td><td><code>IPAddress</code></td><td>read</td><td><code>o.Address</code></td></tr><tr><td><code>RoundtripTime</code></td><td><code>long</code></td><td>read</td><td><code>o.RoundtripTime</code></td></tr><tr><td><code>Options</code></td><td><code>PingOptions</code></td><td>read</td><td><code>o.Options</code></td></tr><tr><td><code>Buffer</code></td><td><code>byte[]</code></td><td>read</td><td><code>o.Buffer</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TcpConnectionInformation"><summary><b>TcpConnectionInformation</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.TcpConnectionInformation</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LocalEndPoint</code></td><td><code>IPEndPoint</code></td><td>read</td><td><code>o.LocalEndPoint</code></td></tr><tr><td><code>RemoteEndPoint</code></td><td><code>IPEndPoint</code></td><td>read</td><td><code>o.RemoteEndPoint</code></td></tr><tr><td><code>State</code></td><td><code>TcpState</code></td><td>read</td><td><code>o.State</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TcpStatistics"><summary><b>TcpStatistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.TcpStatistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ConnectionsAccepted</code></td><td><code>long</code></td><td>read</td><td><code>o.ConnectionsAccepted</code></td></tr><tr><td><code>ConnectionsInitiated</code></td><td><code>long</code></td><td>read</td><td><code>o.ConnectionsInitiated</code></td></tr><tr><td><code>CumulativeConnections</code></td><td><code>long</code></td><td>read</td><td><code>o.CumulativeConnections</code></td></tr><tr><td><code>CurrentConnections</code></td><td><code>long</code></td><td>read</td><td><code>o.CurrentConnections</code></td></tr><tr><td><code>ErrorsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.ErrorsReceived</code></td></tr><tr><td><code>FailedConnectionAttempts</code></td><td><code>long</code></td><td>read</td><td><code>o.FailedConnectionAttempts</code></td></tr><tr><td><code>MaximumConnections</code></td><td><code>long</code></td><td>read</td><td><code>o.MaximumConnections</code></td></tr><tr><td><code>MaximumTransmissionTimeout</code></td><td><code>long</code></td><td>read</td><td><code>o.MaximumTransmissionTimeout</code></td></tr><tr><td><code>MinimumTransmissionTimeout</code></td><td><code>long</code></td><td>read</td><td><code>o.MinimumTransmissionTimeout</code></td></tr><tr><td><code>ResetConnections</code></td><td><code>long</code></td><td>read</td><td><code>o.ResetConnections</code></td></tr><tr><td><code>SegmentsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.SegmentsReceived</code></td></tr><tr><td><code>SegmentsResent</code></td><td><code>long</code></td><td>read</td><td><code>o.SegmentsResent</code></td></tr><tr><td><code>SegmentsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.SegmentsSent</code></td></tr><tr><td><code>ResetsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.ResetsSent</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UdpStatistics"><summary><b>UdpStatistics</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.UdpStatistics</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DatagramsReceived</code></td><td><code>long</code></td><td>read</td><td><code>o.DatagramsReceived</code></td></tr><tr><td><code>DatagramsSent</code></td><td><code>long</code></td><td>read</td><td><code>o.DatagramsSent</code></td></tr><tr><td><code>IncomingDatagramsDiscarded</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingDatagramsDiscarded</code></td></tr><tr><td><code>IncomingDatagramsWithErrors</code></td><td><code>long</code></td><td>read</td><td><code>o.IncomingDatagramsWithErrors</code></td></tr><tr><td><code>UdpListeners</code></td><td><code>int</code></td><td>read</td><td><code>o.UdpListeners</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UnicastIPAddressInformation"><summary><b>UnicastIPAddressInformation</b> <span class="muted">class abstract · extends <a href="#c-IPAddressInformation">IPAddressInformation</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.UnicastIPAddressInformation</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AddressPreferredLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressPreferredLifetime</code></td></tr><tr><td><code>AddressValidLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.AddressValidLifetime</code></td></tr><tr><td><code>DhcpLeaseLifetime</code></td><td><code>long</code></td><td>read</td><td><code>o.DhcpLeaseLifetime</code></td></tr><tr><td><code>DuplicateAddressDetectionState</code></td><td><code>DuplicateAddressDetectionState</code></td><td>read</td><td><code>o.DuplicateAddressDetectionState</code></td></tr><tr><td><code>PrefixOrigin</code></td><td><code>PrefixOrigin</code></td><td>read</td><td><code>o.PrefixOrigin</code></td></tr><tr><td><code>SuffixOrigin</code></td><td><code>SuffixOrigin</code></td><td>read</td><td><code>o.SuffixOrigin</code></td></tr><tr><td><code>IPv4Mask</code></td><td><code>IPAddress</code></td><td>read</td><td><code>o.IPv4Mask</code></td></tr><tr><td><code>PrefixLength</code></td><td><code>int</code></td><td>read</td><td><code>o.PrefixLength</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnicastIPAddressInformationCollection"><summary><b>UnicastIPAddressInformationCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Net.NetworkInformation.UnicastIPAddressInformationCollection</code> · assembly <code>System.Net.NetworkInformation</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>UnicastIPAddressInformation</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(UnicastIPAddressInformation address)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(UnicastIPAddressInformation address)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(UnicastIPAddressInformation[] array, int offset)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;UnicastIPAddressInformation&gt; GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(UnicastIPAddressInformation address)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

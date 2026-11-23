@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>International domain names · RingDotNet</title>
+<meta name="description" content="Domain names can contain letters of any alphabet — and that makes it possible to build a name that looks exactly like another one. This lesson converts names to and from Punycode with IdnMapping, shows what makes a name invalid, builds a look-alike of apple.com, and detects it by checking the alphabets of each part.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html" class="cur">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>International domain names</h1><p class="lead">Domain names can contain letters of any alphabet — and that makes it possible to build a name that looks exactly like another one. This lesson converts names to and from Punycode with IdnMapping, shows what makes a name invalid, builds a look-alike of apple.com, and detects it by checking the alphabets of each part.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>how names with Arabic, German, Chinese... letters travel as <strong>Punycode</strong> (<code>xn--</code>),</li><li><code>IdnMapping</code>: <code>GetAscii</code>, <code>GetUnicode</code>, <code>UseStd3AsciiRules</code>,</li><li><code>Uri.Host</code> and <code>Uri.IdnHost</code>,</li><li>what makes a name invalid,</li><li><strong>homograph attacks</strong> with look-alike letters,</li><li>a check of the <strong>alphabets</strong> in each part of a name.</li></ul>
+<p>The tutorial <a href="tut-64-urls.html">URLs and encodings</a> took URLs apart and the tutorial <a href="tut-52-unicode.html">Unicode and encodings</a> looked at Unicode text. This lesson is where the two meet — and where it becomes a security question.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_domain_names.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># international domain names - Punycode with IdnMapping, Uri.IdnHost, invalid names, and look-alike letters (homograph attacks)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Globalization"</span>
+	<span class="s">"System.Text"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oIdn = <span class="k">new</span> <span class="t">IdnMapping</span>()
+
+	<span class="c"># The system of domain names (DNS) knows only the letters a-z, the digits and the hyphen. A name with other letters is sent as</span>
+	<span class="c"># PUNYCODE: the text "xn--" followed by an encoding of the letters in ASCII. IdnMapping converts both ways.</span>
+	cGerman = <span class="s">"b"</span> + char(<span class="n">195</span>) + char(<span class="n">188</span>) + <span class="s">"cher.example"</span>                                 <span class="c"># bücher.example</span>
+	cArabic = char(<span class="n">217</span>) + char(<span class="n">133</span>) + char(<span class="n">217</span>) + char(<span class="n">136</span>) + char(<span class="n">217</span>) + char(<span class="n">130</span>) + char(<span class="n">216</span>) + char(<span class="n">185</span>) + <span class="s">".example"</span>          <span class="c"># موقع.example</span>
+	? <span class="s">"1. German:  "</span> + cGerman + <span class="s">"  -&gt;  "</span> + oIdn.<span class="f">GetAscii</span>(cGerman)
+	? <span class="s">"   Arabic:  the name with the word for 'site' -&gt;  "</span> + oIdn.<span class="f">GetAscii</span>(cArabic)
+	? <span class="s">"   back:    "</span> + oIdn.<span class="f">GetUnicode</span>(oIdn.<span class="f">GetAscii</span>(cGerman)) + <span class="s">"  and the round trip is exact: "</span> + (oIdn.<span class="f">GetUnicode</span>(oIdn.<span class="f">GetAscii</span>(cGerman)) = cGerman)
+	? <span class="s">"   a name that is plain ASCII does not change: "</span> + oIdn.<span class="f">GetAscii</span>(<span class="s">"www.example.com"</span>)
+
+	<span class="c"># 2. The Uri class keeps both forms: Host is the name as it was written and IdnHost the ASCII form that goes to the network</span>
+	oUri = <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"https://"</span> + cGerman + <span class="s">"/path"</span>)
+	? nl + <span class="s">"2. Host: "</span> + oUri.Host + <span class="s">"   IdnHost (for DNS and certificates): "</span> + oUri.IdnHost
+	? <span class="s">"   an HTTP client sends the IdnHost; a certificate for this site names it in the Punycode form"</span>
+
+	<span class="c"># 3. Names that are not valid: a part (label) is at most 63 characters, it must not be empty, and it must not start or end with a</span>
+	<span class="c">#    hyphen. GetAscii raises an error for them.</span>
+	oStrict = <span class="k">new</span> <span class="t">IdnMapping</span>()
+	oStrict.UseStd3AsciiRules = <span class="k">True</span>                       <span class="c"># only letters, digits and hyphens are allowed in a name (a space is refused)</span>
+	? nl + <span class="s">"3. checking names (the second answer is with UseStd3AsciiRules):"</span>
+	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"good-name.example"</span>,<span class="s">"-bad.example"</span>,<span class="s">"empty..label.example"</span>,copy(<span class="s">"a"</span>,<span class="n">64</span>) + <span class="s">".example"</span>,<span class="s">"has space.example"</span>]
+		? <span class="s">"   "</span> + padRight(shortText(cName),<span class="n">24</span>) + padRight(checkName(oIdn,cName),<span class="n">32</span>) + checkName(oStrict,cName)
+	<span class="k">next</span>
+
+	<span class="c"># 4. Look-alike letters. The Cyrillic letter U+0430 looks the same as the Latin letter a, so "apple.com" can be written with it:</span>
+	<span class="c">#    a different name that a person cannot tell apart. This is called a HOMOGRAPH attack. Punycode shows the difference at once.</span>
+	cLatin = <span class="s">"apple.com"</span>
+	cLookAlike = char(<span class="n">208</span>) + char(<span class="n">176</span>) + <span class="s">"pple.com"</span>                                       <span class="c"># the first letter is Cyrillic</span>
+	? nl + <span class="s">"4. apple.com in two spellings:"</span>
+	? <span class="s">"   Latin:      "</span> + cLatin + <span class="s">"   "</span> + oIdn.<span class="f">GetAscii</span>(cLatin)
+	? <span class="s">"   look-alike: "</span> + cLookAlike + <span class="s">"   "</span> + oIdn.<span class="f">GetAscii</span>(cLookAlike)
+	? <span class="s">"   they look the same on the screen but they are different names: "</span> + (cLatin != cLookAlike)
+
+	<span class="c"># 5. A defense: look at the SCRIPTS (alphabets) of the letters in each part. A normal name uses one script; a name that mixes</span>
+	<span class="c">#    Latin and Cyrillic letters is suspicious. Browsers show such names in Punycode instead of the letters.</span>
+	? nl + <span class="s">"5. the alphabets in each part of the name (the parts are separated by dots):"</span>
+	<span class="k">for</span> cName <span class="k">in</span> [cLatin,cLookAlike,cGerman,cArabic,<span class="s">"dom"</span> + char(<span class="n">208</span>) + char(<span class="n">176</span>) + <span class="s">"in.com"</span>]
+		? <span class="s">"   "</span> + padRight(oIdn.<span class="f">GetAscii</span>(cName),<span class="n">26</span>) + padRight(scriptsOf(cName),<span class="n">18</span>) + decision(cName)
+	<span class="k">next</span>
+
+	<span class="c"># 6. Safe display: show the Unicode form only when it is safe, otherwise the Punycode form</span>
+	? nl + <span class="s">"6. what to show to a person: "</span> + displayName(oIdn,cArabic) + <span class="s">", "</span> + displayName(oIdn,cLookAlike)
+
+<span class="c"># the checks of GetAscii: an error means that the name is not valid</span>
+<span class="k">func</span> <span class="f">checkName</span> oIdn,cName
+
+	<span class="k">try</span>
+		<span class="k">return</span> <span class="s">"valid: "</span> + oIdn.<span class="f">GetAscii</span>(cName)
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="s">"not valid"</span>
+	<span class="k">done</span>
+
+<span class="c"># the code of every letter of a text (Unicode code points): UTF-32 has four bytes for each letter</span>
+<span class="k">func</span> <span class="f">codePoints</span> cText
+
+	aCodes = []
+	cBytes = <span class="k">new</span> <span class="t">UTF32Encoding</span>().<span class="f">GetBytes</span>(cText)
+	<span class="k">for</span> nPos = <span class="n">1</span> <span class="k">to</span> len(cBytes) <span class="k">step</span> <span class="n">4</span>
+		aCodes + (ascii(cBytes[nPos]) + ascii(cBytes[nPos + <span class="n">1</span>]) * <span class="n">256</span> + ascii(cBytes[nPos + <span class="n">2</span>]) * <span class="n">65536</span>)
+	<span class="k">next</span>
+	<span class="k">return</span> aCodes
+
+<span class="c"># the alphabet of a letter, from the range of its code (only a few alphabets, to show the idea)</span>
+<span class="k">func</span> <span class="f">scriptOf</span> nCode
+
+	cScript = <span class="s">"other"</span>
+	<span class="k">if</span> nCode &gt;= <span class="n">65</span> <span class="k">and</span> nCode &lt;= <span class="n">122</span> <span class="k">and</span> <span class="k">not</span> (nCode &gt; <span class="n">90</span> <span class="k">and</span> nCode &lt; <span class="n">97</span>)
+		cScript = <span class="s">"Latin"</span>
+	<span class="k">but</span> nCode &gt;= <span class="n">192</span> <span class="k">and</span> nCode &lt;= <span class="n">591</span>
+		cScript = <span class="s">"Latin"</span>
+	<span class="k">but</span> nCode &gt;= <span class="n">880</span> <span class="k">and</span> nCode &lt;= <span class="n">1023</span>
+		cScript = <span class="s">"Greek"</span>
+	<span class="k">but</span> nCode &gt;= <span class="n">1024</span> <span class="k">and</span> nCode &lt;= <span class="n">1327</span>
+		cScript = <span class="s">"Cyrillic"</span>
+	<span class="k">but</span> nCode &gt;= <span class="n">1536</span> <span class="k">and</span> nCode &lt;= <span class="n">1791</span>
+		cScript = <span class="s">"Arabic"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> cScript
+
+<span class="c"># the alphabets used in the letters of ONE part of a name (digits and hyphens are not letters of an alphabet)</span>
+<span class="k">func</span> <span class="f">scriptList</span> cLabel
+
+	aScripts = []
+	<span class="k">for</span> nCode <span class="k">in</span> codePoints(cLabel)
+		cScript = scriptOf(nCode)
+		<span class="k">if</span> cScript != <span class="s">"other"</span> <span class="k">and</span> find(aScripts,cScript) = <span class="n">0</span>
+			aScripts + cScript
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aScripts
+
+<span class="c"># the labels of a name are separated by dots; each label is checked alone (an Arabic name under the Latin ".example" is normal)</span>
+<span class="k">func</span> <span class="f">labels</span> cName
+
+	<span class="k">return</span> str2list(substr(cName,<span class="s">"."</span>,nl))
+
+<span class="k">func</span> <span class="f">scriptsOf</span> cName
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> cLabel <span class="k">in</span> labels(cName)
+		cText += joinWith(scriptList(cLabel),<span class="s">"+"</span>) + <span class="s">" "</span>
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">isMixed</span> cName
+
+	<span class="k">for</span> cLabel <span class="k">in</span> labels(cName)
+		<span class="k">if</span> len(scriptList(cLabel)) &gt; <span class="n">1</span>
+			<span class="k">return</span> <span class="k">True</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="k">False</span>
+
+<span class="k">func</span> <span class="f">decision</span> cName
+
+	<span class="k">if</span> isMixed(cName)
+		<span class="k">return</span> <span class="s">"MIXED in one part: suspicious"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"one alphabet in each part"</span>
+
+<span class="k">func</span> <span class="f">displayName</span> oIdn,cName
+
+	<span class="k">if</span> isMixed(cName)
+		<span class="k">return</span> oIdn.<span class="f">GetAscii</span>(cName) + <span class="s">" (Punycode: mixed alphabets)"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> cName + <span class="s">" (shown as written)"</span>
+
+<span class="k">func</span> <span class="f">shortText</span> cText
+
+	<span class="k">if</span> len(cText) &gt; <span class="n">22</span>
+		<span class="k">return</span> left(cText,<span class="n">20</span>) + <span class="s">"..."</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))
+
+<span class="k">func</span> <span class="f">joinWith</span> aList,cSeparator
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> item <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += cSeparator
+		<span class="k">ok</span>
+		cText += <span class="s">""</span> + item
+	<span class="k">next</span>
+	<span class="k">return</span> cText</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. German:  bücher.example  -&gt;  xn--bcher-kva.example
+   Arabic:  the name with the word for 'site' -&gt;  xn--4gbrim.example
+   back:    bücher.example  and the round trip is exact: 1
+   a name that is plain ASCII does not change: www.example.com
+
+2. Host: bücher.example   IdnHost (for DNS and certificates): xn--bcher-kva.example
+   an HTTP client sends the IdnHost; a certificate for this site names it in the Punycode form
+
+3. checking names (the second answer is with UseStd3AsciiRules):
+   good-name.example       valid: good-name.example        valid: good-name.example
+   -bad.example            not valid                       not valid
+   empty..label.example    not valid                       not valid
+   aaaaaaaaaaaaaaaaaaaa... not valid                       not valid
+   has space.example       valid: has space.example        not valid
+
+4. apple.com in two spellings:
+   Latin:      apple.com   apple.com
+   look-alike: аpple.com   xn--pple-43d.com
+   they look the same on the screen but they are different names: 1
+
+5. the alphabets in each part of the name (the parts are separated by dots):
+   apple.com                 Latin Latin       one alphabet in each part
+   xn--pple-43d.com          Cyrillic+Latin Latin MIXED in one part: suspicious
+   xn--bcher-kva.example     Latin Latin       one alphabet in each part
+   xn--4gbrim.example        Arabic Latin      one alphabet in each part
+   xn--domin-6ve.com         Latin+Cyrillic Latin MIXED in one part: suspicious
+
+6. what to show to a person: موقع.example (shown as written), xn--pple-43d.com (Punycode: mixed alphabets)</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="punycode">Punycode<a class="anchor" href="#punycode">#</a></h3>
+<p>The system of domain names (DNS) was made for the letters <code>a</code> to <code>z</code>, the digits and the hyphen. A name with other letters is sent as <strong>Punycode</strong>: the text <code>xn--</code> and then the letters of the part encoded with ASCII characters only. <code>bücher.example</code> becomes <code>xn--bcher-kva.example</code> and the Arabic name becomes <code>xn--4gbrim.example</code>. Each part (label) of the name is converted alone, so <code>.example</code> stays as it is. <code>IdnMapping.GetAscii(name)</code> converts to Punycode, <code>GetUnicode(name)</code> converts back, and the round trip is exact. A name that is already plain ASCII does not change. A person sees the Unicode form; the network, the HTTP client and the certificate use the Punycode form.</p>
+<h3 id="uri">Uri<a class="anchor" href="#uri">#</a></h3>
+<p><code>new Uri("https://bücher.example/path")</code> keeps both: <code>Host</code> is the name as written and <strong><code>IdnHost</code></strong> is the ASCII form that goes to DNS. When you compare host names or look up a certificate for one, use <code>IdnHost</code>.</p>
+<h3 id="invalid-names">Invalid names<a class="anchor" href="#invalid-names">#</a></h3>
+<p>A label is at most 63 characters, it must not be empty (<code>empty..label</code>), and it must not start or end with a hyphen. <code>GetAscii</code> raises an error for these, so the program uses <code>try</code> / <code>catch</code> (the tutorial <a href="tut-07-errors.html">When things go wrong</a>) to answer <em>valid</em> or <em>not valid</em>. The default mapper allows a space; with <code>UseStd3AsciiRules = True</code> the mapper follows the strict rules (letters, digits and hyphens only) and refuses it. For names that come from a user, use the strict mapper.</p>
+<h3 id="look-alike-letters">Look-alike letters<a class="anchor" href="#look-alike-letters">#</a></h3>
+<p>The Cyrillic letter <code>а</code> (U+0430) and the Latin letter <code>a</code> (U+0061) are <strong>different letters that look the same</strong> in almost every font. So <code>аpple.com</code> — written with the Cyrillic first letter — is a different name from <code>apple.com</code>, and a person cannot see the difference. An attacker who registers the look-alike can send mail and links that seem to come from the real company. This is a <strong>homograph attack</strong>. The Punycode form shows the truth at once: <code>xn--pple-43d.com</code> is obviously not <code>apple.com</code>. Other pairs exist: Latin <code>o</code> and Greek <code>ο</code>, Latin <code>l</code> and capital <code>I</code> in many fonts, the digit <code>0</code> and the letter <code>O</code>.</p>
+<h3 id="checking-the-alphabets">Checking the alphabets<a class="anchor" href="#checking-the-alphabets">#</a></h3>
+<p>A defense that browsers use: a name is shown in Unicode only when each part uses <strong>one alphabet</strong>. The program gets the code of every letter (a text is converted to UTF-32, four bytes for a letter), decides from the range of the code which alphabet it belongs to (Latin 0041–024F, Greek 0370–03FF, Cyrillic 0400–04FF, Arabic 0600–06FF; a real program uses the Unicode <em>script</em> data), and reports a part that <strong>mixes</strong> alphabets. <code>аpple.com</code> mixes Cyrillic and Latin in one part, so it is suspicious; <code>bücher</code> is one alphabet; the Arabic name under <code>.example</code> is fine because each <em>part</em> is checked alone. The name to show to a person is the Unicode form when it is safe, otherwise the Punycode form.</p>
+<div class="callout warn"><span class="t">Warning</span><p>This check is only a first step. A whole-script look-alike (every letter Cyrillic, such as an all-Cyrillic word that looks Latin) passes it. Real systems also use lists of confusable letters, the rules of the registry of the top-level domain, and a warning when a name is new or rare. When your program shows or compares a name that <strong>a stranger chose</strong> — a link in a message, a sender address, a download URL — show the Punycode form or warn the user.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>Punycode and <code>IdnMapping</code>,</li><li><code>Host</code> against <code>IdnHost</code>,</li><li>the rules for valid names and the strict mapper,</li><li>homograph attacks,</li><li>checking the alphabets of each part.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write <code>sameSite(a, b)</code> that compares two URLs by their <code>IdnHost</code>, ignoring case.</li><li>Add the Hebrew range (0590–05FF) and the Greek look-alike <code>ο</code> (U+03BF) to the check and test <code>gοogle.com</code>.</li><li>Write <code>safeLink(text, address)</code> that warns when the visible text and the real address have different hosts.</li><li>Read the e-mail address of a message (the tutorial <a href="tut-94-mail-messages.html">E-mail messages</a>) and check the part after <code>@</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-121-mime-types.html">MIME types</a></p>
+<div class="pager"><a href="tut-138-base64-hex.html"><small>Previous</small>Bytes as text: Base64 and hex</a><a class="next" href="tut-121-mime-types.html"><small>Next</small>MIME types</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

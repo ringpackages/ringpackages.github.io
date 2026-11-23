@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XSLT · RingDotNet</title>
+<meta name="description" content="XSLT is a language that turns an XML document into text, CSV, HTML or other XML by following a stylesheet. .NET compiles stylesheets with XslCompiledTransform; this lesson makes a report, a CSV file and an HTML table from the same data.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html" class="cur">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>XSLT</h1><p class="lead">XSLT is a language that turns an XML document into text, CSV, HTML or other XML by following a stylesheet. .NET compiles stylesheets with XslCompiledTransform; this lesson makes a report, a CSV file and an HTML table from the same data.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a stylesheet is and how <code>XslCompiledTransform</code> runs it,</li><li>templates, <code>for-each</code>, <code>sort</code>, <code>sum</code> and filters,</li><li>three outputs from one input: text, CSV and HTML,</li><li>how this class looks from Ring.</li></ul>
+<h2 id="the-idea">The idea<a class="anchor" href="#the-idea">#</a></h2>
+<p>You have data in XML (the tutorial <a href="tut-72-xml.html">XML in depth</a>) and you want a report. You can walk the tree in Ring, or you can write a <strong>stylesheet</strong>: a small XML document of <em>templates</em> ("when you see this part of the input, write this"). The advantage is that the stylesheet is <strong>data</strong>: change it, and the report changes, without touching the program.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>XML</span><button class="copy" type="button">Copy</button></div><pre><code>&lt;<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:template</span> <span class=<span class="s">"t"</span>>match</span>=<span class="s">"/library"</span>&gt;
+  &lt;<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:for-each</span> <span class=<span class="s">"t"</span>>select</span>=<span class="s">"book"</span>&gt;
+    &lt;<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:sort</span> <span class=<span class="s">"t"</span>>select</span>=<span class="s">"@year"</span> <span class=<span class="s">"t"</span>>data-type</span>=<span class="s">"number"</span> <span class=<span class="s">"t"</span>>order</span>=<span class="s">"descending"</span>/&gt;
+    &lt;<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:value-of</span> <span class=<span class="s">"t"</span>>select</span>=<span class="s">"title"</span>/&gt; (&lt;<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:value-of</span> <span class=<span class="s">"t"</span>>select</span>=<span class="s">"@year"</span>/&gt;)
+  &lt;/<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:for-each</span>&gt;
+&lt;/<span <span class=<span class="s">"t"</span>>class</span>=<span class="s">"k"</span>>xsl:template</span>&gt;</code></pre></div>
+<p><code>select</code> and <code>match</code> are <strong>XPath</strong> expressions (the tutorial <a href="tut-72-xml.html">XML in depth</a>).</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_xslt.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># XSLT - turn XML into text, CSV and HTML with a stylesheet (System.Xml.Xsl)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Xml.Xsl"</span>
+}
+
+C_XML = <span class="s">'&lt;library&gt;&lt;book year="1937" genre="fantasy"&gt;&lt;title&gt;The Hobbit&lt;/title&gt;&lt;price&gt;9.5&lt;/price&gt;&lt;/book&gt;&lt;book year="1965" genre="scifi"&gt;&lt;title&gt;Dune&lt;/title&gt;&lt;price&gt;12&lt;/price&gt;&lt;/book&gt;&lt;book year="1984" genre="scifi"&gt;&lt;title&gt;Neuromancer&lt;/title&gt;&lt;price&gt;8.25&lt;/price&gt;&lt;/book&gt;&lt;/library&gt;'</span>
+
+<span class="c"># A stylesheet is XML too: a template says what to write for a part of the input. xsl:output chooses the kind of result.</span>
+C_TEXT = <span class="s">'&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;&lt;xsl:output method="text"/&gt;'</span>
+C_TEXT += <span class="s">'&lt;xsl:template match="/library"&gt;&lt;xsl:for-each select="book"&gt;&lt;xsl:sort select="@year" data-type="number" order="descending"/&gt;'</span>
+C_TEXT += <span class="s">'&lt;xsl:value-of select="title"/&gt; (&lt;xsl:value-of select="@year"/&gt;)&lt;xsl:text&gt;&amp;#10;&lt;/xsl:text&gt;&lt;/xsl:for-each&gt;'</span>
+C_TEXT += <span class="s">'Total: &lt;xsl:value-of select="sum(book/price)"/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;'</span>
+
+C_CSV = <span class="s">'&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;&lt;xsl:output method="text"/&gt;'</span>
+C_CSV += <span class="s">'&lt;xsl:template match="/library"&gt;title,year,price&lt;xsl:text&gt;&amp;#10;&lt;/xsl:text&gt;&lt;xsl:for-each select="book[price &amp;lt; 10]"&gt;'</span>
+C_CSV += <span class="s">'&lt;xsl:value-of select="title"/&gt;,&lt;xsl:value-of select="@year"/&gt;,&lt;xsl:value-of select="price"/&gt;&lt;xsl:text&gt;&amp;#10;&lt;/xsl:text&gt;&lt;/xsl:for-each&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;'</span>
+
+C_HTML = <span class="s">'&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;&lt;xsl:output method="html" indent="yes"/&gt;'</span>
+C_HTML += <span class="s">'&lt;xsl:template match="/library"&gt;&lt;table&gt;&lt;xsl:for-each select="book"&gt;&lt;tr class="{@genre}"&gt;&lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;&lt;td&gt;&lt;xsl:value-of select="price"/&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/xsl:for-each&gt;&lt;/table&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;'</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cFolder = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_xslt"</span>])
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cFolder)
+	cInput = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,<span class="s">"library.xml"</span>])
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cInput, :contents = C_XML ])
+
+	<span class="c"># 1. XSLT turns an input document into another document. XslCompiledTransform compiles the stylesheet once; Transform runs it.</span>
+	? <span class="s">"1. a text report, newest book first, with the total price:"</span>
+	? indent(transform(cFolder,cInput,C_TEXT,<span class="s">"report.txt"</span>))
+
+	<span class="c"># 2. The same data as CSV, only the books cheaper than 10 (a filter inside the select)</span>
+	? nl + <span class="s">"2. CSV of the cheap books:"</span>
+	? indent(transform(cFolder,cInput,C_CSV,<span class="s">"cheap.csv"</span>))
+
+	<span class="c"># 3. HTML: the result is a document that a browser can show. {@genre} puts the attribute into the class of the row.</span>
+	cHtml = transform(cFolder,cInput,C_HTML,<span class="s">"table.html"</span>)
+	? nl + <span class="s">"3. an HTML table ("</span> + len(cHtml) + <span class="s">" characters) with "</span> + countOf(cHtml,<span class="s">"&lt;tr"</span>) + <span class="s">" rows; the genres became classes: "</span> + yesNo(substr(cHtml,<span class="s">'class="scifi"'</span>) &gt; <span class="n">0</span>)
+
+	<span class="c"># 4. The HTML that the third stylesheet wrote</span>
+	? nl + <span class="s">"4. the HTML:"</span>
+	? indent(cHtml)
+
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+
+<span class="c"># compile the stylesheet text, run it over the input file, return the text of the output file</span>
+<span class="k">func</span> <span class="f">transform</span> cFolder, cInput, cStylesheet, cOutputName
+
+	cSheet = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,cOutputName + <span class="s">".xsl"</span>])
+	cOutput = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,cOutputName])
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cSheet, :contents = cStylesheet ])
+	oTransform = <span class="k">new</span> <span class="t">XslCompiledTransform</span>()
+	oTransform.@<span class="k">Load</span>(cSheet)
+	oTransform.<span class="f">Transform</span>([ :inputUri = cInput, :resultsFile = cOutput ])
+	<span class="k">return</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cOutput)
+
+<span class="k">func</span> <span class="f">indent</span> cText
+
+	cText = substr(cText,char(<span class="n">13</span>),<span class="s">""</span>)
+	<span class="k">while</span> right(cText,<span class="n">1</span>) = char(<span class="n">10</span>)
+		cText = left(cText,len(cText) - <span class="n">1</span>)
+	<span class="k">end</span>
+	<span class="k">return</span> <span class="s">"   "</span> + substr(cText,char(<span class="n">10</span>),nl + <span class="s">"   "</span>)
+
+<span class="k">func</span> <span class="f">countOf</span> cText, cPart
+
+	nCount = <span class="n">0</span>
+	nPos = <span class="n">1</span>
+	<span class="k">while</span> <span class="k">true</span>
+		nFound = substr(substr(cText,nPos,len(cText)),cPart)
+		<span class="k">if</span> nFound = <span class="n">0</span>
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+		nCount++
+		nPos += nFound + len(cPart) - <span class="n">1</span>
+		<span class="k">if</span> nPos &gt; len(cText)
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">end</span>
+	<span class="k">return</span> nCount
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. a text report, newest book first, with the total price:
+   Neuromancer (1984)
+   Dune (1965)
+   The Hobbit (1937)
+   Total: 29.75
+
+2. CSV of the cheap books:
+   title,year,price
+   The Hobbit,1937,9.5
+   Neuromancer,1984,8.25
+
+3. an HTML table (236 characters) with 3 rows; the genres became classes: yes
+
+4. the HTML:
+   &lt;table&gt;
+     &lt;tr class="fantasy"&gt;
+       &lt;td&gt;The Hobbit&lt;/td&gt;
+       &lt;td&gt;9.5&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr class="scifi"&gt;
+       &lt;td&gt;Dune&lt;/td&gt;
+       &lt;td&gt;12&lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr class="scifi"&gt;
+       &lt;td&gt;Neuromancer&lt;/td&gt;
+       &lt;td&gt;8.25&lt;/td&gt;
+     &lt;/tr&gt;
+   &lt;/table&gt;</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-ring-side">The Ring side<a class="anchor" href="#the-ring-side">#</a></h3>
+<p>Everything happens in <code>transform</code>: it writes the stylesheet text to a file, then</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oTransform = <span class="k">new</span> <span class="t">XslCompiledTransform</span>()
+oTransform.@<span class="k">Load</span>(cSheet)                 <span class="c"># compile the stylesheet (Load is a Ring keyword, so the method is @Load)</span>
+oTransform.<span class="f">Transform</span>([ :inputUri = cInput, :resultsFile = cOutput ])     <span class="c"># input file -&gt; output file</span></code></pre></div>
+<p><code>@Load</code> and <code>Transform</code> take file names in this form; the output file is read back with <code>File.ReadAllText</code>. Compiling is the slow part, so a program that transforms many documents compiles the stylesheet once and calls <code>Transform</code> many times.</p>
+<h3 id="three-stylesheets">Three stylesheets<a class="anchor" href="#three-stylesheets">#</a></h3>
+<ol><li><strong>Text.</strong> <code>xsl:output method="text"</code> writes plain text. <code>for-each select="book"</code> repeats for every book; <code>xsl:sort</code> orders them by year, newest first (<code>data-type="number"</code>, otherwise <code>1965</code> sorts after <code>1937</code> only by luck); <code>sum(book/price)</code> adds the prices. <code>&lt;xsl:text&gt;&amp;#10;&lt;/xsl:text&gt;</code> writes a new line.</li><li><strong>CSV.</strong> The same structure, with a <em>filter</em>: <code>book[price &amp;lt; 10]</code> keeps only the cheap books (<code>&amp;lt;</code> is <code>&lt;</code> inside XML).</li><li><strong>HTML.</strong> <code>method="html" indent="yes"</code> writes a table. In <code>&lt;tr class="{@genre}"&gt;</code> the braces put the value of the attribute into the output (an <em>attribute value template</em>), so each row gets its genre as a CSS class.</li></ol>
+<div class="callout tip"><span class="t">Tip</span><p>Writing XSLT strings in Ring code gets crowded. Keep stylesheets in their own <code>.xsl</code> files next to the program and pass the path to <code>@Load</code>; designers can then change the layout of a report without reading Ring.</p></div>
+<h3 id="when-to-use-it">When to use it<a class="anchor" href="#when-to-use-it">#</a></h3>
+<ul><li>The result is a <strong>document</strong> with a fixed structure (reports, feeds, HTML pages from XML data).</li><li>The people who change the layout are not the people who write the program.</li><li>Not for logic: loops with counters, calls to your own functions and file access are easier in Ring.</li></ul>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>XslCompiledTransform</code>, <code>@Load</code> and <code>Transform</code>,</li><li>templates, <code>for-each</code>, <code>sort</code>, <code>sum</code>, filters,</li><li>text, CSV and HTML output,</li><li>attribute value templates <code>{@name}</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write a stylesheet that outputs only the titles of the science fiction books.</li><li>Add a <code>&lt;xsl:if test="price &gt; 10"&gt;</code> that marks expensive books with <code>*</code>.</li><li>Make the HTML a complete page (<code>&lt;html&gt;&lt;body&gt;…</code>) with a heading and the total price.</li><li>Transform an XML file that you create with <code>XDocument</code> (the tutorial <a href="tut-72-xml.html">XML in depth</a>).</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-47-markdown.html">A project: Markdown to HTML</a></p>
+<div class="pager"><a href="tut-72-xml.html"><small>Previous</small>XML in depth</a><a class="next" href="tut-47-markdown.html"><small>Next</small>Markdown to HTML</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

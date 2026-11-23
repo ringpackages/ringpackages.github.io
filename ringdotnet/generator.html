@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class generator · RingDotNet</title>
+<meta name="description" content="How the wrapper classes are made, how to add namespaces and closed generic types, how the overloads are named, and how to regenerate them.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html" class="cur">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Class generator</h1><p class="lead">How the wrapper classes are made, how to add namespaces and closed generic types, how the overloads are named, and how to regenerate them.</p>
+<h2 id="what-the-generator-does">What the generator does<a class="anchor" href="#what-the-generator-does">#</a></h2>
+<p><code>tools/dotnettools/gendotnet.ring</code> reads the <strong>manifest</strong> (<code>tools/dotnettools/dotnetmanifest.ring</code>), loads the assemblies, and uses reflection to write Ring source:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span></span><button class="copy" type="button">Copy</button></div><pre><code>libraries/dotnetlib/generated/
+	System.ring                     # the namespace loader: imports, registrations
+	System.classes.ring             # all the classes of the namespace (one file: loading and installing thousands of small files is slow)
+	System.IO.ring
+	System.IO.classes.ring
+	...
+	classindex.ring                 # [type, namespace] of every class, one call with the whole list: automatic imports (loaded when first needed)</code></pre></div>
+<p>The class files are plain Ring: a <code>Class X from Base</code> with a method per .NET method, <code>getX</code>/<code>setX</code> for properties, <code>setXEvent</code> / <code>clearXEvent</code> for events and registration with <code>dnRegisterClass</code>. The files are generated: <strong>do not edit them</strong>.</p>
+<h2 id="regenerate">Regenerate<a class="anchor" href="#regenerate">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>cd tools/dotnettools
+ring gendotnet.ring                       # every namespace of the manifest
+ring gendotnet.ring System.Text System.IO # only these</code></pre></div>
+<p>A run with names writes only those namespaces, and the base classes of the other namespaces are left out of its files: a class that derives from <code>Object</code> (the class of <code>System.Object</code>) derives from <code>DotNetObject</code> instead, and the line <code>dnImport("System")</code> is not written. The files of such a run are not the files of the full run, so run the command <strong>without names</strong> before you use or commit the result.</p>
+<h2 id="the-manifest">The manifest<a class="anchor" href="#the-manifest">#</a></h2>
+<p>Each entry describes one namespace:</p>
+<div class="tablewrap"><table><thead><tr><th>Key</th><th>Meaning</th></tr></thead><tbody><tr><td><code>:namespace</code></td><td>the .NET namespace, also the name used with <code>using { "..." }</code></td></tr><tr><td><code>:assemblies</code></td><td>assemblies that contain the types (default <code>System.Private.CoreLib</code>)</td></tr><tr><td><code>:all</code></td><td><code>true</code> wraps every public class and struct of the namespace</td></tr><tr><td><code>:exclude</code></td><td>type names that <code>:all</code> must skip</td></tr><tr><td><code>:types</code></td><td>explicit or extra types: <code>[.NET name, Ring class name, init() parameter count]</code> — closed generic types and nested types go here</td></tr><tr><td><code>:uses</code></td><td>namespaces imported together with this one (their classes are returned by its methods)</td></tr><tr><td><code>:extra</code></td><td>Ring files the loader also loads (for example <code>linq.ring</code>)</td></tr><tr><td><code>:prefix</code></td><td>prefix for class names that clash with another namespace (default: the last part of the namespace)</td></tr><tr><td><code>:desktop</code></td><td><code>true</code> when the namespace needs the Windows Desktop runtime</td></tr><tr><td><code>:web</code>, <code>:data</code></td><td>the namespace needs ASP.NET Core / the Entity Framework assemblies</td></tr></tbody></table></div>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>[ :namespace = <span class="s">"System.IO.Compression"</span>,
+  :uses = [<span class="s">"System.IO"</span>],
+  :assemblies = [<span class="s">"System.IO.Compression"</span>,<span class="s">"System.IO.Compression.ZipFile"</span>],
+  :all = <span class="k">true</span> ],</code></pre></div>
+<h2 id="closed-generic-types">Closed generic types<a class="anchor" href="#closed-generic-types">#</a></h2>
+<p>The generic collections have classes through <code>:types</code>. Add your own with a line like:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>[<span class="s">"System.Collections.Generic.List`1[[System.Int32]]"</span>,<span class="s">"IntList"</span>,<span class="n">0</span>]</code></pre></div>
+<p>The third item forces the number of parameters of <code>init()</code> (0 here). After regenerating, <code>new IntList()</code> is a <code>List&lt;int&gt;</code>.</p>
+<h2 id="name-clashes">Name clashes<a class="anchor" href="#name-clashes">#</a></h2>
+<p>The Ring class names are global. <code>wrapassembly.ring</code> (see <a href="own-assemblies.html">Your own assemblies</a>) reserves the names of the library first, so a class of your assembly with the name of a class of the library gets the prefix of its namespace: <code>YamlDotNet.Core.Version</code> is <code>CoreVersion</code>, because <code>System.Version</code> is a class of the library. The generator lists the renames when it runs.</p>
+<p>When two namespaces contain a class with the same short name, the later one gets a prefix: <code>System.Timers.Timer</code> becomes <code>TimersTimer</code>, WPF's <code>Button</code> becomes <code>WpfButton</code>, ASP.NET's <code>MediaTypeHeaderValue</code> becomes <code>AspMediaTypeHeaderValue</code>, EF's clashing names start with <code>Ef</code>.</p>
+<h2 id="overload-rules">Overload rules<a class="anchor" href="#overload-rules">#</a></h2>
+<p>The generator names the methods of a class like this:</p>
+<ul><li>a name with overloads of <strong>several parameter counts</strong> is one method that takes one parameter: <code>NULL</code> calls the parameterless overload, a list of <code>:name = value</code> pairs chooses the overload by the parameter names, and any other value calls the overload with one parameter;</li><li>a name with <strong>one parameter count</strong> keeps its parameters (<code>Math.Max(a, b)</code>); the bridge picks among overloads with the same count by the types of the values;</li><li>the constructors other than <code>init</code> are <code>@New</code>;</li><li><code>ToString()</code> keeps its parameterless form, and its forms with parameters are <code>Format</code>;</li><li>a method with optional parameters is available with every number of parameters from the required ones up;</li><li>a static and an instance method with the same name and arity are one method;</li><li>names that are Ring keywords get an <code>@</code> at the start, and so does a method whose name would be the getter or setter of a property (<code>@GetValue</code>);</li><li>an <strong>extension method</strong> of a type that has a class in the same run is a method of that class (<code>oTable.AddColumn("Name")</code> is <code>TableExtensions.AddColumn(table, "Name")</code>). The methods of the type come first, and an extension never changes how a method that the class already has is called: it is added to a name that the class has only when it takes a number of parameters that the method already takes. The classes that implement an interface get the extension methods of the interface, and so do the interfaces that inherit it. Generic extension methods whose type cannot be known from their parameters (<code>Cast&lt;T&gt;</code>) are left out. Extensions of types with no class in the run (generic types, <code>string</code>, types of another assembly in a run of <code>wrapassembly.ring</code>) stay static calls on their own class. A <strong>delegate type</strong> has a class only when extension methods extend it (a closed generic delegate such as Sprache's <code>Parser&lt;IEnumerable&lt;char&gt;&gt;</code> extends the class of its definition), and an extension method that takes its struct by reference (<code>this in S</code>) is a method of the struct's class.</li></ul>
+<h2 id="how-a-wrapper-class-looks">How a wrapper class looks<a class="anchor" href="#how-a-wrapper-class-looks">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">Class</span> StringBuilder <span class="k">from</span> Object
+
+	Capacity
+	MaxCapacity
+	Length
+
+	<span class="k">Func</span> <span class="f">Equals</span> P1
+
+		dn_x = dotnet_call(<span class="s">"s4:call"</span>,nHandle,<span class="s">"s6:Equals"</span>,P1)
+		<span class="k">if</span> islist(dn_x) <span class="k">return</span> <span class="f">dnFinish</span>(dn_x[<span class="n">2</span>]) <span class="k">ok</span>
+		<span class="k">return</span> dn_x
+
+	<span class="k">Func</span> <span class="f">Append</span> P1
+
+		<span class="k">if</span> dotnet_isnamed(P1)
+			dn_x = dotnet_calla(<span class="s">"s9:callnamed"</span>,nHandle,<span class="s">"s6:Append"</span>,P1)
+		<span class="k">if</span> islist(dn_x) <span class="k">return</span> <span class="f">dnAny</span>(dn_x) <span class="k">ok</span>
+		<span class="k">return</span> dn_x
+		<span class="k">ok</span>
+		<span class="k">return</span> <span class="f">dnObj</span>(dotnet_callo(<span class="s">"s4:call"</span>,nHandle,<span class="s">"s6:Append"</span>,P1))
+
+	<span class="k">Func</span> <span class="f">getLength</span>
+
+		dn_x = dotnet_call(<span class="s">"s3:get"</span>,nHandle,<span class="s">"s6:Length"</span>)
+		<span class="k">if</span> islist(dn_x) <span class="k">return</span> <span class="f">dnFinish</span>(dn_x[<span class="n">2</span>]) <span class="k">ok</span>
+		<span class="k">return</span> dn_x</code></pre></div>
+<p>This is an extract of the class that is in <code>libraries/dotnetlib/generated/System.Text.classes.ring</code> (the real class has a method for every .NET method, an <code>init</code>, and the registration of the default object). Ring calls <code>getLength()</code> when you read <code>oSB.Length</code>, and <code>setLength(value)</code> when you assign to it. A generated method does not make a target object or a list for the request: it passes the handle as a number and the parts that never change (the operation <code>call</code> and the name) as ready wire items, and a C function of the extension packs the arguments, calls .NET and reads the answer:</p>
+<ul><li><code>dotnet_call</code> for a method that returns a <strong>text, a number or a yes/no</strong>: the answer is that Ring value.</li><li><code>dotnet_callv</code> for a method that returns <strong>nothing</strong>.</li><li><code>dotnet_callo</code> for a method that returns an <strong>object</strong>: it answers the type and the handle, and the Ring function <code>dnObj</code> makes the object of the generated class.</li><li>The arguments can be texts, numbers, lists, .NET objects and callbacks; an error of .NET is raised as a Ring error. An answer that the function does not expect (null, for example) comes back as a list that <code>dnFinish</code> reads.</li><li>The method of an <strong>overloaded name</strong> first asks the C function <code>dotnet_isnamed</code> whether the argument is a list of <code>[name, value]</code> pairs. If it is, the call is made with the operation <code>callnamed</code> (the bridge chooses the overload by the names), by <code>dotnet_call</code>, <code>dotnet_callv</code>, <code>dotnet_callo</code> or, when the overloads answer in different ways (a text for one, an object or a list for another), <code>dotnet_calla</code>.</li><li><code>dnSend</code> (the same request made in Ring) is used only for the methods that the generator finds no overload for.</li></ul>
+<h2 id="wrapping-your-own-assembly">Wrapping your own assembly<a class="anchor" href="#wrapping-your-own-assembly">#</a></h2>
+<p><code>tools/dotnettools/wrapassembly.ring</code> uses the same generator for a single DLL: <a href="own-assemblies.html">Your own assemblies</a>.</p>
+<h2 id="what-the-generator-cannot-wrap">What the generator cannot wrap<a class="anchor" href="#what-the-generator-cannot-wrap">#</a></h2>
+<p><code>tools/dotnettools/auditassembly.ring</code> reports, for one or more assemblies, how much of their public API Ring can use and what gets in the way. It applies the rules of the bridge itself, so it says what the generator does:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring auditassembly.ring Library.dll</code></pre></div>
+<p>Each line has a count, a tag and an example. The tags are <code>OK</code> (supported: wrapped classes, enums as texts, delegates as callbacks, extension methods, events), <code>INFO</code> (facts) or <code>GAP</code> (not usable today): operators that Ring has no syntax for (<code>++</code>, <code>op_True</code>) and the members of a ref struct that no value can make (a ref struct has to be made for the call from a text, bytes, a list or an object: <a href="advanced-types.html">Advanced .NET types</a>). Spans, pointers, ref returns and asynchronous streams are <code>OK</code>. <code>tools/dotnettools/auditpackages.py</code> restores a list of NuGet packages (<code>packages.txt</code>) and audits all of them together; <code>audit-baseline.txt</code> has the result of the last run.</p>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="testing.html">Testing</a>: how the package and your own programs are tested.</li><li><a href="reference.html">Function index</a> and the <a href="api.html">Class reference</a>: what has been generated.</li></ul>
+<div class="pager"><a href="own-assemblies.html"><small>Previous</small>Your own assemblies</a><a class="next" href="testing.html"><small>Next</small>Testing</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

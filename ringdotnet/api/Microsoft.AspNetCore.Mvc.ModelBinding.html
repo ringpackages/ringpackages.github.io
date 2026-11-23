@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.AspNetCore.Mvc.ModelBinding · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.AspNetCore.Mvc.ModelBinding</h1>
+<p class="lead">75 wrapped types. Load them with <code>using { "Microsoft.AspNetCore.Mvc.ModelBinding" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AspBindingSource">AspBindingSource</a> <a href="#c-BindingBehaviorAttribute">BindingBehaviorAttribute</a> <a href="#c-BindingInfo">BindingInfo</a> <a href="#c-BindingSourceValueProvider">BindingSourceValueProvider</a> <a href="#c-BindNeverAttribute">BindNeverAttribute</a> <a href="#c-BindRequiredAttribute">BindRequiredAttribute</a> <a href="#c-CompositeBindingSource">CompositeBindingSource</a> <a href="#c-CompositeValueProvider">CompositeValueProvider</a> <a href="#c-DefaultModelBindingContext">DefaultModelBindingContext</a> <a href="#c-DefaultPropertyFilterProvider">DefaultPropertyFilterProvider</a> <a href="#c-EmptyModelMetadataProvider">EmptyModelMetadataProvider</a> <a href="#c-EnumGroupAndName">EnumGroupAndName</a> <a href="#c-FormFileValueProvider">FormFileValueProvider</a> <a href="#c-FormFileValueProviderFactory">FormFileValueProviderFactory</a> <a href="#c-FormValueProvider">FormValueProvider</a> <a href="#c-FormValueProviderFactory">FormValueProviderFactory</a> <a href="#c-IBinderTypeProviderMetadata">IBinderTypeProviderMetadata</a> <a href="#c-IBindingSourceMetadata">IBindingSourceMetadata</a> <a href="#c-IBindingSourceValueProvider">IBindingSourceValueProvider</a> <a href="#c-ICollectionModelBinder">ICollectionModelBinder</a> <a href="#c-IEnumerableValueProvider">IEnumerableValueProvider</a> <a href="#c-IKeyRewriterValueProvider">IKeyRewriterValueProvider</a> <a href="#c-IModelBinder">IModelBinder</a> <a href="#c-IModelBinderFactory">IModelBinderFactory</a> <a href="#c-IModelBinderProvider">IModelBinderProvider</a> <a href="#c-IModelMetadataProvider">IModelMetadataProvider</a> <a href="#c-IModelNameProvider">IModelNameProvider</a> <a href="#c-IPropertyFilterProvider">IPropertyFilterProvider</a> <a href="#c-IRequestPredicateProvider">IRequestPredicateProvider</a> <a href="#c-IValueProvider">IValueProvider</a> <a href="#c-IValueProviderFactory">IValueProviderFactory</a> <a href="#c-JQueryFormValueProvider">JQueryFormValueProvider</a> <a href="#c-JQueryFormValueProviderFactory">JQueryFormValueProviderFactory</a> <a href="#c-JQueryQueryStringValueProvider">JQueryQueryStringValueProvider</a> <a href="#c-JQueryQueryStringValueProviderFactory">JQueryQueryStringValueProviderFactory</a> <a href="#c-JQueryValueProvider">JQueryValueProvider</a> <a href="#c-ModelAttributes">ModelAttributes</a> <a href="#c-ModelBinderFactory">ModelBinderFactory</a> <a href="#c-ModelBinderFactoryContext">ModelBinderFactoryContext</a> <a href="#c-ModelBinderProviderContext">ModelBinderProviderContext</a> <a href="#c-ModelBinderProviderExtensions">ModelBinderProviderExtensions</a> <a href="#c-ModelBindingContext">ModelBindingContext</a> <a href="#c-ModelBindingContextNestedScope">ModelBindingContextNestedScope</a> <a href="#c-ModelBindingResult">ModelBindingResult</a> <a href="#c-ModelError">ModelError</a> <a href="#c-ModelErrorCollection">ModelErrorCollection</a> <a href="#c-ModelMetadata">ModelMetadata</a> <a href="#c-ModelMetadataProvider">ModelMetadataProvider</a> <a href="#c-ModelMetadataProviderExtensions">ModelMetadataProviderExtensions</a> <a href="#c-ModelNames">ModelNames</a> <a href="#c-ModelPropertyCollection">ModelPropertyCollection</a> <a href="#c-ModelStateDictionary">ModelStateDictionary</a> <a href="#c-ModelStateDictionaryEnumerator">ModelStateDictionaryEnumerator</a> <a href="#c-ModelStateDictionaryExtensions">ModelStateDictionaryExtensions</a> <a href="#c-ModelStateDictionaryKeyEnumerable">ModelStateDictionaryKeyEnumerable</a> <a href="#c-ModelStateDictionaryKeyEnumerator">ModelStateDictionaryKeyEnumerator</a> <a href="#c-ModelStateDictionaryPrefixEnumerable">ModelStateDictionaryPrefixEnumerable</a> <a href="#c-ModelStateDictionaryValueEnumerable">ModelStateDictionaryValueEnumerable</a> <a href="#c-ModelStateDictionaryValueEnumerator">ModelStateDictionaryValueEnumerator</a> <a href="#c-ModelStateEntry">ModelStateEntry</a> <a href="#c-ObjectModelValidator">ObjectModelValidator</a> <a href="#c-ParameterBinder">ParameterBinder</a> <a href="#c-PrefixContainer">PrefixContainer</a> <a href="#c-QueryStringValueProvider">QueryStringValueProvider</a> <a href="#c-QueryStringValueProviderFactory">QueryStringValueProviderFactory</a> <a href="#c-RouteValueProvider">RouteValueProvider</a> <a href="#c-RouteValueProviderFactory">RouteValueProviderFactory</a> <a href="#c-SuppressChildValidationMetadataProvider">SuppressChildValidationMetadataProvider</a> <a href="#c-TooManyModelErrorsException">TooManyModelErrorsException</a> <a href="#c-UnsupportedContentTypeException">UnsupportedContentTypeException</a> <a href="#c-UnsupportedContentTypeFilter">UnsupportedContentTypeFilter</a> <a href="#c-ValueProviderException">ValueProviderException</a> <a href="#c-ValueProviderFactoryContext">ValueProviderFactoryContext</a> <a href="#c-ValueProviderFactoryExtensions">ValueProviderFactoryExtensions</a> <a href="#c-ValueProviderResult">ValueProviderResult</a></div><details class="cls" id="c-AspBindingSource"><summary><b>AspBindingSource</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AspBindingSource(string id, string displayName, bool isGreedy, bool isFromRequest)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AspBindingSource(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AspBindingSource().@New([ :param = value ])</code> or <code>dnNew("AspBindingSource",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read</td><td><code>o.DisplayName</code></td></tr><tr><td><code>Id</code></td><td><code>string</code></td><td>read</td><td><code>o.Id</code></td></tr><tr><td><code>IsGreedy</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsGreedy</code></td></tr><tr><td><code>IsFromRequest</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFromRequest</code></td></tr><tr><td><code>Body</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Body</code></td></tr><tr><td><code>Custom</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Custom</code></td></tr><tr><td><code>Form</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Form</code></td></tr><tr><td><code>Header</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Header</code></td></tr><tr><td><code>ModelBinding</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.ModelBinding</code></td></tr><tr><td><code>Path</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Path</code></td></tr><tr><td><code>Query</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Query</code></td></tr><tr><td><code>Services</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Services</code></td></tr><tr><td><code>Special</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.Special</code></td></tr><tr><td><code>FormFile</code></td><td><code>BindingSource</code></td><td>read · static</td><td><code>o.FormFile</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanAcceptDataFrom</code></td><td><code>CanAcceptDataFrom(p1)</code></td><td><code>bool CanAcceptDataFrom(BindingSource bindingSource)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(BindingSource other)</code><br><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BindingBehaviorAttribute"><summary><b>BindingBehaviorAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BindingBehaviorAttribute(BindingBehavior behavior)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BindingBehaviorAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BindingBehaviorAttribute().@New([ :param = value ])</code> or <code>dnNew("BindingBehaviorAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Behavior</code></td><td><code>BindingBehavior</code></td><td>read</td><td><code>o.Behavior</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BindingInfo"><summary><b>BindingInfo</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BindingInfo()</code></td></tr><tr><td><code>new BindingInfo(BindingInfo other)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BindingInfo(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BindingInfo().@New([ :param = value ])</code> or <code>dnNew("BindingInfo",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindingSource</code></td><td><code>BindingSource</code></td><td>read, write</td><td><code>o.BindingSource</code> <code>o.BindingSource = v</code></td></tr><tr><td><code>BinderModelName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.BinderModelName</code> <code>o.BinderModelName = v</code></td></tr><tr><td><code>BinderType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.BinderType</code> <code>o.BinderType = v</code></td></tr><tr><td><code>PropertyFilterProvider</code></td><td><code>IPropertyFilterProvider</code></td><td>read, write</td><td><code>o.PropertyFilterProvider</code> <code>o.PropertyFilterProvider = v</code></td></tr><tr><td><code>RequestPredicate</code></td><td><code>Func&lt;ActionContext, bool&gt;</code></td><td>read, write</td><td><code>o.RequestPredicate</code> <code>o.RequestPredicate = v</code></td></tr><tr><td><code>EmptyBodyBehavior</code></td><td><code>EmptyBodyBehavior</code></td><td>read, write</td><td><code>o.EmptyBodyBehavior</code> <code>o.EmptyBodyBehavior = v</code></td></tr><tr><td><code>ServiceKey</code></td><td><code>object</code></td><td>read, write</td><td><code>o.ServiceKey</code> <code>o.ServiceKey = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetBindingInfo</code></td><td><code>GetBindingInfo(value)</code><br><code>GetBindingInfo([ :attributes = … ])</code><br><code>GetBindingInfo([ :attributes = …, :modelMetadata = … ])</code></td><td><code>static BindingInfo GetBindingInfo(IEnumerable&lt;object&gt; attributes)</code><br><code>static BindingInfo GetBindingInfo(IEnumerable&lt;object&gt; attributes, ModelMetadata modelMetadata)</code></td></tr><tr><td><code>TryApplyBindingInfo</code></td><td><code>TryApplyBindingInfo(p1)</code></td><td><code>bool TryApplyBindingInfo(ModelMetadata modelMetadata)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BindingSourceValueProvider"><summary><b>BindingSourceValueProvider</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>Filter</code></td><td><code>Filter(p1)</code></td><td><code>IValueProvider Filter(BindingSource bindingSource)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BindNeverAttribute"><summary><b>BindNeverAttribute</b> <span class="muted">class sealed · extends <a href="#c-BindingBehaviorAttribute">BindingBehaviorAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BindNeverAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BindNeverAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BindNeverAttribute().@New([ :param = value ])</code> or <code>dnNew("BindNeverAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BindRequiredAttribute"><summary><b>BindRequiredAttribute</b> <span class="muted">class sealed · extends <a href="#c-BindingBehaviorAttribute">BindingBehaviorAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BindRequiredAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BindRequiredAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BindRequiredAttribute().@New([ :param = value ])</code> or <code>dnNew("BindRequiredAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CompositeBindingSource"><summary><b>CompositeBindingSource</b> <span class="muted">class · extends <a href="#c-AspBindingSource">AspBindingSource</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.CompositeBindingSource</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindingSources</code></td><td><code>IEnumerable&lt;BindingSource&gt;</code></td><td>read</td><td><code>o.BindingSources</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanAcceptDataFrom</code></td><td><code>CanAcceptDataFrom(p1)</code></td><td><code>bool CanAcceptDataFrom(BindingSource bindingSource)</code></td></tr><tr><td><code>Create</code></td><td><code>Create(p1,p2)</code></td><td><code>static CompositeBindingSource Create(IEnumerable&lt;BindingSource&gt; bindingSources, string displayName)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CompositeValueProvider"><summary><b>CompositeValueProvider</b> <span class="muted">class · extends Collection&lt;IValueProvider&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CompositeValueProvider()</code></td></tr><tr><td><code>new CompositeValueProvider(IList&lt;IValueProvider&gt; valueProviders)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CompositeValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CompositeValueProvider().@New([ :param = value ])</code> or <code>dnNew("CompositeValueProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.getCount()</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>IValueProvider</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(IValueProvider item)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(IValueProvider item)</code></td></tr><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(IValueProvider[] array, int index)</code></td></tr><tr><td><code>CreateAsync</code></td><td><code>CreateAsync(value)</code><br><code>CreateAsync([ :controllerContext = … ])</code><br><code>CreateAsync([ :actionContext = …, :factories = … ])</code></td><td><code>static Task&lt;CompositeValueProvider&gt; CreateAsync(ControllerContext controllerContext)</code><br><code>static Task&lt;CompositeValueProvider&gt; CreateAsync(ActionContext actionContext, IList&lt;IValueProviderFactory&gt; factories)</code></td></tr><tr><td><code>Filter</code></td><td><code>Filter(NULL)</code><br><code>Filter(value)</code><br><code>Filter([ :bindingSource = … ])</code></td><td><code>IValueProvider Filter(BindingSource bindingSource)</code><br><code>IValueProvider Filter()</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;IValueProvider&gt; GetEnumerator()</code></td></tr><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(IValueProvider item)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, IValueProvider item)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(IValueProvider item)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DefaultModelBindingContext"><summary><b>DefaultModelBindingContext</b> <span class="muted">class · extends <a href="#c-ModelBindingContext">ModelBindingContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.DefaultModelBindingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultModelBindingContext()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultModelBindingContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultModelBindingContext().@New([ :param = value ])</code> or <code>dnNew("DefaultModelBindingContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionContext</code></td><td><code>ActionContext</code></td><td>read, write</td><td><code>o.getActionContext()</code> <code>o.setActionContext(v)</code></td></tr><tr><td><code>FieldName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getFieldName()</code> <code>o.setFieldName(v)</code></td></tr><tr><td><code>Model</code></td><td><code>object</code></td><td>read, write</td><td><code>o.getModel()</code> <code>o.setModel(v)</code></td></tr><tr><td><code>ModelMetadata</code></td><td><code>ModelMetadata</code></td><td>read, write</td><td><code>o.getModelMetadata()</code> <code>o.setModelMetadata(v)</code></td></tr><tr><td><code>ModelName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getModelName()</code> <code>o.setModelName(v)</code></td></tr><tr><td><code>ModelState</code></td><td><code>ModelStateDictionary</code></td><td>read, write</td><td><code>o.getModelState()</code> <code>o.setModelState(v)</code></td></tr><tr><td><code>BinderModelName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getBinderModelName()</code> <code>o.setBinderModelName(v)</code></td></tr><tr><td><code>BindingSource</code></td><td><code>BindingSource</code></td><td>read, write</td><td><code>o.getBindingSource()</code> <code>o.setBindingSource(v)</code></td></tr><tr><td><code>IsTopLevelObject</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsTopLevelObject()</code> <code>o.setIsTopLevelObject(v)</code></td></tr><tr><td><code>OriginalValueProvider</code></td><td><code>IValueProvider</code></td><td>read, write</td><td><code>o.OriginalValueProvider</code> <code>o.OriginalValueProvider = v</code></td></tr><tr><td><code>ValueProvider</code></td><td><code>IValueProvider</code></td><td>read, write</td><td><code>o.getValueProvider()</code> <code>o.setValueProvider(v)</code></td></tr><tr><td><code>PropertyFilter</code></td><td><code>Func&lt;ModelMetadata, bool&gt;</code></td><td>read, write</td><td><code>o.getPropertyFilter()</code> <code>o.setPropertyFilter(v)</code></td></tr><tr><td><code>ValidationState</code></td><td><code>ValidationStateDictionary</code></td><td>read, write</td><td><code>o.getValidationState()</code> <code>o.setValidationState(v)</code></td></tr><tr><td><code>Result</code></td><td><code>ModelBindingResult</code></td><td>read, write</td><td><code>o.getResult()</code> <code>o.setResult(v)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateBindingContext</code></td><td><code>CreateBindingContext(p1,p2,p3,p4,p5)</code></td><td><code>static ModelBindingContext CreateBindingContext(ActionContext actionContext, IValueProvider valueProvider, ModelMetadata metadata, BindingInfo bindingInfo, string modelName)</code></td></tr><tr><td><code>EnterNestedScope</code></td><td><code>EnterNestedScope(NULL)</code><br><code>EnterNestedScope([ :modelMetadata = …, :fieldName = …, :modelName = …, :model = … ])</code></td><td><code>ModelBindingContext.NestedScope EnterNestedScope(ModelMetadata modelMetadata, string fieldName, string modelName, object model)</code><br><code>ModelBindingContext.NestedScope EnterNestedScope()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DefaultPropertyFilterProvider"><summary><b>DefaultPropertyFilterProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.DefaultPropertyFilterProvider`1</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Prefix</code></td><td><code>string</code></td><td>read</td><td><code>o.Prefix</code></td></tr><tr><td><code>PropertyIncludeExpressions</code></td><td><code>IEnumerable&lt;Expression&lt;Func&lt;TModel, object&gt;&gt;&gt;</code></td><td>read</td><td><code>o.PropertyIncludeExpressions</code></td></tr><tr><td><code>PropertyFilter</code></td><td><code>Func&lt;ModelMetadata, bool&gt;</code></td><td>read</td><td><code>o.PropertyFilter</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EmptyModelMetadataProvider"><summary><b>EmptyModelMetadataProvider</b> <span class="muted">class · extends DefaultModelMetadataProvider</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EmptyModelMetadataProvider()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EmptyModelMetadataProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EmptyModelMetadataProvider().@New([ :param = value ])</code> or <code>dnNew("EmptyModelMetadataProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetMetadataForConstructor</code></td><td><code>GetMetadataForConstructor(p1,p2)</code></td><td><code>ModelMetadata GetMetadataForConstructor(ConstructorInfo constructorInfo, Type modelType)</code></td></tr><tr><td><code>GetMetadataForParameter</code></td><td><code>GetMetadataForParameter(value)</code><br><code>GetMetadataForParameter([ :parameter = … ])</code><br><code>GetMetadataForParameter([ :parameter = …, :modelType = … ])</code></td><td><code>ModelMetadata GetMetadataForParameter(ParameterInfo parameter)</code><br><code>ModelMetadata GetMetadataForParameter(ParameterInfo parameter, Type modelType)</code></td></tr><tr><td><code>GetMetadataForProperties</code></td><td><code>GetMetadataForProperties(p1)</code></td><td><code>IEnumerable&lt;ModelMetadata&gt; GetMetadataForProperties(Type modelType)</code></td></tr><tr><td><code>GetMetadataForProperty</code></td><td><code>GetMetadataForProperty(p1,p2)</code></td><td><code>ModelMetadata GetMetadataForProperty(PropertyInfo propertyInfo, Type modelType)</code></td></tr><tr><td><code>GetMetadataForType</code></td><td><code>GetMetadataForType(p1)</code></td><td><code>ModelMetadata GetMetadataForType(Type modelType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EnumGroupAndName"><summary><b>EnumGroupAndName</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EnumGroupAndName(string group, string name)</code></td></tr><tr><td><code>new EnumGroupAndName(string group, Func&lt;string&gt; name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EnumGroupAndName(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EnumGroupAndName().@New([ :param = value ])</code> or <code>dnNew("EnumGroupAndName",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Group</code></td><td><code>string</code></td><td>read</td><td><code>o.Group</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FormFileValueProvider"><summary><b>FormFileValueProvider</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.FormFileValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormFileValueProvider(IFormFileCollection files)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormFileValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormFileValueProvider().@New([ :param = value ])</code> or <code>dnNew("FormFileValueProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FormFileValueProviderFactory"><summary><b>FormFileValueProviderFactory</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.FormFileValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormFileValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormFileValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormFileValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("FormFileValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FormValueProvider"><summary><b>FormValueProvider</b> <span class="muted">class · extends <a href="#c-BindingSourceValueProvider">BindingSourceValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.FormValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormValueProvider(BindingSource bindingSource, IFormCollection values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormValueProvider().@New([ :param = value ])</code> or <code>dnNew("FormValueProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Culture</code></td><td><code>CultureInfo</code></td><td>read</td><td><code>o.Culture</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FormValueProviderFactory"><summary><b>FormValueProviderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.FormValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FormValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FormValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FormValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("FormValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IBinderTypeProviderMetadata"><summary><b>IBinderTypeProviderMetadata</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IBinderTypeProviderMetadata</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BinderType</code></td><td><code>Type</code></td><td>read</td><td><code>o.BinderType</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IBindingSourceMetadata"><summary><b>IBindingSourceMetadata</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceMetadata</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindingSource</code></td><td><code>BindingSource</code></td><td>read</td><td><code>o.BindingSource</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IBindingSourceValueProvider"><summary><b>IBindingSourceValueProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Filter</code></td><td><code>Filter(p1)</code></td><td><code>IValueProvider Filter(BindingSource bindingSource)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICollectionModelBinder"><summary><b>ICollectionModelBinder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ICollectionModelBinder</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanCreateInstance</code></td><td><code>CanCreateInstance(p1)</code></td><td><code>bool CanCreateInstance(Type targetType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEnumerableValueProvider"><summary><b>IEnumerableValueProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IEnumerableValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IKeyRewriterValueProvider"><summary><b>IKeyRewriterValueProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IKeyRewriterValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Filter</code></td><td><code>Filter()</code></td><td><code>IValueProvider Filter()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelBinder"><summary><b>IModelBinder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BindModelAsync</code></td><td><code>BindModelAsync(p1)</code></td><td><code>Task BindModelAsync(ModelBindingContext bindingContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelBinderFactory"><summary><b>IModelBinderFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateBinder</code></td><td><code>CreateBinder(p1)</code></td><td><code>IModelBinder CreateBinder(ModelBinderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelBinderProvider"><summary><b>IModelBinderProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetBinder</code></td><td><code>GetBinder(p1)</code></td><td><code>IModelBinder GetBinder(ModelBinderProviderContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelMetadataProvider"><summary><b>IModelMetadataProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetMetadataForProperties</code></td><td><code>GetMetadataForProperties(p1)</code></td><td><code>IEnumerable&lt;ModelMetadata&gt; GetMetadataForProperties(Type modelType)</code></td></tr><tr><td><code>GetMetadataForType</code></td><td><code>GetMetadataForType(p1)</code></td><td><code>ModelMetadata GetMetadataForType(Type modelType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelNameProvider"><summary><b>IModelNameProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IModelNameProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPropertyFilterProvider"><summary><b>IPropertyFilterProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PropertyFilter</code></td><td><code>Func&lt;ModelMetadata, bool&gt;</code></td><td>read</td><td><code>o.PropertyFilter</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRequestPredicateProvider"><summary><b>IRequestPredicateProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IRequestPredicateProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequestPredicate</code></td><td><code>Func&lt;ActionContext, bool&gt;</code></td><td>read</td><td><code>o.RequestPredicate</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IValueProvider"><summary><b>IValueProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IValueProviderFactory"><summary><b>IValueProviderFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-JQueryFormValueProvider"><summary><b>JQueryFormValueProvider</b> <span class="muted">class · extends <a href="#c-JQueryValueProvider">JQueryValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.JQueryFormValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JQueryFormValueProvider(BindingSource bindingSource, IDictionary&lt;string, StringValues&gt; values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new JQueryFormValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new JQueryFormValueProvider().@New([ :param = value ])</code> or <code>dnNew("JQueryFormValueProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-JQueryFormValueProviderFactory"><summary><b>JQueryFormValueProviderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.JQueryFormValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JQueryFormValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new JQueryFormValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new JQueryFormValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("JQueryFormValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-JQueryQueryStringValueProvider"><summary><b>JQueryQueryStringValueProvider</b> <span class="muted">class · extends <a href="#c-JQueryValueProvider">JQueryValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.JQueryQueryStringValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JQueryQueryStringValueProvider(BindingSource bindingSource, IDictionary&lt;string, StringValues&gt; values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new JQueryQueryStringValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new JQueryQueryStringValueProvider().@New([ :param = value ])</code> or <code>dnNew("JQueryQueryStringValueProvider",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-JQueryQueryStringValueProviderFactory"><summary><b>JQueryQueryStringValueProviderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.JQueryQueryStringValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JQueryQueryStringValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new JQueryQueryStringValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new JQueryQueryStringValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("JQueryQueryStringValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-JQueryValueProvider"><summary><b>JQueryValueProvider</b> <span class="muted">class abstract · extends <a href="#c-BindingSourceValueProvider">BindingSourceValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.JQueryValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Culture</code></td><td><code>CultureInfo</code></td><td>read</td><td><code>o.Culture</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>Filter</code></td><td><code>Filter(NULL)</code></td><td><code>IValueProvider Filter()</code></td></tr><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ModelAttributes"><summary><b>ModelAttributes</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelAttributes</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Attributes</code></td><td><code>IReadOnlyList&lt;object&gt;</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>PropertyAttributes</code></td><td><code>IReadOnlyList&lt;object&gt;</code></td><td>read</td><td><code>o.PropertyAttributes</code></td></tr><tr><td><code>ParameterAttributes</code></td><td><code>IReadOnlyList&lt;object&gt;</code></td><td>read</td><td><code>o.ParameterAttributes</code></td></tr><tr><td><code>TypeAttributes</code></td><td><code>IReadOnlyList&lt;object&gt;</code></td><td>read</td><td><code>o.TypeAttributes</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetAttributesForParameter</code></td><td><code>GetAttributesForParameter(value)</code><br><code>GetAttributesForParameter([ :parameterInfo = … ])</code><br><code>GetAttributesForParameter([ :parameterInfo = …, :modelType = … ])</code></td><td><code>static ModelAttributes GetAttributesForParameter(ParameterInfo parameterInfo)</code><br><code>static ModelAttributes GetAttributesForParameter(ParameterInfo parameterInfo, Type modelType)</code></td></tr><tr><td><code>GetAttributesForProperty</code></td><td><code>GetAttributesForProperty([ :type = …, :property = … ])</code><br><code>GetAttributesForProperty([ :containerType = …, :property = …, :modelType = … ])</code></td><td><code>static ModelAttributes GetAttributesForProperty(Type type, PropertyInfo property)</code><br><code>static ModelAttributes GetAttributesForProperty(Type containerType, PropertyInfo property, Type modelType)</code></td></tr><tr><td><code>GetAttributesForType</code></td><td><code>GetAttributesForType(p1)</code></td><td><code>static ModelAttributes GetAttributesForType(Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBinderFactory"><summary><b>ModelBinderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelBinderFactory(IModelMetadataProvider metadataProvider, IOptions&lt;MvcOptions&gt; options, IServiceProvider serviceProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelBinderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelBinderFactory().@New([ :param = value ])</code> or <code>dnNew("ModelBinderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateBinder</code></td><td><code>CreateBinder(p1)</code></td><td><code>IModelBinder CreateBinder(ModelBinderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBinderFactoryContext"><summary><b>ModelBinderFactoryContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactoryContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelBinderFactoryContext()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelBinderFactoryContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelBinderFactoryContext().@New([ :param = value ])</code> or <code>dnNew("ModelBinderFactoryContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindingInfo</code></td><td><code>BindingInfo</code></td><td>read, write</td><td><code>o.BindingInfo</code> <code>o.BindingInfo = v</code></td></tr><tr><td><code>Metadata</code></td><td><code>ModelMetadata</code></td><td>read, write</td><td><code>o.Metadata</code> <code>o.Metadata = v</code></td></tr><tr><td><code>CacheToken</code></td><td><code>object</code></td><td>read, write</td><td><code>o.CacheToken</code> <code>o.CacheToken = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBinderProviderContext"><summary><b>ModelBinderProviderContext</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindingInfo</code></td><td><code>BindingInfo</code></td><td>read</td><td><code>o.BindingInfo</code></td></tr><tr><td><code>Metadata</code></td><td><code>ModelMetadata</code></td><td>read</td><td><code>o.Metadata</code></td></tr><tr><td><code>MetadataProvider</code></td><td><code>IModelMetadataProvider</code></td><td>read</td><td><code>o.MetadataProvider</code></td></tr><tr><td><code>Services</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.Services</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateBinder</code></td><td><code>CreateBinder(value)</code><br><code>CreateBinder([ :metadata = … ])</code><br><code>CreateBinder([ :metadata = …, :bindingInfo = … ])</code></td><td><code>IModelBinder CreateBinder(ModelMetadata metadata)</code><br><code>IModelBinder CreateBinder(ModelMetadata metadata, BindingInfo bindingInfo)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBinderProviderExtensions"><summary><b>ModelBinderProviderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>RemoveType</code></td><td><code>RemoveType(value)</code><br><code>RemoveType([ :list = … ])</code><br><code>RemoveType([ :list = …, :type = … ])</code></td><td><code>static void RemoveType&lt;TModelBinderProvider&gt;(IList&lt;IModelBinderProvider&gt; list)</code><br><code>static void RemoveType(IList&lt;IModelBinderProvider&gt; list, Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBindingContext"><summary><b>ModelBindingContext</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionContext</code></td><td><code>ActionContext</code></td><td>read, write</td><td><code>o.ActionContext</code> <code>o.ActionContext = v</code></td></tr><tr><td><code>BinderModelName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.BinderModelName</code> <code>o.BinderModelName = v</code></td></tr><tr><td><code>BindingSource</code></td><td><code>BindingSource</code></td><td>read, write</td><td><code>o.BindingSource</code> <code>o.BindingSource = v</code></td></tr><tr><td><code>FieldName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.FieldName</code> <code>o.FieldName = v</code></td></tr><tr><td><code>HttpContext</code></td><td><code>HttpContext</code></td><td>read</td><td><code>o.HttpContext</code></td></tr><tr><td><code>IsTopLevelObject</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsTopLevelObject</code> <code>o.IsTopLevelObject = v</code></td></tr><tr><td><code>Model</code></td><td><code>object</code></td><td>read, write</td><td><code>o.Model</code> <code>o.Model = v</code></td></tr><tr><td><code>ModelMetadata</code></td><td><code>ModelMetadata</code></td><td>read, write</td><td><code>o.ModelMetadata</code> <code>o.ModelMetadata = v</code></td></tr><tr><td><code>ModelName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ModelName</code> <code>o.ModelName = v</code></td></tr><tr><td><code>OriginalModelName</code></td><td><code>string</code></td><td>read</td><td><code>o.OriginalModelName</code></td></tr><tr><td><code>ModelState</code></td><td><code>ModelStateDictionary</code></td><td>read, write</td><td><code>o.ModelState</code> <code>o.ModelState = v</code></td></tr><tr><td><code>ModelType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ModelType</code></td></tr><tr><td><code>PropertyFilter</code></td><td><code>Func&lt;ModelMetadata, bool&gt;</code></td><td>read, write</td><td><code>o.PropertyFilter</code> <code>o.PropertyFilter = v</code></td></tr><tr><td><code>ValidationState</code></td><td><code>ValidationStateDictionary</code></td><td>read, write</td><td><code>o.ValidationState</code> <code>o.ValidationState = v</code></td></tr><tr><td><code>ValueProvider</code></td><td><code>IValueProvider</code></td><td>read, write</td><td><code>o.ValueProvider</code> <code>o.ValueProvider = v</code></td></tr><tr><td><code>Result</code></td><td><code>ModelBindingResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>EnterNestedScope</code></td><td><code>EnterNestedScope(NULL)</code><br><code>EnterNestedScope([ :modelMetadata = …, :fieldName = …, :modelName = …, :model = … ])</code></td><td><code>ModelBindingContext.NestedScope EnterNestedScope(ModelMetadata modelMetadata, string fieldName, string modelName, object model)</code><br><code>ModelBindingContext.NestedScope EnterNestedScope()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBindingContextNestedScope"><summary><b>ModelBindingContextNestedScope</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext+NestedScope</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelBindingContextNestedScope(ModelBindingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelBindingContextNestedScope(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelBindingContextNestedScope().@New([ :param = value ])</code> or <code>dnNew("ModelBindingContextNestedScope",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelBindingResult"><summary><b>ModelBindingResult</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Model</code></td><td><code>object</code></td><td>read</td><td><code>o.Model</code></td></tr><tr><td><code>IsModelSet</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsModelSet</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelBindingResult other)</code></td></tr><tr><td><code>Failed</code></td><td><code>Failed()</code></td><td><code>static ModelBindingResult Failed()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Success</code></td><td><code>Success(p1)</code></td><td><code>static ModelBindingResult Success(object model)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelError"><summary><b>ModelError</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelError</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelError(Exception exception)</code></td></tr><tr><td><code>new ModelError(Exception exception, string errorMessage)</code></td></tr><tr><td><code>new ModelError(string errorMessage)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelError(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelError().@New([ :param = value ])</code> or <code>dnNew("ModelError",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read</td><td><code>o.Exception</code></td></tr><tr><td><code>ErrorMessage</code></td><td><code>string</code></td><td>read</td><td><code>o.ErrorMessage</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelErrorCollection"><summary><b>ModelErrorCollection</b> <span class="muted">class · extends Collection&lt;ModelError&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelErrorCollection</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelErrorCollection()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelErrorCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelErrorCollection().@New([ :param = value ])</code> or <code>dnNew("ModelErrorCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.getCount()</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>ModelError</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Exception exception)</code><br><code>void Add(string errorMessage)</code><br><code>void Add(ModelError item)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(ModelError item)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(ModelError[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;ModelError&gt; GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(ModelError item)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, ModelError item)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(ModelError item)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ModelMetadata"><summary><b>ModelMetadata</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ContainerType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ContainerType</code></td></tr><tr><td><code>ContainerMetadata</code></td><td><code>ModelMetadata</code></td><td>read</td><td><code>o.ContainerMetadata</code></td></tr><tr><td><code>MetadataKind</code></td><td><code>ModelMetadataKind</code></td><td>read</td><td><code>o.MetadataKind</code></td></tr><tr><td><code>ModelType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ModelType</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>ParameterName</code></td><td><code>string</code></td><td>read</td><td><code>o.ParameterName</code></td></tr><tr><td><code>PropertyName</code></td><td><code>string</code></td><td>read</td><td><code>o.PropertyName</code></td></tr><tr><td><code>AdditionalValues</code></td><td><code>IReadOnlyDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.AdditionalValues</code></td></tr><tr><td><code>Properties</code></td><td><code>ModelPropertyCollection</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>BoundConstructor</code></td><td><code>ModelMetadata</code></td><td>read</td><td><code>o.BoundConstructor</code></td></tr><tr><td><code>BoundConstructorParameters</code></td><td><code>IReadOnlyList&lt;ModelMetadata&gt;</code></td><td>read</td><td><code>o.BoundConstructorParameters</code></td></tr><tr><td><code>BinderModelName</code></td><td><code>string</code></td><td>read</td><td><code>o.BinderModelName</code></td></tr><tr><td><code>BinderType</code></td><td><code>Type</code></td><td>read</td><td><code>o.BinderType</code></td></tr><tr><td><code>BindingSource</code></td><td><code>BindingSource</code></td><td>read</td><td><code>o.BindingSource</code></td></tr><tr><td><code>ConvertEmptyStringToNull</code></td><td><code>bool</code></td><td>read</td><td><code>o.ConvertEmptyStringToNull</code></td></tr><tr><td><code>DataTypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.DataTypeName</code></td></tr><tr><td><code>Description</code></td><td><code>string</code></td><td>read</td><td><code>o.Description</code></td></tr><tr><td><code>DisplayFormatString</code></td><td><code>string</code></td><td>read</td><td><code>o.DisplayFormatString</code></td></tr><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read</td><td><code>o.DisplayName</code></td></tr><tr><td><code>EditFormatString</code></td><td><code>string</code></td><td>read</td><td><code>o.EditFormatString</code></td></tr><tr><td><code>ElementMetadata</code></td><td><code>ModelMetadata</code></td><td>read</td><td><code>o.ElementMetadata</code></td></tr><tr><td><code>EnumGroupedDisplayNamesAndValues</code></td><td><code>IEnumerable&lt;KeyValuePair&lt;EnumGroupAndName, string&gt;&gt;</code></td><td>read</td><td><code>o.EnumGroupedDisplayNamesAndValues</code></td></tr><tr><td><code>EnumNamesAndValues</code></td><td><code>IReadOnlyDictionary&lt;string, string&gt;</code></td><td>read</td><td><code>o.EnumNamesAndValues</code></td></tr><tr><td><code>HasNonDefaultEditFormat</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasNonDefaultEditFormat</code></td></tr><tr><td><code>HtmlEncode</code></td><td><code>bool</code></td><td>read</td><td><code>o.HtmlEncode</code></td></tr><tr><td><code>HideSurroundingHtml</code></td><td><code>bool</code></td><td>read</td><td><code>o.HideSurroundingHtml</code></td></tr><tr><td><code>IsBindingAllowed</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsBindingAllowed</code></td></tr><tr><td><code>IsBindingRequired</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsBindingRequired</code></td></tr><tr><td><code>IsEnum</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEnum</code></td></tr><tr><td><code>IsFlagsEnum</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFlagsEnum</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsRequired</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsRequired</code></td></tr><tr><td><code>ModelBindingMessageProvider</code></td><td><code>ModelBindingMessageProvider</code></td><td>read</td><td><code>o.ModelBindingMessageProvider</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read</td><td><code>o.Order</code></td></tr><tr><td><code>Placeholder</code></td><td><code>string</code></td><td>read</td><td><code>o.Placeholder</code></td></tr><tr><td><code>NullDisplayText</code></td><td><code>string</code></td><td>read</td><td><code>o.NullDisplayText</code></td></tr><tr><td><code>PropertyFilterProvider</code></td><td><code>IPropertyFilterProvider</code></td><td>read</td><td><code>o.PropertyFilterProvider</code></td></tr><tr><td><code>ShowForDisplay</code></td><td><code>bool</code></td><td>read</td><td><code>o.ShowForDisplay</code></td></tr><tr><td><code>ShowForEdit</code></td><td><code>bool</code></td><td>read</td><td><code>o.ShowForEdit</code></td></tr><tr><td><code>SimpleDisplayProperty</code></td><td><code>string</code></td><td>read</td><td><code>o.SimpleDisplayProperty</code></td></tr><tr><td><code>TemplateHint</code></td><td><code>string</code></td><td>read</td><td><code>o.TemplateHint</code></td></tr><tr><td><code>PropertyValidationFilter</code></td><td><code>IPropertyValidationFilter</code></td><td>read</td><td><code>o.PropertyValidationFilter</code></td></tr><tr><td><code>ValidateChildren</code></td><td><code>bool</code></td><td>read</td><td><code>o.ValidateChildren</code></td></tr><tr><td><code>HasValidators</code></td><td><code>bool?</code></td><td>read</td><td><code>o.HasValidators</code></td></tr><tr><td><code>ValidatorMetadata</code></td><td><code>IReadOnlyList&lt;object&gt;</code></td><td>read</td><td><code>o.ValidatorMetadata</code></td></tr><tr><td><code>ElementType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ElementType</code></td></tr><tr><td><code>IsComplexType</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsComplexType</code></td></tr><tr><td><code>IsNullableValueType</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsNullableValueType</code></td></tr><tr><td><code>IsCollectionType</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCollectionType</code></td></tr><tr><td><code>IsEnumerableType</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEnumerableType</code></td></tr><tr><td><code>IsReferenceOrNullableType</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReferenceOrNullableType</code></td></tr><tr><td><code>UnderlyingOrModelType</code></td><td><code>Type</code></td><td>read</td><td><code>o.UnderlyingOrModelType</code></td></tr><tr><td><code>PropertyGetter</code></td><td><code>Func&lt;object, object&gt;</code></td><td>read</td><td><code>o.PropertyGetter</code></td></tr><tr><td><code>PropertySetter</code></td><td><code>Action&lt;object, object&gt;</code></td><td>read</td><td><code>o.PropertySetter</code></td></tr><tr><td><code>BoundConstructorInvoker</code></td><td><code>Func&lt;object[], object&gt;</code></td><td>read</td><td><code>o.BoundConstructorInvoker</code></td></tr><tr><td><code>DefaultOrder</code></td><td><code>int</code></td><td>read · static</td><td><code>o.DefaultOrder</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(ModelMetadata other)</code><br><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetDisplayName</code></td><td><code>@GetDisplayName()</code></td><td><code>string GetDisplayName()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>GetMetadataForProperties</code></td><td><code>GetMetadataForProperties(p1)</code></td><td><code>IEnumerable&lt;ModelMetadata&gt; GetMetadataForProperties(Type modelType)</code></td></tr><tr><td><code>GetMetadataForType</code></td><td><code>GetMetadataForType(p1)</code></td><td><code>ModelMetadata GetMetadataForType(Type modelType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelMetadataProvider"><summary><b>ModelMetadataProvider</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadataProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetMetadataForConstructor</code></td><td><code>GetMetadataForConstructor(p1,p2)</code></td><td><code>ModelMetadata GetMetadataForConstructor(ConstructorInfo constructor, Type modelType)</code></td></tr><tr><td><code>GetMetadataForParameter</code></td><td><code>GetMetadataForParameter(value)</code><br><code>GetMetadataForParameter([ :parameter = … ])</code><br><code>GetMetadataForParameter([ :parameter = …, :modelType = … ])</code></td><td><code>ModelMetadata GetMetadataForParameter(ParameterInfo parameter)</code><br><code>ModelMetadata GetMetadataForParameter(ParameterInfo parameter, Type modelType)</code></td></tr><tr><td><code>GetMetadataForProperties</code></td><td><code>GetMetadataForProperties(p1)</code></td><td><code>IEnumerable&lt;ModelMetadata&gt; GetMetadataForProperties(Type modelType)</code></td></tr><tr><td><code>GetMetadataForProperty</code></td><td><code>GetMetadataForProperty(p1,p2)</code></td><td><code>ModelMetadata GetMetadataForProperty(PropertyInfo propertyInfo, Type modelType)</code></td></tr><tr><td><code>GetMetadataForType</code></td><td><code>GetMetadataForType(p1)</code></td><td><code>ModelMetadata GetMetadataForType(Type modelType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelMetadataProviderExtensions"><summary><b>ModelMetadataProviderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadataProviderExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetMetadataForProperty</code></td><td><code>GetMetadataForProperty(p1,p2,p3)</code></td><td><code>static ModelMetadata GetMetadataForProperty(IModelMetadataProvider provider, Type containerType, string propertyName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelNames"><summary><b>ModelNames</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelNames</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateIndexModelName</code></td><td><code>CreateIndexModelName(p1,p2)</code></td><td><code>static string CreateIndexModelName(string parentName, int index)</code><br><code>static string CreateIndexModelName(string parentName, string index)</code></td></tr><tr><td><code>CreatePropertyModelName</code></td><td><code>CreatePropertyModelName(p1,p2)</code></td><td><code>static string CreatePropertyModelName(string prefix, string propertyName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelPropertyCollection"><summary><b>ModelPropertyCollection</b> <span class="muted">class · extends ReadOnlyCollection&lt;ModelMetadata&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelPropertyCollection(IEnumerable&lt;ModelMetadata&gt; properties)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelPropertyCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelPropertyCollection().@New([ :param = value ])</code> or <code>dnNew("ModelPropertyCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.getCount()</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string propertyName)</code> → <code>ModelMetadata</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(ModelMetadata value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(ModelMetadata[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;ModelMetadata&gt; GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(ModelMetadata value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ModelStateDictionary"><summary><b>ModelStateDictionary</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionary()</code></td></tr><tr><td><code>new ModelStateDictionary(int maxAllowedErrors)</code></td></tr><tr><td><code>new ModelStateDictionary(ModelStateDictionary dictionary)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionary(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionary().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionary",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Root</code></td><td><code>ModelStateEntry</code></td><td>read</td><td><code>o.Root</code></td></tr><tr><td><code>MaxAllowedErrors</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MaxAllowedErrors</code> <code>o.MaxAllowedErrors = v</code></td></tr><tr><td><code>HasReachedMaxErrors</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasReachedMaxErrors</code></td></tr><tr><td><code>ErrorCount</code></td><td><code>int</code></td><td>read</td><td><code>o.ErrorCount</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>Keys</code></td><td><code>ModelStateDictionary.KeyEnumerable</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ModelStateDictionary.ValueEnumerable</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>IsValid</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsValid</code></td></tr><tr><td><code>ValidationState</code></td><td><code>ModelValidationState</code></td><td>read</td><td><code>o.ValidationState</code></td></tr><tr><td><code>DefaultMaxAllowedErrors</code></td><td><code>int</code></td><td>read · static</td><td><code>o.DefaultMaxAllowedErrors</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>ModelStateEntry</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddModelError</code></td><td><code>AddModelError([ :key = …, :errorMessage = … ])</code><br><code>AddModelError([ :key = …, :exception = …, :metadata = … ])</code></td><td><code>void AddModelError(string key, Exception exception, ModelMetadata metadata)</code><br><code>void AddModelError(string key, string errorMessage)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>ClearValidationState</code></td><td><code>ClearValidationState(p1)</code></td><td><code>void ClearValidationState(string key)</code></td></tr><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(string key)</code></td></tr><tr><td><code>FindKeysWithPrefix</code></td><td><code>FindKeysWithPrefix(p1)</code></td><td><code>ModelStateDictionary.PrefixEnumerable FindKeysWithPrefix(string prefix)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>ModelStateDictionary.Enumerator GetEnumerator()</code></td></tr><tr><td><code>GetFieldValidationState</code></td><td><code>GetFieldValidationState(p1)</code></td><td><code>ModelValidationState GetFieldValidationState(string key)</code></td></tr><tr><td><code>GetValidationState</code></td><td><code>@GetValidationState(p1)</code></td><td><code>ModelValidationState GetValidationState(string key)</code></td></tr><tr><td><code>MarkFieldSkipped</code></td><td><code>MarkFieldSkipped(p1)</code></td><td><code>void MarkFieldSkipped(string key)</code></td></tr><tr><td><code>MarkFieldValid</code></td><td><code>MarkFieldValid(p1)</code></td><td><code>void MarkFieldValid(string key)</code></td></tr><tr><td><code>Merge</code></td><td><code>Merge(p1)</code></td><td><code>void Merge(ModelStateDictionary dictionary)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(string key)</code></td></tr><tr><td><code>SetModelValue</code></td><td><code>SetModelValue([ :key = …, :valueProviderResult = … ])</code><br><code>SetModelValue([ :key = …, :rawValue = …, :attemptedValue = … ])</code></td><td><code>void SetModelValue(string key, object rawValue, string attemptedValue)</code><br><code>void SetModelValue(string key, ValueProviderResult valueProviderResult)</code></td></tr><tr><td><code>StartsWithPrefix</code></td><td><code>StartsWithPrefix(p1,p2)</code></td><td><code>static bool StartsWithPrefix(string prefix, string key)</code></td></tr><tr><td><code>TryAddModelError</code></td><td><code>TryAddModelError([ :key = …, :errorMessage = … ])</code><br><code>TryAddModelError([ :key = …, :exception = …, :metadata = … ])</code></td><td><code>bool TryAddModelError(string key, Exception exception, ModelMetadata metadata)</code><br><code>bool TryAddModelError(string key, string errorMessage)</code></td></tr><tr><td><code>TryAddModelException</code></td><td><code>TryAddModelException(p1,p2)</code></td><td><code>bool TryAddModelException(string key, Exception exception)</code></td></tr><tr><td><code>TryGetValue</code></td><td><code>TryGetValue(p1)</code></td><td><code>bool TryGetValue(string key, out ModelStateEntry value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryEnumerator"><summary><b>ModelStateDictionaryEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+Enumerator</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IDisposable, IEnumerator</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryEnumerator(ModelStateDictionary dictionary, string prefix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryEnumerator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryEnumerator().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryEnumerator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>KeyValuePair&lt;string, ModelStateEntry&gt;</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryExtensions"><summary><b>ModelStateDictionaryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionaryExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.ViewFeatures</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddModelError</code></td><td><code>AddModelError([ :modelState = …, :expression = …, :errorMessage = … ])</code><br><code>AddModelError([ :modelState = …, :expression = …, :exception = …, :metadata = … ])</code></td><td><code>static void AddModelError&lt;TModel&gt;(ModelStateDictionary modelState, Expression&lt;Func&lt;TModel, object&gt;&gt; expression, string errorMessage)</code><br><code>static void AddModelError&lt;TModel&gt;(ModelStateDictionary modelState, Expression&lt;Func&lt;TModel, object&gt;&gt; expression, Exception exception, ModelMetadata metadata)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1,p2)</code></td><td><code>static bool Remove&lt;TModel&gt;(ModelStateDictionary modelState, Expression&lt;Func&lt;TModel, object&gt;&gt; expression)</code></td></tr><tr><td><code>RemoveAll</code></td><td><code>RemoveAll(p1,p2)</code></td><td><code>static void RemoveAll&lt;TModel&gt;(ModelStateDictionary modelState, Expression&lt;Func&lt;TModel, object&gt;&gt; expression)</code></td></tr><tr><td><code>TryAddModelException</code></td><td><code>TryAddModelException(p1,p2,p3)</code></td><td><code>static void TryAddModelException&lt;TModel&gt;(ModelStateDictionary modelState, Expression&lt;Func&lt;TModel, object&gt;&gt; expression, Exception exception)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryKeyEnumerable"><summary><b>ModelStateDictionaryKeyEnumerable</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+KeyEnumerable</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryKeyEnumerable(ModelStateDictionary dictionary)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryKeyEnumerable(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryKeyEnumerable().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryKeyEnumerable",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>ModelStateDictionary.KeyEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryKeyEnumerator"><summary><b>ModelStateDictionaryKeyEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+KeyEnumerator</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IDisposable, IEnumerator</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryKeyEnumerator(ModelStateDictionary dictionary, string prefix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryKeyEnumerator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryKeyEnumerator().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryKeyEnumerator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>string</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryPrefixEnumerable"><summary><b>ModelStateDictionaryPrefixEnumerable</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+PrefixEnumerable</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryPrefixEnumerable(ModelStateDictionary dictionary, string prefix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryPrefixEnumerable(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryPrefixEnumerable().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryPrefixEnumerable",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>ModelStateDictionary.Enumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryValueEnumerable"><summary><b>ModelStateDictionaryValueEnumerable</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+ValueEnumerable</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryValueEnumerable(ModelStateDictionary dictionary)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryValueEnumerable(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryValueEnumerable().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryValueEnumerable",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>ModelStateDictionary.ValueEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateDictionaryValueEnumerator"><summary><b>ModelStateDictionaryValueEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary+ValueEnumerator</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IDisposable, IEnumerator</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelStateDictionaryValueEnumerator(ModelStateDictionary dictionary, string prefix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelStateDictionaryValueEnumerator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelStateDictionaryValueEnumerator().@New([ :param = value ])</code> or <code>dnNew("ModelStateDictionaryValueEnumerator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>ModelStateEntry</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelStateEntry"><summary><b>ModelStateEntry</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RawValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.RawValue</code> <code>o.RawValue = v</code></td></tr><tr><td><code>AttemptedValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AttemptedValue</code> <code>o.AttemptedValue = v</code></td></tr><tr><td><code>Errors</code></td><td><code>ModelErrorCollection</code></td><td>read</td><td><code>o.Errors</code></td></tr><tr><td><code>ValidationState</code></td><td><code>ModelValidationState</code></td><td>read, write</td><td><code>o.ValidationState</code> <code>o.ValidationState = v</code></td></tr><tr><td><code>IsContainerNode</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsContainerNode</code></td></tr><tr><td><code>Children</code></td><td><code>IReadOnlyList&lt;ModelStateEntry&gt;</code></td><td>read</td><td><code>o.Children</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetModelStateForProperty</code></td><td><code>GetModelStateForProperty(p1)</code></td><td><code>ModelStateEntry GetModelStateForProperty(string propertyName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ObjectModelValidator"><summary><b>ObjectModelValidator</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetValidationVisitor</code></td><td><code>GetValidationVisitor(p1,p2,p3,p4,p5)</code></td><td><code>ValidationVisitor GetValidationVisitor(ActionContext actionContext, IModelValidatorProvider validatorProvider, ValidatorCache validatorCache, IModelMetadataProvider metadataProvider, ValidationStateDictionary validationState)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate([ :actionContext = …, :validationState = …, :prefix = …, :model = … ])</code><br><code>Validate([ :actionContext = …, :validationState = …, :prefix = …, :model = …, :metadata = … ])</code><br><code>Validate([ :actionContext = …, :validationState = …, :prefix = …, :model = …, :metadata = …, :container = … ])</code></td><td><code>void Validate(ActionContext actionContext, ValidationStateDictionary validationState, string prefix, object model)</code><br><code>void Validate(ActionContext actionContext, ValidationStateDictionary validationState, string prefix, object model, ModelMetadata metadata)</code><br><code>void Validate(ActionContext actionContext, ValidationStateDictionary validationState, string prefix, object model, ModelMetadata metadata, object container)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ParameterBinder"><summary><b>ParameterBinder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ParameterBinder(IModelMetadataProvider modelMetadataProvider, IModelBinderFactory modelBinderFactory, IObjectModelValidator validator, IOptions&lt;MvcOptions&gt; mvcOptions, ILoggerFactory loggerFactory)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ParameterBinder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ParameterBinder().@New([ :param = value ])</code> or <code>dnNew("ParameterBinder",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BindModelAsync</code></td><td><code>BindModelAsync([ :actionContext = …, :modelBinder = …, :valueProvider = …, :parameter = …, :metadata = …, :value = … ])</code><br><code>BindModelAsync([ :actionContext = …, :modelBinder = …, :valueProvider = …, :parameter = …, :metadata = …, :value = …, :container = … ])</code></td><td><code>Task&lt;ModelBindingResult&gt; BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, object value)</code><br><code>ValueTask&lt;ModelBindingResult&gt; BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, object value, object container)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PrefixContainer"><summary><b>PrefixContainer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.PrefixContainer</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PrefixContainer(ICollection&lt;string&gt; values)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PrefixContainer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PrefixContainer().@New([ :param = value ])</code> or <code>dnNew("PrefixContainer",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-QueryStringValueProvider"><summary><b>QueryStringValueProvider</b> <span class="muted">class · extends <a href="#c-BindingSourceValueProvider">BindingSourceValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new QueryStringValueProvider(BindingSource bindingSource, IQueryCollection values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new QueryStringValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new QueryStringValueProvider().@New([ :param = value ])</code> or <code>dnNew("QueryStringValueProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Culture</code></td><td><code>CultureInfo</code></td><td>read</td><td><code>o.Culture</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string prefix)</code></td></tr><tr><td><code>GetKeysFromPrefix</code></td><td><code>GetKeysFromPrefix(p1)</code></td><td><code>IDictionary&lt;string, string&gt; GetKeysFromPrefix(string prefix)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-QueryStringValueProviderFactory"><summary><b>QueryStringValueProviderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new QueryStringValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new QueryStringValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new QueryStringValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("QueryStringValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RouteValueProvider"><summary><b>RouteValueProvider</b> <span class="muted">class · extends <a href="#c-BindingSourceValueProvider">BindingSourceValueProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RouteValueProvider(BindingSource bindingSource, RouteValueDictionary values)</code></td></tr><tr><td><code>new RouteValueProvider(BindingSource bindingSource, RouteValueDictionary values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RouteValueProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RouteValueProvider().@New([ :param = value ])</code> or <code>dnNew("RouteValueProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsPrefix</code></td><td><code>ContainsPrefix(p1)</code></td><td><code>bool ContainsPrefix(string key)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(p1)</code></td><td><code>ValueProviderResult GetValue(string key)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RouteValueProviderFactory"><summary><b>RouteValueProviderFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProviderFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RouteValueProviderFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RouteValueProviderFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RouteValueProviderFactory().@New([ :param = value ])</code> or <code>dnNew("RouteValueProviderFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValueProviderAsync</code></td><td><code>CreateValueProviderAsync(p1)</code></td><td><code>Task CreateValueProviderAsync(ValueProviderFactoryContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SuppressChildValidationMetadataProvider"><summary><b>SuppressChildValidationMetadataProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SuppressChildValidationMetadataProvider(Type type)</code></td></tr><tr><td><code>new SuppressChildValidationMetadataProvider(string fullTypeName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SuppressChildValidationMetadataProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SuppressChildValidationMetadataProvider().@New([ :param = value ])</code> or <code>dnNew("SuppressChildValidationMetadataProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.Type</code></td></tr><tr><td><code>FullTypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.FullTypeName</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateValidationMetadata</code></td><td><code>CreateValidationMetadata(p1)</code></td><td><code>void CreateValidationMetadata(ValidationMetadataProviderContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TooManyModelErrorsException"><summary><b>TooManyModelErrorsException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.TooManyModelErrorsException</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TooManyModelErrorsException(string message)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TooManyModelErrorsException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TooManyModelErrorsException().@New([ :param = value ])</code> or <code>dnNew("TooManyModelErrorsException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnsupportedContentTypeException"><summary><b>UnsupportedContentTypeException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeException</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnsupportedContentTypeException(string message)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnsupportedContentTypeException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnsupportedContentTypeException().@New([ :param = value ])</code> or <code>dnNew("UnsupportedContentTypeException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnsupportedContentTypeFilter"><summary><b>UnsupportedContentTypeFilter</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnsupportedContentTypeFilter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnsupportedContentTypeFilter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnsupportedContentTypeFilter().@New([ :param = value ])</code> or <code>dnNew("UnsupportedContentTypeFilter",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnActionExecuted</code></td><td><code>OnActionExecuted(p1)</code></td><td><code>void OnActionExecuted(ActionExecutedContext context)</code></td></tr><tr><td><code>OnActionExecuting</code></td><td><code>OnActionExecuting(p1)</code></td><td><code>void OnActionExecuting(ActionExecutingContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValueProviderException"><summary><b>ValueProviderException</b> <span class="muted">class sealed · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderException</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ValueProviderException(string message)</code></td></tr><tr><td><code>new ValueProviderException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ValueProviderException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ValueProviderException().@New([ :param = value ])</code> or <code>dnNew("ValueProviderException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ValueProviderFactoryContext"><summary><b>ValueProviderFactoryContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ValueProviderFactoryContext(ActionContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ValueProviderFactoryContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ValueProviderFactoryContext().@New([ :param = value ])</code> or <code>dnNew("ValueProviderFactoryContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionContext</code></td><td><code>ActionContext</code></td><td>read</td><td><code>o.ActionContext</code></td></tr><tr><td><code>ValueProviders</code></td><td><code>IList&lt;IValueProvider&gt;</code></td><td>read</td><td><code>o.ValueProviders</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValueProviderFactoryExtensions"><summary><b>ValueProviderFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryExtensions</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>RemoveType</code></td><td><code>RemoveType(value)</code><br><code>RemoveType([ :list = … ])</code><br><code>RemoveType([ :list = …, :type = … ])</code></td><td><code>static void RemoveType&lt;TValueProviderFactory&gt;(IList&lt;IValueProviderFactory&gt; list)</code><br><code>static void RemoveType(IList&lt;IValueProviderFactory&gt; list, Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValueProviderResult"><summary><b>ValueProviderResult</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderResult</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ValueProviderResult(StringValues values)</code></td></tr><tr><td><code>new ValueProviderResult(StringValues values, CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ValueProviderResult(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ValueProviderResult().@New([ :param = value ])</code> or <code>dnNew("ValueProviderResult",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Culture</code></td><td><code>CultureInfo</code></td><td>read</td><td><code>o.Culture</code></td></tr><tr><td><code>Values</code></td><td><code>StringValues</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>FirstValue</code></td><td><code>string</code></td><td>read</td><td><code>o.FirstValue</code></td></tr><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr><tr><td><code>None</code></td><td><code>ValueProviderResult</code></td><td>read, write · static</td><td><code>o.None</code> <code>o.None = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ValueProviderResult other)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;string&gt; GetEnumerator()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendars and dates · RingDotNet</title>
+<meta name="description" content="Dates are harder than they look — months of different length, leap years, weekends. This lesson builds a text calendar, an age calculator and a business-day counter, using what .NET already knows.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html" class="cur">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Calendars and dates</h1><p class="lead">Dates are harder than they look — months of different length, leap years, weekends. This lesson builds a text calendar, an age calculator and a business-day counter, using what .NET already knows.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><code>DaysInMonth</code>, <code>DayOfWeek</code>, <code>DayOfYear</code>,</li><li>adding months and years safely,</li><li>computing an age, business days and the next birthday,</li><li><code>Subtract</code> and <code>TimeSpan</code>.</li></ul>
+<h2 id="why-not-do-it-yourself">Why not do it yourself<a class="anchor" href="#why-not-do-it-yourself">#</a></h2>
+<p>Imagine adding one month to 31 January by hand. Is it 31 February? Does the answer depend on the year? <code>DateTime</code> knows all of this. The rule of this lesson: <strong>let <code>DateTime</code> do the calendar arithmetic</strong>; you only decide <em>what</em> to ask.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch03_calendar.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># calendars - month tables, ages, business days and birthdays with DateTime</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. A text calendar of a month: how many days it has, and on which weekday the 1st falls</span>
+	? monthCalendar(<span class="n">2024</span>,<span class="n">2</span>)
+
+	<span class="c"># 2. How old is somebody? Years, months and days between two dates</span>
+	? <span class="s">"Age of a person born on 1990-03-15, on 2024-03-14: "</span> + ageText(<span class="n">1990</span>,<span class="n">3</span>,<span class="n">15</span>,<span class="n">2024</span>,<span class="n">3</span>,<span class="n">14</span>)
+	? <span class="s">"   and on 2024-03-15                                  : "</span> + ageText(<span class="n">1990</span>,<span class="n">3</span>,<span class="n">15</span>,<span class="n">2024</span>,<span class="n">3</span>,<span class="n">15</span>)
+
+	<span class="c"># 3. Days between dates, and business days (Monday to Friday)</span>
+	oFrom = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">12</span>,<span class="n">20</span>)
+	oTo = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2025</span>,<span class="n">1</span>,<span class="n">6</span>)
+	? nl + <span class="s">"From 2024-12-20 to 2025-01-06: "</span> + oTo.<span class="f">Subtract</span>(oFrom).Days + <span class="s">" days, "</span> + businessDays(oFrom,oTo) + <span class="s">" business days"</span>
+
+	<span class="c"># 4. The next birthday: this year's date, or next year's when it has passed</span>
+	? nl + <span class="s">"Days until the next birthday (3 March), counted from 2024-05-10: "</span> + daysUntilBirthday(<span class="n">3</span>,<span class="n">3</span>,<span class="n">2024</span>,<span class="n">5</span>,<span class="n">10</span>)
+	? <span class="s">"   counted from 2024-02-01: "</span> + daysUntilBirthday(<span class="n">3</span>,<span class="n">3</span>,<span class="n">2024</span>,<span class="n">2</span>,<span class="n">1</span>)
+
+	<span class="c"># 5. Adding to a date: months of different length, and the end of the month</span>
+	oStart = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">1</span>,<span class="n">31</span>)
+	? nl + <span class="s">"2024-01-31 plus one month : "</span> + oStart.<span class="f">AddMonths</span>(<span class="n">1</span>).<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>) + <span class="s">" (February has no 31st: the last day is used)"</span>
+	? <span class="s">"   plus one year (leap day)  : "</span> + <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">2</span>,<span class="n">29</span>).<span class="f">AddYears</span>(<span class="n">1</span>).<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>)
+	? <span class="s">"   plus 100 days             : "</span> + oStart.<span class="f">AddDays</span>(<span class="n">100</span>).<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>)
+
+	<span class="c"># 6. The week number and the day of the year</span>
+	oDate = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">12</span>,<span class="n">25</span>)
+	? nl + <span class="s">"2024-12-25 is day "</span> + oDate.DayOfYear + <span class="s">" of the year, a "</span> + oDate.DayOfWeek
+
+<span class="c"># A month as text: a title, the weekday names, then the days in rows of seven (the week starts on Monday)</span>
+<span class="k">func</span> <span class="f">monthCalendar</span> nYear, nMonth
+
+	oFirst = <span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,<span class="n">1</span>)
+	nDays = <span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,<span class="n">1</span>).<span class="f">DaysInMonth</span>(nYear,nMonth)
+	cText = <span class="s">""</span> + oFirst.<span class="f">Format</span>(<span class="s">"MMMM yyyy"</span>) + <span class="s">" ("</span> + nDays + <span class="s">" days)"</span> + nl
+	cText += <span class="s">"   Mo Tu We Th Fr Sa Su"</span> + nl + <span class="s">"   "</span>
+	<span class="c"># the column of the first day: Monday = 0 ... Sunday = 6</span>
+	aWeekdays = [<span class="s">"Monday"</span>,<span class="s">"Tuesday"</span>,<span class="s">"Wednesday"</span>,<span class="s">"Thursday"</span>,<span class="s">"Friday"</span>,<span class="s">"Saturday"</span>,<span class="s">"Sunday"</span>]
+	nColumn = find(aWeekdays,oFirst.DayOfWeek) - <span class="n">1</span>
+	cText += copies(<span class="s">"   "</span>,nColumn)
+	<span class="k">for</span> nDay = <span class="n">1</span> <span class="k">to</span> nDays
+		cText += right(<span class="s">"  "</span> + nDay,<span class="n">2</span>) + <span class="s">" "</span>
+		nColumn++
+		<span class="k">if</span> nColumn = <span class="n">7</span> <span class="k">and</span> nDay &lt; nDays
+			cText += nl + <span class="s">"   "</span>
+			nColumn = <span class="n">0</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">copies</span> cText, nTimes
+
+	cResult = <span class="s">""</span>
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nTimes
+		cResult += cText
+	<span class="k">next</span>
+	<span class="k">return</span> cResult
+
+<span class="c"># complete years, months and days between a birth date and a date</span>
+<span class="k">func</span> <span class="f">ageText</span> nBirthYear, nBirthMonth, nBirthDay, nYear, nMonth, nDay
+
+	nYears = nYear - nBirthYear
+	nMonths = nMonth - nBirthMonth
+	nDays = nDay - nBirthDay
+	<span class="k">if</span> nDays &lt; <span class="n">0</span>
+		nMonths--
+		<span class="c"># the days of the month before the date</span>
+		nDays += <span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,<span class="n">1</span>).<span class="f">AddMonths</span>(-<span class="n">1</span>).<span class="f">DaysInMonth</span>(<span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,<span class="n">1</span>).<span class="f">AddMonths</span>(-<span class="n">1</span>).Year,<span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,<span class="n">1</span>).<span class="f">AddMonths</span>(-<span class="n">1</span>).Month)
+	<span class="k">ok</span>
+	<span class="k">if</span> nMonths &lt; <span class="n">0</span>
+		nYears--
+		nMonths += <span class="n">12</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span> + nYears + <span class="s">" years, "</span> + nMonths + <span class="s">" months, "</span> + nDays + <span class="s">" days"</span>
+
+<span class="c"># the days from oFrom up to (not including) oTo that are not Saturday or Sunday</span>
+<span class="k">func</span> <span class="f">businessDays</span> oFrom, oTo
+
+	nCount = <span class="n">0</span>
+	oDay = oFrom
+	<span class="k">while</span> oDay.<span class="f">CompareTo</span>(oTo) &lt; <span class="n">0</span>
+		cName = oDay.DayOfWeek
+		<span class="k">if</span> cName != <span class="s">"Saturday"</span> <span class="k">and</span> cName != <span class="s">"Sunday"</span>
+			nCount++
+		<span class="k">ok</span>
+		oDay = oDay.<span class="f">AddDays</span>(<span class="n">1</span>)
+	<span class="k">end</span>
+	<span class="k">return</span> nCount
+
+<span class="k">func</span> <span class="f">daysUntilBirthday</span> nMonth, nDay, nYear, nTodayMonth, nTodayDay
+
+	oToday = <span class="k">new</span> <span class="t">DateTime</span>(nYear,nTodayMonth,nTodayDay)
+	oBirthday = <span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,nDay)
+	<span class="k">if</span> oBirthday.<span class="f">CompareTo</span>(oToday) &lt; <span class="n">0</span>
+		oBirthday = oBirthday.<span class="f">AddYears</span>(<span class="n">1</span>)
+	<span class="k">ok</span>
+	<span class="k">return</span> oBirthday.<span class="f">Subtract</span>(oToday).Days</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>February 2024 (29 days)
+   Mo Tu We Th Fr Sa Su
+             1  2  3  4 
+    5  6  7  8  9 10 11 
+   12 13 14 15 16 17 18 
+   19 20 21 22 23 24 25 
+   26 27 28 29 
+Age of a person born on 1990-03-15, on 2024-03-14: 33 years, 11 months, 28 days
+   and on 2024-03-15                                  : 34 years, 0 months, 0 days
+
+From 2024-12-20 to 2025-01-06: 17 days, 11 business days
+
+Days until the next birthday (3 March), counted from 2024-05-10: 297
+   counted from 2024-02-01: 31
+
+2024-01-31 plus one month : 2024-02-29 (February has no 31st: the last day is used)
+   plus one year (leap day)  : 2025-02-28
+   plus 100 days             : 2024-05-10
+
+2024-12-25 is day 360 of the year, a Wednesday</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-month-calendar">The month calendar<a class="anchor" href="#the-month-calendar">#</a></h3>
+<p><code>DaysInMonth(year, month)</code> gives the number of days (29 for February 2024). <code>DayOfWeek</code> of the first day tells in which column it starts: the week starts on Monday, so the column number is the position of the weekday name in the list <code>Monday ... Sunday</code>, minus one. The program then prints the days with <code>right("  " + day,2)</code> so that the numbers line up, and starts a new line after the seventh column.</p>
+<h3 id="age">Age<a class="anchor" href="#age">#</a></h3>
+<p>An age is <em>complete years, months and days</em>. The simple subtraction <code>year - birthYear</code> is wrong before the birthday. The method:</p>
+<ol><li>subtract years, months and days separately,</li><li>if the days are negative, borrow the length of the <strong>previous month</strong> and take one month away,</li><li>if the months are negative, borrow 12 months and take one year away.</li></ol>
+<p>On 2024-03-14 a person born on 1990-03-15 is <code>33 years, 11 months, 28 days</code> (28 because February 2024 has 29 days); one day later exactly <code>34 years</code>.</p>
+<h3 id="business-days">Business days<a class="anchor" href="#business-days">#</a></h3>
+<p>A <code>while</code> loop visits every day from the start up to (not including) the end and counts the days that are not <code>Saturday</code> or <code>Sunday</code>. <code>CompareTo</code> is negative while the first date is earlier. Between 20 December 2024 and 6 January 2025 there are 17 days and 11 business days. (Holidays are not weekends: a real program has a list of holiday dates and skips those too.)</p>
+<h3 id="the-next-birthday">The next birthday<a class="anchor" href="#the-next-birthday">#</a></h3>
+<p>Build this year's birthday; if it is already past (<code>CompareTo</code> negative), add one year. <code>Subtract(today).Days</code> is the number of days to wait.</p>
+<h3 id="safe-additions">Safe additions<a class="anchor" href="#safe-additions">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Call</th><th>Result</th><th>Why</th></tr></thead><tbody><tr><td><code>AddMonths(1)</code> on 2024-01-31</td><td>2024-02-29</td><td>February has no 31st: the last day is used</td></tr><tr><td><code>AddYears(1)</code> on 2024-02-29</td><td>2025-02-28</td><td>2025 has no leap day</td></tr><tr><td><code>AddDays(100)</code></td><td>2024-05-10</td><td>days are simple</td></tr></tbody></table></div>
+<p>Always use these methods, never <code>AddDays(30)</code> for a month.</p>
+<h3 id="day-of-the-year">Day of the year<a class="anchor" href="#day-of-the-year">#</a></h3>
+<p><code>DayOfYear</code> counts from 1 on 1 January: 25 December 2024 is day 360 (2024 is a leap year).</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>let <code>DateTime</code> do the calendar work,</li><li>ages need borrowing,</li><li>business days need a loop and a weekday check,</li><li>additions clamp to the end of the month.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Print the calendar of the <em>current</em> month (<code>DateTime.Now</code>) and mark today with <code>[ ]</code>.</li><li>Find the next Friday the 13th after today.</li><li>Add a list of holidays to <code>businessDays</code> and skip them.</li><li>Write <code>isLeapYear(year)</code> by your own rule and test it against <code>DateTime.IsLeapYear</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-76-calendars.html">Other calendars</a></p>
+<div class="pager"><a href="tut-68-timezones.html"><small>Previous</small>Time zones</a><a class="next" href="tut-76-calendars.html"><small>Next</small>Other calendars</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

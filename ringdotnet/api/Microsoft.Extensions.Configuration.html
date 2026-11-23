@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.Extensions.Configuration · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.Extensions.Configuration</h1>
+<p class="lead">38 wrapped types. Load them with <code>using { "Microsoft.Extensions.Configuration" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-BinderOptions">BinderOptions</a> <a href="#c-ChainedBuilderExtensions">ChainedBuilderExtensions</a> <a href="#c-ChainedConfigurationProvider">ChainedConfigurationProvider</a> <a href="#c-ChainedConfigurationSource">ChainedConfigurationSource</a> <a href="#c-CommandLineConfigurationExtensions">CommandLineConfigurationExtensions</a> <a href="#c-ConfigurationBinder">ConfigurationBinder</a> <a href="#c-ConfigurationBuilder">ConfigurationBuilder</a> <a href="#c-ConfigurationDebugViewContext">ConfigurationDebugViewContext</a> <a href="#c-ConfigurationExtensions">ConfigurationExtensions</a> <a href="#c-ConfigurationKeyComparer">ConfigurationKeyComparer</a> <a href="#c-ConfigurationKeyNameAttribute">ConfigurationKeyNameAttribute</a> <a href="#c-ConfigurationManager">ConfigurationManager</a> <a href="#c-ConfigurationPath">ConfigurationPath</a> <a href="#c-ConfigurationProvider">ConfigurationProvider</a> <a href="#c-ConfigurationReloadToken">ConfigurationReloadToken</a> <a href="#c-ConfigurationRoot">ConfigurationRoot</a> <a href="#c-ConfigurationRootExtensions">ConfigurationRootExtensions</a> <a href="#c-ConfigurationSection">ConfigurationSection</a> <a href="#c-EnvironmentVariablesExtensions">EnvironmentVariablesExtensions</a> <a href="#c-FileConfigurationExtensions">FileConfigurationExtensions</a> <a href="#c-FileConfigurationProvider">FileConfigurationProvider</a> <a href="#c-FileConfigurationSource">FileConfigurationSource</a> <a href="#c-FileLoadExceptionContext">FileLoadExceptionContext</a> <a href="#c-IConfiguration">IConfiguration</a> <a href="#c-IConfigurationBuilder">IConfigurationBuilder</a> <a href="#c-IConfigurationManager">IConfigurationManager</a> <a href="#c-IConfigurationProvider">IConfigurationProvider</a> <a href="#c-IConfigurationRoot">IConfigurationRoot</a> <a href="#c-IConfigurationSection">IConfigurationSection</a> <a href="#c-IConfigurationSource">IConfigurationSource</a> <a href="#c-IniConfigurationExtensions">IniConfigurationExtensions</a> <a href="#c-JsonConfigurationExtensions">JsonConfigurationExtensions</a> <a href="#c-KeyPerFileConfigurationBuilderExtensions">KeyPerFileConfigurationBuilderExtensions</a> <a href="#c-MemoryConfigurationBuilderExtensions">MemoryConfigurationBuilderExtensions</a> <a href="#c-StreamConfigurationProvider">StreamConfigurationProvider</a> <a href="#c-StreamConfigurationSource">StreamConfigurationSource</a> <a href="#c-UserSecretsConfigurationExtensions">UserSecretsConfigurationExtensions</a> <a href="#c-XmlConfigurationExtensions">XmlConfigurationExtensions</a></div><details class="cls" id="c-BinderOptions"><summary><b>BinderOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.BinderOptions</code> · assembly <code>Microsoft.Extensions.Configuration.Binder</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BinderOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BinderOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BinderOptions().@New([ :param = value ])</code> or <code>dnNew("BinderOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BindNonPublicProperties</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.BindNonPublicProperties</code> <code>o.BindNonPublicProperties = v</code></td></tr><tr><td><code>ErrorOnUnknownConfiguration</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ErrorOnUnknownConfiguration</code> <code>o.ErrorOnUnknownConfiguration = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ChainedBuilderExtensions"><summary><b>ChainedBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ChainedBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddConfiguration</code></td><td><code>AddConfiguration([ :configurationBuilder = …, :config = … ])</code><br><code>AddConfiguration([ :configurationBuilder = …, :config = …, :shouldDisposeConfiguration = … ])</code></td><td><code>static IConfigurationBuilder AddConfiguration(IConfigurationBuilder configurationBuilder, IConfiguration config)</code><br><code>static IConfigurationBuilder AddConfiguration(IConfigurationBuilder configurationBuilder, IConfiguration config, bool shouldDisposeConfiguration)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ChainedConfigurationProvider"><summary><b>ChainedConfigurationProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ChainedConfigurationProvider</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ChainedConfigurationProvider(ChainedConfigurationSource source)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ChainedConfigurationProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ChainedConfigurationProvider().@New([ :param = value ])</code> or <code>dnNew("ChainedConfigurationProvider",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Configuration</code></td><td><code>IConfiguration</code></td><td>read</td><td><code>o.Configuration</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetChildKeys</code></td><td><code>GetChildKeys(p1,p2)</code></td><td><code>IEnumerable&lt;string&gt; GetChildKeys(IEnumerable&lt;string&gt; earlierKeys, string parentPath)</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>Load</code></td><td><code>@Load()</code></td><td><code>void Load()</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1,p2)</code></td><td><code>void Set(string key, string value)</code></td></tr><tr><td><code>TryGet</code></td><td><code>TryGet(p1)</code></td><td><code>bool TryGet(string key, out string value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ChainedConfigurationSource"><summary><b>ChainedConfigurationSource</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ChainedConfigurationSource</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ChainedConfigurationSource()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ChainedConfigurationSource(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ChainedConfigurationSource().@New([ :param = value ])</code> or <code>dnNew("ChainedConfigurationSource",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Configuration</code></td><td><code>IConfiguration</code></td><td>read, write</td><td><code>o.Configuration</code> <code>o.Configuration = v</code></td></tr><tr><td><code>ShouldDisposeConfiguration</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ShouldDisposeConfiguration</code> <code>o.ShouldDisposeConfiguration = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build(p1)</code></td><td><code>IConfigurationProvider Build(IConfigurationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CommandLineConfigurationExtensions"><summary><b>CommandLineConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.CommandLine</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddCommandLine</code></td><td><code>AddCommandLine([ :configurationBuilder = …, :args = … ])</code><br><code>AddCommandLine([ :builder = …, :configureSource = … ])</code><br><code>AddCommandLine([ :configurationBuilder = …, :args = …, :switchMappings = … ])</code></td><td><code>static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args)</code><br><code>static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args, IDictionary&lt;string, string&gt; switchMappings)</code><br><code>static IConfigurationBuilder AddCommandLine(IConfigurationBuilder builder, Action&lt;CommandLineConfigurationSource&gt; configureSource)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationBinder"><summary><b>ConfigurationBinder</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationBinder</code> · assembly <code>Microsoft.Extensions.Configuration.Binder</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Bind</code></td><td><code>Bind([ :configuration = …, :instance = … ])</code><br><code>Bind([ :configuration = …, :key = …, :instance = … ])</code><br><code>Bind([ :configuration = …, :instance = …, :configureOptions = … ])</code></td><td><code>static void Bind(IConfiguration configuration, string key, object instance)</code><br><code>static void Bind(IConfiguration configuration, object instance)</code><br><code>static void Bind(IConfiguration configuration, object instance, Action&lt;BinderOptions&gt; configureOptions)</code></td></tr><tr><td><code>Get</code></td><td><code>@Get(value)</code><br><code>@Get([ :configuration = … ])</code><br><code>@Get([ :configuration = …, :configureOptions = … ])</code><br><code>@Get([ :configuration = …, :type = … ])</code><br><code>@Get([ :configuration = …, :type = …, :configureOptions = … ])</code></td><td><code>static T Get&lt;T&gt;(IConfiguration configuration)</code><br><code>static T Get&lt;T&gt;(IConfiguration configuration, Action&lt;BinderOptions&gt; configureOptions)</code><br><code>static object Get(IConfiguration configuration, Type type)</code><br><code>static object Get(IConfiguration configuration, Type type, Action&lt;BinderOptions&gt; configureOptions)</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue([ :configuration = …, :key = … ])</code><br><code>GetValue([ :configuration = …, :key = …, :defaultValue = … ])</code><br><code>GetValue([ :configuration = …, :type = …, :key = … ])</code><br><code>GetValue([ :configuration = …, :type = …, :key = …, :defaultValue = … ])</code></td><td><code>static T GetValue&lt;T&gt;(IConfiguration configuration, string key)</code><br><code>static T GetValue&lt;T&gt;(IConfiguration configuration, string key, T defaultValue)</code><br><code>static object GetValue(IConfiguration configuration, Type type, string key)</code><br><code>static object GetValue(IConfiguration configuration, Type type, string key, object defaultValue)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationBuilder"><summary><b>ConfigurationBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationBuilder</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationBuilder()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationBuilder().@New([ :param = value ])</code> or <code>dnNew("ConfigurationBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Sources</code></td><td><code>IList&lt;IConfigurationSource&gt;</code></td><td>read</td><td><code>o.Sources</code></td></tr><tr><td><code>Properties</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>IConfigurationBuilder Add(IConfigurationSource source)</code></td></tr><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>IConfigurationRoot Build()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationDebugViewContext"><summary><b>ConfigurationDebugViewContext</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationDebugViewContext</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationDebugViewContext(string path, string key, string value, IConfigurationProvider configurationProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationDebugViewContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationDebugViewContext().@New([ :param = value ])</code> or <code>dnNew("ConfigurationDebugViewContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Path</code></td><td><code>string</code></td><td>read</td><td><code>o.Path</code></td></tr><tr><td><code>Key</code></td><td><code>string</code></td><td>read</td><td><code>o.Key</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>ConfigurationProvider</code></td><td><code>IConfigurationProvider</code></td><td>read</td><td><code>o.ConfigurationProvider</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationExtensions"><summary><b>ConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static IConfigurationBuilder Add&lt;TSource&gt;(IConfigurationBuilder builder, Action&lt;TSource&gt; configureSource)</code></td></tr><tr><td><code>AsEnumerable</code></td><td><code>AsEnumerable(value)</code><br><code>AsEnumerable([ :configuration = … ])</code><br><code>AsEnumerable([ :configuration = …, :makePathsRelative = … ])</code></td><td><code>static IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; AsEnumerable(IConfiguration configuration)</code><br><code>static IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; AsEnumerable(IConfiguration configuration, bool makePathsRelative)</code></td></tr><tr><td><code>Exists</code></td><td><code>Exists(p1)</code></td><td><code>static bool Exists(IConfigurationSection section)</code></td></tr><tr><td><code>GetConnectionString</code></td><td><code>GetConnectionString(p1,p2)</code></td><td><code>static string GetConnectionString(IConfiguration configuration, string name)</code></td></tr><tr><td><code>GetRequiredSection</code></td><td><code>GetRequiredSection(p1,p2)</code></td><td><code>static IConfigurationSection GetRequiredSection(IConfiguration configuration, string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationKeyComparer"><summary><b>ConfigurationKeyComparer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationKeyComparer</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationKeyComparer()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationKeyComparer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationKeyComparer().@New([ :param = value ])</code> or <code>dnNew("ConfigurationKeyComparer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Instance</code></td><td><code>ConfigurationKeyComparer</code></td><td>read · static</td><td><code>o.Instance</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Compare</code></td><td><code>Compare(p1,p2)</code></td><td><code>int Compare(string x, string y)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationKeyNameAttribute"><summary><b>ConfigurationKeyNameAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationKeyNameAttribute</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationKeyNameAttribute(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationKeyNameAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationKeyNameAttribute().@New([ :param = value ])</code> or <code>dnNew("ConfigurationKeyNameAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ConfigurationManager"><summary><b>ConfigurationManager</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationManager</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationManager()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationManager(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationManager().@New([ :param = value ])</code> or <code>dnNew("ConfigurationManager",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Sources</code></td><td><code>IList&lt;IConfigurationSource&gt;</code></td><td>read</td><td><code>o.Sources</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetChildren</code></td><td><code>GetChildren()</code></td><td><code>IEnumerable&lt;IConfigurationSection&gt; GetChildren()</code></td></tr><tr><td><code>GetSection</code></td><td><code>GetSection(p1)</code></td><td><code>IConfigurationSection GetSection(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationPath"><summary><b>ConfigurationPath</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationPath</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>KeyDelimiter</code></td><td><code>string</code></td><td>read · static</td><td><code>o.KeyDelimiter</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Combine</code></td><td><code>Combine(p1)</code></td><td><code>static string Combine(string[] pathSegments)</code><br><code>static string Combine(IEnumerable&lt;string&gt; pathSegments)</code></td></tr><tr><td><code>GetParentPath</code></td><td><code>GetParentPath(p1)</code></td><td><code>static string GetParentPath(string path)</code></td></tr><tr><td><code>GetSectionKey</code></td><td><code>GetSectionKey(p1)</code></td><td><code>static string GetSectionKey(string path)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationProvider"><summary><b>ConfigurationProvider</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationProvider</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetChildKeys</code></td><td><code>GetChildKeys(p1,p2)</code></td><td><code>IEnumerable&lt;string&gt; GetChildKeys(IEnumerable&lt;string&gt; earlierKeys, string parentPath)</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>Load</code></td><td><code>@Load()</code></td><td><code>void Load()</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1,p2)</code></td><td><code>void Set(string key, string value)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>TryGet</code></td><td><code>TryGet(p1)</code></td><td><code>bool TryGet(string key, out string value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationReloadToken"><summary><b>ConfigurationReloadToken</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationReloadToken</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationReloadToken()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationReloadToken(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationReloadToken().@New([ :param = value ])</code> or <code>dnNew("ConfigurationReloadToken",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActiveChangeCallbacks</code></td><td><code>bool</code></td><td>read</td><td><code>o.ActiveChangeCallbacks</code></td></tr><tr><td><code>HasChanged</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasChanged</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnReload</code></td><td><code>OnReload()</code></td><td><code>void OnReload()</code></td></tr><tr><td><code>RegisterChangeCallback</code></td><td><code>RegisterChangeCallback(p1,p2)</code></td><td><code>IDisposable RegisterChangeCallback(Action&lt;object&gt; callback, object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationRoot"><summary><b>ConfigurationRoot</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationRoot</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationRoot(IList&lt;IConfigurationProvider&gt; providers)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationRoot(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationRoot().@New([ :param = value ])</code> or <code>dnNew("ConfigurationRoot",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Providers</code></td><td><code>IEnumerable&lt;IConfigurationProvider&gt;</code></td><td>read</td><td><code>o.Providers</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetChildren</code></td><td><code>GetChildren()</code></td><td><code>IEnumerable&lt;IConfigurationSection&gt; GetChildren()</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>GetSection</code></td><td><code>GetSection(p1)</code></td><td><code>IConfigurationSection GetSection(string key)</code></td></tr><tr><td><code>Reload</code></td><td><code>Reload()</code></td><td><code>void Reload()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationRootExtensions"><summary><b>ConfigurationRootExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationRootExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetDebugView</code></td><td><code>GetDebugView(value)</code><br><code>GetDebugView([ :root = … ])</code><br><code>GetDebugView([ :root = …, :processValue = … ])</code></td><td><code>static string GetDebugView(IConfigurationRoot root)</code><br><code>static string GetDebugView(IConfigurationRoot root, Func&lt;ConfigurationDebugViewContext, string&gt; processValue)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConfigurationSection"><summary><b>ConfigurationSection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.ConfigurationSection</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConfigurationSection(IConfigurationRoot root, string path)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConfigurationSection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConfigurationSection().@New([ :param = value ])</code> or <code>dnNew("ConfigurationSection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Path</code></td><td><code>string</code></td><td>read</td><td><code>o.Path</code></td></tr><tr><td><code>Key</code></td><td><code>string</code></td><td>read</td><td><code>o.Key</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetChildren</code></td><td><code>GetChildren()</code></td><td><code>IEnumerable&lt;IConfigurationSection&gt; GetChildren()</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>GetSection</code></td><td><code>GetSection(p1)</code></td><td><code>IConfigurationSection GetSection(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EnvironmentVariablesExtensions"><summary><b>EnvironmentVariablesExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.EnvironmentVariables</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddEnvironmentVariables</code></td><td><code>AddEnvironmentVariables(value)</code><br><code>AddEnvironmentVariables([ :configurationBuilder = … ])</code><br><code>AddEnvironmentVariables([ :configurationBuilder = …, :prefix = … ])</code><br><code>AddEnvironmentVariables([ :builder = …, :configureSource = … ])</code></td><td><code>static IConfigurationBuilder AddEnvironmentVariables(IConfigurationBuilder configurationBuilder)</code><br><code>static IConfigurationBuilder AddEnvironmentVariables(IConfigurationBuilder configurationBuilder, string prefix)</code><br><code>static IConfigurationBuilder AddEnvironmentVariables(IConfigurationBuilder builder, Action&lt;EnvironmentVariablesConfigurationSource&gt; configureSource)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FileConfigurationExtensions"><summary><b>FileConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.FileConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.FileExtensions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetFileLoadExceptionHandler</code></td><td><code>GetFileLoadExceptionHandler(p1)</code></td><td><code>static Action&lt;FileLoadExceptionContext&gt; GetFileLoadExceptionHandler(IConfigurationBuilder builder)</code></td></tr><tr><td><code>GetFileProvider</code></td><td><code>GetFileProvider(p1)</code></td><td><code>static IFileProvider GetFileProvider(IConfigurationBuilder builder)</code></td></tr><tr><td><code>SetBasePath</code></td><td><code>SetBasePath(p1,p2)</code></td><td><code>static IConfigurationBuilder SetBasePath(IConfigurationBuilder builder, string basePath)</code></td></tr><tr><td><code>SetFileLoadExceptionHandler</code></td><td><code>SetFileLoadExceptionHandler(p1,p2)</code></td><td><code>static IConfigurationBuilder SetFileLoadExceptionHandler(IConfigurationBuilder builder, Action&lt;FileLoadExceptionContext&gt; handler)</code></td></tr><tr><td><code>SetFileProvider</code></td><td><code>SetFileProvider(p1,p2)</code></td><td><code>static IConfigurationBuilder SetFileProvider(IConfigurationBuilder builder, IFileProvider fileProvider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FileConfigurationProvider"><summary><b>FileConfigurationProvider</b> <span class="muted">class abstract · extends <a href="#c-ConfigurationProvider">ConfigurationProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.FileConfigurationProvider</code> · assembly <code>Microsoft.Extensions.Configuration.FileExtensions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Source</code></td><td><code>FileConfigurationSource</code></td><td>read</td><td><code>o.Source</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Load</code></td><td><code>@Load(NULL)</code><br><code>@Load(value)</code><br><code>@Load([ :stream = … ])</code></td><td><code>void Load()</code><br><code>void Load(Stream stream)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FileConfigurationSource"><summary><b>FileConfigurationSource</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.FileConfigurationSource</code> · assembly <code>Microsoft.Extensions.Configuration.FileExtensions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FileProvider</code></td><td><code>IFileProvider</code></td><td>read, write</td><td><code>o.FileProvider</code> <code>o.FileProvider = v</code></td></tr><tr><td><code>Path</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Path</code> <code>o.Path = v</code></td></tr><tr><td><code>Optional</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Optional</code> <code>o.Optional = v</code></td></tr><tr><td><code>ReloadOnChange</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ReloadOnChange</code> <code>o.ReloadOnChange = v</code></td></tr><tr><td><code>ReloadDelay</code></td><td><code>int</code></td><td>read, write</td><td><code>o.ReloadDelay</code> <code>o.ReloadDelay = v</code></td></tr><tr><td><code>OnLoadException</code></td><td><code>Action&lt;FileLoadExceptionContext&gt;</code></td><td>read, write</td><td><code>o.OnLoadException</code> <code>o.OnLoadException = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build(p1)</code></td><td><code>IConfigurationProvider Build(IConfigurationBuilder builder)</code></td></tr><tr><td><code>EnsureDefaults</code></td><td><code>EnsureDefaults(p1)</code></td><td><code>void EnsureDefaults(IConfigurationBuilder builder)</code></td></tr><tr><td><code>ResolveFileProvider</code></td><td><code>ResolveFileProvider()</code></td><td><code>void ResolveFileProvider()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FileLoadExceptionContext"><summary><b>FileLoadExceptionContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.FileLoadExceptionContext</code> · assembly <code>Microsoft.Extensions.Configuration.FileExtensions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FileLoadExceptionContext()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FileLoadExceptionContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FileLoadExceptionContext().@New([ :param = value ])</code> or <code>dnNew("FileLoadExceptionContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Provider</code></td><td><code>FileConfigurationProvider</code></td><td>read, write</td><td><code>o.Provider</code> <code>o.Provider = v</code></td></tr><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>Ignore</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Ignore</code> <code>o.Ignore = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConfiguration"><summary><b>IConfiguration</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfiguration</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetChildren</code></td><td><code>GetChildren()</code></td><td><code>IEnumerable&lt;IConfigurationSection&gt; GetChildren()</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>GetSection</code></td><td><code>GetSection(p1)</code></td><td><code>IConfigurationSection GetSection(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConfigurationBuilder"><summary><b>IConfigurationBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationBuilder</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>Sources</code></td><td><code>IList&lt;IConfigurationSource&gt;</code></td><td>read</td><td><code>o.Sources</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>IConfigurationBuilder Add(IConfigurationSource source)</code></td></tr><tr><td><code>Build</code></td><td><code>Build()</code></td><td><code>IConfigurationRoot Build()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConfigurationManager"><summary><b>IConfigurationManager</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationManager</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+</div></details>
+<details class="cls" id="c-IConfigurationProvider"><summary><b>IConfigurationProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationProvider</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetChildKeys</code></td><td><code>GetChildKeys(p1,p2)</code></td><td><code>IEnumerable&lt;string&gt; GetChildKeys(IEnumerable&lt;string&gt; earlierKeys, string parentPath)</code></td></tr><tr><td><code>GetReloadToken</code></td><td><code>GetReloadToken()</code></td><td><code>IChangeToken GetReloadToken()</code></td></tr><tr><td><code>Load</code></td><td><code>@Load()</code></td><td><code>void Load()</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1,p2)</code></td><td><code>void Set(string key, string value)</code></td></tr><tr><td><code>TryGet</code></td><td><code>TryGet(p1)</code></td><td><code>bool TryGet(string key, out string value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConfigurationRoot"><summary><b>IConfigurationRoot</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationRoot</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Providers</code></td><td><code>IEnumerable&lt;IConfigurationProvider&gt;</code></td><td>read</td><td><code>o.Providers</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Reload</code></td><td><code>Reload()</code></td><td><code>void Reload()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConfigurationSection"><summary><b>IConfigurationSection</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationSection</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Key</code></td><td><code>string</code></td><td>read</td><td><code>o.Key</code></td></tr><tr><td><code>Path</code></td><td><code>string</code></td><td>read</td><td><code>o.Path</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string key)</code> → <code>string</code> · <code>o.SetItem(key,value)</code></p>
+</div></details>
+<details class="cls" id="c-IConfigurationSource"><summary><b>IConfigurationSource</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IConfigurationSource</code> · assembly <code>Microsoft.Extensions.Configuration.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build(p1)</code></td><td><code>IConfigurationProvider Build(IConfigurationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IniConfigurationExtensions"><summary><b>IniConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.IniConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.Ini</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddIniFile</code></td><td><code>AddIniFile([ :builder = …, :path = … ])</code><br><code>AddIniFile([ :builder = …, :configureSource = … ])</code><br><code>AddIniFile([ :builder = …, :path = …, :optional = … ])</code><br><code>AddIniFile([ :builder = …, :path = …, :optional = …, :reloadOnChange = … ])</code></td><td><code>static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path)</code><br><code>static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path, bool optional)</code><br><code>static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, IFileProvider provider, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, Action&lt;IniConfigurationSource&gt; configureSource)</code></td></tr><tr><td><code>AddIniStream</code></td><td><code>AddIniStream(p1,p2)</code></td><td><code>static IConfigurationBuilder AddIniStream(IConfigurationBuilder builder, Stream stream)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-JsonConfigurationExtensions"><summary><b>JsonConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.JsonConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.Json</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddJsonFile</code></td><td><code>AddJsonFile([ :builder = …, :path = … ])</code><br><code>AddJsonFile([ :builder = …, :configureSource = … ])</code><br><code>AddJsonFile([ :builder = …, :path = …, :optional = … ])</code><br><code>AddJsonFile([ :builder = …, :path = …, :optional = …, :reloadOnChange = … ])</code></td><td><code>static IConfigurationBuilder AddJsonFile(IConfigurationBuilder builder, string path)</code><br><code>static IConfigurationBuilder AddJsonFile(IConfigurationBuilder builder, string path, bool optional)</code><br><code>static IConfigurationBuilder AddJsonFile(IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddJsonFile(IConfigurationBuilder builder, IFileProvider provider, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddJsonFile(IConfigurationBuilder builder, Action&lt;JsonConfigurationSource&gt; configureSource)</code></td></tr><tr><td><code>AddJsonStream</code></td><td><code>AddJsonStream(p1,p2)</code></td><td><code>static IConfigurationBuilder AddJsonStream(IConfigurationBuilder builder, Stream stream)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-KeyPerFileConfigurationBuilderExtensions"><summary><b>KeyPerFileConfigurationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.KeyPerFile</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddKeyPerFile</code></td><td><code>AddKeyPerFile([ :builder = …, :directoryPath = … ])</code><br><code>AddKeyPerFile([ :builder = …, :configureSource = … ])</code><br><code>AddKeyPerFile([ :builder = …, :directoryPath = …, :optional = … ])</code><br><code>AddKeyPerFile([ :builder = …, :directoryPath = …, :optional = …, :reloadOnChange = … ])</code></td><td><code>static IConfigurationBuilder AddKeyPerFile(IConfigurationBuilder builder, string directoryPath)</code><br><code>static IConfigurationBuilder AddKeyPerFile(IConfigurationBuilder builder, string directoryPath, bool optional)</code><br><code>static IConfigurationBuilder AddKeyPerFile(IConfigurationBuilder builder, string directoryPath, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddKeyPerFile(IConfigurationBuilder builder, Action&lt;KeyPerFileConfigurationSource&gt; configureSource)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MemoryConfigurationBuilderExtensions"><summary><b>MemoryConfigurationBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddInMemoryCollection</code></td><td><code>AddInMemoryCollection(value)</code><br><code>AddInMemoryCollection([ :configurationBuilder = … ])</code><br><code>AddInMemoryCollection([ :configurationBuilder = …, :initialData = … ])</code></td><td><code>static IConfigurationBuilder AddInMemoryCollection(IConfigurationBuilder configurationBuilder)</code><br><code>static IConfigurationBuilder AddInMemoryCollection(IConfigurationBuilder configurationBuilder, IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt; initialData)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StreamConfigurationProvider"><summary><b>StreamConfigurationProvider</b> <span class="muted">class abstract · extends <a href="#c-ConfigurationProvider">ConfigurationProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.StreamConfigurationProvider</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Source</code></td><td><code>StreamConfigurationSource</code></td><td>read</td><td><code>o.Source</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Load</code></td><td><code>@Load(NULL)</code><br><code>@Load(value)</code><br><code>@Load([ :stream = … ])</code></td><td><code>void Load(Stream stream)</code><br><code>void Load()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StreamConfigurationSource"><summary><b>StreamConfigurationSource</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.StreamConfigurationSource</code> · assembly <code>Microsoft.Extensions.Configuration</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Stream</code></td><td><code>Stream</code></td><td>read, write</td><td><code>o.Stream</code> <code>o.Stream = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Build</code></td><td><code>Build(p1)</code></td><td><code>IConfigurationProvider Build(IConfigurationBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UserSecretsConfigurationExtensions"><summary><b>UserSecretsConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.UserSecrets</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddUserSecrets</code></td><td><code>AddUserSecrets(value)</code><br><code>AddUserSecrets([ :configuration = … ])</code><br><code>AddUserSecrets([ :configuration = …, :optional = … ])</code><br><code>AddUserSecrets([ :configuration = …, :assembly = … ])</code><br><code>AddUserSecrets([ :configuration = …, :userSecretsId = … ])</code></td><td><code>static IConfigurationBuilder AddUserSecrets&lt;T&gt;(IConfigurationBuilder configuration)</code><br><code>static IConfigurationBuilder AddUserSecrets&lt;T&gt;(IConfigurationBuilder configuration, bool optional)</code><br><code>static IConfigurationBuilder AddUserSecrets&lt;T&gt;(IConfigurationBuilder configuration, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddUserSecrets(IConfigurationBuilder configuration, Assembly assembly)</code><br><code>static IConfigurationBuilder AddUserSecrets(IConfigurationBuilder configuration, Assembly assembly, bool optional)</code><br><code>static IConfigurationBuilder AddUserSecrets(IConfigurationBuilder configuration, Assembly assembly, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddUserSecrets(IConfigurationBuilder configuration, string userSecretsId)</code><br><code>static IConfigurationBuilder AddUserSecrets(IConfigurationBuilder configuration, string userSecretsId, bool reloadOnChange)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlConfigurationExtensions"><summary><b>XmlConfigurationExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Configuration.XmlConfigurationExtensions</code> · assembly <code>Microsoft.Extensions.Configuration.Xml</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddXmlFile</code></td><td><code>AddXmlFile([ :builder = …, :path = … ])</code><br><code>AddXmlFile([ :builder = …, :configureSource = … ])</code><br><code>AddXmlFile([ :builder = …, :path = …, :optional = … ])</code><br><code>AddXmlFile([ :builder = …, :path = …, :optional = …, :reloadOnChange = … ])</code></td><td><code>static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path)</code><br><code>static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path, bool optional)</code><br><code>static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, IFileProvider provider, string path, bool optional, bool reloadOnChange)</code><br><code>static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, Action&lt;XmlConfigurationSource&gt; configureSource)</code></td></tr><tr><td><code>AddXmlStream</code></td><td><code>AddXmlStream(p1,p2)</code></td><td><code>static IConfigurationBuilder AddXmlStream(IConfigurationBuilder builder, Stream stream)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

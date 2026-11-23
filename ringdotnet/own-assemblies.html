@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your own assemblies · RingDotNet</title>
+<meta name="description" content="Wrap any .NET DLL — your own library or a NuGet package — with one command, and use its classes with the same simple syntax as the built-in ones.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html" class="cur">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Your own assemblies</h1><p class="lead">Wrap any .NET DLL — your own library or a NuGet package — with one command, and use its classes with the same simple syntax as the built-in ones.</p>
+<h2 id="two-ways-to-use-an-assembly">Two ways to use an assembly<a class="anchor" href="#two-ways-to-use-an-assembly">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Way</th><th>When</th></tr></thead><tbody><tr><td><strong>Generic calls</strong> — <code>dnLoad</code>, <code>dnType</code>, <code>dnNew</code>, <code>callMethod</code></td><td>a quick call, nothing to generate</td></tr><tr><td><strong>Generated classes</strong> — <code>wrapassembly.ring</code></td><td>the simple <code>oObj.Method()</code> syntax, properties, events, enums, inheritance</td></tr></tbody></table></div>
+<p>The examples of this page use the small C# library of the package, <code>samples/UsingDotNet/tests/UserLib</code> (the namespace <code>MyCompany.Tools</code>, the class <code>Calculator</code>). Build it once with the .NET SDK, and run the Ring programs from the folder of the package:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>dotnet build samples/UsingDotNet/tests/UserLib -c Release -o samples/UsingDotNet/tests/UserLib/bin</code></pre></div>
+<h2 id="generic-calls">Generic calls<a class="anchor" href="#generic-calls">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+<span class="f">dnLoad</span>(<span class="s">"samples/UsingDotNet/tests/UserLib/bin/UserLib.dll"</span>)     <span class="c"># dependencies are found next to the dll</span>
+
+oCalc = <span class="f">dnNew</span>(<span class="s">"MyCompany.Tools.Calculator"</span>,[<span class="n">10</span>])
+oCalc.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="n">5</span>])
+? oCalc.<span class="f">getProp</span>(<span class="s">"Total"</span>)                              <span class="c"># 15</span>
+? <span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.Calculator"</span>,<span class="s">"Square"</span>,[<span class="n">7</span>]) <span class="c"># 49</span></code></pre></div>
+<h2 id="generated-classes">Generated classes<a class="anchor" href="#generated-classes">#</a></h2>
+<p>Generate Ring classes for every public type of the DLL:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>cd tools/dotnettools
+ring wrapassembly.ring ../../samples/UsingDotNet/tests/UserLib/bin/UserLib.dll ../../myclasses</code></pre></div>
+<p>This writes two files for each namespace into <code>myclasses/</code>: a loader and the classes (and <code>classindex.ring</code>, the index of the classes, when every namespace is wrapped). Use them like any other wrapped namespace:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+<span class="f">dnLoad</span>(<span class="s">"samples/UsingDotNet/tests/UserLib/bin/UserLib.dll"</span>)
+<span class="f">dnImportFrom</span>(<span class="s">"myclasses/"</span>,<span class="s">"MyCompany.Tools"</span>)
+
+oCalc = <span class="k">new</span> <span class="t">Calculator</span>()
+oCalc.<span class="f">Add</span>(<span class="n">10</span>).<span class="f">Multiply</span>(<span class="n">3</span>)                             <span class="c"># fluent: methods that return a wrapped class return that class</span>
+? oCalc.Total                                         <span class="c"># 30</span>
+oCalc.Name = <span class="s">"mine"</span>                                   <span class="c"># a property</span>
+? <span class="k">new</span> <span class="t">Calculator</span>().<span class="f">Square</span>(<span class="n">7</span>)                          <span class="c"># a static method</span>
+? oCalc.<span class="f">Describe</span>([ :level = <span class="s">"High"</span>, :prefix = <span class="s">"Sum"</span> ])                      <span class="c"># an enum as a string, an optional parameter</span>
+aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)                          <span class="c"># out parameters come back in a list</span>
+? aDivide[<span class="n">2</span>]</code></pre></div>
+<p>The generated classes support the same things as the built-in ones: real inheritance, properties as attributes, <code>setXXXEvent()</code> for events, enums as strings, overloads as one method with a hash list of parameters (<code>Name([ :param = value ])</code>), optional parameters and <code>out</code> / <code>ref</code> results.</p>
+<h3 id="the-example-in-the-package">The example in the package<a class="anchor" href="#the-example-in-the-package">#</a></h3>
+<p><code>samples/UsingDotNet/tests/UserLib</code> is a complete example — a small C# library, the generator run on it, and a test that uses it (<code>samples/UsingDotNet/tests/test_userassembly.ring</code>).</p>
+<details class="src"><summary>samples/UsingDotNet/tests/UserLib/Library.cs</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tests/UserLib/Library.cs</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">using</span> System;
+<span class="k">using</span> System.Linq;
+<span class="k">using</span> System.Collections.Generic;
+
+<span class="k">namespace</span> MyCompany.Tools
+{
+	<span class="k">public</span> <span class="k">enum</span> <span class="t">Level</span> { Low, Medium, <span class="t">High</span> }
+
+	<span class="k">public</span> <span class="k">class</span> Calculator
+	{
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Total</span> { <span class="k">get</span>; <span class="k">private</span> <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">"calc"</span>;
+		<span class="k">public</span> event <span class="t">EventHandler</span> Changed;
+
+		<span class="k">public</span> <span class="t">Calculator</span>() { }
+		<span class="k">public</span> <span class="t">Calculator</span>(<span class="k">double</span> start) { <span class="t">Total</span> = start; }
+
+		<span class="k">public</span> <span class="t">Calculator</span> <span class="t">Add</span>(<span class="k">double</span> value) { <span class="t">Total</span> += value; Changed?.<span class="f">Invoke</span>(this, EventArgs.Empty); <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="t">Calculator</span> <span class="t">Multiply</span>(<span class="k">double</span> value) { <span class="t">Total</span> *= value; <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Square</span>(<span class="k">int</span> x) { <span class="k">return</span> x * x; }
+		<span class="c">/* a method called Init: Ring uses init for the constructor of a generated class, so the method is @Init */</span>
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Init</span>(<span class="k">string</span> mode) { <span class="k">return</span> <span class="s">"init "</span> + mode; }
+		<span class="c">/* a params array may be left out: it is empty */</span>
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Join</span>(<span class="k">string</span> separator, <span class="k">params</span> <span class="k">string</span>[] parts) { <span class="k">return</span> <span class="k">string</span>.<span class="f">Join</span>(separator, parts); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">EnumName</span>(<span class="t">Enum</span> value) { <span class="k">return</span> value.<span class="f">GetType</span>().Name + <span class="s">"."</span> + value; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Describe</span>(<span class="t">Level</span> level, <span class="k">string</span> prefix = <span class="s">"Total"</span>) { <span class="k">return</span> prefix + <span class="s">"="</span> + <span class="t">Total</span> + <span class="s">" ("</span> + level + <span class="s">")"</span>; }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">TryDivide</span>(<span class="k">double</span> by, <span class="k">out</span> <span class="k">double</span> result)
+		{
+			result = <span class="n">0</span>;
+			<span class="k">if</span> (by == <span class="n">0</span>) <span class="k">return</span> <span class="k">false</span>;
+			result = <span class="t">Total</span> / by;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">public</span> List&lt;<span class="k">string</span>&gt; <span class="t">Words</span>(<span class="k">string</span> text) { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt;(text.<span class="f">Split</span>(<span class="s">' '</span>)); }
+		<span class="c">/* a method that returns exactly List&lt;object&gt;: the bridge must hand it over as an object (ObjectList), not as a Ring list */</span>
+		<span class="k">public</span> List&lt;<span class="k">object</span>&gt; <span class="t">Mixed</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">object</span>&gt; { <span class="n">1</span>, <span class="s">"two"</span>, <span class="n">3.5</span> }; }
+		<span class="c">/* generic methods whose type argument the arguments do not show: Ring gives it as a type name (callGeneric) */</span>
+		<span class="k">public</span> <span class="k">static</span> T Parse&lt;T&gt;(<span class="k">string</span> text) { <span class="k">return</span> (T)Convert.<span class="f">ChangeType</span>(text, typeof(T), System.Globalization.CultureInfo.InvariantCulture); }
+		<span class="k">public</span> T Create&lt;T&gt;() where T : <span class="k">new</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">T</span>(); }
+		<span class="c">/* closed generic types that have no class of their own: the class of the generic definition wraps them */</span>
+		<span class="k">public</span> Dictionary&lt;<span class="k">string</span>, <span class="k">int</span>&gt; <span class="t">Counts</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Dictionary</span>&lt;<span class="k">string</span>, <span class="k">int</span>&gt; { { <span class="s">"a"</span>, <span class="n">1</span> }, { <span class="s">"b"</span>, <span class="n">2</span> } }; }
+		<span class="c">/* a nested type: its class is named after the types around it (CalculatorMemory) */</span>
+		<span class="k">public</span> <span class="k">class</span> Memory
+		{
+			<span class="k">public</span> <span class="k">double</span> <span class="t">Stored</span> { <span class="k">get</span>; <span class="k">set</span>; }
+			<span class="k">public</span> <span class="k">string</span> <span class="t">Label</span>() { <span class="k">return</span> <span class="s">"stored "</span> + Stored; }
+		}
+		<span class="k">public</span> <span class="t">Memory</span> <span class="t">Remember</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Memory</span> { <span class="t">Stored</span> = <span class="t">Total</span> }; }
+		<span class="k">public</span> SortedSet&lt;<span class="k">double</span>&gt; <span class="t">Sorted</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">SortedSet</span>&lt;<span class="k">double</span>&gt; { <span class="n">3.5</span>, <span class="n">1.5</span> }; }
+	}
+
+	<span class="c">// A generic type that no simple type closes (TSelf is constrained by the type itself): its class is made from the open definition</span>
+	<span class="k">public</span> <span class="k">class</span> Fluent&lt;TSelf&gt; where <span class="t">TSelf</span> : Fluent&lt;TSelf&gt;
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Hits</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> Fluent&lt;TSelf&gt; <span class="t">Hit</span>() { Hits++; <span class="k">return</span> this; }
+	}
+	<span class="k">public</span> <span class="k">class</span> <span class="t">FluentText</span> : Fluent&lt;FluentText&gt; { }
+
+	<span class="c">// A ref struct of the library: Ring gives a text, the struct is made for the call from the text (its constructor)</span>
+	<span class="k">public</span> <span class="k">readonly</span> <span class="k">ref</span> <span class="k">struct</span> Cursor
+	{
+		<span class="k">private</span> <span class="k">readonly</span> ReadOnlySpan&lt;char&gt; text;
+		<span class="k">public</span> <span class="t">Cursor</span>(ReadOnlySpan&lt;char&gt; text) { this.text = text; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Length</span> { <span class="k">get</span> { <span class="k">return</span> text.Length; } }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span>(char c) { <span class="k">int</span> n = <span class="n">0</span>; <span class="k">foreach</span> (char x <span class="k">in</span> text) <span class="k">if</span> (x == c) n++; <span class="k">return</span> n; }
+	}
+
+	<span class="c">// ref structs that a method returns: a ref struct enumerator is answered as a list of its items, a ref struct with a text method as the text</span>
+	<span class="k">public</span> <span class="k">ref</span> <span class="k">struct</span> WordEnumerator
+	{
+		<span class="k">private</span> ReadOnlySpan&lt;char&gt; rest;
+		<span class="k">public</span> <span class="t">WordEnumerator</span>(ReadOnlySpan&lt;char&gt; text) { rest = text; <span class="t">Current</span> = default; }
+		<span class="k">public</span> ReadOnlySpan&lt;char&gt; <span class="t">Current</span> { <span class="k">get</span>; <span class="k">private</span> <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">WordEnumerator</span> <span class="t">GetEnumerator</span>() { <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">MoveNext</span>()
+		{
+			rest = rest.<span class="f">TrimStart</span>();
+			<span class="k">if</span> (rest.IsEmpty) <span class="k">return</span> <span class="k">false</span>;
+			<span class="k">int</span> end = rest.<span class="f">IndexOf</span>(<span class="s">' '</span>);
+			<span class="k">if</span> (end &lt; <span class="n">0</span>) end = rest.Length;
+			<span class="t">Current</span> = rest.<span class="f">Slice</span>(<span class="n">0</span>, end);
+			rest = rest.<span class="f">Slice</span>(end);
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+	}
+
+	<span class="k">public</span> <span class="k">readonly</span> <span class="k">ref</span> <span class="k">struct</span> Label
+	{
+		<span class="k">private</span> <span class="k">readonly</span> ReadOnlySpan&lt;char&gt; name;
+		<span class="k">public</span> <span class="t">Label</span>(ReadOnlySpan&lt;char&gt; name) { this.name = name; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Render</span>() { <span class="k">return</span> <span class="s">"["</span> + name.<span class="f">ToString</span>() + <span class="s">"]"</span>; }
+	}
+
+	<span class="c">// properties of a Span, a ref struct and a ref type: read like the results of methods</span>
+	<span class="c">// methods that return by reference: Ring gets the value</span>
+	<span class="k">public</span> <span class="k">class</span> Slots
+	{
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">int</span>[] numbers = { <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span> };
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">string</span>[] texts = { <span class="s">"x"</span>, <span class="s">"y"</span> };
+		<span class="k">private</span> <span class="t">DateTime</span> day = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>, <span class="n">5</span>, <span class="n">17</span>);
+		<span class="k">public</span> <span class="k">ref</span> <span class="k">int</span> <span class="t">Number</span>(<span class="k">int</span> i) { <span class="k">return</span> <span class="k">ref</span> numbers[i]; }
+		<span class="k">public</span> <span class="k">ref</span> <span class="k">string</span> <span class="t">Text</span>(<span class="k">int</span> i) { <span class="k">return</span> <span class="k">ref</span> texts[i]; }
+		<span class="k">public</span> <span class="k">ref</span> <span class="k">readonly</span> <span class="t">DateTime</span> <span class="t">Day</span>() { <span class="k">return</span> <span class="k">ref</span> day; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Sum</span>() { <span class="k">return</span> numbers.<span class="f">Sum</span>(); }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> Holder
+	{
+		<span class="k">private</span> <span class="k">readonly</span> byte[] data = { <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span> };
+		<span class="k">private</span> <span class="k">int</span> slot = <span class="n">7</span>;
+		<span class="k">public</span> ReadOnlySpan&lt;byte&gt; <span class="t">View</span> { <span class="k">get</span> { <span class="k">return</span> data; } }
+		<span class="k">public</span> ReadOnlySpan&lt;char&gt; <span class="t">Name</span> { <span class="k">get</span> { <span class="k">return</span> <span class="s">"abc"</span>; } }
+		<span class="k">public</span> <span class="t">Label</span> <span class="t">Tag</span> { <span class="k">get</span> { <span class="k">return</span> <span class="k">new</span> <span class="t">Label</span>(<span class="s">"tag"</span>); } }
+		<span class="k">public</span> <span class="k">ref</span> <span class="k">int</span> <span class="t">Slot</span> { <span class="k">get</span> { <span class="k">return</span> <span class="k">ref</span> slot; } }
+	}
+
+	<span class="c">// indexers with several indexes (and one with a single index): Ring gives the indexes as a list</span>
+	<span class="k">public</span> <span class="k">class</span> Grid
+	{
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">double</span>[,] cells = <span class="k">new</span> <span class="k">double</span>[<span class="n">3</span>, <span class="n">4</span>];
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">string</span>[] names = { <span class="s">"a"</span>, <span class="s">"b"</span> };
+		<span class="k">public</span> <span class="k">double</span> this[<span class="k">int</span> row, <span class="k">int</span> column] { <span class="k">get</span> { <span class="k">return</span> cells[row, column]; } <span class="k">set</span> { cells[row, column] = value; } }
+		<span class="k">public</span> <span class="k">string</span> this[<span class="k">string</span> x, <span class="k">string</span> y, <span class="k">string</span> z] { <span class="k">get</span> { <span class="k">return</span> x + y + z; } }
+		<span class="k">public</span> <span class="k">string</span> this[<span class="k">int</span> i] { <span class="k">get</span> { <span class="k">return</span> names[i]; } <span class="k">set</span> { names[i] = value; } }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> Table2
+	{
+		<span class="k">public</span> <span class="k">int</span> this[<span class="k">int</span> row, <span class="k">int</span> column] { <span class="k">get</span> { <span class="k">return</span> row * <span class="n">10</span> + column; } }
+	}
+
+	<span class="c">// a ref struct that only holds values (no ToArray, no enumerator, no text method): answered as its properties, then disposed</span>
+	<span class="k">public</span> <span class="k">readonly</span> <span class="k">ref</span> <span class="k">struct</span> Lease
+	{
+		<span class="k">private</span> <span class="k">readonly</span> byte[] data;
+		<span class="k">public</span> <span class="t">Lease</span>(byte[] data) { this.data = data; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Length</span> { <span class="k">get</span> { <span class="k">return</span> data.Length; } }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span> { <span class="k">return</span> <span class="s">"lease"</span>; } }
+		<span class="k">public</span> ReadOnlySpan&lt;byte&gt; <span class="t">Data</span> { <span class="k">get</span> { <span class="k">return</span> data; } }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Dispose</span>() { Spans.Disposed++; }
+	}
+
+	<span class="c">// constructors with a Span or a ref struct, and a ref struct that has only a static factory</span>
+	<span class="k">public</span> <span class="k">readonly</span> <span class="k">ref</span> <span class="k">struct</span> Token
+	{
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">string</span> text;
+		<span class="k">private</span> <span class="t">Token</span>(<span class="k">string</span> text) { this.text = text; }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Token</span> <span class="t">FromString</span>(<span class="k">string</span> text) { <span class="k">return</span> <span class="k">new</span> <span class="t">Token</span>(text); }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Size</span> { <span class="k">get</span> { <span class="k">return</span> text.Length; } }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> Message
+	{
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Text</span> { <span class="k">get</span>; <span class="k">private</span> <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Copies</span> { <span class="k">get</span>; <span class="k">private</span> <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">Message</span>(ReadOnlySpan&lt;char&gt; text, <span class="k">int</span> copies) { <span class="t">Text</span> = text.<span class="f">ToString</span>(); <span class="t">Copies</span> = copies; }
+		<span class="k">public</span> <span class="t">Message</span>(<span class="t">Token</span> token) { <span class="t">Text</span> = <span class="s">"token"</span>; <span class="t">Copies</span> = token.Size; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Spans
+	{
+		<span class="c">/* an IAsyncEnumerable result: Ring reads it with toList() or asyncEnumerator() */</span>
+		<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> System.Collections.Generic.IAsyncEnumerable&lt;<span class="k">int</span>&gt; <span class="t">CountAsync</span>(<span class="k">int</span> n)
+		{
+			<span class="k">for</span> (<span class="k">int</span> i = <span class="n">1</span>; i &lt;= n; i++)
+			{
+				<span class="k">await</span> System.Threading.Tasks.Task.<span class="f">Delay</span>(<span class="n">1</span>);
+				yield <span class="k">return</span> i * <span class="n">10</span>;
+			}
+		}
+		<span class="c">/* a ref return through the IL path (a Span parameter): the value is read from the reference */</span>
+		<span class="k">public</span> <span class="k">static</span> <span class="k">ref</span> <span class="k">int</span> <span class="t">ElementAt</span>(Span&lt;<span class="k">int</span>&gt; data, <span class="k">int</span> index) { <span class="k">return</span> <span class="k">ref</span> data[index]; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">TokenSize</span>(<span class="t">Token</span> token) { <span class="k">return</span> token.Size; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> Disposed;
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Lease</span> <span class="t">Take</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Lease</span>(<span class="k">new</span> <span class="t">byte</span>[] { <span class="n">9</span>, <span class="n">8</span>, <span class="n">7</span> }); }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">WordEnumerator</span> <span class="t">Words</span>(<span class="k">string</span> text) { <span class="k">return</span> <span class="k">new</span> <span class="t">WordEnumerator</span>(text); }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Label</span> <span class="t">MakeLabel</span>(<span class="k">string</span> name) { <span class="k">return</span> <span class="k">new</span> <span class="t">Label</span>(name); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CursorLength</span>(<span class="t">Cursor</span> cursor) { <span class="k">return</span> cursor.Length; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CountOf</span>(<span class="k">ref</span> <span class="t">Cursor</span> cursor, char c) { <span class="k">return</span> cursor.<span class="f">Count</span>(c); }
+		<span class="c">/* a Span result: answered as an array (a text for char) */</span>
+		<span class="k">public</span> <span class="k">static</span> ReadOnlySpan&lt;char&gt; <span class="t">Middle</span>(<span class="k">string</span> text) { <span class="k">return</span> text.<span class="f">AsSpan</span>(<span class="n">1</span>, text.Length - <span class="n">2</span>); }
+		<span class="k">public</span> <span class="k">static</span> Span&lt;byte&gt; <span class="t">Head</span>(byte[] data) { <span class="k">return</span> data.<span class="f">AsSpan</span>(<span class="n">0</span>, <span class="n">2</span>); }
+		<span class="c">/* a span that is passed by reference */</span>
+		<span class="k">public</span> <span class="k">static</span> <span class="k">bool</span> <span class="t">TrySplit</span>(ReadOnlySpan&lt;char&gt; text, <span class="k">out</span> ReadOnlySpan&lt;char&gt; rest)
+		{
+			<span class="k">int</span> at = text.<span class="f">IndexOf</span>(<span class="s">','</span>);
+			rest = at &lt; <span class="n">0</span> ? ReadOnlySpan&lt;char&gt;.Empty : text.<span class="f">Slice</span>(at + <span class="n">1</span>);
+			<span class="k">return</span> at &gt;= <span class="n">0</span>;
+		}
+		<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="t">Skip</span>(<span class="k">ref</span> ReadOnlySpan&lt;char&gt; text, <span class="k">int</span> n) { text = text.<span class="f">Slice</span>(n); }
+	}
+
+	<span class="c">// compares with IComparable&lt;T&gt; only (no operators, no IComparable): the operators &lt; &gt; of Ring use CompareTo</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="t">Rank</span> : IComparable&lt;Rank&gt;
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Level</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">Rank</span>(<span class="k">int</span> level) { <span class="t">Level</span> = level; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">CompareTo</span>(<span class="t">Rank</span> other) { <span class="k">return</span> Level.<span class="f">CompareTo</span>(other.Level); }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">Counter</span> : Calculator
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Increment</span>() { Count++; }
+	}
+	<span class="c">// An interface that inherits another one, and a class that is not public: Shapes.NewBox returns the interface IBox.</span>
+	<span class="c">// The wrapper must be IBox (the interface named after the class), with the members that IBox inherits from IShape.</span>
+	<span class="k">public</span> <span class="k">interface</span> IShape
+	{
+		<span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">double</span> <span class="t">Area</span>();
+	}
+
+	<span class="k">public</span> <span class="k">interface</span> <span class="t">IBox</span> : IShape
+	{
+		<span class="k">double</span> <span class="t">Side</span> { <span class="k">get</span>; }
+	}
+
+	<span class="k">internal</span> <span class="k">class</span> <span class="t">Box</span> : IShape, IBox
+	{
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">"box"</span>;
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Side</span> { <span class="k">get</span>; <span class="k">private</span> <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">Box</span>(<span class="k">double</span> side) { <span class="t">Side</span> = side; }
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Area</span>() { <span class="k">return</span> <span class="t">Side</span> * Side; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Shapes
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">IBox</span> <span class="t">NewBox</span>(<span class="k">double</span> side) { <span class="k">return</span> <span class="k">new</span> <span class="t">Box</span>(side); }
+	}
+	<span class="c">// A class that is not public and implements a public interface explicitly (a row of Dapper is like this): the methods of the interface</span>
+	<span class="c">// are called on the object although the class has no public method of that name.</span>
+	<span class="k">public</span> <span class="k">interface</span> IGetter
+	{
+		<span class="k">string</span> <span class="t">Fetch</span>(<span class="k">string</span> key);
+		<span class="k">string</span> <span class="t">Join</span>(<span class="k">string</span> first, <span class="k">string</span> second);
+		<span class="k">string</span> <span class="t">Join</span>(<span class="k">string</span> only);
+	}
+
+	<span class="k">internal</span> <span class="k">class</span> <span class="t">Hidden</span> : IGetter
+	{
+		<span class="k">string</span> IGetter.<span class="f">Fetch</span>(<span class="k">string</span> key) { <span class="k">return</span> key + <span class="s">"!"</span>; }
+		<span class="k">string</span> IGetter.<span class="f">Join</span>(<span class="k">string</span> first, <span class="k">string</span> second) { <span class="k">return</span> first + <span class="s">"+"</span> + second; }
+		<span class="k">string</span> IGetter.<span class="f">Join</span>(<span class="k">string</span> only) { <span class="k">return</span> only; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Hiding
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">object</span> <span class="t">NewGetter</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Hidden</span>(); }
+	}
+	<span class="c">// A class with the name of a class of the library (System.Version): the generator gives it the prefix of its namespace, ToolsVersion,</span>
+	<span class="c">// so that both can be defined in one program.</span>
+	<span class="k">public</span> <span class="k">class</span> Version
+	{
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Text</span> { <span class="k">get</span> { <span class="k">return</span> <span class="s">"user version"</span>; } }
+	}
+	<span class="c">// Extension methods are methods of the Ring class of the type that they extend: calc.Shout("!") is CalculatorExtensions.Shout(calc, "!").</span>
+	<span class="c">// Describe has the same name and the same number of parameters as a method of Calculator (the compiler chooses by the type of the value);</span>
+	<span class="c">// Add has more parameters than the method of Calculator, so it is not added (an extension never changes the signature of a method).</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> CalculatorExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Shout</span>(this <span class="t">Calculator</span> calc, <span class="k">string</span> suffix) { <span class="k">return</span> calc.Name.<span class="f">ToUpper</span>() + suffix; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Describe</span>(this <span class="t">Calculator</span> calc, <span class="k">string</span> format) { <span class="k">return</span> <span class="k">string</span>.<span class="f">Format</span>(format, calc.Total); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Add</span>(this <span class="t">Calculator</span> calc, <span class="k">string</span> first, <span class="k">string</span> second) { <span class="k">return</span> first + second; }
+	}
+	<span class="c">// An extension method of an interface is a method of the classes that implement it (Circle) and of the interfaces that inherit it (IBox).</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="t">Circle</span> : IShape
+	{
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">"circle"</span>;
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Radius</span> { <span class="k">get</span>; <span class="k">set</span>; } = <span class="n">1</span>;
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Area</span>() { <span class="k">return</span> Math.PI * <span class="t">Radius</span> * Radius; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> ShapeExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Label</span>(this <span class="t">IShape</span> shape, <span class="k">string</span> prefix) { <span class="k">return</span> prefix + shape.Name; }
+	}
+	<span class="c">// a struct with an extension method that takes the struct by reference (this in S): called on the object, the answer is the value, not a list</span>
+	<span class="k">public</span> <span class="k">readonly</span> <span class="k">struct</span> Money
+	{
+		<span class="k">public</span> <span class="t">Money</span>(<span class="k">int</span> cents) { <span class="t">Cents</span> = cents; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Cents</span> { <span class="k">get</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> MoneyExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Show</span>(this <span class="k">in</span> <span class="t">Money</span> m, <span class="k">string</span> currency) { <span class="k">return</span> currency + (m.Cents / <span class="n">100</span>) + <span class="s">"."</span> + (m.Cents % <span class="n">100</span>).<span class="f">ToString</span>(<span class="s">"00"</span>); }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Money</span> <span class="t">Doubled</span>(this <span class="k">in</span> <span class="t">Money</span> m) { <span class="k">return</span> <span class="k">new</span> <span class="t">Money</span>(m.Cents * <span class="n">2</span>); }
+	}
+	<span class="c">// a params array of an interface type: a single object is an array of one item</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> ParamsTools
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">IShape</span> <span class="t">NoShape</span>() { <span class="k">return</span> <span class="k">null</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CountShapes</span>(<span class="k">string</span> label, <span class="k">params</span> IShape[] shapes) { <span class="k">return</span> shapes.Length; }
+	}
+	<span class="c">// delegate types with extension methods (like Sprache's Parser&lt;T&gt;): an object of the delegate type gets a class, and the extension methods are its methods</span>
+	<span class="k">public</span> delegate <span class="k">int</span> <span class="t">Transform</span>(<span class="k">int</span> x);
+	<span class="k">public</span> delegate T Step&lt;T&gt;(T x);
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> DelegateFactory
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Transform</span> <span class="t">Increment</span>() { <span class="k">return</span> x =&gt; x + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> Step&lt;<span class="k">string</span>&gt; <span class="t">Exclaim</span>() { <span class="k">return</span> x =&gt; x + <span class="s">"!"</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> DelegateExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Transform</span> <span class="t">Twice</span>(this <span class="t">Transform</span> t) { <span class="k">return</span> x =&gt; t(t(x)); }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">Transform</span> <span class="t">Plus</span>(this <span class="t">Transform</span> t, <span class="k">int</span> n) { <span class="k">return</span> x =&gt; t(x) + n; }
+		<span class="k">public</span> <span class="k">static</span> Step&lt;T&gt; Repeat&lt;T&gt;(this Step&lt;T&gt; s, <span class="k">int</span> times) { <span class="k">return</span> x =&gt; { <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; times; i++) x = s(x); <span class="k">return</span> x; }; }
+	}
+}</code></pre></div></details>
+<details class="src"><summary>samples/UsingDotNet/tests/test_userassembly.ring</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tests/test_userassembly.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Your own assemblies: tools/dotnettools/wrapassembly.ring generates the classes, dnImportFrom() loads them</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+cHere = currentdir()
+cLib = cHere + <span class="s">"/UserLib/bin/UserLib.dll"</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cLib)
+	system(<span class="s">"dotnet build UserLib -c Release -o UserLib/bin -nologo -v q"</span>)
+<span class="k">ok</span>
+cOut = cHere + <span class="s">"/UserLib/generated"</span>
+<span class="c"># the generator loads its files relative to the folder it runs from</span>
+chdir(<span class="s">"../../../tools/dotnettools"</span>)
+system(exefilename() + <span class="s">" wrapassembly.ring "</span> + cLib + <span class="s">" "</span> + cOut + <span class="s">" &gt; nul"</span>)
+chdir(cHere)
+<span class="f">dnAssert</span>(<span class="s">"generated loader exists"</span>,fexists(cOut + <span class="s">"/MyCompany.Tools.ring"</span>),<span class="n">1</span>)
+
+<span class="f">dnLoad</span>(cLib)
+<span class="f">dnImportFrom</span>(cOut + <span class="s">"/"</span>,<span class="s">"MyCompany.Tools"</span>)
+
+oCalc = <span class="k">new</span> <span class="t">Calculator</span>()
+oCalc.<span class="f">Add</span>(<span class="n">10</span>).<span class="f">Multiply</span>(<span class="n">3</span>)
+<span class="f">dnAssert</span>(<span class="s">"fluent calls return the class"</span>,oCalc.Total,<span class="n">30</span>)
+<span class="f">dnAssert</span>(<span class="s">"property read/write"</span>,oCalc.Name,<span class="s">"calc"</span>)
+oCalc.Name = <span class="s">"mine"</span>
+<span class="f">dnAssert</span>(<span class="s">"property write"</span>,oCalc.Name,<span class="s">"mine"</span>)
+<span class="f">dnAssert</span>(<span class="s">"constructor with parameters"</span>,<span class="k">new</span> <span class="t">Calculator</span>().@<span class="k">New</span>([ :<span class="t">start</span> = <span class="n">5</span> ]).Total,<span class="n">5</span>)
+<span class="f">dnAssert</span>(<span class="s">"static method"</span>,<span class="k">new</span> <span class="t">Calculator</span>().<span class="f">Square</span>(<span class="n">7</span>),<span class="n">49</span>)
+<span class="f">dnAssert</span>(<span class="s">"enum as string and optional parameter"</span>,oCalc.<span class="f">Describe</span>([ :level = <span class="s">"High"</span>, :prefix = <span class="s">"Sum"</span> ]),<span class="s">"Sum=30 (High)"</span>)
+aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)
+<span class="f">dnAssert</span>(<span class="s">"out parameter ok"</span>,aDivide[<span class="n">1</span>],<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"out parameter value"</span>,aDivide[<span class="n">2</span>],<span class="n">7.5</span>)
+<span class="f">dnAssert</span>(<span class="s">"out parameter fails"</span>,oCalc.<span class="f">TryDivide</span>(<span class="n">0</span>)[<span class="n">1</span>],<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"returns generic list"</span>,len(oCalc.<span class="f">Words</span>(<span class="s">"a b c"</span>).<span class="f">toList</span>()),<span class="n">3</span>)
+oMixed = oCalc.<span class="f">Mixed</span>()
+<span class="f">dnAssert</span>(<span class="s">"a method that returns a List&lt;object&gt; gives an object, like any other collection"</span>,classname(oMixed),<span class="s">"objectlist"</span>)
+<span class="f">dnAssert</span>(<span class="s">"and its items are there"</span>,oMixed.Count,<span class="n">3</span>)
+<span class="f">dnAssert</span>(<span class="s">"an item of it"</span>,oMixed.<span class="f">Item</span>(<span class="n">1</span>),<span class="s">"two"</span>)
+
+<span class="c"># a generic method whose type argument only the result shows: the type arguments are given by name</span>
+<span class="f">dnAssert</span>(<span class="s">"generic method, an Int32"</span>,oCalc.<span class="f">callGeneric</span>(<span class="s">"Parse"</span>,[<span class="s">"System.Int32"</span>],[<span class="s">"42"</span>]) + <span class="n">1</span>,<span class="n">43</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic method, a Double"</span>,oCalc.<span class="f">callGeneric</span>(<span class="s">"Parse"</span>,[<span class="s">"System.Double"</span>],[<span class="s">"2.5"</span>]),<span class="n">2.5</span>)
+oBuilder = oCalc.<span class="f">callGeneric</span>(<span class="s">"Create"</span>,[<span class="s">"System.Text.StringBuilder"</span>],[])
+<span class="f">dnAssert</span>(<span class="s">"generic method, a new object"</span>,oBuilder.<span class="f">typeName</span>(),<span class="s">"System.Text.StringBuilder"</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic method on a type"</span>,<span class="f">dnType</span>(<span class="s">"MyCompany.Tools.Calculator"</span>).<span class="f">callGeneric</span>(<span class="s">"Parse"</span>,[<span class="s">"System.Int32"</span>],[<span class="s">"7"</span>]),<span class="n">7</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic method, named arguments"</span>,<span class="f">dnRequest</span>(<span class="s">"callnamed"</span>,[oCalc,<span class="s">"Parse"</span>,[ [:typeArguments,[<span class="s">"System.Int32"</span>]], [:text,<span class="s">"9"</span>] ]]),<span class="n">9</span>)
+<span class="c"># a closed generic type with no class of its own is wrapped by the class of its definition</span>
+oCounts = oCalc.<span class="f">Counts</span>()
+<span class="f">dnAssert</span>(<span class="s">"generic type, class of the definition"</span>,classname(oCounts),<span class="s">"dictionary"</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic type, a property"</span>,oCounts.Count,<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic type, a method"</span>,oCounts.<span class="f">ContainsKey</span>(<span class="s">"b"</span>),<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"generic type, a method with a missing key"</span>,oCounts.<span class="f">ContainsKey</span>(<span class="s">"z"</span>),<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"another generic type"</span>,oCalc.<span class="f">Sorted</span>().Count,<span class="n">2</span>)
+oNumbers = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
+oNumbers.<span class="f">Add</span>(<span class="n">4</span>)
+oNumbers.<span class="f">Add</span>(<span class="n">4</span>)
+<span class="f">dnAssert</span>(<span class="s">"new with type arguments"</span>,oNumbers.Count,<span class="n">1</span>)
+oNumbers2 = <span class="k">new</span> <span class="t">SortedSet</span>([ :typeArguments = [<span class="s">"System.String"</span>] ])
+oNumbers2.<span class="f">Add</span>(<span class="s">"b"</span>)
+oNumbers2.<span class="f">Add</span>(<span class="s">"a"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a sorted set of texts"</span>,oNumbers2.Min,<span class="s">"a"</span>)
+<span class="k">try</span>
+	<span class="k">new</span> <span class="t">HashSet</span>([ :capacity = <span class="n">3</span> ])
+	<span class="f">dnAssert</span>(<span class="s">"a generic class needs its type arguments"</span>,<span class="n">1</span>,<span class="n">0</span>)
+<span class="k">catch</span>
+	<span class="f">dnAssert</span>(<span class="s">"a generic class needs its type arguments"</span>,substr(cCatchError,<span class="s">"typeArguments"</span>) &gt; <span class="n">0</span>,<span class="n">1</span>)
+<span class="k">done</span>
+
+<span class="c"># a nested type has a class named after the types around it</span>
+oMemory = oCalc.<span class="f">Remember</span>()
+<span class="f">dnAssert</span>(<span class="s">"nested type, class"</span>,classname(oMemory),<span class="s">"calculatormemory"</span>)
+<span class="f">dnAssert</span>(<span class="s">"nested type, a method"</span>,oMemory.<span class="f">Label</span>(),<span class="s">"stored 30"</span>)
+oMemory2 = <span class="k">new</span> <span class="t">CalculatorMemory</span>()
+oMemory2.Stored = <span class="n">2</span>
+<span class="f">dnAssert</span>(<span class="s">"nested type, new"</span>,oMemory2.Stored,<span class="n">2</span>)
+
+<span class="c"># a .NET method called Init is @Init (init is the constructor of a generated class)</span>
+<span class="f">dnAssert</span>(<span class="s">"a method called Init"</span>,oCalc.@Init(<span class="s">"fast"</span>),<span class="s">"init fast"</span>)
+
+<span class="c"># the operators &lt; &gt; of an object that only has IComparable&lt;T&gt;.CompareTo</span>
+oLow = <span class="k">new</span> <span class="t">Rank</span>(<span class="n">1</span>)
+oHigh = <span class="k">new</span> <span class="t">Rank</span>(<span class="n">5</span>)
+bLess = oLow &lt; oHigh
+<span class="f">dnAssert</span>(<span class="s">"a smaller rank with IComparable&lt;T&gt;"</span>,bLess,<span class="n">1</span>)
+bMore = oLow &gt; oHigh
+<span class="f">dnAssert</span>(<span class="s">"not a greater rank"</span>,bMore,<span class="n">0</span>)
+
+<span class="c"># reflection: the arguments of MethodInfo.Invoke are an object[] of doubles, converted to the types of the method that is invoked</span>
+oSquare = <span class="f">dnStatic</span>(<span class="s">"System.Type"</span>,<span class="s">"GetType"</span>,[<span class="s">"MyCompany.Tools.Calculator, UserLib"</span>]).<span class="f">callMethod</span>(<span class="s">"GetMethod"</span>,[<span class="s">"Square"</span>])
+<span class="f">dnAssert</span>(<span class="s">"MethodInfo.Invoke with an int parameter"</span>,oSquare.<span class="f">callMethod</span>(<span class="s">"Invoke"</span>,[<span class="f">dnNull</span>(),[<span class="n">7</span>]]),<span class="n">49</span>)
+
+<span class="c"># a params array: a plain list, a single value (see below), or left out (it is empty)</span>
+<span class="f">dnAssert</span>(<span class="s">"a params array is a list"</span>,<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.Calculator"</span>,<span class="s">"Join"</span>,[<span class="s">"-"</span>,[<span class="s">"a"</span>,<span class="s">"b"</span>,<span class="s">"c"</span>]]),<span class="s">"a-b-c"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a params array that is left out is empty"</span>,<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.Calculator"</span>,<span class="s">"Join"</span>,[<span class="s">"-"</span>]),<span class="s">""</span>)
+
+<span class="c"># an indexer with several indexes takes them as a list; the one with a single index keeps its plain form</span>
+oGrid = <span class="k">new</span> <span class="t">Grid</span>()
+oGrid.<span class="f">SetItem</span>([<span class="n">1</span>,<span class="n">2</span>],<span class="n">4.5</span>)
+<span class="f">dnAssert</span>(<span class="s">"indexer with two indexes"</span>,oGrid.<span class="f">Item</span>([<span class="n">1</span>,<span class="n">2</span>]),<span class="n">4.5</span>)
+<span class="f">dnAssert</span>(<span class="s">"indexer with two indexes, another cell"</span>,oGrid.<span class="f">Item</span>([<span class="n">0</span>,<span class="n">0</span>]),<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"indexer with three indexes (a read-only one)"</span>,oGrid.<span class="f">Item</span>([<span class="s">"a"</span>,<span class="s">"b"</span>,<span class="s">"c"</span>]),<span class="s">"abc"</span>)
+oGrid.<span class="f">SetItem</span>(<span class="n">1</span>,<span class="s">"z"</span>)
+<span class="f">dnAssert</span>(<span class="s">"indexer with one index next to the others"</span>,oGrid.<span class="f">Item</span>(<span class="n">1</span>),<span class="s">"z"</span>)
+<span class="f">dnAssert</span>(<span class="s">"indexer with several indexes and no other"</span>,<span class="k">new</span> <span class="t">Table2</span>().<span class="f">Item</span>([<span class="n">3</span>,<span class="n">4</span>]),<span class="n">34</span>)
+<span class="k">try</span>
+	<span class="k">new</span> <span class="t">Table2</span>().<span class="f">Item</span>(<span class="n">5</span>)
+	<span class="f">dnAssert</span>(<span class="s">"a plain index for a multi-index only type"</span>,<span class="n">1</span>,<span class="n">0</span>)
+<span class="k">catch</span>
+	<span class="f">dnAssert</span>(<span class="s">"a plain index for a multi-index only type"</span>,substr(cCatchError,<span class="s">"as a list"</span>) &gt; <span class="n">0</span>,<span class="n">1</span>)
+<span class="k">done</span>
+
+<span class="c"># a generic type that no simple type closes has a class too</span>
+oFluent = <span class="k">new</span> <span class="t">Fluent</span>([ :typeArguments = [<span class="s">"MyCompany.Tools.FluentText"</span>] ])
+oFluent.<span class="f">Hit</span>()
+oFluent.<span class="f">Hit</span>()
+<span class="f">dnAssert</span>(<span class="s">"open generic definition, a method"</span>,oFluent.Hits,<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"open generic definition, a call chain"</span>,oFluent.<span class="f">Hit</span>().<span class="f">Hit</span>().Hits,<span class="n">4</span>)
+
+<span class="c"># the generated method takes the type arguments in the named form</span>
+<span class="f">dnAssert</span>(<span class="s">"generated method, type arguments"</span>,oCalc.<span class="f">Parse</span>([ :typeArguments = [<span class="s">"System.Int32"</span>], :text = <span class="s">"12"</span> ]),<span class="n">12</span>)
+<span class="f">dnAssert</span>(<span class="s">"generated method, no arguments"</span>,oCalc.<span class="f">Create</span>([ :typeArguments = [<span class="s">"System.Text.StringBuilder"</span>] ]).<span class="f">typeName</span>(),<span class="s">"System.Text.StringBuilder"</span>)
+<span class="k">try</span>
+	oCalc.<span class="f">callGeneric</span>(<span class="s">"Parse"</span>,[<span class="s">"System.Int32"</span>,<span class="s">"System.Int32"</span>],[<span class="s">"1"</span>])
+	<span class="f">dnAssert</span>(<span class="s">"two type arguments for one"</span>,<span class="n">1</span>,<span class="n">0</span>)
+<span class="k">catch</span>
+	<span class="f">dnAssert</span>(<span class="s">"two type arguments for one"</span>,substr(cCatchError,<span class="s">"No public generic method"</span>) &gt; <span class="n">0</span>,<span class="n">1</span>)
+<span class="k">done</span>
+
+nEvents = <span class="n">0</span>
+oCalc.<span class="f">setChangedEvent</span>(<span class="s">"nEvents++"</span>)
+oCalc.<span class="f">Add</span>(<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"user event"</span>,nEvents,<span class="n">1</span>)
+
+<span class="c"># extension methods are methods of the class of the type that they extend</span>
+<span class="f">dnAssert</span>(<span class="s">"an extension method"</span>,oCalc.<span class="f">Shout</span>(<span class="s">"!"</span>),<span class="s">"MINE!"</span>)
+<span class="f">dnAssert</span>(<span class="s">"an extension method with the name of a method of the class"</span>,oCalc.<span class="f">Describe</span>(<span class="s">"Total is {0}"</span>),<span class="s">"Total is 31"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the method of the class with that name still works"</span>,oCalc.<span class="f">Describe</span>([ :level = <span class="s">"High"</span>, :prefix = <span class="s">"Sum"</span> ]),<span class="s">"Sum=31 (High)"</span>)
+
+<span class="c"># a class of the assembly with the name of a class of the library gets the prefix of its namespace, and both work in one program</span>
+<span class="f">dnAssert</span>(<span class="s">"a class named like a class of the library is renamed"</span>,<span class="k">new</span> <span class="t">ToolsVersion</span>().Text,<span class="s">"user version"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the class of the library has its own name"</span>,<span class="k">new</span> <span class="t">Version</span>(<span class="s">"1.2.3"</span>).Major,<span class="n">1</span>)
+
+<span class="c"># methods that a non-public class implements explicitly are found through its public interfaces</span>
+oGetter = <span class="k">new</span> <span class="t">Hiding</span>().<span class="f">NewGetter</span>()
+<span class="f">dnAssert</span>(<span class="s">"a method of an explicit interface implementation"</span>,oGetter.<span class="f">Fetch</span>(<span class="s">"key"</span>),<span class="s">"key!"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the same with named parameters"</span>,oGetter.<span class="f">Join</span>([ :first = <span class="s">"a"</span>, :second = <span class="s">"b"</span> ]),<span class="s">"a+b"</span>)
+
+<span class="c"># a parameter of the type System.Enum does not say which enum it is: the text gives the full name of the member</span>
+<span class="f">dnAssert</span>(<span class="s">"a System.Enum parameter takes the full name of an enum member"</span>,<span class="k">new</span> <span class="t">Calculator</span>().<span class="f">EnumName</span>(<span class="s">"MyCompany.Tools.Level.High"</span>),<span class="s">"Level.High"</span>)
+
+<span class="c"># a class that is not public comes back as the interface named after it (IBox), and an interface has the members of the interfaces it inherits</span>
+oBox = <span class="k">new</span> <span class="t">Shapes</span>().<span class="f">NewBox</span>(<span class="n">3</span>)
+<span class="f">dnAssert</span>(<span class="s">"a non-public class is wrapped as the interface named after it"</span>,classname(oBox),<span class="s">"ibox"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a member of the interface itself"</span>,oBox.Side,<span class="n">3</span>)
+<span class="f">dnAssert</span>(<span class="s">"a method inherited from another interface"</span>,oBox.<span class="f">Area</span>(),<span class="n">9</span>)
+<span class="f">dnAssert</span>(<span class="s">"a property inherited from another interface"</span>,oBox.Name,<span class="s">"box"</span>)
+oBox.Name = <span class="s">"big"</span>
+<span class="f">dnAssert</span>(<span class="s">"an inherited property can be set"</span>,oBox.Name,<span class="s">"big"</span>)
+
+<span class="c"># an extension method of an interface is a method of the classes that implement it and of the interfaces that inherit it</span>
+<span class="f">dnAssert</span>(<span class="s">"a class gets the extension methods of its interface"</span>,<span class="k">new</span> <span class="t">Circle</span>().<span class="f">Label</span>(<span class="s">"a "</span>),<span class="s">"a circle"</span>)
+<span class="f">dnAssert</span>(<span class="s">"an interface gets the extension methods of the interface it inherits"</span>,oBox.<span class="f">Label</span>(<span class="s">"a "</span>),<span class="s">"a big"</span>)
+
+oCounter = <span class="k">new</span> <span class="t">Counter</span>()
+oCounter.<span class="f">Increment</span>()
+oCounter.<span class="f">Increment</span>()
+oCounter.<span class="f">Add</span>(<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"derived class property"</span>,oCounter.Count,<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"inherited method"</span>,oCounter.Total,<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"objects come back as the derived class"</span>,classname(oCalc.<span class="f">Add</span>(<span class="n">0</span>)),<span class="s">"calculator"</span>)
+
+<span class="c"># an extension method that takes its struct by reference (this in S): found on the object, and the answer is the value</span>
+oMoney = <span class="k">new</span> <span class="t">Money</span>().@<span class="k">New</span>(<span class="n">1234</span>)
+<span class="f">dnAssert</span>(<span class="s">"an extension of a struct taken by reference"</span>,oMoney.<span class="f">Show</span>(<span class="s">"$"</span>),<span class="s">"$12.34"</span>)
+<span class="f">dnAssert</span>(<span class="s">"and one that returns a struct"</span>,oMoney.<span class="f">Doubled</span>().Cents,<span class="n">2468</span>)
+
+<span class="c"># one object for a params array of an interface type is an array of one item</span>
+<span class="f">dnAssert</span>(<span class="s">"a single object for a params array"</span>,<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.ParamsTools"</span>,<span class="s">"CountShapes"</span>,[<span class="s">"x"</span>,<span class="k">new</span> <span class="t">Circle</span>()]),<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"a list for a params array"</span>,<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.ParamsTools"</span>,<span class="s">"CountShapes"</span>,[<span class="s">"x"</span>,[<span class="k">new</span> <span class="t">Circle</span>(),<span class="k">new</span> <span class="t">Circle</span>()]]),<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"no objects for a params array"</span>,<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.ParamsTools"</span>,<span class="s">"CountShapes"</span>,[<span class="s">"x"</span>]),<span class="n">0</span>)
+
+<span class="c"># a delegate type with extension methods has a class: the methods are called on the object</span>
+oIncrement = <span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.DelegateFactory"</span>,<span class="s">"Increment"</span>,[])
+<span class="f">dnAssert</span>(<span class="s">"a delegate object is called"</span>,oIncrement.<span class="f">Invoke</span>(<span class="n">5</span>),<span class="n">6</span>)
+<span class="f">dnAssert</span>(<span class="s">"an extension method of a delegate"</span>,oIncrement.<span class="f">Twice</span>().<span class="f">Invoke</span>(<span class="n">5</span>),<span class="n">7</span>)
+<span class="f">dnAssert</span>(<span class="s">"a chain of them"</span>,oIncrement.<span class="f">Twice</span>().<span class="f">Plus</span>(<span class="n">10</span>).<span class="f">Invoke</span>(<span class="n">0</span>),<span class="n">12</span>)
+oExclaim = <span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.DelegateFactory"</span>,<span class="s">"Exclaim"</span>,[])
+<span class="f">dnAssert</span>(<span class="s">"a generic delegate"</span>,oExclaim.<span class="f">Repeat</span>(<span class="n">3</span>).<span class="f">Invoke</span>(<span class="s">"hi"</span>),<span class="s">"hi!!!"</span>)
+
+<span class="c"># dnIsNull: true for the .NET null, false for every other value</span>
+<span class="f">dnAssert</span>(<span class="s">"a method that returns null"</span>,<span class="f">dnIsNull</span>(<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.ParamsTools"</span>,<span class="s">"NoShape"</span>,[])),<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"the null of dnNull"</span>,<span class="f">dnIsNull</span>(<span class="f">dnNull</span>()),<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"an object that is not null"</span>,<span class="f">dnIsNull</span>(<span class="k">new</span> <span class="t">Circle</span>()),<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"a number"</span>,<span class="f">dnIsNull</span>(<span class="n">5</span>),<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"a text"</span>,<span class="f">dnIsNull</span>(<span class="s">"x"</span>),<span class="n">0</span>)
+<span class="f">dnAssert</span>(<span class="s">"a list"</span>,<span class="f">dnIsNull</span>([<span class="n">1</span>,<span class="n">2</span>]),<span class="n">0</span>)
+
+nFail = <span class="f">dnTestSummary</span>()</code></pre></div></details>
+<h2 id="nuget-packages">NuGet packages<a class="anchor" href="#nuget-packages">#</a></h2>
+<p>A NuGet package is a set of DLL files. Let the .NET SDK collect them: a project file with a <code>PackageReference</code> and <code>dotnet publish -o libs</code> copy the package and the DLLs it depends on into one folder. Then wrap and load as above:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring wrapassembly.ring libs/Newtonsoft.Json.dll ../../json</code></pre></div>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnLoad</span>(<span class="s">"libs/Newtonsoft.Json.dll"</span>)
+<span class="f">dnImportFrom</span>(<span class="s">"json/"</span>,<span class="s">"Newtonsoft.Json.Linq"</span>)      <span class="c"># a namespace that needs another namespace of the same DLL loads it from the same folder</span>
+<span class="f">dnImportFrom</span>(<span class="s">"json/"</span>,<span class="s">"Newtonsoft.Json"</span>)</code></pre></div>
+<p>The tutorial <a href="tut-162-nuget.html">A NuGet package</a> walks through this with a real package.</p>
+<p>A package often needs other DLLs and, sometimes, native libraries. <code>dotnet publish</code> copies both: the native libraries are in <code>runtimes/&lt;system&gt;-&lt;architecture&gt;/native</code> next to the DLL, and the bridge finds them there. The lessons from <a href="tut-162-nuget.html">A NuGet package</a> on use real packages: <a href="tut-165-qr.html">A QR code</a>, <a href="tut-167-excel.html">Excel files</a>, <a href="tut-168-pictures.html">Pictures on every system</a>, <a href="tut-169-pdf.html">PDF files</a>, <a href="tut-170-speech.html">Text to speech</a>, and <a href="tut-171-csv-to-excel.html">a project with three packages</a>.</p>
+<p>A class of your assembly that derives from a class of a package (<code>PersonValidator : AbstractValidator&lt;Person&gt;</code>) derives from its Ring class when the package was wrapped into the same folder <strong>before</strong> your assembly, so it has the methods of the base class, and the extension methods of the interfaces that the base class implements (<code>oValidator.ValidateAndThrow(oPerson)</code>). Its loader loads the namespace of the base class first.</p>
+<p>Two DLLs of one program can share the output folder: a class of the second one that has the name of a class that is already in the folder gets the prefix of its namespace (<code>Spectre.Console</code> and <code>Spectre.Console.Testing</code> both have a <code>StringExtensions</code>; the second is <code>TestingStringExtensions</code>). Two DLLs that have the same namespace need folders of their own, or only one of them wrapped: a DLL whose classes you do not call (an extension method that you call by <code>dnRequest</code>) only needs <code>dnLoad</code>.</p>
+<p>A package of a namespace that the library already has (<code>Microsoft.Extensions.DependencyInjection</code>, <code>Microsoft.Extensions.Configuration</code>: the NuGet DLLs are newer builds of the ASP.NET Core ones) is only loaded with <code>dnLoad</code>: the classes of the library wrap its objects, and wrapping the namespace again would define the same classes twice. Make its objects with <code>dnNew("Namespace.Type",[...])</code> and call its extension methods with <code>dnRequest("call",[dnType("Namespace.StaticClass"),"Method",...])</code> or <code>callGeneric</code>.</p>
+<p>Entity Framework Core is wrapped the same way — that is how its classes were generated.</p>
+<h2 id="extension-methods">Extension methods<a class="anchor" href="#extension-methods">#</a></h2>
+<p>An extension method of a type that is wrapped in the same run is a method of the Ring class of that type, so a fluent API reads as it does in C#:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oTable = <span class="k">new</span> <span class="t">Table</span>()
+oTable.<span class="f">AddColumn</span>(<span class="s">"Name"</span>)            <span class="c"># TableExtensions.AddColumn(oTable, "Name")</span>
+oTable.<span class="f">AddRow</span>([<span class="s">"Ann"</span>,<span class="s">"31"</span>])</code></pre></div>
+<p>The classes that implement an interface get the extension methods of the interface. <code>wrapassembly.ring</code> wraps one assembly at a time, so the extension methods of a type of <strong>another</strong> assembly (a sink of Serilog that extends a class of Serilog itself), and of a type that has no class (a generic type, <code>string</code>), are static calls (<code>new StringHumanizeExtensions().Humanize("PascalCaseText")</code>) or a <code>callMethod</code> on the object (<code>oNode.callMethod("QuerySelectorAll",["li"])</code>, the selectors of Fizzler on a node of HtmlAgilityPack).</p>
+<h2 id="which-namespaces-to-wrap">Which namespaces to wrap<a class="anchor" href="#which-namespaces-to-wrap">#</a></h2>
+<p><code>wrapassembly.ring &lt;dll&gt; &lt;folder&gt; [namespace ...]</code> wraps only the namespaces you list. Without names, every namespace of the assembly is wrapped.</p>
+<p>Several assemblies can go into one folder (the index of the classes keeps the types of all of them when each one is wrapped without names), or each one into a folder of its own, as the project lesson does for its three packages. An object that comes back from a namespace that was not imported is wrapped when the folder has the index: its namespace is loaded from that folder.</p>
+<h2 id="rules">Rules<a class="anchor" href="#rules">#</a></h2>
+<ul><li>Generated loaders use the names of the .NET classes. When a class name is also the name of a class of the library, or of another namespace of the same assembly, the generator adds the prefix of its namespace (<code>CoreVersion</code>) and lists the renames — see <a href="generator.html">Class generator</a>.</li><li>Keep the DLL and its dependencies in one folder: assemblies are resolved next to the DLL you load.</li><li>The runtime mode matters: a DLL that needs Windows Forms requires the desktop mode first (a <code>using</code> block that names <code>System.Windows.Forms</code>, or <code>dnUseDesktop()</code>).</li></ul>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="generator.html">Class generator</a>: how the wrapper classes are made, and how to make more.</li><li>The tutorial chapter <a href="tutorials.html#libraries-and-packages">Libraries and packages</a>.</li></ul>
+<div class="pager"><a href="ef-reference.html"><small>Previous</small>Entity Framework reference</a><a class="next" href="generator.html"><small>Next</small>Class generator</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

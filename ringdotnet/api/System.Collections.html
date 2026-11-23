@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Collections · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Collections</h1>
+<p class="lead">24 wrapped types. Load them with <code>using { "System.Collections" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-ArrayList">ArrayList</a> <a href="#c-BitArray">BitArray</a> <a href="#c-CaseInsensitiveComparer">CaseInsensitiveComparer</a> <a href="#c-CollectionBase">CollectionBase</a> <a href="#c-Comparer">Comparer</a> <a href="#c-DictionaryBase">DictionaryBase</a> <a href="#c-DictionaryEntry">DictionaryEntry</a> <a href="#c-Hashtable">Hashtable</a> <a href="#c-ICollection">ICollection</a> <a href="#c-IComparer">IComparer</a> <a href="#c-IDictionary">IDictionary</a> <a href="#c-IDictionaryEnumerator">IDictionaryEnumerator</a> <a href="#c-IEnumerable">IEnumerable</a> <a href="#c-IEnumerator">IEnumerator</a> <a href="#c-IEqualityComparer">IEqualityComparer</a> <a href="#c-IList">IList</a> <a href="#c-IStructuralComparable">IStructuralComparable</a> <a href="#c-IStructuralEquatable">IStructuralEquatable</a> <a href="#c-ListDictionaryInternal">ListDictionaryInternal</a> <a href="#c-Queue">Queue</a> <a href="#c-ReadOnlyCollectionBase">ReadOnlyCollectionBase</a> <a href="#c-SortedList">SortedList</a> <a href="#c-Stack">Stack</a> <a href="#c-StructuralComparisons">StructuralComparisons</a></div><details class="cls" id="c-ArrayList"><summary><b>ArrayList</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.ArrayList</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ArrayList()</code></td></tr><tr><td><code>new ArrayList(int capacity)</code></td></tr><tr><td><code>new ArrayList(ICollection c)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ArrayList(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ArrayList().@New([ :param = value ])</code> or <code>dnNew("ArrayList",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Capacity</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Capacity</code> <code>o.Capacity = v</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>object</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Adapter</code></td><td><code>Adapter(p1)</code></td><td><code>static ArrayList Adapter(IList list)</code></td></tr><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(object value)</code></td></tr><tr><td><code>AddRange</code></td><td><code>AddRange(p1)</code></td><td><code>void AddRange(ICollection c)</code></td></tr><tr><td><code>BinarySearch</code></td><td><code>BinarySearch(value)</code><br><code>BinarySearch([ :value = … ])</code><br><code>BinarySearch([ :value = …, :comparer = … ])</code><br><code>BinarySearch([ :index = …, :count = …, :value = …, :comparer = … ])</code></td><td><code>int BinarySearch(int index, int count, object value, IComparer comparer)</code><br><code>int BinarySearch(object value)</code><br><code>int BinarySearch(object value, IComparer comparer)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object item)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(value)</code><br><code>CopyTo([ :array = … ])</code><br><code>CopyTo([ :array = …, :arrayIndex = … ])</code><br><code>CopyTo([ :index = …, :array = …, :arrayIndex = …, :count = … ])</code></td><td><code>void CopyTo(Array array)</code><br><code>void CopyTo(Array array, int arrayIndex)</code><br><code>void CopyTo(int index, Array array, int arrayIndex, int count)</code></td></tr><tr><td><code>FixedSize</code></td><td><code>FixedSize(p1)</code></td><td><code>static IList FixedSize(IList list)</code><br><code>static ArrayList FixedSize(ArrayList list)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator(NULL)</code><br><code>GetEnumerator([ :index = …, :count = … ])</code></td><td><code>IEnumerator GetEnumerator()</code><br><code>IEnumerator GetEnumerator(int index, int count)</code></td></tr><tr><td><code>GetRange</code></td><td><code>GetRange(p1,p2)</code></td><td><code>ArrayList GetRange(int index, int count)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(value)</code><br><code>IndexOf([ :value = … ])</code><br><code>IndexOf([ :value = …, :startIndex = … ])</code><br><code>IndexOf([ :value = …, :startIndex = …, :count = … ])</code></td><td><code>int IndexOf(object value)</code><br><code>int IndexOf(object value, int startIndex)</code><br><code>int IndexOf(object value, int startIndex, int count)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, object value)</code></td></tr><tr><td><code>InsertRange</code></td><td><code>InsertRange(p1,p2)</code></td><td><code>void InsertRange(int index, ICollection c)</code></td></tr><tr><td><code>LastIndexOf</code></td><td><code>LastIndexOf(value)</code><br><code>LastIndexOf([ :value = … ])</code><br><code>LastIndexOf([ :value = …, :startIndex = … ])</code><br><code>LastIndexOf([ :value = …, :startIndex = …, :count = … ])</code></td><td><code>int LastIndexOf(object value)</code><br><code>int LastIndexOf(object value, int startIndex)</code><br><code>int LastIndexOf(object value, int startIndex, int count)</code></td></tr><tr><td><code>ReadOnly</code></td><td><code>ReadOnly(p1)</code></td><td><code>static IList ReadOnly(IList list)</code><br><code>static ArrayList ReadOnly(ArrayList list)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object obj)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr><tr><td><code>RemoveRange</code></td><td><code>RemoveRange(p1,p2)</code></td><td><code>void RemoveRange(int index, int count)</code></td></tr><tr><td><code>Repeat</code></td><td><code>Repeat(p1,p2)</code></td><td><code>static ArrayList Repeat(object value, int count)</code></td></tr><tr><td><code>Reverse</code></td><td><code>Reverse(NULL)</code><br><code>Reverse([ :index = …, :count = … ])</code></td><td><code>void Reverse()</code><br><code>void Reverse(int index, int count)</code></td></tr><tr><td><code>SetRange</code></td><td><code>SetRange(p1,p2)</code></td><td><code>void SetRange(int index, ICollection c)</code></td></tr><tr><td><code>Sort</code></td><td><code>Sort(NULL)</code><br><code>Sort(value)</code><br><code>Sort([ :comparer = … ])</code><br><code>Sort([ :index = …, :count = …, :comparer = … ])</code></td><td><code>void Sort()</code><br><code>void Sort(IComparer comparer)</code><br><code>void Sort(int index, int count, IComparer comparer)</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static IList Synchronized(IList list)</code><br><code>static ArrayList Synchronized(ArrayList list)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray(NULL)</code><br><code>ToArray(value)</code><br><code>ToArray([ :type = … ])</code></td><td><code>object[] ToArray()</code><br><code>Array ToArray(Type type)</code></td></tr><tr><td><code>TrimToSize</code></td><td><code>TrimToSize()</code></td><td><code>void TrimToSize()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-BitArray"><summary><b>BitArray</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.BitArray</code> · assembly <code>System.Collections</code></p>
+<p class="muted">Implements: ICollection, IEnumerable, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BitArray(int length)</code></td></tr><tr><td><code>new BitArray(int length, bool defaultValue)</code></td></tr><tr><td><code>new BitArray(byte[] bytes)</code></td></tr><tr><td><code>new BitArray(bool[] values)</code></td></tr><tr><td><code>new BitArray(int[] values)</code></td></tr><tr><td><code>new BitArray(BitArray bits)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BitArray(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BitArray().@New([ :param = value ])</code> or <code>dnNew("BitArray",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Length</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Length</code> <code>o.Length = v</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>bool</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>And</code></td><td><code>@And(p1)</code></td><td><code>BitArray And(BitArray value)</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr><tr><td><code>Get</code></td><td><code>@Get(p1)</code></td><td><code>bool Get(int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr><tr><td><code>HasAllSet</code></td><td><code>HasAllSet()</code></td><td><code>bool HasAllSet()</code></td></tr><tr><td><code>HasAnySet</code></td><td><code>HasAnySet()</code></td><td><code>bool HasAnySet()</code></td></tr><tr><td><code>LeftShift</code></td><td><code>LeftShift(p1)</code></td><td><code>BitArray LeftShift(int count)</code></td></tr><tr><td><code>Not</code></td><td><code>@Not()</code></td><td><code>BitArray Not()</code></td></tr><tr><td><code>Or</code></td><td><code>@Or(p1)</code></td><td><code>BitArray Or(BitArray value)</code></td></tr><tr><td><code>RightShift</code></td><td><code>RightShift(p1)</code></td><td><code>BitArray RightShift(int count)</code></td></tr><tr><td><code>Set</code></td><td><code>Set(p1,p2)</code></td><td><code>void Set(int index, bool value)</code></td></tr><tr><td><code>SetAll</code></td><td><code>SetAll(p1)</code></td><td><code>void SetAll(bool value)</code></td></tr><tr><td><code>Xor</code></td><td><code>Xor(p1)</code></td><td><code>BitArray Xor(BitArray value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CaseInsensitiveComparer"><summary><b>CaseInsensitiveComparer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.CaseInsensitiveComparer</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: IComparer</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CaseInsensitiveComparer()</code></td></tr><tr><td><code>new CaseInsensitiveComparer(CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CaseInsensitiveComparer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CaseInsensitiveComparer().@New([ :param = value ])</code> or <code>dnNew("CaseInsensitiveComparer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Default</code></td><td><code>CaseInsensitiveComparer</code></td><td>read · static</td><td><code>o.Default</code></td></tr><tr><td><code>DefaultInvariant</code></td><td><code>CaseInsensitiveComparer</code></td><td>read · static</td><td><code>o.DefaultInvariant</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Compare</code></td><td><code>Compare(p1,p2)</code></td><td><code>int Compare(object a, object b)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CollectionBase"><summary><b>CollectionBase</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.CollectionBase</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Capacity</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Capacity</code> <code>o.Capacity = v</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Comparer"><summary><b>Comparer</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Comparer</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IComparer, ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Comparer(CultureInfo culture)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Comparer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Comparer().@New([ :param = value ])</code> or <code>dnNew("Comparer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Default</code></td><td><code>Comparer</code></td><td>read · static</td><td><code>o.Default</code></td></tr><tr><td><code>DefaultInvariant</code></td><td><code>Comparer</code></td><td>read · static</td><td><code>o.DefaultInvariant</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Compare</code></td><td><code>Compare(p1,p2)</code></td><td><code>int Compare(object a, object b)</code></td></tr><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DictionaryBase"><summary><b>DictionaryBase</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.DictionaryBase</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: IDictionary, ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DictionaryEntry"><summary><b>DictionaryEntry</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.DictionaryEntry</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DictionaryEntry(object key, object value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DictionaryEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DictionaryEntry().@New([ :param = value ])</code> or <code>dnNew("DictionaryEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Key</code></td><td><code>object</code></td><td>read, write</td><td><code>o.Key</code> <code>o.Key = v</code></td></tr><tr><td><code>Value</code></td><td><code>object</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Deconstruct</code></td><td><code>Deconstruct()</code></td><td><code>void Deconstruct(out object key, out object value)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Hashtable"><summary><b>Hashtable</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Hashtable</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDictionary, ICollection, IEnumerable, ISerializable, IDeserializationCallback, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Hashtable()</code></td></tr><tr><td><code>new Hashtable(int capacity)</code></td></tr><tr><td><code>new Hashtable(int capacity, float loadFactor)</code></td></tr><tr><td><code>new Hashtable(int capacity, float loadFactor, IEqualityComparer equalityComparer)</code></td></tr><tr><td><code>new Hashtable(IHashCodeProvider hcp, IComparer comparer)</code></td></tr><tr><td><code>new Hashtable(IEqualityComparer equalityComparer)</code></td></tr><tr><td><code>new Hashtable(int capacity, IHashCodeProvider hcp, IComparer comparer)</code></td></tr><tr><td><code>new Hashtable(int capacity, IEqualityComparer equalityComparer)</code></td></tr><tr><td><code>new Hashtable(IDictionary d)</code></td></tr><tr><td><code>new Hashtable(IDictionary d, float loadFactor)</code></td></tr><tr><td><code>new Hashtable(IDictionary d, IHashCodeProvider hcp, IComparer comparer)</code></td></tr><tr><td><code>new Hashtable(IDictionary d, IEqualityComparer equalityComparer)</code></td></tr><tr><td><code>new Hashtable(int capacity, float loadFactor, IHashCodeProvider hcp, IComparer comparer)</code></td></tr><tr><td><code>new Hashtable(IDictionary d, float loadFactor, IHashCodeProvider hcp, IComparer comparer)</code></td></tr><tr><td><code>new Hashtable(IDictionary d, float loadFactor, IEqualityComparer equalityComparer)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Hashtable(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Hashtable().@New([ :param = value ])</code> or <code>dnNew("Hashtable",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(object key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(object key, object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object key)</code></td></tr><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(object key)</code></td></tr><tr><td><code>ContainsValue</code></td><td><code>ContainsValue(p1)</code></td><td><code>bool ContainsValue(object value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int arrayIndex)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr><tr><td><code>OnDeserialization</code></td><td><code>OnDeserialization(p1)</code></td><td><code>void OnDeserialization(object sender)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object key)</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static Hashtable Synchronized(Hashtable table)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICollection"><summary><b>ICollection</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.ICollection</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IComparer"><summary><b>IComparer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IComparer</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Compare</code></td><td><code>Compare(p1,p2)</code></td><td><code>int Compare(object x, object y)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDictionary"><summary><b>IDictionary</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IDictionary</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Keys</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(object key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(object key, object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object key)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDictionaryEnumerator"><summary><b>IDictionaryEnumerator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IDictionaryEnumerator</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IEnumerator</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Key</code></td><td><code>object</code></td><td>read</td><td><code>o.Key</code></td></tr><tr><td><code>Value</code></td><td><code>object</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>Entry</code></td><td><code>DictionaryEntry</code></td><td>read</td><td><code>o.Entry</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEnumerable"><summary><b>IEnumerable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IEnumerable</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEnumerator"><summary><b>IEnumerator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IEnumerator</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>object</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEqualityComparer"><summary><b>IEqualityComparer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IEqualityComparer</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1,p2)</code></td><td><code>bool Equals(object x, object y)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode(p1)</code></td><td><code>int GetHashCode(object obj)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IList"><summary><b>IList</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IList</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>object</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object value)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(object value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, object value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IStructuralComparable"><summary><b>IStructuralComparable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IStructuralComparable</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CompareTo</code></td><td><code>CompareTo(p1,p2)</code></td><td><code>int CompareTo(object other, IComparer comparer)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IStructuralEquatable"><summary><b>IStructuralEquatable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.IStructuralEquatable</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1,p2)</code></td><td><code>bool Equals(object other, IEqualityComparer comparer)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode(p1)</code></td><td><code>int GetHashCode(IEqualityComparer comparer)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ListDictionaryInternal"><summary><b>ListDictionaryInternal</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.ListDictionaryInternal</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDictionary, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ListDictionaryInternal()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ListDictionaryInternal(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ListDictionaryInternal().@New([ :param = value ])</code> or <code>dnNew("ListDictionaryInternal",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(object key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(object key, object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object key)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Queue"><summary><b>Queue</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Queue</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: ICollection, IEnumerable, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Queue()</code></td></tr><tr><td><code>new Queue(int capacity)</code></td></tr><tr><td><code>new Queue(int capacity, float growFactor)</code></td></tr><tr><td><code>new Queue(ICollection col)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Queue(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Queue().@New([ :param = value ])</code> or <code>dnNew("Queue",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object obj)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr><tr><td><code>Dequeue</code></td><td><code>Dequeue()</code></td><td><code>object Dequeue()</code></td></tr><tr><td><code>Enqueue</code></td><td><code>Enqueue(p1)</code></td><td><code>void Enqueue(object obj)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr><tr><td><code>Peek</code></td><td><code>Peek()</code></td><td><code>object Peek()</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static Queue Synchronized(Queue queue)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr><tr><td><code>TrimToSize</code></td><td><code>TrimToSize()</code></td><td><code>void TrimToSize()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ReadOnlyCollectionBase"><summary><b>ReadOnlyCollectionBase</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.ReadOnlyCollectionBase</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SortedList"><summary><b>SortedList</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.SortedList</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: IDictionary, ICollection, IEnumerable, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SortedList()</code></td></tr><tr><td><code>new SortedList(int initialCapacity)</code></td></tr><tr><td><code>new SortedList(IComparer comparer)</code></td></tr><tr><td><code>new SortedList(IComparer comparer, int capacity)</code></td></tr><tr><td><code>new SortedList(IDictionary d)</code></td></tr><tr><td><code>new SortedList(IDictionary d, IComparer comparer)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SortedList(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SortedList().@New([ :param = value ])</code> or <code>dnNew("SortedList",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Capacity</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Capacity</code> <code>o.Capacity = v</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>Keys</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Values</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>IsFixedSize</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFixedSize</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(object key)</code> → <code>object</code> · <code>o.SetItem(key,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(object key, object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object key)</code></td></tr><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(object key)</code></td></tr><tr><td><code>ContainsValue</code></td><td><code>ContainsValue(p1)</code></td><td><code>bool ContainsValue(object value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int arrayIndex)</code></td></tr><tr><td><code>GetByIndex</code></td><td><code>GetByIndex(p1)</code></td><td><code>object GetByIndex(int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr><tr><td><code>GetKey</code></td><td><code>GetKey(p1)</code></td><td><code>object GetKey(int index)</code></td></tr><tr><td><code>GetKeyList</code></td><td><code>GetKeyList()</code></td><td><code>IList GetKeyList()</code></td></tr><tr><td><code>GetValueList</code></td><td><code>GetValueList()</code></td><td><code>IList GetValueList()</code></td></tr><tr><td><code>IndexOfKey</code></td><td><code>IndexOfKey(p1)</code></td><td><code>int IndexOfKey(object key)</code></td></tr><tr><td><code>IndexOfValue</code></td><td><code>IndexOfValue(p1)</code></td><td><code>int IndexOfValue(object value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(object key)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr><tr><td><code>SetByIndex</code></td><td><code>SetByIndex(p1,p2)</code></td><td><code>void SetByIndex(int index, object value)</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static SortedList Synchronized(SortedList list)</code></td></tr><tr><td><code>TrimToSize</code></td><td><code>TrimToSize()</code></td><td><code>void TrimToSize()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Stack"><summary><b>Stack</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.Stack</code> · assembly <code>System.Collections.NonGeneric</code></p>
+<p class="muted">Implements: ICollection, IEnumerable, ICloneable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Stack()</code></td></tr><tr><td><code>new Stack(int initialCapacity)</code></td></tr><tr><td><code>new Stack(ICollection col)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Stack(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Stack().@New([ :param = value ])</code> or <code>dnNew("Stack",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(object obj)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr><tr><td><code>Peek</code></td><td><code>Peek()</code></td><td><code>object Peek()</code></td></tr><tr><td><code>Pop</code></td><td><code>Pop()</code></td><td><code>object Pop()</code></td></tr><tr><td><code>Push</code></td><td><code>Push(p1)</code></td><td><code>void Push(object obj)</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static Stack Synchronized(Stack stack)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>object[] ToArray()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-StructuralComparisons"><summary><b>StructuralComparisons</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Collections.StructuralComparisons</code> · assembly <code>System.Collections</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>StructuralComparer</code></td><td><code>IComparer</code></td><td>read · static</td><td><code>o.StructuralComparer</code></td></tr><tr><td><code>StructuralEqualityComparer</code></td><td><code>IEqualityComparer</code></td><td>read · static</td><td><code>o.StructuralEqualityComparer</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

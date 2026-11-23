@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quick introduction to Ring · RingDotNet</title>
+<meta name="description" content="Ring is small and quick to learn. This page shows everything you need to read the rest of this documentation — values, lists, decisions, functions, classes, errors and files — with programs you can run. No .NET yet.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html" class="cur">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Quick introduction to Ring</h1><p class="lead">Ring is small and quick to learn. This page shows everything you need to read the rest of this documentation — values, lists, decisions, functions, classes, errors and files — with programs you can run. No .NET yet.</p>
+<h2 id="who-this-page-is-for">Who this page is for<a class="anchor" href="#who-this-page-is-for">#</a></h2>
+<p>This is an appendix: the rest of the documentation does not depend on reading it in order. If you already write Ring, go back to <a href="getting-started.html">Getting started</a>. If you come from C#, Python, JavaScript or another language, read this page once: Ring differs from some languages in a few ways, and knowing them helps when you read Ring code and the messages that come from .NET. The five programs are in <code>samples/UsingDotNet/tutorials</code> (<code>ring_basics.ring</code> … <code>ring_errors_files.ring</code>); run one with:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring ring_basics.ring</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This is a quick tour, not the manual. The Ring language documentation (&lt;https://ring-lang.github.io/doc1.28/&gt;) explains everything in depth.</p></div>
+<div class="callout note"><span class="t">Note</span><p><strong>Syntax styles.</strong> Ring allows more than one syntax style for the same program. This documentation uses one of them, the first style: blocks are closed with words (<code>ok</code>, <code>next</code>, <code>end</code>, <code>off</code>) and statements are written one to a line. Ring also allows braces <code>{ }</code> for control structures (<code>if</code>, <code>for</code>, <code>while</code>, <code>switch</code>) and for functions; a program written with braces runs the same way, and you can use the style you prefer in your own programs.</p></div>
+<h2 id="1-values-text-and-numbers">1. Values, text and numbers<a class="anchor" href="#1-values-text-and-numbers">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ring_basics.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Ring in 15 minutes, part 1: values, text, numbers and comparisons (no .NET here: plain Ring)</span>
+
+<span class="c"># 1. A variable needs no declaration and no type; the type belongs to the value. "?" prints a line.</span>
+nCount = <span class="n">3</span>                    <span class="c"># a number</span>
+cName = <span class="s">"Ring"</span>                <span class="c"># a text</span>
+lReady = <span class="k">True</span>                 <span class="c"># a yes/no value: True is 1, False is 0</span>
+? nCount
+? cName
+? lReady
+? type(nCount) + <span class="s">" "</span> + type(cName) + <span class="s">" "</span> + type(lReady)
+
+<span class="c"># 2. All numbers are doubles. Whole numbers print without decimals, others with at most a few.</span>
+? <span class="n">7</span> / <span class="n">2</span>
+? <span class="n">7</span> % <span class="n">2</span>                       <span class="c"># the remainder</span>
+? floor(<span class="n">7</span> / <span class="n">2</span>)                <span class="c"># the whole part</span>
+? <span class="n">2</span> ** <span class="n">10</span>                    <span class="c"># power ("^" is a bit operation in Ring)</span>
+? <span class="n">0.1</span> + <span class="n">0.2</span> = <span class="n">0.3</span>             <span class="c"># 0 (false): binary fractions are inexact</span>
+
+<span class="c"># 3. Text: "+" joins texts. The LEFT side decides: a text on the left joins ("Count: " + 3 is "Count: 3"),</span>
+<span class="c">#    a number on the left adds, and then the text must look like a number.</span>
+cLine = <span class="s">"Count: "</span> + nCount
+? cLine
+? <span class="s">"3"</span> + <span class="n">4</span>                     <span class="c"># joins: 34</span>
+? <span class="n">5</span> + <span class="s">"5"</span>                     <span class="c"># adds: 10</span>
+<span class="k">try</span>
+	? nCount + <span class="s">" items"</span>       <span class="c"># a number on the left: " items" is not a number</span>
+<span class="k">catch</span>
+	? <span class="s">"error: "</span> + substr(cCatchError,<span class="n">15</span>)          <span class="c"># the message without the "Error (R41) : " in front</span>
+<span class="k">done</span>
+? string(nCount) + <span class="s">" items"</span>   <span class="c"># string() makes the number a text first</span>
+
+<span class="c"># 4. Text is a list of bytes: indexes start at 1, len() counts bytes</span>
+cWord = <span class="s">"Hello, Ring!"</span>
+? len(cWord)
+? cWord[<span class="n">1</span>]                    <span class="c"># the first letter</span>
+? left(cWord,<span class="n">5</span>) + <span class="s">"|"</span> + right(cWord,<span class="n">5</span>)
+? substr(cWord,<span class="n">8</span>,<span class="n">4</span>)           <span class="c"># 4 letters from position 8</span>
+? upper(cWord) + <span class="s">" "</span> + lower(cWord)
+? substr(cWord,<span class="s">"Ring"</span>)        <span class="c"># the position of a text inside a text (0: not found)</span>
+? substr(cWord,<span class="s">"Ring"</span>,<span class="s">"World"</span>)    <span class="c"># replace</span>
+? trim(<span class="s">"   padded   "</span>) + <span class="s">"|"</span>
+
+<span class="c"># 5. "=" compares as well as assigns (the context decides); "!=" is different; and / or / not combine tests</span>
+? <span class="n">3</span> = <span class="n">3</span>
+? <span class="s">"abc"</span> = <span class="s">"ABC"</span>               <span class="c"># texts are compared by bytes</span>
+? <span class="n">3</span> != <span class="n">4</span>
+? (<span class="n">3</span> &gt; <span class="n">2</span>) <span class="k">and</span> (<span class="k">not</span> (<span class="n">1</span> &gt; <span class="n">2</span>))
+? nl + <span class="s">"the end"</span>              <span class="c"># nl is a new line</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>3
+Ring
+1
+NUMBER STRING NUMBER
+3.50
+1
+3
+1024
+0
+Count: 3
+34
+10
+error: Invalid numeric string
+3 items
+12
+H
+Hello|Ring!
+Ring
+HELLO, RING! hello, ring!
+8
+Hello, World!
+padded|
+1
+0
+1
+1
+
+the end</code></pre></div>
+<p>What to remember:</p>
+<ul><li><strong>No declarations.</strong> A variable gets its type from the value. A name's first letter is a naming convention (<code>n</code> number, <code>c</code> text, <code>a</code> list, <code>o</code> object, <code>l</code> yes/no); this documentation uses it.</li><li><strong>All numbers are doubles.</strong> <code>7 / 2</code> is <code>3.5</code> (printed as <code>3.50</code>), and a number is exact only up to 2⁵³ (the tutorial <a href="tut-67-bases.html">Number systems and big numbers</a>).</li><li><strong><code>+</code> follows its left side.</strong> <code>"Count: " + 3</code> joins, <code>5 + "5"</code> adds, and <code>3 + " items"</code> is an error. Use <code>string(n)</code> when in doubt.</li><li><strong>Indexes start at 1</strong>, also for text. <code>len()</code> counts bytes (the tutorial <a href="tut-52-unicode.html">Unicode and encodings</a>).</li><li><strong><code>^</code> is a bit operation</strong>; power is <code>**</code> or <code>pow()</code>.</li><li><strong>Comparing text:</strong> <code>=</code> and <code>!=</code> compare text exactly (<code>"Abc"</code> and <code>"abc"</code> are different); <code>&lt;</code> and <code>&gt;</code> compare numbers, so for the order of two texts use <code>strcmp(a, b)</code> (less than 0, 0 or more than 0).</li><li><strong>A text that looks like a number is still a text:</strong> <code>isNumber("12")</code> is false. <code>0 + "12"</code> converts it to 12 and raises an error when the text is not a number (use <code>try</code> and <code>catch</code>).</li><li><strong>Names are not case sensitive, keywords included:</strong> <code>cAll</code> is the keyword <code>call</code> and <code>oR</code> is <code>or</code>, so a variable or a function is not given such a name.</li><li><code>True</code> and <code>False</code> are <code>1</code> and <code>0</code>.</li></ul>
+<h2 id="2-lists">2. Lists<a class="anchor" href="#2-lists">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ring_lists.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Ring in 15 minutes, part 2: lists (the only collection), pairs, nested lists</span>
+
+<span class="c"># 1. A list holds anything. Indexes start at 1. "+" adds an item at the end.</span>
+aNames = [<span class="s">"Ann"</span>,<span class="s">"Bob"</span>,<span class="s">"Cy"</span>]
+aNames + <span class="s">"Dee"</span>
+? len(aNames)
+? aNames[<span class="n">1</span>] + <span class="s">" "</span> + aNames[len(aNames)]
+aNames[<span class="n">2</span>] = <span class="s">"Rob"</span>             <span class="c"># change an item</span>
+? aNames
+
+<span class="c"># 2. Walk a list with for ... in. The item is a copy: change the list by index.</span>
+<span class="k">for</span> cName <span class="k">in</span> aNames
+	? <span class="s">"hello "</span> + cName
+<span class="k">next</span>
+<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> len(aNames)
+	aNames[nIndex] = upper(aNames[nIndex])
+<span class="k">next</span>
+? aNames
+
+<span class="c"># 3. Search, insert, delete, sort</span>
+? find(aNames,<span class="s">"CY"</span>)           <span class="c"># the position (0: not found)</span>
+insert(aNames,<span class="n">0</span>,<span class="s">"First"</span>)      <span class="c"># insert after position 0 = at the start</span>
+del(aNames,<span class="n">2</span>)                 <span class="c"># delete the item at position 2</span>
+? aNames
+aNumbers = [<span class="n">30</span>,<span class="n">5</span>,<span class="n">12</span>,<span class="n">8</span>]
+? sort(aNumbers)              <span class="c"># sort() gives a NEW sorted list; aNumbers itself does not change</span>
+? aNumbers[<span class="n">1</span>]
+? sort([<span class="s">"pear"</span>,<span class="s">"apple"</span>,<span class="s">"fig"</span>])
+
+<span class="c"># 4. A list of [name, value] pairs is Ring's dictionary: a text key reads the value. :name is the text "name".</span>
+aPerson = [ :name = <span class="s">"Ann"</span>, :age = <span class="n">31</span>, :city = <span class="s">"Cairo"</span> ]
+? aPerson[:name]
+? aPerson[:age] + <span class="n">1</span>
+aPerson[:age] = <span class="n">32</span>
+aPerson[:email] = <span class="s">"ann@example.com"</span>    <span class="c"># a new key is added</span>
+? len(aPerson)
+<span class="k">for</span> aPair <span class="k">in</span> aPerson
+	? aPair[<span class="n">1</span>] + <span class="s">" = "</span> + aPair[<span class="n">2</span>]
+<span class="k">next</span>
+? aPerson[:phone]             <span class="c"># a key that is not there reads as "" (it does not raise an error)</span>
+
+<span class="c"># 5. Lists inside lists: a table. aTable[row][column]</span>
+aTable = [ [<span class="s">"Ann"</span>,<span class="n">31</span>], [<span class="s">"Bob"</span>,<span class="n">25</span>], [<span class="s">"Cy"</span>,<span class="n">40</span>] ]
+? aTable[<span class="n">2</span>][<span class="n">1</span>] + <span class="s">" is "</span> + aTable[<span class="n">2</span>][<span class="n">2</span>]
+aTable + [<span class="s">"Dee"</span>,<span class="n">19</span>]
+nTotal = <span class="n">0</span>
+<span class="k">for</span> aRow <span class="k">in</span> aTable
+	nTotal += aRow[<span class="n">2</span>]
+<span class="k">next</span>
+? <span class="s">"total age: "</span> + nTotal
+
+<span class="c"># 6. A list assigned to another variable is COPIED. A list passed to a function is the same list: the function changes the original.</span>
+aCopy = aNumbers
+aCopy[<span class="n">1</span>] = <span class="n">999</span>
+? aNumbers[<span class="n">1</span>]                 <span class="c"># still 30</span>
+addOne(aNumbers)
+? aNumbers[<span class="n">1</span>]                 <span class="c"># 31: the function worked on the original</span>
+
+<span class="k">func</span> <span class="f">addOne</span> aList
+
+	aList[<span class="n">1</span>] = aList[<span class="n">1</span>] + <span class="n">1</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>4
+Ann Dee
+Ann
+Rob
+Cy
+Dee
+
+hello Ann
+hello Rob
+hello Cy
+hello Dee
+ANN
+ROB
+CY
+DEE
+
+3
+First
+ROB
+CY
+DEE
+
+5
+8
+12
+30
+
+30
+apple
+fig
+pear
+
+Ann
+32
+4
+name = Ann
+age = 32
+city = Cairo
+email = ann@example.com
+
+Bob is 25
+total age: 115
+30
+31</code></pre></div>
+<p>A <strong>list</strong> is the only collection. It can hold numbers, texts, lists and objects. A list of <code>[name, value]</code> pairs is a dictionary; <code>:name</code> is just the text <code>"name"</code>, and <code>aPerson[:name]</code> reads a value by key. This pair form is how this package passes <strong>named arguments</strong> to .NET: <code>[ :server = "x", :port = 80 ]</code> (<a href="concepts.html">Core concepts</a>).</p>
+<div class="callout note"><span class="t">Note</span><p>Assigning a list or an object <strong>copies</strong> it, and <code>[oObject, "text"]</code> puts a copy of the object into the new list. A list passed to a function is not copied: the function works on the original.</p></div>
+<h2 id="3-decisions-loops-functions">3. Decisions, loops, functions<a class="anchor" href="#3-decisions-loops-functions">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ring_flow.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Ring in 15 minutes, part 3: decisions, loops and functions</span>
+<span class="c"># Ring runs a file from the top. If the file has a function called main, Ring calls it by itself when it reaches the end of the file.</span>
+<span class="c"># The code at the top level (before the first func) runs first. A func continues until the next func or class, so statements go BEFORE the functions.</span>
+
+nTotal = <span class="n">0</span>                          <span class="c"># a global variable: defined at the top, outside every function</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. if / but (else if) / else, closed with ok</span>
+	nAge = <span class="n">17</span>
+	<span class="k">if</span> nAge &gt;= <span class="n">18</span>
+		? <span class="s">"adult"</span>
+	<span class="k">but</span> nAge &gt;= <span class="n">13</span>
+		? <span class="s">"teenager"</span>
+	<span class="k">else</span>
+		? <span class="s">"child"</span>
+	<span class="k">ok</span>
+
+	<span class="c"># 2. for counts; "step" changes the size of the step. while repeats while the test is true. loop = next round, exit = leave.</span>
+	<span class="k">for</span> nI = <span class="n">1</span> <span class="k">to</span> <span class="n">5</span>
+		<span class="k">if</span> nI = <span class="n">2</span> <span class="k">loop</span> <span class="k">ok</span>            <span class="c"># skip 2</span>
+		<span class="k">if</span> nI = <span class="n">5</span> <span class="k">exit</span> <span class="k">ok</span>            <span class="c"># stop at 5</span>
+		? <span class="s">"for "</span> + nI
+	<span class="k">next</span>
+	<span class="k">for</span> nI = <span class="n">10</span> <span class="k">to</span> <span class="n">1</span> <span class="k">step</span> -<span class="n">4</span>
+		? <span class="s">"down "</span> + nI
+	<span class="k">next</span>
+	nN = <span class="n">1</span>
+	<span class="k">while</span> nN &lt; <span class="n">100</span>
+		nN *= <span class="n">3</span>
+	<span class="k">end</span>
+	? <span class="s">"while: "</span> + nN
+
+	<span class="c"># 3. switch compares one value with several cases</span>
+	cColor = <span class="s">"green"</span>
+	<span class="k">switch</span> cColor
+	<span class="k">on</span> <span class="s">"red"</span>
+		? <span class="s">"stop"</span>
+	<span class="k">on</span> <span class="s">"green"</span>
+		? <span class="s">"go"</span>
+	<span class="k">other</span>
+		? <span class="s">"wait"</span>
+	<span class="k">off</span>
+
+	<span class="c"># 4. Functions: parameters come after the name, "return" gives a value (a function without it gives "")</span>
+	? square(<span class="n">7</span>)
+	? greet(<span class="s">"Ann"</span>,<span class="s">"Hello"</span>)
+	? greet(<span class="s">"Bob"</span>,<span class="s">"Hi"</span>)
+	aStats = minMax([<span class="n">4</span>,<span class="n">9</span>,<span class="n">2</span>,<span class="n">7</span>])         <span class="c"># return a list to give several values</span>
+	? <span class="s">"min "</span> + aStats[<span class="n">1</span>] + <span class="s">", max "</span> + aStats[<span class="n">2</span>]
+
+	<span class="c"># 5. A variable made inside a function is local. A variable of the top level (nTotal) is global: functions can read and change it.</span>
+	addToTotal(<span class="n">5</span>)
+	addToTotal(<span class="n">6</span>)
+	? <span class="s">"total (global) = "</span> + nTotal
+
+<span class="k">func</span> <span class="f">square</span> nNumber
+
+	<span class="k">return</span> nNumber * nNumber
+
+<span class="c"># A function has one parameter list: calling greet("Ann") with one value raises an error ("less number of parameters").</span>
+<span class="k">func</span> <span class="f">greet</span> cName, cGreeting
+
+	<span class="k">return</span> cGreeting + <span class="s">", "</span> + cName
+
+<span class="k">func</span> <span class="f">minMax</span> aList
+
+	nMin = aList[<span class="n">1</span>]
+	nMax = aList[<span class="n">1</span>]
+	<span class="k">for</span> nItem <span class="k">in</span> aList
+		<span class="k">if</span> nItem &lt; nMin nMin = nItem <span class="k">ok</span>
+		<span class="k">if</span> nItem &gt; nMax nMax = nItem <span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> [nMin,nMax]
+
+<span class="k">func</span> <span class="f">addToTotal</span> nValue
+
+	nTotal += nValue</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>teenager
+for 1
+for 3
+for 4
+down 10
+down 6
+down 2
+while: 243
+go
+49
+Hello, Ann
+Hi, Bob
+min 2, max 9
+total (global) = 11</code></pre></div>
+<ul><li>In the style used here, blocks end with a word: <code>ok</code> closes <code>if</code>, <code>next</code> closes <code>for</code>, <code>end</code> closes <code>while</code>, <code>off</code> closes <code>switch</code>. <code>but</code> is <em>else if</em>. (Braces are also allowed, see the note at the top.)</li><li><strong>A <code>func</code> continues until the next <code>func</code> or <code>class</code></strong>, so the code that starts your program goes <em>before</em> the functions, or inside <code>func main</code>, which Ring calls by itself at the end of the file.</li><li>A Ring function takes the <strong>parameters it declares</strong>: a call with another number of values raises an error. For overloaded .NET methods, RingDotNet therefore offers the <code>NULL</code> and named-argument forms (<a href="concepts.html">Core concepts</a>).</li><li>A variable at the top of the file is global; a variable made in a function is local.</li></ul>
+<h2 id="4-classes-and-objects">4. Classes and objects<a class="anchor" href="#4-classes-and-objects">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ring_classes.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Ring in 15 minutes, part 4: classes and objects (the code at the top comes first, the classes go LAST: a func or class continues until the next func or class)</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. new makes an object. The parentheses call init().</span>
+	oAnn = <span class="k">new</span> <span class="t">Person</span>(<span class="s">"Ann"</span>,<span class="n">31</span>)
+	? oAnn.name
+	oAnn.<span class="f">birthday</span>()
+	? oAnn.<span class="f">describe</span>()
+
+	<span class="c"># 2. Attributes are read and written with a dot. An attribute that the class does not have is an error.</span>
+	oAnn.age = <span class="n">40</span>
+	? oAnn.age
+
+	<span class="c"># 3. Braces: set attributes (and call methods) of the object inside { }. This is the style of this documentation.</span>
+	oBob = <span class="k">new</span> <span class="t">Person</span>(<span class="s">"Bob"</span>,<span class="n">25</span>) {
+		city = <span class="s">"Oslo"</span>
+	}
+	? oBob.<span class="f">describe</span>()
+
+	<span class="c"># 4. Inheritance: "from" takes everything of the parent and adds or replaces</span>
+	oEva = <span class="k">new</span> <span class="t">Student</span>(<span class="s">"Eva"</span>,<span class="n">20</span>,<span class="s">"Physics"</span>)
+	? oEva.<span class="f">describe</span>()
+	? oEva.<span class="f">isAdult</span>()
+
+	<span class="c"># 5. Objects are COPIED when assigned to another variable: change the copy and the original stays</span>
+	oCopy = oAnn
+	oCopy.name = <span class="s">"Copy"</span>
+	? oAnn.name
+
+	<span class="c"># 6. Objects in a list</span>
+	aPeople = [oAnn,oBob,oEva]
+	<span class="k">for</span> oPerson <span class="k">in</span> aPeople
+		? oPerson.name + <span class="s">" "</span> + oPerson.age
+	<span class="k">next</span>
+
+<span class="k">class</span> Person
+
+	name = <span class="s">""</span>
+	age = <span class="n">0</span>
+	city = <span class="s">"Cairo"</span>
+
+	<span class="c"># init runs when the object is made with new Person(...). Give a class an init (even an empty one) if you write new Person()</span>
+	<span class="c"># with parentheses, and end it with "return self" if the object is used with braces: new Person(...) { ... }</span>
+	<span class="k">func</span> <span class="f">init</span> cName, nAge
+
+		name = cName
+		age = nAge
+		<span class="k">return</span> <span class="k">self</span>
+
+	<span class="k">func</span> <span class="f">birthday</span>
+
+		age++
+
+	<span class="k">func</span> <span class="f">describe</span>
+
+		<span class="k">return</span> name + <span class="s">" is "</span> + age + <span class="s">" and lives in "</span> + city
+
+	<span class="k">func</span> <span class="f">isAdult</span>
+
+		<span class="k">return</span> age &gt;= <span class="n">18</span>
+
+<span class="k">class</span> Student <span class="k">from</span> Person
+
+	subject = <span class="s">""</span>
+
+	<span class="k">func</span> <span class="f">init</span> cName, nAge, cSubject
+
+		super.<span class="f">init</span>(cName,nAge)           <span class="c"># the init of the parent</span>
+		subject = cSubject
+		<span class="k">return</span> <span class="k">self</span>
+
+	<span class="k">func</span> <span class="f">describe</span>
+
+		<span class="k">return</span> super.<span class="f">describe</span>() + <span class="s">", studies "</span> + subject</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Ann
+Ann is 32 and lives in Cairo
+40
+Bob is 25 and lives in Oslo
+Eva is 20 and lives in Cairo, studies Physics
+1
+Ann
+Ann 40
+Bob 25
+Eva 20</code></pre></div>
+<ul><li><code>new Person("Ann",31)</code> makes an object and calls <code>init</code>. The braces <code>new Person(...) { city = "Oslo" }</code> set attributes while the object is made; this is the style used everywhere in this documentation (<code>oForm = new Form() { Text = "Hi" }</code>). The object is used with braces only if <code>init</code> ends with <code>return self</code>.</li><li><code>class Student from Person</code> is inheritance; <code>super.init(...)</code> and <code>super.describe()</code> call the parent.</li><li><strong>Classes are written last in the file</strong>: a <code>func</code> written after a class belongs to that class.</li><li>Assigning an object to another variable <strong>copies</strong> it: change the copy and the original stays.</li></ul>
+<h2 id="5-errors-files-and-other-files">5. Errors, files and other files<a class="anchor" href="#5-errors-files-and-other-files">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ring_errors_files.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Ring in 15 minutes, part 5: errors, files, arguments and other files</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. try / catch / done: the error text is in cCatchError. raise() makes an error of your own.</span>
+	<span class="k">try</span>
+		nResult = <span class="n">10</span> / <span class="n">0</span>
+	<span class="k">catch</span>
+		? <span class="s">"caught: "</span> + substr(cCatchError,<span class="n">14</span>)     <span class="c"># a runtime error starts with "Error (R1) : ", then the text</span>
+	<span class="k">done</span>
+	<span class="k">try</span>
+		checkAge(-<span class="n">5</span>)
+	<span class="k">catch</span>
+		? <span class="s">"caught: "</span> + cCatchError
+	<span class="k">done</span>
+	checkAge(<span class="n">30</span>)
+	? <span class="s">"30 is fine"</span>
+
+	<span class="c"># 2. Files: write() and read() work with the whole text of a file; fexists() asks if it exists</span>
+	cFile = <span class="s">"ring_intro_demo.txt"</span>
+	write(cFile,<span class="s">"line one"</span> + nl + <span class="s">"line two"</span> + nl)
+	? fexists(cFile)
+	cText = read(cFile)
+	? string(len(cText)) + <span class="s">" bytes"</span>
+	aLines = str2list(cText)          <span class="c"># a text with lines becomes a list of lines</span>
+	? string(len(aLines)) + <span class="s">" lines, the second is: "</span> + aLines[<span class="n">2</span>]
+	remove(cFile)
+	? fexists(cFile)
+
+	<span class="c"># 3. The arguments of the program: sysargv is [the ring program, your file, the arguments ...]</span>
+	? len(sysargv) &gt;= <span class="n">2</span>                <span class="c"># true: at least [ring, the file]</span>
+
+	<span class="c"># 4. eval() runs text as Ring code; the function name in a text can be called with call</span>
+	eval(<span class="s">"? 6 * 7"</span>)
+	cFunction = <span class="s">"hello"</span>
+	<span class="k">call</span> cFunction()
+
+	<span class="c"># 5. load "file.ring" runs another file first, at the top of your program (see the next page: load "dotnet.ring")</span>
+	? <span class="s">"done"</span>
+
+<span class="k">func</span> <span class="f">checkAge</span> nAge
+
+	<span class="k">if</span> nAge &lt; <span class="n">0</span>
+		raise(<span class="s">"an age can not be negative: "</span> + nAge)
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">hello</span>
+
+	? <span class="s">"hello from a function called by name"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>caught: Can't divide by zero
+caught: an age can not be negative: -5
+30 is fine
+1
+18 bytes
+2 lines, the second is: line two
+0
+1
+42
+hello from a function called by name
+done</code></pre></div>
+<ul><li><code>try … catch … done</code> catches errors; the message is in <code>cCatchError</code>. <code>raise("text")</code> makes an error. This is how every .NET exception arrives in Ring (the tutorial <a href="tut-07-errors.html">When things go wrong</a>).</li><li><code>load "file.ring"</code> runs another file. The first line of every RingDotNet program is <code>load "dotnet.ring"</code>.</li><li><code>sysargv</code> holds the command line (the tutorial <a href="tut-50-cli.html">A command-line tool</a>).</li></ul>
+<h2 id="ring-and-other-languages">Ring and other languages<a class="anchor" href="#ring-and-other-languages">#</a></h2>
+<p>Some differences from other popular languages, as facts:</p>
+<div class="tablewrap"><table><thead><tr><th>Often in other languages</th><th>In Ring</th></tr></thead><tbody><tr><td>declarations, types</td><td>none: the value has the type</td></tr><tr><td><code>==</code> to compare</td><td><code>=</code> (the context decides); <code>!=</code> for different</td></tr><tr><td>arrays from 0</td><td>lists from <strong>1</strong></td></tr><tr><td>integers and decimals</td><td>one number type, a double</td></tr><tr><td><code>"a" + 1</code> and <code>1 + "a"</code> the same</td><td>the left side decides</td></tr><tr><td>methods overloaded by parameters</td><td>one function per name, with a fixed number of parameters</td></tr><tr><td><code>{ }</code> blocks</td><td>words in the first style (<code>ok</code>, <code>next</code>, <code>end</code>, <code>off</code>, <code>done</code>); braces are allowed too</td></tr><tr><td><code>string</code> is characters</td><td>text is a sequence of <strong>bytes</strong> (any byte, usually UTF-8)</td></tr><tr><td>references to objects</td><td>objects and lists are <strong>copied</strong> on assignment</td></tr><tr><td>keywords are not case sensitive</td><td><code>or</code>, <code>in</code>, <code>to</code>, <code>on</code>, <code>do</code>... also apply to names that spell them: <code>oR</code> is read as <code>or</code>, so a name like <code>oReader</code> is used instead</td></tr></tbody></table></div>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<p>A Ring program uses .NET with two lines:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"System"</span> <span class="s">"System.Text"</span> }
+
+oBuilder = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>)
+? oBuilder.<span class="f">Append</span>(<span class="s">", Ring!"</span>).<span class="f">ToString</span>()</code></pre></div>
+<p>Then:</p>
+<ul><li><a href="getting-started.html">Getting started</a>: install the package and run the first program.</li><li><a href="concepts.html">Core concepts</a>: how .NET names, overloads, properties and enums look in Ring.</li><li>The tutorial chapter <a href="tutorials.html#the-basics">The basics</a>: ten short lessons.</li><li><a href="rules-and-limits.html">Rules and limits</a>: the points of Ring that matter when you use .NET.</li></ul>
+<div class="pager"><a href="api.html"><small>Previous</small>Class reference</a><span></span></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

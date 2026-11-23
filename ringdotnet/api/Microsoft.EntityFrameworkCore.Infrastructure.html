@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.EntityFrameworkCore.Infrastructure · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.EntityFrameworkCore.Infrastructure</h1>
+<p class="lead">78 wrapped types. Load them with <code>using { "Microsoft.EntityFrameworkCore.Infrastructure" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AccessorExtensions">AccessorExtensions</a> <a href="#c-Annotatable">Annotatable</a> <a href="#c-AnnotatableBase">AnnotatableBase</a> <a href="#c-AnnotatableBuilder">AnnotatableBuilder</a> <a href="#c-Annotation">Annotation</a> <a href="#c-ConcurrencyDetectorCriticalSectionDisposer">ConcurrencyDetectorCriticalSectionDisposer</a> <a href="#c-ConventionAnnotatable">ConventionAnnotatable</a> <a href="#c-CoreOptionsExtension">CoreOptionsExtension</a> <a href="#c-DatabaseFacade">DatabaseFacade</a> <a href="#c-DbContextAttribute">DbContextAttribute</a> <a href="#c-DbContextModelAttribute">DbContextModelAttribute</a> <a href="#c-DbContextOptionsExtensionInfo">DbContextOptionsExtensionInfo</a> <a href="#c-DbSetProperty">DbSetProperty</a> <a href="#c-DebugView">DebugView</a> <a href="#c-EfRelationalModelExtensions">EfRelationalModelExtensions</a> <a href="#c-EfRelationalPropertyExtensions">EfRelationalPropertyExtensions</a> <a href="#c-EntityFrameworkInternalAttribute">EntityFrameworkInternalAttribute</a> <a href="#c-EntityFrameworkMetricsData">EntityFrameworkMetricsData</a> <a href="#c-EntityFrameworkRelationalServicesBuilder">EntityFrameworkRelationalServicesBuilder</a> <a href="#c-EntityFrameworkServicesBuilder">EntityFrameworkServicesBuilder</a> <a href="#c-ExpressionExtensions">ExpressionExtensions</a> <a href="#c-IAnnotatable">IAnnotatable</a> <a href="#c-IAnnotation">IAnnotation</a> <a href="#c-IConcurrencyDetector">IConcurrencyDetector</a> <a href="#c-ICoreSingletonOptions">ICoreSingletonOptions</a> <a href="#c-ICurrentDbContext">ICurrentDbContext</a> <a href="#c-IDbContextOptions">IDbContextOptions</a> <a href="#c-IDbContextOptionsBuilderInfrastructure">IDbContextOptionsBuilderInfrastructure</a> <a href="#c-IDbContextOptionsConfiguration">IDbContextOptionsConfiguration</a> <a href="#c-IDbContextOptionsExtension">IDbContextOptionsExtension</a> <a href="#c-IDbSetFinder">IDbSetFinder</a> <a href="#c-IInfrastructure">IInfrastructure</a> <a href="#c-IInternalServiceCollectionMap">IInternalServiceCollectionMap</a> <a href="#c-ILazyLoader">ILazyLoader</a> <a href="#c-IModelCacheKeyFactory">IModelCacheKeyFactory</a> <a href="#c-IModelCustomizer">IModelCustomizer</a> <a href="#c-IModelRuntimeInitializer">IModelRuntimeInitializer</a> <a href="#c-IModelSource">IModelSource</a> <a href="#c-IModelValidator">IModelValidator</a> <a href="#c-IndentedStringBuilder">IndentedStringBuilder</a> <a href="#c-IReadOnlyAnnotatable">IReadOnlyAnnotatable</a> <a href="#c-IRelationalDbContextOptionsBuilderInfrastructure">IRelationalDbContextOptionsBuilderInfrastructure</a> <a href="#c-IResettableService">IResettableService</a> <a href="#c-ISingletonOptions">ISingletonOptions</a> <a href="#c-LazyLoaderExtensions">LazyLoaderExtensions</a> <a href="#c-MethodInfoExtensions">MethodInfoExtensions</a> <a href="#c-ModelCacheKey">ModelCacheKey</a> <a href="#c-ModelCacheKeyFactory">ModelCacheKeyFactory</a> <a href="#c-ModelCacheKeyFactoryDependencies">ModelCacheKeyFactoryDependencies</a> <a href="#c-ModelCustomizer">ModelCustomizer</a> <a href="#c-ModelCustomizerDependencies">ModelCustomizerDependencies</a> <a href="#c-ModelDependencies">ModelDependencies</a> <a href="#c-ModelRuntimeInitializer">ModelRuntimeInitializer</a> <a href="#c-ModelRuntimeInitializerDependencies">ModelRuntimeInitializerDependencies</a> <a href="#c-ModelSnapshot">ModelSnapshot</a> <a href="#c-ModelSource">ModelSource</a> <a href="#c-ModelSourceDependencies">ModelSourceDependencies</a> <a href="#c-ModelValidator">ModelValidator</a> <a href="#c-ModelValidatorDependencies">ModelValidatorDependencies</a> <a href="#c-PooledDbContextFactory">PooledDbContextFactory</a> <a href="#c-ProductInfo">ProductInfo</a> <a href="#c-RelationalDbContextOptionsBuilder">RelationalDbContextOptionsBuilder</a> <a href="#c-RelationalModelCustomizer">RelationalModelCustomizer</a> <a href="#c-RelationalModelDependencies">RelationalModelDependencies</a> <a href="#c-RelationalModelRuntimeInitializer">RelationalModelRuntimeInitializer</a> <a href="#c-RelationalModelRuntimeInitializerDependencies">RelationalModelRuntimeInitializerDependencies</a> <a href="#c-RelationalModelValidator">RelationalModelValidator</a> <a href="#c-RelationalModelValidatorDependencies">RelationalModelValidatorDependencies</a> <a href="#c-RelationalOptionsExtension">RelationalOptionsExtension</a> <a href="#c-RuntimeAnnotatableBase">RuntimeAnnotatableBase</a> <a href="#c-RuntimeModelDependencies">RuntimeModelDependencies</a> <a href="#c-ServiceCharacteristics">ServiceCharacteristics</a> <a href="#c-ServiceCollectionMap">ServiceCollectionMap</a> <a href="#c-ServiceProviderAccessor">ServiceProviderAccessor</a> <a href="#c-SpatialiteLoader">SpatialiteLoader</a> <a href="#c-SqliteDbContextOptionsBuilder">SqliteDbContextOptionsBuilder</a> <a href="#c-TypeExtensions">TypeExtensions</a> <a href="#c-Uniquifier">Uniquifier</a></div><details class="cls" id="c-AccessorExtensions"><summary><b>AccessorExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.AccessorExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetInfrastructure</code></td><td><code>GetInfrastructure(p1)</code></td><td><code>static T GetInfrastructure&lt;T&gt;(IInfrastructure&lt;T&gt; accessor)</code></td></tr><tr><td><code>GetService</code></td><td><code>GetService(value)</code><br><code>GetService([ :accessor = … ])</code><br><code>GetService([ :accessor = …, :serviceType = … ])</code></td><td><code>static TService GetService&lt;TService&gt;(IInfrastructure&lt;IServiceProvider&gt; accessor)</code><br><code>static object GetService(IInfrastructure&lt;IServiceProvider&gt; accessor, Type serviceType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Annotatable"><summary><b>Annotatable</b> <span class="muted">class · extends <a href="#c-AnnotatableBase">AnnotatableBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.Annotatable</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Annotatable()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Annotatable(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Annotatable().@New([ :param = value ])</code> or <code>dnNew("Annotatable",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code> · <code>o.SetItem(name,value)</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AnnotatableBase"><summary><b>AnnotatableBase</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.AnnotatableBase</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AnnotatableBase()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AnnotatableBase(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AnnotatableBase().@New([ :param = value ])</code> or <code>dnNew("AnnotatableBase",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code> · <code>o.SetItem(name,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddAnnotation</code></td><td><code>AddAnnotation(p1,p2)</code></td><td><code>Annotation AddAnnotation(string name, object value)</code></td></tr><tr><td><code>AddAnnotations</code></td><td><code>AddAnnotations(p1)</code></td><td><code>void AddAnnotations(IEnumerable&lt;IAnnotation&gt; annotations)</code><br><code>void AddAnnotations(IReadOnlyDictionary&lt;string, object&gt; annotations)</code></td></tr><tr><td><code>AddRuntimeAnnotation</code></td><td><code>AddRuntimeAnnotation(p1,p2)</code></td><td><code>Annotation AddRuntimeAnnotation(string name, object value)</code></td></tr><tr><td><code>AddRuntimeAnnotations</code></td><td><code>AddRuntimeAnnotations(p1)</code></td><td><code>void AddRuntimeAnnotations(IEnumerable&lt;Annotation&gt; annotations)</code><br><code>void AddRuntimeAnnotations(IReadOnlyDictionary&lt;string, object&gt; annotations)</code></td></tr><tr><td><code>FindAnnotation</code></td><td><code>FindAnnotation(p1)</code></td><td><code>Annotation FindAnnotation(string name)</code></td></tr><tr><td><code>FindRuntimeAnnotation</code></td><td><code>FindRuntimeAnnotation(p1)</code></td><td><code>Annotation FindRuntimeAnnotation(string name)</code></td></tr><tr><td><code>GetAnnotation</code></td><td><code>GetAnnotation(p1)</code></td><td><code>Annotation GetAnnotation(string annotationName)</code></td></tr><tr><td><code>GetAnnotations</code></td><td><code>GetAnnotations()</code></td><td><code>IEnumerable&lt;Annotation&gt; GetAnnotations()</code></td></tr><tr><td><code>GetOrAddRuntimeAnnotationValue</code></td><td><code>GetOrAddRuntimeAnnotationValue(p1,p2,p3)</code></td><td><code>TValue GetOrAddRuntimeAnnotationValue&lt;TValue, TArg&gt;(string name, Func&lt;TArg, TValue&gt; valueFactory, TArg factoryArgument)</code></td></tr><tr><td><code>GetRuntimeAnnotations</code></td><td><code>GetRuntimeAnnotations()</code></td><td><code>IEnumerable&lt;Annotation&gt; GetRuntimeAnnotations()</code></td></tr><tr><td><code>RemoveAnnotation</code></td><td><code>RemoveAnnotation(p1)</code></td><td><code>Annotation RemoveAnnotation(string name)</code></td></tr><tr><td><code>RemoveRuntimeAnnotation</code></td><td><code>RemoveRuntimeAnnotation(p1)</code></td><td><code>Annotation RemoveRuntimeAnnotation(string name)</code></td></tr><tr><td><code>SetAnnotation</code></td><td><code>SetAnnotation(p1,p2)</code></td><td><code>void SetAnnotation(string name, object value)</code></td></tr><tr><td><code>SetRuntimeAnnotation</code></td><td><code>SetRuntimeAnnotation(p1,p2)</code></td><td><code>Annotation SetRuntimeAnnotation(string name, object value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AnnotatableBuilder"><summary><b>AnnotatableBuilder</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.AnnotatableBuilder`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Metadata</code></td><td><code>TMetadata</code></td><td>read</td><td><code>o.Metadata</code></td></tr><tr><td><code>ModelBuilder</code></td><td><code>TModelBuilder</code></td><td>read</td><td><code>o.ModelBuilder</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Annotation"><summary><b>Annotation</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.Annotation</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Annotation(string name, object value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Annotation(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Annotation().@New([ :param = value ])</code> or <code>dnNew("Annotation",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>Value</code></td><td><code>object</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConcurrencyDetectorCriticalSectionDisposer"><summary><b>ConcurrencyDetectorCriticalSectionDisposer</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ConcurrencyDetectorCriticalSectionDisposer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrencyDetectorCriticalSectionDisposer(IConcurrencyDetector concurrencyDetector)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrencyDetectorCriticalSectionDisposer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrencyDetectorCriticalSectionDisposer().@New([ :param = value ])</code> or <code>dnNew("ConcurrencyDetectorCriticalSectionDisposer",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ConventionAnnotatable"><summary><b>ConventionAnnotatable</b> <span class="muted">class abstract · extends <a href="#c-Annotatable">Annotatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ConventionAnnotatable</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code> · <code>o.SetItem(name,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddAnnotation</code></td><td><code>AddAnnotation([ :name = …, :value = …, :configurationSource = … ])</code></td><td><code>ConventionAnnotation AddAnnotation(string name, object value, ConfigurationSource configurationSource)</code></td></tr><tr><td><code>FindAnnotation</code></td><td><code>FindAnnotation(p1)</code></td><td><code>ConventionAnnotation FindAnnotation(string name)</code></td></tr><tr><td><code>GetAnnotations</code></td><td><code>GetAnnotations()</code></td><td><code>IEnumerable&lt;ConventionAnnotation&gt; GetAnnotations()</code></td></tr><tr><td><code>SetAnnotation</code></td><td><code>SetAnnotation([ :name = …, :value = … ])</code><br><code>SetAnnotation([ :name = …, :value = …, :configurationSource = … ])</code></td><td><code>void SetAnnotation(string name, object value)</code><br><code>ConventionAnnotation SetAnnotation(string name, object value, ConfigurationSource configurationSource)</code></td></tr><tr><td><code>SetOrRemoveAnnotation</code></td><td><code>SetOrRemoveAnnotation(p1,p2,p3)</code></td><td><code>ConventionAnnotation SetOrRemoveAnnotation(string name, object value, ConfigurationSource configurationSource)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CoreOptionsExtension"><summary><b>CoreOptionsExtension</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.CoreOptionsExtension</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CoreOptionsExtension()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CoreOptionsExtension(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CoreOptionsExtension().@New([ :param = value ])</code> or <code>dnNew("CoreOptionsExtension",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Info</code></td><td><code>DbContextOptionsExtensionInfo</code></td><td>read</td><td><code>o.Info</code></td></tr><tr><td><code>IsSensitiveDataLoggingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSensitiveDataLoggingEnabled</code></td></tr><tr><td><code>DetailedErrorsEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.DetailedErrorsEnabled</code></td></tr><tr><td><code>ThreadSafetyChecksEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.ThreadSafetyChecksEnabled</code></td></tr><tr><td><code>Model</code></td><td><code>IModel</code></td><td>read</td><td><code>o.Model</code></td></tr><tr><td><code>LoggerFactory</code></td><td><code>ILoggerFactory</code></td><td>read</td><td><code>o.LoggerFactory</code></td></tr><tr><td><code>DbContextLogger</code></td><td><code>IDbContextLogger</code></td><td>read</td><td><code>o.DbContextLogger</code></td></tr><tr><td><code>MemoryCache</code></td><td><code>IMemoryCache</code></td><td>read</td><td><code>o.MemoryCache</code></td></tr><tr><td><code>InternalServiceProvider</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.InternalServiceProvider</code></td></tr><tr><td><code>ApplicationServiceProvider</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.ApplicationServiceProvider</code></td></tr><tr><td><code>RootApplicationServiceProvider</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.RootApplicationServiceProvider</code></td></tr><tr><td><code>AutoResolveRootProvider</code></td><td><code>bool</code></td><td>read</td><td><code>o.AutoResolveRootProvider</code></td></tr><tr><td><code>WarningsConfiguration</code></td><td><code>WarningsConfiguration</code></td><td>read</td><td><code>o.WarningsConfiguration</code></td></tr><tr><td><code>QueryTrackingBehavior</code></td><td><code>QueryTrackingBehavior</code></td><td>read</td><td><code>o.QueryTrackingBehavior</code></td></tr><tr><td><code>ServiceProviderCachingEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.ServiceProviderCachingEnabled</code></td></tr><tr><td><code>ReplacedServices</code></td><td><code>IReadOnlyDictionary&lt;ValueTuple&lt;Type, Type&gt;, Type&gt;</code></td><td>read</td><td><code>o.ReplacedServices</code></td></tr><tr><td><code>MaxPoolSize</code></td><td><code>int?</code></td><td>read</td><td><code>o.MaxPoolSize</code></td></tr><tr><td><code>LoggingCacheTime</code></td><td><code>TimeSpan</code></td><td>read</td><td><code>o.LoggingCacheTime</code></td></tr><tr><td><code>Interceptors</code></td><td><code>IEnumerable&lt;IInterceptor&gt;</code></td><td>read</td><td><code>o.Interceptors</code></td></tr><tr><td><code>SingletonInterceptors</code></td><td><code>IEnumerable&lt;ISingletonInterceptor&gt;</code></td><td>read</td><td><code>o.SingletonInterceptors</code></td></tr><tr><td><code>Seeder</code></td><td><code>Action&lt;DbContext, bool&gt;</code></td><td>read</td><td><code>o.Seeder</code></td></tr><tr><td><code>AsyncSeeder</code></td><td><code>Func&lt;DbContext, bool, CancellationToken, Task&gt;</code></td><td>read</td><td><code>o.AsyncSeeder</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ApplyServices</code></td><td><code>ApplyServices(p1)</code></td><td><code>void ApplyServices(IServiceCollection services)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate(p1)</code></td><td><code>void Validate(IDbContextOptions options)</code></td></tr><tr><td><code>WithApplicationServiceProvider</code></td><td><code>WithApplicationServiceProvider(p1)</code></td><td><code>CoreOptionsExtension WithApplicationServiceProvider(IServiceProvider applicationServiceProvider)</code></td></tr><tr><td><code>WithAsyncSeeding</code></td><td><code>WithAsyncSeeding(p1)</code></td><td><code>CoreOptionsExtension WithAsyncSeeding(Func&lt;DbContext, bool, CancellationToken, Task&gt; seedAsync)</code></td></tr><tr><td><code>WithDbContextLogger</code></td><td><code>WithDbContextLogger(p1)</code></td><td><code>CoreOptionsExtension WithDbContextLogger(IDbContextLogger contextLogger)</code></td></tr><tr><td><code>WithDetailedErrorsEnabled</code></td><td><code>WithDetailedErrorsEnabled(p1)</code></td><td><code>CoreOptionsExtension WithDetailedErrorsEnabled(bool detailedErrorsEnabled)</code></td></tr><tr><td><code>WithInterceptors</code></td><td><code>WithInterceptors(p1)</code></td><td><code>CoreOptionsExtension WithInterceptors(IEnumerable&lt;IInterceptor&gt; interceptors)</code></td></tr><tr><td><code>WithInternalServiceProvider</code></td><td><code>WithInternalServiceProvider(p1)</code></td><td><code>CoreOptionsExtension WithInternalServiceProvider(IServiceProvider internalServiceProvider)</code></td></tr><tr><td><code>WithLoggerFactory</code></td><td><code>WithLoggerFactory(p1)</code></td><td><code>CoreOptionsExtension WithLoggerFactory(ILoggerFactory loggerFactory)</code></td></tr><tr><td><code>WithLoggingCacheTime</code></td><td><code>WithLoggingCacheTime(p1)</code></td><td><code>CoreOptionsExtension WithLoggingCacheTime(TimeSpan timeSpan)</code></td></tr><tr><td><code>WithMaxPoolSize</code></td><td><code>WithMaxPoolSize(p1)</code></td><td><code>CoreOptionsExtension WithMaxPoolSize(int? maxPoolSize)</code></td></tr><tr><td><code>WithMemoryCache</code></td><td><code>WithMemoryCache(p1)</code></td><td><code>CoreOptionsExtension WithMemoryCache(IMemoryCache memoryCache)</code></td></tr><tr><td><code>WithModel</code></td><td><code>WithModel(p1)</code></td><td><code>CoreOptionsExtension WithModel(IModel model)</code></td></tr><tr><td><code>WithQueryTrackingBehavior</code></td><td><code>WithQueryTrackingBehavior(p1)</code></td><td><code>CoreOptionsExtension WithQueryTrackingBehavior(QueryTrackingBehavior queryTrackingBehavior)</code></td></tr><tr><td><code>WithReplacedService</code></td><td><code>WithReplacedService([ :serviceType = …, :newImplementationType = …, :currentImplementationType = … ])</code></td><td><code>CoreOptionsExtension WithReplacedService(Type serviceType, Type newImplementationType, Type currentImplementationType = …)</code></td></tr><tr><td><code>WithRootApplicationServiceProvider</code></td><td><code>WithRootApplicationServiceProvider(value)</code><br><code>WithRootApplicationServiceProvider([ :rootApplicationServiceProvider = … ])</code><br><code>WithRootApplicationServiceProvider([ :autoResolve = … ])</code></td><td><code>CoreOptionsExtension WithRootApplicationServiceProvider(IServiceProvider rootApplicationServiceProvider)</code><br><code>CoreOptionsExtension WithRootApplicationServiceProvider(bool autoResolve = …)</code></td></tr><tr><td><code>WithSeeding</code></td><td><code>WithSeeding(p1)</code></td><td><code>CoreOptionsExtension WithSeeding(Action&lt;DbContext, bool&gt; seed)</code></td></tr><tr><td><code>WithSensitiveDataLoggingEnabled</code></td><td><code>WithSensitiveDataLoggingEnabled(p1)</code></td><td><code>CoreOptionsExtension WithSensitiveDataLoggingEnabled(bool sensitiveDataLoggingEnabled)</code></td></tr><tr><td><code>WithServiceProviderCachingEnabled</code></td><td><code>WithServiceProviderCachingEnabled(p1)</code></td><td><code>CoreOptionsExtension WithServiceProviderCachingEnabled(bool serviceProviderCachingEnabled)</code></td></tr><tr><td><code>WithSingletonInterceptors</code></td><td><code>WithSingletonInterceptors(p1)</code></td><td><code>CoreOptionsExtension WithSingletonInterceptors(IEnumerable&lt;ISingletonInterceptor&gt; interceptors)</code></td></tr><tr><td><code>WithThreadSafetyChecksEnabled</code></td><td><code>WithThreadSafetyChecksEnabled(p1)</code></td><td><code>CoreOptionsExtension WithThreadSafetyChecksEnabled(bool checksEnabled)</code></td></tr><tr><td><code>WithWarningsConfiguration</code></td><td><code>WithWarningsConfiguration(p1)</code></td><td><code>CoreOptionsExtension WithWarningsConfiguration(WarningsConfiguration warningsConfiguration)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DatabaseFacade"><summary><b>DatabaseFacade</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DatabaseFacade(DbContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DatabaseFacade(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DatabaseFacade().@New([ :param = value ])</code> or <code>dnNew("DatabaseFacade",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CurrentTransaction</code></td><td><code>IDbContextTransaction</code></td><td>read</td><td><code>o.CurrentTransaction</code></td></tr><tr><td><code>AutoTransactionsEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoTransactionsEnabled</code> <code>o.AutoTransactionsEnabled = v</code></td></tr><tr><td><code>AutoTransactionBehavior</code></td><td><code>AutoTransactionBehavior</code></td><td>read, write</td><td><code>o.AutoTransactionBehavior</code> <code>o.AutoTransactionBehavior = v</code></td></tr><tr><td><code>AutoSavepointsEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoSavepointsEnabled</code> <code>o.AutoSavepointsEnabled = v</code></td></tr><tr><td><code>ProviderName</code></td><td><code>string</code></td><td>read</td><td><code>o.ProviderName</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BeginTransaction</code></td><td><code>BeginTransaction()</code></td><td><code>IDbContextTransaction BeginTransaction()</code></td></tr><tr><td><code>BeginTransactionAsync</code></td><td><code>BeginTransactionAsync(value)</code><br><code>BeginTransactionAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;IDbContextTransaction&gt; BeginTransactionAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>CanConnect</code></td><td><code>CanConnect()</code></td><td><code>bool CanConnect()</code></td></tr><tr><td><code>CanConnectAsync</code></td><td><code>CanConnectAsync(value)</code><br><code>CanConnectAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;bool&gt; CanConnectAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>CommitTransaction</code></td><td><code>CommitTransaction()</code></td><td><code>void CommitTransaction()</code></td></tr><tr><td><code>CommitTransactionAsync</code></td><td><code>CommitTransactionAsync(value)</code><br><code>CommitTransactionAsync([ :cancellationToken = … ])</code></td><td><code>Task CommitTransactionAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>CreateExecutionStrategy</code></td><td><code>CreateExecutionStrategy()</code></td><td><code>IExecutionStrategy CreateExecutionStrategy()</code></td></tr><tr><td><code>EnsureCreated</code></td><td><code>EnsureCreated()</code></td><td><code>bool EnsureCreated()</code></td></tr><tr><td><code>EnsureCreatedAsync</code></td><td><code>EnsureCreatedAsync(value)</code><br><code>EnsureCreatedAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;bool&gt; EnsureCreatedAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>EnsureDeleted</code></td><td><code>EnsureDeleted()</code></td><td><code>bool EnsureDeleted()</code></td></tr><tr><td><code>EnsureDeletedAsync</code></td><td><code>EnsureDeletedAsync(value)</code><br><code>EnsureDeletedAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;bool&gt; EnsureDeletedAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>RollbackTransaction</code></td><td><code>RollbackTransaction()</code></td><td><code>void RollbackTransaction()</code></td></tr><tr><td><code>RollbackTransactionAsync</code></td><td><code>RollbackTransactionAsync(value)</code><br><code>RollbackTransactionAsync([ :cancellationToken = … ])</code></td><td><code>Task RollbackTransactionAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DbContextAttribute"><summary><b>DbContextAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DbContextAttribute</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DbContextAttribute(Type contextType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DbContextAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DbContextAttribute().@New([ :param = value ])</code> or <code>dnNew("DbContextAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ContextType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ContextType</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DbContextModelAttribute"><summary><b>DbContextModelAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DbContextModelAttribute</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DbContextModelAttribute(Type contextType, Type modelType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DbContextModelAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DbContextModelAttribute().@New([ :param = value ])</code> or <code>dnNew("DbContextModelAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ContextType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ContextType</code></td></tr><tr><td><code>ModelType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ModelType</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DbContextOptionsExtensionInfo"><summary><b>DbContextOptionsExtensionInfo</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DbContextOptionsExtensionInfo</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Extension</code></td><td><code>IDbContextOptionsExtension</code></td><td>read</td><td><code>o.Extension</code></td></tr><tr><td><code>IsDatabaseProvider</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDatabaseProvider</code></td></tr><tr><td><code>LogFragment</code></td><td><code>string</code></td><td>read</td><td><code>o.LogFragment</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetServiceProviderHashCode</code></td><td><code>GetServiceProviderHashCode()</code></td><td><code>int GetServiceProviderHashCode()</code></td></tr><tr><td><code>PopulateDebugInfo</code></td><td><code>PopulateDebugInfo(p1)</code></td><td><code>void PopulateDebugInfo(IDictionary&lt;string, string&gt; debugInfo)</code></td></tr><tr><td><code>ShouldUseSameServiceProvider</code></td><td><code>ShouldUseSameServiceProvider(p1)</code></td><td><code>bool ShouldUseSameServiceProvider(DbContextOptionsExtensionInfo other)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DbSetProperty"><summary><b>DbSetProperty</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DbSetProperty</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DbSetProperty(string name, Type type, IClrPropertySetter setter)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DbSetProperty(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DbSetProperty().@New([ :param = value ])</code> or <code>dnNew("DbSetProperty",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.Type</code></td></tr><tr><td><code>Setter</code></td><td><code>IClrPropertySetter</code></td><td>read</td><td><code>o.Setter</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DebugView"><summary><b>DebugView</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.DebugView</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DebugView(Func&lt;string&gt; toShortDebugString, Func&lt;string&gt; toLongDebugString)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DebugView(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DebugView().@New([ :param = value ])</code> or <code>dnNew("DebugView",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LongView</code></td><td><code>string</code></td><td>read</td><td><code>o.LongView</code></td></tr><tr><td><code>ShortView</code></td><td><code>string</code></td><td>read</td><td><code>o.ShortView</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EfRelationalModelExtensions"><summary><b>EfRelationalModelExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetRelationalDependencies</code></td><td><code>GetRelationalDependencies([ :model = …, :methodName = … ])</code></td><td><code>static RelationalModelDependencies GetRelationalDependencies(IModel model, string methodName = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EfRelationalPropertyExtensions"><summary><b>EfRelationalPropertyExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalPropertyExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatColumns</code></td><td><code>FormatColumns(p1,p2)</code></td><td><code>static string FormatColumns(IEnumerable&lt;IReadOnlyProperty&gt; properties, StoreObjectIdentifier storeObject)</code></td></tr><tr><td><code>GetColumnNames</code></td><td><code>GetColumnNames(p1,p2)</code></td><td><code>static IReadOnlyList&lt;string&gt; GetColumnNames(IEnumerable&lt;IReadOnlyProperty&gt; properties, ref StoreObjectIdentifier storeObject)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EntityFrameworkInternalAttribute"><summary><b>EntityFrameworkInternalAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkInternalAttribute</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityFrameworkInternalAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityFrameworkInternalAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityFrameworkInternalAttribute().@New([ :param = value ])</code> or <code>dnNew("EntityFrameworkInternalAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityFrameworkMetricsData"><summary><b>EntityFrameworkMetricsData</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkMetricsData</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ReportCompiledQueryCacheHit</code></td><td><code>ReportCompiledQueryCacheHit()</code></td><td><code>static void ReportCompiledQueryCacheHit()</code></td></tr><tr><td><code>ReportCompiledQueryCacheMiss</code></td><td><code>ReportCompiledQueryCacheMiss()</code></td><td><code>static void ReportCompiledQueryCacheMiss()</code></td></tr><tr><td><code>ReportDbContextDisposing</code></td><td><code>ReportDbContextDisposing()</code></td><td><code>static void ReportDbContextDisposing()</code></td></tr><tr><td><code>ReportDbContextInitializing</code></td><td><code>ReportDbContextInitializing()</code></td><td><code>static void ReportDbContextInitializing()</code></td></tr><tr><td><code>ReportExecutionStrategyOperationFailure</code></td><td><code>ReportExecutionStrategyOperationFailure()</code></td><td><code>static void ReportExecutionStrategyOperationFailure()</code></td></tr><tr><td><code>ReportOptimisticConcurrencyFailure</code></td><td><code>ReportOptimisticConcurrencyFailure()</code></td><td><code>static void ReportOptimisticConcurrencyFailure()</code></td></tr><tr><td><code>ReportQueryExecuting</code></td><td><code>ReportQueryExecuting()</code></td><td><code>static void ReportQueryExecuting()</code></td></tr><tr><td><code>ReportSavingChanges</code></td><td><code>ReportSavingChanges()</code></td><td><code>static void ReportSavingChanges()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EntityFrameworkRelationalServicesBuilder"><summary><b>EntityFrameworkRelationalServicesBuilder</b> <span class="muted">class · extends <a href="#c-EntityFrameworkServicesBuilder">EntityFrameworkServicesBuilder</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkRelationalServicesBuilder</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityFrameworkRelationalServicesBuilder(IServiceCollection serviceCollection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityFrameworkRelationalServicesBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityFrameworkRelationalServicesBuilder().@New([ :param = value ])</code> or <code>dnNew("EntityFrameworkRelationalServicesBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RelationalServices</code></td><td><code>IDictionary&lt;Type, ServiceCharacteristics&gt;</code></td><td>read · static</td><td><code>o.RelationalServices</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TryAddCoreServices</code></td><td><code>TryAddCoreServices()</code></td><td><code>EntityFrameworkServicesBuilder TryAddCoreServices()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityFrameworkServicesBuilder"><summary><b>EntityFrameworkServicesBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityFrameworkServicesBuilder(IServiceCollection serviceCollection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityFrameworkServicesBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityFrameworkServicesBuilder().@New([ :param = value ])</code> or <code>dnNew("EntityFrameworkServicesBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CoreServices</code></td><td><code>IDictionary&lt;Type, ServiceCharacteristics&gt;</code></td><td>read · static</td><td><code>o.CoreServices</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TryAdd</code></td><td><code>TryAdd(NULL)</code><br><code>TryAdd(value)</code><br><code>TryAdd([ :factory = … ])</code><br><code>TryAdd([ :implementation = … ])</code><br><code>TryAdd([ :serviceType = …, :implementationType = … ])</code><br><code>TryAdd([ :serviceType = …, :implementation = … ])</code></td><td><code>EntityFrameworkServicesBuilder TryAdd&lt;TService, TImplementation&gt;()</code><br><code>EntityFrameworkServicesBuilder TryAdd(Type serviceType, Type implementationType)</code><br><code>EntityFrameworkServicesBuilder TryAdd&lt;TService&gt;(Func&lt;IServiceProvider, TService&gt; factory)</code><br><code>EntityFrameworkServicesBuilder TryAdd&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code><br><code>EntityFrameworkServicesBuilder TryAdd(Type serviceType, Type implementationType, Func&lt;IServiceProvider, object&gt; factory)</code><br><code>EntityFrameworkServicesBuilder TryAdd&lt;TService&gt;(TService implementation)</code><br><code>EntityFrameworkServicesBuilder TryAdd(Type serviceType, object implementation)</code></td></tr><tr><td><code>TryAddCoreServices</code></td><td><code>TryAddCoreServices()</code></td><td><code>EntityFrameworkServicesBuilder TryAddCoreServices()</code></td></tr><tr><td><code>TryAddProviderSpecificServices</code></td><td><code>TryAddProviderSpecificServices(p1)</code></td><td><code>EntityFrameworkServicesBuilder TryAddProviderSpecificServices(Action&lt;ServiceCollectionMap&gt; serviceMap)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ExpressionExtensions"><summary><b>ExpressionExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ExpressionExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValueBufferTryReadValueMethod</code></td><td><code>MethodInfo</code></td><td>read · static</td><td><code>o.ValueBufferTryReadValueMethod</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Assign</code></td><td><code>Assign(p1,p2)</code></td><td><code>static Expression Assign(MemberExpression memberExpression, Expression valueExpression)</code></td></tr><tr><td><code>CreateEFPropertyExpression</code></td><td><code>CreateEFPropertyExpression([ :target = …, :property = …, :makeNullable = … ])</code><br><code>CreateEFPropertyExpression([ :target = …, :propertyDeclaringType = …, :propertyType = …, :propertyName = …, :makeNullable = … ])</code></td><td><code>static Expression CreateEFPropertyExpression(Expression target, IPropertyBase property, bool makeNullable = …)</code><br><code>static Expression CreateEFPropertyExpression(Expression target, Type propertyDeclaringType, Type propertyType, string propertyName, bool makeNullable)</code></td></tr><tr><td><code>CreateEqualsExpression</code></td><td><code>CreateEqualsExpression([ :left = …, :right = …, :negated = … ])</code></td><td><code>static Expression CreateEqualsExpression(Expression left, Expression right, bool negated = …)</code></td></tr><tr><td><code>CreateKeyValuesExpression</code></td><td><code>CreateKeyValuesExpression([ :target = …, :properties = …, :makeNullable = … ])</code></td><td><code>static Expression CreateKeyValuesExpression(Expression target, IReadOnlyList&lt;IProperty&gt; properties, bool makeNullable = …)</code></td></tr><tr><td><code>CreateValueBufferReadValueExpression</code></td><td><code>CreateValueBufferReadValueExpression(p1,p2,p3,p4)</code></td><td><code>static Expression CreateValueBufferReadValueExpression(Expression valueBuffer, Type type, int index, IPropertyBase property)</code></td></tr><tr><td><code>GetMemberAccess</code></td><td><code>GetMemberAccess(p1)</code></td><td><code>static MemberInfo GetMemberAccess(LambdaExpression memberAccessExpression)</code></td></tr><tr><td><code>GetMemberAccessList</code></td><td><code>GetMemberAccessList(p1)</code></td><td><code>static IReadOnlyList&lt;MemberInfo&gt; GetMemberAccessList(LambdaExpression memberAccessExpression)</code></td></tr><tr><td><code>GetPropertyAccess</code></td><td><code>GetPropertyAccess(p1)</code></td><td><code>static PropertyInfo GetPropertyAccess(LambdaExpression propertyAccessExpression)</code></td></tr><tr><td><code>GetPropertyAccessList</code></td><td><code>GetPropertyAccessList(p1)</code></td><td><code>static IReadOnlyList&lt;PropertyInfo&gt; GetPropertyAccessList(LambdaExpression propertyAccessExpression)</code></td></tr><tr><td><code>MakeMemberAccess</code></td><td><code>MakeMemberAccess(p1,p2)</code></td><td><code>static MemberExpression MakeMemberAccess(Expression expression, MemberInfo member)</code></td></tr><tr><td><code>Print</code></td><td><code>Print([ :expression = …, :characterLimit = … ])</code></td><td><code>static string Print(Expression expression, int? characterLimit = …)</code></td></tr><tr><td><code>TryGetEFPropertyArguments</code></td><td><code>TryGetEFPropertyArguments(p1)</code></td><td><code>static bool TryGetEFPropertyArguments(MethodCallExpression methodCallExpression, out Expression entityExpression, out string propertyName)</code></td></tr><tr><td><code>TryGetIndexerArguments</code></td><td><code>TryGetIndexerArguments(p1,p2)</code></td><td><code>static bool TryGetIndexerArguments(MethodCallExpression methodCallExpression, IModel model, out Expression entityExpression, out string propertyName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAnnotatable"><summary><b>IAnnotatable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IAnnotatable</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddRuntimeAnnotation</code></td><td><code>AddRuntimeAnnotation(p1,p2)</code></td><td><code>IAnnotation AddRuntimeAnnotation(string name, object value)</code></td></tr><tr><td><code>FindRuntimeAnnotation</code></td><td><code>FindRuntimeAnnotation(p1)</code></td><td><code>IAnnotation FindRuntimeAnnotation(string name)</code></td></tr><tr><td><code>FindRuntimeAnnotationValue</code></td><td><code>FindRuntimeAnnotationValue(p1)</code></td><td><code>object FindRuntimeAnnotationValue(string name)</code></td></tr><tr><td><code>GetOrAddRuntimeAnnotationValue</code></td><td><code>GetOrAddRuntimeAnnotationValue(p1,p2,p3)</code></td><td><code>TValue GetOrAddRuntimeAnnotationValue&lt;TValue, TArg&gt;(string name, Func&lt;TArg, TValue&gt; valueFactory, TArg factoryArgument)</code></td></tr><tr><td><code>GetRuntimeAnnotations</code></td><td><code>GetRuntimeAnnotations()</code></td><td><code>IEnumerable&lt;IAnnotation&gt; GetRuntimeAnnotations()</code></td></tr><tr><td><code>RemoveRuntimeAnnotation</code></td><td><code>RemoveRuntimeAnnotation(p1)</code></td><td><code>IAnnotation RemoveRuntimeAnnotation(string name)</code></td></tr><tr><td><code>SetRuntimeAnnotation</code></td><td><code>SetRuntimeAnnotation(p1,p2)</code></td><td><code>IAnnotation SetRuntimeAnnotation(string name, object value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAnnotation"><summary><b>IAnnotation</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IAnnotation</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>Value</code></td><td><code>object</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IConcurrencyDetector"><summary><b>IConcurrencyDetector</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IConcurrencyDetector</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>EnterCriticalSection</code></td><td><code>EnterCriticalSection()</code></td><td><code>ConcurrencyDetectorCriticalSectionDisposer EnterCriticalSection()</code></td></tr><tr><td><code>ExitCriticalSection</code></td><td><code>ExitCriticalSection()</code></td><td><code>void ExitCriticalSection()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICoreSingletonOptions"><summary><b>ICoreSingletonOptions</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ICoreSingletonOptions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AreDetailedErrorsEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.AreDetailedErrorsEnabled</code></td></tr><tr><td><code>AreThreadSafetyChecksEnabled</code></td><td><code>bool</code></td><td>read</td><td><code>o.AreThreadSafetyChecksEnabled</code></td></tr><tr><td><code>RootApplicationServiceProvider</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.RootApplicationServiceProvider</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICurrentDbContext"><summary><b>ICurrentDbContext</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ICurrentDbContext</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Context</code></td><td><code>DbContext</code></td><td>read</td><td><code>o.Context</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDbContextOptions"><summary><b>IDbContextOptions</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Extensions</code></td><td><code>IEnumerable&lt;IDbContextOptionsExtension&gt;</code></td><td>read</td><td><code>o.Extensions</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FindExtension</code></td><td><code>FindExtension(NULL)</code></td><td><code>TExtension FindExtension&lt;TExtension&gt;()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDbContextOptionsBuilderInfrastructure"><summary><b>IDbContextOptionsBuilderInfrastructure</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptionsBuilderInfrastructure</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddOrUpdateExtension</code></td><td><code>AddOrUpdateExtension(p1)</code></td><td><code>void AddOrUpdateExtension&lt;TExtension&gt;(TExtension extension)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDbContextOptionsConfiguration"><summary><b>IDbContextOptionsConfiguration</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptionsConfiguration`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+</div></details>
+<details class="cls" id="c-IDbContextOptionsExtension"><summary><b>IDbContextOptionsExtension</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptionsExtension</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Info</code></td><td><code>DbContextOptionsExtensionInfo</code></td><td>read</td><td><code>o.Info</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ApplyDefaults</code></td><td><code>ApplyDefaults(p1)</code></td><td><code>IDbContextOptionsExtension ApplyDefaults(IDbContextOptions options)</code></td></tr><tr><td><code>ApplyServices</code></td><td><code>ApplyServices(p1)</code></td><td><code>void ApplyServices(IServiceCollection services)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate(p1)</code></td><td><code>void Validate(IDbContextOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDbSetFinder"><summary><b>IDbSetFinder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IDbSetFinder</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FindSets</code></td><td><code>FindSets(p1)</code></td><td><code>IReadOnlyList&lt;DbSetProperty&gt; FindSets(Type contextType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IInfrastructure"><summary><b>IInfrastructure</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IInfrastructure`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Instance</code></td><td><code>T</code></td><td>read</td><td><code>o.Instance</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IInternalServiceCollectionMap"><summary><b>IInternalServiceCollectionMap</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IInternalServiceCollectionMap</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddDependencyScoped</code></td><td><code>AddDependencyScoped(NULL)</code></td><td><code>IInternalServiceCollectionMap AddDependencyScoped&lt;TDependencies&gt;()</code></td></tr><tr><td><code>AddDependencySingleton</code></td><td><code>AddDependencySingleton(NULL)</code></td><td><code>IInternalServiceCollectionMap AddDependencySingleton&lt;TDependencies&gt;()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ILazyLoader"><summary><b>ILazyLoader</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ILazyLoader</code> · assembly <code>Microsoft.EntityFrameworkCore.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>IsLoaded</code></td><td><code>IsLoaded([ :entity = …, :navigationName = … ])</code></td><td><code>bool IsLoaded(object entity, string navigationName = …)</code></td></tr><tr><td><code>Load</code></td><td><code>@Load([ :entity = …, :navigationName = … ])</code></td><td><code>void Load(object entity, string navigationName = …)</code></td></tr><tr><td><code>LoadAsync</code></td><td><code>LoadAsync([ :entity = …, :cancellationToken = …, :navigationName = … ])</code></td><td><code>Task LoadAsync(object entity, CancellationToken cancellationToken = …, string navigationName = …)</code></td></tr><tr><td><code>SetLoaded</code></td><td><code>SetLoaded([ :entity = …, :navigationName = …, :loaded = … ])</code></td><td><code>void SetLoaded(object entity, string navigationName = …, bool loaded = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelCacheKeyFactory"><summary><b>IModelCacheKeyFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IModelCacheKeyFactory</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(p1,p2)</code></td><td><code>object Create(DbContext context, bool designTime)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelCustomizer"><summary><b>IModelCustomizer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IModelCustomizer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Customize</code></td><td><code>Customize(p1,p2)</code></td><td><code>void Customize(ModelBuilder modelBuilder, DbContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelRuntimeInitializer"><summary><b>IModelRuntimeInitializer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IModelRuntimeInitializer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Initialize</code></td><td><code>Initialize([ :model = …, :designTime = …, :validationLogger = … ])</code></td><td><code>IModel Initialize(IModel model, bool designTime = …, IDiagnosticsLogger&lt;DbLoggerCategory.Model.Validation&gt; validationLogger = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelSource"><summary><b>IModelSource</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IModelSource</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetModel</code></td><td><code>GetModel(p1,p2,p3)</code></td><td><code>IModel GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, bool designTime)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IModelValidator"><summary><b>IModelValidator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IModelValidator</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(p1,p2)</code></td><td><code>void Validate(IModel model, IDiagnosticsLogger&lt;DbLoggerCategory.Model.Validation&gt; logger)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IndentedStringBuilder"><summary><b>IndentedStringBuilder</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IndentedStringBuilder</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new IndentedStringBuilder()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new IndentedStringBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new IndentedStringBuilder().@New([ :param = value ])</code> or <code>dnNew("IndentedStringBuilder",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IndentCount</code></td><td><code>int</code></td><td>read</td><td><code>o.IndentCount</code></td></tr><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Append</code></td><td><code>Append(p1)</code></td><td><code>IndentedStringBuilder Append(string value)</code><br><code>IndentedStringBuilder Append(FormattableString value)</code><br><code>IndentedStringBuilder Append(char value)</code><br><code>IndentedStringBuilder Append(IEnumerable&lt;string&gt; value)</code><br><code>IndentedStringBuilder Append(IEnumerable&lt;char&gt; value)</code></td></tr><tr><td><code>AppendJoin</code></td><td><code>AppendJoin([ :values = …, :separator = … ])</code><br><code>AppendJoin([ :separator = …, :values = … ])</code></td><td><code>IndentedStringBuilder AppendJoin(IEnumerable&lt;string&gt; values, string separator = …)</code><br><code>IndentedStringBuilder AppendJoin(string separator, string[] values)</code></td></tr><tr><td><code>AppendLine</code></td><td><code>AppendLine(NULL)</code><br><code>AppendLine(value)</code><br><code>AppendLine([ :value = … ])</code></td><td><code>IndentedStringBuilder AppendLine()</code><br><code>IndentedStringBuilder AppendLine(string value)</code><br><code>IndentedStringBuilder AppendLine(FormattableString value)</code></td></tr><tr><td><code>AppendLines</code></td><td><code>AppendLines([ :value = …, :skipFinalNewline = … ])</code></td><td><code>IndentedStringBuilder AppendLines(string value, bool skipFinalNewline = …)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>IndentedStringBuilder Clear()</code></td></tr><tr><td><code>DecrementIndent</code></td><td><code>DecrementIndent()</code></td><td><code>IndentedStringBuilder DecrementIndent()</code></td></tr><tr><td><code>IncrementIndent</code></td><td><code>IncrementIndent()</code></td><td><code>IndentedStringBuilder IncrementIndent()</code></td></tr><tr><td><code>Indent</code></td><td><code>Indent()</code></td><td><code>IDisposable Indent()</code></td></tr><tr><td><code>SuspendIndent</code></td><td><code>SuspendIndent()</code></td><td><code>IDisposable SuspendIndent()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IReadOnlyAnnotatable"><summary><b>IReadOnlyAnnotatable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IReadOnlyAnnotatable</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AnnotationsToDebugString</code></td><td><code>AnnotationsToDebugString(value)</code><br><code>AnnotationsToDebugString([ :indent = … ])</code></td><td><code>string AnnotationsToDebugString(int indent = …)</code></td></tr><tr><td><code>FindAnnotation</code></td><td><code>FindAnnotation(p1)</code></td><td><code>IAnnotation FindAnnotation(string name)</code></td></tr><tr><td><code>GetAnnotation</code></td><td><code>GetAnnotation(p1)</code></td><td><code>IAnnotation GetAnnotation(string annotationName)</code></td></tr><tr><td><code>GetAnnotations</code></td><td><code>GetAnnotations()</code></td><td><code>IEnumerable&lt;IAnnotation&gt; GetAnnotations()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRelationalDbContextOptionsBuilderInfrastructure"><summary><b>IRelationalDbContextOptionsBuilderInfrastructure</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IRelationalDbContextOptionsBuilderInfrastructure</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OptionsBuilder</code></td><td><code>DbContextOptionsBuilder</code></td><td>read</td><td><code>o.OptionsBuilder</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IResettableService"><summary><b>IResettableService</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.IResettableService</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ResetState</code></td><td><code>ResetState()</code></td><td><code>void ResetState()</code></td></tr><tr><td><code>ResetStateAsync</code></td><td><code>ResetStateAsync(value)</code><br><code>ResetStateAsync([ :cancellationToken = … ])</code></td><td><code>Task ResetStateAsync(CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ISingletonOptions"><summary><b>ISingletonOptions</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ISingletonOptions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Initialize</code></td><td><code>Initialize(p1)</code></td><td><code>void Initialize(IDbContextOptions options)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate(p1)</code></td><td><code>void Validate(IDbContextOptions options)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LazyLoaderExtensions"><summary><b>LazyLoaderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.LazyLoaderExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Load</code></td><td><code>@Load([ :loader = …, :entity = …, :navigationField = …, :navigationName = … ])</code></td><td><code>static TRelated Load&lt;TRelated&gt;(ILazyLoader loader, object entity, ref TRelated navigationField, string navigationName = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MethodInfoExtensions"><summary><b>MethodInfoExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.MethodInfoExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsEFPropertyMethod</code></td><td><code>IsEFPropertyMethod(p1)</code></td><td><code>static bool IsEFPropertyMethod(MethodInfo methodInfo)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelCacheKey"><summary><b>ModelCacheKey</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKey</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelCacheKey(DbContext context)</code></td></tr><tr><td><code>new ModelCacheKey(DbContext context, bool designTime)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelCacheKey(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelCacheKey().@New([ :param = value ])</code> or <code>dnNew("ModelCacheKey",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelCacheKeyFactory"><summary><b>ModelCacheKeyFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactory</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelCacheKeyFactory(ModelCacheKeyFactoryDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelCacheKeyFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelCacheKeyFactory().@New([ :param = value ])</code> or <code>dnNew("ModelCacheKeyFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(value)</code><br><code>Create([ :context = … ])</code><br><code>Create([ :context = …, :designTime = … ])</code></td><td><code>object Create(DbContext context)</code><br><code>object Create(DbContext context, bool designTime)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelCacheKeyFactoryDependencies"><summary><b>ModelCacheKeyFactoryDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelCacheKeyFactoryDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelCacheKeyFactoryDependencies()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelCacheKeyFactoryDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelCacheKeyFactoryDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelCacheKeyFactoryDependencies",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelCacheKeyFactoryDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelCacheKeyFactoryDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelCustomizer"><summary><b>ModelCustomizer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelCustomizer(ModelCustomizerDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelCustomizer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelCustomizer().@New([ :param = value ])</code> or <code>dnNew("ModelCustomizer",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Customize</code></td><td><code>Customize(p1,p2)</code></td><td><code>void Customize(ModelBuilder modelBuilder, DbContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelCustomizerDependencies"><summary><b>ModelCustomizerDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizerDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelCustomizerDependencies()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelCustomizerDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelCustomizerDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelCustomizerDependencies",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelCustomizerDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelCustomizerDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelDependencies"><summary><b>ModelDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelDependencies(IDiagnosticsLogger&lt;DbLoggerCategory.Model&gt; logger)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Logger</code></td><td><code>IDiagnosticsLogger&lt;DbLoggerCategory.Model&gt;</code></td><td>read, write</td><td><code>o.Logger</code> <code>o.Logger = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelRuntimeInitializer"><summary><b>ModelRuntimeInitializer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelRuntimeInitializer(ModelRuntimeInitializerDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelRuntimeInitializer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelRuntimeInitializer().@New([ :param = value ])</code> or <code>dnNew("ModelRuntimeInitializer",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Initialize</code></td><td><code>Initialize([ :model = …, :designTime = …, :validationLogger = … ])</code></td><td><code>IModel Initialize(IModel model, bool designTime = …, IDiagnosticsLogger&lt;DbLoggerCategory.Model.Validation&gt; validationLogger = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelRuntimeInitializerDependencies"><summary><b>ModelRuntimeInitializerDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelRuntimeInitializerDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelRuntimeInitializerDependencies(RuntimeModelDependencies runtimeModelDependencies, IModelValidator modelValidator)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelRuntimeInitializerDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelRuntimeInitializerDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelRuntimeInitializerDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ModelDependencies</code></td><td><code>RuntimeModelDependencies</code></td><td>read, write</td><td><code>o.ModelDependencies</code> <code>o.ModelDependencies = v</code></td></tr><tr><td><code>ModelValidator</code></td><td><code>IModelValidator</code></td><td>read, write</td><td><code>o.ModelValidator</code> <code>o.ModelValidator = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelRuntimeInitializerDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelRuntimeInitializerDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelSnapshot"><summary><b>ModelSnapshot</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Model</code></td><td><code>IModel</code></td><td>read</td><td><code>o.Model</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelSource"><summary><b>ModelSource</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelSource</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelSource(ModelSourceDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelSource(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelSource().@New([ :param = value ])</code> or <code>dnNew("ModelSource",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateModel</code></td><td><code>CreateModel(p1,p2,p3)</code></td><td><code>IModel CreateModel(DbContext context, ModelCreationDependencies modelCreationDependencies, bool designTime)</code></td></tr><tr><td><code>GetModel</code></td><td><code>GetModel(p1,p2,p3)</code></td><td><code>IModel GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, bool designTime)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelSourceDependencies"><summary><b>ModelSourceDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelSourceDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelSourceDependencies(IModelCustomizer modelCustomizer, IModelCacheKeyFactory modelCacheKeyFactory, IMemoryCache memoryCache)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelSourceDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelSourceDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelSourceDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ModelCustomizer</code></td><td><code>IModelCustomizer</code></td><td>read, write</td><td><code>o.ModelCustomizer</code> <code>o.ModelCustomizer = v</code></td></tr><tr><td><code>ModelCacheKeyFactory</code></td><td><code>IModelCacheKeyFactory</code></td><td>read, write</td><td><code>o.ModelCacheKeyFactory</code> <code>o.ModelCacheKeyFactory = v</code></td></tr><tr><td><code>MemoryCache</code></td><td><code>IMemoryCache</code></td><td>read, write</td><td><code>o.MemoryCache</code> <code>o.MemoryCache = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelSourceDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelSourceDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelValidator"><summary><b>ModelValidator</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidator</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelValidator(ModelValidatorDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelValidator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelValidator().@New([ :param = value ])</code> or <code>dnNew("ModelValidator",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(p1,p2)</code></td><td><code>void Validate(IModel model, IDiagnosticsLogger&lt;DbLoggerCategory.Model.Validation&gt; logger)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ModelValidatorDependencies"><summary><b>ModelValidatorDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ModelValidatorDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelValidatorDependencies(IMemberClassifier memberClassifier)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelValidatorDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelValidatorDependencies().@New([ :param = value ])</code> or <code>dnNew("ModelValidatorDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MemberClassifier</code></td><td><code>IMemberClassifier</code></td><td>read, write</td><td><code>o.MemberClassifier</code> <code>o.MemberClassifier = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>ModelValidatorDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ModelValidatorDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PooledDbContextFactory"><summary><b>PooledDbContextFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.PooledDbContextFactory`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+</div></details>
+<details class="cls" id="c-ProductInfo"><summary><b>ProductInfo</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ProductInfo</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetVersion</code></td><td><code>GetVersion()</code></td><td><code>static string GetVersion()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RelationalDbContextOptionsBuilder"><summary><b>RelationalDbContextOptionsBuilder</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalDbContextOptionsBuilder`2</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+</div></details>
+<details class="cls" id="c-RelationalModelCustomizer"><summary><b>RelationalModelCustomizer</b> <span class="muted">class · extends <a href="#c-ModelCustomizer">ModelCustomizer</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelCustomizer</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelCustomizer(ModelCustomizerDependencies dependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelCustomizer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelCustomizer().@New([ :param = value ])</code> or <code>dnNew("RelationalModelCustomizer",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RelationalModelDependencies"><summary><b>RelationalModelDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelDependencies(IRowKeyValueFactoryFactory rowKeyValueFactoryFactory, IRowForeignKeyValueFactoryFactory foreignKeyRowValueFactorySource, IRowIndexValueFactoryFactory rowIndexValueFactoryFactory, IValueConverterSelector valueConverterSelector)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelDependencies().@New([ :param = value ])</code> or <code>dnNew("RelationalModelDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RowKeyValueFactoryFactory</code></td><td><code>IRowKeyValueFactoryFactory</code></td><td>read, write</td><td><code>o.RowKeyValueFactoryFactory</code> <code>o.RowKeyValueFactoryFactory = v</code></td></tr><tr><td><code>RowForeignKeyValueFactoryFactory</code></td><td><code>IRowForeignKeyValueFactoryFactory</code></td><td>read, write</td><td><code>o.RowForeignKeyValueFactoryFactory</code> <code>o.RowForeignKeyValueFactoryFactory = v</code></td></tr><tr><td><code>RowIndexValueFactoryFactory</code></td><td><code>IRowIndexValueFactoryFactory</code></td><td>read, write</td><td><code>o.RowIndexValueFactoryFactory</code> <code>o.RowIndexValueFactoryFactory = v</code></td></tr><tr><td><code>ValueConverterSelector</code></td><td><code>IValueConverterSelector</code></td><td>read, write</td><td><code>o.ValueConverterSelector</code> <code>o.ValueConverterSelector = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>RelationalModelDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(RelationalModelDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RelationalModelRuntimeInitializer"><summary><b>RelationalModelRuntimeInitializer</b> <span class="muted">class · extends <a href="#c-ModelRuntimeInitializer">ModelRuntimeInitializer</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelRuntimeInitializer</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelRuntimeInitializer(ModelRuntimeInitializerDependencies dependencies, RelationalModelRuntimeInitializerDependencies relationalDependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelRuntimeInitializer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelRuntimeInitializer().@New([ :param = value ])</code> or <code>dnNew("RelationalModelRuntimeInitializer",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RelationalModelRuntimeInitializerDependencies"><summary><b>RelationalModelRuntimeInitializerDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelRuntimeInitializerDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelRuntimeInitializerDependencies(RelationalModelDependencies relationalModelDependencies, IRelationalAnnotationProvider relationalAnnotationProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelRuntimeInitializerDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelRuntimeInitializerDependencies().@New([ :param = value ])</code> or <code>dnNew("RelationalModelRuntimeInitializerDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RelationalModelDependencies</code></td><td><code>RelationalModelDependencies</code></td><td>read, write</td><td><code>o.RelationalModelDependencies</code> <code>o.RelationalModelDependencies = v</code></td></tr><tr><td><code>RelationalAnnotationProvider</code></td><td><code>IRelationalAnnotationProvider</code></td><td>read, write</td><td><code>o.RelationalAnnotationProvider</code> <code>o.RelationalAnnotationProvider = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>RelationalModelRuntimeInitializerDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(RelationalModelRuntimeInitializerDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RelationalModelValidator"><summary><b>RelationalModelValidator</b> <span class="muted">class · extends <a href="#c-ModelValidator">ModelValidator</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidator</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelValidator(ModelValidatorDependencies dependencies, RelationalModelValidatorDependencies relationalDependencies)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelValidator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelValidator().@New([ :param = value ])</code> or <code>dnNew("RelationalModelValidator",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(p1,p2)</code></td><td><code>void Validate(IModel model, IDiagnosticsLogger&lt;DbLoggerCategory.Model.Validation&gt; logger)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RelationalModelValidatorDependencies"><summary><b>RelationalModelValidatorDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalModelValidatorDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RelationalModelValidatorDependencies(IRelationalTypeMappingSource typeMappingSource)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RelationalModelValidatorDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RelationalModelValidatorDependencies().@New([ :param = value ])</code> or <code>dnNew("RelationalModelValidatorDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TypeMappingSource</code></td><td><code>IRelationalTypeMappingSource</code></td><td>read, write</td><td><code>o.TypeMappingSource</code> <code>o.TypeMappingSource = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>RelationalModelValidatorDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(RelationalModelValidatorDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RelationalOptionsExtension"><summary><b>RelationalOptionsExtension</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RelationalOptionsExtension</code> · assembly <code>Microsoft.EntityFrameworkCore.Relational</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Info</code></td><td><code>DbContextOptionsExtensionInfo</code></td><td>read</td><td><code>o.Info</code></td></tr><tr><td><code>ConnectionString</code></td><td><code>string</code></td><td>read</td><td><code>o.ConnectionString</code></td></tr><tr><td><code>Connection</code></td><td><code>DbConnection</code></td><td>read</td><td><code>o.Connection</code></td></tr><tr><td><code>IsConnectionOwned</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsConnectionOwned</code></td></tr><tr><td><code>CommandTimeout</code></td><td><code>int?</code></td><td>read</td><td><code>o.CommandTimeout</code></td></tr><tr><td><code>MaxBatchSize</code></td><td><code>int?</code></td><td>read</td><td><code>o.MaxBatchSize</code></td></tr><tr><td><code>MinBatchSize</code></td><td><code>int?</code></td><td>read</td><td><code>o.MinBatchSize</code></td></tr><tr><td><code>UseRelationalNulls</code></td><td><code>bool</code></td><td>read</td><td><code>o.UseRelationalNulls</code></td></tr><tr><td><code>QuerySplittingBehavior</code></td><td><code>QuerySplittingBehavior?</code></td><td>read</td><td><code>o.QuerySplittingBehavior</code></td></tr><tr><td><code>MigrationsAssembly</code></td><td><code>string</code></td><td>read</td><td><code>o.MigrationsAssembly</code></td></tr><tr><td><code>MigrationsAssemblyObject</code></td><td><code>Assembly</code></td><td>read</td><td><code>o.MigrationsAssemblyObject</code></td></tr><tr><td><code>MigrationsHistoryTableName</code></td><td><code>string</code></td><td>read</td><td><code>o.MigrationsHistoryTableName</code></td></tr><tr><td><code>MigrationsHistoryTableSchema</code></td><td><code>string</code></td><td>read</td><td><code>o.MigrationsHistoryTableSchema</code></td></tr><tr><td><code>ExecutionStrategyFactory</code></td><td><code>Func&lt;ExecutionStrategyDependencies, IExecutionStrategy&gt;</code></td><td>read</td><td><code>o.ExecutionStrategyFactory</code></td></tr><tr><td><code>ParameterizedCollectionTranslationMode</code></td><td><code>ParameterizedCollectionTranslationMode?</code></td><td>read</td><td><code>o.ParameterizedCollectionTranslationMode</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ApplyServices</code></td><td><code>ApplyServices(p1)</code></td><td><code>void ApplyServices(IServiceCollection services)</code></td></tr><tr><td><code>Extract</code></td><td><code>Extract(p1)</code></td><td><code>static RelationalOptionsExtension Extract(IDbContextOptions options)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate(p1)</code></td><td><code>void Validate(IDbContextOptions options)</code></td></tr><tr><td><code>WithCommandTimeout</code></td><td><code>WithCommandTimeout(p1)</code></td><td><code>RelationalOptionsExtension WithCommandTimeout(int? commandTimeout)</code></td></tr><tr><td><code>WithConnection</code></td><td><code>WithConnection(value)</code><br><code>WithConnection([ :connection = … ])</code><br><code>WithConnection([ :connection = …, :owned = … ])</code></td><td><code>RelationalOptionsExtension WithConnection(DbConnection connection)</code><br><code>RelationalOptionsExtension WithConnection(DbConnection connection, bool owned)</code></td></tr><tr><td><code>WithConnectionString</code></td><td><code>WithConnectionString(p1)</code></td><td><code>RelationalOptionsExtension WithConnectionString(string connectionString)</code></td></tr><tr><td><code>WithDefaultWarningConfiguration</code></td><td><code>WithDefaultWarningConfiguration(p1)</code></td><td><code>static CoreOptionsExtension WithDefaultWarningConfiguration(CoreOptionsExtension coreOptionsExtension)</code></td></tr><tr><td><code>WithExecutionStrategyFactory</code></td><td><code>WithExecutionStrategyFactory(p1)</code></td><td><code>RelationalOptionsExtension WithExecutionStrategyFactory(Func&lt;ExecutionStrategyDependencies, IExecutionStrategy&gt; executionStrategyFactory)</code></td></tr><tr><td><code>WithMaxBatchSize</code></td><td><code>WithMaxBatchSize(p1)</code></td><td><code>RelationalOptionsExtension WithMaxBatchSize(int? maxBatchSize)</code></td></tr><tr><td><code>WithMigrationsAssembly</code></td><td><code>WithMigrationsAssembly(p1)</code></td><td><code>RelationalOptionsExtension WithMigrationsAssembly(string migrationsAssembly)</code><br><code>RelationalOptionsExtension WithMigrationsAssembly(Assembly migrationsAssembly)</code></td></tr><tr><td><code>WithMigrationsHistoryTableName</code></td><td><code>WithMigrationsHistoryTableName(p1)</code></td><td><code>RelationalOptionsExtension WithMigrationsHistoryTableName(string migrationsHistoryTableName)</code></td></tr><tr><td><code>WithMigrationsHistoryTableSchema</code></td><td><code>WithMigrationsHistoryTableSchema(p1)</code></td><td><code>RelationalOptionsExtension WithMigrationsHistoryTableSchema(string migrationsHistoryTableSchema)</code></td></tr><tr><td><code>WithMinBatchSize</code></td><td><code>WithMinBatchSize(p1)</code></td><td><code>RelationalOptionsExtension WithMinBatchSize(int? minBatchSize)</code></td></tr><tr><td><code>WithParameterizedCollectionTranslationMode</code></td><td><code>WithParameterizedCollectionTranslationMode(p1)</code></td><td><code>RelationalOptionsExtension WithParameterizedCollectionTranslationMode(ParameterizedCollectionTranslationMode parameterizedCollectionTranslationMode)</code></td></tr><tr><td><code>WithUseQuerySplittingBehavior</code></td><td><code>WithUseQuerySplittingBehavior(p1)</code></td><td><code>RelationalOptionsExtension WithUseQuerySplittingBehavior(QuerySplittingBehavior querySplittingBehavior)</code></td></tr><tr><td><code>WithUseRelationalNulls</code></td><td><code>WithUseRelationalNulls(p1)</code></td><td><code>RelationalOptionsExtension WithUseRelationalNulls(bool useRelationalNulls)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RuntimeAnnotatableBase"><summary><b>RuntimeAnnotatableBase</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RuntimeAnnotatableBase</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RuntimeAnnotatableBase()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RuntimeAnnotatableBase(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RuntimeAnnotatableBase().@New([ :param = value ])</code> or <code>dnNew("RuntimeAnnotatableBase",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(string name)</code> → <code>object</code> · <code>o.SetItem(name,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddAnnotation</code></td><td><code>AddAnnotation(p1,p2)</code></td><td><code>Annotation AddAnnotation(string name, object value)</code></td></tr><tr><td><code>AddAnnotations</code></td><td><code>AddAnnotations(p1)</code></td><td><code>void AddAnnotations(IEnumerable&lt;IAnnotation&gt; annotations)</code><br><code>void AddAnnotations(IReadOnlyDictionary&lt;string, object&gt; annotations)</code></td></tr><tr><td><code>AddRuntimeAnnotation</code></td><td><code>AddRuntimeAnnotation(p1,p2)</code></td><td><code>Annotation AddRuntimeAnnotation(string name, object value)</code></td></tr><tr><td><code>AddRuntimeAnnotations</code></td><td><code>AddRuntimeAnnotations(p1)</code></td><td><code>void AddRuntimeAnnotations(IEnumerable&lt;Annotation&gt; annotations)</code><br><code>void AddRuntimeAnnotations(IReadOnlyDictionary&lt;string, object&gt; annotations)</code></td></tr><tr><td><code>FindAnnotation</code></td><td><code>FindAnnotation(p1)</code></td><td><code>Annotation FindAnnotation(string name)</code></td></tr><tr><td><code>FindRuntimeAnnotation</code></td><td><code>FindRuntimeAnnotation(p1)</code></td><td><code>Annotation FindRuntimeAnnotation(string name)</code></td></tr><tr><td><code>GetAnnotation</code></td><td><code>GetAnnotation(p1)</code></td><td><code>Annotation GetAnnotation(string annotationName)</code></td></tr><tr><td><code>GetOrAddRuntimeAnnotationValue</code></td><td><code>GetOrAddRuntimeAnnotationValue(p1,p2,p3)</code></td><td><code>TValue GetOrAddRuntimeAnnotationValue&lt;TValue, TArg&gt;(string name, Func&lt;TArg, TValue&gt; valueFactory, TArg factoryArgument)</code></td></tr><tr><td><code>GetRuntimeAnnotations</code></td><td><code>GetRuntimeAnnotations()</code></td><td><code>IEnumerable&lt;Annotation&gt; GetRuntimeAnnotations()</code></td></tr><tr><td><code>RemoveAnnotation</code></td><td><code>RemoveAnnotation(p1)</code></td><td><code>Annotation RemoveAnnotation(string name)</code></td></tr><tr><td><code>RemoveRuntimeAnnotation</code></td><td><code>RemoveRuntimeAnnotation(p1)</code></td><td><code>Annotation RemoveRuntimeAnnotation(string name)</code></td></tr><tr><td><code>SetAnnotation</code></td><td><code>SetAnnotation(p1,p2)</code></td><td><code>void SetAnnotation(string name, object value)</code></td></tr><tr><td><code>SetRuntimeAnnotation</code></td><td><code>SetRuntimeAnnotation(p1,p2)</code></td><td><code>Annotation SetRuntimeAnnotation(string name, object value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RuntimeModelDependencies"><summary><b>RuntimeModelDependencies</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.RuntimeModelDependencies</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RuntimeModelDependencies(ITypeMappingSource typeMappingSource, IConstructorBindingFactory constructorBindingFactory, IParameterBindingFactories parameterBindingFactories)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RuntimeModelDependencies(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RuntimeModelDependencies().@New([ :param = value ])</code> or <code>dnNew("RuntimeModelDependencies",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TypeMappingSource</code></td><td><code>ITypeMappingSource</code></td><td>read, write</td><td><code>o.TypeMappingSource</code> <code>o.TypeMappingSource = v</code></td></tr><tr><td><code>ConstructorBindingFactory</code></td><td><code>IConstructorBindingFactory</code></td><td>read, write</td><td><code>o.ConstructorBindingFactory</code> <code>o.ConstructorBindingFactory = v</code></td></tr><tr><td><code>ParameterBindingFactories</code></td><td><code>IParameterBindingFactories</code></td><td>read, write</td><td><code>o.ParameterBindingFactories</code> <code>o.ParameterBindingFactories = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>&lt;Clone&gt;$</code></td><td><code>callMethod("&lt;Clone&gt;$",[])</code></td><td><code>RuntimeModelDependencies &lt;Clone&gt;$()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(RuntimeModelDependencies other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ServiceCharacteristics"><summary><b>ServiceCharacteristics</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ServiceCharacteristics</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ServiceCharacteristics(ServiceLifetime lifetime, bool multipleRegistrations = …)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ServiceCharacteristics(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ServiceCharacteristics().@New([ :param = value ])</code> or <code>dnNew("ServiceCharacteristics",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Lifetime</code></td><td><code>ServiceLifetime</code></td><td>read</td><td><code>o.Lifetime</code></td></tr><tr><td><code>MultipleRegistrations</code></td><td><code>bool</code></td><td>read</td><td><code>o.MultipleRegistrations</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ServiceCollectionMap"><summary><b>ServiceCollectionMap</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ServiceCollectionMap</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ServiceCollectionMap(IServiceCollection serviceCollection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ServiceCollectionMap(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ServiceCollectionMap().@New([ :param = value ])</code> or <code>dnNew("ServiceCollectionMap",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ServiceCollection</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.ServiceCollection</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TryAdd</code></td><td><code>TryAdd(p1,p2,p3)</code></td><td><code>ServiceCollectionMap TryAdd(Type serviceType, Type implementationType, ServiceLifetime lifetime)</code><br><code>ServiceCollectionMap TryAdd(Type serviceType, Func&lt;IServiceProvider, object&gt; factory, ServiceLifetime lifetime)</code></td></tr><tr><td><code>TryAddEnumerable</code></td><td><code>TryAddEnumerable([ :serviceType = …, :implementationType = …, :lifetime = … ])</code><br><code>TryAddEnumerable([ :serviceType = …, :implementationType = …, :factory = …, :lifetime = … ])</code></td><td><code>ServiceCollectionMap TryAddEnumerable(Type serviceType, Type implementationType, ServiceLifetime lifetime)</code><br><code>ServiceCollectionMap TryAddEnumerable(Type serviceType, Type implementationType, Func&lt;IServiceProvider, object&gt; factory, ServiceLifetime lifetime)</code></td></tr><tr><td><code>TryAddScoped</code></td><td><code>TryAddScoped(NULL)</code><br><code>TryAddScoped(value)</code><br><code>TryAddScoped([ :factory = … ])</code><br><code>TryAddScoped([ :serviceType = …, :implementationType = … ])</code><br><code>TryAddScoped([ :serviceType = …, :factory = … ])</code></td><td><code>ServiceCollectionMap TryAddScoped&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddScoped(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddScoped&lt;TService&gt;(Func&lt;IServiceProvider, TService&gt; factory)</code><br><code>ServiceCollectionMap TryAddScoped&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code><br><code>ServiceCollectionMap TryAddScoped(Type serviceType, Func&lt;IServiceProvider, object&gt; factory)</code></td></tr><tr><td><code>TryAddScopedEnumerable</code></td><td><code>TryAddScopedEnumerable(NULL)</code><br><code>TryAddScopedEnumerable(value)</code><br><code>TryAddScopedEnumerable([ :factory = … ])</code><br><code>TryAddScopedEnumerable([ :serviceType = …, :implementationType = … ])</code></td><td><code>ServiceCollectionMap TryAddScopedEnumerable&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddScopedEnumerable(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddScopedEnumerable&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code></td></tr><tr><td><code>TryAddSingleton</code></td><td><code>TryAddSingleton(NULL)</code><br><code>TryAddSingleton(value)</code><br><code>TryAddSingleton([ :factory = … ])</code><br><code>TryAddSingleton([ :implementation = … ])</code><br><code>TryAddSingleton([ :serviceType = …, :implementationType = … ])</code><br><code>TryAddSingleton([ :serviceType = …, :factory = … ])</code></td><td><code>ServiceCollectionMap TryAddSingleton&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddSingleton(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddSingleton&lt;TService&gt;(Func&lt;IServiceProvider, TService&gt; factory)</code><br><code>ServiceCollectionMap TryAddSingleton&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code><br><code>ServiceCollectionMap TryAddSingleton(Type serviceType, Func&lt;IServiceProvider, object&gt; factory)</code><br><code>ServiceCollectionMap TryAddSingleton&lt;TService&gt;(TService implementation)</code><br><code>ServiceCollectionMap TryAddSingleton(Type serviceType, object implementation)</code></td></tr><tr><td><code>TryAddSingletonEnumerable</code></td><td><code>TryAddSingletonEnumerable(NULL)</code><br><code>TryAddSingletonEnumerable(value)</code><br><code>TryAddSingletonEnumerable([ :factory = … ])</code><br><code>TryAddSingletonEnumerable([ :implementation = … ])</code><br><code>TryAddSingletonEnumerable([ :serviceType = …, :implementationType = … ])</code><br><code>TryAddSingletonEnumerable([ :serviceType = …, :implementation = … ])</code></td><td><code>ServiceCollectionMap TryAddSingletonEnumerable&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddSingletonEnumerable(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddSingletonEnumerable&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code><br><code>ServiceCollectionMap TryAddSingletonEnumerable&lt;TService&gt;(TService implementation)</code><br><code>ServiceCollectionMap TryAddSingletonEnumerable(Type serviceType, object implementation)</code></td></tr><tr><td><code>TryAddTransient</code></td><td><code>TryAddTransient(NULL)</code><br><code>TryAddTransient(value)</code><br><code>TryAddTransient([ :factory = … ])</code><br><code>TryAddTransient([ :serviceType = …, :implementationType = … ])</code><br><code>TryAddTransient([ :serviceType = …, :factory = … ])</code></td><td><code>ServiceCollectionMap TryAddTransient&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddTransient(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddTransient&lt;TService&gt;(Func&lt;IServiceProvider, TService&gt; factory)</code><br><code>ServiceCollectionMap TryAddTransient&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code><br><code>ServiceCollectionMap TryAddTransient(Type serviceType, Func&lt;IServiceProvider, object&gt; factory)</code></td></tr><tr><td><code>TryAddTransientEnumerable</code></td><td><code>TryAddTransientEnumerable(NULL)</code><br><code>TryAddTransientEnumerable(value)</code><br><code>TryAddTransientEnumerable([ :factory = … ])</code><br><code>TryAddTransientEnumerable([ :serviceType = …, :implementationType = … ])</code></td><td><code>ServiceCollectionMap TryAddTransientEnumerable&lt;TService, TImplementation&gt;()</code><br><code>ServiceCollectionMap TryAddTransientEnumerable(Type serviceType, Type implementationType)</code><br><code>ServiceCollectionMap TryAddTransientEnumerable&lt;TService, TImplementation&gt;(Func&lt;IServiceProvider, TImplementation&gt; factory)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ServiceProviderAccessor"><summary><b>ServiceProviderAccessor</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.ServiceProviderAccessor</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ServiceProviderAccessor(IServiceProvider rootServiceProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ServiceProviderAccessor(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ServiceProviderAccessor().@New([ :param = value ])</code> or <code>dnNew("ServiceProviderAccessor",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RootServiceProvider</code></td><td><code>IServiceProvider</code></td><td>read</td><td><code>o.RootServiceProvider</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SpatialiteLoader"><summary><b>SpatialiteLoader</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.SpatialiteLoader</code> · assembly <code>Microsoft.EntityFrameworkCore.Sqlite</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Load</code></td><td><code>@Load(p1)</code></td><td><code>static void Load(DbConnection connection)</code></td></tr><tr><td><code>TryLoad</code></td><td><code>TryLoad(p1)</code></td><td><code>static bool TryLoad(DbConnection connection)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SqliteDbContextOptionsBuilder"><summary><b>SqliteDbContextOptionsBuilder</b> <span class="muted">class · extends RelationalDbContextOptionsBuilder&lt;SqliteDbContextOptionsBuilder, SqliteOptionsExtension&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.SqliteDbContextOptionsBuilder</code> · assembly <code>Microsoft.EntityFrameworkCore.Sqlite</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SqliteDbContextOptionsBuilder(DbContextOptionsBuilder optionsBuilder)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SqliteDbContextOptionsBuilder(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SqliteDbContextOptionsBuilder().@New([ :param = value ])</code> or <code>dnNew("SqliteDbContextOptionsBuilder",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CommandTimeout</code></td><td><code>CommandTimeout(p1)</code></td><td><code>SqliteDbContextOptionsBuilder CommandTimeout(int? commandTimeout)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>ExecutionStrategy</code></td><td><code>ExecutionStrategy(p1)</code></td><td><code>SqliteDbContextOptionsBuilder ExecutionStrategy(Func&lt;ExecutionStrategyDependencies, IExecutionStrategy&gt; getExecutionStrategy)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>MaxBatchSize</code></td><td><code>MaxBatchSize(p1)</code></td><td><code>SqliteDbContextOptionsBuilder MaxBatchSize(int maxBatchSize)</code></td></tr><tr><td><code>MigrationsAssembly</code></td><td><code>MigrationsAssembly(p1)</code></td><td><code>SqliteDbContextOptionsBuilder MigrationsAssembly(string assemblyName)</code><br><code>SqliteDbContextOptionsBuilder MigrationsAssembly(Assembly assembly)</code></td></tr><tr><td><code>MigrationsHistoryTable</code></td><td><code>MigrationsHistoryTable([ :tableName = …, :schema = … ])</code></td><td><code>SqliteDbContextOptionsBuilder MigrationsHistoryTable(string tableName, string schema = …)</code></td></tr><tr><td><code>MinBatchSize</code></td><td><code>MinBatchSize(p1)</code></td><td><code>SqliteDbContextOptionsBuilder MinBatchSize(int minBatchSize)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>TranslateParameterizedCollectionsToConstants</code></td><td><code>TranslateParameterizedCollectionsToConstants()</code></td><td><code>SqliteDbContextOptionsBuilder TranslateParameterizedCollectionsToConstants()</code></td></tr><tr><td><code>TranslateParameterizedCollectionsToParameters</code></td><td><code>TranslateParameterizedCollectionsToParameters()</code></td><td><code>SqliteDbContextOptionsBuilder TranslateParameterizedCollectionsToParameters()</code></td></tr><tr><td><code>UseQuerySplittingBehavior</code></td><td><code>UseQuerySplittingBehavior(p1)</code></td><td><code>SqliteDbContextOptionsBuilder UseQuerySplittingBehavior(QuerySplittingBehavior querySplittingBehavior)</code></td></tr><tr><td><code>UseRelationalNulls</code></td><td><code>UseRelationalNulls(value)</code><br><code>UseRelationalNulls([ :useRelationalNulls = … ])</code></td><td><code>SqliteDbContextOptionsBuilder UseRelationalNulls(bool useRelationalNulls = …)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeExtensions"><summary><b>TypeExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.TypeExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ShortDisplayName</code></td><td><code>ShortDisplayName(p1)</code></td><td><code>static string ShortDisplayName(Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Uniquifier"><summary><b>Uniquifier</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.Infrastructure.Uniquifier</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Truncate</code></td><td><code>Truncate([ :identifier = …, :maxLength = …, :uniquifier = … ])</code><br><code>Truncate([ :identifier = …, :maxLength = …, :suffix = …, :uniquifier = … ])</code></td><td><code>static string Truncate(string identifier, int maxLength, int? uniquifier = …)</code><br><code>static string Truncate(string identifier, int maxLength, string suffix, int? uniquifier = …)</code></td></tr><tr><td><code>Uniquify</code></td><td><code>Uniquify([ :currentIdentifier = …, :otherIdentifiers = …, :maxLength = … ])</code><br><code>Uniquify([ :currentIdentifier = …, :otherIdentifiers = …, :suffix = …, :maxLength = … ])</code><br><code>Uniquify([ :currentIdentifier = …, :otherIdentifiers = …, :keySelector = …, :maxLength = … ])</code><br><code>Uniquify([ :currentIdentifier = …, :otherIdentifiers = …, :keySelector = …, :suffix = …, :maxLength = … ])</code></td><td><code>static string Uniquify&lt;T&gt;(string currentIdentifier, IReadOnlyDictionary&lt;string, T&gt; otherIdentifiers, int maxLength)</code><br><code>static string Uniquify&lt;T&gt;(string currentIdentifier, IReadOnlyDictionary&lt;string, T&gt; otherIdentifiers, string suffix, int maxLength)</code><br><code>static string Uniquify&lt;TKey, TValue&gt;(string currentIdentifier, IReadOnlyDictionary&lt;TKey, TValue&gt; otherIdentifiers, Func&lt;string, TKey&gt; keySelector, int maxLength)</code><br><code>static string Uniquify&lt;TKey, TValue&gt;(string currentIdentifier, IReadOnlyDictionary&lt;TKey, TValue&gt; otherIdentifiers, Func&lt;string, TKey&gt; keySelector, string suffix, int maxLength)</code><br><code>static string Uniquify(string currentIdentifier, ISet&lt;string&gt; otherIdentifiers, string suffix, int maxLength)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

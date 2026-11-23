@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Text.RegularExpressions · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Text.RegularExpressions</h1>
+<p class="lead">12 wrapped types. Load them with <code>using { "System.Text.RegularExpressions" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-Capture">Capture</a> <a href="#c-CaptureCollection">CaptureCollection</a> <a href="#c-GeneratedRegexAttribute">GeneratedRegexAttribute</a> <a href="#c-Group">Group</a> <a href="#c-GroupCollection">GroupCollection</a> <a href="#c-Match">Match</a> <a href="#c-MatchCollection">MatchCollection</a> <a href="#c-Regex">Regex</a> <a href="#c-RegexMatchTimeoutException">RegexMatchTimeoutException</a> <a href="#c-RegexParseException">RegexParseException</a> <a href="#c-RegexRunner">RegexRunner</a> <a href="#c-RegexRunnerFactory">RegexRunnerFactory</a></div><details class="cls" id="c-Capture"><summary><b>Capture</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.Capture</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Index</code></td><td><code>int</code></td><td>read</td><td><code>o.Index</code></td></tr><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>ValueSpan</code></td><td><code>ReadOnlySpan&lt;char&gt;</code></td><td>read</td><td><code>o.ValueSpan</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CaptureCollection"><summary><b>CaptureCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.CaptureCollection</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int i)</code> → <code>Capture</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int arrayIndex)</code><br><code>void CopyTo(Capture[] array, int arrayIndex)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GeneratedRegexAttribute"><summary><b>GeneratedRegexAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.GeneratedRegexAttribute</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GeneratedRegexAttribute(string pattern)</code></td></tr><tr><td><code>new GeneratedRegexAttribute(string pattern, RegexOptions options)</code></td></tr><tr><td><code>new GeneratedRegexAttribute(string pattern, RegexOptions options, string cultureName)</code></td></tr><tr><td><code>new GeneratedRegexAttribute(string pattern, RegexOptions options, int matchTimeoutMilliseconds)</code></td></tr><tr><td><code>new GeneratedRegexAttribute(string pattern, RegexOptions options, int matchTimeoutMilliseconds, string cultureName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GeneratedRegexAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GeneratedRegexAttribute().@New([ :param = value ])</code> or <code>dnNew("GeneratedRegexAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Pattern</code></td><td><code>string</code></td><td>read</td><td><code>o.Pattern</code></td></tr><tr><td><code>Options</code></td><td><code>RegexOptions</code></td><td>read</td><td><code>o.Options</code></td></tr><tr><td><code>MatchTimeoutMilliseconds</code></td><td><code>int</code></td><td>read</td><td><code>o.MatchTimeoutMilliseconds</code></td></tr><tr><td><code>CultureName</code></td><td><code>string</code></td><td>read</td><td><code>o.CultureName</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Group"><summary><b>Group</b> <span class="muted">class · extends <a href="#c-Capture">Capture</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.Group</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Success</code></td><td><code>bool</code></td><td>read</td><td><code>o.Success</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>Captures</code></td><td><code>CaptureCollection</code></td><td>read</td><td><code>o.Captures</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static Group Synchronized(Group inner)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GroupCollection"><summary><b>GroupCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.GroupCollection</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr><tr><td><code>Keys</code></td><td><code>IEnumerable&lt;string&gt;</code></td><td>read</td><td><code>o.Keys</code></td></tr><tr><td><code>Values</code></td><td><code>IEnumerable&lt;Group&gt;</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int groupnum)</code> → <code>Group</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ContainsKey</code></td><td><code>ContainsKey(p1)</code></td><td><code>bool ContainsKey(string key)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int arrayIndex)</code><br><code>void CopyTo(Group[] array, int arrayIndex)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr><tr><td><code>TryGetValue</code></td><td><code>TryGetValue(p1)</code></td><td><code>bool TryGetValue(string key, out Group value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Match"><summary><b>Match</b> <span class="muted">class · extends <a href="#c-Group">Group</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.Match</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Groups</code></td><td><code>GroupCollection</code></td><td>read</td><td><code>o.Groups</code></td></tr><tr><td><code>Empty</code></td><td><code>Match</code></td><td>read · static</td><td><code>o.Empty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>NextMatch</code></td><td><code>NextMatch()</code></td><td><code>Match NextMatch()</code></td></tr><tr><td><code>Result</code></td><td><code>Result(p1)</code></td><td><code>string Result(string replacement)</code></td></tr><tr><td><code>Synchronized</code></td><td><code>Synchronized(p1)</code></td><td><code>static Match Synchronized(Match inner)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MatchCollection"><summary><b>MatchCollection</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.MatchCollection</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsSynchronized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSynchronized</code></td></tr><tr><td><code>SyncRoot</code></td><td><code>object</code></td><td>read</td><td><code>o.SyncRoot</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int i)</code> → <code>Match</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Array array, int arrayIndex)</code><br><code>void CopyTo(Match[] array, int arrayIndex)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Regex"><summary><b>Regex</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.Regex</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Regex(string pattern)</code></td></tr><tr><td><code>new Regex(string pattern, RegexOptions options)</code></td></tr><tr><td><code>new Regex(string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Regex(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Regex().@New([ :param = value ])</code> or <code>dnNew("Regex",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Options</code></td><td><code>RegexOptions</code></td><td>read</td><td><code>o.Options</code></td></tr><tr><td><code>RightToLeft</code></td><td><code>bool</code></td><td>read</td><td><code>o.RightToLeft</code></td></tr><tr><td><code>MatchTimeout</code></td><td><code>TimeSpan</code></td><td>read</td><td><code>o.MatchTimeout</code></td></tr><tr><td><code>CacheSize</code></td><td><code>int</code></td><td>read, write · static</td><td><code>o.CacheSize</code> <code>o.CacheSize = v</code></td></tr><tr><td><code>InfiniteMatchTimeout</code></td><td><code>TimeSpan</code></td><td>read · static</td><td><code>o.InfiniteMatchTimeout</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CompileToAssembly</code></td><td><code>CompileToAssembly([ :regexinfos = …, :assemblyname = … ])</code><br><code>CompileToAssembly([ :regexinfos = …, :assemblyname = …, :attributes = … ])</code><br><code>CompileToAssembly([ :regexinfos = …, :assemblyname = …, :attributes = …, :resourceFile = … ])</code></td><td><code>static void CompileToAssembly(RegexCompilationInfo[] regexinfos, AssemblyName assemblyname)</code><br><code>static void CompileToAssembly(RegexCompilationInfo[] regexinfos, AssemblyName assemblyname, CustomAttributeBuilder[] attributes)</code><br><code>static void CompileToAssembly(RegexCompilationInfo[] regexinfos, AssemblyName assemblyname, CustomAttributeBuilder[] attributes, string resourceFile)</code></td></tr><tr><td><code>Count</code></td><td><code>Count(value)</code><br><code>Count([ :input = … ])</code><br><code>Count([ :input = …, :startat = … ])</code><br><code>Count([ :input = …, :pattern = … ])</code><br><code>Count([ :input = …, :pattern = …, :options = … ])</code></td><td><code>int Count(string input)</code><br><code>int Count(ReadOnlySpan&lt;char&gt; input)</code><br><code>int Count(ReadOnlySpan&lt;char&gt; input, int startat)</code><br><code>static int Count(string input, string pattern)</code><br><code>static int Count(string input, string pattern, RegexOptions options)</code><br><code>static int Count(string input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code><br><code>static int Count(ReadOnlySpan&lt;char&gt; input, string pattern)</code><br><code>static int Count(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options)</code><br><code>static int Count(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>EnumerateMatches</code></td><td><code>EnumerateMatches(value)</code><br><code>EnumerateMatches([ :input = … ])</code><br><code>EnumerateMatches([ :input = …, :startat = … ])</code><br><code>EnumerateMatches([ :input = …, :pattern = … ])</code><br><code>EnumerateMatches([ :input = …, :pattern = …, :options = … ])</code></td><td><code>Regex.ValueMatchEnumerator EnumerateMatches(ReadOnlySpan&lt;char&gt; input)</code><br><code>Regex.ValueMatchEnumerator EnumerateMatches(ReadOnlySpan&lt;char&gt; input, int startat)</code><br><code>static Regex.ValueMatchEnumerator EnumerateMatches(ReadOnlySpan&lt;char&gt; input, string pattern)</code><br><code>static Regex.ValueMatchEnumerator EnumerateMatches(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options)</code><br><code>static Regex.ValueMatchEnumerator EnumerateMatches(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>EnumerateSplits</code></td><td><code>EnumerateSplits(value)</code><br><code>EnumerateSplits([ :input = … ])</code><br><code>EnumerateSplits([ :input = …, :count = … ])</code><br><code>EnumerateSplits([ :input = …, :pattern = … ])</code><br><code>EnumerateSplits([ :input = …, :count = …, :startat = … ])</code></td><td><code>Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input)</code><br><code>Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input, int count)</code><br><code>Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input, int count, int startat)</code><br><code>static Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input, string pattern)</code><br><code>static Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options)</code><br><code>static Regex.ValueSplitEnumerator EnumerateSplits(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>Escape</code></td><td><code>Escape(p1)</code></td><td><code>static string Escape(string str)</code></td></tr><tr><td><code>GetGroupNames</code></td><td><code>GetGroupNames()</code></td><td><code>string[] GetGroupNames()</code></td></tr><tr><td><code>GetGroupNumbers</code></td><td><code>GetGroupNumbers()</code></td><td><code>int[] GetGroupNumbers()</code></td></tr><tr><td><code>GroupNameFromNumber</code></td><td><code>GroupNameFromNumber(p1)</code></td><td><code>string GroupNameFromNumber(int i)</code></td></tr><tr><td><code>GroupNumberFromName</code></td><td><code>GroupNumberFromName(p1)</code></td><td><code>int GroupNumberFromName(string name)</code></td></tr><tr><td><code>IsMatch</code></td><td><code>IsMatch(value)</code><br><code>IsMatch([ :input = … ])</code><br><code>IsMatch([ :input = …, :startat = … ])</code><br><code>IsMatch([ :input = …, :pattern = … ])</code><br><code>IsMatch([ :input = …, :pattern = …, :options = … ])</code></td><td><code>bool IsMatch(string input)</code><br><code>bool IsMatch(string input, int startat)</code><br><code>bool IsMatch(ReadOnlySpan&lt;char&gt; input)</code><br><code>bool IsMatch(ReadOnlySpan&lt;char&gt; input, int startat)</code><br><code>static bool IsMatch(string input, string pattern)</code><br><code>static bool IsMatch(ReadOnlySpan&lt;char&gt; input, string pattern)</code><br><code>static bool IsMatch(string input, string pattern, RegexOptions options)</code><br><code>static bool IsMatch(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options)</code><br><code>static bool IsMatch(string input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code><br><code>static bool IsMatch(ReadOnlySpan&lt;char&gt; input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>Match</code></td><td><code>Match(value)</code><br><code>Match([ :input = … ])</code><br><code>Match([ :input = …, :startat = … ])</code><br><code>Match([ :input = …, :pattern = … ])</code><br><code>Match([ :input = …, :beginning = …, :length = … ])</code></td><td><code>Match Match(string input)</code><br><code>Match Match(string input, int startat)</code><br><code>Match Match(string input, int beginning, int length)</code><br><code>static Match Match(string input, string pattern)</code><br><code>static Match Match(string input, string pattern, RegexOptions options)</code><br><code>static Match Match(string input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>Matches</code></td><td><code>Matches(value)</code><br><code>Matches([ :input = … ])</code><br><code>Matches([ :input = …, :startat = … ])</code><br><code>Matches([ :input = …, :pattern = … ])</code><br><code>Matches([ :input = …, :pattern = …, :options = … ])</code></td><td><code>MatchCollection Matches(string input)</code><br><code>MatchCollection Matches(string input, int startat)</code><br><code>static MatchCollection Matches(string input, string pattern)</code><br><code>static MatchCollection Matches(string input, string pattern, RegexOptions options)</code><br><code>static MatchCollection Matches(string input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>Replace</code></td><td><code>Replace([ :input = …, :replacement = … ])</code><br><code>Replace([ :input = …, :evaluator = … ])</code><br><code>Replace([ :input = …, :replacement = …, :count = … ])</code><br><code>Replace([ :input = …, :evaluator = …, :count = … ])</code></td><td><code>string Replace(string input, string replacement)</code><br><code>string Replace(string input, string replacement, int count)</code><br><code>string Replace(string input, string replacement, int count, int startat)</code><br><code>string Replace(string input, MatchEvaluator evaluator)</code><br><code>string Replace(string input, MatchEvaluator evaluator, int count)</code><br><code>string Replace(string input, MatchEvaluator evaluator, int count, int startat)</code><br><code>static string Replace(string input, string pattern, string replacement)</code><br><code>static string Replace(string input, string pattern, string replacement, RegexOptions options)</code><br><code>static string Replace(string input, string pattern, string replacement, RegexOptions options, TimeSpan matchTimeout)</code><br><code>static string Replace(string input, string pattern, MatchEvaluator evaluator)</code><br><code>static string Replace(string input, string pattern, MatchEvaluator evaluator, RegexOptions options)</code><br><code>static string Replace(string input, string pattern, MatchEvaluator evaluator, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>Split</code></td><td><code>Split(value)</code><br><code>Split([ :input = … ])</code><br><code>Split([ :input = …, :count = … ])</code><br><code>Split([ :input = …, :pattern = … ])</code><br><code>Split([ :input = …, :count = …, :startat = … ])</code></td><td><code>string[] Split(string input)</code><br><code>string[] Split(string input, int count)</code><br><code>string[] Split(string input, int count, int startat)</code><br><code>static string[] Split(string input, string pattern)</code><br><code>static string[] Split(string input, string pattern, RegexOptions options)</code><br><code>static string[] Split(string input, string pattern, RegexOptions options, TimeSpan matchTimeout)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>Unescape</code></td><td><code>Unescape(p1)</code></td><td><code>static string Unescape(string str)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RegexMatchTimeoutException"><summary><b>RegexMatchTimeoutException</b> <span class="muted">class · extends <a href="System.html#c-TimeoutException">TimeoutException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.RegexMatchTimeoutException</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RegexMatchTimeoutException(string regexInput, string regexPattern, TimeSpan matchTimeout)</code></td></tr><tr><td><code>new RegexMatchTimeoutException()</code></td></tr><tr><td><code>new RegexMatchTimeoutException(string message)</code></td></tr><tr><td><code>new RegexMatchTimeoutException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RegexMatchTimeoutException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RegexMatchTimeoutException().@New([ :param = value ])</code> or <code>dnNew("RegexMatchTimeoutException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Input</code></td><td><code>string</code></td><td>read</td><td><code>o.Input</code></td></tr><tr><td><code>Pattern</code></td><td><code>string</code></td><td>read</td><td><code>o.Pattern</code></td></tr><tr><td><code>MatchTimeout</code></td><td><code>TimeSpan</code></td><td>read</td><td><code>o.MatchTimeout</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RegexParseException"><summary><b>RegexParseException</b> <span class="muted">class sealed · extends <a href="System.html#c-ArgumentException">ArgumentException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.RegexParseException</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Error</code></td><td><code>RegexParseError</code></td><td>read</td><td><code>o.Error</code></td></tr><tr><td><code>Offset</code></td><td><code>int</code></td><td>read</td><td><code>o.Offset</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RegexRunner"><summary><b>RegexRunner</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.RegexRunner</code> · assembly <code>System.Text.RegularExpressions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CharInClass</code></td><td><code>CharInClass(p1,p2)</code></td><td><code>static bool CharInClass(char ch, string charClass)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RegexRunnerFactory"><summary><b>RegexRunnerFactory</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.RegularExpressions.RegexRunnerFactory</code> · assembly <code>System.Text.RegularExpressions</code></p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

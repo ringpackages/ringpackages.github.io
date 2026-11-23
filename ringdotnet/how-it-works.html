@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works · RingDotNet</title>
+<meta name="description" content="The Ring process hosts the .NET runtime and talks to it through a small managed bridge. This page explains the pieces, so the rest of the documentation makes sense.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html" class="cur">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>How it works</h1><p class="lead">The Ring process hosts the .NET runtime and talks to it through a small managed bridge. This page explains the pieces, so the rest of the documentation makes sense.</p>
+<h2 id="the-layers">The layers<a class="anchor" href="#the-layers">#</a></h2>
+<svg viewBox="0 0 760 330" style="width:100%;max-width:760px;display:block;margin:20px auto" role="img" aria-label="Architecture of RingDotNet">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b3fd1"/><stop offset="1" stop-color="#00a3b4"/></linearGradient></defs>
+<g font-family="Segoe UI, system-ui, sans-serif" font-size="14">
+<rect x="20" y="10" width="720" height="54" rx="12" fill="var(--accent-soft)" stroke="var(--accent)"/>
+<text x="380" y="34" text-anchor="middle" fill="var(--text)" font-weight="700">Your Ring program</text>
+<text x="380" y="53" text-anchor="middle" fill="var(--muted)" font-size="12.5">oSB = new StringBuilder("Hi")   ·   oForm.Text = "Hello"   ·   oBtn.setClickEvent("...")</text>
+<rect x="20" y="84" width="720" height="54" rx="12" fill="var(--soft)" stroke="var(--line)"/>
+<text x="380" y="108" text-anchor="middle" fill="var(--text)" font-weight="700">dotnetlib (Ring library)</text>
+<text x="380" y="127" text-anchor="middle" fill="var(--muted)" font-size="12.5">generated wrapper classes · using · dnCallback · gui.ring · wpf.ring · web.ring · data.ring</text>
+<rect x="20" y="158" width="720" height="54" rx="12" fill="var(--soft)" stroke="var(--line)"/>
+<text x="380" y="182" text-anchor="middle" fill="var(--text)" font-weight="700">ring_dotnet.dll (C extension)</text>
+<text x="380" y="201" text-anchor="middle" fill="var(--muted)" font-size="12.5">starts the runtime through hostfxr · sends requests · runs Ring callbacks</text>
+<rect x="20" y="232" width="720" height="40" rx="12" fill="url(#g1)"/>
+<text x="380" y="257" text-anchor="middle" fill="#fff" font-weight="700">RingDotNet.Bridge.dll (C#): reflection, handle table, type conversion, delegates</text>
+<rect x="20" y="288" width="230" height="34" rx="10" fill="var(--panel)" stroke="var(--line)"/><text x="135" y="310" text-anchor="middle" fill="var(--text)">.NET class library</text>
+<rect x="265" y="288" width="230" height="34" rx="10" fill="var(--panel)" stroke="var(--line)"/><text x="380" y="310" text-anchor="middle" fill="var(--text)">WinForms · WPF · ASP.NET · EF</text>
+<rect x="510" y="288" width="230" height="34" rx="10" fill="var(--panel)" stroke="var(--line)"/><text x="625" y="310" text-anchor="middle" fill="var(--text)">Your DLLs and NuGet packages</text>
+</g></svg>
+<h2 id="the-extension-and-the-bridge">The extension and the bridge<a class="anchor" href="#the-extension-and-the-bridge">#</a></h2>
+<p><code>ring_dotnet.dll</code> is a normal Ring extension written in C. When the first .NET call is made it:</p>
+<ol><li>finds the installed .NET runtime and starts it <strong>inside the Ring process</strong> with <code>hostfxr</code> (no separate process, no IPC),</li><li>loads <code>RingDotNet.Bridge.dll</code>, a small C# assembly,</li><li>keeps one entry point for requests: <code>dotnet_invoke(request)</code>. (The extension also has the functions for callbacks and for releasing objects, below.)</li></ol>
+<p>The bridge uses reflection. A Ring call such as <code>oSB.Append(", ")</code> becomes a request <code>call [handle, "Append", ", "]</code>; the bridge finds the right overload from the argument types, invokes it, and returns the result.</p>
+<h2 id="handles">Handles<a class="anchor" href="#handles">#</a></h2>
+<p>.NET objects never leave .NET. Ring holds a <strong>handle</strong> (a number) inside a <code>DotNetObject</code>, and the bridge keeps the real object in a table. The generated wrapper classes are <code>DotNetObject</code>s with typed methods, so <code>oSB.Append(...)</code> and <code>oSB.callMethod("Append",[...])</code> do the same thing.</p>
+<h3 id="releasing-objects">Releasing objects<a class="anchor" href="#releasing-objects">#</a></h3>
+<p>A handle keeps its object alive, so handles must be released. Each wrapper object holds a <strong>managed pointer</strong> (a Ring pointer with a function that runs when Ring drops the value). When the wrapper is dropped, the pointer queues the handle, and the queued handles are released in groups of 32, so a program that makes thousands of objects does not grow without end. <code>release()</code> releases one handle at once, and <code>dnFlush()</code> releases the queued ones now (the tutorial <a href="tut-98-memory.html">Memory and the garbage collector</a>).</p>
+<h2 id="the-wire-format">The wire format<a class="anchor" href="#the-wire-format">#</a></h2>
+<p>Values travel as a compact tagged text: <code>s5:Hello</code> (string), <code>n2:42</code> (number), <code>l...</code> (list), <code>o3:17</code> (object handle), <code>c...</code> (callback), <code>e...</code> (error). Numbers that are not whole travel as the 8 bytes of the double, so there is <strong>no loss of precision</strong>; the number becomes the type of the parameter that receives it, and for a parameter of type <code>object</code> a whole number is an <code>Int32</code> (<a href="concepts.html#numbers-for-an-object">Core concepts</a>). Binary data (<code>byte[]</code>) travels as a Ring string: a Ring text can hold any byte. A <code>ByteBuffer</code> object (<code>dnBuffer</code>) is the one case where Ring holds a live array, for the methods that fill an array that you pass in.</p>
+<h2 id="generated-wrapper-classes">Generated wrapper classes<a class="anchor" href="#generated-wrapper-classes">#</a></h2>
+<p><code>tools/dotnettools/gendotnet.ring</code> reads the <strong>manifest</strong> (<code>tools/dotnettools/dotnetmanifest.ring</code>) and uses reflection to write one Ring class per .NET class into <code>libraries/dotnetlib/generated/</code> (two files per namespace: a loader and the classes). These files are plain Ring source with real inheritance, properties (as attributes with <code>getX</code>/<code>setX</code>), events and enums. <code>using { "System.IO" }</code> loads one namespace on demand. A class index (a list of every class and its namespace, loaded the first time it is needed) lets the library import the right namespace automatically when a returned object has a type that is not loaded yet.</p>
+<h2 id="results-are-wrapped-by-their-real-type">Results are wrapped by their real type<a class="anchor" href="#results-are-wrapped-by-their-real-type">#</a></h2>
+<p>When a method returns an object, the bridge sends the list of its type, its base types and its interfaces (the interface named after the class first, then the ones that inherit the most interfaces: a class that is not public is wrapped as its interface). <code>dnWrapObject</code> looks for the <strong>most specific</strong> generated class (importing its namespace if needed) and creates it. If no class exists the result is a plain <code>DotNetObject</code> — use <code>callMethod</code> and <code>getProp</code> on it. (A delegate type is a callback and has a class only when extension methods extend it.)</p>
+<h2 id="callbacks-ring-code-called-from-net">Callbacks: Ring code called from .NET<a class="anchor" href="#callbacks-ring-code-called-from-net">#</a></h2>
+<p><code>dnCallback("...")</code> passes Ring code where .NET expects a delegate. The bridge builds a delegate of the exact type with a compiled expression; when .NET invokes it, the C extension runs the Ring function on the <strong>Ring thread</strong> and returns its result. Callbacks run synchronously during a call, which is why events from timers on other threads are ignored (see <a href="rules-and-limits.html">Rules and limits</a>).</p>
+<h2 id="threads">Threads<a class="anchor" href="#threads">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Thread</th><th>What runs there</th></tr></thead><tbody><tr><td>The Ring thread</td><td>All Ring code, all calls into .NET and all callbacks. With <code>dnUseDesktop()</code> it is an <strong>STA</strong> thread and runs the message loop in <code>Application.Run()</code>.</td></tr><tr><td>.NET threads</td><td>Kestrel connections, tasks, timers. They never call Ring directly. The web server queues requests and Ring handles them in <code>serveOne()</code>.</td></tr></tbody></table></div>
+<h2 id="runtime-modes">Runtime modes<a class="anchor" href="#runtime-modes">#</a></h2>
+<p>The runtime is configured with one of four <code>runtimeconfig.json</code> files: base (<code>RingDotNet.Bridge</code>), desktop (<code>RingDotNet.Desktop</code>), web (<code>RingDotNet.Web</code>) and all (<code>RingDotNet.All</code>). <code>dnUseDesktop()</code>, <code>dnUseWeb()</code> and <code>dnUseAll()</code> select the file before the runtime starts. <code>dnUseData()</code> only loads the Entity Framework assemblies; an <code>AssemblyResolve</code> handler in the bridge finds them next to it.</p>
+<h2 id="how-a-call-is-made">How a call is made<a class="anchor" href="#how-a-call-is-made">#</a></h2>
+<p>A call from Ring to .NET is a request that Ring packs, the extension sends to the bridge, and the bridge runs by reflection.</p>
+<ul><li>A method that returns a text, a number, a yes/no or nothing, and a property read or write, is packed and read <strong>in C</strong>: the generated method calls <code>dotnet_call</code> with the handle of the object, the name of the method (a ready wire item) and the arguments, and the extension builds the request, calls the bridge and returns the answer.</li><li>The bridge <strong>remembers the overload</strong> that it chose for a kind of arguments (the type; for a number, whole or not and its range; a text only when no overload could read it as an enum or another type), so a method with many overloads, such as <code>Math.Max</code>, costs about the same as a method with one.</li><li>A method that returns an <strong>object</strong>: the extension answers the type and the handle, and Ring makes the wrapper object of the generated class with its guard. The library keeps one ready object per wrapper class and copies it, because a copy is cheaper than <code>new</code>, which runs the class bodies and <code>init</code> of every parent class. Every wrapper object declares one attribute for each property of its class and of its parent classes (that is how <code>oBtn.Text = "x"</code> reaches <code>setText()</code>), so a class with many properties, such as a Windows Forms <code>Button</code>, costs more than a small one. Keep a returned object in a variable (<code>oButton = oForm.Controls.Item(0)</code>) and use the variable, instead of asking for it again in a loop.</li><li>The arguments of a native call can be texts, numbers, lists, .NET objects and callbacks. A call with <strong>named arguments</strong> (<code>oMath.Round([ :value = 3.14159, :digits = 2 ])</code>) and a method with <code>out</code> or <code>ref</code> parameters are native too.</li><li>The bridge looks for a method in the object itself first, then in the public interfaces of its class (methods that the class implements explicitly), then among the <strong>extension methods</strong> of the loaded assemblies. The generator gives the Ring class of the extended type a method for each extension method, so the call reaches the bridge under the plain name; the first time, the generated method asks the bridge to load the assembly that holds the extension class.</li><li>Native libraries of a package (<code>runtimes/&lt;system&gt;-&lt;architecture&gt;/native</code> next to its DLL) are found when .NET asks for them, so a package such as SkiaSharp works without copying files.</li><li>Fewer crossings are better than faster crossings: <code>toList()</code> copies a whole collection in one request, and a loop that reads 500 items with <code>Item(i)</code> makes 500 requests.</li></ul>
+<h2 id="packages">Packages<a class="anchor" href="#packages">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>ring_dotnet.dll</code></td><td>C extension</td></tr><tr><td><code>RingDotNet.Bridge.dll</code></td><td>reflection bridge</td></tr><tr><td><code>RingDotNet.Web.dll</code></td><td>request queue and Kestrel host</td></tr><tr><td><code>RingDotNet.Data.dll</code></td><td><code>RingDb</code> and <code>RingTypedDb</code> (Entity Framework)</td></tr><tr><td><code>Microsoft.EntityFrameworkCore*.dll</code>, <code>e_sqlite3.dll</code> ...</td><td>Entity Framework Core and SQLite</td></tr></tbody></table></div>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="concepts.html">Core concepts</a>: how .NET names, overloads, properties and enums look in Ring.</li><li><a href="tutorials.html#the-basics">The basics</a>: the first tutorial chapter, if you prefer to learn by writing programs.</li></ul>
+<div class="pager"><a href="getting-started.html"><small>Previous</small>Getting started</a><a class="next" href="tutorials.html"><small>Next</small>Tutorials home</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

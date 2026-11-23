@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A project: an object inspector · RingDotNet</title>
+<meta name="description" content="Reflection lets a program look at any object: its type, its properties, their types and their values. This project builds an inspector with a combo box of objects and a list of the properties of the chosen one, and tests it by reading the list.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html" class="cur">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A project: an object inspector</h1><p class="lead">Reflection lets a program look at any object: its type, its properties, their types and their values. This project builds an inspector with a combo box of objects and a list of the properties of the chosen one, and tests it by reading the list.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><code>GetType()</code> and <code>GetProperties()</code> on any object,</li><li>reading a property from an object with <code>GetValue</code>,</li><li>skipping <strong>indexers</strong> (<code>GetIndexParameters</code>),</li><li>catching properties that cannot be read,</li><li>showing values: a text or a number as it is, an object by its <code>ToString</code>,</li><li>filling a <code>ListView</code> and finding a value in it for a test.</li></ul>
+<p>The tutorial <a href="tut-20-reflection.html">Exploring .NET with reflection</a> asked a <em>type</em> what it can do. An inspector asks an <em>object</em> what it is.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_inspector.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a project: an object inspector - reflection shows the properties of any .NET object, with their types and values, in a list</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Text"</span>
+	<span class="s">"System.Reflection"</span>
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+<span class="c"># controls and data that the event code uses are global variables</span>
+oForm = <span class="s">""</span>
+oChoice = <span class="s">""</span>
+oList = <span class="s">""</span>
+oStatus = <span class="s">""</span>
+aObjects = []                     <span class="c"># [ name, the .NET object ]</span>
+cTempFile = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># Some objects to look at. They are made here; the inspector does not care what they are.</span>
+	cTempFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([ <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-inspect.txt"</span> ])
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cTempFile, :contents = <span class="s">"Hello, inspector"</span> ])
+	aObjects + [ <span class="s">"A Uri"</span>, <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"https://example.com:8080/docs/page?x=1#top"</span>) ]
+	aObjects + [ <span class="s">"A DateTime"</span>, <span class="f">dnNew</span>(<span class="s">"DateTime"</span>,[ :year = <span class="n">2030</span>, :month = <span class="n">3</span>, :day = <span class="n">9</span>, :hour = <span class="n">14</span>, :minute = <span class="n">5</span>, :second = <span class="n">7</span> ]) ]
+	aObjects + [ <span class="s">"A FileInfo"</span>, <span class="k">new</span> <span class="t">FileInfo</span>(cTempFile) ]
+	aObjects + [ <span class="s">"A StringBuilder"</span>, <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>) ]
+
+	oForm = <span class="f">uiForm</span>(<span class="s">"Inspector"</span>,<span class="n">560</span>,<span class="n">380</span>)
+	<span class="f">uiLabel</span>(oForm,<span class="s">"Object"</span>,<span class="n">15</span>,<span class="n">18</span>,<span class="n">60</span>,<span class="n">22</span>)
+	oChoice = <span class="f">uiComboBox</span>(oForm,<span class="n">80</span>,<span class="n">15</span>,<span class="n">250</span>,[ <span class="s">"A Uri"</span>,<span class="s">"A DateTime"</span>,<span class="s">"A FileInfo"</span>,<span class="s">"A StringBuilder"</span> ])
+	oChoice.<span class="f">setSelectedIndexChangedEvent</span>(<span class="s">"inspect(oChoice.SelectedIndex + 1)"</span>)
+
+	oList = <span class="k">new</span> <span class="t">ListView</span>()
+	oList.Location = <span class="k">new</span> <span class="t">Point</span>(<span class="n">15</span>,<span class="n">50</span>)
+	oList.Size = <span class="k">new</span> <span class="t">Size</span>(<span class="n">520</span>,<span class="n">260</span>)
+	oList.View = <span class="s">"Details"</span>
+	oList.FullRowSelect = <span class="k">True</span>
+	oList.GridLines = <span class="k">True</span>
+	oList.Columns.<span class="f">Add</span>([ :text = <span class="s">"Property"</span>, :width = <span class="n">150</span> ])
+	oList.Columns.<span class="f">Add</span>([ :text = <span class="s">"Type"</span>, :width = <span class="n">110</span> ])
+	oList.Columns.<span class="f">Add</span>([ :text = <span class="s">"Value"</span>, :width = <span class="n">240</span> ])
+	oForm.Controls.<span class="f">Add</span>(oList)
+	oStatus = <span class="f">uiLabel</span>(oForm,<span class="s">""</span>,<span class="n">15</span>,<span class="n">320</span>,<span class="n">520</span>,<span class="n">22</span>)
+
+	oChoice.SelectedIndex = <span class="n">0</span>
+	inspect(<span class="n">1</span>)                                           <span class="c"># the first object is shown at the start</span>
+	<span class="f">uiRun</span>(oForm)
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cTempFile)
+
+<span class="c"># Fill the list with the properties of the object. GetType() gives the Type of any object, and the Type lists its properties; each</span>
+<span class="c"># property can read its value from the object: GetValue(object). A property with parameters (an indexer such as Chars[i]) is skipped.</span>
+<span class="k">func</span> <span class="f">inspect</span> n
+
+	oObject = aObjects[n][<span class="n">2</span>]
+	oList.Items.<span class="f">Clear</span>()
+	nShown = <span class="n">0</span>
+	nFailed = <span class="n">0</span>
+	aRows = []
+	<span class="k">for</span> oProperty <span class="k">in</span> oObject.<span class="f">GetType</span>().<span class="f">GetProperties</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+		<span class="k">if</span> len(oProperty.<span class="f">GetIndexParameters</span>().<span class="f">toList</span>()) &gt; <span class="n">0</span>
+			<span class="k">loop</span>
+		<span class="k">ok</span>
+		cValue = <span class="s">""</span>
+		<span class="k">try</span>
+			cValue = showValue(oProperty.<span class="f">GetValue</span>(oObject))
+		<span class="k">catch</span>
+			cValue = <span class="s">"(cannot be read)"</span>
+			nFailed++
+		<span class="k">done</span>
+		aRows + [ oProperty.Name, oProperty.PropertyType.Name, cValue ]
+	<span class="k">next</span>
+	<span class="k">for</span> aRow <span class="k">in</span> sortRows(aRows)
+		oItem = <span class="k">new</span> <span class="t">ListViewItem</span>().@<span class="k">New</span>([ :<span class="t">text</span> = aRow[<span class="n">1</span>] ])
+		oItem.SubItems.<span class="f">Add</span>(aRow[<span class="n">2</span>])
+		oItem.SubItems.<span class="f">Add</span>(aRow[<span class="n">3</span>])
+		oList.Items.<span class="f">Add</span>(oItem)
+		nShown++
+	<span class="k">next</span>
+	oStatus.Text = aObjects[n][<span class="n">1</span>] + <span class="s">": "</span> + nShown + <span class="s">" properties, "</span> + nFailed + <span class="s">" could not be read"</span>
+
+<span class="c"># a value for the list: a Ring text or number as it is; an object (a date, another .NET object) by its ToString</span>
+<span class="k">func</span> <span class="f">showValue</span> xValue
+
+	<span class="k">if</span> isObject(xValue)
+		<span class="k">return</span> xValue.<span class="f">toString</span>()
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span> + xValue
+
+<span class="c"># the rows sorted by the name of the property (a bubble sort on the first item; the lists are short)</span>
+<span class="k">func</span> <span class="f">sortRows</span> aRows
+
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> len(aRows) - <span class="n">1</span>
+		<span class="k">for</span> j = <span class="n">1</span> <span class="k">to</span> len(aRows) - i
+			<span class="k">if</span> strcmp(aRows[j][<span class="n">1</span>],aRows[j + <span class="n">1</span>][<span class="n">1</span>]) &gt; <span class="n">0</span>
+				aTemp = aRows[j]
+				aRows[j] = aRows[j + <span class="n">1</span>]
+				aRows[j + <span class="n">1</span>] = aTemp
+			<span class="k">ok</span>
+		<span class="k">next</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aRows</code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g151.png" alt="The inspector" loading="lazy"><figcaption>The inspector showing a Uri</figcaption></figure>
+
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>dnNew</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="objects-of-any-kind">Objects of any kind<a class="anchor" href="#objects-of-any-kind">#</a></h3>
+<p>The list <code>aObjects</code> has four objects of different classes: a <code>Uri</code>, a <code>DateTime</code>, a <code>FileInfo</code> and a <code>StringBuilder</code>. The inspector does not know which is which. It takes an object, asks <code>GetType()</code> for its type and <code>GetProperties(NULL)</code> for the properties of that type, and for each property <code>oProperty.GetValue(oObject)</code> gives the value that this object has now.</p>
+<h3 id="indexers">Indexers<a class="anchor" href="#indexers">#</a></h3>
+<p>A property with parameters is an <strong>indexer</strong>: the property <code>Chars</code> of a <code>StringBuilder</code> needs a number (<code>sb[2]</code>). <code>GetIndexParameters()</code> lists the parameters, and a property that has any is skipped, because <code>GetValue(oObject)</code> without an index would raise an error. The test checks that <code>Chars</code> is not in the list.</p>
+<h3 id="errors">Errors<a class="anchor" href="#errors">#</a></h3>
+<p>Some properties cannot be read for an object in some states (a file that does not exist has no <code>Length</code>). The read is in <code>try</code> and <code>catch</code>, the row shows <em>(cannot be read)</em>, and the status line counts the failed ones. An inspector must not stop at the first property that raises an error.</p>
+<h3 id="values">Values<a class="anchor" href="#values">#</a></h3>
+<p><code>showValue</code> writes a Ring text or number as it is and an object by its <code>ToString()</code>. A <code>Uri</code> has properties that are texts (<code>Host</code>, <code>Scheme</code>), numbers (<code>Port</code>) and booleans (<code>IsLoopback</code>, shown as 0 or 1 in Ring). A <code>DateTime</code> has <code>Year</code>, <code>DayOfWeek</code> (a text: <em>Saturday</em>) and <code>Date</code> (another <code>DateTime</code>, shown as text). The type column shows the .NET type of the property, so the list also teaches which type a property has.</p>
+<h3 id="the-list">The list<a class="anchor" href="#the-list">#</a></h3>
+<p>The rows are made as <code>ListViewItem</code> with two sub items and sorted by the name of the property (a small bubble sort with <code>strcmp</code>, as in the tutorial <a href="tut-134-listview.html">A list with columns</a>). Choosing another object in the combo box runs <code>inspect</code> again, which clears the list and fills it for the new object.</p>
+<h3 id="the-test">The test<a class="anchor" href="#the-test">#</a></h3>
+<p><code>valueOf("Host")</code> finds the row with that name and returns its value. The test checks values that it knows: the host, the port and the scheme of the address; the year, the day of the week and the hour of the date; the name and the length (16 bytes) of the file that the program wrote; and the length of the text of the builder. It selects each object through the combo box, so the change event is part of the test too.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch13_inspector.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch13_inspector.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch13_inspector.ring: run with  ring ch13_inspector.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="c"># the value of a property that the list shows, found by the name of the property</span>
+<span class="k">func</span> <span class="f">valueOf</span> cName
+
+	<span class="k">for</span> i = <span class="n">0</span> <span class="k">to</span> oList.Items.Count - <span class="n">1</span>
+		<span class="k">if</span> oList.Items.<span class="f">Item</span>(i).Text = cName
+			<span class="k">return</span> oList.Items.<span class="f">Item</span>(i).SubItems.<span class="f">Item</span>(<span class="n">2</span>).Text
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="s">"(not in the list)"</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	<span class="c"># the Uri</span>
+	<span class="f">dnAssert</span>(<span class="s">"the host"</span>,valueOf(<span class="s">"Host"</span>),<span class="s">"example.com"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the port"</span>,valueOf(<span class="s">"Port"</span>),<span class="s">"8080"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the scheme"</span>,valueOf(<span class="s">"Scheme"</span>),<span class="s">"https"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the fragment"</span>,valueOf(<span class="s">"Fragment"</span>),<span class="s">"#top"</span>)
+
+	<span class="c"># a DateTime: choose it in the combo box (the event fills the list again)</span>
+	oChoice.SelectedIndex = <span class="n">1</span>
+	<span class="f">dnAssert</span>(<span class="s">"the year"</span>,valueOf(<span class="s">"Year"</span>),<span class="s">"2030"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the day of the week"</span>,valueOf(<span class="s">"DayOfWeek"</span>),<span class="s">"Saturday"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the hour"</span>,valueOf(<span class="s">"Hour"</span>),<span class="s">"14"</span>)
+
+	<span class="c"># a FileInfo of a real file</span>
+	oChoice.SelectedIndex = <span class="n">2</span>
+	<span class="f">dnAssert</span>(<span class="s">"the name"</span>,valueOf(<span class="s">"Name"</span>),<span class="s">"ringdotnet-inspect.txt"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the length"</span>,valueOf(<span class="s">"Length"</span>),<span class="s">"16"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"it exists"</span>,valueOf(<span class="s">"Exists"</span>),<span class="s">"1"</span>)
+
+	<span class="c"># a StringBuilder: the property Chars is an indexer and is not listed</span>
+	oChoice.SelectedIndex = <span class="n">3</span>
+	<span class="f">dnAssert</span>(<span class="s">"the length of the text"</span>,valueOf(<span class="s">"Length"</span>),<span class="s">"5"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"an indexer is skipped"</span>,valueOf(<span class="s">"Chars"</span>),<span class="s">"(not in the list)"</span>)</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This is the idea of the object inspectors of every debugger. A property can have side effects (it may start work), so inspecting a <em>foreign</em> object can change it; the properties of these four objects only read.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>GetType()</code>, <code>GetProperties()</code> and <code>GetValue()</code>,</li><li>indexers and errors in reflection,</li><li>showing .NET values in a list,</li><li>a test that reads the list.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add the fields and the methods of the type in two more lists (or one list with a kind column).</li><li>Add a button that changes the value of a property that can be written (<code>CanWrite</code> and <code>SetValue</code>).</li><li>Inspect a <code>Form</code> and look for the property <code>Text</code>; change it and see the window.</li><li>Add a text box that filters the properties by a part of the name.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-87-expressions.html">Expression trees</a></p>
+<div class="pager"><a href="tut-20-reflection.html"><small>Previous</small>Reflection</a><a class="next" href="tut-87-expressions.html"><small>Next</small>Expression trees</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

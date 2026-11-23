@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A project: check that files did not change · RingDotNet</title>
+<meta name="description" content="A list of checksums lets anybody check, later, that no file was changed, damaged or lost. This project writes the list in the format of sha256sum, verifies a folder against it, reports changed, missing and new files, and explains why the list needs a protection of its own.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html" class="cur">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A project: check that files did not change</h1><p class="lead">A list of checksums lets anybody check, later, that no file was changed, damaged or lost. This project writes the list in the format of sha256sum, verifies a folder against it, reports changed, missing and new files, and explains why the list needs a protection of its own.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>a <strong>checksum</strong>: the SHA-256 hash of the bytes of a file,</li><li>a list in the format of the programs <code>sha256sum</code> and <code>shasum</code>,</li><li>finding all the files of a folder and its subfolders, with relative paths,</li><li><strong>verify</strong>: <em>OK</em>, <em>CHANGED</em>, <em>MISSING</em> and <em>NEW</em>,</li><li>why the list itself needs a checksum that is kept somewhere else.</li></ul>
+<p>The tutorial <a href="tut-31-duplicates.html">A project: find duplicate files</a> used hashes to find files with the same content. Here the hash proves that a file is the <strong>same as it was</strong>.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_checksums.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a project: check that files did not change - a checksum list in the format of sha256sum, and a verify that finds changed, missing and new files</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Security.Cryptography"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oFile = <span class="k">new</span> <span class="t">File</span>()
+	oPath = <span class="k">new</span> <span class="t">Path</span>()
+	oDirectory = <span class="k">new</span> <span class="t">Directory</span>()
+
+	<span class="c"># A work folder with a few files, some of them in a subfolder (it is removed at the end)</span>
+	cFolder = oPath.<span class="f">Combine</span>([ oPath.<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-sums-"</span> + oPath.<span class="f">GetRandomFileName</span>() ])
+	oDirectory.<span class="f">CreateDirectory</span>(cFolder + <span class="s">"/docs"</span>)
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/readme.txt"</span>, :contents = <span class="s">"Read me"</span> ])
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/data.csv"</span>, :contents = <span class="s">"a,b"</span> + nl + <span class="s">"1,2"</span> + nl ])
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/docs/guide.txt"</span>, :contents = <span class="s">"The guide"</span> ])
+
+	<span class="c"># A CHECKSUM is the hash of the bytes of a file (SHA-256 here): 64 hexadecimal characters that change when ONE bit of the file changes.</span>
+	<span class="c"># A list of the checksums of all the files of a folder lets anybody check, later, that nothing was changed, damaged or lost: after a</span>
+	<span class="c"># download, after a copy to another disk, after a year in an archive.</span>
+	? <span class="s">"1. the checksum of one file, readme.txt: "</span> + checksumOf(cFolder + <span class="s">"/readme.txt"</span>)
+
+	<span class="c"># 2. The list: one line for each file, "checksum, two spaces, the path with / and relative to the folder". This is the format of the</span>
+	<span class="c">#    programs sha256sum and shasum, so the list can be checked by them too. The paths are sorted.</span>
+	aList = makeList(cFolder)
+	cListFile = cFolder + <span class="s">"/checksums.txt"</span>
+	oFile.<span class="f">WriteAllText</span>([ :path = cListFile, :contents = listText(aList) ])
+	? nl + <span class="s">"2. the list (the checksums are cut to 12 characters here):"</span>
+	<span class="k">for</span> aItem <span class="k">in</span> aList
+		? <span class="s">"   "</span> + left(aItem[<span class="n">1</span>],<span class="n">12</span>) + <span class="s">"...  "</span> + aItem[<span class="n">2</span>]
+	<span class="k">next</span>
+
+	<span class="c"># 3. Verify, nothing changed. Each line of the list is checked: the file must exist and have the same checksum.</span>
+	? nl + <span class="s">"3. verify:"</span>
+	showResult(verify(cFolder,readList(cListFile)))
+
+	<span class="c"># 4. Changes: a file is changed (one character), a file is deleted, and a new file appears</span>
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/readme.txt"</span>, :contents = <span class="s">"Read me!"</span> ])
+	oFile.<span class="f">Delete</span>(cFolder + <span class="s">"/data.csv"</span>)
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/docs/new.txt"</span>, :contents = <span class="s">"Something new"</span> ])
+	? nl + <span class="s">"4. after a change, a delete and a new file:"</span>
+	showResult(verify(cFolder,readList(cListFile)))
+
+	<span class="c"># 5. The list must be protected too: somebody who changes a file can change its line in the list. The checksum of the LIST is kept</span>
+	<span class="c">#    somewhere else (written down, sent by another way). A list that was changed has another checksum.</span>
+	cListSum = checksumOf(cListFile)
+	? nl + <span class="s">"5. the checksum of the list: "</span> + left(cListSum,<span class="n">12</span>) + <span class="s">"..."</span>
+	oFile.<span class="f">AppendAllText</span>([ :path = cListFile, :contents = <span class="s">"# edited"</span> + nl ])
+	? <span class="s">"   after somebody edited the list the checksum is the same: "</span> + yesNo(checksumOf(cListFile) = cListSum)
+
+	oDirectory.<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+
+<span class="c"># the SHA-256 checksum of a file as lower case hexadecimal text</span>
+<span class="k">func</span> <span class="f">checksumOf</span> cFile
+
+	<span class="k">return</span> lower(<span class="k">new</span> <span class="t">Convert</span>().<span class="f">ToHexString</span>(<span class="k">new</span> <span class="t">SHA256</span>().<span class="f">HashData</span>(<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllBytes</span>(cFile))))
+
+<span class="c"># the paths (relative, with /) of all the files of a folder and its subfolders, sorted, without the list file itself</span>
+<span class="k">func</span> <span class="f">relativeFiles</span> cFolder
+
+	aPaths = []
+	nCut = len(cFolder) + <span class="n">2</span>
+	<span class="k">for</span> cFile <span class="k">in</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>([ :path = cFolder, :searchPattern = <span class="s">"*"</span>, :searchOption = <span class="s">"AllDirectories"</span> ]).<span class="f">toList</span>()
+		cRelative = substr(substr(cFile,<span class="s">"\","</span>/"),nCut)
+		<span class="k">if</span> cRelative != <span class="s">"checksums.txt"</span>
+			aPaths + cRelative
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> sort(aPaths)
+
+<span class="k">func</span> <span class="f">makeList</span> cFolder
+
+	aList = []
+	<span class="k">for</span> cRelative <span class="k">in</span> relativeFiles(cFolder)
+		aList + [ checksumOf(cFolder + <span class="s">"/"</span> + cRelative), cRelative ]
+	<span class="k">next</span>
+	<span class="k">return</span> aList
+
+<span class="k">func</span> <span class="f">listText</span> aList
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> aItem <span class="k">in</span> aList
+		cText += aItem[<span class="n">1</span>] + <span class="s">"  "</span> + aItem[<span class="n">2</span>] + nl
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="c"># the list from its file: each line is the checksum (64 characters), two spaces and the path</span>
+<span class="k">func</span> <span class="f">readList</span> cListFile
+
+	aList = []
+	<span class="k">for</span> cLine <span class="k">in</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cListFile).<span class="f">toList</span>()
+		<span class="k">if</span> len(cLine) &gt; <span class="n">66</span> <span class="k">and</span> left(cLine,<span class="n">1</span>) != <span class="s">"#"</span>
+			aList + [ left(cLine,<span class="n">64</span>), substr(cLine,<span class="n">67</span>) ]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aList
+
+<span class="c"># the problems: changed files, missing files and new files (the files that the list does not know)</span>
+<span class="k">func</span> <span class="f">verify</span> cFolder,aList
+
+	aProblems = []
+	aKnown = []
+	<span class="k">for</span> aItem <span class="k">in</span> aList
+		aKnown + aItem[<span class="n">2</span>]
+		cFile = cFolder + <span class="s">"/"</span> + aItem[<span class="n">2</span>]
+		<span class="k">if</span> <span class="k">not</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+			aProblems + [ <span class="s">"MISSING"</span>,aItem[<span class="n">2</span>] ]
+		<span class="k">but</span> checksumOf(cFile) != aItem[<span class="n">1</span>]
+			aProblems + [ <span class="s">"CHANGED"</span>,aItem[<span class="n">2</span>] ]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">for</span> cRelative <span class="k">in</span> relativeFiles(cFolder)
+		<span class="k">if</span> find(aKnown,cRelative) = <span class="n">0</span>
+			aProblems + [ <span class="s">"NEW"</span>,cRelative ]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> [ len(aList),aProblems ]
+
+<span class="k">func</span> <span class="f">showResult</span> aResult
+
+	nChecked = aResult[<span class="n">1</span>]
+	aProblems = aResult[<span class="n">2</span>]
+	<span class="k">if</span> len(aProblems) = <span class="n">0</span>
+		? <span class="s">"   all "</span> + nChecked + <span class="s">" files are as they were"</span>
+	<span class="k">else</span>
+		<span class="k">for</span> aItem <span class="k">in</span> aProblems
+			? <span class="s">"   "</span> + padRight(aItem[<span class="n">1</span>],<span class="n">8</span>) + aItem[<span class="n">2</span>]
+		<span class="k">next</span>
+		? <span class="s">"   "</span> + len(aProblems) + <span class="s">" problems in "</span> + nChecked + <span class="s">" files of the list"</span>
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the checksum of one file, readme.txt: 4d740af9c9c049709697fcc27549d4ac3183246fd8bf6be76fb88ff739914e74
+
+2. the list (the checksums are cut to 12 characters here):
+   492d5ea49605...  data.csv
+   9553eba9e8ed...  docs/guide.txt
+   4d740af9c9c0...  readme.txt
+
+3. verify:
+   all 3 files are as they were
+
+4. after a change, a delete and a new file:
+   MISSING data.csv
+   CHANGED readme.txt
+   NEW     docs/new.txt
+   3 problems in 3 files of the list
+
+5. the checksum of the list: 9ddec6614911...
+   after somebody edited the list the checksum is the same: no</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-checksum">The checksum<a class="anchor" href="#the-checksum">#</a></h3>
+<p><code>SHA256.ComputeHash(bytes)</code> gives 32 bytes, and <code>Convert.ToHexString</code> writes them as 64 hexadecimal characters (the tutorial <a href="tut-138-base64-hex.html">Bytes as text: Base64 and hexadecimal</a>). The program writes them in lower case, as <code>sha256sum</code> does. A change of one bit anywhere in the file gives a completely different checksum, and nobody can find another file with the same checksum by chance. The checksum of a file that is read as <em>bytes</em> does not depend on the encoding or the line endings: it is the file as it is.</p>
+<h3 id="the-list">The list<a class="anchor" href="#the-list">#</a></h3>
+<p>Each line has the checksum, <strong>two spaces</strong> and the path with <code>/</code>, relative to the folder: <code>4d74…4e74  readme.txt</code>. This is the format that <code>sha256sum -c checksums.txt</code> reads on Linux and macOS, so the list works with other tools too. <code>relativeFiles</code> asks for all the files of the folder and its subfolders (<code>SearchOption = "AllDirectories"</code>), cuts the folder part off the front of each path, changes <code>\</code> to <code>/</code>, <strong>sorts</strong> the paths (the order of <code>GetFiles</code> is not defined) and leaves out the list file itself.</p>
+<h3 id="verify">Verify<a class="anchor" href="#verify">#</a></h3>
+<p><code>verify</code> reads the list back: every line gives a checksum (the first 64 characters) and a path (what comes after the two spaces). For each line the file must exist (else <strong>MISSING</strong>) and have the same checksum (else <strong>CHANGED</strong>). Then the files of the folder that are <em>not</em> in the list are <strong>NEW</strong>. The result says how many problems there are in how many files. A folder with no problem is reported with one line.</p>
+<h3 id="who-checks-the-checksums">Who checks the checksums?<a class="anchor" href="#who-checks-the-checksums">#</a></h3>
+<p>Somebody who changes a file can also change its line in the list, and then everything is <em>OK</em>. The list proves that the files are the same as the list says, not that the list is right. So the list needs its own protection: keep the checksum <strong>of the list</strong> somewhere else (written in a message, on a page, in another place), and compare it before you trust the list. The last step shows that editing the list changes its checksum. For a stronger proof use a <strong>signature</strong> (the tutorial <a href="tut-105-signatures.html">Digital signatures</a>).</p>
+<div class="callout note"><span class="t">Note</span><p>A checksum finds <em>damage</em> and <em>changes</em>. It does not hide anything and it does not say who made the change.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>SHA-256 checksums of files,</li><li>the sha256sum list format,</li><li>listing files with relative paths,</li><li>verify with changed, missing and new files,</li><li>protecting the list.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write the list for a folder, copy the folder, and verify the copy.</li><li>Print the percentage of files that are OK and the total size of the changed files.</li><li>Make <code>updateList</code> that adds the new files to the list and removes the missing ones, and shows what it did.</li><li>Use <code>HMACSHA256</code> with a secret key instead of <code>SHA256</code> (the tutorial <a href="tut-78-crypto.html">Protecting and signing messages</a>) so that only the owner of the key can make a valid list.</li></ol>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<p>This was the last tutorial of the chapter <strong>Files and streams</strong>. The next chapter is <strong>Processes and performance</strong>: it starts with <a href="tut-74-system.html">Asking the computer</a>. The <a href="tutorials.html">Tutorials</a> page lists all the chapters, and you can start any of them.</p>
+<div class="pager"><a href="tut-145-diff.html"><small>Previous</small>Compare two files</a><a class="next" href="tut-74-system.html"><small>Next</small>Asking the computer</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

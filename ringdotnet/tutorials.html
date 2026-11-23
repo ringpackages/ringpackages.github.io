@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorials · RingDotNet</title>
+<meta name="description" content="Step-by-step lessons for people who are new to .NET. Each one explains the ideas first, then builds a small program you can run, with the real output and screenshots.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html" class="cur">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Tutorials</h1><p class="lead">Step-by-step lessons for people who are new to .NET. Each one explains the ideas first, then builds a small program you can run, with the real output and screenshots.</p>
+<h2 id="how-to-use-the-tutorials">How to use the tutorials<a class="anchor" href="#how-to-use-the-tutorials">#</a></h2>
+<p>Every tutorial has a program in the folder <code>samples/UsingDotNet/tutorials</code>. Read the explanation, run the program, change it, and do the <strong>exercises</strong> at the end. The programs are real: they are tested together with the rest of the package, so the output you see here is the output you will get.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>cd samples/UsingDotNet/tutorials
+ring ch01_first_look.ring            # a console tutorial
+ring ch10_counter.ring              # a window
+ring ch10_counter.ring --selftest   # the same program checks itself and closes</code></pre></div>
+<div class="callout tip"><span class="t">Tip</span><p>You do not need to know .NET to start. If you know Ring, you can follow every tutorial. The first two pages explain the .NET words that you will meet.</p></div>
+<div class="callout note"><span class="t">Note</span><p>The lessons about NuGet packages (the chapter <strong>Libraries and packages</strong>) run <code>dotnet publish</code>, so they need the .NET SDK and, the first time, the internet to get the packages.</p></div>
+<h2 id="start-here">Start here<a class="anchor" href="#start-here">#</a></h2>
+<div class="cards">
+<a class="card" href="tut-concepts.html"><div class="ic">🧭</div><b>.NET for Ring programmers</b><span>What .NET is, and the words you will meet: runtime, class library, assembly, namespace, class, object, static, property, method, event, struct, enum, null.</span></a>
+<a class="card" href="tut-reading-docs.html"><div class="ic">📖</div><b>Reading the .NET documentation</b><span>How to find a class on Microsoft Learn and turn what you read into Ring code.</span></a>
+</div>
+<h2 id="the-chapters">The chapters<a class="anchor" href="#the-chapters">#</a></h2>
+<p>The tutorials are grouped by <strong>topic</strong>. Read <strong>The basics</strong> first, in order; after that, choose the chapter that you need. The pages inside a chapter lead from one to the next, and the last page of a chapter points to the next chapter.</p>
+<div class="tablewrap"><table><thead><tr><th>Chapter</th><th>What it is about</th></tr></thead><tbody><tr><td><a href="#the-basics">The basics</a></td><td>Console programs that use the class library: text, numbers, collections, files, JSON and XML, errors, hashing, HTTP, tasks and processes.</td></tr><tr><td><a href="#text-and-data-formats">Text and data formats</a></td><td>Regular expressions, formatting, Unicode and text file encodings, comparing and escaping text, URLs, Base64 and hexadecimal, domain names, MIME types, JSON in two styles, XML and XSLT, Markdown, spelling, and two projects: a mail merge and a syntax highlighter.</td></tr><tr><td><a href="#numbers-dates-and-money">Numbers, dates and money</a></td><td>The number types and their limits, rounding, big numbers, number systems, exact money, vectors, randomness and statistics, then dates, time zones, calendars, working days and cultures.</td></tr><tr><td><a href="#collections-and-algorithms">Collections and algorithms</a></td><td>Arrays, sets and other data structures, collections for many threads, enums and identifiers, undo and queues, recursion and an expression calculator.</td></tr><tr><td><a href="#files-and-streams">Files and streams</a></td><td>Paths, file information and disks, streams, binary files and random access, compression (GZip, ZIP, tar), file patterns, watching a folder, and projects that work on many files: a log analyzer, a duplicate finder, a backup tool, a file renamer, a file comparison and a checksum list.</td></tr><tr><td><a href="#processes-and-performance">Processes and performance</a></td><td>Asking the computer about itself, command-line tools, logging and tracing, starting and talking to other programs, tasks that wait, releasing resources, measuring speed and memory, and the Windows Registry.</td></tr><tr><td><a href="#networking-and-the-web">Networking and the web</a></td><td>IP addresses and networks, TCP and UDP sockets, WebSockets, HttpClient and REST, web services and small web sites, route templates, a link shortener, and e-mail messages.</td></tr><tr><td><a href="#security">Security</a></td><td>Hashing, encryption and signing, certificates, protecting data, logins and sessions, identities and claims, and rate limiting.</td></tr><tr><td><a href="#databases-and-services">Databases and services</a></td><td>SQL and Entity Framework, reports, Microsoft Access, and the services of an application: settings and configuration, caching and dependency injection.</td></tr><tr><td><a href="#windows-forms">Windows Forms</a></td><td>Windows with controls, the keyboard and the mouse, layout, lists and grids, formatted text, the clipboard, drag and drop, dialogs, more than one window and a tray icon, printing, menus, timers, drawing, images and charts (Windows only).</td></tr><tr><td><a href="#wpf">WPF</a></td><td>XAML windows, layout and styles, data binding, menus and tabs, lists and dynamic content, and animation (Windows only).</td></tr><tr><td><a href="#projects-with-windows">Projects with windows</a></td><td>Complete programs: a to-do list, Tic-Tac-Toe, a quiz, a command runner, an address book with a database, a sorting lab, a maze, an image filter lab and a chat (Windows only).</td></tr><tr><td><a href="#libraries-and-packages">Libraries and packages</a></td><td>Giving Ring code to .NET (callbacks and events), reflection and expression trees, an object inspector, a library written in C#, the generic functions, and then NuGet packages and native code: a NuGet package, a QR code, Excel files, pictures, PDF files, text to speech, sound, native DLLs, and a project that uses three packages together.</td></tr><tr><td><a href="#testing-and-release">Testing and release</a></td><td>The common mistakes, programs that run on more than one system, testing your programs, and giving a program to other people.</td></tr></tbody></table></div>
+<h2 id="where-to-start">Where to start<a class="anchor" href="#where-to-start">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>If you want to...</th><th>Read</th></tr></thead><tbody><tr><td>understand the vocabulary</td><td><a href="tut-concepts.html">.NET for Ring programmers</a>, <a href="tut-reading-docs.html">Reading the .NET documentation</a></td></tr><tr><td>learn the class library step by step</td><td>the chapter <strong>The basics</strong></td></tr><tr><td>work with text, JSON and XML</td><td><strong>Text and data formats</strong></td></tr><tr><td>calculate with numbers, dates and money</td><td><strong>Numbers, dates and money</strong></td></tr><tr><td>read, write and pack files</td><td><strong>Files and streams</strong></td></tr><tr><td>talk to other computers, build a web service</td><td><strong>Networking and the web</strong></td></tr><tr><td>store data</td><td><strong>Databases and services</strong></td></tr><tr><td>protect data and users</td><td><strong>Security</strong></td></tr><tr><td>build programs with windows</td><td><strong>Windows Forms</strong>, then <strong>WPF</strong> and <strong>Projects with windows</strong></td></tr><tr><td>go deeper: callbacks, reflection, your own C# library, NuGet packages</td><td><strong>Libraries and packages</strong></td></tr><tr><td>find and fix mistakes, test and give away a program</td><td><strong>Testing and release</strong></td></tr><tr><td>give your program to other people</td><td>the tutorial <a href="tut-119-distribution.html">Giving your program to others</a></td></tr></tbody></table></div>
+<h2 id="the-basics">The basics<a class="anchor" href="#the-basics">#</a></h2>
+<p>Console programs that use the class library: text, numbers, collections, files, JSON and XML, errors, hashing, HTTP, tasks and processes. Start here and read them in order.</p>
+<div class="cards">
+<a class="card" href="tut-01-first-look.html"><div class="ic">🌱</div><b>A first look</b><span>Objects, types, properties, methods, static members, structs, collections and null.</span></a>
+<a class="card" href="tut-02-text.html"><div class="ic">🌱</div><b>Working with text</b><span>Ring's own text functions and what .NET adds: Join, Format, StringBuilder, regular expressions, Base64, encodings.</span></a>
+<a class="card" href="tut-03-numbers-dates.html"><div class="ic">🌱</div><b>Numbers, dates and times</b><span>Math, parsing safely, big numbers, random numbers, DateTime, TimeSpan and cultures.</span></a>
+<a class="card" href="tut-04-collections.html"><div class="ic">🌱</div><b>Collections and LINQ</b><span>Lists, dictionaries, sets, queues, stacks, sorting and asking questions with LINQ.</span></a>
+<a class="card" href="tut-05-files.html"><div class="ic">🌱</div><b>Files and folders</b><span>Path, Directory, File, readers and writers, file information and zip.</span></a>
+<a class="card" href="tut-06-json-xml.html"><div class="ic">🌱</div><b>JSON and XML</b><span>Read, search, change and write structured data.</span></a>
+<a class="card" href="tut-07-errors.html"><div class="ic">🌱</div><b>When things go wrong</b><span>Exceptions, try/catch, checking before acting, your own errors and cleaning up.</span></a>
+<a class="card" href="tut-08-security.html"><div class="ic">🌱</div><b>Hashing and encryption</b><span>Checksums, password hashes, HMAC, random tokens and AES.</span></a>
+<a class="card" href="tut-09-http.html"><div class="ic">🌱</div><b>HTTP</b><span>A web server and a web client in one program.</span></a>
+<a class="card" href="tut-10-tasks-processes.html"><div class="ic">🌱</div><b>Time, tasks and other programs</b><span>Stopwatch, tasks, the environment and running another program.</span></a>
+</div>
+<h2 id="text-and-data-formats">Text and data formats<a class="anchor" href="#text-and-data-formats">#</a></h2>
+<p>Regular expressions, formatting, Unicode and text file encodings, comparing and escaping text, URLs, Base64 and hexadecimal, domain names, MIME types, JSON in two styles, XML and XSLT, Markdown, spelling, and two projects: a mail merge and a syntax highlighter.</p>
+<div class="cards">
+<a class="card" href="tut-29-regex.html"><div class="ic">🔤</div><b>Regular expressions in depth</b><span>Patterns, groups, replace, split, greedy and lazy, validation.</span></a>
+<a class="card" href="tut-129-formatting.html"><div class="ic">🔤</div><b>Formatting numbers and dates</b><span>Format strings: decimals, thousands, percent, patterns, alignment, dates and durations.</span></a>
+<a class="card" href="tut-52-unicode.html"><div class="ic">🔤</div><b>Unicode and encodings</b><span>Bytes, code points and letters; UTF-8, UTF-16 and mojibake.</span></a>
+<a class="card" href="tut-132-text-encodings.html"><div class="ic">🔤</div><b>Text files and encodings</b><span>The bytes of a text, the BOM, reading Latin-1 and UTF-16 files, strict UTF-8 and line endings.</span></a>
+<a class="card" href="tut-97-comparers.html"><div class="ic">🔤</div><b>Comparing text</b><span>Ordinal and culture comparison, StringComparer, and the Turkish i.</span></a>
+<a class="card" href="tut-104-text-readers-writers.html"><div class="ic">🔤</div><b>Text readers and writers</b><span>StringWriter, StringReader, capturing Console output, String.Format.</span></a>
+<a class="card" href="tut-86-escaping.html"><div class="ic">🔤</div><b>Escaping</b><span>The right encoding for HTML, URLs, JavaScript, JSON, XML, regular expressions and SQL.</span></a>
+<a class="card" href="tut-64-urls.html"><div class="ic">🔤</div><b>URLs and encodings</b><span>Uri, query strings, percent-encoding, relative addresses and Base64.</span></a>
+<a class="card" href="tut-138-base64-hex.html"><div class="ic">🔤</div><b>Bytes as text: Base64 and hex</b><span>Base64, the URL-safe form, hexadecimal, padding, wrong input and data URIs.</span></a>
+<a class="card" href="tut-117-domain-names.html"><div class="ic">🔤</div><b>International domain names</b><span>Punycode, IdnMapping and look-alike letters (homograph attacks).</span></a>
+<a class="card" href="tut-121-mime-types.html"><div class="ic">🔤</div><b>MIME types</b><span>File extensions, Content-Type, Accept and content negotiation.</span></a>
+<a class="card" href="tut-100-json-writer.html"><div class="ic">🔤</div><b>Writing JSON as a stream</b><span>Utf8JsonWriter, indentation, escaping and JsonSerializer options.</span></a>
+<a class="card" href="tut-80-json-nodes.html"><div class="ic">🔤</div><b>JSON as a tree</b><span>JsonNode: read, edit, build, merge and clone JSON.</span></a>
+<a class="card" href="tut-72-xml.html"><div class="ic">🔤</div><b>XML in depth</b><span>XDocument, XPath, building and changing elements, bad XML.</span></a>
+<a class="card" href="tut-77-xslt.html"><div class="ic">🔤</div><b>XSLT</b><span>Turn XML into text, CSV and HTML with XslCompiledTransform.</span></a>
+<a class="card" href="tut-47-markdown.html"><div class="ic">🔤</div><b>Project: Markdown to HTML</b><span>Blocks, inline formatting, regular expressions, and escaping first.</span></a>
+<a class="card" href="tut-66-spelling.html"><div class="ic">🔤</div><b>A spell checker</b><span>A set of words, the edit distance table and the best suggestions.</span></a>
+<a class="card" href="tut-144-mailmerge.html"><div class="ic">🔤</div><b>Project: mail merge</b><span>A template with fields, CSV data, Regex.Replace with a callback and a check for missing data.</span></a>
+<a class="card" href="tut-152-highlighter.html"><div class="ic">🔤</div><b>Project: a syntax highlighter</b><span>One regular expression with named groups, tokens, HTML spans and escaped text.</span></a>
+</div>
+<h2 id="numbers-dates-and-money">Numbers, dates and money<a class="anchor" href="#numbers-dates-and-money">#</a></h2>
+<p>The number types and their limits, rounding, big numbers, number systems, exact money, vectors, randomness and statistics, then dates, time zones, calendars, working days and cultures.</p>
+<div class="cards">
+<a class="card" href="tut-101-number-types.html"><div class="ic">🔢</div><b>Number types</b><span>Limits, checked conversion, TryParse, Int128 and floating point.</span></a>
+<a class="card" href="tut-126-rounding.html"><div class="ic">🔢</div><b>Rounding and the Math class</b><span>Round modes, Floor, Ceiling, Truncate, limits, and one rounding rule for money.</span></a>
+<a class="card" href="tut-90-big-numbers.html"><div class="ic">🔢</div><b>Big numbers</b><span>BigInteger for exact big whole numbers, and Complex numbers.</span></a>
+<a class="card" href="tut-67-bases.html"><div class="ic">🔢</div><b>Number systems and big numbers</b><span>Binary and hex, bits, the 2^53 limit and BigInteger.</span></a>
+<a class="card" href="tut-57-money.html"><div class="ic">🔢</div><b>Money</b><span>Why 0.1 + 0.2 is not 0.3: whole cents, rounding rules and fair splitting.</span></a>
+<a class="card" href="tut-99-vectors.html"><div class="ic">🔢</div><b>Vectors and matrices</b><span>Vector3, dot and cross products, Matrix3x2 transformations.</span></a>
+<a class="card" href="tut-69-random.html"><div class="ic">🔢</div><b>Randomness</b><span>Seeds, dice, a correct shuffle, weighted choices, Guids and secure numbers.</span></a>
+<a class="card" href="tut-44-statistics.html"><div class="ic">🔢</div><b>Statistics and simulation</b><span>Mean, median, mode, deviation, primes, gcd and a Monte Carlo estimate of pi.</span></a>
+<a class="card" href="tut-103-dates-and-times.html"><div class="ic">🔢</div><b>Dates and times</b><span>DateOnly, TimeOnly, DateTimeOffset, TimeSpan and month-end rules.</span></a>
+<a class="card" href="tut-68-timezones.html"><div class="ic">🔢</div><b>Time zones</b><span>UTC, local time, daylight saving, a meeting and a flight across zones.</span></a>
+<a class="card" href="tut-43-calendar.html"><div class="ic">🔢</div><b>Calendars and dates</b><span>Month tables, ages, business days, birthdays and safe date arithmetic.</span></a>
+<a class="card" href="tut-76-calendars.html"><div class="ic">🔢</div><b>Other calendars</b><span>Hijri, Persian, Hebrew, Japanese and Thai dates; Arabic names with ar-SA.</span></a>
+<a class="card" href="tut-135-workdays.html"><div class="ic">🔢</div><b>Working days</b><span>Business days, holidays, ISO weeks, quarters, month ends and ages.</span></a>
+<a class="card" href="tut-33-cultures.html"><div class="ic">🔢</div><b>Cultures</b><span>Formatting, parsing, sorting and case in different languages.</span></a>
+</div>
+<h2 id="collections-and-algorithms">Collections and algorithms<a class="anchor" href="#collections-and-algorithms">#</a></h2>
+<p>Arrays, sets and other data structures, collections for many threads, enums and identifiers, undo and queues, recursion and an expression calculator.</p>
+<div class="cards">
+<a class="card" href="tut-106-arrays.html"><div class="ic">🧺</div><b>Arrays</b><span>Typed arrays, Array.Sort, BinarySearch, Copy and two dimensions.</span></a>
+<a class="card" href="tut-107-sets.html"><div class="ic">🧺</div><b>Sets</b><span>HashSet: union, intersection, difference and removing duplicates.</span></a>
+<a class="card" href="tut-92-data-structures.html"><div class="ic">🧺</div><b>More data structures</b><span>PriorityQueue, SortedSet, SortedDictionary, LinkedList and BitArray.</span></a>
+<a class="card" href="tut-89-concurrent-collections.html"><div class="ic">🧺</div><b>Collections for many threads</b><span>Concurrent queue, stack, blocking collection and dictionary.</span></a>
+<a class="card" href="tut-65-enums.html"><div class="ic">🧺</div><b>Enums and flags</b><span>Named choices as text, comma-separated flags and your own bit flags.</span></a>
+<a class="card" href="tut-93-identifiers.html"><div class="ic">🧺</div><b>Identifiers and versions</b><span>Guid, Version, and sorting version numbers by number.</span></a>
+<a class="card" href="tut-58-undo.html"><div class="ic">🧺</div><b>Undo, redo and queues</b><span>Stacks and queues; two stacks make undo and redo.</span></a>
+<a class="card" href="tut-75-recursion.html"><div class="ic">🧺</div><b>Recursion</b><span>Factorial, the Towers of Hanoi, permutations, a folder tree and a flood fill.</span></a>
+<a class="card" href="tut-54-expression.html"><div class="ic">🧺</div><b>An expression calculator</b><span>Tokens, a recursive-descent parser, precedence and clear errors.</span></a>
+</div>
+<h2 id="files-and-streams">Files and streams<a class="anchor" href="#files-and-streams">#</a></h2>
+<p>Paths, file information and disks, streams, binary files and random access, compression (GZip, ZIP, tar), file patterns, watching a folder, and projects that work on many files: a log analyzer, a duplicate finder, a backup tool, a file renamer, a file comparison and a checksum list.</p>
+<div class="cards">
+<a class="card" href="tut-59-paths.html"><div class="ic">📁</div><b>Paths and the environment</b><span>Path.Combine, special folders, valid names and environment variables.</span></a>
+<a class="card" href="tut-123-file-info.html"><div class="ic">📁</div><b>File information</b><span>FileInfo: size, times, attributes, read-only files, copying and temporary files.</span></a>
+<a class="card" href="tut-124-disks.html"><div class="ic">📁</div><b>Disks and free space</b><span>DriveInfo, the sizes of a disk, will it fit, and sizes for people.</span></a>
+<a class="card" href="tut-56-streams.html"><div class="ic">📁</div><b>Streams and compression</b><span>MemoryStream, StreamWriter, GZip, and one pattern for memory and files.</span></a>
+<a class="card" href="tut-45-binary.html"><div class="ic">📁</div><b>Binary files</b><span>BinaryWriter and BinaryReader, a file format, a hex dump, little endian.</span></a>
+<a class="card" href="tut-130-random-access.html"><div class="ic">📁</div><b>Random access and file locks</b><span>Fixed-size records, Seek, changing a record in place, SetLength and FileShare.</span></a>
+<a class="card" href="tut-157-copy-progress.html"><div class="ic">📁</div><b>Copying a big file</b><span>Read and write in pieces with a byte buffer, progress, cancel and a checksum.</span></a>
+<a class="card" href="tut-159-file-types.html"><div class="ic">📁</div><b>What kind of file is it?</b><span>Magic numbers, a signature table, text or binary, and names that tell a lie.</span></a>
+<a class="card" href="tut-88-compression.html"><div class="ic">📁</div><b>Compression</b><span>GZip, Deflate and Brotli streams, sizes, round trips and a .gz file.</span></a>
+<a class="card" href="tut-108-zip-in-memory.html"><div class="ic">📁</div><b>ZIP archives in memory</b><span>ZipArchive on a MemoryStream: entries, levels and updates.</span></a>
+<a class="card" href="tut-96-tar.html"><div class="ic">📁</div><b>Tar archives</b><span>Create, list, read and unpack tar files.</span></a>
+<a class="card" href="tut-112-globbing.html"><div class="ic">📁</div><b>File patterns (globbing)</b><span>**/*.ring, include and exclude rules, matching lists of paths.</span></a>
+<a class="card" href="tut-122-watch-folder.html"><div class="ic">📁</div><b>Watching a folder</b><span>FileSystemWatcher: created, changed, renamed and deleted files, with a child program.</span></a>
+<a class="card" href="tut-21-log-analyzer.html"><div class="ic">📁</div><b>Project: a log analyzer</b><span>Files, regular expressions, dictionaries, LINQ and a JSON report in one program.</span></a>
+<a class="card" href="tut-31-duplicates.html"><div class="ic">📁</div><b>Project: duplicate files</b><span>Folders, content hashes and a dictionary find the copies.</span></a>
+<a class="card" href="tut-46-backup.html"><div class="ic">📁</div><b>Project: a backup tool</b><span>Zip by date, keep the newest few, restore and verify.</span></a>
+<a class="card" href="tut-141-renamer.html"><div class="ic">📁</div><b>Project: rename many files</b><span>Rules, a preview, conflict checks, renaming and undo with a log.</span></a>
+<a class="card" href="tut-145-diff.html"><div class="ic">📁</div><b>Project: compare two files</b><span>The longest common subsequence, a diff with context, and a similarity in percent.</span></a>
+<a class="card" href="tut-147-checksums.html"><div class="ic">📁</div><b>Project: check that files did not change</b><span>SHA-256 checksums in the sha256sum format, verify, and protecting the list.</span></a>
+</div>
+<h2 id="processes-and-performance">Processes and performance<a class="anchor" href="#processes-and-performance">#</a></h2>
+<p>Asking the computer about itself, command-line tools, logging and tracing, starting and talking to other programs, tasks that wait, releasing resources, measuring speed and memory, and the Windows Registry.</p>
+<div class="cards">
+<a class="card" href="tut-74-system.html"><div class="ic">⚙️</div><b>Asking the computer</b><span>The system, processors, memory, drives and the running programs.</span></a>
+<a class="card" href="tut-50-cli.html"><div class="ic">⚙️</div><b>A command-line tool</b><span>Arguments, options, usage text and exit codes.</span></a>
+<a class="card" href="tut-51-logging.html"><div class="ic">⚙️</div><b>Logging</b><span>Levels, timestamps, a log file and rotation.</span></a>
+<a class="card" href="tut-136-tracing.html"><div class="ic">⚙️</div><b>Tracing</b><span>Trace and listeners: memory and file listeners, indents, conditions and categories.</span></a>
+<a class="card" href="tut-85-feed-programs.html"><div class="ic">⚙️</div><b>Working with other programs</b><span>Standard input, chaining, environment, exit codes, time limits and Kill.</span></a>
+<a class="card" href="tut-79-processes-talk.html"><div class="ic">⚙️</div><b>Two programs talking</b><span>Named pipes between processes, Process.Start, and a mutex for one copy.</span></a>
+<a class="card" href="tut-82-shared-memory.html"><div class="ic">⚙️</div><b>Shared memory</b><span>Memory-mapped files shared by two programs, and a file edited in place.</span></a>
+<a class="card" href="tut-83-tasks-waiting.html"><div class="ic">⚙️</div><b>Tasks that wait</b><span>Task.Delay, WhenAll, WhenAny, time limits and cancellation.</span></a>
+<a class="card" href="tut-71-dispose.html"><div class="ic">⚙️</div><b>Releasing resources</b><span>Locked files, Dispose, and a clean-up that runs after an error.</span></a>
+<a class="card" href="tut-53-speed.html"><div class="ic">⚙️</div><b>Speed: measure first</b><span>Stopwatch, a cache, StringBuilder against +=, and the cost of bridge calls.</span></a>
+<a class="card" href="tut-98-memory.html"><div class="ic">⚙️</div><b>Memory and the garbage collector</b><span>GC, weak references, generations and release().</span></a>
+<a class="card" href="tut-118-registry.html"><div class="ic">⚙️</div><b>The Windows Registry</b><span>Keys, values of every kind, listing and cleaning up (Windows).</span></a>
+</div>
+<h2 id="networking-and-the-web">Networking and the web<a class="anchor" href="#networking-and-the-web">#</a></h2>
+<p>IP addresses and networks, TCP and UDP sockets, WebSockets, HttpClient and REST, web services and small web sites, route templates, a link shortener, and e-mail messages.</p>
+<div class="cards">
+<a class="card" href="tut-81-network-tools.html"><div class="ic">🌐</div><b>Network tools</b><span>IPAddress, Dns, Ping, interfaces and a port check, all on this computer.</span></a>
+<a class="card" href="tut-102-ip-networks.html"><div class="ic">🌐</div><b>IP networks</b><span>CIDR, IPNetwork.Contains and a private-address allow list.</span></a>
+<a class="card" href="tut-25-sockets.html"><div class="ic">🌐</div><b>Sockets</b><span>A TCP server and client that talk line by line.</span></a>
+<a class="card" href="tut-158-framing.html"><div class="ic">🌐</div><b>Messages on a TCP stream</b><span>A length prefix, reading exactly n bytes, partial reads and a maximum length.</span></a>
+<a class="card" href="tut-91-udp.html"><div class="ic">🌐</div><b>UDP</b><span>Datagrams between sockets, answers, time limits and lost messages.</span></a>
+<a class="card" href="tut-156-websockets.html"><div class="ic">🌐</div><b>WebSockets</b><span>A connection that stays open: HttpListener and ClientWebSocket, text and binary messages, parts and closing.</span></a>
+<a class="card" href="tut-84-http-client.html"><div class="ic">🌐</div><b>HttpClient in depth</b><span>Headers, status codes, EnsureSuccessStatusCode, canceling and saving a download.</span></a>
+<a class="card" href="tut-39-rest-client.html"><div class="ic">🌐</div><b>A REST client</b><span>GET and POST with JSON, status codes, timeouts and errors.</span></a>
+<a class="card" href="tut-16-web-service.html"><div class="ic">🌐</div><b>A web service with a database</b><span>JSON over HTTP, stored with Entity Framework.</span></a>
+<a class="card" href="tut-26-website.html"><div class="ic">🌐</div><b>A small web site</b><span>HTML pages, a form, a guestbook, status codes and the escaping rule.</span></a>
+<a class="card" href="tut-55-miniweb.html"><div class="ic">🌐</div><b>A tiny web framework</b><span>Routes with parameters, a catch-all handler and escaped templates.</span></a>
+<a class="card" href="tut-120-routes.html"><div class="ic">🌐</div><b>Route templates</b><span>users/{id}, optional, default and catch-all parts, choosing a route.</span></a>
+<a class="card" href="tut-150-shortener.html"><div class="ic">🌐</div><b>Project: a link shortener</b><span>Base 62 codes, a 302 redirect, a catch-all handler, visit counts and address checks.</span></a>
+<a class="card" href="tut-94-mail-messages.html"><div class="ic">🌐</div><b>E-mail messages</b><span>MailAddress, MailMessage, recipients and text plus HTML views.</span></a>
+</div>
+<h2 id="security">Security<a class="anchor" href="#security">#</a></h2>
+<p>Hashing, encryption and signing, certificates, protecting data, logins and sessions, identities and claims, and rate limiting.</p>
+<div class="cards">
+<a class="card" href="tut-78-crypto.html"><div class="ic">🔒</div><b>Protecting and signing messages</b><span>AES, HMAC (encrypt-then-MAC), PBKDF2 keys and RSA signatures.</span></a>
+<a class="card" href="tut-105-signatures.html"><div class="ic">🔒</div><b>Digital signatures</b><span>ECDsa keys, signing, verifying and sharing the public key.</span></a>
+<a class="card" href="tut-116-certificates.html"><div class="ic">🔒</div><b>Certificates</b><span>Self-signed X.509 certificates, PFX and PEM, signing and trust.</span></a>
+<a class="card" href="tut-113-data-protection.html"><div class="ic">🔒</div><b>Protecting data</b><span>The Data Protection API: purposes, tampering, keys and expiring tokens.</span></a>
+<a class="card" href="tut-49-login.html"><div class="ic">🔒</div><b>Login, sessions and cookies</b><span>Registration, safe passwords, a session cookie and a protected page.</span></a>
+<a class="card" href="tut-95-claims.html"><div class="ic">🔒</div><b>Identities and claims</b><span>Claims, identities, roles and a permission check.</span></a>
+<a class="card" href="tut-114-rate-limiting.html"><div class="ic">🔒</div><b>Rate limiting</b><span>Token bucket, concurrency limiter, leases and one limiter per client.</span></a>
+</div>
+<h2 id="databases-and-services">Databases and services<a class="anchor" href="#databases-and-services">#</a></h2>
+<p>SQL and Entity Framework, reports, Microsoft Access, and the services of an application: settings and configuration, caching and dependency injection.</p>
+<div class="cards">
+<a class="card" href="tut-17-databases.html"><div class="ic">🗄️</div><b>Databases step by step</b><span>Tables, rows, searches, relations, queries, transactions and files.</span></a>
+<a class="card" href="tut-30-tables.html"><div class="ic">🗄️</div><b>Tabular data</b><span>CSV, DataTable, DataView, Compute, sorting, filtering and grouping.</span></a>
+<a class="card" href="tut-73-sql-reports.html"><div class="ic">🗄️</div><b>Reports with SQL</b><span>JOIN, GROUP BY, HAVING, LEFT JOIN and sub-queries.</span></a>
+<a class="card" href="tut-27-entities.html"><div class="ic">🗄️</div><b>Entity objects and migrations</b><span>Rows as tracked objects, navigation properties, and changing a database that has data.</span></a>
+<a class="card" href="tut-115-access.html"><div class="ic">🗄️</div><b>Microsoft Access databases</b><span>An .accdb file through ODBC: tables, parameters, joins, totals and transactions (Windows).</span></a>
+<a class="card" href="tut-32-settings.html"><div class="ic">🗄️</div><b>Settings</b><span>Defaults, a JSON file, special folders, and a damaged file.</span></a>
+<a class="card" href="tut-111-configuration.html"><div class="ic">🗄️</div><b>Configuration</b><span>JSON, memory and environment sources; the last one wins.</span></a>
+<a class="card" href="tut-109-memory-cache.html"><div class="ic">🗄️</div><b>Caching</b><span>MemoryCache, absolute and sliding expiration, GetOrCreate.</span></a>
+<a class="card" href="tut-110-dependency-injection.html"><div class="ic">🗄️</div><b>Dependency injection</b><span>The service container, three lifetimes and scopes.</span></a>
+</div>
+<h2 id="windows-forms">Windows Forms<a class="anchor" href="#windows-forms">#</a></h2>
+<p>Windows with controls, the keyboard and the mouse, layout, lists and grids, formatted text, the clipboard, drag and drop, dialogs, more than one window and a tray icon, printing, menus, timers, drawing, images and charts (Windows only).</p>
+<div class="cards">
+<a class="card" href="tut-11-first-window.html"><div class="ic">🪟</div><b>Your first window</b><span>A form, a label, a button, an event — with and without the helper functions.</span></a>
+<a class="card" href="tut-12-controls.html"><div class="ic">🪟</div><b>A form with many controls</b><span>Text boxes, number box, combo box, check box, list box and validation.</span></a>
+<a class="card" href="tut-128-inputs.html"><div class="ic">🪟</div><b>More input controls</b><span>Date picker, track bar, radio buttons, tool tips and the error marker.</span></a>
+<a class="card" href="tut-146-keyboard.html"><div class="ic">🪟</div><b>The keyboard in a form</b><span>KeyPress filters, Enter and Escape buttons, tab order, access keys and test keys.</span></a>
+<a class="card" href="tut-23-layout.html"><div class="ic">🪟</div><b>Layout and richer controls</b><span>Split bars, tabs, table layout, and a data grid with a filter.</span></a>
+<a class="card" href="tut-134-listview.html"><div class="ic">🪟</div><b>A list with columns</b><span>ListView details: columns, check boxes, sorting by a header, removing checked rows.</span></a>
+<a class="card" href="tut-142-grid.html"><div class="ic">🪟</div><b>Editing a grid</b><span>DataGridView with text, check box and combo box columns, cell events and totals.</span></a>
+<a class="card" href="tut-13-editor.html"><div class="ic">🪟</div><b>A small text editor</b><span>Menus, a status bar, open and save, dock layout.</span></a>
+<a class="card" href="tut-133-richtext.html"><div class="ic">🪟</div><b>Formatted text</b><span>RichTextBox: bold and colored words, find and mark, save and load RTF.</span></a>
+<a class="card" href="tut-127-clipboard.html"><div class="ic">🪟</div><b>The clipboard</b><span>Text, a table for a spreadsheet, a picture, and leaving the clipboard as it was.</span></a>
+<a class="card" href="tut-154-dragdrop.html"><div class="ic">🪟</div><b>Drag and drop</b><span>DoDragDrop, AllowDrop and DragDrop, move or copy with Ctrl, dropped files, and a test without a mouse.</span></a>
+<a class="card" href="tut-40-dialog.html"><div class="ic">🪟</div><b>Your own dialog</b><span>A modal form that asks for data, validates it and returns it; tested with a timer.</span></a>
+<a class="card" href="tut-137-closing.html"><div class="ic">🪟</div><b>Closing a window</b><span>FormClosing and Cancel: ask to save changes, and a question that a test can answer.</span></a>
+<a class="card" href="tut-149-windows.html"><div class="ic">🪟</div><b>More than one window</b><span>Show with an owner, one copy of a tool window, talking windows and OpenForms.</span></a>
+<a class="card" href="tut-155-tray.html"><div class="ic">🪟</div><b>A tray icon</b><span>NotifyIcon with a menu, hiding the window to the tray, and a balloon message.</span></a>
+<a class="card" href="tut-41-menus.html"><div class="ic">🪟</div><b>Menus, toolbars, shortcuts</b><span>Write each action once and reach it from a menu, a toolbar, a context menu and a key.</span></a>
+<a class="card" href="tut-34-timers.html"><div class="ic">🪟</div><b>Timers and progress</b><span>A stopwatch, a progress bar, and a long job in small steps.</span></a>
+<a class="card" href="tut-14-animation.html"><div class="ic">🪟</div><b>Drawing and animation</b><span>A canvas, a timer and the keyboard: a bouncing ball and a paddle.</span></a>
+<a class="card" href="tut-139-paint.html"><div class="ic">🪟</div><b>Drawing with the mouse</b><span>MouseDown, MouseMove and MouseUp: a paint program with colors, pen sizes and a test.</span></a>
+<a class="card" href="tut-22-images.html"><div class="ic">🪟</div><b>Images</b><span>Draw, read and change pixels, make a gray copy, resize and save PNG files.</span></a>
+<a class="card" href="tut-125-screenshot.html"><div class="ic">🪟</div><b>Screens and pictures of windows</b><span>Screen, CopyFromScreen, DrawToBitmap, and checking a window by its pixels.</span></a>
+<a class="card" href="tut-153-printing.html"><div class="ic">🪟</div><b>Printing</b><span>PrintDocument and PrintPage: a report on several pages, margins, landscape and a preview without a printer.</span></a>
+<a class="card" href="tut-36-chart.html"><div class="ic">🪟</div><b>A chart</b><span>Scaling values to pixels, a round axis, bars, labels, saving, testing pixels.</span></a>
+<a class="card" href="tut-42-browser.html"><div class="ic">🪟</div><b>A folder browser</b><span>TreeView, ListView, recursion and the Tag property: a small Explorer.</span></a>
+</div>
+<h2 id="wpf">WPF<a class="anchor" href="#wpf">#</a></h2>
+<p>XAML windows, layout and styles, data binding, menus and tabs, lists and dynamic content, and animation (Windows only).</p>
+<div class="cards">
+<a class="card" href="tut-15-wpf.html"><div class="ic">🎨</div><b>WPF</b><span>XAML windows, finding elements, events and data binding.</span></a>
+<a class="card" href="tut-38-wpf-layout.html"><div class="ic">🎨</div><b>WPF layout and styles</b><span>Grid rows and columns, one Style for all buttons, a keypad.</span></a>
+<a class="card" href="tut-131-wpf-binding.html"><div class="ic">🎨</div><b>WPF data binding</b><span>Controls that follow each other in XAML: slider, text box, check box and list.</span></a>
+<a class="card" href="tut-140-wpf-menu.html"><div class="ic">🎨</div><b>WPF menus and tabs</b><span>Menu, checkable items, TabControl, ComboBox, DatePicker and Expander in XAML.</span></a>
+<a class="card" href="tut-148-wpf-lists.html"><div class="ic">🎨</div><b>WPF lists and dynamic content</b><span>Fill a ListBox from Ring, move and remove items, and make controls in code.</span></a>
+<a class="card" href="tut-70-wpf-animation.html"><div class="ic">🎨</div><b>WPF animation</b><span>Move, fade and rotate with DoubleAnimation, easing and AutoReverse.</span></a>
+</div>
+<h2 id="projects-with-windows">Projects with windows<a class="anchor" href="#projects-with-windows">#</a></h2>
+<p>Complete programs: a to-do list, Tic-Tac-Toe, a quiz, a command runner, an address book with a database, a sorting lab, a maze, an image filter lab and a chat (Windows only).</p>
+<div class="cards">
+<a class="card" href="tut-24-todo.html"><div class="ic">🧩</div><b>Project: a to-do list</b><span>A complete window application that remembers its tasks in a JSON file.</span></a>
+<a class="card" href="tut-35-tictactoe.html"><div class="ic">🧩</div><b>Project: Tic-Tac-Toe</b><span>Rules and state in testable functions, nine buttons from a loop.</span></a>
+<a class="card" href="tut-143-quiz.html"><div class="ic">🧩</div><b>Project: a quiz</b><span>Questions as data, radio buttons, one button with two jobs, a score and best scores.</span></a>
+<a class="card" href="tut-37-runner.html"><div class="ic">🧩</div><b>Project: a command runner</b><span>A window around a command-line tool: output, errors, exit codes.</span></a>
+<a class="card" href="tut-48-addressbook.html"><div class="ic">🧩</div><b>Project: an address book</b><span>A window, a data grid and a database that stay consistent; search as you type.</span></a>
+<a class="card" href="tut-60-sorting.html"><div class="ic">🧩</div><b>Watching sorting algorithms</b><span>Bubble, selection and insertion sort animated, with counters.</span></a>
+<a class="card" href="tut-61-maze.html"><div class="ic">🧩</div><b>A maze</b><span>A stack makes the maze, a queue finds the shortest way.</span></a>
+<a class="card" href="tut-62-filters.html"><div class="ic">🧩</div><b>An image filter lab</b><span>Pixels as numbers, filters as functions, and a BMP file written by hand.</span></a>
+<a class="card" href="tut-63-chat.html"><div class="ic">🧩</div><b>A chat over TCP</b><span>A relay server, two clients and a timer that polls the sockets.</span></a>
+</div>
+<h2 id="libraries-and-packages">Libraries and packages<a class="anchor" href="#libraries-and-packages">#</a></h2>
+<p>Giving Ring code to .NET (callbacks and events), exploring code with reflection and building it with expression trees, an object inspector, a library written in C#, and the generic functions; then <strong>NuGet packages</strong> and native code: how a package comes to Ring, a QR code, Excel files, pictures, PDF files, text to speech, sound, native DLLs, and a project that uses three packages together.</p>
+<div class="cards">
+<a class="card" href="tut-19-callbacks.html"><div class="ic">📦</div><b>Callbacks and events</b><span>Give Ring code to .NET: function names, code texts, events, errors and the thread rule.</span></a>
+<a class="card" href="tut-20-reflection.html"><div class="ic">📦</div><b>Exploring .NET with reflection</b><span>Ask a class what it can do: properties, methods, parameters, enums.</span></a>
+<a class="card" href="tut-151-inspector.html"><div class="ic">📦</div><b>Project: an object inspector</b><span>GetType, GetProperties and GetValue: the properties of any object in a list.</span></a>
+<a class="card" href="tut-87-expressions.html"><div class="ic">📦</div><b>Expression trees</b><span>Code as data: build, print, compile and call functions at run time.</span></a>
+<a class="card" href="tut-18-csharp-library.html"><div class="ic">📦</div><b>A library written in C#</b><span>Build a small C# library, wrap it and call it from Ring.</span></a>
+<a class="card" href="tut-160-generic-calls.html"><div class="ic">📦</div><b>The generic functions</b><span>dnNewGeneric, dnType, dnNew with names, dnStatic, callMethod and getProp: what to use when there is no class.</span></a>
+<a class="card" href="tut-162-nuget.html"><div class="ic">📦</div><b>A NuGet package</b><span>From nuget.org to a Ring program: a project file, dotnet publish, the generator, and what to check when a package does not work.</span></a>
+<a class="card" href="tut-165-qr.html"><div class="ic">📦</div><b>A QR code</b><span>A second NuGet package: QRCoder makes a code, printed as text and written as a PNG; error-correction levels and parameters by name.</span></a>
+<a class="card" href="tut-167-excel.html"><div class="ic">📦</div><b>Excel files</b><span>ClosedXML from nuget.org: write a sheet with formulas and a bold header, read it back, and use a package that works with interfaces.</span></a>
+<a class="card" href="tut-168-pictures.html"><div class="ic">📦</div><b>Pictures on every system</b><span>SkiaSharp: draw a circle and text, read pixels, save and read PNG on Windows and Linux; a package with a native library.</span></a>
+<a class="card" href="tut-169-pdf.html"><div class="ic">📦</div><b>PDF files</b><span>PDFsharp from nuget.org: pages in points, text, lines and fonts, and reading the file back to check it.</span></a>
+<a class="card" href="tut-170-speech.html"><div class="ic">📦</div><b>Text to speech</b><span>System.Speech: the voices of Windows, speech written to a WAV file for a silent test, the rate, and a package with a DLL for each system.</span></a>
+<a class="card" href="tut-164-sound.html"><div class="ic">📦</div><b>Sound</b><span>A WAV file made from numbers, played with SoundPlayer; wrapping a framework class that has no Ring class.</span></a>
+<a class="card" href="tut-163-native.html"><div class="ic">📦</div><b>Native DLLs</b><span>P/Invoke: a few lines of C# give a function of kernel32 or user32 to Ring; numbers, texts, buffers, structures and errors.</span></a>
+<a class="card" href="tut-171-csv-to-excel.html"><div class="ic">📦</div><b>A project: from CSV to Excel</b><span>Three packages in one program: CsvHelper reads, LiteDB stores and finds, ClosedXML writes an Excel report.</span></a>
+</div>
+<h2 id="testing-and-release">Testing and release<a class="anchor" href="#testing-and-release">#</a></h2>
+<p>The mistakes that everybody makes first and their messages, programs that run on more than one system, testing your programs, and giving a program to other people.</p>
+<div class="cards">
+<a class="card" href="tut-161-common-errors.html"><div class="ic">📦</div><b>Common mistakes</b><span>The seven errors of the first weeks, made on purpose: the message, what it means and the fix.</span></a>
+<a class="card" href="tut-166-systems.html"><div class="ic">📦</div><b>More than one system</b><span>One program on Windows and on Linux: paths, upper and lower case, line ends, folders, and keeping windows behind isWindows().</span></a>
+<a class="card" href="tut-28-testing.html"><div class="ic">📦</div><b>Testing your programs</b><span>Testable functions, dnAssert, testing errors, self-testing windows.</span></a>
+<a class="card" href="tut-119-distribution.html"><div class="ic">📦</div><b>Giving your program to others</b><span>Ring2EXE, what the other computer needs, a self check.</span></a>
+</div>
+<p>After the tutorials: the <a href="concepts.html">Core concepts</a> page lists the naming rules, the <a href="api.html">Class reference</a> lists every class, and the <a href="gallery-apps.html">applications</a> are bigger programs to read.</p>
+<div class="pager"><a href="how-it-works.html"><small>Previous</small>How it works</a><a class="next" href="tut-concepts.html"><small>Next</small>.NET for Ring programmers</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

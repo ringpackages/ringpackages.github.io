@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Windows.Controls.Primitives · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Windows.Controls.Primitives</h1>
+<p class="lead">48 wrapped types. Load them with <code>using { "System.Windows.Controls.Primitives" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-BulletDecorator">BulletDecorator</a> <a href="#c-CalendarButton">CalendarButton</a> <a href="#c-CalendarDayButton">CalendarDayButton</a> <a href="#c-CalendarItem">CalendarItem</a> <a href="#c-CustomPopupPlacement">CustomPopupPlacement</a> <a href="#c-DataGridCellsPresenter">DataGridCellsPresenter</a> <a href="#c-DataGridColumnHeader">DataGridColumnHeader</a> <a href="#c-DataGridColumnHeadersPresenter">DataGridColumnHeadersPresenter</a> <a href="#c-DataGridDetailsPresenter">DataGridDetailsPresenter</a> <a href="#c-DataGridRowHeader">DataGridRowHeader</a> <a href="#c-DataGridRowsPresenter">DataGridRowsPresenter</a> <a href="#c-DatePickerTextBox">DatePickerTextBox</a> <a href="#c-DocumentPageView">DocumentPageView</a> <a href="#c-DocumentViewerBase">DocumentViewerBase</a> <a href="#c-DragCompletedEventArgs">DragCompletedEventArgs</a> <a href="#c-DragDeltaEventArgs">DragDeltaEventArgs</a> <a href="#c-DragStartedEventArgs">DragStartedEventArgs</a> <a href="#c-GeneratorPosition">GeneratorPosition</a> <a href="#c-GridViewRowPresenterBase">GridViewRowPresenterBase</a> <a href="#c-IContainItemStorage">IContainItemStorage</a> <a href="#c-IHierarchicalVirtualizationAndScrollInfo">IHierarchicalVirtualizationAndScrollInfo</a> <a href="#c-IItemContainerGenerator">IItemContainerGenerator</a> <a href="#c-IRecyclingItemContainerGenerator">IRecyclingItemContainerGenerator</a> <a href="#c-IScrollInfo">IScrollInfo</a> <a href="#c-ItemsChangedEventArgs">ItemsChangedEventArgs</a> <a href="#c-LayoutInformation">LayoutInformation</a> <a href="#c-MenuBase">MenuBase</a> <a href="#c-MultiSelector">MultiSelector</a> <a href="#c-Popup">Popup</a> <a href="#c-RangeBase">RangeBase</a> <a href="#c-RepeatButton">RepeatButton</a> <a href="#c-ResizeGrip">ResizeGrip</a> <a href="#c-SelectiveScrollingGrid">SelectiveScrollingGrid</a> <a href="#c-Selector">Selector</a> <a href="#c-StatusBar">StatusBar</a> <a href="#c-StatusBarItem">StatusBarItem</a> <a href="#c-TabPanel">TabPanel</a> <a href="#c-Thumb">Thumb</a> <a href="#c-TickBar">TickBar</a> <a href="#c-ToggleButton">ToggleButton</a> <a href="#c-ToolBarOverflowPanel">ToolBarOverflowPanel</a> <a href="#c-ToolBarPanel">ToolBarPanel</a> <a href="#c-Track">Track</a> <a href="#c-UniformGrid">UniformGrid</a> <a href="#c-WpfButtonBase">WpfButtonBase</a> <a href="#c-WpfScrollBar">WpfScrollBar</a> <a href="#c-WpfScrollEventArgs">WpfScrollEventArgs</a> <a href="#c-WpfTextBoxBase">WpfTextBoxBase</a></div><details class="cls" id="c-BulletDecorator"><summary><b>BulletDecorator</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-Decorator">Decorator</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.BulletDecorator</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BulletDecorator()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BulletDecorator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BulletDecorator().@New([ :param = value ])</code> or <code>dnNew("BulletDecorator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Background</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.Background</code> <code>o.Background = v</code></td></tr><tr><td><code>Bullet</code></td><td><code>UIElement</code></td><td>read, write</td><td><code>o.Bullet</code> <code>o.Bullet = v</code></td></tr><tr><td><code>BackgroundProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BackgroundProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CalendarButton"><summary><b>CalendarButton</b> <span class="muted">class sealed · extends <a href="System.Windows.Controls.html#c-WpfButton">WpfButton</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.CalendarButton</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CalendarButton()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CalendarButton(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CalendarButton().@New([ :param = value ])</code> or <code>dnNew("CalendarButton",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HasSelectedDays</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasSelectedDays</code></td></tr><tr><td><code>IsInactive</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInactive</code></td></tr><tr><td><code>HasSelectedDaysProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.HasSelectedDaysProperty</code></td></tr><tr><td><code>IsInactiveProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsInactiveProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CalendarDayButton"><summary><b>CalendarDayButton</b> <span class="muted">class sealed · extends <a href="System.Windows.Controls.html#c-WpfButton">WpfButton</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.CalendarDayButton</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CalendarDayButton()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CalendarDayButton(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CalendarDayButton().@New([ :param = value ])</code> or <code>dnNew("CalendarDayButton",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsToday</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsToday</code></td></tr><tr><td><code>IsSelected</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSelected</code></td></tr><tr><td><code>IsInactive</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInactive</code></td></tr><tr><td><code>IsBlackedOut</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsBlackedOut</code></td></tr><tr><td><code>IsHighlighted</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsHighlighted</code></td></tr><tr><td><code>IsTodayProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsTodayProperty</code></td></tr><tr><td><code>IsSelectedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSelectedProperty</code></td></tr><tr><td><code>IsInactiveProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsInactiveProperty</code></td></tr><tr><td><code>IsBlackedOutProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsBlackedOutProperty</code></td></tr><tr><td><code>IsHighlightedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsHighlightedProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CalendarItem"><summary><b>CalendarItem</b> <span class="muted">class sealed · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.CalendarItem</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CalendarItem()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CalendarItem(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CalendarItem().@New([ :param = value ])</code> or <code>dnNew("CalendarItem",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DayTitleTemplateResourceKey</code></td><td><code>ComponentResourceKey</code></td><td>read · static</td><td><code>o.DayTitleTemplateResourceKey</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CustomPopupPlacement"><summary><b>CustomPopupPlacement</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.CustomPopupPlacement</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CustomPopupPlacement(Point point, PopupPrimaryAxis primaryAxis)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CustomPopupPlacement(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CustomPopupPlacement().@New([ :param = value ])</code> or <code>dnNew("CustomPopupPlacement",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Point</code></td><td><code>Point</code></td><td>read, write</td><td><code>o.Point</code> <code>o.Point = v</code></td></tr><tr><td><code>PrimaryAxis</code></td><td><code>PopupPrimaryAxis</code></td><td>read, write</td><td><code>o.PrimaryAxis</code> <code>o.PrimaryAxis = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DataGridCellsPresenter"><summary><b>DataGridCellsPresenter</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-ItemsControl">ItemsControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridCellsPresenter</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridCellsPresenter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridCellsPresenter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridCellsPresenter().@New([ :param = value ])</code> or <code>dnNew("DataGridCellsPresenter",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Item</code></td><td><code>object</code></td><td>read</td><td><code>o.Item</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataGridColumnHeader"><summary><b>DataGridColumnHeader</b> <span class="muted">class · extends <a href="#c-WpfButtonBase">WpfButtonBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridColumnHeader</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridColumnHeader()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridColumnHeader(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridColumnHeader().@New([ :param = value ])</code> or <code>dnNew("DataGridColumnHeader",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Column</code></td><td><code>DataGridColumn</code></td><td>read</td><td><code>o.Column</code></td></tr><tr><td><code>SeparatorBrush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.SeparatorBrush</code> <code>o.SeparatorBrush = v</code></td></tr><tr><td><code>SeparatorVisibility</code></td><td><code>Visibility</code></td><td>read, write</td><td><code>o.SeparatorVisibility</code> <code>o.SeparatorVisibility = v</code></td></tr><tr><td><code>DisplayIndex</code></td><td><code>int</code></td><td>read</td><td><code>o.DisplayIndex</code></td></tr><tr><td><code>CanUserSort</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanUserSort</code></td></tr><tr><td><code>SortDirection</code></td><td><code>ListSortDirection?</code></td><td>read</td><td><code>o.SortDirection</code></td></tr><tr><td><code>IsFrozen</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsFrozen</code></td></tr><tr><td><code>ColumnHeaderDropSeparatorStyleKey</code></td><td><code>ComponentResourceKey</code></td><td>read · static</td><td><code>o.ColumnHeaderDropSeparatorStyleKey</code></td></tr><tr><td><code>ColumnFloatingHeaderStyleKey</code></td><td><code>ComponentResourceKey</code></td><td>read · static</td><td><code>o.ColumnFloatingHeaderStyleKey</code></td></tr><tr><td><code>SeparatorBrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SeparatorBrushProperty</code></td></tr><tr><td><code>SeparatorVisibilityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SeparatorVisibilityProperty</code></td></tr><tr><td><code>DisplayIndexProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DisplayIndexProperty</code></td></tr><tr><td><code>CanUserSortProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CanUserSortProperty</code></td></tr><tr><td><code>SortDirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SortDirectionProperty</code></td></tr><tr><td><code>IsFrozenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsFrozenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataGridColumnHeadersPresenter"><summary><b>DataGridColumnHeadersPresenter</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-ItemsControl">ItemsControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridColumnHeadersPresenter</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridColumnHeadersPresenter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridColumnHeadersPresenter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridColumnHeadersPresenter().@New([ :param = value ])</code> or <code>dnNew("DataGridColumnHeadersPresenter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataGridDetailsPresenter"><summary><b>DataGridDetailsPresenter</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-ContentPresenter">ContentPresenter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridDetailsPresenter</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridDetailsPresenter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridDetailsPresenter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridDetailsPresenter().@New([ :param = value ])</code> or <code>dnNew("DataGridDetailsPresenter",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataGridRowHeader"><summary><b>DataGridRowHeader</b> <span class="muted">class · extends <a href="#c-WpfButtonBase">WpfButtonBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridRowHeader</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridRowHeader()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridRowHeader(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridRowHeader().@New([ :param = value ])</code> or <code>dnNew("DataGridRowHeader",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SeparatorBrush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.SeparatorBrush</code> <code>o.SeparatorBrush = v</code></td></tr><tr><td><code>SeparatorVisibility</code></td><td><code>Visibility</code></td><td>read, write</td><td><code>o.SeparatorVisibility</code> <code>o.SeparatorVisibility = v</code></td></tr><tr><td><code>IsRowSelected</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsRowSelected</code></td></tr><tr><td><code>SeparatorBrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SeparatorBrushProperty</code></td></tr><tr><td><code>SeparatorVisibilityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SeparatorVisibilityProperty</code></td></tr><tr><td><code>IsRowSelectedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsRowSelectedProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataGridRowsPresenter"><summary><b>DataGridRowsPresenter</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-VirtualizingStackPanel">VirtualizingStackPanel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DataGridRowsPresenter</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IScrollInfo</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataGridRowsPresenter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataGridRowsPresenter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataGridRowsPresenter().@New([ :param = value ])</code> or <code>dnNew("DataGridRowsPresenter",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DatePickerTextBox"><summary><b>DatePickerTextBox</b> <span class="muted">class sealed · extends <a href="System.Windows.Controls.html#c-WpfTextBox">WpfTextBox</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DatePickerTextBox</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DatePickerTextBox()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DatePickerTextBox(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DatePickerTextBox().@New([ :param = value ])</code> or <code>dnNew("DatePickerTextBox",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DocumentPageView"><summary><b>DocumentPageView</b> <span class="muted">class · extends <a href="System.Windows.html#c-FrameworkElement">FrameworkElement</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DocumentPageView</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IServiceProvider, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DocumentPageView()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DocumentPageView(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DocumentPageView().@New([ :param = value ])</code> or <code>dnNew("DocumentPageView",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DocumentPaginator</code></td><td><code>DocumentPaginator</code></td><td>read, write</td><td><code>o.DocumentPaginator</code> <code>o.DocumentPaginator = v</code></td></tr><tr><td><code>DocumentPage</code></td><td><code>DocumentPage</code></td><td>read</td><td><code>o.DocumentPage</code></td></tr><tr><td><code>PageNumber</code></td><td><code>int</code></td><td>read, write</td><td><code>o.PageNumber</code> <code>o.PageNumber = v</code></td></tr><tr><td><code>Stretch</code></td><td><code>Stretch</code></td><td>read, write</td><td><code>o.Stretch</code> <code>o.Stretch = v</code></td></tr><tr><td><code>StretchDirection</code></td><td><code>StretchDirection</code></td><td>read, write</td><td><code>o.StretchDirection</code> <code>o.StretchDirection = v</code></td></tr><tr><td><code>PageNumberProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PageNumberProperty</code></td></tr><tr><td><code>StretchProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.StretchProperty</code></td></tr><tr><td><code>StretchDirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.StretchDirectionProperty</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PageConnected</code></td><td><code>EventHandler</code></td><td><code>o.setPageConnectedEvent(code)</code> · <code>o.clearPageConnectedEvent()</code></td></tr><tr><td><code>PageDisconnected</code></td><td><code>EventHandler</code></td><td><code>o.setPageDisconnectedEvent(code)</code> · <code>o.clearPageDisconnectedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DocumentViewerBase"><summary><b>DocumentViewerBase</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DocumentViewerBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IServiceProvider</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Document</code></td><td><code>IDocumentPaginatorSource</code></td><td>read, write</td><td><code>o.Document</code> <code>o.Document = v</code></td></tr><tr><td><code>PageCount</code></td><td><code>int</code></td><td>read</td><td><code>o.PageCount</code></td></tr><tr><td><code>MasterPageNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.MasterPageNumber</code></td></tr><tr><td><code>CanGoToPreviousPage</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanGoToPreviousPage</code></td></tr><tr><td><code>CanGoToNextPage</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanGoToNextPage</code></td></tr><tr><td><code>PageViews</code></td><td><code>ReadOnlyCollection&lt;DocumentPageView&gt;</code></td><td>read</td><td><code>o.PageViews</code></td></tr><tr><td><code>DocumentProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DocumentProperty</code></td></tr><tr><td><code>PageCountProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PageCountProperty</code></td></tr><tr><td><code>MasterPageNumberProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MasterPageNumberProperty</code></td></tr><tr><td><code>CanGoToPreviousPageProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CanGoToPreviousPageProperty</code></td></tr><tr><td><code>CanGoToNextPageProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CanGoToNextPageProperty</code></td></tr><tr><td><code>IsMasterPageProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsMasterPageProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CancelPrint</code></td><td><code>CancelPrint()</code></td><td><code>void CancelPrint()</code></td></tr><tr><td><code>CanGoToPage</code></td><td><code>CanGoToPage(p1)</code></td><td><code>bool CanGoToPage(int pageNumber)</code></td></tr><tr><td><code>FirstPage</code></td><td><code>FirstPage()</code></td><td><code>void FirstPage()</code></td></tr><tr><td><code>GetIsMasterPage</code></td><td><code>GetIsMasterPage(p1)</code></td><td><code>static bool GetIsMasterPage(DependencyObject element)</code></td></tr><tr><td><code>GoToPage</code></td><td><code>GoToPage(p1)</code></td><td><code>void GoToPage(int pageNumber)</code></td></tr><tr><td><code>LastPage</code></td><td><code>LastPage()</code></td><td><code>void LastPage()</code></td></tr><tr><td><code>NextPage</code></td><td><code>NextPage()</code></td><td><code>void NextPage()</code></td></tr><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr><tr><td><code>PreviousPage</code></td><td><code>PreviousPage()</code></td><td><code>void PreviousPage()</code></td></tr><tr><td><code>Print</code></td><td><code>Print()</code></td><td><code>void Print()</code></td></tr><tr><td><code>SetIsMasterPage</code></td><td><code>SetIsMasterPage(p1,p2)</code></td><td><code>static void SetIsMasterPage(DependencyObject element, bool value)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PageViewsChanged</code></td><td><code>EventHandler</code></td><td><code>o.setPageViewsChangedEvent(code)</code> · <code>o.clearPageViewsChangedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DragCompletedEventArgs"><summary><b>DragCompletedEventArgs</b> <span class="muted">class · extends <a href="System.Windows.html#c-RoutedEventArgs">RoutedEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DragCompletedEventArgs</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DragCompletedEventArgs(double horizontalChange, double verticalChange, bool canceled)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DragCompletedEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DragCompletedEventArgs().@New([ :param = value ])</code> or <code>dnNew("DragCompletedEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HorizontalChange</code></td><td><code>double</code></td><td>read</td><td><code>o.HorizontalChange</code></td></tr><tr><td><code>VerticalChange</code></td><td><code>double</code></td><td>read</td><td><code>o.VerticalChange</code></td></tr><tr><td><code>Canceled</code></td><td><code>bool</code></td><td>read</td><td><code>o.Canceled</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DragDeltaEventArgs"><summary><b>DragDeltaEventArgs</b> <span class="muted">class · extends <a href="System.Windows.html#c-RoutedEventArgs">RoutedEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DragDeltaEventArgs</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DragDeltaEventArgs(double horizontalChange, double verticalChange)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DragDeltaEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DragDeltaEventArgs().@New([ :param = value ])</code> or <code>dnNew("DragDeltaEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HorizontalChange</code></td><td><code>double</code></td><td>read</td><td><code>o.HorizontalChange</code></td></tr><tr><td><code>VerticalChange</code></td><td><code>double</code></td><td>read</td><td><code>o.VerticalChange</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DragStartedEventArgs"><summary><b>DragStartedEventArgs</b> <span class="muted">class · extends <a href="System.Windows.html#c-RoutedEventArgs">RoutedEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.DragStartedEventArgs</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DragStartedEventArgs(double horizontalOffset, double verticalOffset)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DragStartedEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DragStartedEventArgs().@New([ :param = value ])</code> or <code>dnNew("DragStartedEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HorizontalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.HorizontalOffset</code></td></tr><tr><td><code>VerticalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.VerticalOffset</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneratorPosition"><summary><b>GeneratorPosition</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.GeneratorPosition</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GeneratorPosition(int index, int offset)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GeneratorPosition(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GeneratorPosition().@New([ :param = value ])</code> or <code>dnNew("GeneratorPosition",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Index</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Index</code> <code>o.Index = v</code></td></tr><tr><td><code>Offset</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Offset</code> <code>o.Offset = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GridViewRowPresenterBase"><summary><b>GridViewRowPresenterBase</b> <span class="muted">class abstract · extends <a href="System.Windows.html#c-FrameworkElement">FrameworkElement</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.GridViewRowPresenterBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IWeakEventListener</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Columns</code></td><td><code>GridViewColumnCollection</code></td><td>read, write</td><td><code>o.Columns</code> <code>o.Columns = v</code></td></tr><tr><td><code>ColumnsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColumnsProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-IContainItemStorage"><summary><b>IContainItemStorage</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.IContainItemStorage</code> · assembly <code>PresentationFramework</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>ClearItemValue</code></td><td><code>ClearItemValue(p1,p2)</code></td><td><code>void ClearItemValue(object item, DependencyProperty dp)</code></td></tr><tr><td><code>ClearValue</code></td><td><code>ClearValue(p1)</code></td><td><code>void ClearValue(DependencyProperty dp)</code></td></tr><tr><td><code>ReadItemValue</code></td><td><code>ReadItemValue(p1,p2)</code></td><td><code>object ReadItemValue(object item, DependencyProperty dp)</code></td></tr><tr><td><code>StoreItemValue</code></td><td><code>StoreItemValue(p1,p2,p3)</code></td><td><code>void StoreItemValue(object item, DependencyProperty dp, object value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IHierarchicalVirtualizationAndScrollInfo"><summary><b>IHierarchicalVirtualizationAndScrollInfo</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.IHierarchicalVirtualizationAndScrollInfo</code> · assembly <code>PresentationFramework</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Constraints</code></td><td><code>HierarchicalVirtualizationConstraints</code></td><td>read, write</td><td><code>o.Constraints</code> <code>o.Constraints = v</code></td></tr><tr><td><code>HeaderDesiredSizes</code></td><td><code>HierarchicalVirtualizationHeaderDesiredSizes</code></td><td>read</td><td><code>o.HeaderDesiredSizes</code></td></tr><tr><td><code>ItemDesiredSizes</code></td><td><code>HierarchicalVirtualizationItemDesiredSizes</code></td><td>read, write</td><td><code>o.ItemDesiredSizes</code> <code>o.ItemDesiredSizes = v</code></td></tr><tr><td><code>ItemsHost</code></td><td><code>Panel</code></td><td>read</td><td><code>o.ItemsHost</code></td></tr><tr><td><code>MustDisableVirtualization</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.MustDisableVirtualization</code> <code>o.MustDisableVirtualization = v</code></td></tr><tr><td><code>InBackgroundLayout</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.InBackgroundLayout</code> <code>o.InBackgroundLayout = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IItemContainerGenerator"><summary><b>IItemContainerGenerator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.IItemContainerGenerator</code> · assembly <code>PresentationFramework</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GenerateNext</code></td><td><code>GenerateNext()</code></td><td><code>DependencyObject GenerateNext()</code><br><code>DependencyObject GenerateNext(out bool isNewlyRealized)</code></td></tr><tr><td><code>GeneratorPositionFromIndex</code></td><td><code>GeneratorPositionFromIndex(p1)</code></td><td><code>GeneratorPosition GeneratorPositionFromIndex(int itemIndex)</code></td></tr><tr><td><code>GetItemContainerGeneratorForPanel</code></td><td><code>GetItemContainerGeneratorForPanel(p1)</code></td><td><code>ItemContainerGenerator GetItemContainerGeneratorForPanel(Panel panel)</code></td></tr><tr><td><code>IndexFromGeneratorPosition</code></td><td><code>IndexFromGeneratorPosition(p1)</code></td><td><code>int IndexFromGeneratorPosition(GeneratorPosition position)</code></td></tr><tr><td><code>PrepareItemContainer</code></td><td><code>PrepareItemContainer(p1)</code></td><td><code>void PrepareItemContainer(DependencyObject container)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1,p2)</code></td><td><code>void Remove(GeneratorPosition position, int count)</code></td></tr><tr><td><code>RemoveAll</code></td><td><code>RemoveAll()</code></td><td><code>void RemoveAll()</code></td></tr><tr><td><code>StartAt</code></td><td><code>StartAt([ :position = …, :direction = … ])</code><br><code>StartAt([ :position = …, :direction = …, :allowStartAtRealizedItem = … ])</code></td><td><code>IDisposable StartAt(GeneratorPosition position, GeneratorDirection direction)</code><br><code>IDisposable StartAt(GeneratorPosition position, GeneratorDirection direction, bool allowStartAtRealizedItem)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IRecyclingItemContainerGenerator"><summary><b>IRecyclingItemContainerGenerator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.IRecyclingItemContainerGenerator</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IItemContainerGenerator</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Recycle</code></td><td><code>Recycle(p1,p2)</code></td><td><code>void Recycle(GeneratorPosition position, int count)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IScrollInfo"><summary><b>IScrollInfo</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.IScrollInfo</code> · assembly <code>PresentationFramework</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CanVerticallyScroll</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.CanVerticallyScroll</code> <code>o.CanVerticallyScroll = v</code></td></tr><tr><td><code>CanHorizontallyScroll</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.CanHorizontallyScroll</code> <code>o.CanHorizontallyScroll = v</code></td></tr><tr><td><code>ExtentWidth</code></td><td><code>double</code></td><td>read</td><td><code>o.ExtentWidth</code></td></tr><tr><td><code>ExtentHeight</code></td><td><code>double</code></td><td>read</td><td><code>o.ExtentHeight</code></td></tr><tr><td><code>ViewportWidth</code></td><td><code>double</code></td><td>read</td><td><code>o.ViewportWidth</code></td></tr><tr><td><code>ViewportHeight</code></td><td><code>double</code></td><td>read</td><td><code>o.ViewportHeight</code></td></tr><tr><td><code>HorizontalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.HorizontalOffset</code></td></tr><tr><td><code>VerticalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.VerticalOffset</code></td></tr><tr><td><code>ScrollOwner</code></td><td><code>ScrollViewer</code></td><td>read, write</td><td><code>o.ScrollOwner</code> <code>o.ScrollOwner = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>LineDown</code></td><td><code>LineDown()</code></td><td><code>void LineDown()</code></td></tr><tr><td><code>LineLeft</code></td><td><code>LineLeft()</code></td><td><code>void LineLeft()</code></td></tr><tr><td><code>LineRight</code></td><td><code>LineRight()</code></td><td><code>void LineRight()</code></td></tr><tr><td><code>LineUp</code></td><td><code>LineUp()</code></td><td><code>void LineUp()</code></td></tr><tr><td><code>MakeVisible</code></td><td><code>MakeVisible(p1,p2)</code></td><td><code>Rect MakeVisible(Visual visual, Rect rectangle)</code></td></tr><tr><td><code>MouseWheelDown</code></td><td><code>MouseWheelDown()</code></td><td><code>void MouseWheelDown()</code></td></tr><tr><td><code>MouseWheelLeft</code></td><td><code>MouseWheelLeft()</code></td><td><code>void MouseWheelLeft()</code></td></tr><tr><td><code>MouseWheelRight</code></td><td><code>MouseWheelRight()</code></td><td><code>void MouseWheelRight()</code></td></tr><tr><td><code>MouseWheelUp</code></td><td><code>MouseWheelUp()</code></td><td><code>void MouseWheelUp()</code></td></tr><tr><td><code>PageDown</code></td><td><code>PageDown()</code></td><td><code>void PageDown()</code></td></tr><tr><td><code>PageLeft</code></td><td><code>PageLeft()</code></td><td><code>void PageLeft()</code></td></tr><tr><td><code>PageRight</code></td><td><code>PageRight()</code></td><td><code>void PageRight()</code></td></tr><tr><td><code>PageUp</code></td><td><code>PageUp()</code></td><td><code>void PageUp()</code></td></tr><tr><td><code>SetHorizontalOffset</code></td><td><code>SetHorizontalOffset(p1)</code></td><td><code>void SetHorizontalOffset(double offset)</code></td></tr><tr><td><code>SetVerticalOffset</code></td><td><code>SetVerticalOffset(p1)</code></td><td><code>void SetVerticalOffset(double offset)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ItemsChangedEventArgs"><summary><b>ItemsChangedEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ItemsChangedEventArgs</code> · assembly <code>PresentationFramework</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Action</code></td><td><code>NotifyCollectionChangedAction</code></td><td>read</td><td><code>o.Action</code></td></tr><tr><td><code>Position</code></td><td><code>GeneratorPosition</code></td><td>read</td><td><code>o.Position</code></td></tr><tr><td><code>OldPosition</code></td><td><code>GeneratorPosition</code></td><td>read</td><td><code>o.OldPosition</code></td></tr><tr><td><code>ItemCount</code></td><td><code>int</code></td><td>read</td><td><code>o.ItemCount</code></td></tr><tr><td><code>ItemUICount</code></td><td><code>int</code></td><td>read</td><td><code>o.ItemUICount</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LayoutInformation"><summary><b>LayoutInformation</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.LayoutInformation</code> · assembly <code>PresentationFramework</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetLayoutClip</code></td><td><code>GetLayoutClip(p1)</code></td><td><code>static Geometry GetLayoutClip(FrameworkElement element)</code></td></tr><tr><td><code>GetLayoutExceptionElement</code></td><td><code>GetLayoutExceptionElement(p1)</code></td><td><code>static UIElement GetLayoutExceptionElement(Dispatcher dispatcher)</code></td></tr><tr><td><code>GetLayoutSlot</code></td><td><code>GetLayoutSlot(p1)</code></td><td><code>static Rect GetLayoutSlot(FrameworkElement element)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MenuBase"><summary><b>MenuBase</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-ItemsControl">ItemsControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.MenuBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ItemContainerTemplateSelector</code></td><td><code>ItemContainerTemplateSelector</code></td><td>read, write</td><td><code>o.ItemContainerTemplateSelector</code> <code>o.ItemContainerTemplateSelector = v</code></td></tr><tr><td><code>UsesItemContainerTemplate</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.UsesItemContainerTemplate</code> <code>o.UsesItemContainerTemplate = v</code></td></tr><tr><td><code>ItemContainerTemplateSelectorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ItemContainerTemplateSelectorProperty</code></td></tr><tr><td><code>UsesItemContainerTemplateProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.UsesItemContainerTemplateProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MultiSelector"><summary><b>MultiSelector</b> <span class="muted">class abstract · extends <a href="#c-Selector">Selector</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.MultiSelector</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SelectedItems</code></td><td><code>IList</code></td><td>read</td><td><code>o.SelectedItems</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SelectAll</code></td><td><code>SelectAll()</code></td><td><code>void SelectAll()</code></td></tr><tr><td><code>UnselectAll</code></td><td><code>UnselectAll()</code></td><td><code>void UnselectAll()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Popup"><summary><b>Popup</b> <span class="muted">class · extends <a href="System.Windows.html#c-FrameworkElement">FrameworkElement</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.Popup</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Popup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Popup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Popup().@New([ :param = value ])</code> or <code>dnNew("Popup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Child</code></td><td><code>UIElement</code></td><td>read, write</td><td><code>o.Child</code> <code>o.Child = v</code></td></tr><tr><td><code>IsOpen</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsOpen</code> <code>o.IsOpen = v</code></td></tr><tr><td><code>Placement</code></td><td><code>PlacementMode</code></td><td>read, write</td><td><code>o.Placement</code> <code>o.Placement = v</code></td></tr><tr><td><code>CustomPopupPlacementCallback</code></td><td><code>CustomPopupPlacementCallback</code></td><td>read, write</td><td><code>o.CustomPopupPlacementCallback</code> <code>o.CustomPopupPlacementCallback = v</code></td></tr><tr><td><code>StaysOpen</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.StaysOpen</code> <code>o.StaysOpen = v</code></td></tr><tr><td><code>HorizontalOffset</code></td><td><code>double</code></td><td>read, write</td><td><code>o.HorizontalOffset</code> <code>o.HorizontalOffset = v</code></td></tr><tr><td><code>VerticalOffset</code></td><td><code>double</code></td><td>read, write</td><td><code>o.VerticalOffset</code> <code>o.VerticalOffset = v</code></td></tr><tr><td><code>PlacementTarget</code></td><td><code>UIElement</code></td><td>read, write</td><td><code>o.PlacementTarget</code> <code>o.PlacementTarget = v</code></td></tr><tr><td><code>PlacementRectangle</code></td><td><code>Rect</code></td><td>read, write</td><td><code>o.PlacementRectangle</code> <code>o.PlacementRectangle = v</code></td></tr><tr><td><code>PopupAnimation</code></td><td><code>PopupAnimation</code></td><td>read, write</td><td><code>o.PopupAnimation</code> <code>o.PopupAnimation = v</code></td></tr><tr><td><code>AllowsTransparency</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowsTransparency</code> <code>o.AllowsTransparency = v</code></td></tr><tr><td><code>HasDropShadow</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasDropShadow</code></td></tr><tr><td><code>ChildProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildProperty</code></td></tr><tr><td><code>IsOpenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsOpenProperty</code></td></tr><tr><td><code>PlacementProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PlacementProperty</code></td></tr><tr><td><code>CustomPopupPlacementCallbackProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CustomPopupPlacementCallbackProperty</code></td></tr><tr><td><code>StaysOpenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.StaysOpenProperty</code></td></tr><tr><td><code>HorizontalOffsetProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.HorizontalOffsetProperty</code></td></tr><tr><td><code>VerticalOffsetProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.VerticalOffsetProperty</code></td></tr><tr><td><code>PlacementTargetProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PlacementTargetProperty</code></td></tr><tr><td><code>PlacementRectangleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PlacementRectangleProperty</code></td></tr><tr><td><code>PopupAnimationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PopupAnimationProperty</code></td></tr><tr><td><code>AllowsTransparencyProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AllowsTransparencyProperty</code></td></tr><tr><td><code>HasDropShadowProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.HasDropShadowProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateRootPopup</code></td><td><code>CreateRootPopup(p1,p2)</code></td><td><code>static void CreateRootPopup(Popup popup, UIElement child)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Opened</code></td><td><code>EventHandler</code></td><td><code>o.setOpenedEvent(code)</code> · <code>o.clearOpenedEvent()</code></td></tr><tr><td><code>Closed</code></td><td><code>EventHandler</code></td><td><code>o.setClosedEvent(code)</code> · <code>o.clearClosedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RangeBase"><summary><b>RangeBase</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.RangeBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Minimum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Minimum</code> <code>o.Minimum = v</code></td></tr><tr><td><code>Maximum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Maximum</code> <code>o.Maximum = v</code></td></tr><tr><td><code>Value</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr><tr><td><code>LargeChange</code></td><td><code>double</code></td><td>read, write</td><td><code>o.LargeChange</code> <code>o.LargeChange = v</code></td></tr><tr><td><code>SmallChange</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SmallChange</code> <code>o.SmallChange = v</code></td></tr><tr><td><code>ValueChangedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.ValueChangedEvent</code></td></tr><tr><td><code>MinimumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MinimumProperty</code></td></tr><tr><td><code>MaximumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MaximumProperty</code></td></tr><tr><td><code>ValueProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ValueProperty</code></td></tr><tr><td><code>LargeChangeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.LargeChangeProperty</code></td></tr><tr><td><code>SmallChangeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SmallChangeProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValueChanged</code></td><td><code>RoutedPropertyChangedEventHandler&lt;double&gt;</code></td><td><code>o.setValueChangedEvent(code)</code> · <code>o.clearValueChangedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RepeatButton"><summary><b>RepeatButton</b> <span class="muted">class · extends <a href="#c-WpfButtonBase">WpfButtonBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.RepeatButton</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RepeatButton()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RepeatButton(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RepeatButton().@New([ :param = value ])</code> or <code>dnNew("RepeatButton",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Delay</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Delay</code> <code>o.Delay = v</code></td></tr><tr><td><code>Interval</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Interval</code> <code>o.Interval = v</code></td></tr><tr><td><code>DelayProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DelayProperty</code></td></tr><tr><td><code>IntervalProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IntervalProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResizeGrip"><summary><b>ResizeGrip</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ResizeGrip</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResizeGrip()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResizeGrip(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResizeGrip().@New([ :param = value ])</code> or <code>dnNew("ResizeGrip",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SelectiveScrollingGrid"><summary><b>SelectiveScrollingGrid</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-Grid">Grid</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.SelectiveScrollingGrid</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SelectiveScrollingGrid()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SelectiveScrollingGrid(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SelectiveScrollingGrid().@New([ :param = value ])</code> or <code>dnNew("SelectiveScrollingGrid",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SelectiveScrollingOrientationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectiveScrollingOrientationProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetSelectiveScrollingOrientation</code></td><td><code>GetSelectiveScrollingOrientation(p1)</code></td><td><code>static SelectiveScrollingOrientation GetSelectiveScrollingOrientation(DependencyObject obj)</code></td></tr><tr><td><code>SetSelectiveScrollingOrientation</code></td><td><code>SetSelectiveScrollingOrientation(p1,p2)</code></td><td><code>static void SetSelectiveScrollingOrientation(DependencyObject obj, SelectiveScrollingOrientation value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Selector"><summary><b>Selector</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-ItemsControl">ItemsControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.Selector</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsSynchronizedWithCurrentItem</code></td><td><code>bool?</code></td><td>read, write</td><td><code>o.IsSynchronizedWithCurrentItem</code> <code>o.IsSynchronizedWithCurrentItem = v</code></td></tr><tr><td><code>SelectedIndex</code></td><td><code>int</code></td><td>read, write</td><td><code>o.SelectedIndex</code> <code>o.SelectedIndex = v</code></td></tr><tr><td><code>SelectedItem</code></td><td><code>object</code></td><td>read, write</td><td><code>o.SelectedItem</code> <code>o.SelectedItem = v</code></td></tr><tr><td><code>SelectedValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.SelectedValue</code> <code>o.SelectedValue = v</code></td></tr><tr><td><code>SelectedValuePath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.SelectedValuePath</code> <code>o.SelectedValuePath = v</code></td></tr><tr><td><code>SelectionChangedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.SelectionChangedEvent</code></td></tr><tr><td><code>SelectedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.SelectedEvent</code></td></tr><tr><td><code>UnselectedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.UnselectedEvent</code></td></tr><tr><td><code>IsSelectionActiveProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSelectionActiveProperty</code></td></tr><tr><td><code>IsSelectedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSelectedProperty</code></td></tr><tr><td><code>IsSynchronizedWithCurrentItemProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSynchronizedWithCurrentItemProperty</code></td></tr><tr><td><code>SelectedIndexProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectedIndexProperty</code></td></tr><tr><td><code>SelectedItemProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectedItemProperty</code></td></tr><tr><td><code>SelectedValueProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectedValueProperty</code></td></tr><tr><td><code>SelectedValuePathProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectedValuePathProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddSelectedHandler</code></td><td><code>AddSelectedHandler(p1,p2)</code></td><td><code>static void AddSelectedHandler(DependencyObject element, RoutedEventHandler handler)</code></td></tr><tr><td><code>AddUnselectedHandler</code></td><td><code>AddUnselectedHandler(p1,p2)</code></td><td><code>static void AddUnselectedHandler(DependencyObject element, RoutedEventHandler handler)</code></td></tr><tr><td><code>GetIsSelected</code></td><td><code>GetIsSelected(p1)</code></td><td><code>static bool GetIsSelected(DependencyObject element)</code></td></tr><tr><td><code>GetIsSelectionActive</code></td><td><code>GetIsSelectionActive(p1)</code></td><td><code>static bool GetIsSelectionActive(DependencyObject element)</code></td></tr><tr><td><code>RemoveSelectedHandler</code></td><td><code>RemoveSelectedHandler(p1,p2)</code></td><td><code>static void RemoveSelectedHandler(DependencyObject element, RoutedEventHandler handler)</code></td></tr><tr><td><code>RemoveUnselectedHandler</code></td><td><code>RemoveUnselectedHandler(p1,p2)</code></td><td><code>static void RemoveUnselectedHandler(DependencyObject element, RoutedEventHandler handler)</code></td></tr><tr><td><code>SetIsSelected</code></td><td><code>SetIsSelected(p1,p2)</code></td><td><code>static void SetIsSelected(DependencyObject element, bool isSelected)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SelectionChanged</code></td><td><code>SelectionChangedEventHandler</code></td><td><code>o.setSelectionChangedEvent(code)</code> · <code>o.clearSelectionChangedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StatusBar"><summary><b>StatusBar</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-ItemsControl">ItemsControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.StatusBar</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IContainItemStorage</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StatusBar()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StatusBar(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StatusBar().@New([ :param = value ])</code> or <code>dnNew("StatusBar",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ItemContainerTemplateSelector</code></td><td><code>ItemContainerTemplateSelector</code></td><td>read, write</td><td><code>o.ItemContainerTemplateSelector</code> <code>o.ItemContainerTemplateSelector = v</code></td></tr><tr><td><code>UsesItemContainerTemplate</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.UsesItemContainerTemplate</code> <code>o.UsesItemContainerTemplate = v</code></td></tr><tr><td><code>SeparatorStyleKey</code></td><td><code>ResourceKey</code></td><td>read · static</td><td><code>o.SeparatorStyleKey</code></td></tr><tr><td><code>ItemContainerTemplateSelectorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ItemContainerTemplateSelectorProperty</code></td></tr><tr><td><code>UsesItemContainerTemplateProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.UsesItemContainerTemplateProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StatusBarItem"><summary><b>StatusBarItem</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-ContentControl">ContentControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.StatusBarItem</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StatusBarItem()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StatusBarItem(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StatusBarItem().@New([ :param = value ])</code> or <code>dnNew("StatusBarItem",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TabPanel"><summary><b>TabPanel</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-WpfPanel">WpfPanel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.TabPanel</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TabPanel()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TabPanel(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TabPanel().@New([ :param = value ])</code> or <code>dnNew("TabPanel",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Thumb"><summary><b>Thumb</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.Thumb</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Thumb()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Thumb(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Thumb().@New([ :param = value ])</code> or <code>dnNew("Thumb",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsDragging</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDragging</code></td></tr><tr><td><code>DragStartedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.DragStartedEvent</code></td></tr><tr><td><code>DragDeltaEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.DragDeltaEvent</code></td></tr><tr><td><code>DragCompletedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.DragCompletedEvent</code></td></tr><tr><td><code>IsDraggingProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsDraggingProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CancelDrag</code></td><td><code>CancelDrag()</code></td><td><code>void CancelDrag()</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DragStarted</code></td><td><code>DragStartedEventHandler</code></td><td><code>o.setDragStartedEvent(code)</code> · <code>o.clearDragStartedEvent()</code></td></tr><tr><td><code>DragDelta</code></td><td><code>DragDeltaEventHandler</code></td><td><code>o.setDragDeltaEvent(code)</code> · <code>o.clearDragDeltaEvent()</code></td></tr><tr><td><code>DragCompleted</code></td><td><code>DragCompletedEventHandler</code></td><td><code>o.setDragCompletedEvent(code)</code> · <code>o.clearDragCompletedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TickBar"><summary><b>TickBar</b> <span class="muted">class · extends <a href="System.Windows.html#c-FrameworkElement">FrameworkElement</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.TickBar</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TickBar()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TickBar(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TickBar().@New([ :param = value ])</code> or <code>dnNew("TickBar",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Fill</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.Fill</code> <code>o.Fill = v</code></td></tr><tr><td><code>Minimum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Minimum</code> <code>o.Minimum = v</code></td></tr><tr><td><code>Maximum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Maximum</code> <code>o.Maximum = v</code></td></tr><tr><td><code>SelectionStart</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SelectionStart</code> <code>o.SelectionStart = v</code></td></tr><tr><td><code>SelectionEnd</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SelectionEnd</code> <code>o.SelectionEnd = v</code></td></tr><tr><td><code>IsSelectionRangeEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsSelectionRangeEnabled</code> <code>o.IsSelectionRangeEnabled = v</code></td></tr><tr><td><code>TickFrequency</code></td><td><code>double</code></td><td>read, write</td><td><code>o.TickFrequency</code> <code>o.TickFrequency = v</code></td></tr><tr><td><code>Ticks</code></td><td><code>DoubleCollection</code></td><td>read, write</td><td><code>o.Ticks</code> <code>o.Ticks = v</code></td></tr><tr><td><code>IsDirectionReversed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsDirectionReversed</code> <code>o.IsDirectionReversed = v</code></td></tr><tr><td><code>Placement</code></td><td><code>TickBarPlacement</code></td><td>read, write</td><td><code>o.Placement</code> <code>o.Placement = v</code></td></tr><tr><td><code>ReservedSpace</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ReservedSpace</code> <code>o.ReservedSpace = v</code></td></tr><tr><td><code>FillProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.FillProperty</code></td></tr><tr><td><code>MinimumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MinimumProperty</code></td></tr><tr><td><code>MaximumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MaximumProperty</code></td></tr><tr><td><code>SelectionStartProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectionStartProperty</code></td></tr><tr><td><code>SelectionEndProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectionEndProperty</code></td></tr><tr><td><code>IsSelectionRangeEnabledProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSelectionRangeEnabledProperty</code></td></tr><tr><td><code>TickFrequencyProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TickFrequencyProperty</code></td></tr><tr><td><code>TicksProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TicksProperty</code></td></tr><tr><td><code>IsDirectionReversedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsDirectionReversedProperty</code></td></tr><tr><td><code>PlacementProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PlacementProperty</code></td></tr><tr><td><code>ReservedSpaceProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ReservedSpaceProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ToggleButton"><summary><b>ToggleButton</b> <span class="muted">class · extends <a href="#c-WpfButtonBase">WpfButtonBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ToggleButton</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ToggleButton()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ToggleButton(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ToggleButton().@New([ :param = value ])</code> or <code>dnNew("ToggleButton",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsChecked</code></td><td><code>bool?</code></td><td>read, write</td><td><code>o.IsChecked</code> <code>o.IsChecked = v</code></td></tr><tr><td><code>IsThreeState</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsThreeState</code> <code>o.IsThreeState = v</code></td></tr><tr><td><code>CheckedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.CheckedEvent</code></td></tr><tr><td><code>UncheckedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.UncheckedEvent</code></td></tr><tr><td><code>IndeterminateEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.IndeterminateEvent</code></td></tr><tr><td><code>IsCheckedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsCheckedProperty</code></td></tr><tr><td><code>IsThreeStateProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsThreeStateProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Checked</code></td><td><code>RoutedEventHandler</code></td><td><code>o.setCheckedEvent(code)</code> · <code>o.clearCheckedEvent()</code></td></tr><tr><td><code>Unchecked</code></td><td><code>RoutedEventHandler</code></td><td><code>o.setUncheckedEvent(code)</code> · <code>o.clearUncheckedEvent()</code></td></tr><tr><td><code>Indeterminate</code></td><td><code>RoutedEventHandler</code></td><td><code>o.setIndeterminateEvent(code)</code> · <code>o.clearIndeterminateEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ToolBarOverflowPanel"><summary><b>ToolBarOverflowPanel</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-WpfPanel">WpfPanel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ToolBarOverflowPanel</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ToolBarOverflowPanel()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ToolBarOverflowPanel(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ToolBarOverflowPanel().@New([ :param = value ])</code> or <code>dnNew("ToolBarOverflowPanel",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WrapWidth</code></td><td><code>double</code></td><td>read, write</td><td><code>o.WrapWidth</code> <code>o.WrapWidth = v</code></td></tr><tr><td><code>WrapWidthProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.WrapWidthProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ToolBarPanel"><summary><b>ToolBarPanel</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-StackPanel">StackPanel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ToolBarPanel</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, IScrollInfo</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ToolBarPanel()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ToolBarPanel(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ToolBarPanel().@New([ :param = value ])</code> or <code>dnNew("ToolBarPanel",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Track"><summary><b>Track</b> <span class="muted">class · extends <a href="System.Windows.html#c-FrameworkElement">FrameworkElement</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.Track</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Track()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Track(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Track().@New([ :param = value ])</code> or <code>dnNew("Track",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DecreaseRepeatButton</code></td><td><code>RepeatButton</code></td><td>read, write</td><td><code>o.DecreaseRepeatButton</code> <code>o.DecreaseRepeatButton = v</code></td></tr><tr><td><code>Thumb</code></td><td><code>Thumb</code></td><td>read, write</td><td><code>o.Thumb</code> <code>o.Thumb = v</code></td></tr><tr><td><code>IncreaseRepeatButton</code></td><td><code>RepeatButton</code></td><td>read, write</td><td><code>o.IncreaseRepeatButton</code> <code>o.IncreaseRepeatButton = v</code></td></tr><tr><td><code>Orientation</code></td><td><code>Orientation</code></td><td>read, write</td><td><code>o.Orientation</code> <code>o.Orientation = v</code></td></tr><tr><td><code>Minimum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Minimum</code> <code>o.Minimum = v</code></td></tr><tr><td><code>Maximum</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Maximum</code> <code>o.Maximum = v</code></td></tr><tr><td><code>Value</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr><tr><td><code>ViewportSize</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ViewportSize</code> <code>o.ViewportSize = v</code></td></tr><tr><td><code>IsDirectionReversed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsDirectionReversed</code> <code>o.IsDirectionReversed = v</code></td></tr><tr><td><code>OrientationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OrientationProperty</code></td></tr><tr><td><code>MinimumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MinimumProperty</code></td></tr><tr><td><code>MaximumProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MaximumProperty</code></td></tr><tr><td><code>ValueProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ValueProperty</code></td></tr><tr><td><code>ViewportSizeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ViewportSizeProperty</code></td></tr><tr><td><code>IsDirectionReversedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsDirectionReversedProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ValueFromDistance</code></td><td><code>ValueFromDistance(p1,p2)</code></td><td><code>double ValueFromDistance(double horizontal, double vertical)</code></td></tr><tr><td><code>ValueFromPoint</code></td><td><code>ValueFromPoint(p1)</code></td><td><code>double ValueFromPoint(Point pt)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UniformGrid"><summary><b>UniformGrid</b> <span class="muted">class · extends <a href="System.Windows.Controls.html#c-WpfPanel">WpfPanel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.UniformGrid</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UniformGrid()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UniformGrid(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UniformGrid().@New([ :param = value ])</code> or <code>dnNew("UniformGrid",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FirstColumn</code></td><td><code>int</code></td><td>read, write</td><td><code>o.FirstColumn</code> <code>o.FirstColumn = v</code></td></tr><tr><td><code>Columns</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Columns</code> <code>o.Columns = v</code></td></tr><tr><td><code>Rows</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Rows</code> <code>o.Rows = v</code></td></tr><tr><td><code>FirstColumnProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.FirstColumnProperty</code></td></tr><tr><td><code>ColumnsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColumnsProperty</code></td></tr><tr><td><code>RowsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RowsProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WpfButtonBase"><summary><b>WpfButtonBase</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-ContentControl">ContentControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ButtonBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient, IAddChild, ICommandSource</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsPressed</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsPressed</code></td></tr><tr><td><code>Command</code></td><td><code>ICommand</code></td><td>read, write</td><td><code>o.Command</code> <code>o.Command = v</code></td></tr><tr><td><code>CommandParameter</code></td><td><code>object</code></td><td>read, write</td><td><code>o.CommandParameter</code> <code>o.CommandParameter = v</code></td></tr><tr><td><code>CommandTarget</code></td><td><code>IInputElement</code></td><td>read, write</td><td><code>o.CommandTarget</code> <code>o.CommandTarget = v</code></td></tr><tr><td><code>ClickMode</code></td><td><code>ClickMode</code></td><td>read, write</td><td><code>o.ClickMode</code> <code>o.ClickMode = v</code></td></tr><tr><td><code>ClickEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.ClickEvent</code></td></tr><tr><td><code>CommandProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CommandProperty</code></td></tr><tr><td><code>CommandParameterProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CommandParameterProperty</code></td></tr><tr><td><code>CommandTargetProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CommandTargetProperty</code></td></tr><tr><td><code>IsPressedProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsPressedProperty</code></td></tr><tr><td><code>ClickModeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ClickModeProperty</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Click</code></td><td><code>RoutedEventHandler</code></td><td><code>o.setClickEvent(code)</code> · <code>o.clearClickEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WpfScrollBar"><summary><b>WpfScrollBar</b> <span class="muted">class · extends <a href="#c-RangeBase">RangeBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ScrollBar</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WpfScrollBar()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WpfScrollBar(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WpfScrollBar().@New([ :param = value ])</code> or <code>dnNew("WpfScrollBar",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Orientation</code></td><td><code>Orientation</code></td><td>read, write</td><td><code>o.Orientation</code> <code>o.Orientation = v</code></td></tr><tr><td><code>ViewportSize</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ViewportSize</code> <code>o.ViewportSize = v</code></td></tr><tr><td><code>Track</code></td><td><code>Track</code></td><td>read</td><td><code>o.Track</code></td></tr><tr><td><code>ScrollEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.ScrollEvent</code></td></tr><tr><td><code>OrientationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OrientationProperty</code></td></tr><tr><td><code>ViewportSizeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ViewportSizeProperty</code></td></tr><tr><td><code>LineUpCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.LineUpCommand</code></td></tr><tr><td><code>LineDownCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.LineDownCommand</code></td></tr><tr><td><code>LineLeftCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.LineLeftCommand</code></td></tr><tr><td><code>LineRightCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.LineRightCommand</code></td></tr><tr><td><code>PageUpCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.PageUpCommand</code></td></tr><tr><td><code>PageDownCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.PageDownCommand</code></td></tr><tr><td><code>PageLeftCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.PageLeftCommand</code></td></tr><tr><td><code>PageRightCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.PageRightCommand</code></td></tr><tr><td><code>ScrollToEndCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToEndCommand</code></td></tr><tr><td><code>ScrollToHomeCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToHomeCommand</code></td></tr><tr><td><code>ScrollToRightEndCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToRightEndCommand</code></td></tr><tr><td><code>ScrollToLeftEndCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToLeftEndCommand</code></td></tr><tr><td><code>ScrollToTopCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToTopCommand</code></td></tr><tr><td><code>ScrollToBottomCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToBottomCommand</code></td></tr><tr><td><code>ScrollToHorizontalOffsetCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToHorizontalOffsetCommand</code></td></tr><tr><td><code>ScrollToVerticalOffsetCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollToVerticalOffsetCommand</code></td></tr><tr><td><code>DeferScrollToHorizontalOffsetCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.DeferScrollToHorizontalOffsetCommand</code></td></tr><tr><td><code>DeferScrollToVerticalOffsetCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.DeferScrollToVerticalOffsetCommand</code></td></tr><tr><td><code>ScrollHereCommand</code></td><td><code>RoutedCommand</code></td><td>read · static</td><td><code>o.ScrollHereCommand</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scroll</code></td><td><code>ScrollEventHandler</code></td><td><code>o.setScrollEvent(code)</code> · <code>o.clearScrollEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WpfScrollEventArgs"><summary><b>WpfScrollEventArgs</b> <span class="muted">class · extends <a href="System.Windows.html#c-RoutedEventArgs">RoutedEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.ScrollEventArgs</code> · assembly <code>PresentationFramework</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WpfScrollEventArgs(ScrollEventType scrollEventType, double newValue)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WpfScrollEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WpfScrollEventArgs().@New([ :param = value ])</code> or <code>dnNew("WpfScrollEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ScrollEventType</code></td><td><code>ScrollEventType</code></td><td>read</td><td><code>o.ScrollEventType</code></td></tr><tr><td><code>NewValue</code></td><td><code>double</code></td><td>read</td><td><code>o.NewValue</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-WpfTextBoxBase"><summary><b>WpfTextBoxBase</b> <span class="muted">class abstract · extends <a href="System.Windows.Controls.html#c-WpfControl">WpfControl</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Controls.Primitives.TextBoxBase</code> · assembly <code>PresentationFramework</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement, IFrameworkInputElement, ISupportInitialize, IQueryAmbient</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsReadOnly</code> <code>o.IsReadOnly = v</code></td></tr><tr><td><code>IsReadOnlyCaretVisible</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsReadOnlyCaretVisible</code> <code>o.IsReadOnlyCaretVisible = v</code></td></tr><tr><td><code>AcceptsReturn</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AcceptsReturn</code> <code>o.AcceptsReturn = v</code></td></tr><tr><td><code>AcceptsTab</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AcceptsTab</code> <code>o.AcceptsTab = v</code></td></tr><tr><td><code>SpellCheck</code></td><td><code>SpellCheck</code></td><td>read</td><td><code>o.SpellCheck</code></td></tr><tr><td><code>HorizontalScrollBarVisibility</code></td><td><code>ScrollBarVisibility</code></td><td>read, write</td><td><code>o.HorizontalScrollBarVisibility</code> <code>o.HorizontalScrollBarVisibility = v</code></td></tr><tr><td><code>VerticalScrollBarVisibility</code></td><td><code>ScrollBarVisibility</code></td><td>read, write</td><td><code>o.VerticalScrollBarVisibility</code> <code>o.VerticalScrollBarVisibility = v</code></td></tr><tr><td><code>ExtentWidth</code></td><td><code>double</code></td><td>read</td><td><code>o.ExtentWidth</code></td></tr><tr><td><code>ExtentHeight</code></td><td><code>double</code></td><td>read</td><td><code>o.ExtentHeight</code></td></tr><tr><td><code>ViewportWidth</code></td><td><code>double</code></td><td>read</td><td><code>o.ViewportWidth</code></td></tr><tr><td><code>ViewportHeight</code></td><td><code>double</code></td><td>read</td><td><code>o.ViewportHeight</code></td></tr><tr><td><code>HorizontalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.HorizontalOffset</code></td></tr><tr><td><code>VerticalOffset</code></td><td><code>double</code></td><td>read</td><td><code>o.VerticalOffset</code></td></tr><tr><td><code>CanUndo</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanUndo</code></td></tr><tr><td><code>CanRedo</code></td><td><code>bool</code></td><td>read</td><td><code>o.CanRedo</code></td></tr><tr><td><code>IsUndoEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsUndoEnabled</code> <code>o.IsUndoEnabled = v</code></td></tr><tr><td><code>UndoLimit</code></td><td><code>int</code></td><td>read, write</td><td><code>o.UndoLimit</code> <code>o.UndoLimit = v</code></td></tr><tr><td><code>AutoWordSelection</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoWordSelection</code> <code>o.AutoWordSelection = v</code></td></tr><tr><td><code>SelectionBrush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.SelectionBrush</code> <code>o.SelectionBrush = v</code></td></tr><tr><td><code>SelectionTextBrush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.SelectionTextBrush</code> <code>o.SelectionTextBrush = v</code></td></tr><tr><td><code>SelectionOpacity</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SelectionOpacity</code> <code>o.SelectionOpacity = v</code></td></tr><tr><td><code>CaretBrush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.CaretBrush</code> <code>o.CaretBrush = v</code></td></tr><tr><td><code>IsSelectionActive</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsSelectionActive</code></td></tr><tr><td><code>IsInactiveSelectionHighlightEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsInactiveSelectionHighlightEnabled</code> <code>o.IsInactiveSelectionHighlightEnabled = v</code></td></tr><tr><td><code>IsReadOnlyProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsReadOnlyProperty</code></td></tr><tr><td><code>IsReadOnlyCaretVisibleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsReadOnlyCaretVisibleProperty</code></td></tr><tr><td><code>AcceptsReturnProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AcceptsReturnProperty</code></td></tr><tr><td><code>AcceptsTabProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AcceptsTabProperty</code></td></tr><tr><td><code>HorizontalScrollBarVisibilityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.HorizontalScrollBarVisibilityProperty</code></td></tr><tr><td><code>VerticalScrollBarVisibilityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.VerticalScrollBarVisibilityProperty</code></td></tr><tr><td><code>IsUndoEnabledProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsUndoEnabledProperty</code></td></tr><tr><td><code>UndoLimitProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.UndoLimitProperty</code></td></tr><tr><td><code>AutoWordSelectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AutoWordSelectionProperty</code></td></tr><tr><td><code>SelectionBrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectionBrushProperty</code></td></tr><tr><td><code>SelectionTextBrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectionTextBrushProperty</code></td></tr><tr><td><code>SelectionOpacityProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SelectionOpacityProperty</code></td></tr><tr><td><code>CaretBrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CaretBrushProperty</code></td></tr><tr><td><code>IsSelectionActiveProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsSelectionActiveProperty</code></td></tr><tr><td><code>IsInactiveSelectionHighlightEnabledProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsInactiveSelectionHighlightEnabledProperty</code></td></tr><tr><td><code>TextChangedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.TextChangedEvent</code></td></tr><tr><td><code>SelectionChangedEvent</code></td><td><code>RoutedEvent</code></td><td>read · static</td><td><code>o.SelectionChangedEvent</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AppendText</code></td><td><code>AppendText(p1)</code></td><td><code>void AppendText(string textData)</code></td></tr><tr><td><code>BeginChange</code></td><td><code>BeginChange()</code></td><td><code>void BeginChange()</code></td></tr><tr><td><code>Copy</code></td><td><code>Copy()</code></td><td><code>void Copy()</code></td></tr><tr><td><code>Cut</code></td><td><code>Cut()</code></td><td><code>void Cut()</code></td></tr><tr><td><code>DeclareChangeBlock</code></td><td><code>DeclareChangeBlock()</code></td><td><code>IDisposable DeclareChangeBlock()</code></td></tr><tr><td><code>EndChange</code></td><td><code>EndChange()</code></td><td><code>void EndChange()</code></td></tr><tr><td><code>LineDown</code></td><td><code>LineDown()</code></td><td><code>void LineDown()</code></td></tr><tr><td><code>LineLeft</code></td><td><code>LineLeft()</code></td><td><code>void LineLeft()</code></td></tr><tr><td><code>LineRight</code></td><td><code>LineRight()</code></td><td><code>void LineRight()</code></td></tr><tr><td><code>LineUp</code></td><td><code>LineUp()</code></td><td><code>void LineUp()</code></td></tr><tr><td><code>LockCurrentUndoUnit</code></td><td><code>LockCurrentUndoUnit()</code></td><td><code>void LockCurrentUndoUnit()</code></td></tr><tr><td><code>OnApplyTemplate</code></td><td><code>OnApplyTemplate()</code></td><td><code>void OnApplyTemplate()</code></td></tr><tr><td><code>PageDown</code></td><td><code>PageDown()</code></td><td><code>void PageDown()</code></td></tr><tr><td><code>PageLeft</code></td><td><code>PageLeft()</code></td><td><code>void PageLeft()</code></td></tr><tr><td><code>PageRight</code></td><td><code>PageRight()</code></td><td><code>void PageRight()</code></td></tr><tr><td><code>PageUp</code></td><td><code>PageUp()</code></td><td><code>void PageUp()</code></td></tr><tr><td><code>Paste</code></td><td><code>Paste()</code></td><td><code>void Paste()</code></td></tr><tr><td><code>Redo</code></td><td><code>Redo()</code></td><td><code>bool Redo()</code></td></tr><tr><td><code>ScrollToEnd</code></td><td><code>ScrollToEnd()</code></td><td><code>void ScrollToEnd()</code></td></tr><tr><td><code>ScrollToHome</code></td><td><code>ScrollToHome()</code></td><td><code>void ScrollToHome()</code></td></tr><tr><td><code>ScrollToHorizontalOffset</code></td><td><code>ScrollToHorizontalOffset(p1)</code></td><td><code>void ScrollToHorizontalOffset(double offset)</code></td></tr><tr><td><code>ScrollToVerticalOffset</code></td><td><code>ScrollToVerticalOffset(p1)</code></td><td><code>void ScrollToVerticalOffset(double offset)</code></td></tr><tr><td><code>SelectAll</code></td><td><code>SelectAll()</code></td><td><code>void SelectAll()</code></td></tr><tr><td><code>Undo</code></td><td><code>Undo()</code></td><td><code>bool Undo()</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TextChanged</code></td><td><code>TextChangedEventHandler</code></td><td><code>o.setTextChangedEvent(code)</code> · <code>o.clearTextChangedEvent()</code></td></tr><tr><td><code>SelectionChanged</code></td><td><code>RoutedEventHandler</code></td><td><code>o.setSelectionChangedEvent(code)</code> · <code>o.clearSelectionChangedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

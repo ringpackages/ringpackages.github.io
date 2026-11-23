@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Drawing.Drawing2D · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Drawing.Drawing2D</h1>
+<p class="lead">14 wrapped types. Load them with <code>using { "System.Drawing.Drawing2D" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AdjustableArrowCap">AdjustableArrowCap</a> <a href="#c-Blend">Blend</a> <a href="#c-ColorBlend">ColorBlend</a> <a href="#c-CustomLineCap">CustomLineCap</a> <a href="#c-GraphicsContainer">GraphicsContainer</a> <a href="#c-GraphicsPath">GraphicsPath</a> <a href="#c-GraphicsPathIterator">GraphicsPathIterator</a> <a href="#c-GraphicsState">GraphicsState</a> <a href="#c-HatchBrush">HatchBrush</a> <a href="#c-LinearGradientBrush">LinearGradientBrush</a> <a href="#c-Matrix">Matrix</a> <a href="#c-PathData">PathData</a> <a href="#c-PathGradientBrush">PathGradientBrush</a> <a href="#c-RegionData">RegionData</a></div><details class="cls" id="c-AdjustableArrowCap"><summary><b>AdjustableArrowCap</b> <span class="muted">class sealed · extends <a href="#c-CustomLineCap">CustomLineCap</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.AdjustableArrowCap</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AdjustableArrowCap(float width, float height)</code></td></tr><tr><td><code>new AdjustableArrowCap(float width, float height, bool isFilled)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AdjustableArrowCap(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AdjustableArrowCap().@New([ :param = value ])</code> or <code>dnNew("AdjustableArrowCap",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Height</code></td><td><code>float</code></td><td>read, write</td><td><code>o.Height</code> <code>o.Height = v</code></td></tr><tr><td><code>Width</code></td><td><code>float</code></td><td>read, write</td><td><code>o.Width</code> <code>o.Width = v</code></td></tr><tr><td><code>MiddleInset</code></td><td><code>float</code></td><td>read, write</td><td><code>o.MiddleInset</code> <code>o.MiddleInset = v</code></td></tr><tr><td><code>Filled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Filled</code> <code>o.Filled = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Blend"><summary><b>Blend</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.Blend</code> · assembly <code>System.Drawing.Common</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Blend()</code></td></tr><tr><td><code>new Blend(int count)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Blend(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Blend().@New([ :param = value ])</code> or <code>dnNew("Blend",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Factors</code></td><td><code>float[]</code></td><td>read, write</td><td><code>o.Factors</code> <code>o.Factors = v</code></td></tr><tr><td><code>Positions</code></td><td><code>float[]</code></td><td>read, write</td><td><code>o.Positions</code> <code>o.Positions = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ColorBlend"><summary><b>ColorBlend</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.ColorBlend</code> · assembly <code>System.Drawing.Common</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ColorBlend()</code></td></tr><tr><td><code>new ColorBlend(int count)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ColorBlend(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ColorBlend().@New([ :param = value ])</code> or <code>dnNew("ColorBlend",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Colors</code></td><td><code>Color[]</code></td><td>read, write</td><td><code>o.Colors</code> <code>o.Colors = v</code></td></tr><tr><td><code>Positions</code></td><td><code>float[]</code></td><td>read, write</td><td><code>o.Positions</code> <code>o.Positions = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CustomLineCap"><summary><b>CustomLineCap</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.CustomLineCap</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CustomLineCap(GraphicsPath fillPath, GraphicsPath strokePath)</code></td></tr><tr><td><code>new CustomLineCap(GraphicsPath fillPath, GraphicsPath strokePath, LineCap baseCap)</code></td></tr><tr><td><code>new CustomLineCap(GraphicsPath fillPath, GraphicsPath strokePath, LineCap baseCap, float baseInset)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CustomLineCap(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CustomLineCap().@New([ :param = value ])</code> or <code>dnNew("CustomLineCap",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>StrokeJoin</code></td><td><code>LineJoin</code></td><td>read, write</td><td><code>o.StrokeJoin</code> <code>o.StrokeJoin = v</code></td></tr><tr><td><code>BaseCap</code></td><td><code>LineCap</code></td><td>read, write</td><td><code>o.BaseCap</code> <code>o.BaseCap = v</code></td></tr><tr><td><code>BaseInset</code></td><td><code>float</code></td><td>read, write</td><td><code>o.BaseInset</code> <code>o.BaseInset = v</code></td></tr><tr><td><code>WidthScale</code></td><td><code>float</code></td><td>read, write</td><td><code>o.WidthScale</code> <code>o.WidthScale = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>GetStrokeCaps</code></td><td><code>GetStrokeCaps()</code></td><td><code>void GetStrokeCaps(out LineCap startCap, out LineCap endCap)</code></td></tr><tr><td><code>SetStrokeCaps</code></td><td><code>SetStrokeCaps(p1,p2)</code></td><td><code>void SetStrokeCaps(LineCap startCap, LineCap endCap)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GraphicsContainer"><summary><b>GraphicsContainer</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.GraphicsContainer</code> · assembly <code>System.Drawing.Common</code></p>
+</div></details>
+<details class="cls" id="c-GraphicsPath"><summary><b>GraphicsPath</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.GraphicsPath</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GraphicsPath()</code></td></tr><tr><td><code>new GraphicsPath(FillMode fillMode)</code></td></tr><tr><td><code>new GraphicsPath(PointF[] pts, byte[] types)</code></td></tr><tr><td><code>new GraphicsPath(PointF[] pts, byte[] types, FillMode fillMode)</code></td></tr><tr><td><code>new GraphicsPath(Point[] pts, byte[] types)</code></td></tr><tr><td><code>new GraphicsPath(Point[] pts, byte[] types, FillMode fillMode)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GraphicsPath(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GraphicsPath().@New([ :param = value ])</code> or <code>dnNew("GraphicsPath",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FillMode</code></td><td><code>FillMode</code></td><td>read, write</td><td><code>o.FillMode</code> <code>o.FillMode = v</code></td></tr><tr><td><code>PathData</code></td><td><code>PathData</code></td><td>read</td><td><code>o.PathData</code></td></tr><tr><td><code>PointCount</code></td><td><code>int</code></td><td>read</td><td><code>o.PointCount</code></td></tr><tr><td><code>PathTypes</code></td><td><code>byte[]</code></td><td>read</td><td><code>o.PathTypes</code></td></tr><tr><td><code>PathPoints</code></td><td><code>PointF[]</code></td><td>read</td><td><code>o.PathPoints</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddArc</code></td><td><code>AddArc([ :rect = …, :startAngle = …, :sweepAngle = … ])</code><br><code>AddArc([ :x = …, :y = …, :width = …, :height = …, :startAngle = …, :sweepAngle = … ])</code></td><td><code>void AddArc(RectangleF rect, float startAngle, float sweepAngle)</code><br><code>void AddArc(float x, float y, float width, float height, float startAngle, float sweepAngle)</code><br><code>void AddArc(Rectangle rect, float startAngle, float sweepAngle)</code><br><code>void AddArc(int x, int y, int width, int height, float startAngle, float sweepAngle)</code></td></tr><tr><td><code>AddBezier</code></td><td><code>AddBezier([ :pt1 = …, :pt2 = …, :pt3 = …, :pt4 = … ])</code><br><code>AddBezier([ :x1 = …, :y1 = …, :x2 = …, :y2 = …, :x3 = …, :y3 = …, :x4 = …, :y4 = … ])</code></td><td><code>void AddBezier(PointF pt1, PointF pt2, PointF pt3, PointF pt4)</code><br><code>void AddBezier(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)</code><br><code>void AddBezier(Point pt1, Point pt2, Point pt3, Point pt4)</code><br><code>void AddBezier(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)</code></td></tr><tr><td><code>AddBeziers</code></td><td><code>AddBeziers(p1)</code></td><td><code>void AddBeziers(PointF[] points)</code><br><code>void AddBeziers(ReadOnlySpan&lt;PointF&gt; points)</code><br><code>void AddBeziers(Point[] points)</code><br><code>void AddBeziers(ReadOnlySpan&lt;Point&gt; points)</code></td></tr><tr><td><code>AddClosedCurve</code></td><td><code>AddClosedCurve(value)</code><br><code>AddClosedCurve([ :points = … ])</code><br><code>AddClosedCurve([ :points = …, :tension = … ])</code></td><td><code>void AddClosedCurve(PointF[] points)</code><br><code>void AddClosedCurve(PointF[] points, float tension)</code><br><code>void AddClosedCurve(ReadOnlySpan&lt;PointF&gt; points)</code><br><code>void AddClosedCurve(ReadOnlySpan&lt;PointF&gt; points, float tension)</code><br><code>void AddClosedCurve(Point[] points)</code><br><code>void AddClosedCurve(Point[] points, float tension)</code><br><code>void AddClosedCurve(ReadOnlySpan&lt;Point&gt; points)</code><br><code>void AddClosedCurve(ReadOnlySpan&lt;Point&gt; points, float tension)</code></td></tr><tr><td><code>AddCurve</code></td><td><code>AddCurve(value)</code><br><code>AddCurve([ :points = … ])</code><br><code>AddCurve([ :points = …, :tension = … ])</code><br><code>AddCurve([ :points = …, :offset = …, :numberOfSegments = …, :tension = … ])</code></td><td><code>void AddCurve(PointF[] points)</code><br><code>void AddCurve(PointF[] points, float tension)</code><br><code>void AddCurve(PointF[] points, int offset, int numberOfSegments, float tension)</code><br><code>void AddCurve(ReadOnlySpan&lt;PointF&gt; points)</code><br><code>void AddCurve(ReadOnlySpan&lt;PointF&gt; points, float tension)</code><br><code>void AddCurve(Point[] points)</code><br><code>void AddCurve(Point[] points, float tension)</code><br><code>void AddCurve(Point[] points, int offset, int numberOfSegments, float tension)</code><br><code>void AddCurve(ReadOnlySpan&lt;Point&gt; points)</code><br><code>void AddCurve(ReadOnlySpan&lt;Point&gt; points, float tension)</code></td></tr><tr><td><code>AddEllipse</code></td><td><code>AddEllipse(value)</code><br><code>AddEllipse([ :rect = … ])</code><br><code>AddEllipse([ :x = …, :y = …, :width = …, :height = … ])</code></td><td><code>void AddEllipse(RectangleF rect)</code><br><code>void AddEllipse(float x, float y, float width, float height)</code><br><code>void AddEllipse(Rectangle rect)</code><br><code>void AddEllipse(int x, int y, int width, int height)</code></td></tr><tr><td><code>AddLine</code></td><td><code>AddLine([ :pt1 = …, :pt2 = … ])</code><br><code>AddLine([ :x1 = …, :y1 = …, :x2 = …, :y2 = … ])</code></td><td><code>void AddLine(PointF pt1, PointF pt2)</code><br><code>void AddLine(float x1, float y1, float x2, float y2)</code><br><code>void AddLine(Point pt1, Point pt2)</code><br><code>void AddLine(int x1, int y1, int x2, int y2)</code></td></tr><tr><td><code>AddLines</code></td><td><code>AddLines(p1)</code></td><td><code>void AddLines(PointF[] points)</code><br><code>void AddLines(ReadOnlySpan&lt;PointF&gt; points)</code><br><code>void AddLines(Point[] points)</code><br><code>void AddLines(ReadOnlySpan&lt;Point&gt; points)</code></td></tr><tr><td><code>AddPath</code></td><td><code>AddPath(p1,p2)</code></td><td><code>void AddPath(GraphicsPath addingPath, bool connect)</code></td></tr><tr><td><code>AddPie</code></td><td><code>AddPie([ :rect = …, :startAngle = …, :sweepAngle = … ])</code><br><code>AddPie([ :x = …, :y = …, :width = …, :height = …, :startAngle = …, :sweepAngle = … ])</code></td><td><code>void AddPie(Rectangle rect, float startAngle, float sweepAngle)</code><br><code>void AddPie(float x, float y, float width, float height, float startAngle, float sweepAngle)</code><br><code>void AddPie(int x, int y, int width, int height, float startAngle, float sweepAngle)</code></td></tr><tr><td><code>AddPolygon</code></td><td><code>AddPolygon(p1)</code></td><td><code>void AddPolygon(PointF[] points)</code><br><code>void AddPolygon(ReadOnlySpan&lt;PointF&gt; points)</code><br><code>void AddPolygon(Point[] points)</code><br><code>void AddPolygon(ReadOnlySpan&lt;Point&gt; points)</code></td></tr><tr><td><code>AddRectangle</code></td><td><code>AddRectangle(p1)</code></td><td><code>void AddRectangle(RectangleF rect)</code><br><code>void AddRectangle(Rectangle rect)</code></td></tr><tr><td><code>AddRectangles</code></td><td><code>AddRectangles(p1)</code></td><td><code>void AddRectangles(RectangleF[] rects)</code><br><code>void AddRectangles(ReadOnlySpan&lt;RectangleF&gt; rects)</code><br><code>void AddRectangles(Rectangle[] rects)</code><br><code>void AddRectangles(ReadOnlySpan&lt;Rectangle&gt; rects)</code></td></tr><tr><td><code>AddRoundedRectangle</code></td><td><code>AddRoundedRectangle(p1,p2)</code></td><td><code>void AddRoundedRectangle(Rectangle rect, Size radius)</code><br><code>void AddRoundedRectangle(RectangleF rect, SizeF radius)</code></td></tr><tr><td><code>AddString</code></td><td><code>AddString(p1,p2,p3,p4,p5,p6)</code></td><td><code>void AddString(string s, FontFamily family, int style, float emSize, PointF origin, StringFormat format)</code><br><code>void AddString(string s, FontFamily family, int style, float emSize, Point origin, StringFormat format)</code><br><code>void AddString(string s, FontFamily family, int style, float emSize, RectangleF layoutRect, StringFormat format)</code><br><code>void AddString(string s, FontFamily family, int style, float emSize, Rectangle layoutRect, StringFormat format)</code></td></tr><tr><td><code>ClearMarkers</code></td><td><code>ClearMarkers()</code></td><td><code>void ClearMarkers()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>CloseAllFigures</code></td><td><code>CloseAllFigures()</code></td><td><code>void CloseAllFigures()</code></td></tr><tr><td><code>CloseFigure</code></td><td><code>CloseFigure()</code></td><td><code>void CloseFigure()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Flatten</code></td><td><code>Flatten(NULL)</code><br><code>Flatten(value)</code><br><code>Flatten([ :matrix = … ])</code><br><code>Flatten([ :matrix = …, :flatness = … ])</code></td><td><code>void Flatten()</code><br><code>void Flatten(Matrix matrix)</code><br><code>void Flatten(Matrix matrix, float flatness)</code></td></tr><tr><td><code>GetBounds</code></td><td><code>GetBounds(NULL)</code><br><code>GetBounds(value)</code><br><code>GetBounds([ :matrix = … ])</code><br><code>GetBounds([ :matrix = …, :pen = … ])</code></td><td><code>RectangleF GetBounds()</code><br><code>RectangleF GetBounds(Matrix matrix)</code><br><code>RectangleF GetBounds(Matrix matrix, Pen pen)</code></td></tr><tr><td><code>GetLastPoint</code></td><td><code>GetLastPoint()</code></td><td><code>PointF GetLastPoint()</code></td></tr><tr><td><code>GetPathPoints</code></td><td><code>@GetPathPoints(p1)</code></td><td><code>int GetPathPoints(Span&lt;PointF&gt; destination)</code></td></tr><tr><td><code>GetPathTypes</code></td><td><code>@GetPathTypes(p1)</code></td><td><code>int GetPathTypes(Span&lt;byte&gt; destination)</code></td></tr><tr><td><code>IsOutlineVisible</code></td><td><code>IsOutlineVisible([ :point = …, :pen = … ])</code><br><code>IsOutlineVisible([ :x = …, :y = …, :pen = … ])</code><br><code>IsOutlineVisible([ :pt = …, :pen = …, :graphics = … ])</code><br><code>IsOutlineVisible([ :x = …, :y = …, :pen = …, :graphics = … ])</code></td><td><code>bool IsOutlineVisible(float x, float y, Pen pen)</code><br><code>bool IsOutlineVisible(PointF point, Pen pen)</code><br><code>bool IsOutlineVisible(float x, float y, Pen pen, Graphics graphics)</code><br><code>bool IsOutlineVisible(PointF pt, Pen pen, Graphics graphics)</code><br><code>bool IsOutlineVisible(int x, int y, Pen pen)</code><br><code>bool IsOutlineVisible(Point point, Pen pen)</code><br><code>bool IsOutlineVisible(int x, int y, Pen pen, Graphics graphics)</code><br><code>bool IsOutlineVisible(Point pt, Pen pen, Graphics graphics)</code></td></tr><tr><td><code>IsVisible</code></td><td><code>IsVisible(value)</code><br><code>IsVisible([ :point = … ])</code><br><code>IsVisible([ :x = …, :y = … ])</code><br><code>IsVisible([ :pt = …, :graphics = … ])</code><br><code>IsVisible([ :x = …, :y = …, :graphics = … ])</code></td><td><code>bool IsVisible(float x, float y)</code><br><code>bool IsVisible(PointF point)</code><br><code>bool IsVisible(float x, float y, Graphics graphics)</code><br><code>bool IsVisible(PointF pt, Graphics graphics)</code><br><code>bool IsVisible(int x, int y)</code><br><code>bool IsVisible(Point point)</code><br><code>bool IsVisible(int x, int y, Graphics graphics)</code><br><code>bool IsVisible(Point pt, Graphics graphics)</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr><tr><td><code>Reverse</code></td><td><code>Reverse()</code></td><td><code>void Reverse()</code></td></tr><tr><td><code>SetMarkers</code></td><td><code>SetMarkers()</code></td><td><code>void SetMarkers()</code></td></tr><tr><td><code>StartFigure</code></td><td><code>StartFigure()</code></td><td><code>void StartFigure()</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>void Transform(Matrix matrix)</code></td></tr><tr><td><code>Warp</code></td><td><code>Warp([ :destPoints = …, :srcRect = … ])</code><br><code>Warp([ :destPoints = …, :srcRect = …, :matrix = … ])</code><br><code>Warp([ :destPoints = …, :srcRect = …, :matrix = …, :warpMode = … ])</code><br><code>Warp([ :destPoints = …, :srcRect = …, :matrix = …, :warpMode = …, :flatness = … ])</code></td><td><code>void Warp(PointF[] destPoints, RectangleF srcRect)</code><br><code>void Warp(PointF[] destPoints, RectangleF srcRect, Matrix matrix)</code><br><code>void Warp(PointF[] destPoints, RectangleF srcRect, Matrix matrix, WarpMode warpMode)</code><br><code>void Warp(PointF[] destPoints, RectangleF srcRect, Matrix matrix, WarpMode warpMode, float flatness)</code><br><code>void Warp(ReadOnlySpan&lt;PointF&gt; destPoints, RectangleF srcRect, Matrix matrix = …, WarpMode warpMode = …, float flatness = …)</code></td></tr><tr><td><code>Widen</code></td><td><code>Widen(value)</code><br><code>Widen([ :pen = … ])</code><br><code>Widen([ :pen = …, :matrix = … ])</code><br><code>Widen([ :pen = …, :matrix = …, :flatness = … ])</code></td><td><code>void Widen(Pen pen)</code><br><code>void Widen(Pen pen, Matrix matrix)</code><br><code>void Widen(Pen pen, Matrix matrix, float flatness)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GraphicsPathIterator"><summary><b>GraphicsPathIterator</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.GraphicsPathIterator</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GraphicsPathIterator(GraphicsPath path)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GraphicsPathIterator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GraphicsPathIterator().@New([ :param = value ])</code> or <code>dnNew("GraphicsPathIterator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>SubpathCount</code></td><td><code>int</code></td><td>read</td><td><code>o.SubpathCount</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CopyData</code></td><td><code>CopyData(p1,p2,p3,p4)</code></td><td><code>int CopyData(ref PointF[] points, ref byte[] types, int startIndex, int endIndex)</code><br><code>int CopyData(Span&lt;PointF&gt; points, Span&lt;byte&gt; types, int startIndex, int endIndex)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Enumerate</code></td><td><code>Enumerate(p1,p2)</code></td><td><code>int Enumerate(ref PointF[] points, ref byte[] types)</code><br><code>int Enumerate(Span&lt;PointF&gt; points, Span&lt;byte&gt; types)</code></td></tr><tr><td><code>HasCurve</code></td><td><code>HasCurve()</code></td><td><code>bool HasCurve()</code></td></tr><tr><td><code>NextMarker</code></td><td><code>NextMarker(value)</code><br><code>NextMarker([ :path = … ])</code><br><code>NextMarker([ :startIndex = …, :endIndex = … ])</code></td><td><code>int NextMarker(out int startIndex, out int endIndex)</code><br><code>int NextMarker(GraphicsPath path)</code></td></tr><tr><td><code>NextPathType</code></td><td><code>NextPathType()</code></td><td><code>int NextPathType(out byte pathType, out int startIndex, out int endIndex)</code></td></tr><tr><td><code>NextSubpath</code></td><td><code>NextSubpath([ :path = …, :isClosed = … ])</code><br><code>NextSubpath([ :startIndex = …, :endIndex = …, :isClosed = … ])</code></td><td><code>int NextSubpath(out int startIndex, out int endIndex, out bool isClosed)</code><br><code>int NextSubpath(GraphicsPath path, out bool isClosed)</code></td></tr><tr><td><code>Rewind</code></td><td><code>Rewind()</code></td><td><code>void Rewind()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GraphicsState"><summary><b>GraphicsState</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.GraphicsState</code> · assembly <code>System.Drawing.Common</code></p>
+</div></details>
+<details class="cls" id="c-HatchBrush"><summary><b>HatchBrush</b> <span class="muted">class sealed · extends <a href="System.Drawing.html#c-Brush">Brush</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.HatchBrush</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HatchBrush(HatchStyle hatchstyle, Color foreColor)</code></td></tr><tr><td><code>new HatchBrush(HatchStyle hatchstyle, Color foreColor, Color backColor)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HatchBrush(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HatchBrush().@New([ :param = value ])</code> or <code>dnNew("HatchBrush",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HatchStyle</code></td><td><code>HatchStyle</code></td><td>read</td><td><code>o.HatchStyle</code></td></tr><tr><td><code>ForegroundColor</code></td><td><code>Color</code></td><td>read</td><td><code>o.ForegroundColor</code></td></tr><tr><td><code>BackgroundColor</code></td><td><code>Color</code></td><td>read</td><td><code>o.BackgroundColor</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LinearGradientBrush"><summary><b>LinearGradientBrush</b> <span class="muted">class sealed · extends <a href="System.Drawing.html#c-Brush">Brush</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.LinearGradientBrush</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LinearGradientBrush(PointF point1, PointF point2, Color color1, Color color2)</code></td></tr><tr><td><code>new LinearGradientBrush(Point point1, Point point2, Color color1, Color color2)</code></td></tr><tr><td><code>new LinearGradientBrush(RectangleF rect, Color color1, Color color2, LinearGradientMode linearGradientMode)</code></td></tr><tr><td><code>new LinearGradientBrush(Rectangle rect, Color color1, Color color2, LinearGradientMode linearGradientMode)</code></td></tr><tr><td><code>new LinearGradientBrush(RectangleF rect, Color color1, Color color2, float angle)</code></td></tr><tr><td><code>new LinearGradientBrush(RectangleF rect, Color color1, Color color2, float angle, bool isAngleScaleable)</code></td></tr><tr><td><code>new LinearGradientBrush(Rectangle rect, Color color1, Color color2, float angle)</code></td></tr><tr><td><code>new LinearGradientBrush(Rectangle rect, Color color1, Color color2, float angle, bool isAngleScaleable)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LinearGradientBrush(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LinearGradientBrush().@New([ :param = value ])</code> or <code>dnNew("LinearGradientBrush",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LinearColors</code></td><td><code>Color[]</code></td><td>read, write</td><td><code>o.LinearColors</code> <code>o.LinearColors = v</code></td></tr><tr><td><code>Rectangle</code></td><td><code>RectangleF</code></td><td>read</td><td><code>o.Rectangle</code></td></tr><tr><td><code>GammaCorrection</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.GammaCorrection</code> <code>o.GammaCorrection = v</code></td></tr><tr><td><code>Blend</code></td><td><code>Blend</code></td><td>read, write</td><td><code>o.Blend</code> <code>o.Blend = v</code></td></tr><tr><td><code>InterpolationColors</code></td><td><code>ColorBlend</code></td><td>read, write</td><td><code>o.InterpolationColors</code> <code>o.InterpolationColors = v</code></td></tr><tr><td><code>WrapMode</code></td><td><code>WrapMode</code></td><td>read, write</td><td><code>o.WrapMode</code> <code>o.WrapMode = v</code></td></tr><tr><td><code>Transform</code></td><td><code>Matrix</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>MultiplyTransform</code></td><td><code>MultiplyTransform(value)</code><br><code>MultiplyTransform([ :matrix = … ])</code><br><code>MultiplyTransform([ :matrix = …, :order = … ])</code></td><td><code>void MultiplyTransform(Matrix matrix)</code><br><code>void MultiplyTransform(Matrix matrix, MatrixOrder order)</code></td></tr><tr><td><code>ResetTransform</code></td><td><code>ResetTransform()</code></td><td><code>void ResetTransform()</code></td></tr><tr><td><code>RotateTransform</code></td><td><code>RotateTransform(value)</code><br><code>RotateTransform([ :angle = … ])</code><br><code>RotateTransform([ :angle = …, :order = … ])</code></td><td><code>void RotateTransform(float angle)</code><br><code>void RotateTransform(float angle, MatrixOrder order)</code></td></tr><tr><td><code>ScaleTransform</code></td><td><code>ScaleTransform([ :sx = …, :sy = … ])</code><br><code>ScaleTransform([ :sx = …, :sy = …, :order = … ])</code></td><td><code>void ScaleTransform(float sx, float sy)</code><br><code>void ScaleTransform(float sx, float sy, MatrixOrder order)</code></td></tr><tr><td><code>SetBlendTriangularShape</code></td><td><code>SetBlendTriangularShape(value)</code><br><code>SetBlendTriangularShape([ :focus = … ])</code><br><code>SetBlendTriangularShape([ :focus = …, :scale = … ])</code></td><td><code>void SetBlendTriangularShape(float focus)</code><br><code>void SetBlendTriangularShape(float focus, float scale)</code></td></tr><tr><td><code>SetSigmaBellShape</code></td><td><code>SetSigmaBellShape(value)</code><br><code>SetSigmaBellShape([ :focus = … ])</code><br><code>SetSigmaBellShape([ :focus = …, :scale = … ])</code></td><td><code>void SetSigmaBellShape(float focus)</code><br><code>void SetSigmaBellShape(float focus, float scale)</code></td></tr><tr><td><code>TranslateTransform</code></td><td><code>TranslateTransform([ :dx = …, :dy = … ])</code><br><code>TranslateTransform([ :dx = …, :dy = …, :order = … ])</code></td><td><code>void TranslateTransform(float dx, float dy)</code><br><code>void TranslateTransform(float dx, float dy, MatrixOrder order)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Matrix"><summary><b>Matrix</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.Matrix</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Matrix()</code></td></tr><tr><td><code>new Matrix(float m11, float m12, float m21, float m22, float dx, float dy)</code></td></tr><tr><td><code>new Matrix(Matrix3x2 matrix)</code></td></tr><tr><td><code>new Matrix(RectangleF rect, PointF[] plgpts)</code></td></tr><tr><td><code>new Matrix(Rectangle rect, Point[] plgpts)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Matrix(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Matrix().@New([ :param = value ])</code> or <code>dnNew("Matrix",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Elements</code></td><td><code>float[]</code></td><td>read</td><td><code>o.Elements</code></td></tr><tr><td><code>MatrixElements</code></td><td><code>Matrix3x2</code></td><td>read, write</td><td><code>o.MatrixElements</code> <code>o.MatrixElements = v</code></td></tr><tr><td><code>OffsetX</code></td><td><code>float</code></td><td>read</td><td><code>o.OffsetX</code></td></tr><tr><td><code>OffsetY</code></td><td><code>float</code></td><td>read</td><td><code>o.OffsetY</code></td></tr><tr><td><code>IsInvertible</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInvertible</code></td></tr><tr><td><code>IsIdentity</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsIdentity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Matrix Clone()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Invert</code></td><td><code>Invert()</code></td><td><code>void Invert()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(value)</code><br><code>Multiply([ :matrix = … ])</code><br><code>Multiply([ :matrix = …, :order = … ])</code></td><td><code>void Multiply(Matrix matrix)</code><br><code>void Multiply(Matrix matrix, MatrixOrder order)</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr><tr><td><code>Rotate</code></td><td><code>Rotate(value)</code><br><code>Rotate([ :angle = … ])</code><br><code>Rotate([ :angle = …, :order = … ])</code></td><td><code>void Rotate(float angle)</code><br><code>void Rotate(float angle, MatrixOrder order)</code></td></tr><tr><td><code>RotateAt</code></td><td><code>RotateAt([ :angle = …, :point = … ])</code><br><code>RotateAt([ :angle = …, :point = …, :order = … ])</code></td><td><code>void RotateAt(float angle, PointF point)</code><br><code>void RotateAt(float angle, PointF point, MatrixOrder order)</code></td></tr><tr><td><code>Scale</code></td><td><code>Scale([ :scaleX = …, :scaleY = … ])</code><br><code>Scale([ :scaleX = …, :scaleY = …, :order = … ])</code></td><td><code>void Scale(float scaleX, float scaleY)</code><br><code>void Scale(float scaleX, float scaleY, MatrixOrder order)</code></td></tr><tr><td><code>Shear</code></td><td><code>Shear([ :shearX = …, :shearY = … ])</code><br><code>Shear([ :shearX = …, :shearY = …, :order = … ])</code></td><td><code>void Shear(float shearX, float shearY)</code><br><code>void Shear(float shearX, float shearY, MatrixOrder order)</code></td></tr><tr><td><code>TransformPoints</code></td><td><code>TransformPoints(p1)</code></td><td><code>void TransformPoints(PointF[] pts)</code><br><code>void TransformPoints(ReadOnlySpan&lt;PointF&gt; pts)</code><br><code>void TransformPoints(Point[] pts)</code><br><code>void TransformPoints(ReadOnlySpan&lt;Point&gt; pts)</code></td></tr><tr><td><code>TransformVectors</code></td><td><code>TransformVectors(p1)</code></td><td><code>void TransformVectors(PointF[] pts)</code><br><code>void TransformVectors(ReadOnlySpan&lt;PointF&gt; pts)</code><br><code>void TransformVectors(Point[] pts)</code><br><code>void TransformVectors(ReadOnlySpan&lt;Point&gt; pts)</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate([ :offsetX = …, :offsetY = … ])</code><br><code>Translate([ :offsetX = …, :offsetY = …, :order = … ])</code></td><td><code>void Translate(float offsetX, float offsetY)</code><br><code>void Translate(float offsetX, float offsetY, MatrixOrder order)</code></td></tr><tr><td><code>VectorTransformPoints</code></td><td><code>VectorTransformPoints(p1)</code></td><td><code>void VectorTransformPoints(Point[] pts)</code><br><code>void VectorTransformPoints(ReadOnlySpan&lt;Point&gt; pts)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PathData"><summary><b>PathData</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.PathData</code> · assembly <code>System.Drawing.Common</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PathData()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PathData(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PathData().@New([ :param = value ])</code> or <code>dnNew("PathData",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Points</code></td><td><code>PointF[]</code></td><td>read, write</td><td><code>o.Points</code> <code>o.Points = v</code></td></tr><tr><td><code>Types</code></td><td><code>byte[]</code></td><td>read, write</td><td><code>o.Types</code> <code>o.Types = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PathGradientBrush"><summary><b>PathGradientBrush</b> <span class="muted">class sealed · extends <a href="System.Drawing.html#c-Brush">Brush</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.PathGradientBrush</code> · assembly <code>System.Drawing.Common</code></p>
+<p class="muted">Implements: ICloneable, IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PathGradientBrush(PointF[] points)</code></td></tr><tr><td><code>new PathGradientBrush(PointF[] points, WrapMode wrapMode)</code></td></tr><tr><td><code>new PathGradientBrush(Point[] points)</code></td></tr><tr><td><code>new PathGradientBrush(Point[] points, WrapMode wrapMode)</code></td></tr><tr><td><code>new PathGradientBrush(GraphicsPath path)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PathGradientBrush(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PathGradientBrush().@New([ :param = value ])</code> or <code>dnNew("PathGradientBrush",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CenterColor</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.CenterColor</code> <code>o.CenterColor = v</code></td></tr><tr><td><code>SurroundColors</code></td><td><code>Color[]</code></td><td>read, write</td><td><code>o.SurroundColors</code> <code>o.SurroundColors = v</code></td></tr><tr><td><code>CenterPoint</code></td><td><code>PointF</code></td><td>read, write</td><td><code>o.CenterPoint</code> <code>o.CenterPoint = v</code></td></tr><tr><td><code>Rectangle</code></td><td><code>RectangleF</code></td><td>read</td><td><code>o.Rectangle</code></td></tr><tr><td><code>Blend</code></td><td><code>Blend</code></td><td>read, write</td><td><code>o.Blend</code> <code>o.Blend = v</code></td></tr><tr><td><code>InterpolationColors</code></td><td><code>ColorBlend</code></td><td>read, write</td><td><code>o.InterpolationColors</code> <code>o.InterpolationColors = v</code></td></tr><tr><td><code>Transform</code></td><td><code>Matrix</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr><tr><td><code>FocusScales</code></td><td><code>PointF</code></td><td>read, write</td><td><code>o.FocusScales</code> <code>o.FocusScales = v</code></td></tr><tr><td><code>WrapMode</code></td><td><code>WrapMode</code></td><td>read, write</td><td><code>o.WrapMode</code> <code>o.WrapMode = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>object Clone()</code></td></tr><tr><td><code>MultiplyTransform</code></td><td><code>MultiplyTransform(value)</code><br><code>MultiplyTransform([ :matrix = … ])</code><br><code>MultiplyTransform([ :matrix = …, :order = … ])</code></td><td><code>void MultiplyTransform(Matrix matrix)</code><br><code>void MultiplyTransform(Matrix matrix, MatrixOrder order)</code></td></tr><tr><td><code>ResetTransform</code></td><td><code>ResetTransform()</code></td><td><code>void ResetTransform()</code></td></tr><tr><td><code>RotateTransform</code></td><td><code>RotateTransform(value)</code><br><code>RotateTransform([ :angle = … ])</code><br><code>RotateTransform([ :angle = …, :order = … ])</code></td><td><code>void RotateTransform(float angle)</code><br><code>void RotateTransform(float angle, MatrixOrder order)</code></td></tr><tr><td><code>ScaleTransform</code></td><td><code>ScaleTransform([ :sx = …, :sy = … ])</code><br><code>ScaleTransform([ :sx = …, :sy = …, :order = … ])</code></td><td><code>void ScaleTransform(float sx, float sy)</code><br><code>void ScaleTransform(float sx, float sy, MatrixOrder order)</code></td></tr><tr><td><code>SetBlendTriangularShape</code></td><td><code>SetBlendTriangularShape(value)</code><br><code>SetBlendTriangularShape([ :focus = … ])</code><br><code>SetBlendTriangularShape([ :focus = …, :scale = … ])</code></td><td><code>void SetBlendTriangularShape(float focus)</code><br><code>void SetBlendTriangularShape(float focus, float scale)</code></td></tr><tr><td><code>SetSigmaBellShape</code></td><td><code>SetSigmaBellShape(value)</code><br><code>SetSigmaBellShape([ :focus = … ])</code><br><code>SetSigmaBellShape([ :focus = …, :scale = … ])</code></td><td><code>void SetSigmaBellShape(float focus)</code><br><code>void SetSigmaBellShape(float focus, float scale)</code></td></tr><tr><td><code>TranslateTransform</code></td><td><code>TranslateTransform([ :dx = …, :dy = … ])</code><br><code>TranslateTransform([ :dx = …, :dy = …, :order = … ])</code></td><td><code>void TranslateTransform(float dx, float dy)</code><br><code>void TranslateTransform(float dx, float dy, MatrixOrder order)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RegionData"><summary><b>RegionData</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Drawing.Drawing2D.RegionData</code> · assembly <code>System.Drawing.Common</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Data</code></td><td><code>byte[]</code></td><td>read, write</td><td><code>o.Data</code> <code>o.Data = v</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

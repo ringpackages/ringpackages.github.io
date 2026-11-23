@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Runtime.InteropServices · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Runtime.InteropServices</h1>
+<p class="lead">90 wrapped types. Load them with <code>using { "System.Runtime.InteropServices" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-ArrayWithOffset">ArrayWithOffset</a> <a href="#c-AutomationProxyAttribute">AutomationProxyAttribute</a> <a href="#c-BestFitMappingAttribute">BestFitMappingAttribute</a> <a href="#c-BStrWrapper">BStrWrapper</a> <a href="#c-ClassInterfaceAttribute">ClassInterfaceAttribute</a> <a href="#c-CLong">CLong</a> <a href="#c-CoClassAttribute">CoClassAttribute</a> <a href="#c-CollectionsMarshal">CollectionsMarshal</a> <a href="#c-ComAliasNameAttribute">ComAliasNameAttribute</a> <a href="#c-ComAwareEventInfo">ComAwareEventInfo</a> <a href="#c-ComCompatibleVersionAttribute">ComCompatibleVersionAttribute</a> <a href="#c-ComConversionLossAttribute">ComConversionLossAttribute</a> <a href="#c-ComDefaultInterfaceAttribute">ComDefaultInterfaceAttribute</a> <a href="#c-ComEventInterfaceAttribute">ComEventInterfaceAttribute</a> <a href="#c-ComEventsHelper">ComEventsHelper</a> <a href="#c-COMException">COMException</a> <a href="#c-ComImportAttribute">ComImportAttribute</a> <a href="#c-ComRegisterFunctionAttribute">ComRegisterFunctionAttribute</a> <a href="#c-ComSourceInterfacesAttribute">ComSourceInterfacesAttribute</a> <a href="#c-ComUnregisterFunctionAttribute">ComUnregisterFunctionAttribute</a> <a href="#c-ComVisibleAttribute">ComVisibleAttribute</a> <a href="#c-ComWrappers">ComWrappers</a> <a href="#c-ComWrappersComInterfaceDispatch">ComWrappersComInterfaceDispatch</a> <a href="#c-ComWrappersComInterfaceEntry">ComWrappersComInterfaceEntry</a> <a href="#c-CriticalHandle">CriticalHandle</a> <a href="#c-CULong">CULong</a> <a href="#c-DefaultCharSetAttribute">DefaultCharSetAttribute</a> <a href="#c-DefaultDllImportSearchPathsAttribute">DefaultDllImportSearchPathsAttribute</a> <a href="#c-DefaultParameterValueAttribute">DefaultParameterValueAttribute</a> <a href="#c-DispatchWrapper">DispatchWrapper</a> <a href="#c-DispIdAttribute">DispIdAttribute</a> <a href="#c-DllImportAttribute">DllImportAttribute</a> <a href="#c-DynamicInterfaceCastableImplementationAttribute">DynamicInterfaceCastableImplementationAttribute</a> <a href="#c-ErrorWrapper">ErrorWrapper</a> <a href="#c-ExternalException">ExternalException</a> <a href="#c-FieldOffsetAttribute">FieldOffsetAttribute</a> <a href="#c-GCHandle">GCHandle</a> <a href="#c-GuidAttribute">GuidAttribute</a> <a href="#c-HandleCollector">HandleCollector</a> <a href="#c-HandleRef">HandleRef</a> <a href="#c-ICustomAdapter">ICustomAdapter</a> <a href="#c-ICustomFactory">ICustomFactory</a> <a href="#c-ICustomMarshaler">ICustomMarshaler</a> <a href="#c-ICustomQueryInterface">ICustomQueryInterface</a> <a href="#c-IDynamicInterfaceCastable">IDynamicInterfaceCastable</a> <a href="#c-ImportedFromTypeLibAttribute">ImportedFromTypeLibAttribute</a> <a href="#c-InAttribute">InAttribute</a> <a href="#c-InterfaceTypeAttribute">InterfaceTypeAttribute</a> <a href="#c-InvalidComObjectException">InvalidComObjectException</a> <a href="#c-InvalidOleVariantTypeException">InvalidOleVariantTypeException</a> <a href="#c-LCIDConversionAttribute">LCIDConversionAttribute</a> <a href="#c-LibraryImportAttribute">LibraryImportAttribute</a> <a href="#c-ManagedToNativeComInteropStubAttribute">ManagedToNativeComInteropStubAttribute</a> <a href="#c-Marshal">Marshal</a> <a href="#c-MarshalAsAttribute">MarshalAsAttribute</a> <a href="#c-MarshalDirectiveException">MarshalDirectiveException</a> <a href="#c-MemoryMarshal">MemoryMarshal</a> <a href="#c-NativeLibrary">NativeLibrary</a> <a href="#c-NativeMemory">NativeMemory</a> <a href="#c-NFloat">NFloat</a> <a href="#c-OptionalAttribute">OptionalAttribute</a> <a href="#c-OSPlatform">OSPlatform</a> <a href="#c-OutAttribute">OutAttribute</a> <a href="#c-PosixSignalContext">PosixSignalContext</a> <a href="#c-PosixSignalRegistration">PosixSignalRegistration</a> <a href="#c-PreserveSigAttribute">PreserveSigAttribute</a> <a href="#c-PrimaryInteropAssemblyAttribute">PrimaryInteropAssemblyAttribute</a> <a href="#c-ProgIdAttribute">ProgIdAttribute</a> <a href="#c-RuntimeEnvironment">RuntimeEnvironment</a> <a href="#c-RuntimeInformation">RuntimeInformation</a> <a href="#c-SafeArrayRankMismatchException">SafeArrayRankMismatchException</a> <a href="#c-SafeArrayTypeMismatchException">SafeArrayTypeMismatchException</a> <a href="#c-SafeBuffer">SafeBuffer</a> <a href="#c-SafeHandle">SafeHandle</a> <a href="#c-SEHException">SEHException</a> <a href="#c-StandardOleMarshalObject">StandardOleMarshalObject</a> <a href="#c-StructLayoutAttribute">StructLayoutAttribute</a> <a href="#c-SuppressGCTransitionAttribute">SuppressGCTransitionAttribute</a> <a href="#c-TypeIdentifierAttribute">TypeIdentifierAttribute</a> <a href="#c-TypeLibFuncAttribute">TypeLibFuncAttribute</a> <a href="#c-TypeLibImportClassAttribute">TypeLibImportClassAttribute</a> <a href="#c-TypeLibTypeAttribute">TypeLibTypeAttribute</a> <a href="#c-TypeLibVarAttribute">TypeLibVarAttribute</a> <a href="#c-TypeLibVersionAttribute">TypeLibVersionAttribute</a> <a href="#c-UnknownWrapper">UnknownWrapper</a> <a href="#c-UnmanagedCallConvAttribute">UnmanagedCallConvAttribute</a> <a href="#c-UnmanagedCallersOnlyAttribute">UnmanagedCallersOnlyAttribute</a> <a href="#c-UnmanagedFunctionPointerAttribute">UnmanagedFunctionPointerAttribute</a> <a href="#c-VariantWrapper">VariantWrapper</a> <a href="#c-WasmImportLinkageAttribute">WasmImportLinkageAttribute</a></div><details class="cls" id="c-ArrayWithOffset"><summary><b>ArrayWithOffset</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ArrayWithOffset</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ArrayWithOffset(object array, int offset)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ArrayWithOffset(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ArrayWithOffset().@New([ :param = value ])</code> or <code>dnNew("ArrayWithOffset",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(ArrayWithOffset obj)</code></td></tr><tr><td><code>GetArray</code></td><td><code>GetArray()</code></td><td><code>object GetArray()</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>GetOffset</code></td><td><code>GetOffset()</code></td><td><code>int GetOffset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-AutomationProxyAttribute"><summary><b>AutomationProxyAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.AutomationProxyAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AutomationProxyAttribute(bool val)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AutomationProxyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AutomationProxyAttribute().@New([ :param = value ])</code> or <code>dnNew("AutomationProxyAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>bool</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BestFitMappingAttribute"><summary><b>BestFitMappingAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.BestFitMappingAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BestFitMappingAttribute(bool BestFitMapping)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BestFitMappingAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BestFitMappingAttribute().@New([ :param = value ])</code> or <code>dnNew("BestFitMappingAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BestFitMapping</code></td><td><code>bool</code></td><td>read</td><td><code>o.BestFitMapping</code></td></tr><tr><td><code>ThrowOnUnmappableChar</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ThrowOnUnmappableChar</code> <code>o.ThrowOnUnmappableChar = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-BStrWrapper"><summary><b>BStrWrapper</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.BStrWrapper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new BStrWrapper(string value)</code></td></tr><tr><td><code>new BStrWrapper(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new BStrWrapper(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new BStrWrapper().@New([ :param = value ])</code> or <code>dnNew("BStrWrapper",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WrappedObject</code></td><td><code>string</code></td><td>read</td><td><code>o.WrappedObject</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ClassInterfaceAttribute"><summary><b>ClassInterfaceAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ClassInterfaceAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ClassInterfaceAttribute(ClassInterfaceType classInterfaceType)</code></td></tr><tr><td><code>new ClassInterfaceAttribute(short classInterfaceType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ClassInterfaceAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ClassInterfaceAttribute().@New([ :param = value ])</code> or <code>dnNew("ClassInterfaceAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>ClassInterfaceType</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CLong"><summary><b>CLong</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.CLong</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CLong(int value)</code></td></tr><tr><td><code>new CLong(IntPtr value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CLong(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CLong().@New([ :param = value ])</code> or <code>dnNew("CLong",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>IntPtr</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(CLong other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CoClassAttribute"><summary><b>CoClassAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.CoClassAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CoClassAttribute(Type coClass)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CoClassAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CoClassAttribute().@New([ :param = value ])</code> or <code>dnNew("CoClassAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CoClass</code></td><td><code>Type</code></td><td>read</td><td><code>o.CoClass</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CollectionsMarshal"><summary><b>CollectionsMarshal</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.CollectionsMarshal</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AsSpan</code></td><td><code>AsSpan(p1)</code></td><td><code>static Span&lt;T&gt; AsSpan&lt;T&gt;(List&lt;T&gt; list)</code></td></tr><tr><td><code>GetValueRefOrAddDefault</code></td><td><code>GetValueRefOrAddDefault(p1,p2)</code></td><td><code>static TValue GetValueRefOrAddDefault&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt; dictionary, TKey key, out bool exists)</code><br><code>static TValue GetValueRefOrAddDefault&lt;TKey, TValue, TAlternateKey&gt;(AlternateLookup&lt;TKey, TValue, TAlternateKey&gt; dictionary, TAlternateKey key, out bool exists)</code></td></tr><tr><td><code>GetValueRefOrNullRef</code></td><td><code>GetValueRefOrNullRef(p1,p2)</code></td><td><code>static TValue GetValueRefOrNullRef&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt; dictionary, TKey key)</code><br><code>static TValue GetValueRefOrNullRef&lt;TKey, TValue, TAlternateKey&gt;(AlternateLookup&lt;TKey, TValue, TAlternateKey&gt; dictionary, TAlternateKey key)</code></td></tr><tr><td><code>SetCount</code></td><td><code>SetCount(p1,p2)</code></td><td><code>static void SetCount&lt;T&gt;(List&lt;T&gt; list, int count)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ComAliasNameAttribute"><summary><b>ComAliasNameAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComAliasNameAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComAliasNameAttribute(string alias)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComAliasNameAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComAliasNameAttribute().@New([ :param = value ])</code> or <code>dnNew("ComAliasNameAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComAwareEventInfo"><summary><b>ComAwareEventInfo</b> <span class="muted">class · extends <a href="System.Reflection.html#c-EventInfo">EventInfo</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComAwareEventInfo</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<p class="muted">Implements: ICustomAttributeProvider</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComAwareEventInfo(Type type, string eventName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComAwareEventInfo(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComAwareEventInfo().@New([ :param = value ])</code> or <code>dnNew("ComAwareEventInfo",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Attributes</code></td><td><code>EventAttributes</code></td><td>read</td><td><code>o.getAttributes()</code></td></tr><tr><td><code>DeclaringType</code></td><td><code>Type</code></td><td>read</td><td><code>o.getDeclaringType()</code></td></tr><tr><td><code>MetadataToken</code></td><td><code>int</code></td><td>read</td><td><code>o.getMetadataToken()</code></td></tr><tr><td><code>Module</code></td><td><code>Module</code></td><td>read</td><td><code>o.getModule()</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.getName()</code></td></tr><tr><td><code>ReflectedType</code></td><td><code>Type</code></td><td>read</td><td><code>o.getReflectedType()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddEventHandler</code></td><td><code>AddEventHandler(p1,p2)</code></td><td><code>void AddEventHandler(object target, Delegate handler)</code></td></tr><tr><td><code>GetAddMethod</code></td><td><code>@GetAddMethod(value)</code><br><code>@GetAddMethod([ :nonPublic = … ])</code></td><td><code>MethodInfo GetAddMethod(bool nonPublic)</code></td></tr><tr><td><code>GetCustomAttributes</code></td><td><code>@GetCustomAttributes(value)</code><br><code>@GetCustomAttributes([ :inherit = … ])</code><br><code>@GetCustomAttributes([ :attributeType = …, :inherit = … ])</code></td><td><code>object[] GetCustomAttributes(Type attributeType, bool inherit)</code><br><code>object[] GetCustomAttributes(bool inherit)</code></td></tr><tr><td><code>GetCustomAttributesData</code></td><td><code>GetCustomAttributesData()</code></td><td><code>IList&lt;CustomAttributeData&gt; GetCustomAttributesData()</code></td></tr><tr><td><code>GetOtherMethods</code></td><td><code>GetOtherMethods(value)</code><br><code>GetOtherMethods([ :nonPublic = … ])</code></td><td><code>MethodInfo[] GetOtherMethods(bool nonPublic)</code></td></tr><tr><td><code>GetRaiseMethod</code></td><td><code>@GetRaiseMethod(value)</code><br><code>@GetRaiseMethod([ :nonPublic = … ])</code></td><td><code>MethodInfo GetRaiseMethod(bool nonPublic)</code></td></tr><tr><td><code>GetRemoveMethod</code></td><td><code>@GetRemoveMethod(value)</code><br><code>@GetRemoveMethod([ :nonPublic = … ])</code></td><td><code>MethodInfo GetRemoveMethod(bool nonPublic)</code></td></tr><tr><td><code>IsDefined</code></td><td><code>IsDefined(p1,p2)</code></td><td><code>bool IsDefined(Type attributeType, bool inherit)</code></td></tr><tr><td><code>RemoveEventHandler</code></td><td><code>RemoveEventHandler(p1,p2)</code></td><td><code>void RemoveEventHandler(object target, Delegate handler)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComCompatibleVersionAttribute"><summary><b>ComCompatibleVersionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComCompatibleVersionAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComCompatibleVersionAttribute(int major, int minor, int build, int revision)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComCompatibleVersionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComCompatibleVersionAttribute().@New([ :param = value ])</code> or <code>dnNew("ComCompatibleVersionAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MajorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MajorVersion</code></td></tr><tr><td><code>MinorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MinorVersion</code></td></tr><tr><td><code>BuildNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.BuildNumber</code></td></tr><tr><td><code>RevisionNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.RevisionNumber</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComConversionLossAttribute"><summary><b>ComConversionLossAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComConversionLossAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComConversionLossAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComConversionLossAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComConversionLossAttribute().@New([ :param = value ])</code> or <code>dnNew("ComConversionLossAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComDefaultInterfaceAttribute"><summary><b>ComDefaultInterfaceAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComDefaultInterfaceAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComDefaultInterfaceAttribute(Type defaultInterface)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComDefaultInterfaceAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComDefaultInterfaceAttribute().@New([ :param = value ])</code> or <code>dnNew("ComDefaultInterfaceAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Type</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComEventInterfaceAttribute"><summary><b>ComEventInterfaceAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComEventInterfaceAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComEventInterfaceAttribute(Type SourceInterface, Type EventProvider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComEventInterfaceAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComEventInterfaceAttribute().@New([ :param = value ])</code> or <code>dnNew("ComEventInterfaceAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SourceInterface</code></td><td><code>Type</code></td><td>read</td><td><code>o.SourceInterface</code></td></tr><tr><td><code>EventProvider</code></td><td><code>Type</code></td><td>read</td><td><code>o.EventProvider</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComEventsHelper"><summary><b>ComEventsHelper</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComEventsHelper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Combine</code></td><td><code>Combine(p1,p2,p3,p4)</code></td><td><code>static void Combine(object rcw, Guid iid, int dispid, Delegate d)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1,p2,p3,p4)</code></td><td><code>static Delegate Remove(object rcw, Guid iid, int dispid, Delegate d)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-COMException"><summary><b>COMException</b> <span class="muted">class · extends <a href="#c-ExternalException">ExternalException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.COMException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new COMException()</code></td></tr><tr><td><code>new COMException(string message)</code></td></tr><tr><td><code>new COMException(string message, Exception inner)</code></td></tr><tr><td><code>new COMException(string message, int errorCode)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new COMException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new COMException().@New([ :param = value ])</code> or <code>dnNew("COMException",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComImportAttribute"><summary><b>ComImportAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComImportAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComImportAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComImportAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComImportAttribute().@New([ :param = value ])</code> or <code>dnNew("ComImportAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComRegisterFunctionAttribute"><summary><b>ComRegisterFunctionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComRegisterFunctionAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComRegisterFunctionAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComRegisterFunctionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComRegisterFunctionAttribute().@New([ :param = value ])</code> or <code>dnNew("ComRegisterFunctionAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComSourceInterfacesAttribute"><summary><b>ComSourceInterfacesAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComSourceInterfacesAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComSourceInterfacesAttribute(string sourceInterfaces)</code></td></tr><tr><td><code>new ComSourceInterfacesAttribute(Type sourceInterface)</code></td></tr><tr><td><code>new ComSourceInterfacesAttribute(Type sourceInterface1, Type sourceInterface2)</code></td></tr><tr><td><code>new ComSourceInterfacesAttribute(Type sourceInterface1, Type sourceInterface2, Type sourceInterface3)</code></td></tr><tr><td><code>new ComSourceInterfacesAttribute(Type sourceInterface1, Type sourceInterface2, Type sourceInterface3, Type sourceInterface4)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComSourceInterfacesAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComSourceInterfacesAttribute().@New([ :param = value ])</code> or <code>dnNew("ComSourceInterfacesAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComUnregisterFunctionAttribute"><summary><b>ComUnregisterFunctionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComUnregisterFunctionAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComUnregisterFunctionAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComUnregisterFunctionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComUnregisterFunctionAttribute().@New([ :param = value ])</code> or <code>dnNew("ComUnregisterFunctionAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComVisibleAttribute"><summary><b>ComVisibleAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComVisibleAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComVisibleAttribute(bool visibility)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComVisibleAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComVisibleAttribute().@New([ :param = value ])</code> or <code>dnNew("ComVisibleAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>bool</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComWrappers"><summary><b>ComWrappers</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComWrappers</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetIUnknownImpl</code></td><td><code>GetIUnknownImpl()</code></td><td><code>static void GetIUnknownImpl(out IntPtr fpQueryInterface, out IntPtr fpAddRef, out IntPtr fpRelease)</code></td></tr><tr><td><code>GetOrCreateComInterfaceForObject</code></td><td><code>GetOrCreateComInterfaceForObject(p1,p2)</code></td><td><code>IntPtr GetOrCreateComInterfaceForObject(object instance, CreateComInterfaceFlags flags)</code></td></tr><tr><td><code>GetOrCreateObjectForComInstance</code></td><td><code>GetOrCreateObjectForComInstance(p1,p2)</code></td><td><code>object GetOrCreateObjectForComInstance(IntPtr externalComObject, CreateObjectFlags flags)</code></td></tr><tr><td><code>GetOrRegisterObjectForComInstance</code></td><td><code>GetOrRegisterObjectForComInstance([ :externalComObject = …, :flags = …, :wrapper = … ])</code><br><code>GetOrRegisterObjectForComInstance([ :externalComObject = …, :flags = …, :wrapper = …, :inner = … ])</code></td><td><code>object GetOrRegisterObjectForComInstance(IntPtr externalComObject, CreateObjectFlags flags, object wrapper)</code><br><code>object GetOrRegisterObjectForComInstance(IntPtr externalComObject, CreateObjectFlags flags, object wrapper, IntPtr inner)</code></td></tr><tr><td><code>RegisterForMarshalling</code></td><td><code>RegisterForMarshalling(p1)</code></td><td><code>static void RegisterForMarshalling(ComWrappers instance)</code></td></tr><tr><td><code>RegisterForTrackerSupport</code></td><td><code>RegisterForTrackerSupport(p1)</code></td><td><code>static void RegisterForTrackerSupport(ComWrappers instance)</code></td></tr><tr><td><code>TryGetComInstance</code></td><td><code>TryGetComInstance(p1)</code></td><td><code>static bool TryGetComInstance(object obj, out IntPtr unknown)</code></td></tr><tr><td><code>TryGetObject</code></td><td><code>TryGetObject(p1)</code></td><td><code>static bool TryGetObject(IntPtr unknown, out object obj)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ComWrappersComInterfaceDispatch"><summary><b>ComWrappersComInterfaceDispatch</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComWrappers+ComInterfaceDispatch</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Vtable</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.Vtable</code> <code>o.Vtable = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetInstance</code></td><td><code>GetInstance(value)</code><br><code>GetInstance([ :dispatchPtr = … ])</code></td><td><code>static T GetInstance&lt;T&gt;(ComInterfaceDispatch* dispatchPtr)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ComWrappersComInterfaceEntry"><summary><b>ComWrappersComInterfaceEntry</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ComWrappers+ComInterfaceEntry</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IID</code></td><td><code>Guid</code></td><td>read, write</td><td><code>o.IID</code> <code>o.IID = v</code></td></tr><tr><td><code>Vtable</code></td><td><code>IntPtr</code></td><td>read, write</td><td><code>o.Vtable</code> <code>o.Vtable = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CriticalHandle"><summary><b>CriticalHandle</b> <span class="muted">class abstract · extends CriticalFinalizerObject</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.CriticalHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsClosed</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsClosed</code></td></tr><tr><td><code>IsInvalid</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInvalid</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Close</code></td><td><code>Close()</code></td><td><code>void Close()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>SetHandleAsInvalid</code></td><td><code>SetHandleAsInvalid()</code></td><td><code>void SetHandleAsInvalid()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CULong"><summary><b>CULong</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.CULong</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CULong(uint value)</code></td></tr><tr><td><code>new CULong(UIntPtr value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CULong(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CULong().@New([ :param = value ])</code> or <code>dnNew("CULong",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>UIntPtr</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(CULong other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DefaultCharSetAttribute"><summary><b>DefaultCharSetAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DefaultCharSetAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultCharSetAttribute(CharSet charSet)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultCharSetAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultCharSetAttribute().@New([ :param = value ])</code> or <code>dnNew("DefaultCharSetAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CharSet</code></td><td><code>CharSet</code></td><td>read</td><td><code>o.CharSet</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DefaultDllImportSearchPathsAttribute"><summary><b>DefaultDllImportSearchPathsAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DefaultDllImportSearchPathsAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultDllImportSearchPathsAttribute(DllImportSearchPath paths)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultDllImportSearchPathsAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultDllImportSearchPathsAttribute().@New([ :param = value ])</code> or <code>dnNew("DefaultDllImportSearchPathsAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Paths</code></td><td><code>DllImportSearchPath</code></td><td>read</td><td><code>o.Paths</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DefaultParameterValueAttribute"><summary><b>DefaultParameterValueAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DefaultParameterValueAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultParameterValueAttribute(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DefaultParameterValueAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultParameterValueAttribute().@New([ :param = value ])</code> or <code>dnNew("DefaultParameterValueAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>object</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DispatchWrapper"><summary><b>DispatchWrapper</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DispatchWrapper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DispatchWrapper(object obj)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DispatchWrapper(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DispatchWrapper().@New([ :param = value ])</code> or <code>dnNew("DispatchWrapper",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WrappedObject</code></td><td><code>object</code></td><td>read</td><td><code>o.WrappedObject</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DispIdAttribute"><summary><b>DispIdAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DispIdAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DispIdAttribute(int dispId)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DispIdAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DispIdAttribute().@New([ :param = value ])</code> or <code>dnNew("DispIdAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>int</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DllImportAttribute"><summary><b>DllImportAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DllImportAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DllImportAttribute(string dllName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DllImportAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DllImportAttribute().@New([ :param = value ])</code> or <code>dnNew("DllImportAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>EntryPoint</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EntryPoint</code> <code>o.EntryPoint = v</code></td></tr><tr><td><code>CharSet</code></td><td><code>CharSet</code></td><td>read, write</td><td><code>o.CharSet</code> <code>o.CharSet = v</code></td></tr><tr><td><code>SetLastError</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SetLastError</code> <code>o.SetLastError = v</code></td></tr><tr><td><code>ExactSpelling</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExactSpelling</code> <code>o.ExactSpelling = v</code></td></tr><tr><td><code>CallingConvention</code></td><td><code>CallingConvention</code></td><td>read, write</td><td><code>o.CallingConvention</code> <code>o.CallingConvention = v</code></td></tr><tr><td><code>BestFitMapping</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.BestFitMapping</code> <code>o.BestFitMapping = v</code></td></tr><tr><td><code>PreserveSig</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.PreserveSig</code> <code>o.PreserveSig = v</code></td></tr><tr><td><code>ThrowOnUnmappableChar</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ThrowOnUnmappableChar</code> <code>o.ThrowOnUnmappableChar = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DynamicInterfaceCastableImplementationAttribute"><summary><b>DynamicInterfaceCastableImplementationAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.DynamicInterfaceCastableImplementationAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DynamicInterfaceCastableImplementationAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DynamicInterfaceCastableImplementationAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DynamicInterfaceCastableImplementationAttribute().@New([ :param = value ])</code> or <code>dnNew("DynamicInterfaceCastableImplementationAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ErrorWrapper"><summary><b>ErrorWrapper</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ErrorWrapper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ErrorWrapper(int errorCode)</code></td></tr><tr><td><code>new ErrorWrapper(object errorCode)</code></td></tr><tr><td><code>new ErrorWrapper(Exception e)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ErrorWrapper(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ErrorWrapper().@New([ :param = value ])</code> or <code>dnNew("ErrorWrapper",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ErrorCode</code></td><td><code>int</code></td><td>read</td><td><code>o.ErrorCode</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ExternalException"><summary><b>ExternalException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ExternalException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ExternalException()</code></td></tr><tr><td><code>new ExternalException(string message)</code></td></tr><tr><td><code>new ExternalException(string message, Exception inner)</code></td></tr><tr><td><code>new ExternalException(string message, int errorCode)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ExternalException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ExternalException().@New([ :param = value ])</code> or <code>dnNew("ExternalException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ErrorCode</code></td><td><code>int</code></td><td>read</td><td><code>o.ErrorCode</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FieldOffsetAttribute"><summary><b>FieldOffsetAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.FieldOffsetAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FieldOffsetAttribute(int offset)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FieldOffsetAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FieldOffsetAttribute().@New([ :param = value ])</code> or <code>dnNew("FieldOffsetAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>int</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GCHandle"><summary><b>GCHandle</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.GCHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Target</code></td><td><code>object</code></td><td>read, write</td><td><code>o.Target</code> <code>o.Target = v</code></td></tr><tr><td><code>IsAllocated</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAllocated</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddrOfPinnedObject</code></td><td><code>AddrOfPinnedObject()</code></td><td><code>IntPtr AddrOfPinnedObject()</code></td></tr><tr><td><code>Alloc</code></td><td><code>Alloc(value)</code><br><code>Alloc([ :value = … ])</code><br><code>Alloc([ :value = …, :type = … ])</code></td><td><code>static GCHandle Alloc(object value)</code><br><code>static GCHandle Alloc(object value, GCHandleType type)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(GCHandle other)</code></td></tr><tr><td><code>Free</code></td><td><code>Free()</code></td><td><code>void Free()</code></td></tr><tr><td><code>FromIntPtr</code></td><td><code>FromIntPtr(p1)</code></td><td><code>static GCHandle FromIntPtr(IntPtr value)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToIntPtr</code></td><td><code>ToIntPtr(p1)</code></td><td><code>static IntPtr ToIntPtr(GCHandle value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GuidAttribute"><summary><b>GuidAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.GuidAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GuidAttribute(string guid)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GuidAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GuidAttribute().@New([ :param = value ])</code> or <code>dnNew("GuidAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-HandleCollector"><summary><b>HandleCollector</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.HandleCollector</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HandleCollector(string name, int initialThreshold)</code></td></tr><tr><td><code>new HandleCollector(string name, int initialThreshold, int maximumThreshold)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HandleCollector(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HandleCollector().@New([ :param = value ])</code> or <code>dnNew("HandleCollector",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>InitialThreshold</code></td><td><code>int</code></td><td>read</td><td><code>o.InitialThreshold</code></td></tr><tr><td><code>MaximumThreshold</code></td><td><code>int</code></td><td>read</td><td><code>o.MaximumThreshold</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add()</code></td><td><code>void Add()</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove()</code></td><td><code>void Remove()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-HandleRef"><summary><b>HandleRef</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.HandleRef</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HandleRef(object wrapper, IntPtr handle)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new HandleRef(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HandleRef().@New([ :param = value ])</code> or <code>dnNew("HandleRef",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Wrapper</code></td><td><code>object</code></td><td>read</td><td><code>o.Wrapper</code></td></tr><tr><td><code>Handle</code></td><td><code>IntPtr</code></td><td>read</td><td><code>o.Handle</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToIntPtr</code></td><td><code>ToIntPtr(p1)</code></td><td><code>static IntPtr ToIntPtr(HandleRef value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICustomAdapter"><summary><b>ICustomAdapter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ICustomAdapter</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetUnderlyingObject</code></td><td><code>GetUnderlyingObject()</code></td><td><code>object GetUnderlyingObject()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICustomFactory"><summary><b>ICustomFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ICustomFactory</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateInstance</code></td><td><code>CreateInstance(p1)</code></td><td><code>MarshalByRefObject CreateInstance(Type serverType)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICustomMarshaler"><summary><b>ICustomMarshaler</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ICustomMarshaler</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CleanUpManagedData</code></td><td><code>CleanUpManagedData(p1)</code></td><td><code>void CleanUpManagedData(object ManagedObj)</code></td></tr><tr><td><code>CleanUpNativeData</code></td><td><code>CleanUpNativeData(p1)</code></td><td><code>void CleanUpNativeData(IntPtr pNativeData)</code></td></tr><tr><td><code>GetNativeDataSize</code></td><td><code>GetNativeDataSize()</code></td><td><code>int GetNativeDataSize()</code></td></tr><tr><td><code>MarshalManagedToNative</code></td><td><code>MarshalManagedToNative(p1)</code></td><td><code>IntPtr MarshalManagedToNative(object ManagedObj)</code></td></tr><tr><td><code>MarshalNativeToManaged</code></td><td><code>MarshalNativeToManaged(p1)</code></td><td><code>object MarshalNativeToManaged(IntPtr pNativeData)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ICustomQueryInterface"><summary><b>ICustomQueryInterface</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ICustomQueryInterface</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetInterface</code></td><td><code>GetInterface(p1)</code></td><td><code>CustomQueryInterfaceResult GetInterface(ref Guid iid, out IntPtr ppv)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDynamicInterfaceCastable"><summary><b>IDynamicInterfaceCastable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.IDynamicInterfaceCastable</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetInterfaceImplementation</code></td><td><code>GetInterfaceImplementation(p1)</code></td><td><code>RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)</code></td></tr><tr><td><code>IsInterfaceImplemented</code></td><td><code>IsInterfaceImplemented(p1,p2)</code></td><td><code>bool IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ImportedFromTypeLibAttribute"><summary><b>ImportedFromTypeLibAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ImportedFromTypeLibAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ImportedFromTypeLibAttribute(string tlbFile)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ImportedFromTypeLibAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ImportedFromTypeLibAttribute().@New([ :param = value ])</code> or <code>dnNew("ImportedFromTypeLibAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-InAttribute"><summary><b>InAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.InAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new InAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new InAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new InAttribute().@New([ :param = value ])</code> or <code>dnNew("InAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-InterfaceTypeAttribute"><summary><b>InterfaceTypeAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.InterfaceTypeAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new InterfaceTypeAttribute(ComInterfaceType interfaceType)</code></td></tr><tr><td><code>new InterfaceTypeAttribute(short interfaceType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new InterfaceTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new InterfaceTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("InterfaceTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>ComInterfaceType</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-InvalidComObjectException"><summary><b>InvalidComObjectException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.InvalidComObjectException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new InvalidComObjectException()</code></td></tr><tr><td><code>new InvalidComObjectException(string message)</code></td></tr><tr><td><code>new InvalidComObjectException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new InvalidComObjectException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new InvalidComObjectException().@New([ :param = value ])</code> or <code>dnNew("InvalidComObjectException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-InvalidOleVariantTypeException"><summary><b>InvalidOleVariantTypeException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.InvalidOleVariantTypeException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new InvalidOleVariantTypeException()</code></td></tr><tr><td><code>new InvalidOleVariantTypeException(string message)</code></td></tr><tr><td><code>new InvalidOleVariantTypeException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new InvalidOleVariantTypeException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new InvalidOleVariantTypeException().@New([ :param = value ])</code> or <code>dnNew("InvalidOleVariantTypeException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LCIDConversionAttribute"><summary><b>LCIDConversionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.LCIDConversionAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LCIDConversionAttribute(int lcid)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LCIDConversionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LCIDConversionAttribute().@New([ :param = value ])</code> or <code>dnNew("LCIDConversionAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>int</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LibraryImportAttribute"><summary><b>LibraryImportAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.LibraryImportAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LibraryImportAttribute(string libraryName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LibraryImportAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LibraryImportAttribute().@New([ :param = value ])</code> or <code>dnNew("LibraryImportAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LibraryName</code></td><td><code>string</code></td><td>read</td><td><code>o.LibraryName</code></td></tr><tr><td><code>EntryPoint</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EntryPoint</code> <code>o.EntryPoint = v</code></td></tr><tr><td><code>StringMarshalling</code></td><td><code>StringMarshalling</code></td><td>read, write</td><td><code>o.StringMarshalling</code> <code>o.StringMarshalling = v</code></td></tr><tr><td><code>StringMarshallingCustomType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.StringMarshallingCustomType</code> <code>o.StringMarshallingCustomType = v</code></td></tr><tr><td><code>SetLastError</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SetLastError</code> <code>o.SetLastError = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ManagedToNativeComInteropStubAttribute"><summary><b>ManagedToNativeComInteropStubAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ManagedToNativeComInteropStubAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ManagedToNativeComInteropStubAttribute(Type classType, string methodName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ManagedToNativeComInteropStubAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ManagedToNativeComInteropStubAttribute().@New([ :param = value ])</code> or <code>dnNew("ManagedToNativeComInteropStubAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ClassType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ClassType</code></td></tr><tr><td><code>MethodName</code></td><td><code>string</code></td><td>read</td><td><code>o.MethodName</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Marshal"><summary><b>Marshal</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.Marshal</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SystemDefaultCharSize</code></td><td><code>int</code></td><td>read · static</td><td><code>o.SystemDefaultCharSize</code></td></tr><tr><td><code>SystemMaxDBCSCharSize</code></td><td><code>int</code></td><td>read · static</td><td><code>o.SystemMaxDBCSCharSize</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddRef</code></td><td><code>AddRef(p1)</code></td><td><code>static int AddRef(IntPtr pUnk)</code></td></tr><tr><td><code>AllocCoTaskMem</code></td><td><code>AllocCoTaskMem(p1)</code></td><td><code>static IntPtr AllocCoTaskMem(int cb)</code></td></tr><tr><td><code>AllocHGlobal</code></td><td><code>AllocHGlobal(p1)</code></td><td><code>static IntPtr AllocHGlobal(int cb)</code><br><code>static IntPtr AllocHGlobal(IntPtr cb)</code></td></tr><tr><td><code>AreComObjectsAvailableForCleanup</code></td><td><code>AreComObjectsAvailableForCleanup()</code></td><td><code>static bool AreComObjectsAvailableForCleanup()</code></td></tr><tr><td><code>BindToMoniker</code></td><td><code>BindToMoniker(p1)</code></td><td><code>static object BindToMoniker(string monikerName)</code></td></tr><tr><td><code>ChangeWrapperHandleStrength</code></td><td><code>ChangeWrapperHandleStrength(p1,p2)</code></td><td><code>static void ChangeWrapperHandleStrength(object otp, bool fIsWeak)</code></td></tr><tr><td><code>CleanupUnusedObjectsInCurrentContext</code></td><td><code>CleanupUnusedObjectsInCurrentContext()</code></td><td><code>static void CleanupUnusedObjectsInCurrentContext()</code></td></tr><tr><td><code>Copy</code></td><td><code>Copy(p1,p2,p3,p4)</code></td><td><code>static void Copy(int[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(char[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(short[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(long[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(float[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(double[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(byte[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(IntPtr[] source, int startIndex, IntPtr destination, int length)</code><br><code>static void Copy(IntPtr source, int[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, char[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, short[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, long[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, float[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, double[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, byte[] destination, int startIndex, int length)</code><br><code>static void Copy(IntPtr source, IntPtr[] destination, int startIndex, int length)</code></td></tr><tr><td><code>CreateAggregatedObject</code></td><td><code>CreateAggregatedObject(p1,p2)</code></td><td><code>static IntPtr CreateAggregatedObject(IntPtr pOuter, object o)</code><br><code>static IntPtr CreateAggregatedObject&lt;T&gt;(IntPtr pOuter, T o)</code></td></tr><tr><td><code>CreateWrapperOfType</code></td><td><code>CreateWrapperOfType(value)</code><br><code>CreateWrapperOfType([ :o = … ])</code><br><code>CreateWrapperOfType([ :o = …, :t = … ])</code></td><td><code>static object CreateWrapperOfType(object o, Type t)</code><br><code>static TWrapper CreateWrapperOfType&lt;T, TWrapper&gt;(T o)</code></td></tr><tr><td><code>DestroyStructure</code></td><td><code>DestroyStructure(value)</code><br><code>DestroyStructure([ :ptr = … ])</code><br><code>DestroyStructure([ :ptr = …, :structuretype = … ])</code></td><td><code>static void DestroyStructure(IntPtr ptr, Type structuretype)</code><br><code>static void DestroyStructure&lt;T&gt;(IntPtr ptr)</code></td></tr><tr><td><code>FinalReleaseComObject</code></td><td><code>FinalReleaseComObject(p1)</code></td><td><code>static int FinalReleaseComObject(object o)</code></td></tr><tr><td><code>FreeBSTR</code></td><td><code>FreeBSTR(p1)</code></td><td><code>static void FreeBSTR(IntPtr ptr)</code></td></tr><tr><td><code>FreeCoTaskMem</code></td><td><code>FreeCoTaskMem(p1)</code></td><td><code>static void FreeCoTaskMem(IntPtr ptr)</code></td></tr><tr><td><code>FreeHGlobal</code></td><td><code>FreeHGlobal(p1)</code></td><td><code>static void FreeHGlobal(IntPtr hglobal)</code></td></tr><tr><td><code>GenerateGuidForType</code></td><td><code>GenerateGuidForType(p1)</code></td><td><code>static Guid GenerateGuidForType(Type type)</code></td></tr><tr><td><code>GenerateProgIdForType</code></td><td><code>GenerateProgIdForType(p1)</code></td><td><code>static string GenerateProgIdForType(Type type)</code></td></tr><tr><td><code>GetComInterfaceForObject</code></td><td><code>GetComInterfaceForObject(value)</code><br><code>GetComInterfaceForObject([ :o = … ])</code><br><code>GetComInterfaceForObject([ :o = …, :T = … ])</code><br><code>GetComInterfaceForObject([ :o = …, :T = …, :mode = … ])</code></td><td><code>static IntPtr GetComInterfaceForObject(object o, Type T)</code><br><code>static IntPtr GetComInterfaceForObject&lt;T, TInterface&gt;(T o)</code><br><code>static IntPtr GetComInterfaceForObject(object o, Type T, CustomQueryInterfaceMode mode)</code></td></tr><tr><td><code>GetComObjectData</code></td><td><code>GetComObjectData(p1,p2)</code></td><td><code>static object GetComObjectData(object obj, object key)</code></td></tr><tr><td><code>GetDelegateForFunctionPointer</code></td><td><code>GetDelegateForFunctionPointer(value)</code><br><code>GetDelegateForFunctionPointer([ :ptr = … ])</code><br><code>GetDelegateForFunctionPointer([ :ptr = …, :t = … ])</code></td><td><code>static Delegate GetDelegateForFunctionPointer(IntPtr ptr, Type t)</code><br><code>static TDelegate GetDelegateForFunctionPointer&lt;TDelegate&gt;(IntPtr ptr)</code></td></tr><tr><td><code>GetEndComSlot</code></td><td><code>GetEndComSlot(p1)</code></td><td><code>static int GetEndComSlot(Type t)</code></td></tr><tr><td><code>GetExceptionCode</code></td><td><code>GetExceptionCode()</code></td><td><code>static int GetExceptionCode()</code></td></tr><tr><td><code>GetExceptionForHR</code></td><td><code>GetExceptionForHR(value)</code><br><code>GetExceptionForHR([ :errorCode = … ])</code><br><code>GetExceptionForHR([ :errorCode = …, :errorInfo = … ])</code></td><td><code>static Exception GetExceptionForHR(int errorCode)</code><br><code>static Exception GetExceptionForHR(int errorCode, IntPtr errorInfo)</code></td></tr><tr><td><code>GetExceptionPointers</code></td><td><code>GetExceptionPointers()</code></td><td><code>static IntPtr GetExceptionPointers()</code></td></tr><tr><td><code>GetFunctionPointerForDelegate</code></td><td><code>GetFunctionPointerForDelegate(p1)</code></td><td><code>static IntPtr GetFunctionPointerForDelegate(Delegate d)</code><br><code>static IntPtr GetFunctionPointerForDelegate&lt;TDelegate&gt;(TDelegate d)</code></td></tr><tr><td><code>GetHINSTANCE</code></td><td><code>GetHINSTANCE(p1)</code></td><td><code>static IntPtr GetHINSTANCE(Module m)</code></td></tr><tr><td><code>GetHRForException</code></td><td><code>GetHRForException(p1)</code></td><td><code>static int GetHRForException(Exception e)</code></td></tr><tr><td><code>GetHRForLastWin32Error</code></td><td><code>GetHRForLastWin32Error()</code></td><td><code>static int GetHRForLastWin32Error()</code></td></tr><tr><td><code>GetIDispatchForObject</code></td><td><code>GetIDispatchForObject(p1)</code></td><td><code>static IntPtr GetIDispatchForObject(object o)</code></td></tr><tr><td><code>GetIUnknownForObject</code></td><td><code>GetIUnknownForObject(p1)</code></td><td><code>static IntPtr GetIUnknownForObject(object o)</code></td></tr><tr><td><code>GetLastPInvokeError</code></td><td><code>GetLastPInvokeError()</code></td><td><code>static int GetLastPInvokeError()</code></td></tr><tr><td><code>GetLastPInvokeErrorMessage</code></td><td><code>GetLastPInvokeErrorMessage()</code></td><td><code>static string GetLastPInvokeErrorMessage()</code></td></tr><tr><td><code>GetLastSystemError</code></td><td><code>GetLastSystemError()</code></td><td><code>static int GetLastSystemError()</code></td></tr><tr><td><code>GetLastWin32Error</code></td><td><code>GetLastWin32Error()</code></td><td><code>static int GetLastWin32Error()</code></td></tr><tr><td><code>GetNativeVariantForObject</code></td><td><code>GetNativeVariantForObject(p1,p2)</code></td><td><code>static void GetNativeVariantForObject(object obj, IntPtr pDstNativeVariant)</code><br><code>static void GetNativeVariantForObject&lt;T&gt;(T obj, IntPtr pDstNativeVariant)</code></td></tr><tr><td><code>GetObjectForIUnknown</code></td><td><code>GetObjectForIUnknown(p1)</code></td><td><code>static object GetObjectForIUnknown(IntPtr pUnk)</code></td></tr><tr><td><code>GetObjectForNativeVariant</code></td><td><code>GetObjectForNativeVariant(p1)</code></td><td><code>static object GetObjectForNativeVariant(IntPtr pSrcNativeVariant)</code><br><code>static T GetObjectForNativeVariant&lt;T&gt;(IntPtr pSrcNativeVariant)</code></td></tr><tr><td><code>GetObjectsForNativeVariants</code></td><td><code>GetObjectsForNativeVariants(p1,p2)</code></td><td><code>static object[] GetObjectsForNativeVariants(IntPtr aSrcNativeVariant, int cVars)</code><br><code>static T[] GetObjectsForNativeVariants&lt;T&gt;(IntPtr aSrcNativeVariant, int cVars)</code></td></tr><tr><td><code>GetPInvokeErrorMessage</code></td><td><code>GetPInvokeErrorMessage(p1)</code></td><td><code>static string GetPInvokeErrorMessage(int error)</code></td></tr><tr><td><code>GetStartComSlot</code></td><td><code>GetStartComSlot(p1)</code></td><td><code>static int GetStartComSlot(Type t)</code></td></tr><tr><td><code>GetTypedObjectForIUnknown</code></td><td><code>GetTypedObjectForIUnknown(p1,p2)</code></td><td><code>static object GetTypedObjectForIUnknown(IntPtr pUnk, Type t)</code></td></tr><tr><td><code>GetTypeFromCLSID</code></td><td><code>GetTypeFromCLSID(p1)</code></td><td><code>static Type GetTypeFromCLSID(Guid clsid)</code></td></tr><tr><td><code>GetTypeInfoName</code></td><td><code>GetTypeInfoName(p1)</code></td><td><code>static string GetTypeInfoName(ITypeInfo typeInfo)</code></td></tr><tr><td><code>GetUniqueObjectForIUnknown</code></td><td><code>GetUniqueObjectForIUnknown(p1)</code></td><td><code>static object GetUniqueObjectForIUnknown(IntPtr unknown)</code></td></tr><tr><td><code>InitHandle</code></td><td><code>InitHandle(p1,p2)</code></td><td><code>static void InitHandle(SafeHandle safeHandle, IntPtr handle)</code></td></tr><tr><td><code>IsComObject</code></td><td><code>IsComObject(p1)</code></td><td><code>static bool IsComObject(object o)</code></td></tr><tr><td><code>IsTypeVisibleFromCom</code></td><td><code>IsTypeVisibleFromCom(p1)</code></td><td><code>static bool IsTypeVisibleFromCom(Type t)</code></td></tr><tr><td><code>OffsetOf</code></td><td><code>OffsetOf(value)</code><br><code>OffsetOf([ :fieldName = … ])</code><br><code>OffsetOf([ :t = …, :fieldName = … ])</code></td><td><code>static IntPtr OffsetOf(Type t, string fieldName)</code><br><code>static IntPtr OffsetOf&lt;T&gt;(string fieldName)</code></td></tr><tr><td><code>Prelink</code></td><td><code>Prelink(p1)</code></td><td><code>static void Prelink(MethodInfo m)</code></td></tr><tr><td><code>PrelinkAll</code></td><td><code>PrelinkAll(p1)</code></td><td><code>static void PrelinkAll(Type c)</code></td></tr><tr><td><code>PtrToStringAnsi</code></td><td><code>PtrToStringAnsi(value)</code><br><code>PtrToStringAnsi([ :ptr = … ])</code><br><code>PtrToStringAnsi([ :ptr = …, :len = … ])</code></td><td><code>static string PtrToStringAnsi(IntPtr ptr)</code><br><code>static string PtrToStringAnsi(IntPtr ptr, int len)</code></td></tr><tr><td><code>PtrToStringAuto</code></td><td><code>PtrToStringAuto(value)</code><br><code>PtrToStringAuto([ :ptr = … ])</code><br><code>PtrToStringAuto([ :ptr = …, :len = … ])</code></td><td><code>static string PtrToStringAuto(IntPtr ptr, int len)</code><br><code>static string PtrToStringAuto(IntPtr ptr)</code></td></tr><tr><td><code>PtrToStringBSTR</code></td><td><code>PtrToStringBSTR(p1)</code></td><td><code>static string PtrToStringBSTR(IntPtr ptr)</code></td></tr><tr><td><code>PtrToStringUni</code></td><td><code>PtrToStringUni(value)</code><br><code>PtrToStringUni([ :ptr = … ])</code><br><code>PtrToStringUni([ :ptr = …, :len = … ])</code></td><td><code>static string PtrToStringUni(IntPtr ptr)</code><br><code>static string PtrToStringUni(IntPtr ptr, int len)</code></td></tr><tr><td><code>PtrToStringUTF8</code></td><td><code>PtrToStringUTF8(value)</code><br><code>PtrToStringUTF8([ :ptr = … ])</code><br><code>PtrToStringUTF8([ :ptr = …, :byteLen = … ])</code></td><td><code>static string PtrToStringUTF8(IntPtr ptr)</code><br><code>static string PtrToStringUTF8(IntPtr ptr, int byteLen)</code></td></tr><tr><td><code>PtrToStructure</code></td><td><code>PtrToStructure(value)</code><br><code>PtrToStructure([ :ptr = … ])</code><br><code>PtrToStructure([ :ptr = …, :structureType = … ])</code><br><code>PtrToStructure([ :ptr = …, :structure = … ])</code></td><td><code>static object PtrToStructure(IntPtr ptr, Type structureType)</code><br><code>static void PtrToStructure(IntPtr ptr, object structure)</code><br><code>static void PtrToStructure&lt;T&gt;(IntPtr ptr, T structure)</code><br><code>static T PtrToStructure&lt;T&gt;(IntPtr ptr)</code></td></tr><tr><td><code>QueryInterface</code></td><td><code>QueryInterface(p1,p2)</code></td><td><code>static int QueryInterface(IntPtr pUnk, ref Guid iid, out IntPtr ppv)</code></td></tr><tr><td><code>ReadByte</code></td><td><code>ReadByte(value)</code><br><code>ReadByte([ :ptr = … ])</code><br><code>ReadByte([ :ptr = …, :ofs = … ])</code></td><td><code>static byte ReadByte(object ptr, int ofs)</code><br><code>static byte ReadByte(IntPtr ptr, int ofs)</code><br><code>static byte ReadByte(IntPtr ptr)</code></td></tr><tr><td><code>ReadInt16</code></td><td><code>ReadInt16(value)</code><br><code>ReadInt16([ :ptr = … ])</code><br><code>ReadInt16([ :ptr = …, :ofs = … ])</code></td><td><code>static short ReadInt16(object ptr, int ofs)</code><br><code>static short ReadInt16(IntPtr ptr, int ofs)</code><br><code>static short ReadInt16(IntPtr ptr)</code></td></tr><tr><td><code>ReadInt32</code></td><td><code>ReadInt32(value)</code><br><code>ReadInt32([ :ptr = … ])</code><br><code>ReadInt32([ :ptr = …, :ofs = … ])</code></td><td><code>static int ReadInt32(object ptr, int ofs)</code><br><code>static int ReadInt32(IntPtr ptr, int ofs)</code><br><code>static int ReadInt32(IntPtr ptr)</code></td></tr><tr><td><code>ReadInt64</code></td><td><code>ReadInt64(value)</code><br><code>ReadInt64([ :ptr = … ])</code><br><code>ReadInt64([ :ptr = …, :ofs = … ])</code></td><td><code>static long ReadInt64(object ptr, int ofs)</code><br><code>static long ReadInt64(IntPtr ptr, int ofs)</code><br><code>static long ReadInt64(IntPtr ptr)</code></td></tr><tr><td><code>ReadIntPtr</code></td><td><code>ReadIntPtr(value)</code><br><code>ReadIntPtr([ :ptr = … ])</code><br><code>ReadIntPtr([ :ptr = …, :ofs = … ])</code></td><td><code>static IntPtr ReadIntPtr(object ptr, int ofs)</code><br><code>static IntPtr ReadIntPtr(IntPtr ptr, int ofs)</code><br><code>static IntPtr ReadIntPtr(IntPtr ptr)</code></td></tr><tr><td><code>ReAllocCoTaskMem</code></td><td><code>ReAllocCoTaskMem(p1,p2)</code></td><td><code>static IntPtr ReAllocCoTaskMem(IntPtr pv, int cb)</code></td></tr><tr><td><code>ReAllocHGlobal</code></td><td><code>ReAllocHGlobal(p1,p2)</code></td><td><code>static IntPtr ReAllocHGlobal(IntPtr pv, IntPtr cb)</code></td></tr><tr><td><code>Release</code></td><td><code>callMethod("Release",[p1])</code></td><td><code>static int Release(IntPtr pUnk)</code></td></tr><tr><td><code>ReleaseComObject</code></td><td><code>ReleaseComObject(p1)</code></td><td><code>static int ReleaseComObject(object o)</code></td></tr><tr><td><code>SecureStringToBSTR</code></td><td><code>SecureStringToBSTR(p1)</code></td><td><code>static IntPtr SecureStringToBSTR(SecureString s)</code></td></tr><tr><td><code>SecureStringToCoTaskMemAnsi</code></td><td><code>SecureStringToCoTaskMemAnsi(p1)</code></td><td><code>static IntPtr SecureStringToCoTaskMemAnsi(SecureString s)</code></td></tr><tr><td><code>SecureStringToCoTaskMemUnicode</code></td><td><code>SecureStringToCoTaskMemUnicode(p1)</code></td><td><code>static IntPtr SecureStringToCoTaskMemUnicode(SecureString s)</code></td></tr><tr><td><code>SecureStringToGlobalAllocAnsi</code></td><td><code>SecureStringToGlobalAllocAnsi(p1)</code></td><td><code>static IntPtr SecureStringToGlobalAllocAnsi(SecureString s)</code></td></tr><tr><td><code>SecureStringToGlobalAllocUnicode</code></td><td><code>SecureStringToGlobalAllocUnicode(p1)</code></td><td><code>static IntPtr SecureStringToGlobalAllocUnicode(SecureString s)</code></td></tr><tr><td><code>SetComObjectData</code></td><td><code>SetComObjectData(p1,p2,p3)</code></td><td><code>static bool SetComObjectData(object obj, object key, object data)</code></td></tr><tr><td><code>SetLastPInvokeError</code></td><td><code>SetLastPInvokeError(p1)</code></td><td><code>static void SetLastPInvokeError(int error)</code></td></tr><tr><td><code>SetLastSystemError</code></td><td><code>SetLastSystemError(p1)</code></td><td><code>static void SetLastSystemError(int error)</code></td></tr><tr><td><code>SizeOf</code></td><td><code>SizeOf(NULL)</code><br><code>SizeOf(value)</code><br><code>SizeOf([ :structure = … ])</code><br><code>SizeOf([ :t = … ])</code></td><td><code>static int SizeOf(object structure)</code><br><code>static int SizeOf&lt;T&gt;(T structure)</code><br><code>static int SizeOf(Type t)</code><br><code>static int SizeOf&lt;T&gt;()</code></td></tr><tr><td><code>StringToBSTR</code></td><td><code>StringToBSTR(p1)</code></td><td><code>static IntPtr StringToBSTR(string s)</code></td></tr><tr><td><code>StringToCoTaskMemAnsi</code></td><td><code>StringToCoTaskMemAnsi(p1)</code></td><td><code>static IntPtr StringToCoTaskMemAnsi(string s)</code></td></tr><tr><td><code>StringToCoTaskMemAuto</code></td><td><code>StringToCoTaskMemAuto(p1)</code></td><td><code>static IntPtr StringToCoTaskMemAuto(string s)</code></td></tr><tr><td><code>StringToCoTaskMemUni</code></td><td><code>StringToCoTaskMemUni(p1)</code></td><td><code>static IntPtr StringToCoTaskMemUni(string s)</code></td></tr><tr><td><code>StringToCoTaskMemUTF8</code></td><td><code>StringToCoTaskMemUTF8(p1)</code></td><td><code>static IntPtr StringToCoTaskMemUTF8(string s)</code></td></tr><tr><td><code>StringToHGlobalAnsi</code></td><td><code>StringToHGlobalAnsi(p1)</code></td><td><code>static IntPtr StringToHGlobalAnsi(string s)</code></td></tr><tr><td><code>StringToHGlobalAuto</code></td><td><code>StringToHGlobalAuto(p1)</code></td><td><code>static IntPtr StringToHGlobalAuto(string s)</code></td></tr><tr><td><code>StringToHGlobalUni</code></td><td><code>StringToHGlobalUni(p1)</code></td><td><code>static IntPtr StringToHGlobalUni(string s)</code></td></tr><tr><td><code>StructureToPtr</code></td><td><code>StructureToPtr(p1,p2,p3)</code></td><td><code>static void StructureToPtr(object structure, IntPtr ptr, bool fDeleteOld)</code><br><code>static void StructureToPtr&lt;T&gt;(T structure, IntPtr ptr, bool fDeleteOld)</code></td></tr><tr><td><code>ThrowExceptionForHR</code></td><td><code>ThrowExceptionForHR(value)</code><br><code>ThrowExceptionForHR([ :errorCode = … ])</code><br><code>ThrowExceptionForHR([ :errorCode = …, :errorInfo = … ])</code></td><td><code>static void ThrowExceptionForHR(int errorCode)</code><br><code>static void ThrowExceptionForHR(int errorCode, IntPtr errorInfo)</code></td></tr><tr><td><code>UnsafeAddrOfPinnedArrayElement</code></td><td><code>UnsafeAddrOfPinnedArrayElement(p1,p2)</code></td><td><code>static IntPtr UnsafeAddrOfPinnedArrayElement(Array arr, int index)</code><br><code>static IntPtr UnsafeAddrOfPinnedArrayElement&lt;T&gt;(T[] arr, int index)</code></td></tr><tr><td><code>WriteByte</code></td><td><code>WriteByte([ :ptr = …, :val = … ])</code><br><code>WriteByte([ :ptr = …, :ofs = …, :val = … ])</code></td><td><code>static void WriteByte(object ptr, int ofs, byte val)</code><br><code>static void WriteByte(IntPtr ptr, int ofs, byte val)</code><br><code>static void WriteByte(IntPtr ptr, byte val)</code></td></tr><tr><td><code>WriteInt16</code></td><td><code>WriteInt16([ :ptr = …, :val = … ])</code><br><code>WriteInt16([ :ptr = …, :ofs = …, :val = … ])</code></td><td><code>static void WriteInt16(object ptr, int ofs, short val)</code><br><code>static void WriteInt16(IntPtr ptr, int ofs, short val)</code><br><code>static void WriteInt16(IntPtr ptr, short val)</code><br><code>static void WriteInt16(IntPtr ptr, int ofs, char val)</code><br><code>static void WriteInt16(object ptr, int ofs, char val)</code><br><code>static void WriteInt16(IntPtr ptr, char val)</code></td></tr><tr><td><code>WriteInt32</code></td><td><code>WriteInt32([ :ptr = …, :val = … ])</code><br><code>WriteInt32([ :ptr = …, :ofs = …, :val = … ])</code></td><td><code>static void WriteInt32(object ptr, int ofs, int val)</code><br><code>static void WriteInt32(IntPtr ptr, int ofs, int val)</code><br><code>static void WriteInt32(IntPtr ptr, int val)</code></td></tr><tr><td><code>WriteInt64</code></td><td><code>WriteInt64([ :ptr = …, :val = … ])</code><br><code>WriteInt64([ :ptr = …, :ofs = …, :val = … ])</code></td><td><code>static void WriteInt64(object ptr, int ofs, long val)</code><br><code>static void WriteInt64(IntPtr ptr, int ofs, long val)</code><br><code>static void WriteInt64(IntPtr ptr, long val)</code></td></tr><tr><td><code>WriteIntPtr</code></td><td><code>WriteIntPtr([ :ptr = …, :val = … ])</code><br><code>WriteIntPtr([ :ptr = …, :ofs = …, :val = … ])</code></td><td><code>static void WriteIntPtr(IntPtr ptr, int ofs, IntPtr val)</code><br><code>static void WriteIntPtr(object ptr, int ofs, IntPtr val)</code><br><code>static void WriteIntPtr(IntPtr ptr, IntPtr val)</code></td></tr><tr><td><code>ZeroFreeBSTR</code></td><td><code>ZeroFreeBSTR(p1)</code></td><td><code>static void ZeroFreeBSTR(IntPtr s)</code></td></tr><tr><td><code>ZeroFreeCoTaskMemAnsi</code></td><td><code>ZeroFreeCoTaskMemAnsi(p1)</code></td><td><code>static void ZeroFreeCoTaskMemAnsi(IntPtr s)</code></td></tr><tr><td><code>ZeroFreeCoTaskMemUnicode</code></td><td><code>ZeroFreeCoTaskMemUnicode(p1)</code></td><td><code>static void ZeroFreeCoTaskMemUnicode(IntPtr s)</code></td></tr><tr><td><code>ZeroFreeCoTaskMemUTF8</code></td><td><code>ZeroFreeCoTaskMemUTF8(p1)</code></td><td><code>static void ZeroFreeCoTaskMemUTF8(IntPtr s)</code></td></tr><tr><td><code>ZeroFreeGlobalAllocAnsi</code></td><td><code>ZeroFreeGlobalAllocAnsi(p1)</code></td><td><code>static void ZeroFreeGlobalAllocAnsi(IntPtr s)</code></td></tr><tr><td><code>ZeroFreeGlobalAllocUnicode</code></td><td><code>ZeroFreeGlobalAllocUnicode(p1)</code></td><td><code>static void ZeroFreeGlobalAllocUnicode(IntPtr s)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MarshalAsAttribute"><summary><b>MarshalAsAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.MarshalAsAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MarshalAsAttribute(UnmanagedType unmanagedType)</code></td></tr><tr><td><code>new MarshalAsAttribute(short unmanagedType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MarshalAsAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MarshalAsAttribute().@New([ :param = value ])</code> or <code>dnNew("MarshalAsAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>UnmanagedType</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>SafeArraySubType</code></td><td><code>VarEnum</code></td><td>read, write</td><td><code>o.SafeArraySubType</code> <code>o.SafeArraySubType = v</code></td></tr><tr><td><code>SafeArrayUserDefinedSubType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.SafeArrayUserDefinedSubType</code> <code>o.SafeArrayUserDefinedSubType = v</code></td></tr><tr><td><code>IidParameterIndex</code></td><td><code>int</code></td><td>read, write</td><td><code>o.IidParameterIndex</code> <code>o.IidParameterIndex = v</code></td></tr><tr><td><code>ArraySubType</code></td><td><code>UnmanagedType</code></td><td>read, write</td><td><code>o.ArraySubType</code> <code>o.ArraySubType = v</code></td></tr><tr><td><code>SizeParamIndex</code></td><td><code>short</code></td><td>read, write</td><td><code>o.SizeParamIndex</code> <code>o.SizeParamIndex = v</code></td></tr><tr><td><code>SizeConst</code></td><td><code>int</code></td><td>read, write</td><td><code>o.SizeConst</code> <code>o.SizeConst = v</code></td></tr><tr><td><code>MarshalType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MarshalType</code> <code>o.MarshalType = v</code></td></tr><tr><td><code>MarshalTypeRef</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.MarshalTypeRef</code> <code>o.MarshalTypeRef = v</code></td></tr><tr><td><code>MarshalCookie</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MarshalCookie</code> <code>o.MarshalCookie = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MarshalDirectiveException"><summary><b>MarshalDirectiveException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.MarshalDirectiveException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MarshalDirectiveException()</code></td></tr><tr><td><code>new MarshalDirectiveException(string message)</code></td></tr><tr><td><code>new MarshalDirectiveException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MarshalDirectiveException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MarshalDirectiveException().@New([ :param = value ])</code> or <code>dnNew("MarshalDirectiveException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MemoryMarshal"><summary><b>MemoryMarshal</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.MemoryMarshal</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AsBytes</code></td><td><code>AsBytes(p1)</code></td><td><code>static Span&lt;byte&gt; AsBytes&lt;T&gt;(Span&lt;T&gt; span)</code><br><code>static ReadOnlySpan&lt;byte&gt; AsBytes&lt;T&gt;(ReadOnlySpan&lt;T&gt; span)</code></td></tr><tr><td><code>AsMemory</code></td><td><code>AsMemory(p1)</code></td><td><code>static Memory&lt;T&gt; AsMemory&lt;T&gt;(ReadOnlyMemory&lt;T&gt; memory)</code></td></tr><tr><td><code>AsRef</code></td><td><code>AsRef(value)</code><br><code>AsRef([ :span = … ])</code></td><td><code>static T AsRef&lt;T&gt;(Span&lt;byte&gt; span)</code><br><code>static T AsRef&lt;T&gt;(ReadOnlySpan&lt;byte&gt; span)</code></td></tr><tr><td><code>Cast</code></td><td><code>Cast(value)</code><br><code>Cast([ :span = … ])</code></td><td><code>static Span&lt;TTo&gt; Cast&lt;TFrom, TTo&gt;(Span&lt;TFrom&gt; span)</code><br><code>static ReadOnlySpan&lt;TTo&gt; Cast&lt;TFrom, TTo&gt;(ReadOnlySpan&lt;TFrom&gt; span)</code></td></tr><tr><td><code>CreateFromPinnedArray</code></td><td><code>CreateFromPinnedArray(p1,p2,p3)</code></td><td><code>static Memory&lt;T&gt; CreateFromPinnedArray&lt;T&gt;(T[] array, int start, int length)</code></td></tr><tr><td><code>CreateReadOnlySpan</code></td><td><code>CreateReadOnlySpan(p1,p2)</code></td><td><code>static ReadOnlySpan&lt;T&gt; CreateReadOnlySpan&lt;T&gt;(ref T reference, int length)</code></td></tr><tr><td><code>CreateReadOnlySpanFromNullTerminated</code></td><td><code>CreateReadOnlySpanFromNullTerminated(p1)</code></td><td><code>static ReadOnlySpan&lt;char&gt; CreateReadOnlySpanFromNullTerminated(Char* value)</code><br><code>static ReadOnlySpan&lt;byte&gt; CreateReadOnlySpanFromNullTerminated(Byte* value)</code></td></tr><tr><td><code>CreateSpan</code></td><td><code>CreateSpan(p1,p2)</code></td><td><code>static Span&lt;T&gt; CreateSpan&lt;T&gt;(ref T reference, int length)</code></td></tr><tr><td><code>GetArrayDataReference</code></td><td><code>GetArrayDataReference(p1)</code></td><td><code>static T GetArrayDataReference&lt;T&gt;(T[] array)</code><br><code>static byte GetArrayDataReference(Array array)</code></td></tr><tr><td><code>GetReference</code></td><td><code>GetReference(p1)</code></td><td><code>static T GetReference&lt;T&gt;(Span&lt;T&gt; span)</code><br><code>static T GetReference&lt;T&gt;(ReadOnlySpan&lt;T&gt; span)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(value)</code><br><code>Read([ :source = … ])</code></td><td><code>static T Read&lt;T&gt;(ReadOnlySpan&lt;byte&gt; source)</code></td></tr><tr><td><code>ToEnumerable</code></td><td><code>ToEnumerable(p1)</code></td><td><code>static IEnumerable&lt;T&gt; ToEnumerable&lt;T&gt;(ReadOnlyMemory&lt;T&gt; memory)</code></td></tr><tr><td><code>TryGetArray</code></td><td><code>TryGetArray(p1)</code></td><td><code>static bool TryGetArray&lt;T&gt;(ReadOnlyMemory&lt;T&gt; memory, out ArraySegment&lt;T&gt; segment)</code></td></tr><tr><td><code>TryGetMemoryManager</code></td><td><code>TryGetMemoryManager(p1)</code></td><td><code>static bool TryGetMemoryManager&lt;T, TManager&gt;(ReadOnlyMemory&lt;T&gt; memory, out TManager manager)</code><br><code>static bool TryGetMemoryManager&lt;T, TManager&gt;(ReadOnlyMemory&lt;T&gt; memory, out TManager manager, out int start, out int length)</code></td></tr><tr><td><code>TryGetString</code></td><td><code>TryGetString(p1)</code></td><td><code>static bool TryGetString(ReadOnlyMemory&lt;char&gt; memory, out string text, out int start, out int length)</code></td></tr><tr><td><code>TryRead</code></td><td><code>TryRead(p1)</code></td><td><code>static bool TryRead&lt;T&gt;(ReadOnlySpan&lt;byte&gt; source, out T value)</code></td></tr><tr><td><code>TryWrite</code></td><td><code>TryWrite(p1,p2)</code></td><td><code>static bool TryWrite&lt;T&gt;(Span&lt;byte&gt; destination, ref T value)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2)</code></td><td><code>static void Write&lt;T&gt;(Span&lt;byte&gt; destination, ref T value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NativeLibrary"><summary><b>NativeLibrary</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.NativeLibrary</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Free</code></td><td><code>Free(p1)</code></td><td><code>static void Free(IntPtr handle)</code></td></tr><tr><td><code>GetExport</code></td><td><code>GetExport(p1,p2)</code></td><td><code>static IntPtr GetExport(IntPtr handle, string name)</code></td></tr><tr><td><code>GetMainProgramHandle</code></td><td><code>GetMainProgramHandle()</code></td><td><code>static IntPtr GetMainProgramHandle()</code></td></tr><tr><td><code>Load</code></td><td><code>@Load(value)</code><br><code>@Load([ :libraryPath = … ])</code><br><code>@Load([ :libraryName = …, :assembly = …, :searchPath = … ])</code></td><td><code>static IntPtr Load(string libraryPath)</code><br><code>static IntPtr Load(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)</code></td></tr><tr><td><code>SetDllImportResolver</code></td><td><code>SetDllImportResolver(p1,p2)</code></td><td><code>static void SetDllImportResolver(Assembly assembly, DllImportResolver resolver)</code></td></tr><tr><td><code>TryGetExport</code></td><td><code>TryGetExport(p1,p2)</code></td><td><code>static bool TryGetExport(IntPtr handle, string name, out IntPtr address)</code></td></tr><tr><td><code>TryLoad</code></td><td><code>TryLoad([ :libraryPath = …, :handle = … ])</code><br><code>TryLoad([ :libraryName = …, :assembly = …, :searchPath = …, :handle = … ])</code></td><td><code>static bool TryLoad(string libraryPath, out IntPtr handle)</code><br><code>static bool TryLoad(string libraryName, Assembly assembly, DllImportSearchPath? searchPath, out IntPtr handle)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NativeMemory"><summary><b>NativeMemory</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.NativeMemory</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AlignedAlloc</code></td><td><code>AlignedAlloc(p1,p2)</code></td><td><code>static Void* AlignedAlloc(UIntPtr byteCount, UIntPtr alignment)</code></td></tr><tr><td><code>AlignedFree</code></td><td><code>AlignedFree(p1)</code></td><td><code>static void AlignedFree(Void* ptr)</code></td></tr><tr><td><code>AlignedRealloc</code></td><td><code>AlignedRealloc(p1,p2,p3)</code></td><td><code>static Void* AlignedRealloc(Void* ptr, UIntPtr byteCount, UIntPtr alignment)</code></td></tr><tr><td><code>Alloc</code></td><td><code>Alloc(value)</code><br><code>Alloc([ :byteCount = … ])</code><br><code>Alloc([ :elementCount = …, :elementSize = … ])</code></td><td><code>static Void* Alloc(UIntPtr elementCount, UIntPtr elementSize)</code><br><code>static Void* Alloc(UIntPtr byteCount)</code></td></tr><tr><td><code>AllocZeroed</code></td><td><code>AllocZeroed(value)</code><br><code>AllocZeroed([ :byteCount = … ])</code><br><code>AllocZeroed([ :elementCount = …, :elementSize = … ])</code></td><td><code>static Void* AllocZeroed(UIntPtr byteCount)</code><br><code>static Void* AllocZeroed(UIntPtr elementCount, UIntPtr elementSize)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear(p1,p2)</code></td><td><code>static void Clear(Void* ptr, UIntPtr byteCount)</code></td></tr><tr><td><code>Copy</code></td><td><code>Copy(p1,p2,p3)</code></td><td><code>static void Copy(Void* source, Void* destination, UIntPtr byteCount)</code></td></tr><tr><td><code>Fill</code></td><td><code>Fill(p1,p2,p3)</code></td><td><code>static void Fill(Void* ptr, UIntPtr byteCount, byte value)</code></td></tr><tr><td><code>Free</code></td><td><code>Free(p1)</code></td><td><code>static void Free(Void* ptr)</code></td></tr><tr><td><code>Realloc</code></td><td><code>Realloc(p1,p2)</code></td><td><code>static Void* Realloc(Void* ptr, UIntPtr byteCount)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NFloat"><summary><b>NFloat</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.NFloat</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IComparable, ISpanFormattable, IFormattable, IUtf8SpanFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new NFloat(float value)</code></td></tr><tr><td><code>new NFloat(double value)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new NFloat(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new NFloat().@New([ :param = value ])</code> or <code>dnNew("NFloat",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>double</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>Epsilon</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.Epsilon</code></td></tr><tr><td><code>MaxValue</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.MaxValue</code></td></tr><tr><td><code>MinValue</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.MinValue</code></td></tr><tr><td><code>NaN</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.NaN</code></td></tr><tr><td><code>NegativeInfinity</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.NegativeInfinity</code></td></tr><tr><td><code>PositiveInfinity</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.PositiveInfinity</code></td></tr><tr><td><code>Size</code></td><td><code>int</code></td><td>read · static</td><td><code>o.Size</code></td></tr><tr><td><code>E</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.E</code></td></tr><tr><td><code>Pi</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.Pi</code></td></tr><tr><td><code>Tau</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.Tau</code></td></tr><tr><td><code>NegativeZero</code></td><td><code>NFloat</code></td><td>read · static</td><td><code>o.NegativeZero</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abs</code></td><td><code>Abs(p1)</code></td><td><code>static NFloat Abs(NFloat value)</code></td></tr><tr><td><code>Acos</code></td><td><code>Acos(p1)</code></td><td><code>static NFloat Acos(NFloat x)</code></td></tr><tr><td><code>Acosh</code></td><td><code>Acosh(p1)</code></td><td><code>static NFloat Acosh(NFloat x)</code></td></tr><tr><td><code>AcosPi</code></td><td><code>AcosPi(p1)</code></td><td><code>static NFloat AcosPi(NFloat x)</code></td></tr><tr><td><code>Asin</code></td><td><code>Asin(p1)</code></td><td><code>static NFloat Asin(NFloat x)</code></td></tr><tr><td><code>Asinh</code></td><td><code>Asinh(p1)</code></td><td><code>static NFloat Asinh(NFloat x)</code></td></tr><tr><td><code>AsinPi</code></td><td><code>AsinPi(p1)</code></td><td><code>static NFloat AsinPi(NFloat x)</code></td></tr><tr><td><code>Atan</code></td><td><code>Atan(p1)</code></td><td><code>static NFloat Atan(NFloat x)</code></td></tr><tr><td><code>Atan2</code></td><td><code>Atan2(p1,p2)</code></td><td><code>static NFloat Atan2(NFloat y, NFloat x)</code></td></tr><tr><td><code>Atan2Pi</code></td><td><code>Atan2Pi(p1,p2)</code></td><td><code>static NFloat Atan2Pi(NFloat y, NFloat x)</code></td></tr><tr><td><code>Atanh</code></td><td><code>Atanh(p1)</code></td><td><code>static NFloat Atanh(NFloat x)</code></td></tr><tr><td><code>AtanPi</code></td><td><code>AtanPi(p1)</code></td><td><code>static NFloat AtanPi(NFloat x)</code></td></tr><tr><td><code>BitDecrement</code></td><td><code>BitDecrement(p1)</code></td><td><code>static NFloat BitDecrement(NFloat x)</code></td></tr><tr><td><code>BitIncrement</code></td><td><code>BitIncrement(p1)</code></td><td><code>static NFloat BitIncrement(NFloat x)</code></td></tr><tr><td><code>Cbrt</code></td><td><code>Cbrt(p1)</code></td><td><code>static NFloat Cbrt(NFloat x)</code></td></tr><tr><td><code>Ceiling</code></td><td><code>Ceiling(p1)</code></td><td><code>static NFloat Ceiling(NFloat x)</code></td></tr><tr><td><code>Clamp</code></td><td><code>Clamp(p1,p2,p3)</code></td><td><code>static NFloat Clamp(NFloat value, NFloat min, NFloat max)</code></td></tr><tr><td><code>CompareTo</code></td><td><code>CompareTo(p1)</code></td><td><code>int CompareTo(object obj)</code><br><code>int CompareTo(NFloat other)</code></td></tr><tr><td><code>ConvertToInteger</code></td><td><code>ConvertToInteger(value)</code><br><code>ConvertToInteger([ :value = … ])</code></td><td><code>static TInteger ConvertToInteger&lt;TInteger&gt;(NFloat value)</code></td></tr><tr><td><code>ConvertToIntegerNative</code></td><td><code>ConvertToIntegerNative(value)</code><br><code>ConvertToIntegerNative([ :value = … ])</code></td><td><code>static TInteger ConvertToIntegerNative&lt;TInteger&gt;(NFloat value)</code></td></tr><tr><td><code>CopySign</code></td><td><code>CopySign(p1,p2)</code></td><td><code>static NFloat CopySign(NFloat value, NFloat sign)</code></td></tr><tr><td><code>Cos</code></td><td><code>Cos(p1)</code></td><td><code>static NFloat Cos(NFloat x)</code></td></tr><tr><td><code>Cosh</code></td><td><code>Cosh(p1)</code></td><td><code>static NFloat Cosh(NFloat x)</code></td></tr><tr><td><code>CosPi</code></td><td><code>CosPi(p1)</code></td><td><code>static NFloat CosPi(NFloat x)</code></td></tr><tr><td><code>CreateChecked</code></td><td><code>CreateChecked(p1)</code></td><td><code>static NFloat CreateChecked&lt;TOther&gt;(TOther value)</code></td></tr><tr><td><code>CreateSaturating</code></td><td><code>CreateSaturating(p1)</code></td><td><code>static NFloat CreateSaturating&lt;TOther&gt;(TOther value)</code></td></tr><tr><td><code>CreateTruncating</code></td><td><code>CreateTruncating(p1)</code></td><td><code>static NFloat CreateTruncating&lt;TOther&gt;(TOther value)</code></td></tr><tr><td><code>DegreesToRadians</code></td><td><code>DegreesToRadians(p1)</code></td><td><code>static NFloat DegreesToRadians(NFloat degrees)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(NFloat other)</code></td></tr><tr><td><code>Exp</code></td><td><code>Exp(p1)</code></td><td><code>static NFloat Exp(NFloat x)</code></td></tr><tr><td><code>Exp10</code></td><td><code>Exp10(p1)</code></td><td><code>static NFloat Exp10(NFloat x)</code></td></tr><tr><td><code>Exp10M1</code></td><td><code>Exp10M1(p1)</code></td><td><code>static NFloat Exp10M1(NFloat x)</code></td></tr><tr><td><code>Exp2</code></td><td><code>Exp2(p1)</code></td><td><code>static NFloat Exp2(NFloat x)</code></td></tr><tr><td><code>Exp2M1</code></td><td><code>Exp2M1(p1)</code></td><td><code>static NFloat Exp2M1(NFloat x)</code></td></tr><tr><td><code>ExpM1</code></td><td><code>ExpM1(p1)</code></td><td><code>static NFloat ExpM1(NFloat x)</code></td></tr><tr><td><code>Floor</code></td><td><code>Floor(p1)</code></td><td><code>static NFloat Floor(NFloat x)</code></td></tr><tr><td><code>FusedMultiplyAdd</code></td><td><code>FusedMultiplyAdd(p1,p2,p3)</code></td><td><code>static NFloat FusedMultiplyAdd(NFloat left, NFloat right, NFloat addend)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Hypot</code></td><td><code>Hypot(p1,p2)</code></td><td><code>static NFloat Hypot(NFloat x, NFloat y)</code></td></tr><tr><td><code>Ieee754Remainder</code></td><td><code>Ieee754Remainder(p1,p2)</code></td><td><code>static NFloat Ieee754Remainder(NFloat left, NFloat right)</code></td></tr><tr><td><code>ILogB</code></td><td><code>ILogB(p1)</code></td><td><code>static int ILogB(NFloat x)</code></td></tr><tr><td><code>IsEvenInteger</code></td><td><code>IsEvenInteger(p1)</code></td><td><code>static bool IsEvenInteger(NFloat value)</code></td></tr><tr><td><code>IsFinite</code></td><td><code>IsFinite(p1)</code></td><td><code>static bool IsFinite(NFloat value)</code></td></tr><tr><td><code>IsInfinity</code></td><td><code>IsInfinity(p1)</code></td><td><code>static bool IsInfinity(NFloat value)</code></td></tr><tr><td><code>IsInteger</code></td><td><code>IsInteger(p1)</code></td><td><code>static bool IsInteger(NFloat value)</code></td></tr><tr><td><code>IsNaN</code></td><td><code>IsNaN(p1)</code></td><td><code>static bool IsNaN(NFloat value)</code></td></tr><tr><td><code>IsNegative</code></td><td><code>IsNegative(p1)</code></td><td><code>static bool IsNegative(NFloat value)</code></td></tr><tr><td><code>IsNegativeInfinity</code></td><td><code>IsNegativeInfinity(p1)</code></td><td><code>static bool IsNegativeInfinity(NFloat value)</code></td></tr><tr><td><code>IsNormal</code></td><td><code>IsNormal(p1)</code></td><td><code>static bool IsNormal(NFloat value)</code></td></tr><tr><td><code>IsOddInteger</code></td><td><code>IsOddInteger(p1)</code></td><td><code>static bool IsOddInteger(NFloat value)</code></td></tr><tr><td><code>IsPositive</code></td><td><code>IsPositive(p1)</code></td><td><code>static bool IsPositive(NFloat value)</code></td></tr><tr><td><code>IsPositiveInfinity</code></td><td><code>IsPositiveInfinity(p1)</code></td><td><code>static bool IsPositiveInfinity(NFloat value)</code></td></tr><tr><td><code>IsPow2</code></td><td><code>IsPow2(p1)</code></td><td><code>static bool IsPow2(NFloat value)</code></td></tr><tr><td><code>IsRealNumber</code></td><td><code>IsRealNumber(p1)</code></td><td><code>static bool IsRealNumber(NFloat value)</code></td></tr><tr><td><code>IsSubnormal</code></td><td><code>IsSubnormal(p1)</code></td><td><code>static bool IsSubnormal(NFloat value)</code></td></tr><tr><td><code>Lerp</code></td><td><code>Lerp(p1,p2,p3)</code></td><td><code>static NFloat Lerp(NFloat value1, NFloat value2, NFloat amount)</code></td></tr><tr><td><code>Log</code></td><td><code>Log(value)</code><br><code>Log([ :x = … ])</code><br><code>Log([ :x = …, :newBase = … ])</code></td><td><code>static NFloat Log(NFloat x)</code><br><code>static NFloat Log(NFloat x, NFloat newBase)</code></td></tr><tr><td><code>Log10</code></td><td><code>Log10(p1)</code></td><td><code>static NFloat Log10(NFloat x)</code></td></tr><tr><td><code>Log10P1</code></td><td><code>Log10P1(p1)</code></td><td><code>static NFloat Log10P1(NFloat x)</code></td></tr><tr><td><code>Log2</code></td><td><code>Log2(p1)</code></td><td><code>static NFloat Log2(NFloat value)</code></td></tr><tr><td><code>Log2P1</code></td><td><code>Log2P1(p1)</code></td><td><code>static NFloat Log2P1(NFloat x)</code></td></tr><tr><td><code>LogP1</code></td><td><code>LogP1(p1)</code></td><td><code>static NFloat LogP1(NFloat x)</code></td></tr><tr><td><code>Max</code></td><td><code>Max(p1,p2)</code></td><td><code>static NFloat Max(NFloat x, NFloat y)</code></td></tr><tr><td><code>MaxMagnitude</code></td><td><code>MaxMagnitude(p1,p2)</code></td><td><code>static NFloat MaxMagnitude(NFloat x, NFloat y)</code></td></tr><tr><td><code>MaxMagnitudeNumber</code></td><td><code>MaxMagnitudeNumber(p1,p2)</code></td><td><code>static NFloat MaxMagnitudeNumber(NFloat x, NFloat y)</code></td></tr><tr><td><code>MaxNumber</code></td><td><code>MaxNumber(p1,p2)</code></td><td><code>static NFloat MaxNumber(NFloat x, NFloat y)</code></td></tr><tr><td><code>Min</code></td><td><code>Min(p1,p2)</code></td><td><code>static NFloat Min(NFloat x, NFloat y)</code></td></tr><tr><td><code>MinMagnitude</code></td><td><code>MinMagnitude(p1,p2)</code></td><td><code>static NFloat MinMagnitude(NFloat x, NFloat y)</code></td></tr><tr><td><code>MinMagnitudeNumber</code></td><td><code>MinMagnitudeNumber(p1,p2)</code></td><td><code>static NFloat MinMagnitudeNumber(NFloat x, NFloat y)</code></td></tr><tr><td><code>MinNumber</code></td><td><code>MinNumber(p1,p2)</code></td><td><code>static NFloat MinNumber(NFloat x, NFloat y)</code></td></tr><tr><td><code>MultiplyAddEstimate</code></td><td><code>MultiplyAddEstimate(p1,p2,p3)</code></td><td><code>static NFloat MultiplyAddEstimate(NFloat left, NFloat right, NFloat addend)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(value)</code><br><code>Parse([ :s = … ])</code><br><code>Parse([ :s = …, :style = … ])</code><br><code>Parse([ :s = …, :provider = … ])</code><br><code>Parse([ :utf8Text = …, :provider = … ])</code></td><td><code>static NFloat Parse(string s)</code><br><code>static NFloat Parse(string s, NumberStyles style)</code><br><code>static NFloat Parse(string s, IFormatProvider provider)</code><br><code>static NFloat Parse(string s, NumberStyles style, IFormatProvider provider)</code><br><code>static NFloat Parse(ReadOnlySpan&lt;char&gt; s, NumberStyles style = …, IFormatProvider provider = …)</code><br><code>static NFloat Parse(ReadOnlySpan&lt;char&gt; s, IFormatProvider provider)</code><br><code>static NFloat Parse(ReadOnlySpan&lt;byte&gt; utf8Text, NumberStyles style = …, IFormatProvider provider = …)</code><br><code>static NFloat Parse(ReadOnlySpan&lt;byte&gt; utf8Text, IFormatProvider provider)</code></td></tr><tr><td><code>Pow</code></td><td><code>Pow(p1,p2)</code></td><td><code>static NFloat Pow(NFloat x, NFloat y)</code></td></tr><tr><td><code>RadiansToDegrees</code></td><td><code>RadiansToDegrees(p1)</code></td><td><code>static NFloat RadiansToDegrees(NFloat radians)</code></td></tr><tr><td><code>ReciprocalEstimate</code></td><td><code>ReciprocalEstimate(p1)</code></td><td><code>static NFloat ReciprocalEstimate(NFloat x)</code></td></tr><tr><td><code>ReciprocalSqrtEstimate</code></td><td><code>ReciprocalSqrtEstimate(p1)</code></td><td><code>static NFloat ReciprocalSqrtEstimate(NFloat x)</code></td></tr><tr><td><code>RootN</code></td><td><code>RootN(p1,p2)</code></td><td><code>static NFloat RootN(NFloat x, int n)</code></td></tr><tr><td><code>Round</code></td><td><code>Round(value)</code><br><code>Round([ :x = … ])</code><br><code>Round([ :x = …, :digits = … ])</code><br><code>Round([ :x = …, :mode = … ])</code><br><code>Round([ :x = …, :digits = …, :mode = … ])</code></td><td><code>static NFloat Round(NFloat x)</code><br><code>static NFloat Round(NFloat x, int digits)</code><br><code>static NFloat Round(NFloat x, MidpointRounding mode)</code><br><code>static NFloat Round(NFloat x, int digits, MidpointRounding mode)</code></td></tr><tr><td><code>ScaleB</code></td><td><code>ScaleB(p1,p2)</code></td><td><code>static NFloat ScaleB(NFloat x, int n)</code></td></tr><tr><td><code>Sign</code></td><td><code>Sign(p1)</code></td><td><code>static int Sign(NFloat value)</code></td></tr><tr><td><code>Sin</code></td><td><code>Sin(p1)</code></td><td><code>static NFloat Sin(NFloat x)</code></td></tr><tr><td><code>SinCos</code></td><td><code>SinCos(p1)</code></td><td><code>static ValueTuple&lt;NFloat, NFloat&gt; SinCos(NFloat x)</code></td></tr><tr><td><code>SinCosPi</code></td><td><code>SinCosPi(p1)</code></td><td><code>static ValueTuple&lt;NFloat, NFloat&gt; SinCosPi(NFloat x)</code></td></tr><tr><td><code>Sinh</code></td><td><code>Sinh(p1)</code></td><td><code>static NFloat Sinh(NFloat x)</code></td></tr><tr><td><code>SinPi</code></td><td><code>SinPi(p1)</code></td><td><code>static NFloat SinPi(NFloat x)</code></td></tr><tr><td><code>Sqrt</code></td><td><code>Sqrt(p1)</code></td><td><code>static NFloat Sqrt(NFloat x)</code></td></tr><tr><td><code>Tan</code></td><td><code>Tan(p1)</code></td><td><code>static NFloat Tan(NFloat x)</code></td></tr><tr><td><code>Tanh</code></td><td><code>Tanh(p1)</code></td><td><code>static NFloat Tanh(NFloat x)</code></td></tr><tr><td><code>TanPi</code></td><td><code>TanPi(p1)</code></td><td><code>static NFloat TanPi(NFloat x)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :format = … ])</code><br><code>Format([ :provider = … ])</code><br><code>Format([ :format = …, :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(string format)</code><br><code>string ToString(IFormatProvider provider)</code><br><code>string ToString(string format, IFormatProvider provider)</code></td></tr><tr><td><code>Truncate</code></td><td><code>Truncate(p1)</code></td><td><code>static NFloat Truncate(NFloat x)</code></td></tr><tr><td><code>TryFormat</code></td><td><code>TryFormat([ :destination = …, :charsWritten = …, :format = …, :provider = … ])</code><br><code>TryFormat([ :utf8Destination = …, :bytesWritten = …, :format = …, :provider = … ])</code></td><td><code>bool TryFormat(Span&lt;char&gt; destination, out int charsWritten, ReadOnlySpan&lt;char&gt; format = …, IFormatProvider provider = …)</code><br><code>bool TryFormat(Span&lt;byte&gt; utf8Destination, out int bytesWritten, ReadOnlySpan&lt;char&gt; format = …, IFormatProvider provider = …)</code></td></tr><tr><td><code>TryParse</code></td><td><code>TryParse([ :s = …, :result = … ])</code><br><code>TryParse([ :utf8Text = …, :result = … ])</code><br><code>TryParse([ :s = …, :provider = …, :result = … ])</code><br><code>TryParse([ :utf8Text = …, :provider = …, :result = … ])</code></td><td><code>static bool TryParse(string s, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;char&gt; s, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;byte&gt; utf8Text, out NFloat result)</code><br><code>static bool TryParse(string s, NumberStyles style, IFormatProvider provider, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;char&gt; s, NumberStyles style, IFormatProvider provider, out NFloat result)</code><br><code>static bool TryParse(string s, IFormatProvider provider, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;char&gt; s, IFormatProvider provider, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;byte&gt; utf8Text, NumberStyles style, IFormatProvider provider, out NFloat result)</code><br><code>static bool TryParse(ReadOnlySpan&lt;byte&gt; utf8Text, IFormatProvider provider, out NFloat result)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-OptionalAttribute"><summary><b>OptionalAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.OptionalAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new OptionalAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new OptionalAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new OptionalAttribute().@New([ :param = value ])</code> or <code>dnNew("OptionalAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-OSPlatform"><summary><b>OSPlatform</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.OSPlatform</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FreeBSD</code></td><td><code>OSPlatform</code></td><td>read · static</td><td><code>o.FreeBSD</code></td></tr><tr><td><code>Linux</code></td><td><code>OSPlatform</code></td><td>read · static</td><td><code>o.Linux</code></td></tr><tr><td><code>OSX</code></td><td><code>OSPlatform</code></td><td>read · static</td><td><code>o.OSX</code></td></tr><tr><td><code>Windows</code></td><td><code>OSPlatform</code></td><td>read · static</td><td><code>o.Windows</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(p1)</code></td><td><code>static OSPlatform Create(string osPlatform)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(OSPlatform other)</code><br><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-OutAttribute"><summary><b>OutAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.OutAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new OutAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new OutAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new OutAttribute().@New([ :param = value ])</code> or <code>dnNew("OutAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PosixSignalContext"><summary><b>PosixSignalContext</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.PosixSignalContext</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PosixSignalContext(PosixSignal signal)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PosixSignalContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PosixSignalContext().@New([ :param = value ])</code> or <code>dnNew("PosixSignalContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Signal</code></td><td><code>PosixSignal</code></td><td>read</td><td><code>o.Signal</code></td></tr><tr><td><code>Cancel</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Cancel</code> <code>o.Cancel = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PosixSignalRegistration"><summary><b>PosixSignalRegistration</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.PosixSignalRegistration</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(p1,p2)</code></td><td><code>static PosixSignalRegistration Create(PosixSignal signal, Action&lt;PosixSignalContext&gt; handler)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PreserveSigAttribute"><summary><b>PreserveSigAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.PreserveSigAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PreserveSigAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PreserveSigAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PreserveSigAttribute().@New([ :param = value ])</code> or <code>dnNew("PreserveSigAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PrimaryInteropAssemblyAttribute"><summary><b>PrimaryInteropAssemblyAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.PrimaryInteropAssemblyAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PrimaryInteropAssemblyAttribute(int major, int minor)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PrimaryInteropAssemblyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PrimaryInteropAssemblyAttribute().@New([ :param = value ])</code> or <code>dnNew("PrimaryInteropAssemblyAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MajorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MajorVersion</code></td></tr><tr><td><code>MinorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MinorVersion</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ProgIdAttribute"><summary><b>ProgIdAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.ProgIdAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ProgIdAttribute(string progId)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ProgIdAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ProgIdAttribute().@New([ :param = value ])</code> or <code>dnNew("ProgIdAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RuntimeEnvironment"><summary><b>RuntimeEnvironment</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.RuntimeEnvironment</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SystemConfigurationFile</code></td><td><code>string</code></td><td>read · static</td><td><code>o.SystemConfigurationFile</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FromGlobalAccessCache</code></td><td><code>FromGlobalAccessCache(p1)</code></td><td><code>static bool FromGlobalAccessCache(Assembly a)</code></td></tr><tr><td><code>GetRuntimeDirectory</code></td><td><code>GetRuntimeDirectory()</code></td><td><code>static string GetRuntimeDirectory()</code></td></tr><tr><td><code>GetRuntimeInterfaceAsIntPtr</code></td><td><code>GetRuntimeInterfaceAsIntPtr(p1,p2)</code></td><td><code>static IntPtr GetRuntimeInterfaceAsIntPtr(Guid clsid, Guid riid)</code></td></tr><tr><td><code>GetRuntimeInterfaceAsObject</code></td><td><code>GetRuntimeInterfaceAsObject(p1,p2)</code></td><td><code>static object GetRuntimeInterfaceAsObject(Guid clsid, Guid riid)</code></td></tr><tr><td><code>GetSystemVersion</code></td><td><code>GetSystemVersion()</code></td><td><code>static string GetSystemVersion()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-RuntimeInformation"><summary><b>RuntimeInformation</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.RuntimeInformation</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RuntimeIdentifier</code></td><td><code>string</code></td><td>read · static</td><td><code>o.RuntimeIdentifier</code></td></tr><tr><td><code>ProcessArchitecture</code></td><td><code>Architecture</code></td><td>read · static</td><td><code>o.ProcessArchitecture</code></td></tr><tr><td><code>OSDescription</code></td><td><code>string</code></td><td>read · static</td><td><code>o.OSDescription</code></td></tr><tr><td><code>OSArchitecture</code></td><td><code>Architecture</code></td><td>read · static</td><td><code>o.OSArchitecture</code></td></tr><tr><td><code>FrameworkDescription</code></td><td><code>string</code></td><td>read · static</td><td><code>o.FrameworkDescription</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsOSPlatform</code></td><td><code>IsOSPlatform(p1)</code></td><td><code>static bool IsOSPlatform(OSPlatform osPlatform)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SafeArrayRankMismatchException"><summary><b>SafeArrayRankMismatchException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SafeArrayRankMismatchException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SafeArrayRankMismatchException()</code></td></tr><tr><td><code>new SafeArrayRankMismatchException(string message)</code></td></tr><tr><td><code>new SafeArrayRankMismatchException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SafeArrayRankMismatchException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SafeArrayRankMismatchException().@New([ :param = value ])</code> or <code>dnNew("SafeArrayRankMismatchException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SafeArrayTypeMismatchException"><summary><b>SafeArrayTypeMismatchException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SafeArrayTypeMismatchException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SafeArrayTypeMismatchException()</code></td></tr><tr><td><code>new SafeArrayTypeMismatchException(string message)</code></td></tr><tr><td><code>new SafeArrayTypeMismatchException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SafeArrayTypeMismatchException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SafeArrayTypeMismatchException().@New([ :param = value ])</code> or <code>dnNew("SafeArrayTypeMismatchException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SafeBuffer"><summary><b>SafeBuffer</b> <span class="muted">class abstract · extends SafeHandleZeroOrMinusOneIsInvalid</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SafeBuffer</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ByteLength</code></td><td><code>ulong</code></td><td>read</td><td><code>o.ByteLength</code></td></tr><tr><td><code>IsInvalid</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInvalid</code></td></tr><tr><td><code>IsClosed</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsClosed</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Close</code></td><td><code>Close()</code></td><td><code>void Close()</code></td></tr><tr><td><code>DangerousAddRef</code></td><td><code>DangerousAddRef(p1)</code></td><td><code>void DangerousAddRef(ref bool success)</code></td></tr><tr><td><code>DangerousGetHandle</code></td><td><code>DangerousGetHandle()</code></td><td><code>IntPtr DangerousGetHandle()</code></td></tr><tr><td><code>DangerousRelease</code></td><td><code>DangerousRelease()</code></td><td><code>void DangerousRelease()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>Initialize</code></td><td><code>Initialize(value)</code><br><code>Initialize([ :numBytes = … ])</code><br><code>Initialize([ :numElements = … ])</code><br><code>Initialize([ :numElements = …, :sizeOfEachElement = … ])</code></td><td><code>void Initialize(ulong numBytes)</code><br><code>void Initialize(uint numElements, uint sizeOfEachElement)</code><br><code>void Initialize&lt;T&gt;(uint numElements)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(value)</code><br><code>Read([ :byteOffset = … ])</code></td><td><code>T Read&lt;T&gt;(ulong byteOffset)</code></td></tr><tr><td><code>ReadArray</code></td><td><code>ReadArray(p1,p2,p3,p4)</code></td><td><code>void ReadArray&lt;T&gt;(ulong byteOffset, T[] array, int index, int count)</code></td></tr><tr><td><code>ReadSpan</code></td><td><code>ReadSpan(p1,p2)</code></td><td><code>void ReadSpan&lt;T&gt;(ulong byteOffset, Span&lt;T&gt; buffer)</code></td></tr><tr><td><code>ReleasePointer</code></td><td><code>ReleasePointer()</code></td><td><code>void ReleasePointer()</code></td></tr><tr><td><code>SetHandleAsInvalid</code></td><td><code>SetHandleAsInvalid()</code></td><td><code>void SetHandleAsInvalid()</code></td></tr><tr><td><code>Write</code></td><td><code>Write(p1,p2)</code></td><td><code>void Write&lt;T&gt;(ulong byteOffset, T value)</code></td></tr><tr><td><code>WriteArray</code></td><td><code>WriteArray(p1,p2,p3,p4)</code></td><td><code>void WriteArray&lt;T&gt;(ulong byteOffset, T[] array, int index, int count)</code></td></tr><tr><td><code>WriteSpan</code></td><td><code>WriteSpan(p1,p2)</code></td><td><code>void WriteSpan&lt;T&gt;(ulong byteOffset, ReadOnlySpan&lt;T&gt; data)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SafeHandle"><summary><b>SafeHandle</b> <span class="muted">class abstract · extends CriticalFinalizerObject</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SafeHandle</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsClosed</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsClosed</code></td></tr><tr><td><code>IsInvalid</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsInvalid</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Close</code></td><td><code>Close()</code></td><td><code>void Close()</code></td></tr><tr><td><code>DangerousAddRef</code></td><td><code>DangerousAddRef(p1)</code></td><td><code>void DangerousAddRef(ref bool success)</code></td></tr><tr><td><code>DangerousGetHandle</code></td><td><code>DangerousGetHandle()</code></td><td><code>IntPtr DangerousGetHandle()</code></td></tr><tr><td><code>DangerousRelease</code></td><td><code>DangerousRelease()</code></td><td><code>void DangerousRelease()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>SetHandleAsInvalid</code></td><td><code>SetHandleAsInvalid()</code></td><td><code>void SetHandleAsInvalid()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SEHException"><summary><b>SEHException</b> <span class="muted">class · extends <a href="#c-ExternalException">ExternalException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SEHException</code> · assembly <code>System.Private.CoreLib</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SEHException()</code></td></tr><tr><td><code>new SEHException(string message)</code></td></tr><tr><td><code>new SEHException(string message, Exception inner)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SEHException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SEHException().@New([ :param = value ])</code> or <code>dnNew("SEHException",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanResume</code></td><td><code>CanResume()</code></td><td><code>bool CanResume()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StandardOleMarshalObject"><summary><b>StandardOleMarshalObject</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.StandardOleMarshalObject</code> · assembly <code>System.Private.CoreLib</code></p>
+</div></details>
+<details class="cls" id="c-StructLayoutAttribute"><summary><b>StructLayoutAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.StructLayoutAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StructLayoutAttribute(LayoutKind layoutKind)</code></td></tr><tr><td><code>new StructLayoutAttribute(short layoutKind)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StructLayoutAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StructLayoutAttribute().@New([ :param = value ])</code> or <code>dnNew("StructLayoutAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>LayoutKind</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>Pack</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Pack</code> <code>o.Pack = v</code></td></tr><tr><td><code>Size</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Size</code> <code>o.Size = v</code></td></tr><tr><td><code>CharSet</code></td><td><code>CharSet</code></td><td>read, write</td><td><code>o.CharSet</code> <code>o.CharSet = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SuppressGCTransitionAttribute"><summary><b>SuppressGCTransitionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.SuppressGCTransitionAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SuppressGCTransitionAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SuppressGCTransitionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SuppressGCTransitionAttribute().@New([ :param = value ])</code> or <code>dnNew("SuppressGCTransitionAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeIdentifierAttribute"><summary><b>TypeIdentifierAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeIdentifierAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeIdentifierAttribute()</code></td></tr><tr><td><code>new TypeIdentifierAttribute(string scope, string identifier)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeIdentifierAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeIdentifierAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeIdentifierAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scope</code></td><td><code>string</code></td><td>read</td><td><code>o.Scope</code></td></tr><tr><td><code>Identifier</code></td><td><code>string</code></td><td>read</td><td><code>o.Identifier</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeLibFuncAttribute"><summary><b>TypeLibFuncAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeLibFuncAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeLibFuncAttribute(TypeLibFuncFlags flags)</code></td></tr><tr><td><code>new TypeLibFuncAttribute(short flags)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeLibFuncAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeLibFuncAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeLibFuncAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>TypeLibFuncFlags</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeLibImportClassAttribute"><summary><b>TypeLibImportClassAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeLibImportClassAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeLibImportClassAttribute(Type importClass)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeLibImportClassAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeLibImportClassAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeLibImportClassAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeLibTypeAttribute"><summary><b>TypeLibTypeAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeLibTypeAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeLibTypeAttribute(TypeLibTypeFlags flags)</code></td></tr><tr><td><code>new TypeLibTypeAttribute(short flags)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeLibTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeLibTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeLibTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>TypeLibTypeFlags</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeLibVarAttribute"><summary><b>TypeLibVarAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeLibVarAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeLibVarAttribute(TypeLibVarFlags flags)</code></td></tr><tr><td><code>new TypeLibVarAttribute(short flags)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeLibVarAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeLibVarAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeLibVarAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>TypeLibVarFlags</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TypeLibVersionAttribute"><summary><b>TypeLibVersionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.TypeLibVersionAttribute</code> · assembly <code>System.Runtime.InteropServices</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TypeLibVersionAttribute(int major, int minor)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TypeLibVersionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TypeLibVersionAttribute().@New([ :param = value ])</code> or <code>dnNew("TypeLibVersionAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MajorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MajorVersion</code></td></tr><tr><td><code>MinorVersion</code></td><td><code>int</code></td><td>read</td><td><code>o.MinorVersion</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnknownWrapper"><summary><b>UnknownWrapper</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.UnknownWrapper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnknownWrapper(object obj)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnknownWrapper(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnknownWrapper().@New([ :param = value ])</code> or <code>dnNew("UnknownWrapper",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WrappedObject</code></td><td><code>object</code></td><td>read</td><td><code>o.WrappedObject</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UnmanagedCallConvAttribute"><summary><b>UnmanagedCallConvAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.UnmanagedCallConvAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnmanagedCallConvAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnmanagedCallConvAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnmanagedCallConvAttribute().@New([ :param = value ])</code> or <code>dnNew("UnmanagedCallConvAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CallConvs</code></td><td><code>Type[]</code></td><td>read, write</td><td><code>o.CallConvs</code> <code>o.CallConvs = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnmanagedCallersOnlyAttribute"><summary><b>UnmanagedCallersOnlyAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.UnmanagedCallersOnlyAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnmanagedCallersOnlyAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnmanagedCallersOnlyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnmanagedCallersOnlyAttribute().@New([ :param = value ])</code> or <code>dnNew("UnmanagedCallersOnlyAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CallConvs</code></td><td><code>Type[]</code></td><td>read, write</td><td><code>o.CallConvs</code> <code>o.CallConvs = v</code></td></tr><tr><td><code>EntryPoint</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EntryPoint</code> <code>o.EntryPoint = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnmanagedFunctionPointerAttribute"><summary><b>UnmanagedFunctionPointerAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnmanagedFunctionPointerAttribute(CallingConvention callingConvention)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnmanagedFunctionPointerAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnmanagedFunctionPointerAttribute().@New([ :param = value ])</code> or <code>dnNew("UnmanagedFunctionPointerAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CallingConvention</code></td><td><code>CallingConvention</code></td><td>read</td><td><code>o.CallingConvention</code></td></tr><tr><td><code>BestFitMapping</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.BestFitMapping</code> <code>o.BestFitMapping = v</code></td></tr><tr><td><code>SetLastError</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SetLastError</code> <code>o.SetLastError = v</code></td></tr><tr><td><code>ThrowOnUnmappableChar</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ThrowOnUnmappableChar</code> <code>o.ThrowOnUnmappableChar = v</code></td></tr><tr><td><code>CharSet</code></td><td><code>CharSet</code></td><td>read, write</td><td><code>o.CharSet</code> <code>o.CharSet = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-VariantWrapper"><summary><b>VariantWrapper</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.VariantWrapper</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new VariantWrapper(object obj)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new VariantWrapper(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new VariantWrapper().@New([ :param = value ])</code> or <code>dnNew("VariantWrapper",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>WrappedObject</code></td><td><code>object</code></td><td>read</td><td><code>o.WrappedObject</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WasmImportLinkageAttribute"><summary><b>WasmImportLinkageAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Runtime.InteropServices.WasmImportLinkageAttribute</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WasmImportLinkageAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WasmImportLinkageAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WasmImportLinkageAttribute().@New([ :param = value ])</code> or <code>dnNew("WasmImportLinkageAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

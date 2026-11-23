@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparing text · RingDotNet</title>
+<meta name="description" content="Is "apple" equal to "APPLE"? Which comes first, "Zebra" or "apple"? The answers depend on how you compare. This lesson shows ordinal and culture-aware comparison, comparers for sorting, dictionaries and sets that ignore case, and the famous Turkish "i".">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html" class="cur">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Comparing text</h1><p class="lead">Is "apple" equal to "APPLE"? Which comes first, "Zebra" or "apple"? The answers depend on how you compare. This lesson shows ordinal and culture-aware comparison, comparers for sorting, dictionaries and sets that ignore case, and the famous Turkish "i".</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><strong>ordinal</strong> comparison (the code of each character) and <strong>culture-aware</strong> comparison (the rules of a language),</li><li>ignoring case,</li><li><code>String.Compare</code> and what its result means,</li><li><code>StringComparer</code>: a comparer that you give to <code>Sort</code>, a dictionary or a set,</li><li>why <code>"TITLE".ToLower()</code> can be wrong in Turkish.</li></ul>
+<p>The tutorial <a href="tut-33-cultures.html">Cultures</a> formatted numbers and dates for a culture, and the tutorial <a href="tut-52-unicode.html">Unicode and encodings</a> looked at characters. This lesson is about <em>comparing</em> text, which every search box, sort order and dictionary of names needs.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_comparers.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># comparing text - ordinal and culture comparison, ignoring case, StringComparer and a sorted set that ignores case</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Globalization"</span>
+	<span class="s">"System.Collections.Generic"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oString = <span class="k">new</span> <span class="t">String</span>()
+	<span class="c"># 1. Two texts can be compared in different ways. Ordinal compares the code of every character: fast, exact, the same on every</span>
+	<span class="c">#    computer. Culture-aware comparison follows the rules of a language (in German "ä" is close to "a"). Both can ignore case.</span>
+	? <span class="s">"1. 'apple' = 'APPLE'"</span>
+	? <span class="s">"   ordinal:                "</span> + (oString.<span class="f">Compare</span>([ :strA = <span class="s">"apple"</span>, :strB = <span class="s">"APPLE"</span>, :comparisonType = <span class="s">"Ordinal"</span> ]) = <span class="n">0</span>)
+	? <span class="s">"   ordinal, ignore case:    "</span> + (oString.<span class="f">Compare</span>([ :strA = <span class="s">"apple"</span>, :strB = <span class="s">"APPLE"</span>, :comparisonType = <span class="s">"OrdinalIgnoreCase"</span> ]) = <span class="n">0</span>)
+	? <span class="s">"   invariant culture, ignore case: "</span> + (oString.<span class="f">Compare</span>([ :strA = <span class="s">"apple"</span>, :strB = <span class="s">"APPLE"</span>, :comparisonType = <span class="s">"InvariantCultureIgnoreCase"</span> ]) = <span class="n">0</span>)
+
+	<span class="c"># 2. The result of Compare is negative, zero or positive: only the SIGN means something</span>
+	? nl + <span class="s">"2. Compare('a','b') is negative: "</span> + (oString.<span class="f">Compare</span>([ :strA = <span class="s">"a"</span>, :strB = <span class="s">"b"</span>, :comparisonType = <span class="s">"Ordinal"</span> ]) &lt; <span class="n">0</span>)
+	? <span class="s">"   Compare('b','a') is positive: "</span> + (oString.<span class="f">Compare</span>([ :strA = <span class="s">"b"</span>, :strB = <span class="s">"a"</span>, :comparisonType = <span class="s">"Ordinal"</span> ]) &gt; <span class="n">0</span>)
+
+	<span class="c"># 3. Capital letters come before small letters in ordinal order (the code of "Z" is smaller than the code of "a"),</span>
+	<span class="c">#    a culture puts "a" and "A" next to each other</span>
+	oOrdinal = <span class="k">new</span> <span class="t">StringComparer</span>().Ordinal
+	oCulture = <span class="k">new</span> <span class="t">StringComparer</span>().InvariantCulture
+	oWords = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.String"</span>],[])
+	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"banana"</span>,<span class="s">"Cherry"</span>,<span class="s">"apple"</span>,<span class="s">"Banana"</span>,<span class="s">"cherry"</span>,<span class="s">"Apple"</span>]
+		oWords.<span class="f">Add</span>(cWord)
+	<span class="k">next</span>
+	oWords.<span class="f">Sort</span>(oOrdinal)
+	? nl + <span class="s">"3. ordinal order:  "</span> + joinList(oWords.<span class="f">toList</span>())
+	oWords.<span class="f">Sort</span>(oCulture)
+	? <span class="s">"   culture order:  "</span> + joinList(oWords.<span class="f">toList</span>())
+	oWords.<span class="f">Sort</span>(<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase)
+	? <span class="s">"   ignore case:    "</span> + joinList(oWords.<span class="f">toList</span>()) + <span class="s">"   (equal words can come in any order)"</span>
+
+	<span class="c"># 4. A dictionary that ignores case: the comparer is the second argument of the constructor</span>
+	oPeople = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>],[<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase])
+	oPeople.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
+	? nl + <span class="s">"4. the key 'ANN' finds the key 'Ann': "</span> + oPeople.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
+	oPlain = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>],[])
+	oPlain.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
+	? <span class="s">"   a plain dictionary does not: "</span> + oPlain.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
+
+	<span class="c"># 5. A sorted set with the same idea keeps one of 'Apple' and 'apple'</span>
+	oSet = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.SortedSet"</span>,[<span class="s">"System.String"</span>],[<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase])
+	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"Apple"</span>,<span class="s">"apple"</span>,<span class="s">"Pear"</span>,<span class="s">"APPLE"</span>,<span class="s">"pear"</span>]
+		oSet.<span class="f">Add</span>(cWord)
+	<span class="k">next</span>
+	? nl + <span class="s">"5. "</span> + oSet.Count + <span class="s">" words stay in the set: "</span> + joinList(oSet.<span class="f">toList</span>())
+
+	<span class="c"># 6. The same letter is not the same in every culture. In Turkish the capital of "i" is "İ" (with a dot) and the small</span>
+	<span class="c">#    letter of "I" is "ı" (without a dot): upper-casing with the wrong culture breaks a comparison like "TITLE" = "title"</span>
+	oTurkish = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"tr-TR"</span>)
+	? nl + <span class="s">"6. 'title' in capitals, invariant culture: "</span> + upperText(<span class="s">"title"</span>,<span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">""</span>))
+	? <span class="s">"   'title' in capitals, Turkish culture:   "</span> + upperText(<span class="s">"title"</span>,oTurkish)
+
+<span class="k">func</span> <span class="f">upperText</span> cText,oCulture
+
+	<span class="k">return</span> oCulture.TextInfo.<span class="f">ToUpper</span>(cText)
+
+<span class="k">func</span> <span class="f">joinList</span> aList
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> item <span class="k">in</span> aList
+		cText += <span class="s">""</span> + item + <span class="s">" "</span>
+	<span class="k">next</span>
+	<span class="k">return</span> cText</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. 'apple' = 'APPLE'
+   ordinal:                0
+   ordinal, ignore case:    1
+   invariant culture, ignore case: 1
+
+2. Compare('a','b') is negative: 1
+   Compare('b','a') is positive: 1
+
+3. ordinal order:  Apple Banana Cherry apple banana cherry 
+   culture order:  apple Apple banana Banana cherry Cherry 
+   ignore case:    apple Apple banana Banana cherry Cherry    (equal words can come in any order)
+
+4. the key 'ANN' finds the key 'Ann': 1
+   a plain dictionary does not: 0
+
+5. 2 words stay in the set: Apple Pear 
+
+6. 'title' in capitals, invariant culture: TITLE
+   'title' in capitals, Turkish culture:   TİTLE</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnNewGeneric</code>, <code>callMethod</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="ordinal-and-culture">Ordinal and culture<a class="anchor" href="#ordinal-and-culture">#</a></h3>
+<p><strong>Ordinal</strong> comparison looks at the number (code) of every character. It is exact and fast and gives the same answer on every computer, so it is the right choice for <em>technical</em> text: file names, identifiers, keys, protocols. <strong>Culture</strong> comparison follows the rules of a language: letters with accents are close to their base letters and <code>a</code> and <code>A</code> are neighbors. Use it for text that people read, such as a sorted list of names on the screen. The comparison type is an enum, so it is a text: <code>"Ordinal"</code>, <code>"OrdinalIgnoreCase"</code>, <code>"InvariantCulture"</code>, <code>"InvariantCultureIgnoreCase"</code>, <code>"CurrentCulture"</code>.</p>
+<h3 id="the-result-of-compare">The result of Compare<a class="anchor" href="#the-result-of-compare">#</a></h3>
+<p><code>String.Compare</code> returns a number: <strong>negative</strong> when the first text comes first, <strong>zero</strong> when they are equal, <strong>positive</strong> when it comes second. Test only the sign (<code>&lt; 0</code>, <code>= 0</code>, <code>&gt; 0</code>) — the size is not defined. The method has many forms, so it takes named values (<code>:strA</code>, <code>:strB</code>, <code>:comparisonType</code>).</p>
+<h3 id="sorting-with-a-comparer">Sorting with a comparer<a class="anchor" href="#sorting-with-a-comparer">#</a></h3>
+<p>A <code>StringComparer</code> object is a comparer: <code>Sort(comparer)</code> of a <code>List</code> uses it. In the <strong>ordinal</strong> order all capital letters come before all small ones (<em>Apple Banana Cherry apple banana cherry</em>), because the code of <code>Z</code> is smaller than the code of <code>a</code>. The <strong>culture</strong> order is the one that people expect (<em>apple Apple banana Banana ...</em>). With <code>OrdinalIgnoreCase</code>, <code>apple</code> and <code>Apple</code> are equal, so their order is not defined.</p>
+<div class="callout note"><span class="t">Note</span><p>The culture order comes from the operating system or the ICU library. It can differ a little between Windows, Linux and macOS, so a test or a file format must not depend on it.</p></div>
+<h3 id="dictionaries-and-sets">Dictionaries and sets<a class="anchor" href="#dictionaries-and-sets">#</a></h3>
+<p>The constructor of a <code>Dictionary</code> or a <code>SortedSet</code> can take a comparer, and then <em>all</em> its lookups use it: with <code>OrdinalIgnoreCase</code> the key <code>ANN</code> finds <code>Ann</code>, and <code>Apple</code>, <code>apple</code> and <code>APPLE</code> count as one word in the set (the first one stays). This is the usual way to make a case-insensitive lookup table; it is much better than changing the case of every key by hand.</p>
+<h3 id="the-turkish-i">The Turkish i<a class="anchor" href="#the-turkish-i">#</a></h3>
+<p>In Turkish there are two letters <code>i</code>: the one with a dot and the one without. The capital of <code>i</code> is <code>İ</code> (with a dot) and the small letter of <code>I</code> is <code>ı</code>. So <code>"title".ToUpper()</code> with the Turkish culture gives <code>TİTLE</code>, which is <strong>not equal</strong> to <code>TITLE</code>. A program that decides things by changing the case of text (a command name, a file extension) breaks on a Turkish computer if it uses the culture of the user. The rule: for technical comparison use <strong>ordinal</strong> comparison, or change the case with the <strong>invariant</strong> culture.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>ordinal for technical text, culture for text that people read,</li><li>the sign of the result of <code>Compare</code>,</li><li><code>StringComparer</code> for sorting, dictionaries and sets,</li><li>case-insensitive lookups with <code>OrdinalIgnoreCase</code>,</li><li>the Turkish <code>i</code> and why the invariant culture is safer.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Sort the file names of a folder (the tutorial <a href="tut-05-files.html">Files and folders</a>) in ordinal order and in culture order and look at the difference.</li><li>Build a case-insensitive <code>Dictionary</code> of settings (the tutorial <a href="tut-32-settings.html">Settings</a>).</li><li>Compare <code>"Straße"</code> and <code>"STRASSE"</code> with the four comparison types.</li><li>Write <code>sameName(a, b)</code> for user names that must ignore case and accents (look at <code>CompareOptions</code>).</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-104-text-readers-writers.html">Text readers and writers</a></p>
+<div class="pager"><a href="tut-132-text-encodings.html"><small>Previous</small>Text files and encodings</a><a class="next" href="tut-104-text-readers-writers.html"><small>Next</small>Text readers and writers</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More than one system · RingDotNet</title>
+<meta name="description" content="A Ring program that uses .NET runs on Windows and on Linux, and should run on macOS. Most of it is the same everywhere, and a few things are not. This lesson shows the output of one program on Windows and on Linux, explains the differences, and gives a short list for writing programs that work on both.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html" class="cur">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>More than one system</h1><p class="lead">A Ring program that uses .NET runs on Windows and on Linux, and should run on macOS. Most of it is the same everywhere, and a few things are not. This lesson shows the output of one program on Windows and on Linux, explains the differences, and gives a short list for writing programs that work on both.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what is the same on every system and what is not,</li><li>how a program asks which system it is on (<code>isWindows()</code>, <code>isLinux()</code>, <code>isMacOSX()</code>),</li><li>paths, upper and lower case in file names, and the end of a line,</li><li>how to keep a feature of one system (a window) away from the others,</li><li>a checklist for a portable program.</li></ul>
+<h2 id="what-works-where">What works where<a class="anchor" href="#what-works-where">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th></th><th>Windows</th><th>Linux</th><th>macOS</th></tr></thead><tbody><tr><td>Text, numbers, dates, collections, LINQ</td><td>yes</td><td>yes</td><td>should work</td></tr><tr><td>Files, folders, streams, compression, JSON, XML</td><td>yes</td><td>yes</td><td>should work</td></tr><tr><td>HTTP, sockets, web servers, databases (SQLite, EF Core)</td><td>yes</td><td>yes</td><td>should work</td></tr><tr><td>Windows Forms and WPF (windows, controls, drawing)</td><td>yes</td><td><strong>no</strong></td><td><strong>no</strong></td></tr><tr><td>The registry, Access (<code>OLEDB</code>), named shared memory</td><td>yes</td><td>no</td><td>no</td></tr></tbody></table></div>
+<p>The package was tested on Windows and on Linux (Ubuntu 24.04, x64, .NET 9). <strong>macOS and arm64 were not tested</strong>, so the last column says "should work", not "works". The extension is a C library that is built once for each system; the steps are in <a href="getting-started.html">Getting started</a>.</p>
+<p>Windows Forms and WPF are made of the Windows system, so nothing in the package can bring them to another system. The classes are in the package, but they need the Windows desktop part of .NET, and a Linux computer does not have it. A Windows-only program (a window, a clipboard, a tray icon) has to say that it is.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<p>It asks the system six questions and prints the answers. The program is the same on every system:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_systems.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># one program for Windows, Linux and macOS - what differs between the systems and how a program asks instead of assuming</span>
+<span class="c">#   (the answers are different on each system; the lesson shows the output of Windows and of Linux)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+}
+
+<span class="c"># A window needs Windows: on another system, asking for it ends the program at once, so the line that asks is behind a question.</span>
+<span class="k">if</span> isWindows()
+	using { <span class="s">"System.Windows.Forms"</span> }
+<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. Which system? Ring answers with isWindows(), isLinux() and isMacOSX(); .NET names the platform</span>
+	? <span class="s">"1. windows: "</span> + isWindows() + <span class="s">", linux: "</span> + isLinux() + <span class="s">", macos: "</span> + isMacOSX() + <span class="s">", platform: "</span> + <span class="k">new</span> <span class="t">Environment</span>().OSVersion.Platform
+
+	<span class="c"># 2. Paths. A path separator is \ on Windows and / on Linux and macOS; Path.Combine uses the right one, and a / is accepted by every system.</span>
+	? <span class="s">"2. separator: "</span> + <span class="k">new</span> <span class="t">Path</span>().DirectorySeparatorChar + <span class="s">"   Combine: "</span> + <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="s">"data"</span>,<span class="s">"report.txt"</span>])
+
+	<span class="c"># 3. Case. Windows does not care about upper and lower case in a file name, Linux does (macOS usually does not, but can).</span>
+	cFolder = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet-systems"</span>])
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cFolder)
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,<span class="s">"notes.txt"</span>])
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cFile, :contents = <span class="s">"x"</span> ])
+	? <span class="s">"3. notes.txt exists: "</span> + <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile) + <span class="s">", NOTES.TXT exists: "</span> + <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,<span class="s">"NOTES.TXT"</span>]))
+	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">true</span> ])
+
+	<span class="c"># 4. The end of a line: 2 characters on Windows (13 10), 1 on Linux and macOS (10)</span>
+	? <span class="s">"4. the end of a line has "</span> + len(<span class="k">new</span> <span class="t">Environment</span>().NewLine) + <span class="s">" character(s)"</span>
+
+	<span class="c"># 5. The folder of the user is found by asking, not by writing C:\Users\ or /home/</span>
+	cHome = <span class="k">new</span> <span class="t">Environment</span>().<span class="f">GetFolderPath</span>(<span class="s">"UserProfile"</span>)
+	? <span class="s">"5. the home folder exists: "</span> + <span class="k">new</span> <span class="t">Directory</span>().<span class="f">Exists</span>(cHome)
+
+	<span class="c"># 6. A feature of one system, behind a question</span>
+	<span class="k">if</span> isWindows()
+		oForm = <span class="k">new</span> <span class="t">Form</span>
+		? <span class="s">"6. a window can be made: "</span> + classname(oForm)
+	<span class="k">else</span>
+		? <span class="s">"6. no windows here: the program works in the console"</span>
+	<span class="k">ok</span></code></pre></div>
+<p>Windows prints:</p>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. windows: 1, linux: 0, macos: 0, platform: Win32NT
+2. separator: \   Combine: data\report.txt
+3. notes.txt exists: 1, NOTES.TXT exists: 1
+4. the end of a line has 2 character(s)
+5. the home folder exists: 1
+6. a window can be made: form</code></pre></div>
+<p>and Linux prints:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span></span><button class="copy" type="button">Copy</button></div><pre><code>1. windows: 0, linux: 1, macos: 0, platform: Unix
+2. separator: /   Combine: data/report.txt
+3. notes.txt exists: 1, NOTES.TXT exists: 0
+4. the end of a line has 1 character(s)
+5. the home folder exists: 1
+6. no windows here: the program works in the console</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="1-ask-which-system">1. Ask which system<a class="anchor" href="#1-ask-which-system">#</a></h3>
+<p><code>isWindows()</code>, <code>isLinux()</code> and <code>isMacOSX()</code> are functions of Ring. .NET answers too: <code>Environment.OSVersion.Platform</code> is <code>Win32NT</code> on Windows and <code>Unix</code> on Linux and macOS. Use the Ring functions for a choice in the program, and the .NET ones when the platform is only to be shown.</p>
+<h3 id="2-paths">2. Paths<a class="anchor" href="#2-paths">#</a></h3>
+<p>Windows writes <code>data\report.txt</code> and Linux writes <code>data/report.txt</code>. Do not write the separator yourself: <code>Path.Combine</code> joins the parts with the right one. A <code>/</code> is accepted by every system, also on Windows, so a path in the program text can be written with <code>/</code>. A path that starts with a letter and a colon (<code>C:\</code>) or one that starts with <code>/home/</code> exists on one system only; take the folders from the system instead (see 5 below, the tutorial <a href="tut-59-paths.html">Paths and the environment</a> and <a href="tut-123-file-info.html">File information</a>).</p>
+<h3 id="3-upper-and-lower-case">3. Upper and lower case<a class="anchor" href="#3-upper-and-lower-case">#</a></h3>
+<p>On Windows <code>notes.txt</code> and <code>NOTES.TXT</code> are the same file. On Linux they are two names, and the second one does not exist. A program that works on Windows by luck (it opens <code>Config.JSON</code> and the file is <code>config.json</code>) stops with a <em>file not found</em> error on Linux. Write the name of a file the same way everywhere, and prefer lower case names.</p>
+<h3 id="4-the-end-of-a-line">4. The end of a line<a class="anchor" href="#4-the-end-of-a-line">#</a></h3>
+<p>Windows ends a line with two characters (13 and 10), Linux and macOS with one (10). <code>Environment.NewLine</code> is the right one for the system. <code>File.ReadAllLines</code> reads both kinds (the tutorial <a href="tut-132-text-encodings.html">Text files and encodings</a>), so a program that only reads lines does not notice. Notice it when you count characters, compare files byte by byte or write a file for another system.</p>
+<h3 id="5-ask-the-system-for-a-folder">5. Ask the system for a folder<a class="anchor" href="#5-ask-the-system-for-a-folder">#</a></h3>
+<p><code>Environment.GetFolderPath("UserProfile")</code> is <code>C:\Users\Ann</code> on Windows and <code>/home/ann</code> on Linux. <code>Path.GetTempPath()</code> is the folder for temporary files. The names <code>ApplicationData</code>, <code>LocalApplicationData</code> and <code>MyDocuments</code> work the same way.</p>
+<h3 id="6-keep-a-feature-of-one-system-behind-a-question">6. Keep a feature of one system behind a question<a class="anchor" href="#6-keep-a-feature-of-one-system-behind-a-question">#</a></h3>
+<p>The most important line of the program is at the top:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">if</span> isWindows()
+	using { <span class="s">"System.Windows.Forms"</span> }
+<span class="k">ok</span></code></pre></div>
+<p>On Linux, <code>using { "System.Windows.Forms" }</code> does not give an error that the program can catch: the runtime of .NET cannot start the desktop part, prints the message <code>You must install or update .NET to run this application... Microsoft.WindowsDesktop.App... No frameworks were found</code> and the program <strong>ends</strong>. A program that has a window mode and a console mode puts every <code>using</code> and every <code>new Form</code> behind <code>isWindows()</code>.</p>
+<h2 id="a-checklist-for-a-program-for-every-system">A checklist for a program for every system<a class="anchor" href="#a-checklist-for-a-program-for-every-system">#</a></h2>
+<ol><li><strong>Paths</strong> with <code>Path.Combine</code> and folders from <code>GetFolderPath</code>; no <code>C:\</code> and no <code>\</code>.</li><li><strong>File names</strong> the same way every time, and lower case.</li><li><strong>Windows-only features</strong> (windows, registry, clipboard, tray icon, Access, named shared memory) behind <code>isWindows()</code>, with a message or a console version for the others.</li><li><strong>Commands of the system</strong> chosen with <code>isWindows()</code>: <code>cmd /c dir</code> or <code>sh -c ls</code> (the tutorial <a href="tut-10-tasks-processes.html">Time, tasks and other programs</a>).</li><li><strong>Time zone names</strong>: Windows has <code>Eastern Standard Time</code> and Linux has <code>America/New_York</code>; see <a href="tut-68-timezones.html">Time zones</a>.</li><li><strong>Tests on both systems</strong>, or at least a look at the output of one program on the other system. A difference such as the one in step 3 shows only when the program runs.</li></ol>
+<div class="callout note"><span class="t">Note</span><p><code>System.Drawing</code> (pictures, <code>Bitmap</code>, <code>Graphics</code>) is a Windows feature in current versions of .NET. A program that must make pictures on Linux needs a package that does not use it, such as SkiaSharp (the lesson <a href="tut-168-pictures.html">Pictures on every system</a>).</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>text, files, network and data work everywhere; windows and the registry are Windows-only,</li><li><code>isWindows()</code>, <code>isLinux()</code> and <code>isMacOSX()</code> ask the system,</li><li><code>Path.Combine</code>, <code>GetFolderPath</code> and <code>NewLine</code> give the right answer for each system,</li><li>a window feature must be behind <code>isWindows()</code>, because on Linux the program cannot recover from asking for it,</li><li>a checklist for programs that run everywhere.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Run the program on a computer with another system (or a Linux system under WSL) and compare the output with the two blocks above.</li><li>Add a seventh question: what does <code>Path.GetTempPath()</code> start with?</li><li>Make a function <code>configPath()</code> that returns the path of <code>settings.json</code> inside the folder <code>ApplicationData</code> of the user, for every system.</li><li>Write a program that prints <code>Windows</code> in a window when it can and in the console when it cannot.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-28-testing.html">Testing your programs</a></p>
+<div class="pager"><a href="tut-161-common-errors.html"><small>Previous</small>Common mistakes</a><a class="next" href="tut-28-testing.html"><small>Next</small>Testing</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

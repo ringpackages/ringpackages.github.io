@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics and simulation · RingDotNet</title>
+<meta name="description" content="Mean, median, mode, standard deviation, a histogram, prime numbers and an estimate of pi from random points — small formulas written as small functions, and checked against .NET.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html" class="cur">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Statistics and simulation</h1><p class="lead">Mean, median, mode, standard deviation, a histogram, prime numbers and an estimate of pi from random points — small formulas written as small functions, and checked against .NET.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the common statistics and how to compute them,</li><li>writing each formula as a function,</li><li>cross-checking with LINQ,</li><li>the sieve of Eratosthenes,</li><li>a <em>Monte Carlo</em> simulation with a seeded <code>Random</code>.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch03_statistics.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># numbers - statistics, primes and a simulation (Monte Carlo estimate of pi)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Linq"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	aData = [<span class="n">4</span>,<span class="n">8</span>,<span class="n">15</span>,<span class="n">16</span>,<span class="n">23</span>,<span class="n">42</span>,<span class="n">8</span>,<span class="n">15</span>,<span class="n">8</span>,<span class="n">4</span>]
+
+	<span class="c"># 1. The usual summaries of a set of numbers</span>
+	? <span class="s">"Data           : "</span> + joinList(aData)
+	? <span class="s">"Count, sum     : "</span> + len(aData) + <span class="s">", "</span> + sumOf(aData)
+	? <span class="s">"Mean (average) : "</span> + mean(aData)
+	? <span class="s">"Median (middle): "</span> + median(aData)
+	? <span class="s">"Mode (common)  : "</span> + mode(aData)
+	? <span class="s">"Smallest, largest: "</span> + min(aData) + <span class="s">", "</span> + max(aData)
+	? <span class="s">"Standard deviation: "</span> + stdDev(aData)
+
+	<span class="c"># 2. .NET gives the same answer with LINQ: a check of our own code</span>
+	? nl + <span class="s">"LINQ average   : "</span> + <span class="f">dnQuery</span>(aData).<span class="f">Average</span>(<span class="s">""</span>) + <span class="s">" (same as the mean)"</span>
+
+	<span class="c"># 3. A histogram: how often each value occurs, as bars of #</span>
+	? nl + <span class="s">"Histogram:"</span>
+	aValues = []
+	<span class="k">for</span> nValue <span class="k">in</span> sort(aData)
+		<span class="k">if</span> find(aValues,nValue) = <span class="n">0</span>
+			aValues + nValue
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">for</span> nValue <span class="k">in</span> aValues
+		? <span class="s">"   "</span> + right(<span class="s">"  "</span> + nValue,<span class="n">2</span>) + <span class="s">" "</span> + copies(<span class="s">"#"</span>,count(aData,nValue))
+	<span class="k">next</span>
+
+	<span class="c"># 4. Primes: the sieve of Eratosthenes</span>
+	aPrimes = primesUpTo(<span class="n">100</span>)
+	? nl + <span class="s">"Primes up to 100: "</span> + len(aPrimes) + <span class="s">" of them, the last is "</span> + aPrimes[len(aPrimes)]
+
+	<span class="c"># 5. Greatest common divisor and least common multiple</span>
+	? nl + <span class="s">"gcd(84, 36) = "</span> + gcd(<span class="n">84</span>,<span class="n">36</span>) + <span class="s">", lcm(4, 6) = "</span> + lcm(<span class="n">4</span>,<span class="n">6</span>)
+
+	<span class="c"># 6. A simulation: throw random points into a square. The share that falls inside the quarter circle is pi / 4</span>
+	oRandom = <span class="k">new</span> <span class="t">Random</span>(<span class="n">2024</span>)                     <span class="c"># a fixed seed: the same numbers in every run</span>
+	nInside = <span class="n">0</span>
+	nThrows = <span class="n">20000</span>
+	<span class="k">for</span> nThrow = <span class="n">1</span> <span class="k">to</span> nThrows
+		nX = oRandom.<span class="f">NextDouble</span>()
+		nY = oRandom.<span class="f">NextDouble</span>()
+		<span class="k">if</span> nX * nX + nY * nY &lt;= <span class="n">1</span>
+			nInside++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	? nl + <span class="s">"Estimate of pi from "</span> + nThrows + <span class="s">" random points: "</span> + (<span class="n">4</span> * nInside / nThrows)
+	? <span class="s">"Math.PI                                : "</span> + <span class="k">new</span> <span class="t">Math</span>().PI
+
+<span class="c"># ---------------------------------------------------------------- the formulas (small functions, each testable)</span>
+
+<span class="k">func</span> <span class="f">sumOf</span> aList
+
+	nSum = <span class="n">0</span>
+	<span class="k">for</span> nValue <span class="k">in</span> aList
+		nSum += nValue
+	<span class="k">next</span>
+	<span class="k">return</span> nSum
+
+<span class="k">func</span> <span class="f">mean</span> aList
+
+	<span class="k">return</span> sumOf(aList) / len(aList)
+
+<span class="k">func</span> <span class="f">median</span> aList
+
+	aSorted = sort(aList)
+	nMiddle = len(aSorted) / <span class="n">2</span>
+	<span class="k">if</span> len(aSorted) % <span class="n">2</span> = <span class="n">1</span>
+		<span class="k">return</span> aSorted[ceil(nMiddle)]
+	<span class="k">ok</span>
+	<span class="k">return</span> (aSorted[nMiddle] + aSorted[nMiddle + <span class="n">1</span>]) / <span class="n">2</span>
+
+<span class="k">func</span> <span class="f">mode</span> aList
+
+	nBest = aList[<span class="n">1</span>]
+	nBestCount = <span class="n">0</span>
+	<span class="k">for</span> nValue <span class="k">in</span> aList
+		nTimes = count(aList,nValue)
+		<span class="k">if</span> nTimes &gt; nBestCount
+			nBest = nValue
+			nBestCount = nTimes
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> nBest
+
+<span class="k">func</span> <span class="f">stdDev</span> aList
+
+	nMean = mean(aList)
+	nSquares = <span class="n">0</span>
+	<span class="k">for</span> nValue <span class="k">in</span> aList
+		nSquares += (nValue - nMean) * (nValue - nMean)
+	<span class="k">next</span>
+	<span class="k">return</span> sqrt(nSquares / len(aList))
+
+<span class="k">func</span> <span class="f">count</span> aList, nValue
+
+	nTimes = <span class="n">0</span>
+	<span class="k">for</span> nItem <span class="k">in</span> aList
+		<span class="k">if</span> nItem = nValue
+			nTimes++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> nTimes
+
+<span class="k">func</span> <span class="f">primesUpTo</span> nLimit
+
+	aIsPrime = list(nLimit)
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nLimit
+		aIsPrime[nIndex] = <span class="k">True</span>
+	<span class="k">next</span>
+	aIsPrime[<span class="n">1</span>] = <span class="k">False</span>
+	<span class="k">for</span> nNumber = <span class="n">2</span> <span class="k">to</span> floor(sqrt(nLimit))
+		<span class="k">if</span> aIsPrime[nNumber]
+			<span class="k">for</span> nMultiple = nNumber * nNumber <span class="k">to</span> nLimit <span class="k">step</span> nNumber
+				aIsPrime[nMultiple] = <span class="k">False</span>
+			<span class="k">next</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	aPrimes = []
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nLimit
+		<span class="k">if</span> aIsPrime[nIndex]
+			aPrimes + nIndex
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aPrimes
+
+<span class="k">func</span> <span class="f">gcd</span> nA, nB
+
+	<span class="k">while</span> nB != <span class="n">0</span>
+		nTemp = nB
+		nB = nA % nB
+		nA = nTemp
+	<span class="k">end</span>
+	<span class="k">return</span> nA
+
+<span class="k">func</span> <span class="f">lcm</span> nA, nB
+
+	<span class="k">return</span> nA * nB / gcd(nA,nB)
+
+<span class="k">func</span> <span class="f">copies</span> cText, nTimes
+
+	cResult = <span class="s">""</span>
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nTimes
+		cResult += cText
+	<span class="k">next</span>
+	<span class="k">return</span> cResult
+
+<span class="k">func</span> <span class="f">joinList</span> aList
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> xItem <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += <span class="s">", "</span>
+		<span class="k">ok</span>
+		cText += xItem
+	<span class="k">next</span>
+	<span class="k">return</span> cText</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Data           : 4, 8, 15, 16, 23, 42, 8, 15, 8, 4
+Count, sum     : 10, 143
+Mean (average) : 14.30
+Median (middle): 11.50
+Mode (common)  : 8
+Smallest, largest: 4, 42
+Standard deviation: 10.85
+
+LINQ average   : 14.30 (same as the mean)
+
+Histogram:
+    4 ##
+    8 ###
+   15 ##
+   16 #
+   23 #
+   42 #
+
+Primes up to 100: 25 of them, the last is 97
+
+gcd(84, 36) = 12, lcm(4, 6) = 12
+
+Estimate of pi from 20000 random points: 3.16
+Math.PI                                : 3.14</code></pre></div>
+<h2 id="the-statistics">The statistics<a class="anchor" href="#the-statistics">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Name</th><th>Meaning</th><th>Function</th></tr></thead><tbody><tr><td><strong>Mean</strong></td><td>the average: sum ÷ count</td><td><code>mean</code></td></tr><tr><td><strong>Median</strong></td><td>the middle value of the sorted list (the average of the two middle ones when the count is even)</td><td><code>median</code></td></tr><tr><td><strong>Mode</strong></td><td>the value that occurs most often</td><td><code>mode</code></td></tr><tr><td><strong>Standard deviation</strong></td><td>how far values are from the mean, typically: the square root of the average squared distance</td><td><code>stdDev</code></td></tr></tbody></table></div>
+<p>For the data <code>4 8 15 16 23 42 8 15 8 4</code> (sorted: <code>4 4 8 8 8 15 15 16 23 42</code>):</p>
+<ul><li>the <strong>mean</strong> is <code>14.3</code>;</li><li>the <strong>median</strong>: there are ten values, so the middle is the pair at positions 5 and 6, which are <code>8</code> and <code>15</code>: <code>(8 + 15) / 2 = 11.5</code>;</li><li>the <strong>mode</strong> is <code>8</code> (it occurs three times);</li><li>the <strong>standard deviation</strong> is about <code>10.85</code>: the values are spread out.</li></ul>
+<p>The mean is pulled up by the single large value <code>42</code>; the median is not. That is why reports often use the <strong>median</strong> for incomes and house prices.</p>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="one-function-per-formula">One function per formula<a class="anchor" href="#one-function-per-formula">#</a></h3>
+<p>Each statistic is a small function with one job that takes a list and returns a number. You can test each alone (see the tutorial <a href="tut-28-testing.html">Testing your programs</a>), reuse them, and the main program reads like a description of the results. The program also asks LINQ for the average (<code>dnQuery(aData).Average("")</code>) and gets the same <code>14.3</code>: when two independent ways agree, you can trust the code.</p>
+<h3 id="the-histogram">The histogram<a class="anchor" href="#the-histogram">#</a></h3>
+<p>A histogram counts how often each value occurs and shows it as a bar of <code>#</code> characters. The program collects the distinct values (<code>find</code> prevents duplicates), sorts them, and for each prints the value and a bar as long as the count.</p>
+<h3 id="the-sieve-of-eratosthenes">The sieve of Eratosthenes<a class="anchor" href="#the-sieve-of-eratosthenes">#</a></h3>
+<p>To find all primes up to 100: write down every number from 2; take the first unmarked number (2), mark all its multiples (4, 6, 8...) as not prime; take the next unmarked number (3), mark its multiples; continue up to √100. What stays unmarked is prime. The code keeps a list of 100 flags and marks multiples with <code>for nMultiple = nNumber * nNumber to nLimit step nNumber</code>. There are 25 primes up to 100, the last is 97.</p>
+<h3 id="gcd-and-lcm">gcd and lcm<a class="anchor" href="#gcd-and-lcm">#</a></h3>
+<p>Euclid's algorithm: the greatest common divisor of two numbers is the same as that of the smaller one and the remainder of their division. Repeat until the remainder is 0. The least common multiple follows: <code>a × b ÷ gcd</code>.</p>
+<h3 id="a-simulation">A simulation<a class="anchor" href="#a-simulation">#</a></h3>
+<p>Throw random points into the unit square. The quarter circle of radius 1 has an area of π/4 and the square has an area of 1, so the share of points that fall inside the circle (<code>x² + y² ≤ 1</code>) is about π/4. With 20000 points the estimate is close to <code>3.14</code>. <code>new Random(2024)</code> uses a <strong>seed</strong>: the same seed gives the same random numbers every time, which makes a simulation repeatable (leave the seed out for different numbers every run). More points give a better estimate, slowly: ten times more points give about three times more accuracy.</p>
+<div class="callout note"><span class="t">Note</span><p>Ring prints a number with two decimals (<code>3.16</code>); the value itself is more precise. <code>decimals(6)</code> at the start of a program shows more.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>mean, median, mode, standard deviation,</li><li>histograms from counts,</li><li>the sieve, gcd, lcm,</li><li>simulation with a seeded <code>Random</code>,</li><li>verify a result with a second method.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Compute the 90th percentile of a list.</li><li>Simulate 1000 throws of two dice and print the histogram of the sums.</li><li>Find all perfect numbers below 10000 (a number that equals the sum of its divisors).</li><li>Estimate the probability that two random people in a group of 23 share a birthday (the birthday paradox) with 10000 simulated groups.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-103-dates-and-times.html">Dates and times</a></p>
+<div class="pager"><a href="tut-69-random.html"><small>Previous</small>Randomness</a><a class="next" href="tut-103-dates-and-times.html"><small>Next</small>Dates and times</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

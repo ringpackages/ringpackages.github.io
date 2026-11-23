@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft Access databases · RingDotNet</title>
+<meta name="description" content="Many small businesses keep their data in an Access file. This lesson uses an .accdb file from Ring through ODBC — it makes the file, creates tables, inserts rows with parameters, runs joins and totals, works with dates, and uses a transaction. It runs on Windows with the Microsoft Access Database Engine.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html" class="cur">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft Access databases</h1><p class="lead">Many small businesses keep their data in an Access file. This lesson uses an .accdb file from Ring through ODBC — it makes the file, creates tables, inserts rows with parameters, runs joins and totals, works with dates, and uses a transaction. It runs on Windows with the Microsoft Access Database Engine.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what is needed to use Access from Ring (and why it works only on Windows),</li><li>making a new <code>.accdb</code> file (ADOX) and connecting with <code>OdbcConnection</code>,</li><li>the Access column types and SQL dialect,</li><li>parameters (<code>?</code>) instead of text joined into a statement,</li><li>reading rows with a reader, joins, <code>GROUP BY</code>, <code>TOP</code>, <code>LIKE</code>,</li><li>dates, transactions, closing,</li><li>the limits of Access and when to choose another database.</li></ul>
+<p>The tutorial <a href="tut-17-databases.html">Databases step by step</a> used SQLite and the tutorial <a href="tut-73-sql-reports.html">Reports with SQL</a> wrote reports with SQL. The ideas are the same; only the driver and a few details of the SQL change.</p>
+<h2 id="what-you-need">What you need<a class="anchor" href="#what-you-need">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Need</th><th>Why</th></tr></thead><tbody><tr><td><strong>Windows</strong></td><td>the Access drivers exist only there</td></tr><tr><td>the <strong>Microsoft Access Database Engine</strong>, <strong>64-bit</strong></td><td>it brings the ODBC driver <em>Microsoft Access Driver (\</em>.mdb, \<em>.accdb)</em> and the OLEDB provider. It is installed with Microsoft Access or Microsoft 365, or from the free "Access Database Engine Redistributable"</td></tr><tr><td><code>System.Data.Odbc.dll</code></td><td>the .NET classes for ODBC. They are a NuGet package, not part of the runtime; the RingDotNet package has the file in its <code>bin</code> folder and the program loads it with <code>dnLoad</code></td></tr></tbody></table></div>
+<p><strong>The bitness must match.</strong> Ring and the .NET runtime here are 64-bit, so the driver must be 64-bit. If a 32-bit Microsoft Office is installed, the 64-bit engine cannot be installed next to it, and the connection fails with <em>"Data source name not found"</em> or <em>"provider not registered"</em>. The program checks the registry for the driver and, when anything is missing, prints what is missing and stops without an error (the output below shows the real run of this computer; on Linux the program says that Access needs Windows).</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_access.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Microsoft Access databases - an .accdb file through ODBC: tables, parameters, joins, totals, dates, transactions</span>
+<span class="c"># (Windows only: it needs the Microsoft Access Database Engine; anywhere else the program says why it stops)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 0. What the program needs. Without it, it stops with a message and no error.</span>
+	cDriver = <span class="s">"Microsoft Access Driver (*.mdb, *.accdb)"</span>
+	<span class="k">if</span> <span class="k">not</span> iswindows()
+		? <span class="s">"This tutorial needs Windows: the Microsoft Access drivers exist only there."</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> <span class="k">not</span> driverInstalled(cDriver)
+		? <span class="s">"The ODBC driver '"</span> + cDriver + <span class="s">"' is not installed."</span>
+		? <span class="s">"Install the Microsoft Access Database Engine (64-bit, like Ring and .NET) and run the program again."</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	<span class="f">dnLoad</span>(<span class="f">dnRequest</span>(<span class="s">"bridgefolder"</span>,[]) + <span class="s">"/System.Data.Odbc.dll"</span>)          <span class="c"># System.Data.Odbc is a NuGet package, it is not part of the runtime</span>
+
+	<span class="c"># 1. A new Access file. The ODBC driver opens files but can not create one, so ADOX (a COM component that comes with Access) does it.</span>
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_access.accdb"</span>])
+	<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+		<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+	<span class="k">ok</span>
+	<span class="k">if</span> <span class="k">not</span> createDatabase(cFile)
+		? <span class="s">"A new Access file could not be made (the ADOX component or the ACE OLEDB provider is missing)."</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	? <span class="s">"1. the database file was created: "</span> + <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+
+	<span class="c">#    The connection string names the driver and the file (Dbq). The ODBC classes have no generated Ring classes: dnNew makes the</span>
+	<span class="c">#    objects and callMethod / getProp use them.</span>
+	oConnection = <span class="f">dnNew</span>(<span class="s">"System.Data.Odbc.OdbcConnection"</span>,[<span class="s">"Driver={"</span> + cDriver + <span class="s">"};Dbq="</span> + cFile + <span class="s">";"</span>])
+	oConnection.<span class="f">Open</span>()
+	? <span class="s">"   the connection is: "</span> + oConnection.State
+
+	<span class="c"># 2. Tables. Access has its own names for the column types: AUTOINCREMENT (a number that counts by itself), TEXT(n), LONG (a whole</span>
+	<span class="c">#    number), CURRENCY (money with 4 decimals, exact), DATETIME, YESNO.</span>
+	runSql(oConnection,<span class="s">"CREATE TABLE Customers (Id AUTOINCREMENT PRIMARY KEY, Name TEXT(40), City TEXT(30), Vip YESNO)"</span>,[])
+	runSql(oConnection,<span class="s">"CREATE TABLE Orders (Id AUTOINCREMENT PRIMARY KEY, CustomerId LONG, Total CURRENCY, Ordered DATETIME)"</span>,[])
+	? nl + <span class="s">"2. tables: "</span> + joinList(tableNames(oConnection))
+	? <span class="s">"   columns of Orders: "</span> + joinList(columnNames(oConnection,<span class="s">"Orders"</span>))
+
+	<span class="c"># 3. Rows go in with PARAMETERS: a ? in the statement and the values in a list. Never join values into the text of the statement:</span>
+	<span class="c">#    a name with an apostrophe would break it, and a bad text could change what the statement does.</span>
+	aCustomers = [ [<span class="s">"Ann"</span>,<span class="s">"Cairo"</span>,<span class="k">True</span>], [<span class="s">"Bob O'Neil"</span>,<span class="s">"Alexandria"</span>,<span class="k">False</span>], [arabicName(),<span class="s">"Cairo"</span>,<span class="k">True</span>], [<span class="s">"Dina"</span>,<span class="s">"Giza"</span>,<span class="k">False</span>] ]
+	<span class="k">for</span> aCustomer <span class="k">in</span> aCustomers
+		runSql(oConnection,<span class="s">"INSERT INTO Customers (Name, City, Vip) VALUES (?, ?, ?)"</span>,aCustomer)
+	<span class="k">next</span>
+	aOrders = [ [<span class="n">1</span>,<span class="n">120.5</span>,<span class="n">2024</span>,<span class="n">1</span>,<span class="n">15</span>], [<span class="n">1</span>,<span class="n">80</span>,<span class="n">2024</span>,<span class="n">2</span>,<span class="n">3</span>], [<span class="n">2</span>,<span class="n">45.25</span>,<span class="n">2024</span>,<span class="n">2</span>,<span class="n">10</span>], [<span class="n">3</span>,<span class="n">300</span>,<span class="n">2024</span>,<span class="n">3</span>,<span class="n">1</span>], [<span class="n">3</span>,<span class="n">19.99</span>,<span class="n">2024</span>,<span class="n">3</span>,<span class="n">20</span>], [<span class="n">1</span>,<span class="n">60</span>,<span class="n">2024</span>,<span class="n">4</span>,<span class="n">2</span>] ]
+	<span class="k">for</span> aOrder <span class="k">in</span> aOrders
+		runSql(oConnection,<span class="s">"INSERT INTO Orders (CustomerId, Total, Ordered) VALUES (?, ?, ?)"</span>,[aOrder[<span class="n">1</span>],aOrder[<span class="n">2</span>],<span class="k">new</span> <span class="t">DateTime</span>(aOrder[<span class="n">3</span>],aOrder[<span class="n">4</span>],aOrder[<span class="n">5</span>])])
+	<span class="k">next</span>
+	? nl + <span class="s">"3. rows: "</span> + scalar(oConnection,<span class="s">"SELECT COUNT(*) FROM Customers"</span>,[]) + <span class="s">" customers, "</span> + scalar(oConnection,<span class="s">"SELECT COUNT(*) FROM Orders"</span>,[]) + <span class="s">" orders"</span>
+
+	<span class="c"># 4. A query gives rows. Reading goes through a reader: Read() moves to the next row and GetValue(n) reads a column (0 is the first).</span>
+	? nl + <span class="s">"4. the customers in Cairo, by name:"</span>
+	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT Id, Name, City FROM Customers WHERE City = ? ORDER BY Name"</span>,[<span class="s">"Cairo"</span>])
+		? <span class="s">"   "</span> + aRow[<span class="n">1</span>] + <span class="s">": "</span> + aRow[<span class="n">2</span>] + <span class="s">" ("</span> + aRow[<span class="n">3</span>] + <span class="s">")"</span>
+	<span class="k">next</span>
+	? <span class="s">"   the apostrophe and the Arabic name came back as they went in: "</span> + (scalar(oConnection,<span class="s">"SELECT Name FROM Customers WHERE Id = ?"</span>,[<span class="n">2</span>]) = <span class="s">"Bob O'Neil"</span>) + <span class="s">", "</span> + (scalar(oConnection,<span class="s">"SELECT Name FROM Customers WHERE Id = ?"</span>,[<span class="n">3</span>]) = arabicName())
+
+	<span class="c"># 5. A join puts the data of two tables side by side</span>
+	? nl + <span class="s">"5. each order with its customer (INNER JOIN):"</span>
+	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT c.Name, o.Total, o.Ordered FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId ORDER BY o.Ordered"</span>,[])
+		? <span class="s">"   "</span> + padRight(shortName(aRow[<span class="n">1</span>]),<span class="n">12</span>) + padLeft(money(aRow[<span class="n">2</span>]),<span class="n">8</span>) + <span class="s">"   "</span> + aRow[<span class="n">3</span>]
+	<span class="k">next</span>
+
+	<span class="c"># 6. Totals: GROUP BY makes one row for each customer, with SUM, COUNT and AVG. HAVING filters the groups.</span>
+	? nl + <span class="s">"6. orders for each customer (customers with 2 orders or more):"</span>
+	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT c.Name, COUNT(*) AS Orders, SUM(o.Total) AS Total, AVG(o.Total) AS Average FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId GROUP BY c.Name HAVING COUNT(*) &gt;= ? ORDER BY SUM(o.Total) DESC"</span>,[<span class="n">2</span>])
+		? <span class="s">"   "</span> + padRight(shortName(aRow[<span class="n">1</span>]),<span class="n">12</span>) + aRow[<span class="n">2</span>] + <span class="s">" orders, total "</span> + money(aRow[<span class="n">3</span>]) + <span class="s">", average "</span> + money(aRow[<span class="n">4</span>])
+	<span class="k">next</span>
+
+	<span class="c"># 7. TOP n is Access's way to say "the first n rows" (there is no LIMIT). LIKE searches with % for any characters (ODBC style).</span>
+	? nl + <span class="s">"7. the 2 biggest orders: "</span> + joinList(columnOf(rows(oConnection,<span class="s">"SELECT TOP 2 Total FROM Orders ORDER BY Total DESC"</span>,[]),<span class="n">1</span>,<span class="s">"money"</span>))
+	? <span class="s">"   the customers whose name starts with B: "</span> + joinList(columnOf(rows(oConnection,<span class="s">"SELECT Name FROM Customers WHERE Name LIKE ?"</span>,[<span class="s">"B%"</span>]),<span class="n">1</span>,<span class="s">""</span>))
+
+	<span class="c"># 8. Dates. A DateTime object goes in as a parameter and comes back as a DateTime. Access has date functions: Year, Month, Format.</span>
+	? nl + <span class="s">"8. the total of each month (Month function):"</span>
+	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT Month(Ordered) AS M, SUM(Total) FROM Orders GROUP BY Month(Ordered) ORDER BY Month(Ordered)"</span>,[])
+		? <span class="s">"   month "</span> + aRow[<span class="n">1</span>] + <span class="s">": "</span> + money(aRow[<span class="n">2</span>])
+	<span class="k">next</span>
+	? <span class="s">"   orders after 15 February: "</span> + scalar(oConnection,<span class="s">"SELECT COUNT(*) FROM Orders WHERE Ordered &gt; ?"</span>,[<span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">2</span>,<span class="n">15</span>)])
+
+	<span class="c"># 9. Change and delete rows. The statement answers how many rows it changed.</span>
+	? nl + <span class="s">"9. the orders of Ann under 100 are raised by 10%: "</span> + runSql(oConnection,<span class="s">"UPDATE Orders SET Total = Total * 1.1 WHERE CustomerId = ? AND Total &lt; ?"</span>,[<span class="n">1</span>,<span class="n">100</span>]) + <span class="s">" rows"</span>
+	? <span class="s">"   Dina has no orders and is deleted: "</span> + runSql(oConnection,<span class="s">"DELETE FROM Customers WHERE Id = ?"</span>,[<span class="n">4</span>]) + <span class="s">" row"</span>
+
+	<span class="c"># 10. A transaction makes several statements ONE change: all of them happen or none. Here the second statement fails (a table that</span>
+	<span class="c">#     does not exist), so the first one is undone.</span>
+	oTransaction = oConnection.<span class="f">callMethod</span>(<span class="s">"BeginTransaction"</span>,[])
+	lFailed = <span class="k">False</span>
+	<span class="k">try</span>
+		runSqlIn(oConnection,oTransaction,<span class="s">"UPDATE Customers SET City = ? WHERE Id = ?"</span>,[<span class="s">"Luxor"</span>,<span class="n">1</span>])
+		runSqlIn(oConnection,oTransaction,<span class="s">"UPDATE NoSuchTable SET x = 1"</span>,[])
+		oTransaction.<span class="f">Commit</span>()
+	<span class="k">catch</span>
+		lFailed = <span class="k">True</span>
+		oTransaction.<span class="f">callMethod</span>(<span class="s">"Rollback"</span>,[])
+	<span class="k">done</span>
+	? nl + <span class="s">"10. the second statement failed: "</span> + lFailed + <span class="s">"; the city of Ann is still "</span> + scalar(oConnection,<span class="s">"SELECT City FROM Customers WHERE Id = ?"</span>,[<span class="n">1</span>])
+
+	<span class="c"># 11. Close the connection. The pool of ODBC keeps connections for reuse, so it is emptied too. The Access engine keeps the FILE open</span>
+	<span class="c">#     until the program ends, so the program does not delete it here.</span>
+	oConnection.<span class="f">Close</span>()
+	oConnection.<span class="f">Dispose</span>()
+	<span class="f">dnStatic</span>(<span class="s">"System.Data.Odbc.OdbcConnection"</span>,<span class="s">"ReleaseObjectPool"</span>,[])
+	? nl + <span class="s">"11. the connection is closed; the file stays on the disk until the next run of the program deletes it"</span>
+
+<span class="c"># ---------------------------------------------------------------- the database</span>
+
+<span class="c"># is the ODBC driver registered? (the list of ODBC drivers is in the registry)</span>
+<span class="k">func</span> <span class="f">driverInstalled</span> cDriver
+
+	<span class="k">try</span>
+		oMachine = <span class="f">dnType</span>(<span class="s">"Microsoft.Win32.Registry"</span>).<span class="f">getProp</span>(<span class="s">"LocalMachine"</span>)
+		oKey = oMachine.<span class="f">OpenSubKey</span>(<span class="s">"SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers"</span>)
+		<span class="k">if</span> oKey.<span class="f">isNull</span>()
+			<span class="k">return</span> <span class="k">false</span>
+		<span class="k">ok</span>
+		xValue = oKey.<span class="f">GetValue</span>(cDriver)          <span class="c"># the text "Installed", or null when the driver is not registered</span>
+		<span class="k">if</span> isObject(xValue)
+			<span class="k">return</span> <span class="k">not</span> xValue.<span class="f">isNull</span>()
+		<span class="k">ok</span>
+		<span class="k">return</span> <span class="k">true</span>
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="k">false</span>
+	<span class="k">done</span>
+
+<span class="c"># a new Access file made with ADOX (a COM component of Windows); false when it is not available</span>
+<span class="k">func</span> <span class="f">createDatabase</span> cFile
+
+	<span class="k">try</span>
+		oType = <span class="k">new</span> <span class="t">Type</span>().<span class="f">GetTypeFromProgID</span>(<span class="s">"ADOX.Catalog"</span>)
+		<span class="k">if</span> oType.<span class="f">isNull</span>()
+			<span class="k">return</span> <span class="k">false</span>
+		<span class="k">ok</span>
+		oCatalog = <span class="k">new</span> <span class="t">Activator</span>().<span class="f">CreateInstance</span>(oType)
+		oType.<span class="f">callMethod</span>(<span class="s">"InvokeMember"</span>,[<span class="s">"Create"</span>,<span class="s">"InvokeMethod"</span>,<span class="f">dnNull</span>(),oCatalog,[<span class="s">"Provider=Microsoft.ACE.OLEDB.16.0;Data Source="</span> + cFile]])
+		<span class="k">return</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="k">false</span>
+	<span class="k">done</span>
+
+<span class="c"># a command with its parameters (the driver uses them in the order of the ? marks)</span>
+<span class="k">func</span> <span class="f">makeCommand</span> oConnection,cSql,aValues
+
+	oCommand = oConnection.<span class="f">CreateCommand</span>()
+	oCommand.<span class="f">setProp</span>(<span class="s">"CommandText"</span>,cSql)
+	oParameters = oCommand.Parameters
+	nNumber = <span class="n">0</span>
+	<span class="k">for</span> xValue <span class="k">in</span> aValues
+		nNumber++
+		oParameters.<span class="f">callMethod</span>(<span class="s">"AddWithValue"</span>,[<span class="s">"p"</span> + nNumber,xValue])
+	<span class="k">next</span>
+	<span class="k">return</span> oCommand
+
+<span class="c"># a statement that changes data: answers the number of rows</span>
+<span class="k">func</span> <span class="f">runSql</span> oConnection,cSql,aValues
+
+	<span class="k">return</span> makeCommand(oConnection,cSql,aValues).<span class="f">ExecuteNonQuery</span>()
+
+<span class="k">func</span> <span class="f">runSqlIn</span> oConnection,oTransaction,cSql,aValues
+
+	oCommand = makeCommand(oConnection,cSql,aValues)
+	oCommand.<span class="f">setProp</span>(<span class="s">"Transaction"</span>,oTransaction)
+	<span class="k">return</span> oCommand.<span class="f">ExecuteNonQuery</span>()
+
+<span class="c"># one value: the first column of the first row</span>
+<span class="k">func</span> <span class="f">scalar</span> oConnection,cSql,aValues
+
+	<span class="k">return</span> makeCommand(oConnection,cSql,aValues).<span class="f">ExecuteScalar</span>()
+
+<span class="c"># all the rows as a list of lists. A date comes back as a text "yyyy-MM-dd", the other values as Ring numbers and texts.</span>
+<span class="k">func</span> <span class="f">rows</span> oConnection,cSql,aValues
+
+	aRows = []
+	oReader = makeCommand(oConnection,cSql,aValues).<span class="f">callMethod</span>(<span class="s">"ExecuteReader"</span>,[])
+	nColumns = oReader.FieldCount
+	<span class="k">while</span> oReader.<span class="f">Read</span>()
+		aRow = []
+		<span class="k">for</span> nColumn = <span class="n">0</span> <span class="k">to</span> nColumns - <span class="n">1</span>
+			xValue = oReader.<span class="f">GetValue</span>(nColumn)
+			<span class="k">if</span> isObject(xValue)
+				<span class="k">if</span> xValue.<span class="f">typeName</span>() = <span class="s">"System.DateTime"</span>
+					xValue = xValue.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>)
+				<span class="k">else</span>
+					xValue = xValue.<span class="f">toString</span>()
+				<span class="k">ok</span>
+			<span class="k">ok</span>
+			aRow + xValue
+		<span class="k">next</span>
+		aRows + aRow
+	<span class="k">end</span>
+	oReader.<span class="f">Dispose</span>()
+	<span class="k">return</span> aRows
+
+<span class="c"># the user tables (the schema also lists the system tables of Access)</span>
+<span class="k">func</span> <span class="f">tableNames</span> oConnection
+
+	aNames = []
+	<span class="k">for</span> oRow <span class="k">in</span> oConnection.<span class="f">GetSchema</span>(<span class="s">"Tables"</span>).Rows.<span class="f">toList</span>()
+		<span class="k">if</span> oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_TYPE"</span>]) = <span class="s">"TABLE"</span>
+			aNames + oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_NAME"</span>])
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> sort(aNames)
+
+<span class="c"># the column names and types of a table: an empty query (WHERE 1 = 0) describes the columns without reading rows</span>
+<span class="k">func</span> <span class="f">columnNames</span> oConnection,cTable
+
+	aNames = []
+	oReader = makeCommand(oConnection,<span class="s">"SELECT * FROM "</span> + cTable + <span class="s">" WHERE 1 = 0"</span>,[]).<span class="f">callMethod</span>(<span class="s">"ExecuteReader"</span>,[])
+	<span class="k">for</span> nColumn = <span class="n">0</span> <span class="k">to</span> oReader.FieldCount - <span class="n">1</span>
+		aNames + (oReader.<span class="f">GetName</span>(nColumn) + <span class="s">" ("</span> + lower(oReader.<span class="f">GetDataTypeName</span>(nColumn)) + <span class="s">")"</span>)
+	<span class="k">next</span>
+	oReader.<span class="f">Dispose</span>()
+	<span class="k">return</span> aNames
+
+<span class="c"># ---------------------------------------------------------------- small helpers</span>
+
+<span class="c"># an Arabic name as UTF-8 bytes (a Ring text is a text of bytes)</span>
+<span class="k">func</span> <span class="f">arabicName</span>
+
+	<span class="k">return</span> char(<span class="n">216</span>) + char(<span class="n">163</span>) + char(<span class="n">216</span>) + char(<span class="n">173</span>) + char(<span class="n">217</span>) + char(<span class="n">133</span>) + char(<span class="n">216</span>) + char(<span class="n">175</span>)
+
+<span class="c"># the first word, so that the Arabic name does not disturb the columns</span>
+<span class="k">func</span> <span class="f">shortName</span> cName
+
+	cShort = cName
+	<span class="k">if</span> cName = arabicName()
+		cShort = <span class="s">"(Arabic)"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> cShort
+
+<span class="k">func</span> <span class="f">money</span> nValue
+
+	nRounded = floor(nValue * <span class="n">100</span> + <span class="n">0.5</span>)
+	nUnits = floor(nRounded / <span class="n">100</span>)
+	nCents = nRounded - nUnits * <span class="n">100</span>
+	cCents = <span class="s">""</span> + nCents
+	<span class="k">if</span> nCents &lt; <span class="n">10</span>
+		cCents = <span class="s">"0"</span> + cCents
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span> + nUnits + <span class="s">"."</span> + cCents
+
+<span class="k">func</span> <span class="f">columnOf</span> aRows,nColumn,cFormat
+
+	aValues = []
+	<span class="k">for</span> aRow <span class="k">in</span> aRows
+		<span class="k">if</span> cFormat = <span class="s">"money"</span>
+			aValues + money(aRow[nColumn])
+		<span class="k">else</span>
+			aValues + shortName(aRow[nColumn])
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aValues
+
+<span class="k">func</span> <span class="f">joinList</span> aList
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> item <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += <span class="s">", "</span>
+		<span class="k">ok</span>
+		cText += <span class="s">""</span> + item
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))
+
+<span class="k">func</span> <span class="f">padLeft</span> cText,nWidth
+
+	<span class="k">return</span> copy(<span class="s">" "</span>,nWidth - len(cText)) + cText</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the database file was created: 1
+   the connection is: Open
+
+2. tables: Customers, Orders
+   columns of Orders: Id (counter), CustomerId (integer), Total (currency), Ordered (datetime)
+
+3. rows: 4 customers, 6 orders
+
+4. the customers in Cairo, by name:
+   1: Ann (Cairo)
+   3: أحمد (Cairo)
+   the apostrophe and the Arabic name came back as they went in: 1, 1
+
+5. each order with its customer (INNER JOIN):
+   Ann           120.50   2024-01-15
+   Ann            80.00   2024-02-03
+   Bob O'Neil     45.25   2024-02-10
+   (Arabic)      300.00   2024-03-01
+   (Arabic)       19.99   2024-03-20
+   Ann            60.00   2024-04-02
+
+6. orders for each customer (customers with 2 orders or more):
+   (Arabic)    2 orders, total 319.99, average 160.00
+   Ann         3 orders, total 260.50, average 86.83
+
+7. the 2 biggest orders: 300.00, 120.50
+   the customers whose name starts with B: Bob O'Neil
+
+8. the total of each month (Month function):
+   month 1: 120.50
+   month 2: 125.25
+   month 3: 319.99
+   month 4: 60.00
+   orders after 15 February: 3
+
+9. the orders of Ann under 100 are raised by 10%: 2 rows
+   Dina has no orders and is deleted: 1 row
+
+10. the second statement failed: 1; the city of Ann is still Cairo
+
+11. the connection is closed; the file stays on the disk until the next run of the program deletes it</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnNew</code>, <code>dnStatic</code>, <code>dnType</code>, <code>callMethod</code>, <code>getProp</code>, <code>setProp</code>, <code>dnNull</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="a-new-file">A new file<a class="anchor" href="#a-new-file">#</a></h3>
+<p>The ODBC driver opens Access files but <strong>cannot create</strong> one. <strong>ADOX</strong> can: it is a COM component that comes with Access, and <code>Catalog.Create(connection string)</code> makes an empty <code>.accdb</code>. The program reaches it through reflection: <code>Type.GetTypeFromProgID("ADOX.Catalog")</code>, <code>Activator.CreateInstance</code>, and <code>Type.InvokeMember("Create", ...)</code> with the connection string of the OLEDB provider (<code>Provider=Microsoft.ACE.OLEDB.16.0;Data Source=file</code>). If you already have an Access file, skip this step and just open it.</p>
+<h3 id="the-connection">The connection<a class="anchor" href="#the-connection">#</a></h3>
+<p><code>Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=C:\path\file.accdb;</code> names the driver and the file. For a file with a database password add <code>Pwd=secret;</code>; for a read-only open add <code>ReadOnly=1;</code>. The classes of <code>System.Data.Odbc</code> have no generated Ring classes, so the program makes them with <code>dnNew(type, [arguments])</code> and uses <code>callMethod</code> and <code>getProp</code> (<a href="concepts.html">Core concepts</a>, <em>Plain objects</em>). A command is made with <code>CreateCommand()</code>, its <code>CommandText</code> is the SQL, and <code>ExecuteNonQuery()</code> runs a statement that changes data (the answer is the number of rows), <code>ExecuteScalar()</code> gives one value and <code>ExecuteReader()</code> gives rows.</p>
+<h3 id="column-types-and-sql">Column types and SQL<a class="anchor" href="#column-types-and-sql">#</a></h3>
+<p>Access has its own names for types and a few differences in its SQL:</p>
+<div class="tablewrap"><table><thead><tr><th>Wanted</th><th>Access SQL</th></tr></thead><tbody><tr><td>a number that counts by itself</td><td><code>AUTOINCREMENT</code> (or <code>COUNTER</code>)</td></tr><tr><td>text of up to n characters</td><td><code>TEXT(n)</code> (up to 255) or <code>MEMO</code> for long text</td></tr><tr><td>a whole number</td><td><code>LONG</code> (4 bytes) or <code>INTEGER</code> (2 bytes)</td></tr><tr><td>money, exact</td><td><code>CURRENCY</code> (fixed 4 decimals)</td></tr><tr><td>date and time</td><td><code>DATETIME</code></td></tr><tr><td>yes or no</td><td><code>YESNO</code></td></tr><tr><td>the first n rows</td><td><code>SELECT TOP n ...</code> (there is no <code>LIMIT</code>)</td></tr><tr><td>a name with a space or a reserved word</td><td>in brackets: <code>[Order Date]</code></td></tr></tbody></table></div>
+<p>Searching with <code>LIKE</code> uses <code>%</code> and <code>_</code> through ODBC (in the Access program itself it is <code>*</code> and <code>?</code>). <code>SELECT * FROM T WHERE 1 = 0</code> returns no rows but describes the columns, which the program uses to list the column names and types (<code>GetSchema("Columns", restrictions)</code> answers "Optional feature not implemented" with this driver; <code>GetSchema("Tables")</code> works).</p>
+<h3 id="parameters">Parameters<a class="anchor" href="#parameters">#</a></h3>
+<p><code>INSERT INTO Customers (Name, City, Vip) VALUES (?, ?, ?)</code> has <strong>placeholders</strong>; the values go into the command's <code>Parameters</code> (<code>AddWithValue</code>). The driver uses them <strong>in the order of the <code>?</code> marks</strong>, so the names do not matter. Parameters are not only a convenience: a name such as <code>Bob O'Neil</code> would break a statement made by joining text (the apostrophe ends the text), and a value such as <code>x'; DROP TABLE Customers; --</code> could change what the statement does. As a parameter it is plain data. <strong>Never put a value into the text of a statement.</strong> The program shows that the apostrophe and the Arabic name come back exactly as they went in: Access stores Unicode text.</p>
+<h3 id="reading-rows">Reading rows<a class="anchor" href="#reading-rows">#</a></h3>
+<p><code>ExecuteReader()</code> gives a reader; <code>Read()</code> moves to the next row and answers <em>false</em> at the end; <code>GetValue(n)</code> reads column n (0 is the first). <code>FieldCount</code>, <code>GetName</code> and <code>GetDataTypeName</code> describe the columns. Numbers and <code>CURRENCY</code> come back as Ring numbers, text as text and a <code>DATETIME</code> as a .NET <code>DateTime</code>, which the program formats with <code>Format("yyyy-MM-dd")</code>. A column without a value is a <strong>NULL</strong> (<code>System.DBNull</code>): test for it before you use the value, and remember that <code>COUNT(column)</code> does not count NULL values while <code>COUNT(*)</code> counts rows. Dispose the reader (<code>Dispose()</code>) before you run the next command on the same connection.</p>
+<h3 id="joins-and-totals">Joins and totals<a class="anchor" href="#joins-and-totals">#</a></h3>
+<p><code>INNER JOIN ... ON c.Id = o.CustomerId</code> puts the orders next to their customers. <code>GROUP BY</code> makes one row for each group with <code>COUNT</code>, <code>SUM</code> and <code>AVG</code>; <code>HAVING</code> filters the <strong>groups</strong> (where <code>WHERE</code> filters the <strong>rows</strong> before they are grouped). The result shows that customers with fewer than two orders are not listed. <code>SUM</code> of a currency column is exact, which is why money is <code>CURRENCY</code> and not a floating-point number (the tutorial <a href="tut-57-money.html">Money</a>).</p>
+<h3 id="dates">Dates<a class="anchor" href="#dates">#</a></h3>
+<p>A <code>DateTime</code> object goes in as a parameter and the comparison <code>Ordered &gt; ?</code> works with real dates, so there is no need for the Access date literal <code>#2/15/2024#</code> (which also depends on the format of the computer). Access has date functions in SQL: <code>Year(d)</code>, <code>Month(d)</code>, <code>Day(d)</code>, <code>DateAdd</code>, <code>DateDiff</code> and <code>Format(d, "yyyy-mm")</code>.</p>
+<h3 id="transactions">Transactions<a class="anchor" href="#transactions">#</a></h3>
+<p><code>BeginTransaction()</code> makes several statements <strong>one change</strong>: <code>Commit()</code> keeps them, <code>Rollback()</code> undoes them. In step 10 the first <code>UPDATE</code> is correct and the second one names a table that does not exist, so the program rolls everything back, and the city of Ann is still Cairo. Every command that belongs to the transaction needs <code>Transaction</code> set to it (<code>runSqlIn</code>). Use a transaction whenever two changes must stay together (a transfer between two accounts, an order with its lines); it is also much <strong>faster</strong> for many inserts, because Access writes to the disk once at the end.</p>
+<h3 id="closing">Closing<a class="anchor" href="#closing">#</a></h3>
+<p>Close the connection (<code>Close()</code>, <code>Dispose()</code>) and call <code>OdbcConnection.ReleaseObjectPool()</code>: ODBC keeps closed connections for reuse. The <strong>Access engine keeps the file open until the program ends</strong>, so the program cannot delete its test file at once (a <code>.laccdb</code> lock file appears next to the database while it is open). The program removes the old file at the start of the next run.</p>
+<h2 id="limits-and-advice">Limits and advice<a class="anchor" href="#limits-and-advice">#</a></h2>
+<ul><li><strong>Size and users.</strong> An Access file is limited to <strong>2 GB</strong> and is meant for a <strong>few users</strong> on a fast local disk; there is no server, every program opens the file itself. It is not a good choice for a web site with many visitors or for a file on a slow network share.</li><li><strong>Backups.</strong> The file is the database: copy it when no program has it open (or after <em>compact and repair</em>, which the <code>JRO.JetEngine</code> COM object does).</li><li><strong>Old files.</strong> <code>.mdb</code> files of Access 97 or 2000 may need the older <em>Jet</em> engine, which has no 64-bit version; open them in Access and save them as <code>.accdb</code>.</li><li><strong>Moving on.</strong> When the data grows or many users need it, move it to <strong>SQLite</strong> (the tutorial <a href="tut-17-databases.html">Databases step by step</a>, a file without a server) or to <strong>SQL Server</strong> and use Entity Framework (the tutorial <a href="tut-27-entities.html">Entity objects and migrations</a>). The Access driver can read the old file for the copy. The same ODBC driver family also reads <strong>Excel</strong> and <strong>text/CSV</strong> files (<code>Microsoft Excel Driver</code>, <code>Microsoft Access Text Driver</code>) with the same code.</li></ul>
+<div class="callout note"><span class="t">Note</span><p><code>samples/UsingDotNet/tests/test_access.ring</code> tests all of this with 29 checks (Unicode, NULL, transactions, an attack text) and skips itself where Access is not available.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>Access needs Windows, the 64-bit Access Database Engine and <code>System.Data.Odbc.dll</code>,</li><li>ADOX makes a new file; ODBC opens it,</li><li>the Access column types and the small differences of its SQL,</li><li>parameters instead of text in statements,</li><li>readers, joins, grouping, dates and transactions,</li><li>the limits of Access.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a table <code>Products</code> and a table <code>OrderLines</code> and make a report of the quantity sold for each product.</li><li>Write <code>insertMany(oConnection, cSql, aRows)</code> that inserts a list of rows inside <strong>one</strong> transaction, and compare its time with single inserts for 1000 rows (the tutorial <a href="tut-53-speed.html">Speed — measure first</a>).</li><li>Write <code>export(oConnection, cTable, cFile)</code> that writes a table as JSON (the tutorial <a href="tut-100-json-writer.html">Writing JSON as a stream</a>).</li><li>Open an existing <code>.accdb</code> file of your own and list its tables and columns.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-32-settings.html">Settings</a></p>
+<div class="pager"><a href="tut-27-entities.html"><small>Previous</small>Entities, migrations</a><a class="next" href="tut-32-settings.html"><small>Next</small>Settings</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

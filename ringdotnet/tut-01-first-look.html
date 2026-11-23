@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A first look · RingDotNet</title>
+<meta name="description" content="Meet objects, types, properties, methods, static members, structs, collections and null with a small program that prints what it finds.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html" class="cur">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A first look</h1><p class="lead">Meet objects, types, properties, methods, static members, structs, collections and null with a small program that prints what it finds.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>how to start using .NET from Ring,</li><li>what a <em>type</em>, an <em>object</em>, a <em>property</em>, a <em>method</em> and a <em>static member</em> look like,</li><li>how a struct and a collection look.</li></ul>
+<h2 id="before-you-start">Before you start<a class="anchor" href="#before-you-start">#</a></h2>
+<p>You need Ring and the RingDotNet package. Open a terminal in <code>samples/UsingDotNet/tutorials</code>. If something does not work, read <a href="getting-started.html">Getting started</a>. If Ring is new to you, read the <a href="ring-intro.html">Quick introduction to Ring</a> in the appendix first.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<p>Read the program first; the explanations follow. The line <code>using { ... }</code> brings classes in. <code>func main</code> is where Ring starts.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch01_first_look.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a first look at .NET from Ring - runtime, types, objects, namespaces</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Text"</span>
+	<span class="s">"System.Collections.Generic"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. The runtime that runs inside your Ring program</span>
+	? <span class="s">"Runtime          : .NET "</span> + <span class="k">new</span> <span class="t">Environment</span>().Version.<span class="f">ToString</span>()
+
+	<span class="c"># 2. Everything in .NET is an object of some type (a class)</span>
+	oText = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>)
+	oType = oText.<span class="f">GetType</span>()
+	? <span class="s">"Type of the object: "</span> + oType.FullName
+	? <span class="s">"Namespace        : "</span> + oType.Namespace
+	? <span class="s">"Is it a class?   : "</span> + oType.IsClass
+
+	<span class="c"># 3. Objects have properties (what they know) and methods (what they can do)</span>
+	oText.<span class="f">Append</span>(<span class="s">", .NET"</span>)
+	? <span class="s">"Property Length  : "</span> + oText.Length
+	? <span class="s">"Method ToString(): "</span> + oText.<span class="f">ToString</span>()
+
+	<span class="c"># 4. Some classes are used without creating an object: their members are static</span>
+	? <span class="s">"Static Math.Max  : "</span> + <span class="k">new</span> <span class="t">Math</span>().<span class="f">Max</span>(<span class="n">3</span>,<span class="n">9</span>)
+	? <span class="s">"Static Math.PI   : "</span> + <span class="k">new</span> <span class="t">Math</span>().PI
+
+	<span class="c"># 5. Structs are small values (a date, a point)</span>
+	oDate = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">12</span>,<span class="n">25</span>)
+	? <span class="s">"A DateTime       : "</span> + oDate.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>) + <span class="s">" is a "</span> + oDate.DayOfWeek
+
+	<span class="c"># 6. Collections hold many objects</span>
+	oNames = <span class="k">new</span> <span class="t">StringList</span>()
+	oNames.<span class="f">Add</span>(<span class="s">"Ann"</span>)
+	oNames.<span class="f">Add</span>(<span class="s">"Bob"</span>)
+	? <span class="s">"A list of names  : "</span> + oNames.Count + <span class="s">" items, first is "</span> + oNames.<span class="f">Item</span>(<span class="n">0</span>)
+
+	<span class="c"># 7. null means "no object". The base type of StringBuilder is Object, and Object has no base type: the answer is null</span>
+	oMissing = oText.<span class="f">GetType</span>().BaseType.BaseType
+	? <span class="s">"Is it null?      : "</span> + oMissing.<span class="f">isNull</span>()</code></pre></div>
+<p>Run it:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring ch01_first_look.ring</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Runtime          : .NET 9.0.15
+Type of the object: System.Text.StringBuilder
+Namespace        : System.Text
+Is it a class?   : 1
+Property Length  : 11
+Method ToString(): Hello, .NET
+Static Math.Max  : 9
+Static Math.PI   : 3.14
+A DateTime       : 2024-12-25 is a Wednesday
+A list of names  : 2 items, first is Ann
+Is it null?      : 1</code></pre></div>
+<h2 id="how-it-works-step-by-step">How it works, step by step<a class="anchor" href="#how-it-works-step-by-step">#</a></h2>
+<h3 id="1-the-runtime">1. The runtime<a class="anchor" href="#1-the-runtime">#</a></h3>
+<p><code>new Environment().Version</code> asks the .NET runtime that runs inside your Ring program for its version (<code>Environment</code> is a class of the <code>System</code> namespace that the <code>using</code> block opened). Nothing is installed "next to" Ring: the runtime is part of your program while it runs.</p>
+<h3 id="2-everything-is-an-object-of-some-type">2. Everything is an object of some type<a class="anchor" href="#2-everything-is-an-object-of-some-type">#</a></h3>
+<p><code>new StringBuilder("Hello")</code> creates an object. <code>GetType()</code> is a method that every .NET object has; it returns an object that <em>describes</em> the type. Its properties <code>FullName</code>, <code>Namespace</code> and <code>IsClass</code> tell you what you are holding: a class called <code>System.Text.StringBuilder</code> in the namespace <code>System.Text</code>.</p>
+<div class="callout note"><span class="t">Note</span><p>When you pass a value, write the parentheses: <code>new StringBuilder("Hello")</code>. In Ring, <code>init()</code> runs only with them. Without a value both <code>new StringBuilder</code> and <code>new MemoryStream()</code> are fine, but <code>new StringBuilder()</code> with empty parentheses is an error; see <a href="concepts.html">Core concepts</a>.</p></div>
+<h3 id="3-properties-and-methods">3. Properties and methods<a class="anchor" href="#3-properties-and-methods">#</a></h3>
+<p><code>oText.Append(", .NET")</code> is a <strong>method</strong>: the object does something (it adds text to itself). <code>oText.Length</code> is a <strong>property</strong>: it tells you something the object knows. Properties are read without parentheses.</p>
+<p><code>ToString()</code> turns the object into a Ring text. Almost every .NET object has it.</p>
+<h3 id="4-static-members">4. Static members<a class="anchor" href="#4-static-members">#</a></h3>
+<p><code>new Math().Max(3,9)</code> does not need <em>a</em> math object: <code>Max</code> belongs to the class. Ring still writes <code>new Math()</code> to reach it; the object is just a doorway to the class.</p>
+<p>Ring prints the number <code>3.14159...</code> as <code>3.14</code> because Ring shows two decimals by default. The value itself is not rounded. Use <code>decimals(5)</code> at the top of a program to see more.</p>
+<h3 id="5-structs">5. Structs<a class="anchor" href="#5-structs">#</a></h3>
+<p>A <code>DateTime</code> is a <em>struct</em>: a small value. <code>new DateTime(2024,12,25)</code> is a date. <code>Format("yyyy-MM-dd")</code> formats it, and <code>DayOfWeek</code> is an enum, so Ring gets the text <code>Wednesday</code>.</p>
+<div class="callout tip"><span class="t">Tip</span><p><code>ToString()</code> has no parameters; <code>Format("yyyy-MM-dd")</code> is its form with a pattern. A .NET method that exists in several forms becomes one Ring method that takes one value, <code>NULL</code> or a list of <code>:name = value</code> pairs; <a href="concepts.html#naming-rules">Core concepts</a> explains it.</p></div>
+<h3 id="6-collections">6. Collections<a class="anchor" href="#6-collections">#</a></h3>
+<p><code>StringList</code> holds texts, in order. <code>Add</code> adds one, <code>Count</code> says how many, <code>Item(0)</code> reads the first (the position starts at 0, like in .NET).</p>
+<h3 id="7-null">7. null<a class="anchor" href="#7-null">#</a></h3>
+<p><strong>null</strong> is "no object". A method that finds nothing returns it: the type <code>Object</code> has no base type, so <code>oText.GetType().BaseType.BaseType</code> (the base type of the base type of a <code>StringBuilder</code>) is null. <code>isNull()</code> checks it. Ring prints <code>1</code> for true.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Idea</th><th>Example</th></tr></thead><tbody><tr><td>a runtime inside your program</td><td><code>new Environment().Version</code></td></tr><tr><td>create an object</td><td><code>new StringBuilder("Hello")</code></td></tr><tr><td>a property</td><td><code>oText.Length</code></td></tr><tr><td>a method</td><td><code>oText.Append(", .NET")</code></td></tr><tr><td>a static member</td><td><code>new Math().Max(3,9)</code></td></tr><tr><td>a struct and an enum</td><td><code>DateTime</code>, <code>DayOfWeek</code></td></tr><tr><td>a collection</td><td><code>StringList</code></td></tr><tr><td>no object</td><td><code>isNull()</code></td></tr></tbody></table></div>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Change the program to print the type of a <code>DateTime</code> object. Which namespace is it in?</li><li>Create a <code>StringBuilder</code> and append your name five times with a loop. What is its <code>Length</code>?</li><li>Use <code>new Math()</code> to print the square root of 2 and the larger of <code>7</code> and <code>19</code>.</li><li>Find <code>Environment.MachineName</code> in the <a href="api.html">class reference</a> (namespace <code>System</code>) and print it.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-02-text.html">Working with text</a></p>
+<div class="pager"><a href="tut-reading-docs.html"><small>Previous</small>Reading the .NET docs</a><a class="next" href="tut-02-text.html"><small>Next</small>Working with text</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

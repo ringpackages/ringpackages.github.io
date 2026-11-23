@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time zones · RingDotNet</title>
+<meta name="description" content="Two people in different cities cannot agree on "12 o'clock" without a zone. This lesson stores times in UTC, shows them in local time, handles daylight saving, and follows a flight across the ocean.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html" class="cur">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Time zones</h1><p class="lead">Two people in different cities cannot agree on "12 o'clock" without a zone. This lesson stores times in UTC, shows them in local time, handles daylight saving, and follows a flight across the ocean.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>UTC and local time, and why you store UTC,</li><li><code>TimeZoneInfo</code> and converting between zones,</li><li>the effect of <strong>daylight saving time</strong>,</li><li>the duration of a flight, computed in UTC,</li><li>the day that has 23 hours.</li></ul>
+<h2 id="the-rule">The rule<a class="anchor" href="#the-rule">#</a></h2>
+<div class="callout note"><span class="t">Note</span><p><strong>Store and calculate in UTC. Convert to local time only when you show a time to a person.</strong></p></div>
+<p>UTC (<em>coordinated universal time</em>) is the same everywhere and has no daylight saving. A local time is UTC plus an <em>offset</em> that depends on the place <strong>and the date</strong>: New York is UTC−5 in winter and UTC−4 in summer. If you keep local times in a database you cannot even tell which of two events came first.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch03_timezones.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># time zones - UTC, local time, daylight saving, a meeting for several cities and a flight</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oZones = <span class="k">new</span> <span class="t">TimeZoneInfo</span>()
+	aCities = [[<span class="s">"New York"</span>,<span class="s">"Eastern Standard Time"</span>],[<span class="s">"London"</span>,<span class="s">"GMT Standard Time"</span>],[<span class="s">"Cairo"</span>,<span class="s">"Egypt Standard Time"</span>],[<span class="s">"Tokyo"</span>,<span class="s">"Tokyo Standard Time"</span>]]
+
+	<span class="c"># 1. A meeting at 12:00 UTC. Store and compare times in UTC; convert to local time only to SHOW them.</span>
+	? <span class="s">"1. the meeting at 12:00 UTC on 1 July 2024:"</span>
+	oSummer = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">7</span>,<span class="n">1</span>).<span class="f">AddHours</span>(<span class="n">12</span>)
+	<span class="k">for</span> aCity <span class="k">in</span> aCities
+		oLocal = localTime(oZones,oSummer,aCity[<span class="n">2</span>])
+		? <span class="s">"   "</span> + padRight(aCity[<span class="n">1</span>],<span class="n">10</span>) + oLocal.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd HH:mm"</span>) + <span class="s">"   (UTC"</span> + offsetText(oZones,oSummer,aCity[<span class="n">2</span>]) + <span class="s">")"</span>
+	<span class="k">next</span>
+
+	<span class="c"># 2. The same meeting in winter: New York, London and Cairo are one hour different (daylight saving time), Tokyo does not have it</span>
+	? nl + <span class="s">"2. the same meeting at 12:00 UTC on 15 January 2024:"</span>
+	oWinter = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">1</span>,<span class="n">15</span>).<span class="f">AddHours</span>(<span class="n">12</span>)
+	<span class="k">for</span> aCity <span class="k">in</span> aCities
+		oLocal = localTime(oZones,oWinter,aCity[<span class="n">2</span>])
+		? <span class="s">"   "</span> + padRight(aCity[<span class="n">1</span>],<span class="n">10</span>) + oLocal.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd HH:mm"</span>) + <span class="s">"   (UTC"</span> + offsetText(oZones,oWinter,aCity[<span class="n">2</span>]) + <span class="s">")"</span>
+	<span class="k">next</span>
+
+	<span class="c"># 3. Is daylight saving time in force?</span>
+	oNewYork = oZones.<span class="f">FindSystemTimeZoneById</span>(<span class="s">"Eastern Standard Time"</span>)
+	? nl + <span class="s">"3. New York in July: daylight saving? "</span> + yesNo(oNewYork.<span class="f">IsDaylightSavingTime</span>(oSummer)) + <span class="s">"; in January? "</span> + yesNo(oNewYork.<span class="f">IsDaylightSavingTime</span>(oWinter))
+
+	<span class="c"># 4. A flight: leaves Cairo at 22:30 local time, flies 11 hours 15 minutes. When does it arrive in New York, in New York time?</span>
+	oDeparture = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">7</span>,<span class="n">1</span>).<span class="f">AddHours</span>(<span class="n">22</span>).<span class="f">AddMinutes</span>(<span class="n">30</span>)                 <span class="c"># local time in Cairo</span>
+	oDepartureUtc = oZones.<span class="f">ConvertTimeToUtc</span>([ :dateTime = oDeparture, :sourceTimeZone = oZones.<span class="f">FindSystemTimeZoneById</span>(<span class="s">"Egypt Standard Time"</span>) ])
+	oArrivalUtc = oDepartureUtc.<span class="f">AddMinutes</span>(<span class="n">11</span> * <span class="n">60</span> + <span class="n">15</span>)
+	oArrival = oZones.<span class="f">ConvertTimeFromUtc</span>(oArrivalUtc,oNewYork)
+	? nl + <span class="s">"4. departure Cairo "</span> + oDeparture.<span class="f">Format</span>(<span class="s">"dd MMM HH:mm"</span>) + <span class="s">", arrival New York "</span> + oArrival.<span class="f">Format</span>(<span class="s">"dd MMM HH:mm"</span>)
+	? <span class="s">"   in UTC: "</span> + oDepartureUtc.<span class="f">Format</span>(<span class="s">"HH:mm"</span>) + <span class="s">" -&gt; "</span> + oArrivalUtc.<span class="f">Format</span>(<span class="s">"HH:mm"</span>) + <span class="s">" (the duration is the same in every zone)"</span>
+
+	<span class="c"># 5. A day does not always have 24 hours: on 10 March 2024 clocks in New York jump from 02:00 to 03:00</span>
+	oMissing = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">3</span>,<span class="n">10</span>).<span class="f">AddHours</span>(<span class="n">2</span>).<span class="f">AddMinutes</span>(<span class="n">30</span>)
+	? nl + <span class="s">"5. does 2:30 on 10 March 2024 exist in New York? "</span> + yesNo(<span class="k">not</span> oNewYork.<span class="f">IsInvalidTime</span>(oMissing))
+	oMidnight = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">3</span>,<span class="n">10</span>)
+	oNextMidnight = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">3</span>,<span class="n">11</span>)
+	nHours = (oZones.<span class="f">ConvertTimeToUtc</span>([ :dateTime = oNextMidnight, :sourceTimeZone = oNewYork ]).Ticks - oZones.<span class="f">ConvertTimeToUtc</span>([ :dateTime = oMidnight, :sourceTimeZone = oNewYork ]).Ticks) / <span class="n">36000000000</span>
+	? <span class="s">"   hours between midnight and midnight that day: "</span> + nHours
+
+<span class="k">func</span> <span class="f">localTime</span> oZones, oUtc, cZoneId
+
+	<span class="k">return</span> oZones.<span class="f">ConvertTimeFromUtc</span>(oUtc,oZones.<span class="f">FindSystemTimeZoneById</span>(cZoneId))
+
+<span class="c"># "+02:00" or "-04:00": the offset from UTC at that moment (it includes daylight saving)</span>
+<span class="k">func</span> <span class="f">offsetText</span> oZones, oUtc, cZoneId
+
+	oZone = oZones.<span class="f">FindSystemTimeZoneById</span>(cZoneId)
+	cOffset = oZone.<span class="f">GetUtcOffset</span>(oUtc).<span class="f">ToString</span>()
+	<span class="k">if</span> left(cOffset,<span class="n">1</span>) != <span class="s">"-"</span>
+		cOffset = <span class="s">"+"</span> + cOffset
+	<span class="k">ok</span>
+	<span class="k">return</span> left(cOffset,<span class="n">6</span>)
+
+<span class="k">func</span> <span class="f">padRight</span> cText, nWidth
+
+	<span class="k">while</span> len(cText) &lt; nWidth
+		cText += <span class="s">" "</span>
+	<span class="k">end</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the meeting at 12:00 UTC on 1 July 2024:
+   New York  2024-07-01 08:00   (UTC-04:00)
+   London    2024-07-01 13:00   (UTC+01:00)
+   Cairo     2024-07-01 15:00   (UTC+03:00)
+   Tokyo     2024-07-01 21:00   (UTC+09:00)
+
+2. the same meeting at 12:00 UTC on 15 January 2024:
+   New York  2024-01-15 07:00   (UTC-05:00)
+   London    2024-01-15 12:00   (UTC+00:00)
+   Cairo     2024-01-15 14:00   (UTC+02:00)
+   Tokyo     2024-01-15 21:00   (UTC+09:00)
+
+3. New York in July: daylight saving? yes; in January? no
+
+4. departure Cairo 01 Jul 22:30, arrival New York 02 Jul 02:45
+   in UTC: 19:30 -&gt; 06:45 (the duration is the same in every zone)
+
+5. does 2:30 on 10 March 2024 exist in New York? no
+   hours between midnight and midnight that day: 23</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="zones">Zones<a class="anchor" href="#zones">#</a></h3>
+<p><code>TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")</code> finds a zone by its identifier. On Windows the identifiers are names such as <code>Eastern Standard Time</code>, <code>GMT Standard Time</code>, <code>Egypt Standard Time</code> and <code>Tokyo Standard Time</code> (Linux and macOS use <code>America/New_York</code>). <code>ConvertTimeFromUtc(utc, zone)</code> gives the local time and <code>ConvertTimeToUtc([ :dateTime = local, :sourceTimeZone = zone ])</code> goes back. <code>GetUtcOffset(time)</code> tells the offset <em>at that moment</em>, so it includes daylight saving.</p>
+<h3 id="daylight-saving">Daylight saving<a class="anchor" href="#daylight-saving">#</a></h3>
+<p>Steps 1 and 2 show the same UTC moment in July and in January. New York goes from −04:00 to −05:00, London from +01:00 to +00:00 and Cairo from +03:00 to +02:00 (Egypt has used daylight saving time again since 2023); Tokyo is always +09:00. The rules are different in each country and <strong>they change</strong>: Egypt did in 2023. That is why you must use the system's time zone data and never add or subtract hours yourself.</p>
+<h3 id="the-flight">The flight<a class="anchor" href="#the-flight">#</a></h3>
+<p>The flight leaves Cairo at 22:30 <em>local</em> time and lasts 11 h 15 min. The program converts the departure to UTC (19:30), <strong>adds the duration in UTC</strong> (06:45 the next day) and converts the result to New York time (02:45). Never add a duration to a local time that can cross a daylight saving change.</p>
+<h3 id="a-day-with-23-hours">A day with 23 hours<a class="anchor" href="#a-day-with-23-hours">#</a></h3>
+<p>On 10 March 2024 clocks in New York jump from 02:00 to 03:00. The time 02:30 <strong>does not exist</strong> (<code>IsInvalidTime</code> is true), and the day between two midnights has only 23 hours. In autumn the opposite happens: one hour exists twice (<code>IsAmbiguousTime</code>). Programs that schedule things at fixed local times must think about this.</p>
+<div class="callout tip"><span class="t">Tip</span><p>Meetings and alarms: store the <strong>UTC time</strong> plus the <strong>zone id</strong> of the person. Then you can show it correctly in every place and recalculate when the rules change.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>UTC for storing, local time for showing,</li><li><code>FindSystemTimeZoneById</code>, <code>ConvertTimeFromUtc</code>, <code>ConvertTimeToUtc</code>, <code>GetUtcOffset</code>,</li><li>daylight saving rules differ and change,</li><li>durations are added in UTC,</li><li>invalid and ambiguous times.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Show the current time in four cities (<code>DateTime.UtcNow</code> and <code>ConvertTimeFromUtc</code>).</li><li>Find the hours of the day when offices in New York and Tokyo are both open (9–17).</li><li>Find a time that is <em>ambiguous</em> in New York in November 2024 (<code>IsAmbiguousTime</code>).</li><li>List all the zones with <code>TimeZoneInfo.GetSystemTimeZones</code> and print those with a +05:30 offset.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-43-calendar.html">Calendars and dates</a></p>
+<div class="pager"><a href="tut-103-dates-and-times.html"><small>Previous</small>Dates and times</a><a class="next" href="tut-43-calendar.html"><small>Next</small>Calendars and dates</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A spell checker · RingDotNet</title>
+<meta name="description" content="How does a program know that "brwn" probably means "brown"? This lesson keeps a dictionary in a set, measures how different two words are with the edit distance, and suggests the closest words.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html" class="cur">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A spell checker</h1><p class="lead">How does a program know that "brwn" probably means "brown"? This lesson keeps a dictionary in a set, measures how different two words are with the edit distance, and suggests the closest words.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>a <strong>set</strong> (<code>StringSet</code>) for fast "is it known?" questions,</li><li>the <strong>edit distance</strong> (Levenshtein) and the table that computes it,</li><li>sorting suggestions by distance and then by name,</li><li>finding words with their positions in a text,</li><li>why algorithms with tables ("dynamic programming") are worth knowing.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_spelling.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a spell checker - a set of words, edit distance (Levenshtein) and the best suggestions</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.Collections.Generic"</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+}
+
+aDictionary = [<span class="s">"the"</span>,<span class="s">"quick"</span>,<span class="s">"brown"</span>,<span class="s">"fox"</span>,<span class="s">"jumps"</span>,<span class="s">"over"</span>,<span class="s">"lazy"</span>,<span class="s">"dog"</span>,<span class="s">"and"</span>,<span class="s">"then"</span>,<span class="s">"there"</span>,<span class="s">"their"</span>,<span class="s">"brain"</span>,<span class="s">"crown"</span>,<span class="s">"frown"</span>,<span class="s">"jump"</span>,<span class="s">"quack"</span>,<span class="s">"quiet"</span>,<span class="s">"lake"</span>,<span class="s">"dig"</span>,<span class="s">"dot"</span>,<span class="s">"dug"</span>]
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. A StringSet (a .NET HashSet) answers "is this word known?" at once, however many words it holds</span>
+	oWords = <span class="k">new</span> <span class="t">StringSet</span>()
+	<span class="k">for</span> cWord <span class="k">in</span> aDictionary
+		oWords.<span class="f">Add</span>(cWord)
+	<span class="k">next</span>
+	? <span class="s">"1. the dictionary has "</span> + oWords.Count + <span class="s">" words. Contains 'fox'? "</span> + yesNo(oWords.<span class="f">Contains</span>(<span class="s">"fox"</span>)) + <span class="s">", 'fax'? "</span> + yesNo(oWords.<span class="f">Contains</span>(<span class="s">"fax"</span>))
+
+	<span class="c"># 2. Edit distance: the least number of single-letter changes (insert, delete, replace) that turn one word into the other</span>
+	? nl + <span class="s">"2. distance(kitten, sitting) = "</span> + distance(<span class="s">"kitten"</span>,<span class="s">"sitting"</span>) + <span class="s">"   (k-&gt;s, e-&gt;i, add g)"</span>
+	? <span class="s">"   distance(fox, fox) = "</span> + distance(<span class="s">"fox"</span>,<span class="s">"fox"</span>) + <span class="s">", distance(teh, the) = "</span> + distance(<span class="s">"teh"</span>,<span class="s">"the"</span>) + <span class="s">", distance(brwn, brown) = "</span> + distance(<span class="s">"brwn"</span>,<span class="s">"brown"</span>)
+
+	<span class="c"># 3. Suggestions: the dictionary words with the smallest distance to a word that is not known</span>
+	? nl + <span class="s">"3. suggestions for 'brwn'  : "</span> + joinWith(suggest(<span class="s">"brwn"</span>,<span class="n">3</span>),<span class="s">", "</span>)
+	? <span class="s">"   suggestions for 'quik'  : "</span> + joinWith(suggest(<span class="s">"quik"</span>,<span class="n">3</span>),<span class="s">", "</span>)
+	? <span class="s">"   suggestions for 'jumsp' : "</span> + joinWith(suggest(<span class="s">"jumsp"</span>,<span class="n">3</span>),<span class="s">", "</span>)
+
+	<span class="c"># 4. Check a whole text: find the words with a regular expression, keep the position, mark what is unknown</span>
+	cText = <span class="s">"Teh quick brwn fox jumps ovr the lazy dgo"</span>
+	? nl + <span class="s">"4. checking: "</span> + cText
+	oMatches = <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"[A-Za-z]+"</span>).<span class="f">Matches</span>(cText)
+	nMistakes = <span class="n">0</span>
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oMatches.Count - <span class="n">1</span>
+		cWord = lower(oMatches.<span class="f">Item</span>(nIndex).Value)
+		<span class="k">if</span> <span class="k">not</span> oWords.<span class="f">Contains</span>(cWord)
+			nMistakes++
+			? <span class="s">"   '"</span> + oMatches.<span class="f">Item</span>(nIndex).Value + <span class="s">"' at position "</span> + (oMatches.<span class="f">Item</span>(nIndex).Index + <span class="n">1</span>) + <span class="s">" -&gt; "</span> + joinWith(suggest(cWord,<span class="n">2</span>),<span class="s">", "</span>)
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	? <span class="s">"   "</span> + nMistakes + <span class="s">" words to check"</span>
+
+<span class="c"># The distance with a table: aTable[i][j] = the distance between the first i letters of cA and the first j letters of cB.</span>
+<span class="c"># The first row and column are the distances to the empty text. Each cell is the cheapest of: delete, insert, replace (free when the letters are equal).</span>
+<span class="k">func</span> <span class="f">distance</span> cA, cB
+
+	nA = len(cA)
+	nB = len(cB)
+	aTable = []
+	<span class="k">for</span> nI = <span class="n">0</span> <span class="k">to</span> nA
+		aRow = []
+		<span class="k">for</span> nJ = <span class="n">0</span> <span class="k">to</span> nB
+			aRow + <span class="n">0</span>
+		<span class="k">next</span>
+		aTable + aRow
+	<span class="k">next</span>
+	<span class="k">for</span> nI = <span class="n">0</span> <span class="k">to</span> nA
+		aTable[nI + <span class="n">1</span>][<span class="n">1</span>] = nI
+	<span class="k">next</span>
+	<span class="k">for</span> nJ = <span class="n">0</span> <span class="k">to</span> nB
+		aTable[<span class="n">1</span>][nJ + <span class="n">1</span>] = nJ
+	<span class="k">next</span>
+	<span class="k">for</span> nI = <span class="n">1</span> <span class="k">to</span> nA
+		<span class="k">for</span> nJ = <span class="n">1</span> <span class="k">to</span> nB
+			nCost = <span class="n">1</span>
+			<span class="k">if</span> substr(cA,nI,<span class="n">1</span>) = substr(cB,nJ,<span class="n">1</span>)
+				nCost = <span class="n">0</span>
+			<span class="k">ok</span>
+			nDelete = aTable[nI][nJ + <span class="n">1</span>] + <span class="n">1</span>
+			nInsert = aTable[nI + <span class="n">1</span>][nJ] + <span class="n">1</span>
+			nReplace = aTable[nI][nJ] + nCost
+			aTable[nI + <span class="n">1</span>][nJ + <span class="n">1</span>] = min(nDelete,min(nInsert,nReplace))
+		<span class="k">next</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aTable[nA + <span class="n">1</span>][nB + <span class="n">1</span>]
+
+<span class="c"># the nCount closest dictionary words: sorted by distance, equal distances alphabetically</span>
+<span class="k">func</span> <span class="f">suggest</span> cWord, nCount
+
+	aScored = []
+	<span class="k">for</span> cKnown <span class="k">in</span> aDictionary
+		aScored + [distance(cWord,cKnown),cKnown]
+	<span class="k">next</span>
+	<span class="k">for</span> nI = <span class="n">1</span> <span class="k">to</span> len(aScored) - <span class="n">1</span>
+		<span class="k">for</span> nJ = nI + <span class="n">1</span> <span class="k">to</span> len(aScored)
+			<span class="k">if</span> aScored[nJ][<span class="n">1</span>] &lt; aScored[nI][<span class="n">1</span>] <span class="k">or</span> (aScored[nJ][<span class="n">1</span>] = aScored[nI][<span class="n">1</span>] <span class="k">and</span> strcmp(aScored[nJ][<span class="n">2</span>],aScored[nI][<span class="n">2</span>]) &lt; <span class="n">0</span>)
+				aTemp = aScored[nI]
+				aScored[nI] = aScored[nJ]
+				aScored[nJ] = aTemp
+			<span class="k">ok</span>
+		<span class="k">next</span>
+	<span class="k">next</span>
+	aBest = []
+	<span class="k">for</span> nI = <span class="n">1</span> <span class="k">to</span> min(nCount,len(aScored))
+		aBest + aScored[nI][<span class="n">2</span>]
+	<span class="k">next</span>
+	<span class="k">return</span> aBest
+
+<span class="k">func</span> <span class="f">joinWith</span> aList, cSeparator
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> cItem <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += cSeparator
+		<span class="k">ok</span>
+		cText += cItem
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the dictionary has 22 words. Contains 'fox'? yes, 'fax'? no
+
+2. distance(kitten, sitting) = 3   (k-&gt;s, e-&gt;i, add g)
+   distance(fox, fox) = 0, distance(teh, the) = 2, distance(brwn, brown) = 1
+
+3. suggestions for 'brwn'  : brown, brain, crown
+   suggestions for 'quik'  : quick, quack, quiet
+   suggestions for 'jumsp' : jump, jumps, dug
+
+4. checking: Teh quick brwn fox jumps ovr the lazy dgo
+   'Teh' at position 1 -&gt; the, then
+   'brwn' at position 11 -&gt; brown, brain
+   'ovr' at position 26 -&gt; over, and
+   'dgo' at position 39 -&gt; dig, dog
+   4 words to check</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-set">The set<a class="anchor" href="#the-set">#</a></h3>
+<p>A list answers "is this word in it?" by looking at the items one by one: ten times more words, ten times more work. A <strong>set</strong> (<code>StringSet</code>, a .NET <code>HashSet</code>) answers with <code>Contains</code> in about the same time however big it is. A real dictionary has hundreds of thousands of words, and a set is the right place for it (the tutorial <a href="tut-04-collections.html">Collections and LINQ</a>).</p>
+<h3 id="the-edit-distance">The edit distance<a class="anchor" href="#the-edit-distance">#</a></h3>
+<p>The <strong>edit distance</strong> between two words is the smallest number of single-letter changes — <em>insert</em>, <em>delete</em> or <em>replace</em> — that turn one into the other: <code>kitten → sitting</code> is 3 (<code>k→s</code>, <code>e→i</code>, add <code>g</code>). Words with a small distance are probably typing mistakes of each other.</p>
+<p>The program computes it with a <strong>table</strong>. <code>aTable[i][j]</code> holds the distance between the first <code>i</code> letters of the first word and the first <code>j</code> letters of the second. The first row and column are easy (turning the empty word into <code>j</code> letters takes <code>j</code> insertions). Every other cell is the cheapest of three ways:</p>
+<div class="tablewrap"><table><thead><tr><th>From</th><th>Meaning</th><th>Cost</th></tr></thead><tbody><tr><td>the cell above</td><td>delete a letter</td><td>+1</td></tr><tr><td>the cell on the left</td><td>insert a letter</td><td>+1</td></tr><tr><td>the cell diagonally</td><td>replace a letter</td><td>+0 if the letters are equal, else +1</td></tr></tbody></table></div>
+<p>The corner at the end is the answer. Each cell is computed from three neighbors that are already known, so the work is <code>length1 × length2</code> steps. This technique — fill a table so that nothing is computed twice — is the same idea as the cache in the tutorial <a href="tut-53-speed.html">Speed — measure first</a>.</p>
+<h3 id="suggestions">Suggestions<a class="anchor" href="#suggestions">#</a></h3>
+<p><code>suggest</code> gives every dictionary word a score (its distance to the typed word), sorts by score and then alphabetically (<code>strcmp</code>), and returns the first few. <code>brwn</code> has distance 1 to <code>brown</code> and 2 to <code>brain</code> and <code>crown</code>.</p>
+<h3 id="checking-a-text">Checking a text<a class="anchor" href="#checking-a-text">#</a></h3>
+<p><code>Regex.Matches("[A-Za-z]+")</code> finds the words and, for each one, its <code>Index</code>, so the program can say <em>where</em> the mistake is. It converts the word to lower case, asks the set, and only for unknown words does the (more expensive) search for suggestions. Do the cheap test first.</p>
+<div class="callout note"><span class="t">Note</span><p>Plain edit distance counts a swap of two neighbor letters (<code>teh</code> for <code>the</code>) as 2 changes. The <em>Damerau</em> variant counts it as 1; it is a good exercise.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a set for membership tests,</li><li>edit distance and its table,</li><li>ranking suggestions,</li><li>cheap checks first.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add the swap of neighbors (Damerau distance) and see <code>teh → the</code> become 1.</li><li>Read the dictionary from a text file with one word per line.</li><li>Print the checked text with <code>[brackets]</code> around the unknown words.</li><li>Suggest only words that start with the same letter, and measure how much faster it is (the tutorial <a href="tut-53-speed.html">Speed — measure first</a>).</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-144-mailmerge.html">A project: mail merge</a></p>
+<div class="pager"><a href="tut-47-markdown.html"><small>Previous</small>Markdown to HTML</a><a class="next" href="tut-144-mailmerge.html"><small>Next</small>Mail merge</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

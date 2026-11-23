@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Windows.Media.Media3D · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Windows.Media.Media3D</h1>
+<p class="lead">75 wrapped types. Load them with <code>using { "System.Windows.Media.Media3D" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AffineTransform3D">AffineTransform3D</a> <a href="#c-AmbientLight">AmbientLight</a> <a href="#c-AxisAngleRotation3D">AxisAngleRotation3D</a> <a href="#c-Camera">Camera</a> <a href="#c-ContainerUIElement3D">ContainerUIElement3D</a> <a href="#c-DiffuseMaterial">DiffuseMaterial</a> <a href="#c-DirectionalLight">DirectionalLight</a> <a href="#c-EmissiveMaterial">EmissiveMaterial</a> <a href="#c-GeneralTransform2DTo3D">GeneralTransform2DTo3D</a> <a href="#c-GeneralTransform3D">GeneralTransform3D</a> <a href="#c-GeneralTransform3DCollection">GeneralTransform3DCollection</a> <a href="#c-GeneralTransform3DCollectionEnumerator">GeneralTransform3DCollectionEnumerator</a> <a href="#c-GeneralTransform3DGroup">GeneralTransform3DGroup</a> <a href="#c-GeneralTransform3DTo2D">GeneralTransform3DTo2D</a> <a href="#c-Geometry3D">Geometry3D</a> <a href="#c-GeometryModel3D">GeometryModel3D</a> <a href="#c-HitTestParameters3D">HitTestParameters3D</a> <a href="#c-Light">Light</a> <a href="#c-Material">Material</a> <a href="#c-MaterialCollection">MaterialCollection</a> <a href="#c-MaterialCollectionEnumerator">MaterialCollectionEnumerator</a> <a href="#c-MaterialGroup">MaterialGroup</a> <a href="#c-Matrix3D">Matrix3D</a> <a href="#c-Matrix3DConverter">Matrix3DConverter</a> <a href="#c-MatrixCamera">MatrixCamera</a> <a href="#c-MatrixTransform3D">MatrixTransform3D</a> <a href="#c-MeshGeometry3D">MeshGeometry3D</a> <a href="#c-Model3D">Model3D</a> <a href="#c-Model3DCollection">Model3DCollection</a> <a href="#c-Model3DCollectionEnumerator">Model3DCollectionEnumerator</a> <a href="#c-Model3DGroup">Model3DGroup</a> <a href="#c-ModelUIElement3D">ModelUIElement3D</a> <a href="#c-ModelVisual3D">ModelVisual3D</a> <a href="#c-OrthographicCamera">OrthographicCamera</a> <a href="#c-PerspectiveCamera">PerspectiveCamera</a> <a href="#c-Point3D">Point3D</a> <a href="#c-Point3DCollection">Point3DCollection</a> <a href="#c-Point3DCollectionConverter">Point3DCollectionConverter</a> <a href="#c-Point3DCollectionEnumerator">Point3DCollectionEnumerator</a> <a href="#c-Point3DConverter">Point3DConverter</a> <a href="#c-Point4D">Point4D</a> <a href="#c-Point4DConverter">Point4DConverter</a> <a href="#c-PointLight">PointLight</a> <a href="#c-PointLightBase">PointLightBase</a> <a href="#c-ProjectionCamera">ProjectionCamera</a> <a href="#c-QuaternionConverter">QuaternionConverter</a> <a href="#c-QuaternionRotation3D">QuaternionRotation3D</a> <a href="#c-RayHitTestParameters">RayHitTestParameters</a> <a href="#c-RayHitTestResult">RayHitTestResult</a> <a href="#c-RayMeshGeometry3DHitTestResult">RayMeshGeometry3DHitTestResult</a> <a href="#c-Rect3D">Rect3D</a> <a href="#c-Rect3DConverter">Rect3DConverter</a> <a href="#c-RotateTransform3D">RotateTransform3D</a> <a href="#c-Rotation3D">Rotation3D</a> <a href="#c-ScaleTransform3D">ScaleTransform3D</a> <a href="#c-Size3D">Size3D</a> <a href="#c-Size3DConverter">Size3DConverter</a> <a href="#c-SpecularMaterial">SpecularMaterial</a> <a href="#c-SpotLight">SpotLight</a> <a href="#c-Transform3D">Transform3D</a> <a href="#c-Transform3DCollection">Transform3DCollection</a> <a href="#c-Transform3DCollectionEnumerator">Transform3DCollectionEnumerator</a> <a href="#c-Transform3DGroup">Transform3DGroup</a> <a href="#c-TranslateTransform3D">TranslateTransform3D</a> <a href="#c-Vector3D">Vector3D</a> <a href="#c-Vector3DCollection">Vector3DCollection</a> <a href="#c-Vector3DCollectionConverter">Vector3DCollectionConverter</a> <a href="#c-Vector3DCollectionEnumerator">Vector3DCollectionEnumerator</a> <a href="#c-Vector3DConverter">Vector3DConverter</a> <a href="#c-Viewport2DVisual3D">Viewport2DVisual3D</a> <a href="#c-Viewport3DVisual">Viewport3DVisual</a> <a href="#c-Visual3D">Visual3D</a> <a href="#c-Visual3DCollection">Visual3DCollection</a> <a href="#c-Visual3DCollectionEnumerator">Visual3DCollectionEnumerator</a> <a href="#c-WpfQuaternion">WpfQuaternion</a></div><details class="cls" id="c-AffineTransform3D"><summary><b>AffineTransform3D</b> <span class="muted">class abstract · extends <a href="#c-Transform3D">Transform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.AffineTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAffine</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAffine()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AffineTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>AffineTransform3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AmbientLight"><summary><b>AmbientLight</b> <span class="muted">class sealed · extends <a href="#c-Light">Light</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.AmbientLight</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AmbientLight()</code></td></tr><tr><td><code>new AmbientLight(Color ambientColor)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AmbientLight(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AmbientLight().@New([ :param = value ])</code> or <code>dnNew("AmbientLight",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AmbientLight Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>AmbientLight CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AxisAngleRotation3D"><summary><b>AxisAngleRotation3D</b> <span class="muted">class sealed · extends <a href="#c-Rotation3D">Rotation3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.AxisAngleRotation3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AxisAngleRotation3D()</code></td></tr><tr><td><code>new AxisAngleRotation3D(Vector3D axis, double angle)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AxisAngleRotation3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AxisAngleRotation3D().@New([ :param = value ])</code> or <code>dnNew("AxisAngleRotation3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Axis</code></td><td><code>Vector3D</code></td><td>read, write</td><td><code>o.Axis</code> <code>o.Axis = v</code></td></tr><tr><td><code>Angle</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Angle</code> <code>o.Angle = v</code></td></tr><tr><td><code>AxisProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AxisProperty</code></td></tr><tr><td><code>AngleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AngleProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>AxisAngleRotation3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>AxisAngleRotation3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Camera"><summary><b>Camera</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Camera</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Transform</code></td><td><code>Transform3D</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr><tr><td><code>TransformProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TransformProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Camera Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Camera CloneCurrentValue()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ContainerUIElement3D"><summary><b>ContainerUIElement3D</b> <span class="muted">class sealed · extends <a href="System.Windows.html#c-UIElement3D">UIElement3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.ContainerUIElement3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ContainerUIElement3D()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ContainerUIElement3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ContainerUIElement3D().@New([ :param = value ])</code> or <code>dnNew("ContainerUIElement3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Children</code></td><td><code>Visual3DCollection</code></td><td>read</td><td><code>o.Children</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DiffuseMaterial"><summary><b>DiffuseMaterial</b> <span class="muted">class sealed · extends <a href="#c-Material">Material</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.DiffuseMaterial</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DiffuseMaterial()</code></td></tr><tr><td><code>new DiffuseMaterial(Brush brush)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DiffuseMaterial(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DiffuseMaterial().@New([ :param = value ])</code> or <code>dnNew("DiffuseMaterial",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>AmbientColor</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.AmbientColor</code> <code>o.AmbientColor = v</code></td></tr><tr><td><code>Brush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.Brush</code> <code>o.Brush = v</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr><tr><td><code>AmbientColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.AmbientColorProperty</code></td></tr><tr><td><code>BrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BrushProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>DiffuseMaterial Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>DiffuseMaterial CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DirectionalLight"><summary><b>DirectionalLight</b> <span class="muted">class sealed · extends <a href="#c-Light">Light</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.DirectionalLight</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DirectionalLight()</code></td></tr><tr><td><code>new DirectionalLight(Color diffuseColor, Vector3D direction)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DirectionalLight(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DirectionalLight().@New([ :param = value ])</code> or <code>dnNew("DirectionalLight",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Direction</code></td><td><code>Vector3D</code></td><td>read, write</td><td><code>o.Direction</code> <code>o.Direction = v</code></td></tr><tr><td><code>DirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DirectionProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>DirectionalLight Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>DirectionalLight CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EmissiveMaterial"><summary><b>EmissiveMaterial</b> <span class="muted">class sealed · extends <a href="#c-Material">Material</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.EmissiveMaterial</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EmissiveMaterial()</code></td></tr><tr><td><code>new EmissiveMaterial(Brush brush)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EmissiveMaterial(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EmissiveMaterial().@New([ :param = value ])</code> or <code>dnNew("EmissiveMaterial",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>Brush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.Brush</code> <code>o.Brush = v</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr><tr><td><code>BrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BrushProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>EmissiveMaterial Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>EmissiveMaterial CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneralTransform2DTo3D"><summary><b>GeneralTransform2DTo3D</b> <span class="muted">class · extends <a href="System.Windows.html#c-Freezable">Freezable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform2DTo3D</code> · assembly <code>PresentationCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>Point3D Transform(Point point)</code></td></tr><tr><td><code>TryTransform</code></td><td><code>TryTransform(p1)</code></td><td><code>bool TryTransform(Point inPoint, out Point3D result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneralTransform3D"><summary><b>GeneralTransform3D</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Inverse</code></td><td><code>GeneralTransform3D</code></td><td>read</td><td><code>o.Inverse</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>GeneralTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>GeneralTransform3D CloneCurrentValue()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>Point3D Transform(Point3D point)</code></td></tr><tr><td><code>TransformBounds</code></td><td><code>TransformBounds(p1)</code></td><td><code>Rect3D TransformBounds(Rect3D rect)</code></td></tr><tr><td><code>TryTransform</code></td><td><code>TryTransform(p1)</code></td><td><code>bool TryTransform(Point3D inPoint, out Point3D result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneralTransform3DCollection"><summary><b>GeneralTransform3DCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GeneralTransform3DCollection()</code></td></tr><tr><td><code>new GeneralTransform3DCollection(int capacity)</code></td></tr><tr><td><code>new GeneralTransform3DCollection(IEnumerable&lt;GeneralTransform3D&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GeneralTransform3DCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GeneralTransform3DCollection().@New([ :param = value ])</code> or <code>dnNew("GeneralTransform3DCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>GeneralTransform3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(GeneralTransform3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>GeneralTransform3DCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>GeneralTransform3DCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(GeneralTransform3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(GeneralTransform3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>GeneralTransform3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(GeneralTransform3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, GeneralTransform3D value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(GeneralTransform3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneralTransform3DCollectionEnumerator"><summary><b>GeneralTransform3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>GeneralTransform3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-GeneralTransform3DGroup"><summary><b>GeneralTransform3DGroup</b> <span class="muted">class sealed · extends <a href="#c-GeneralTransform3D">GeneralTransform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform3DGroup</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GeneralTransform3DGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GeneralTransform3DGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GeneralTransform3DGroup().@New([ :param = value ])</code> or <code>dnNew("GeneralTransform3DGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Inverse</code></td><td><code>GeneralTransform3D</code></td><td>read</td><td><code>o.getInverse()</code></td></tr><tr><td><code>Children</code></td><td><code>GeneralTransform3DCollection</code></td><td>read, write</td><td><code>o.Children</code> <code>o.Children = v</code></td></tr><tr><td><code>ChildrenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildrenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>GeneralTransform3DGroup Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>GeneralTransform3DGroup CloneCurrentValue()</code></td></tr><tr><td><code>TransformBounds</code></td><td><code>TransformBounds(p1)</code></td><td><code>Rect3D TransformBounds(Rect3D rect)</code></td></tr><tr><td><code>TryTransform</code></td><td><code>TryTransform(p1)</code></td><td><code>bool TryTransform(Point3D inPoint, out Point3D result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeneralTransform3DTo2D"><summary><b>GeneralTransform3DTo2D</b> <span class="muted">class · extends <a href="System.Windows.html#c-Freezable">Freezable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeneralTransform3DTo2D</code> · assembly <code>PresentationCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>Point Transform(Point3D point)</code></td></tr><tr><td><code>TransformBounds</code></td><td><code>TransformBounds(p1)</code></td><td><code>Rect TransformBounds(Rect3D rect3D)</code></td></tr><tr><td><code>TryTransform</code></td><td><code>TryTransform(p1)</code></td><td><code>bool TryTransform(Point3D inPoint, out Point result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Geometry3D"><summary><b>Geometry3D</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Geometry3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Bounds</code></td><td><code>Rect3D</code></td><td>read</td><td><code>o.Bounds</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Geometry3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Geometry3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-GeometryModel3D"><summary><b>GeometryModel3D</b> <span class="muted">class sealed · extends <a href="#c-Model3D">Model3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.GeometryModel3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new GeometryModel3D()</code></td></tr><tr><td><code>new GeometryModel3D(Geometry3D geometry, Material material)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new GeometryModel3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new GeometryModel3D().@New([ :param = value ])</code> or <code>dnNew("GeometryModel3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Geometry</code></td><td><code>Geometry3D</code></td><td>read, write</td><td><code>o.Geometry</code> <code>o.Geometry = v</code></td></tr><tr><td><code>Material</code></td><td><code>Material</code></td><td>read, write</td><td><code>o.Material</code> <code>o.Material = v</code></td></tr><tr><td><code>BackMaterial</code></td><td><code>Material</code></td><td>read, write</td><td><code>o.BackMaterial</code> <code>o.BackMaterial = v</code></td></tr><tr><td><code>GeometryProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.GeometryProperty</code></td></tr><tr><td><code>MaterialProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MaterialProperty</code></td></tr><tr><td><code>BackMaterialProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BackMaterialProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>GeometryModel3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>GeometryModel3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-HitTestParameters3D"><summary><b>HitTestParameters3D</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.HitTestParameters3D</code> · assembly <code>PresentationCore</code></p>
+</div></details>
+<details class="cls" id="c-Light"><summary><b>Light</b> <span class="muted">class abstract · extends <a href="#c-Model3D">Model3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Light</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Light Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Light CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Material"><summary><b>Material</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Material</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Material Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Material CloneCurrentValue()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MaterialCollection"><summary><b>MaterialCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MaterialCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MaterialCollection()</code></td></tr><tr><td><code>new MaterialCollection(int capacity)</code></td></tr><tr><td><code>new MaterialCollection(IEnumerable&lt;Material&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MaterialCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MaterialCollection().@New([ :param = value ])</code> or <code>dnNew("MaterialCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Material</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Material value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>MaterialCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>MaterialCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Material value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Material[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>MaterialCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Material value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Material value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Material value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MaterialCollectionEnumerator"><summary><b>MaterialCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MaterialCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Material</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MaterialGroup"><summary><b>MaterialGroup</b> <span class="muted">class sealed · extends <a href="#c-Material">Material</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MaterialGroup</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MaterialGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MaterialGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MaterialGroup().@New([ :param = value ])</code> or <code>dnNew("MaterialGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Children</code></td><td><code>MaterialCollection</code></td><td>read, write</td><td><code>o.Children</code> <code>o.Children = v</code></td></tr><tr><td><code>ChildrenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildrenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>MaterialGroup Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>MaterialGroup CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Matrix3D"><summary><b>Matrix3D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Matrix3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Matrix3D(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double offsetX, double offsetY, double offsetZ, double m44)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Matrix3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Matrix3D().@New([ :param = value ])</code> or <code>dnNew("Matrix3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsIdentity</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsIdentity</code></td></tr><tr><td><code>IsAffine</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAffine</code></td></tr><tr><td><code>Determinant</code></td><td><code>double</code></td><td>read</td><td><code>o.Determinant</code></td></tr><tr><td><code>HasInverse</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasInverse</code></td></tr><tr><td><code>M11</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M11</code> <code>o.M11 = v</code></td></tr><tr><td><code>M12</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M12</code> <code>o.M12 = v</code></td></tr><tr><td><code>M13</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M13</code> <code>o.M13 = v</code></td></tr><tr><td><code>M14</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M14</code> <code>o.M14 = v</code></td></tr><tr><td><code>M21</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M21</code> <code>o.M21 = v</code></td></tr><tr><td><code>M22</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M22</code> <code>o.M22 = v</code></td></tr><tr><td><code>M23</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M23</code> <code>o.M23 = v</code></td></tr><tr><td><code>M24</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M24</code> <code>o.M24 = v</code></td></tr><tr><td><code>M31</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M31</code> <code>o.M31 = v</code></td></tr><tr><td><code>M32</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M32</code> <code>o.M32 = v</code></td></tr><tr><td><code>M33</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M33</code> <code>o.M33 = v</code></td></tr><tr><td><code>M34</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M34</code> <code>o.M34 = v</code></td></tr><tr><td><code>OffsetX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetX</code> <code>o.OffsetX = v</code></td></tr><tr><td><code>OffsetY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetY</code> <code>o.OffsetY = v</code></td></tr><tr><td><code>OffsetZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetZ</code> <code>o.OffsetZ = v</code></td></tr><tr><td><code>M44</code></td><td><code>double</code></td><td>read, write</td><td><code>o.M44</code> <code>o.M44 = v</code></td></tr><tr><td><code>Identity</code></td><td><code>Matrix3D</code></td><td>read · static</td><td><code>o.Identity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Append</code></td><td><code>Append(p1)</code></td><td><code>void Append(Matrix3D matrix)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :matrix1 = …, :matrix2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Matrix3D value)</code><br><code>static bool Equals(Matrix3D matrix1, Matrix3D matrix2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Invert</code></td><td><code>Invert()</code></td><td><code>void Invert()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(p1,p2)</code></td><td><code>static Matrix3D Multiply(Matrix3D matrix1, Matrix3D matrix2)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Matrix3D Parse(string source)</code></td></tr><tr><td><code>Prepend</code></td><td><code>Prepend(p1)</code></td><td><code>void Prepend(Matrix3D matrix)</code></td></tr><tr><td><code>Rotate</code></td><td><code>Rotate(p1)</code></td><td><code>void Rotate(Quaternion quaternion)</code></td></tr><tr><td><code>RotateAt</code></td><td><code>RotateAt(p1,p2)</code></td><td><code>void RotateAt(Quaternion quaternion, Point3D center)</code></td></tr><tr><td><code>RotateAtPrepend</code></td><td><code>RotateAtPrepend(p1,p2)</code></td><td><code>void RotateAtPrepend(Quaternion quaternion, Point3D center)</code></td></tr><tr><td><code>RotatePrepend</code></td><td><code>RotatePrepend(p1)</code></td><td><code>void RotatePrepend(Quaternion quaternion)</code></td></tr><tr><td><code>Scale</code></td><td><code>Scale(p1)</code></td><td><code>void Scale(Vector3D scale)</code></td></tr><tr><td><code>ScaleAt</code></td><td><code>ScaleAt(p1,p2)</code></td><td><code>void ScaleAt(Vector3D scale, Point3D center)</code></td></tr><tr><td><code>ScaleAtPrepend</code></td><td><code>ScaleAtPrepend(p1,p2)</code></td><td><code>void ScaleAtPrepend(Vector3D scale, Point3D center)</code></td></tr><tr><td><code>ScalePrepend</code></td><td><code>ScalePrepend(p1)</code></td><td><code>void ScalePrepend(Vector3D scale)</code></td></tr><tr><td><code>SetIdentity</code></td><td><code>SetIdentity()</code></td><td><code>void SetIdentity()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>Point3D Transform(Point3D point)</code><br><code>void Transform(Point3D[] points)</code><br><code>Point4D Transform(Point4D point)</code><br><code>void Transform(Point4D[] points)</code><br><code>Vector3D Transform(Vector3D vector)</code><br><code>void Transform(Vector3D[] vectors)</code></td></tr><tr><td><code>Translate</code></td><td><code>Translate(p1)</code></td><td><code>void Translate(Vector3D offset)</code></td></tr><tr><td><code>TranslatePrepend</code></td><td><code>TranslatePrepend(p1)</code></td><td><code>void TranslatePrepend(Vector3D offset)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Matrix3DConverter"><summary><b>Matrix3DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Matrix3DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Matrix3DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Matrix3DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Matrix3DConverter().@New([ :param = value ])</code> or <code>dnNew("Matrix3DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MatrixCamera"><summary><b>MatrixCamera</b> <span class="muted">class sealed · extends <a href="#c-Camera">Camera</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MatrixCamera</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MatrixCamera()</code></td></tr><tr><td><code>new MatrixCamera(Matrix3D viewMatrix, Matrix3D projectionMatrix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MatrixCamera(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MatrixCamera().@New([ :param = value ])</code> or <code>dnNew("MatrixCamera",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ViewMatrix</code></td><td><code>Matrix3D</code></td><td>read, write</td><td><code>o.ViewMatrix</code> <code>o.ViewMatrix = v</code></td></tr><tr><td><code>ProjectionMatrix</code></td><td><code>Matrix3D</code></td><td>read, write</td><td><code>o.ProjectionMatrix</code> <code>o.ProjectionMatrix = v</code></td></tr><tr><td><code>ViewMatrixProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ViewMatrixProperty</code></td></tr><tr><td><code>ProjectionMatrixProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ProjectionMatrixProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>MatrixCamera Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>MatrixCamera CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MatrixTransform3D"><summary><b>MatrixTransform3D</b> <span class="muted">class sealed · extends <a href="#c-Transform3D">Transform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MatrixTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MatrixTransform3D()</code></td></tr><tr><td><code>new MatrixTransform3D(Matrix3D matrix)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MatrixTransform3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MatrixTransform3D().@New([ :param = value ])</code> or <code>dnNew("MatrixTransform3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>IsAffine</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAffine()</code></td></tr><tr><td><code>Matrix</code></td><td><code>Matrix3D</code></td><td>read, write</td><td><code>o.Matrix</code> <code>o.Matrix = v</code></td></tr><tr><td><code>MatrixProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MatrixProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>MatrixTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>MatrixTransform3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MeshGeometry3D"><summary><b>MeshGeometry3D</b> <span class="muted">class sealed · extends <a href="#c-Geometry3D">Geometry3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.MeshGeometry3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MeshGeometry3D()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MeshGeometry3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MeshGeometry3D().@New([ :param = value ])</code> or <code>dnNew("MeshGeometry3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Bounds</code></td><td><code>Rect3D</code></td><td>read</td><td><code>o.getBounds()</code></td></tr><tr><td><code>Positions</code></td><td><code>Point3DCollection</code></td><td>read, write</td><td><code>o.Positions</code> <code>o.Positions = v</code></td></tr><tr><td><code>Normals</code></td><td><code>Vector3DCollection</code></td><td>read, write</td><td><code>o.Normals</code> <code>o.Normals = v</code></td></tr><tr><td><code>TextureCoordinates</code></td><td><code>PointCollection</code></td><td>read, write</td><td><code>o.TextureCoordinates</code> <code>o.TextureCoordinates = v</code></td></tr><tr><td><code>TriangleIndices</code></td><td><code>Int32Collection</code></td><td>read, write</td><td><code>o.TriangleIndices</code> <code>o.TriangleIndices = v</code></td></tr><tr><td><code>PositionsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PositionsProperty</code></td></tr><tr><td><code>NormalsProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.NormalsProperty</code></td></tr><tr><td><code>TextureCoordinatesProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TextureCoordinatesProperty</code></td></tr><tr><td><code>TriangleIndicesProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TriangleIndicesProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>MeshGeometry3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>MeshGeometry3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Model3D"><summary><b>Model3D</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Model3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Bounds</code></td><td><code>Rect3D</code></td><td>read</td><td><code>o.Bounds</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform3D</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr><tr><td><code>TransformProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TransformProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Model3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Model3D CloneCurrentValue()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Model3DCollection"><summary><b>Model3DCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Model3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Model3DCollection()</code></td></tr><tr><td><code>new Model3DCollection(int capacity)</code></td></tr><tr><td><code>new Model3DCollection(IEnumerable&lt;Model3D&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Model3DCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Model3DCollection().@New([ :param = value ])</code> or <code>dnNew("Model3DCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Model3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Model3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Model3DCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Model3DCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Model3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Model3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>Model3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Model3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Model3D value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Model3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Model3DCollectionEnumerator"><summary><b>Model3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Model3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Model3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Model3DGroup"><summary><b>Model3DGroup</b> <span class="muted">class sealed · extends <a href="#c-Model3D">Model3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Model3DGroup</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Model3DGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Model3DGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Model3DGroup().@New([ :param = value ])</code> or <code>dnNew("Model3DGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Children</code></td><td><code>Model3DCollection</code></td><td>read, write</td><td><code>o.Children</code> <code>o.Children = v</code></td></tr><tr><td><code>ChildrenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildrenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Model3DGroup Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Model3DGroup CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ModelUIElement3D"><summary><b>ModelUIElement3D</b> <span class="muted">class sealed · extends <a href="System.Windows.html#c-UIElement3D">UIElement3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.ModelUIElement3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IInputElement</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelUIElement3D()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelUIElement3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelUIElement3D().@New([ :param = value ])</code> or <code>dnNew("ModelUIElement3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Model</code></td><td><code>Model3D</code></td><td>read, write</td><td><code>o.Model</code> <code>o.Model = v</code></td></tr><tr><td><code>ModelProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ModelProperty</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ModelVisual3D"><summary><b>ModelVisual3D</b> <span class="muted">class · extends <a href="#c-Visual3D">Visual3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.ModelVisual3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IAddChild</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ModelVisual3D()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ModelVisual3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ModelVisual3D().@New([ :param = value ])</code> or <code>dnNew("ModelVisual3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Children</code></td><td><code>Visual3DCollection</code></td><td>read</td><td><code>o.Children</code></td></tr><tr><td><code>Content</code></td><td><code>Model3D</code></td><td>read, write</td><td><code>o.Content</code> <code>o.Content = v</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform3D</code></td><td>read, write</td><td><code>o.getTransform()</code> <code>o.setTransform(v)</code></td></tr><tr><td><code>ContentProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ContentProperty</code></td></tr><tr><td><code>TransformProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.getTransformProperty()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-OrthographicCamera"><summary><b>OrthographicCamera</b> <span class="muted">class sealed · extends <a href="#c-ProjectionCamera">ProjectionCamera</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.OrthographicCamera</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new OrthographicCamera()</code></td></tr><tr><td><code>new OrthographicCamera(Point3D position, Vector3D lookDirection, Vector3D upDirection, double width)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new OrthographicCamera(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new OrthographicCamera().@New([ :param = value ])</code> or <code>dnNew("OrthographicCamera",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Width</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Width</code> <code>o.Width = v</code></td></tr><tr><td><code>WidthProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.WidthProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>OrthographicCamera Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>OrthographicCamera CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PerspectiveCamera"><summary><b>PerspectiveCamera</b> <span class="muted">class sealed · extends <a href="#c-ProjectionCamera">ProjectionCamera</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.PerspectiveCamera</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PerspectiveCamera()</code></td></tr><tr><td><code>new PerspectiveCamera(Point3D position, Vector3D lookDirection, Vector3D upDirection, double fieldOfView)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PerspectiveCamera(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PerspectiveCamera().@New([ :param = value ])</code> or <code>dnNew("PerspectiveCamera",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FieldOfView</code></td><td><code>double</code></td><td>read, write</td><td><code>o.FieldOfView</code> <code>o.FieldOfView = v</code></td></tr><tr><td><code>FieldOfViewProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.FieldOfViewProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>PerspectiveCamera Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>PerspectiveCamera CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Point3D"><summary><b>Point3D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point3D(double x, double y, double z)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point3D().@New([ :param = value ])</code> or <code>dnNew("Point3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static Point3D Add(Point3D point, Vector3D vector)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :point1 = …, :point2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Point3D value)</code><br><code>static bool Equals(Point3D point1, Point3D point2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(p1,p2)</code></td><td><code>static Point3D Multiply(Point3D point, Matrix3D matrix)</code></td></tr><tr><td><code>Offset</code></td><td><code>Offset(p1,p2,p3)</code></td><td><code>void Offset(double offsetX, double offsetY, double offsetZ)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Point3D Parse(string source)</code></td></tr><tr><td><code>Subtract</code></td><td><code>Subtract(p1,p2)</code></td><td><code>static Point3D Subtract(Point3D point, Vector3D vector)</code><br><code>static Vector3D Subtract(Point3D point1, Point3D point2)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Point3DCollection"><summary><b>Point3DCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.html#c-Freezable">Freezable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point3DCollection()</code></td></tr><tr><td><code>new Point3DCollection(int capacity)</code></td></tr><tr><td><code>new Point3DCollection(IEnumerable&lt;Point3D&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point3DCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point3DCollection().@New([ :param = value ])</code> or <code>dnNew("Point3DCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Point3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Point3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Point3DCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Point3DCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Point3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Point3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>Point3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Point3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Point3D value)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Point3DCollection Parse(string source)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Point3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Point3DCollectionConverter"><summary><b>Point3DCollectionConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point3DCollectionConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point3DCollectionConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point3DCollectionConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point3DCollectionConverter().@New([ :param = value ])</code> or <code>dnNew("Point3DCollectionConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Point3DCollectionEnumerator"><summary><b>Point3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Point3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Point3DConverter"><summary><b>Point3DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point3DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point3DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point3DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point3DConverter().@New([ :param = value ])</code> or <code>dnNew("Point3DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Point4D"><summary><b>Point4D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point4D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point4D(double x, double y, double z, double w)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point4D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point4D().@New([ :param = value ])</code> or <code>dnNew("Point4D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr><tr><td><code>W</code></td><td><code>double</code></td><td>read, write</td><td><code>o.W</code> <code>o.W = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static Point4D Add(Point4D point1, Point4D point2)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :point1 = …, :point2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Point4D value)</code><br><code>static bool Equals(Point4D point1, Point4D point2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(p1,p2)</code></td><td><code>static Point4D Multiply(Point4D point, Matrix3D matrix)</code></td></tr><tr><td><code>Offset</code></td><td><code>Offset(p1,p2,p3,p4)</code></td><td><code>void Offset(double deltaX, double deltaY, double deltaZ, double deltaW)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Point4D Parse(string source)</code></td></tr><tr><td><code>Subtract</code></td><td><code>Subtract(p1,p2)</code></td><td><code>static Point4D Subtract(Point4D point1, Point4D point2)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Point4DConverter"><summary><b>Point4DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Point4DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Point4DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Point4DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Point4DConverter().@New([ :param = value ])</code> or <code>dnNew("Point4DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PointLight"><summary><b>PointLight</b> <span class="muted">class sealed · extends <a href="#c-PointLightBase">PointLightBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.PointLight</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PointLight()</code></td></tr><tr><td><code>new PointLight(Color diffuseColor, Point3D position)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PointLight(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PointLight().@New([ :param = value ])</code> or <code>dnNew("PointLight",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>PointLight Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>PointLight CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PointLightBase"><summary><b>PointLightBase</b> <span class="muted">class abstract · extends <a href="#c-Light">Light</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.PointLightBase</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Position</code></td><td><code>Point3D</code></td><td>read, write</td><td><code>o.Position</code> <code>o.Position = v</code></td></tr><tr><td><code>Range</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Range</code> <code>o.Range = v</code></td></tr><tr><td><code>ConstantAttenuation</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ConstantAttenuation</code> <code>o.ConstantAttenuation = v</code></td></tr><tr><td><code>LinearAttenuation</code></td><td><code>double</code></td><td>read, write</td><td><code>o.LinearAttenuation</code> <code>o.LinearAttenuation = v</code></td></tr><tr><td><code>QuadraticAttenuation</code></td><td><code>double</code></td><td>read, write</td><td><code>o.QuadraticAttenuation</code> <code>o.QuadraticAttenuation = v</code></td></tr><tr><td><code>PositionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PositionProperty</code></td></tr><tr><td><code>RangeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RangeProperty</code></td></tr><tr><td><code>ConstantAttenuationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ConstantAttenuationProperty</code></td></tr><tr><td><code>LinearAttenuationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.LinearAttenuationProperty</code></td></tr><tr><td><code>QuadraticAttenuationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.QuadraticAttenuationProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>PointLightBase Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>PointLightBase CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ProjectionCamera"><summary><b>ProjectionCamera</b> <span class="muted">class abstract · extends <a href="#c-Camera">Camera</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.ProjectionCamera</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>NearPlaneDistance</code></td><td><code>double</code></td><td>read, write</td><td><code>o.NearPlaneDistance</code> <code>o.NearPlaneDistance = v</code></td></tr><tr><td><code>FarPlaneDistance</code></td><td><code>double</code></td><td>read, write</td><td><code>o.FarPlaneDistance</code> <code>o.FarPlaneDistance = v</code></td></tr><tr><td><code>Position</code></td><td><code>Point3D</code></td><td>read, write</td><td><code>o.Position</code> <code>o.Position = v</code></td></tr><tr><td><code>LookDirection</code></td><td><code>Vector3D</code></td><td>read, write</td><td><code>o.LookDirection</code> <code>o.LookDirection = v</code></td></tr><tr><td><code>UpDirection</code></td><td><code>Vector3D</code></td><td>read, write</td><td><code>o.UpDirection</code> <code>o.UpDirection = v</code></td></tr><tr><td><code>NearPlaneDistanceProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.NearPlaneDistanceProperty</code></td></tr><tr><td><code>FarPlaneDistanceProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.FarPlaneDistanceProperty</code></td></tr><tr><td><code>PositionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.PositionProperty</code></td></tr><tr><td><code>LookDirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.LookDirectionProperty</code></td></tr><tr><td><code>UpDirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.UpDirectionProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>ProjectionCamera Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>ProjectionCamera CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-QuaternionConverter"><summary><b>QuaternionConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.QuaternionConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new QuaternionConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new QuaternionConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new QuaternionConverter().@New([ :param = value ])</code> or <code>dnNew("QuaternionConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-QuaternionRotation3D"><summary><b>QuaternionRotation3D</b> <span class="muted">class sealed · extends <a href="#c-Rotation3D">Rotation3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.QuaternionRotation3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new QuaternionRotation3D()</code></td></tr><tr><td><code>new QuaternionRotation3D(Quaternion quaternion)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new QuaternionRotation3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new QuaternionRotation3D().@New([ :param = value ])</code> or <code>dnNew("QuaternionRotation3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Quaternion</code></td><td><code>Quaternion</code></td><td>read, write</td><td><code>o.Quaternion</code> <code>o.Quaternion = v</code></td></tr><tr><td><code>QuaternionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.QuaternionProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>QuaternionRotation3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>QuaternionRotation3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RayHitTestParameters"><summary><b>RayHitTestParameters</b> <span class="muted">class sealed · extends <a href="#c-HitTestParameters3D">HitTestParameters3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.RayHitTestParameters</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RayHitTestParameters(Point3D origin, Vector3D direction)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RayHitTestParameters(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RayHitTestParameters().@New([ :param = value ])</code> or <code>dnNew("RayHitTestParameters",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Origin</code></td><td><code>Point3D</code></td><td>read</td><td><code>o.Origin</code></td></tr><tr><td><code>Direction</code></td><td><code>Vector3D</code></td><td>read</td><td><code>o.Direction</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RayHitTestResult"><summary><b>RayHitTestResult</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.html#c-HitTestResult">HitTestResult</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.RayHitTestResult</code> · assembly <code>PresentationCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>VisualHit</code></td><td><code>Visual3D</code></td><td>read</td><td><code>o.getVisualHit()</code></td></tr><tr><td><code>ModelHit</code></td><td><code>Model3D</code></td><td>read</td><td><code>o.ModelHit</code></td></tr><tr><td><code>PointHit</code></td><td><code>Point3D</code></td><td>read</td><td><code>o.PointHit</code></td></tr><tr><td><code>DistanceToRayOrigin</code></td><td><code>double</code></td><td>read</td><td><code>o.DistanceToRayOrigin</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RayMeshGeometry3DHitTestResult"><summary><b>RayMeshGeometry3DHitTestResult</b> <span class="muted">class sealed · extends <a href="#c-RayHitTestResult">RayHitTestResult</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.RayMeshGeometry3DHitTestResult</code> · assembly <code>PresentationCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PointHit</code></td><td><code>Point3D</code></td><td>read</td><td><code>o.getPointHit()</code></td></tr><tr><td><code>DistanceToRayOrigin</code></td><td><code>double</code></td><td>read</td><td><code>o.getDistanceToRayOrigin()</code></td></tr><tr><td><code>VertexIndex1</code></td><td><code>int</code></td><td>read</td><td><code>o.VertexIndex1</code></td></tr><tr><td><code>VertexIndex2</code></td><td><code>int</code></td><td>read</td><td><code>o.VertexIndex2</code></td></tr><tr><td><code>VertexIndex3</code></td><td><code>int</code></td><td>read</td><td><code>o.VertexIndex3</code></td></tr><tr><td><code>VertexWeight1</code></td><td><code>double</code></td><td>read</td><td><code>o.VertexWeight1</code></td></tr><tr><td><code>VertexWeight2</code></td><td><code>double</code></td><td>read</td><td><code>o.VertexWeight2</code></td></tr><tr><td><code>VertexWeight3</code></td><td><code>double</code></td><td>read</td><td><code>o.VertexWeight3</code></td></tr><tr><td><code>MeshHit</code></td><td><code>MeshGeometry3D</code></td><td>read</td><td><code>o.MeshHit</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Rect3D"><summary><b>Rect3D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Rect3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Rect3D(Point3D location, Size3D size)</code></td></tr><tr><td><code>new Rect3D(double x, double y, double z, double sizeX, double sizeY, double sizeZ)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Rect3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Rect3D().@New([ :param = value ])</code> or <code>dnNew("Rect3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>Location</code></td><td><code>Point3D</code></td><td>read, write</td><td><code>o.Location</code> <code>o.Location = v</code></td></tr><tr><td><code>Size</code></td><td><code>Size3D</code></td><td>read, write</td><td><code>o.Size</code> <code>o.Size = v</code></td></tr><tr><td><code>SizeX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SizeX</code> <code>o.SizeX = v</code></td></tr><tr><td><code>SizeY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SizeY</code> <code>o.SizeY = v</code></td></tr><tr><td><code>SizeZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SizeZ</code> <code>o.SizeZ = v</code></td></tr><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr><tr><td><code>Empty</code></td><td><code>Rect3D</code></td><td>read · static</td><td><code>o.Empty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Contains</code></td><td><code>Contains(value)</code><br><code>Contains([ :point = … ])</code><br><code>Contains([ :rect = … ])</code><br><code>Contains([ :x = …, :y = …, :z = … ])</code></td><td><code>bool Contains(Point3D point)</code><br><code>bool Contains(double x, double y, double z)</code><br><code>bool Contains(Rect3D rect)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :rect1 = …, :rect2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Rect3D value)</code><br><code>static bool Equals(Rect3D rect1, Rect3D rect2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Intersect</code></td><td><code>Intersect(value)</code><br><code>Intersect([ :rect = … ])</code><br><code>Intersect([ :rect1 = …, :rect2 = … ])</code></td><td><code>void Intersect(Rect3D rect)</code><br><code>static Rect3D Intersect(Rect3D rect1, Rect3D rect2)</code></td></tr><tr><td><code>IntersectsWith</code></td><td><code>IntersectsWith(p1)</code></td><td><code>bool IntersectsWith(Rect3D rect)</code></td></tr><tr><td><code>Offset</code></td><td><code>Offset(value)</code><br><code>Offset([ :offsetVector = … ])</code><br><code>Offset([ :rect = …, :offsetVector = … ])</code><br><code>Offset([ :offsetX = …, :offsetY = …, :offsetZ = … ])</code><br><code>Offset([ :rect = …, :offsetX = …, :offsetY = …, :offsetZ = … ])</code></td><td><code>void Offset(Vector3D offsetVector)</code><br><code>void Offset(double offsetX, double offsetY, double offsetZ)</code><br><code>static Rect3D Offset(Rect3D rect, Vector3D offsetVector)</code><br><code>static Rect3D Offset(Rect3D rect, double offsetX, double offsetY, double offsetZ)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Rect3D Parse(string source)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr><tr><td><code>Union</code></td><td><code>Union(value)</code><br><code>Union([ :rect = … ])</code><br><code>Union([ :point = … ])</code><br><code>Union([ :rect1 = …, :rect2 = … ])</code><br><code>Union([ :rect = …, :point = … ])</code></td><td><code>void Union(Rect3D rect)</code><br><code>void Union(Point3D point)</code><br><code>static Rect3D Union(Rect3D rect1, Rect3D rect2)</code><br><code>static Rect3D Union(Rect3D rect, Point3D point)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Rect3DConverter"><summary><b>Rect3DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Rect3DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Rect3DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Rect3DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Rect3DConverter().@New([ :param = value ])</code> or <code>dnNew("Rect3DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RotateTransform3D"><summary><b>RotateTransform3D</b> <span class="muted">class sealed · extends <a href="#c-AffineTransform3D">AffineTransform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.RotateTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RotateTransform3D()</code></td></tr><tr><td><code>new RotateTransform3D(Rotation3D rotation)</code></td></tr><tr><td><code>new RotateTransform3D(Rotation3D rotation, Point3D center)</code></td></tr><tr><td><code>new RotateTransform3D(Rotation3D rotation, double centerX, double centerY, double centerZ)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RotateTransform3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RotateTransform3D().@New([ :param = value ])</code> or <code>dnNew("RotateTransform3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>CenterX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterX</code> <code>o.CenterX = v</code></td></tr><tr><td><code>CenterY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterY</code> <code>o.CenterY = v</code></td></tr><tr><td><code>CenterZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterZ</code> <code>o.CenterZ = v</code></td></tr><tr><td><code>Rotation</code></td><td><code>Rotation3D</code></td><td>read, write</td><td><code>o.Rotation</code> <code>o.Rotation = v</code></td></tr><tr><td><code>CenterXProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterXProperty</code></td></tr><tr><td><code>CenterYProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterYProperty</code></td></tr><tr><td><code>CenterZProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterZProperty</code></td></tr><tr><td><code>RotationProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.RotationProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>RotateTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>RotateTransform3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Rotation3D"><summary><b>Rotation3D</b> <span class="muted">class abstract · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Rotation3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Identity</code></td><td><code>Rotation3D</code></td><td>read · static</td><td><code>o.Identity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Rotation3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Rotation3D CloneCurrentValue()</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ScaleTransform3D"><summary><b>ScaleTransform3D</b> <span class="muted">class sealed · extends <a href="#c-AffineTransform3D">AffineTransform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.ScaleTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ScaleTransform3D()</code></td></tr><tr><td><code>new ScaleTransform3D(Vector3D scale)</code></td></tr><tr><td><code>new ScaleTransform3D(double scaleX, double scaleY, double scaleZ)</code></td></tr><tr><td><code>new ScaleTransform3D(Vector3D scale, Point3D center)</code></td></tr><tr><td><code>new ScaleTransform3D(double scaleX, double scaleY, double scaleZ, double centerX, double centerY, double centerZ)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ScaleTransform3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ScaleTransform3D().@New([ :param = value ])</code> or <code>dnNew("ScaleTransform3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>ScaleX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ScaleX</code> <code>o.ScaleX = v</code></td></tr><tr><td><code>ScaleY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ScaleY</code> <code>o.ScaleY = v</code></td></tr><tr><td><code>ScaleZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.ScaleZ</code> <code>o.ScaleZ = v</code></td></tr><tr><td><code>CenterX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterX</code> <code>o.CenterX = v</code></td></tr><tr><td><code>CenterY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterY</code> <code>o.CenterY = v</code></td></tr><tr><td><code>CenterZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.CenterZ</code> <code>o.CenterZ = v</code></td></tr><tr><td><code>ScaleXProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ScaleXProperty</code></td></tr><tr><td><code>ScaleYProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ScaleYProperty</code></td></tr><tr><td><code>ScaleZProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ScaleZProperty</code></td></tr><tr><td><code>CenterXProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterXProperty</code></td></tr><tr><td><code>CenterYProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterYProperty</code></td></tr><tr><td><code>CenterZProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CenterZProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>ScaleTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>ScaleTransform3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Size3D"><summary><b>Size3D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Size3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Size3D(double x, double y, double z)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Size3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Size3D().@New([ :param = value ])</code> or <code>dnNew("Size3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsEmpty</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsEmpty</code></td></tr><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr><tr><td><code>Empty</code></td><td><code>Size3D</code></td><td>read · static</td><td><code>o.Empty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :size1 = …, :size2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Size3D value)</code><br><code>static bool Equals(Size3D size1, Size3D size2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Size3D Parse(string source)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Size3DConverter"><summary><b>Size3DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Size3DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Size3DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Size3DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Size3DConverter().@New([ :param = value ])</code> or <code>dnNew("Size3DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SpecularMaterial"><summary><b>SpecularMaterial</b> <span class="muted">class sealed · extends <a href="#c-Material">Material</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.SpecularMaterial</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SpecularMaterial()</code></td></tr><tr><td><code>new SpecularMaterial(Brush brush, double specularPower)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SpecularMaterial(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SpecularMaterial().@New([ :param = value ])</code> or <code>dnNew("SpecularMaterial",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Color</code></td><td><code>Color</code></td><td>read, write</td><td><code>o.Color</code> <code>o.Color = v</code></td></tr><tr><td><code>Brush</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.Brush</code> <code>o.Brush = v</code></td></tr><tr><td><code>SpecularPower</code></td><td><code>double</code></td><td>read, write</td><td><code>o.SpecularPower</code> <code>o.SpecularPower = v</code></td></tr><tr><td><code>ColorProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ColorProperty</code></td></tr><tr><td><code>BrushProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.BrushProperty</code></td></tr><tr><td><code>SpecularPowerProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.SpecularPowerProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>SpecularMaterial Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>SpecularMaterial CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SpotLight"><summary><b>SpotLight</b> <span class="muted">class sealed · extends <a href="#c-PointLightBase">PointLightBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.SpotLight</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SpotLight(Color diffuseColor, Point3D position, Vector3D direction, double outerConeAngle, double innerConeAngle)</code></td></tr><tr><td><code>new SpotLight()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SpotLight(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SpotLight().@New([ :param = value ])</code> or <code>dnNew("SpotLight",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Direction</code></td><td><code>Vector3D</code></td><td>read, write</td><td><code>o.Direction</code> <code>o.Direction = v</code></td></tr><tr><td><code>OuterConeAngle</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OuterConeAngle</code> <code>o.OuterConeAngle = v</code></td></tr><tr><td><code>InnerConeAngle</code></td><td><code>double</code></td><td>read, write</td><td><code>o.InnerConeAngle</code> <code>o.InnerConeAngle = v</code></td></tr><tr><td><code>DirectionProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.DirectionProperty</code></td></tr><tr><td><code>OuterConeAngleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OuterConeAngleProperty</code></td></tr><tr><td><code>InnerConeAngleProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.InnerConeAngleProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>SpotLight Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>SpotLight CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Transform3D"><summary><b>Transform3D</b> <span class="muted">class abstract · extends <a href="#c-GeneralTransform3D">GeneralTransform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Transform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Inverse</code></td><td><code>GeneralTransform3D</code></td><td>read</td><td><code>o.getInverse()</code></td></tr><tr><td><code>IsAffine</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsAffine</code></td></tr><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.Value</code></td></tr><tr><td><code>Identity</code></td><td><code>Transform3D</code></td><td>read · static</td><td><code>o.Identity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Transform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Transform3D CloneCurrentValue()</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform(p1)</code></td><td><code>Point3D Transform(Point3D point)</code><br><code>Vector3D Transform(Vector3D vector)</code><br><code>Point4D Transform(Point4D point)</code><br><code>void Transform(Point3D[] points)</code><br><code>void Transform(Vector3D[] vectors)</code><br><code>void Transform(Point4D[] points)</code></td></tr><tr><td><code>TransformBounds</code></td><td><code>TransformBounds(p1)</code></td><td><code>Rect3D TransformBounds(Rect3D rect)</code></td></tr><tr><td><code>TryTransform</code></td><td><code>TryTransform(p1)</code></td><td><code>bool TryTransform(Point3D inPoint, out Point3D result)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Transform3DCollection"><summary><b>Transform3DCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.Animation.html#c-Animatable">Animatable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Transform3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Transform3DCollection()</code></td></tr><tr><td><code>new Transform3DCollection(int capacity)</code></td></tr><tr><td><code>new Transform3DCollection(IEnumerable&lt;Transform3D&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Transform3DCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Transform3DCollection().@New([ :param = value ])</code> or <code>dnNew("Transform3DCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Transform3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Transform3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Transform3DCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Transform3DCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Transform3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Transform3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>Transform3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Transform3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Transform3D value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Transform3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Transform3DCollectionEnumerator"><summary><b>Transform3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Transform3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Transform3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Transform3DGroup"><summary><b>Transform3DGroup</b> <span class="muted">class sealed · extends <a href="#c-Transform3D">Transform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Transform3DGroup</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Transform3DGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Transform3DGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Transform3DGroup().@New([ :param = value ])</code> or <code>dnNew("Transform3DGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>IsAffine</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsAffine()</code></td></tr><tr><td><code>Children</code></td><td><code>Transform3DCollection</code></td><td>read, write</td><td><code>o.Children</code> <code>o.Children = v</code></td></tr><tr><td><code>ChildrenProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ChildrenProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Transform3DGroup Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Transform3DGroup CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TranslateTransform3D"><summary><b>TranslateTransform3D</b> <span class="muted">class sealed · extends <a href="#c-AffineTransform3D">AffineTransform3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.TranslateTransform3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable, IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TranslateTransform3D()</code></td></tr><tr><td><code>new TranslateTransform3D(Vector3D offset)</code></td></tr><tr><td><code>new TranslateTransform3D(double offsetX, double offsetY, double offsetZ)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TranslateTransform3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TranslateTransform3D().@New([ :param = value ])</code> or <code>dnNew("TranslateTransform3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>Matrix3D</code></td><td>read</td><td><code>o.getValue()</code></td></tr><tr><td><code>OffsetX</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetX</code> <code>o.OffsetX = v</code></td></tr><tr><td><code>OffsetY</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetY</code> <code>o.OffsetY = v</code></td></tr><tr><td><code>OffsetZ</code></td><td><code>double</code></td><td>read, write</td><td><code>o.OffsetZ</code> <code>o.OffsetZ = v</code></td></tr><tr><td><code>OffsetXProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OffsetXProperty</code></td></tr><tr><td><code>OffsetYProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OffsetYProperty</code></td></tr><tr><td><code>OffsetZProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.OffsetZProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>TranslateTransform3D Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>TranslateTransform3D CloneCurrentValue()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Vector3D"><summary><b>Vector3D</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Vector3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Vector3D(double x, double y, double z)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Vector3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Vector3D().@New([ :param = value ])</code> or <code>dnNew("Vector3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Length</code></td><td><code>double</code></td><td>read</td><td><code>o.Length</code></td></tr><tr><td><code>LengthSquared</code></td><td><code>double</code></td><td>read</td><td><code>o.LengthSquared</code></td></tr><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static Vector3D Add(Vector3D vector1, Vector3D vector2)</code><br><code>static Point3D Add(Vector3D vector, Point3D point)</code></td></tr><tr><td><code>AngleBetween</code></td><td><code>AngleBetween(p1,p2)</code></td><td><code>static double AngleBetween(Vector3D vector1, Vector3D vector2)</code></td></tr><tr><td><code>CrossProduct</code></td><td><code>CrossProduct(p1,p2)</code></td><td><code>static Vector3D CrossProduct(Vector3D vector1, Vector3D vector2)</code></td></tr><tr><td><code>Divide</code></td><td><code>Divide(p1,p2)</code></td><td><code>static Vector3D Divide(Vector3D vector, double scalar)</code></td></tr><tr><td><code>DotProduct</code></td><td><code>DotProduct(p1,p2)</code></td><td><code>static double DotProduct(Vector3D vector1, Vector3D vector2)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :vector1 = …, :vector2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Vector3D value)</code><br><code>static bool Equals(Vector3D vector1, Vector3D vector2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(p1,p2)</code></td><td><code>static Vector3D Multiply(Vector3D vector, double scalar)</code><br><code>static Vector3D Multiply(double scalar, Vector3D vector)</code><br><code>static Vector3D Multiply(Vector3D vector, Matrix3D matrix)</code></td></tr><tr><td><code>Negate</code></td><td><code>Negate()</code></td><td><code>void Negate()</code></td></tr><tr><td><code>Normalize</code></td><td><code>Normalize()</code></td><td><code>void Normalize()</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Vector3D Parse(string source)</code></td></tr><tr><td><code>Subtract</code></td><td><code>Subtract(p1,p2)</code></td><td><code>static Vector3D Subtract(Vector3D vector1, Vector3D vector2)</code><br><code>static Point3D Subtract(Vector3D vector, Point3D point)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Vector3DCollection"><summary><b>Vector3DCollection</b> <span class="muted">class sealed · extends <a href="System.Windows.html#c-Freezable">Freezable</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Vector3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable, IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Vector3DCollection()</code></td></tr><tr><td><code>new Vector3DCollection(int capacity)</code></td></tr><tr><td><code>new Vector3DCollection(IEnumerable&lt;Vector3D&gt; collection)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Vector3DCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Vector3DCollection().@New([ :param = value ])</code> or <code>dnNew("Vector3DCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Vector3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Vector3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Vector3DCollection Clone()</code></td></tr><tr><td><code>CloneCurrentValue</code></td><td><code>CloneCurrentValue()</code></td><td><code>Vector3DCollection CloneCurrentValue()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Vector3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Vector3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>Vector3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Vector3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Vector3D value)</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Vector3DCollection Parse(string source)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Vector3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Vector3DCollectionConverter"><summary><b>Vector3DCollectionConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Vector3DCollectionConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Vector3DCollectionConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Vector3DCollectionConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Vector3DCollectionConverter().@New([ :param = value ])</code> or <code>dnNew("Vector3DCollectionConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Vector3DCollectionEnumerator"><summary><b>Vector3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Vector3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IEnumerator, IDisposable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Vector3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Vector3DConverter"><summary><b>Vector3DConverter</b> <span class="muted">class sealed · extends <a href="System.ComponentModel.html#c-TypeConverter">TypeConverter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Vector3DConverter</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Vector3DConverter()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Vector3DConverter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Vector3DConverter().@New([ :param = value ])</code> or <code>dnNew("Vector3DConverter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanConvertFrom</code></td><td><code>CanConvertFrom([ :context = …, :sourceType = … ])</code></td><td><code>bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)</code></td></tr><tr><td><code>CanConvertTo</code></td><td><code>CanConvertTo([ :context = …, :destinationType = … ])</code></td><td><code>bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)</code></td></tr><tr><td><code>ConvertFrom</code></td><td><code>ConvertFrom([ :context = …, :culture = …, :value = … ])</code></td><td><code>object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)</code></td></tr><tr><td><code>ConvertTo</code></td><td><code>ConvertTo([ :context = …, :culture = …, :value = …, :destinationType = … ])</code></td><td><code>object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Viewport2DVisual3D"><summary><b>Viewport2DVisual3D</b> <span class="muted">class sealed · extends <a href="#c-Visual3D">Visual3D</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Viewport2DVisual3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Viewport2DVisual3D()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Viewport2DVisual3D(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Viewport2DVisual3D().@New([ :param = value ])</code> or <code>dnNew("Viewport2DVisual3D",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Visual</code></td><td><code>Visual</code></td><td>read, write</td><td><code>o.Visual</code> <code>o.Visual = v</code></td></tr><tr><td><code>Geometry</code></td><td><code>Geometry3D</code></td><td>read, write</td><td><code>o.Geometry</code> <code>o.Geometry = v</code></td></tr><tr><td><code>Material</code></td><td><code>Material</code></td><td>read, write</td><td><code>o.Material</code> <code>o.Material = v</code></td></tr><tr><td><code>CacheMode</code></td><td><code>CacheMode</code></td><td>read, write</td><td><code>o.CacheMode</code> <code>o.CacheMode = v</code></td></tr><tr><td><code>VisualProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.VisualProperty</code></td></tr><tr><td><code>GeometryProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.GeometryProperty</code></td></tr><tr><td><code>MaterialProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.MaterialProperty</code></td></tr><tr><td><code>IsVisualHostMaterialProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.IsVisualHostMaterialProperty</code></td></tr><tr><td><code>CacheModeProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CacheModeProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetIsVisualHostMaterial</code></td><td><code>GetIsVisualHostMaterial(p1)</code></td><td><code>static bool GetIsVisualHostMaterial(Material element)</code></td></tr><tr><td><code>SetIsVisualHostMaterial</code></td><td><code>SetIsVisualHostMaterial(p1,p2)</code></td><td><code>static void SetIsVisualHostMaterial(Material element, bool value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Viewport3DVisual"><summary><b>Viewport3DVisual</b> <span class="muted">class sealed · extends <a href="System.Windows.Media.html#c-Visual">Visual</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Viewport3DVisual</code> · assembly <code>PresentationCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Viewport3DVisual()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Viewport3DVisual(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Viewport3DVisual().@New([ :param = value ])</code> or <code>dnNew("Viewport3DVisual",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Parent</code></td><td><code>DependencyObject</code></td><td>read</td><td><code>o.Parent</code></td></tr><tr><td><code>Clip</code></td><td><code>Geometry</code></td><td>read, write</td><td><code>o.Clip</code> <code>o.Clip = v</code></td></tr><tr><td><code>Opacity</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Opacity</code> <code>o.Opacity = v</code></td></tr><tr><td><code>OpacityMask</code></td><td><code>Brush</code></td><td>read, write</td><td><code>o.OpacityMask</code> <code>o.OpacityMask = v</code></td></tr><tr><td><code>BitmapEffect</code></td><td><code>BitmapEffect</code></td><td>read, write</td><td><code>o.BitmapEffect</code> <code>o.BitmapEffect = v</code></td></tr><tr><td><code>BitmapEffectInput</code></td><td><code>BitmapEffectInput</code></td><td>read, write</td><td><code>o.BitmapEffectInput</code> <code>o.BitmapEffectInput = v</code></td></tr><tr><td><code>ContentBounds</code></td><td><code>Rect</code></td><td>read</td><td><code>o.ContentBounds</code></td></tr><tr><td><code>Transform</code></td><td><code>Transform</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr><tr><td><code>Offset</code></td><td><code>Vector</code></td><td>read, write</td><td><code>o.Offset</code> <code>o.Offset = v</code></td></tr><tr><td><code>DescendantBounds</code></td><td><code>Rect</code></td><td>read</td><td><code>o.DescendantBounds</code></td></tr><tr><td><code>Camera</code></td><td><code>Camera</code></td><td>read, write</td><td><code>o.Camera</code> <code>o.Camera = v</code></td></tr><tr><td><code>Viewport</code></td><td><code>Rect</code></td><td>read, write</td><td><code>o.Viewport</code> <code>o.Viewport = v</code></td></tr><tr><td><code>Children</code></td><td><code>Visual3DCollection</code></td><td>read</td><td><code>o.Children</code></td></tr><tr><td><code>CameraProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.CameraProperty</code></td></tr><tr><td><code>ViewportProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.ViewportProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>HitTest</code></td><td><code>HitTest(value)</code><br><code>HitTest([ :point = … ])</code><br><code>HitTest([ :filterCallback = …, :resultCallback = …, :hitTestParameters = … ])</code></td><td><code>HitTestResult HitTest(Point point)</code><br><code>void HitTest(HitTestFilterCallback filterCallback, HitTestResultCallback resultCallback, HitTestParameters hitTestParameters)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Visual3D"><summary><b>Visual3D</b> <span class="muted">class abstract · extends <a href="System.Windows.html#c-DependencyObject">DependencyObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Visual3D</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IAnimatable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Transform</code></td><td><code>Transform3D</code></td><td>read, write</td><td><code>o.Transform</code> <code>o.Transform = v</code></td></tr><tr><td><code>HasAnimatedProperties</code></td><td><code>bool</code></td><td>read</td><td><code>o.HasAnimatedProperties</code></td></tr><tr><td><code>TransformProperty</code></td><td><code>DependencyProperty</code></td><td>read · static</td><td><code>o.TransformProperty</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ApplyAnimationClock</code></td><td><code>ApplyAnimationClock([ :dp = …, :clock = … ])</code><br><code>ApplyAnimationClock([ :dp = …, :clock = …, :handoffBehavior = … ])</code></td><td><code>void ApplyAnimationClock(DependencyProperty dp, AnimationClock clock)</code><br><code>void ApplyAnimationClock(DependencyProperty dp, AnimationClock clock, HandoffBehavior handoffBehavior)</code></td></tr><tr><td><code>BeginAnimation</code></td><td><code>BeginAnimation([ :dp = …, :animation = … ])</code><br><code>BeginAnimation([ :dp = …, :animation = …, :handoffBehavior = … ])</code></td><td><code>void BeginAnimation(DependencyProperty dp, AnimationTimeline animation)</code><br><code>void BeginAnimation(DependencyProperty dp, AnimationTimeline animation, HandoffBehavior handoffBehavior)</code></td></tr><tr><td><code>FindCommonVisualAncestor</code></td><td><code>FindCommonVisualAncestor(p1)</code></td><td><code>DependencyObject FindCommonVisualAncestor(DependencyObject otherVisual)</code></td></tr><tr><td><code>GetAnimationBaseValue</code></td><td><code>GetAnimationBaseValue(p1)</code></td><td><code>object GetAnimationBaseValue(DependencyProperty dp)</code></td></tr><tr><td><code>IsAncestorOf</code></td><td><code>IsAncestorOf(p1)</code></td><td><code>bool IsAncestorOf(DependencyObject descendant)</code></td></tr><tr><td><code>IsDescendantOf</code></td><td><code>IsDescendantOf(p1)</code></td><td><code>bool IsDescendantOf(DependencyObject ancestor)</code></td></tr><tr><td><code>TransformToAncestor</code></td><td><code>TransformToAncestor(p1)</code></td><td><code>GeneralTransform3D TransformToAncestor(Visual3D ancestor)</code><br><code>GeneralTransform3DTo2D TransformToAncestor(Visual ancestor)</code></td></tr><tr><td><code>TransformToDescendant</code></td><td><code>TransformToDescendant(p1)</code></td><td><code>GeneralTransform3D TransformToDescendant(Visual3D descendant)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Visual3DCollection"><summary><b>Visual3DCollection</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Visual3DCollection</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>Visual3D</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>void Add(Visual3D value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(Visual3D value)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(Visual3D[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>Visual3DCollection.Enumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(Visual3D value)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, Visual3D value)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(Visual3D value)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Visual3DCollectionEnumerator"><summary><b>Visual3DCollectionEnumerator</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Visual3DCollection+Enumerator</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IDisposable, IEnumerator</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>Visual3D</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-WpfQuaternion"><summary><b>WpfQuaternion</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Windows.Media.Media3D.Quaternion</code> · assembly <code>PresentationCore</code></p>
+<p class="muted">Implements: IFormattable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new WpfQuaternion(double x, double y, double z, double w)</code></td></tr><tr><td><code>new WpfQuaternion(Vector3D axisOfRotation, double angleInDegrees)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new WpfQuaternion(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new WpfQuaternion().@New([ :param = value ])</code> or <code>dnNew("WpfQuaternion",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Axis</code></td><td><code>Vector3D</code></td><td>read</td><td><code>o.Axis</code></td></tr><tr><td><code>Angle</code></td><td><code>double</code></td><td>read</td><td><code>o.Angle</code></td></tr><tr><td><code>IsNormalized</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsNormalized</code></td></tr><tr><td><code>IsIdentity</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsIdentity</code></td></tr><tr><td><code>X</code></td><td><code>double</code></td><td>read, write</td><td><code>o.X</code> <code>o.X = v</code></td></tr><tr><td><code>Y</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Y</code> <code>o.Y = v</code></td></tr><tr><td><code>Z</code></td><td><code>double</code></td><td>read, write</td><td><code>o.Z</code> <code>o.Z = v</code></td></tr><tr><td><code>W</code></td><td><code>double</code></td><td>read, write</td><td><code>o.W</code> <code>o.W = v</code></td></tr><tr><td><code>Identity</code></td><td><code>Quaternion</code></td><td>read · static</td><td><code>o.Identity</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static Quaternion Add(Quaternion left, Quaternion right)</code></td></tr><tr><td><code>Conjugate</code></td><td><code>Conjugate()</code></td><td><code>void Conjugate()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(value)</code><br><code>Equals([ :o = … ])</code><br><code>Equals([ :value = … ])</code><br><code>Equals([ :quaternion1 = …, :quaternion2 = … ])</code></td><td><code>bool Equals(object o)</code><br><code>bool Equals(Quaternion value)</code><br><code>static bool Equals(Quaternion quaternion1, Quaternion quaternion2)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Invert</code></td><td><code>Invert()</code></td><td><code>void Invert()</code></td></tr><tr><td><code>Multiply</code></td><td><code>Multiply(p1,p2)</code></td><td><code>static Quaternion Multiply(Quaternion left, Quaternion right)</code></td></tr><tr><td><code>Normalize</code></td><td><code>Normalize()</code></td><td><code>void Normalize()</code></td></tr><tr><td><code>Parse</code></td><td><code>Parse(p1)</code></td><td><code>static Quaternion Parse(string source)</code></td></tr><tr><td><code>Slerp</code></td><td><code>Slerp([ :from = …, :to = …, :t = … ])</code><br><code>Slerp([ :from = …, :to = …, :t = …, :useShortestPath = … ])</code></td><td><code>static Quaternion Slerp(Quaternion from, Quaternion to, double t)</code><br><code>static Quaternion Slerp(Quaternion from, Quaternion to, double t, bool useShortestPath)</code></td></tr><tr><td><code>Subtract</code></td><td><code>Subtract(p1,p2)</code></td><td><code>static Quaternion Subtract(Quaternion left, Quaternion right)</code></td></tr><tr><td><code>ToString</code></td><td><code>Format(value)</code><br><code>Format([ :provider = … ])</code></td><td><code>string ToString()</code><br><code>string ToString(IFormatProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

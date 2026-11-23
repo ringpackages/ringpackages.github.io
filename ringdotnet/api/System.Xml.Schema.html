@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Xml.Schema · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Xml.Schema</h1>
+<p class="lead">74 wrapped types. Load them with <code>using { "System.Xml.Schema" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-IXmlSchemaInfo">IXmlSchemaInfo</a> <a href="#c-ValidationEventArgs">ValidationEventArgs</a> <a href="#c-XmlAtomicValue">XmlAtomicValue</a> <a href="#c-XmlSchema">XmlSchema</a> <a href="#c-XmlSchemaAll">XmlSchemaAll</a> <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a> <a href="#c-XmlSchemaAnnotation">XmlSchemaAnnotation</a> <a href="#c-XmlSchemaAny">XmlSchemaAny</a> <a href="#c-XmlSchemaAnyAttribute">XmlSchemaAnyAttribute</a> <a href="#c-XmlSchemaAppInfo">XmlSchemaAppInfo</a> <a href="#c-XmlSchemaAttribute">XmlSchemaAttribute</a> <a href="#c-XmlSchemaAttributeGroup">XmlSchemaAttributeGroup</a> <a href="#c-XmlSchemaAttributeGroupRef">XmlSchemaAttributeGroupRef</a> <a href="#c-XmlSchemaChoice">XmlSchemaChoice</a> <a href="#c-XmlSchemaCollectionEnumerator">XmlSchemaCollectionEnumerator</a> <a href="#c-XmlSchemaCompilationSettings">XmlSchemaCompilationSettings</a> <a href="#c-XmlSchemaComplexContent">XmlSchemaComplexContent</a> <a href="#c-XmlSchemaComplexContentExtension">XmlSchemaComplexContentExtension</a> <a href="#c-XmlSchemaComplexContentRestriction">XmlSchemaComplexContentRestriction</a> <a href="#c-XmlSchemaComplexType">XmlSchemaComplexType</a> <a href="#c-XmlSchemaContent">XmlSchemaContent</a> <a href="#c-XmlSchemaContentModel">XmlSchemaContentModel</a> <a href="#c-XmlSchemaDatatype">XmlSchemaDatatype</a> <a href="#c-XmlSchemaDocumentation">XmlSchemaDocumentation</a> <a href="#c-XmlSchemaElement">XmlSchemaElement</a> <a href="#c-XmlSchemaEnumerationFacet">XmlSchemaEnumerationFacet</a> <a href="#c-XmlSchemaException">XmlSchemaException</a> <a href="#c-XmlSchemaExternal">XmlSchemaExternal</a> <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a> <a href="#c-XmlSchemaFractionDigitsFacet">XmlSchemaFractionDigitsFacet</a> <a href="#c-XmlSchemaGroup">XmlSchemaGroup</a> <a href="#c-XmlSchemaGroupBase">XmlSchemaGroupBase</a> <a href="#c-XmlSchemaGroupRef">XmlSchemaGroupRef</a> <a href="#c-XmlSchemaIdentityConstraint">XmlSchemaIdentityConstraint</a> <a href="#c-XmlSchemaImport">XmlSchemaImport</a> <a href="#c-XmlSchemaInclude">XmlSchemaInclude</a> <a href="#c-XmlSchemaInference">XmlSchemaInference</a> <a href="#c-XmlSchemaInferenceException">XmlSchemaInferenceException</a> <a href="#c-XmlSchemaInfo">XmlSchemaInfo</a> <a href="#c-XmlSchemaKey">XmlSchemaKey</a> <a href="#c-XmlSchemaKeyref">XmlSchemaKeyref</a> <a href="#c-XmlSchemaLengthFacet">XmlSchemaLengthFacet</a> <a href="#c-XmlSchemaMaxExclusiveFacet">XmlSchemaMaxExclusiveFacet</a> <a href="#c-XmlSchemaMaxInclusiveFacet">XmlSchemaMaxInclusiveFacet</a> <a href="#c-XmlSchemaMaxLengthFacet">XmlSchemaMaxLengthFacet</a> <a href="#c-XmlSchemaMinExclusiveFacet">XmlSchemaMinExclusiveFacet</a> <a href="#c-XmlSchemaMinInclusiveFacet">XmlSchemaMinInclusiveFacet</a> <a href="#c-XmlSchemaMinLengthFacet">XmlSchemaMinLengthFacet</a> <a href="#c-XmlSchemaNotation">XmlSchemaNotation</a> <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a> <a href="#c-XmlSchemaObject">XmlSchemaObject</a> <a href="#c-XmlSchemaObjectCollection">XmlSchemaObjectCollection</a> <a href="#c-XmlSchemaObjectEnumerator">XmlSchemaObjectEnumerator</a> <a href="#c-XmlSchemaObjectTable">XmlSchemaObjectTable</a> <a href="#c-XmlSchemaParticle">XmlSchemaParticle</a> <a href="#c-XmlSchemaPatternFacet">XmlSchemaPatternFacet</a> <a href="#c-XmlSchemaRedefine">XmlSchemaRedefine</a> <a href="#c-XmlSchemaSequence">XmlSchemaSequence</a> <a href="#c-XmlSchemaSet">XmlSchemaSet</a> <a href="#c-XmlSchemaSimpleContent">XmlSchemaSimpleContent</a> <a href="#c-XmlSchemaSimpleContentExtension">XmlSchemaSimpleContentExtension</a> <a href="#c-XmlSchemaSimpleContentRestriction">XmlSchemaSimpleContentRestriction</a> <a href="#c-XmlSchemaSimpleType">XmlSchemaSimpleType</a> <a href="#c-XmlSchemaSimpleTypeContent">XmlSchemaSimpleTypeContent</a> <a href="#c-XmlSchemaSimpleTypeList">XmlSchemaSimpleTypeList</a> <a href="#c-XmlSchemaSimpleTypeRestriction">XmlSchemaSimpleTypeRestriction</a> <a href="#c-XmlSchemaSimpleTypeUnion">XmlSchemaSimpleTypeUnion</a> <a href="#c-XmlSchemaTotalDigitsFacet">XmlSchemaTotalDigitsFacet</a> <a href="#c-XmlSchemaType">XmlSchemaType</a> <a href="#c-XmlSchemaUnique">XmlSchemaUnique</a> <a href="#c-XmlSchemaValidationException">XmlSchemaValidationException</a> <a href="#c-XmlSchemaValidator">XmlSchemaValidator</a> <a href="#c-XmlSchemaWhiteSpaceFacet">XmlSchemaWhiteSpaceFacet</a> <a href="#c-XmlSchemaXPath">XmlSchemaXPath</a></div><details class="cls" id="c-IXmlSchemaInfo"><summary><b>IXmlSchemaInfo</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.IXmlSchemaInfo</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Validity</code></td><td><code>XmlSchemaValidity</code></td><td>read</td><td><code>o.Validity</code></td></tr><tr><td><code>IsDefault</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsDefault</code></td></tr><tr><td><code>IsNil</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsNil</code></td></tr><tr><td><code>MemberType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read</td><td><code>o.MemberType</code></td></tr><tr><td><code>SchemaType</code></td><td><code>XmlSchemaType</code></td><td>read</td><td><code>o.SchemaType</code></td></tr><tr><td><code>SchemaElement</code></td><td><code>XmlSchemaElement</code></td><td>read</td><td><code>o.SchemaElement</code></td></tr><tr><td><code>SchemaAttribute</code></td><td><code>XmlSchemaAttribute</code></td><td>read</td><td><code>o.SchemaAttribute</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValidationEventArgs"><summary><b>ValidationEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.ValidationEventArgs</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Severity</code></td><td><code>XmlSeverityType</code></td><td>read</td><td><code>o.Severity</code></td></tr><tr><td><code>Exception</code></td><td><code>XmlSchemaException</code></td><td>read</td><td><code>o.Exception</code></td></tr><tr><td><code>Message</code></td><td><code>string</code></td><td>read</td><td><code>o.Message</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAtomicValue"><summary><b>XmlAtomicValue</b> <span class="muted">class sealed · extends <a href="System.Xml.XPath.html#c-XPathItem">XPathItem</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlAtomicValue</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: ICloneable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsNode</code></td><td><code>bool</code></td><td>read</td><td><code>o.getIsNode()</code></td></tr><tr><td><code>XmlType</code></td><td><code>XmlSchemaType</code></td><td>read</td><td><code>o.getXmlType()</code></td></tr><tr><td><code>ValueType</code></td><td><code>Type</code></td><td>read</td><td><code>o.getValueType()</code></td></tr><tr><td><code>TypedValue</code></td><td><code>object</code></td><td>read</td><td><code>o.getTypedValue()</code></td></tr><tr><td><code>ValueAsBoolean</code></td><td><code>bool</code></td><td>read</td><td><code>o.getValueAsBoolean()</code></td></tr><tr><td><code>ValueAsDateTime</code></td><td><code>DateTime</code></td><td>read</td><td><code>o.getValueAsDateTime()</code></td></tr><tr><td><code>ValueAsDouble</code></td><td><code>double</code></td><td>read</td><td><code>o.getValueAsDouble()</code></td></tr><tr><td><code>ValueAsInt</code></td><td><code>int</code></td><td>read</td><td><code>o.getValueAsInt()</code></td></tr><tr><td><code>ValueAsLong</code></td><td><code>long</code></td><td>read</td><td><code>o.getValueAsLong()</code></td></tr><tr><td><code>Value</code></td><td><code>string</code></td><td>read</td><td><code>o.getValue()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>XmlAtomicValue Clone()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>ValueAs</code></td><td><code>ValueAs([ :type = …, :nsResolver = … ])</code></td><td><code>object ValueAs(Type type, IXmlNamespaceResolver nsResolver)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchema"><summary><b>XmlSchema</b> <span class="muted">class · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchema</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchema()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchema(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchema().@New([ :param = value ])</code> or <code>dnNew("XmlSchema",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AttributeFormDefault</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.AttributeFormDefault</code> <code>o.AttributeFormDefault = v</code></td></tr><tr><td><code>BlockDefault</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.BlockDefault</code> <code>o.BlockDefault = v</code></td></tr><tr><td><code>FinalDefault</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.FinalDefault</code> <code>o.FinalDefault = v</code></td></tr><tr><td><code>ElementFormDefault</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.ElementFormDefault</code> <code>o.ElementFormDefault = v</code></td></tr><tr><td><code>TargetNamespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.TargetNamespace</code> <code>o.TargetNamespace = v</code></td></tr><tr><td><code>Version</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Version</code> <code>o.Version = v</code></td></tr><tr><td><code>Includes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Includes</code></td></tr><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Items</code></td></tr><tr><td><code>IsCompiled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCompiled</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AttributeGroups</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.AttributeGroups</code></td></tr><tr><td><code>SchemaTypes</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.SchemaTypes</code></td></tr><tr><td><code>Elements</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.Elements</code></td></tr><tr><td><code>Id</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Id</code> <code>o.Id = v</code></td></tr><tr><td><code>UnhandledAttributes</code></td><td><code>XmlAttribute[]</code></td><td>read, write</td><td><code>o.UnhandledAttributes</code> <code>o.UnhandledAttributes = v</code></td></tr><tr><td><code>Groups</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.Groups</code></td></tr><tr><td><code>Notations</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.Notations</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>constant · static</td><td><code>o.Namespace</code></td></tr><tr><td><code>InstanceNamespace</code></td><td><code>string</code></td><td>constant · static</td><td><code>o.InstanceNamespace</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Compile</code></td><td><code>Compile(value)</code><br><code>Compile([ :validationEventHandler = … ])</code><br><code>Compile([ :validationEventHandler = …, :resolver = … ])</code></td><td><code>void Compile(ValidationEventHandler validationEventHandler)</code><br><code>void Compile(ValidationEventHandler validationEventHandler, XmlResolver resolver)</code></td></tr><tr><td><code>Read</code></td><td><code>Read(p1,p2)</code></td><td><code>static XmlSchema Read(TextReader reader, ValidationEventHandler validationEventHandler)</code><br><code>static XmlSchema Read(Stream stream, ValidationEventHandler validationEventHandler)</code><br><code>static XmlSchema Read(XmlReader reader, ValidationEventHandler validationEventHandler)</code></td></tr><tr><td><code>Write</code></td><td><code>Write(value)</code><br><code>Write([ :stream = … ])</code><br><code>Write([ :writer = … ])</code><br><code>Write([ :stream = …, :namespaceManager = … ])</code><br><code>Write([ :writer = …, :namespaceManager = … ])</code></td><td><code>void Write(Stream stream)</code><br><code>void Write(Stream stream, XmlNamespaceManager namespaceManager)</code><br><code>void Write(TextWriter writer)</code><br><code>void Write(TextWriter writer, XmlNamespaceManager namespaceManager)</code><br><code>void Write(XmlWriter writer)</code><br><code>void Write(XmlWriter writer, XmlNamespaceManager namespaceManager)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAll"><summary><b>XmlSchemaAll</b> <span class="muted">class · extends <a href="#c-XmlSchemaGroupBase">XmlSchemaGroupBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAll</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAll()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAll(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAll().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAll",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.getItems()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAnnotated"><summary><b>XmlSchemaAnnotated</b> <span class="muted">class · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAnnotated</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAnnotated()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAnnotated(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAnnotated().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAnnotated",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Id</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Id</code> <code>o.Id = v</code></td></tr><tr><td><code>Annotation</code></td><td><code>XmlSchemaAnnotation</code></td><td>read, write</td><td><code>o.Annotation</code> <code>o.Annotation = v</code></td></tr><tr><td><code>UnhandledAttributes</code></td><td><code>XmlAttribute[]</code></td><td>read, write</td><td><code>o.UnhandledAttributes</code> <code>o.UnhandledAttributes = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAnnotation"><summary><b>XmlSchemaAnnotation</b> <span class="muted">class · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAnnotation</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAnnotation()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAnnotation(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAnnotation().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAnnotation",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Id</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Id</code> <code>o.Id = v</code></td></tr><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Items</code></td></tr><tr><td><code>UnhandledAttributes</code></td><td><code>XmlAttribute[]</code></td><td>read, write</td><td><code>o.UnhandledAttributes</code> <code>o.UnhandledAttributes = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAny"><summary><b>XmlSchemaAny</b> <span class="muted">class · extends <a href="#c-XmlSchemaParticle">XmlSchemaParticle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAny</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAny()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAny(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAny().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAny",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>ProcessContents</code></td><td><code>XmlSchemaContentProcessing</code></td><td>read, write</td><td><code>o.ProcessContents</code> <code>o.ProcessContents = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAnyAttribute"><summary><b>XmlSchemaAnyAttribute</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAnyAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAnyAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAnyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAnyAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAnyAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>ProcessContents</code></td><td><code>XmlSchemaContentProcessing</code></td><td>read, write</td><td><code>o.ProcessContents</code> <code>o.ProcessContents = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAppInfo"><summary><b>XmlSchemaAppInfo</b> <span class="muted">class · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAppInfo</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAppInfo()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAppInfo(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAppInfo().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAppInfo",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Source</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Source</code> <code>o.Source = v</code></td></tr><tr><td><code>Markup</code></td><td><code>XmlNode[]</code></td><td>read, write</td><td><code>o.Markup</code> <code>o.Markup = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAttribute"><summary><b>XmlSchemaAttribute</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DefaultValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultValue</code> <code>o.DefaultValue = v</code></td></tr><tr><td><code>FixedValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.FixedValue</code> <code>o.FixedValue = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>RefName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.RefName</code> <code>o.RefName = v</code></td></tr><tr><td><code>SchemaTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.SchemaTypeName</code> <code>o.SchemaTypeName = v</code></td></tr><tr><td><code>SchemaType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.SchemaType</code> <code>o.SchemaType = v</code></td></tr><tr><td><code>Use</code></td><td><code>XmlSchemaUse</code></td><td>read, write</td><td><code>o.Use</code> <code>o.Use = v</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr><tr><td><code>AttributeType</code></td><td><code>object</code></td><td>read</td><td><code>o.AttributeType</code></td></tr><tr><td><code>AttributeSchemaType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read</td><td><code>o.AttributeSchemaType</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAttributeGroup"><summary><b>XmlSchemaAttributeGroup</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAttributeGroup</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAttributeGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAttributeGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAttributeGroup().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAttributeGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr><tr><td><code>RedefinedAttributeGroup</code></td><td><code>XmlSchemaAttributeGroup</code></td><td>read</td><td><code>o.RedefinedAttributeGroup</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaAttributeGroupRef"><summary><b>XmlSchemaAttributeGroupRef</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaAttributeGroupRef</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaAttributeGroupRef()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaAttributeGroupRef(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaAttributeGroupRef().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaAttributeGroupRef",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RefName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.RefName</code> <code>o.RefName = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaChoice"><summary><b>XmlSchemaChoice</b> <span class="muted">class · extends <a href="#c-XmlSchemaGroupBase">XmlSchemaGroupBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaChoice</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaChoice()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaChoice(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaChoice().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaChoice",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.getItems()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaCollectionEnumerator"><summary><b>XmlSchemaCollectionEnumerator</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaCollectionEnumerator</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IEnumerator</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>XmlSchema</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaCompilationSettings"><summary><b>XmlSchemaCompilationSettings</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaCompilationSettings</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaCompilationSettings()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaCompilationSettings(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaCompilationSettings().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaCompilationSettings",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EnableUpaCheck</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.EnableUpaCheck</code> <code>o.EnableUpaCheck = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaComplexContent"><summary><b>XmlSchemaComplexContent</b> <span class="muted">class · extends <a href="#c-XmlSchemaContentModel">XmlSchemaContentModel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaComplexContent</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaComplexContent()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaComplexContent(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaComplexContent().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaComplexContent",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsMixed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsMixed</code> <code>o.IsMixed = v</code></td></tr><tr><td><code>Content</code></td><td><code>XmlSchemaContent</code></td><td>read, write</td><td><code>o.getContent()</code> <code>o.setContent(v)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaComplexContentExtension"><summary><b>XmlSchemaComplexContentExtension</b> <span class="muted">class · extends <a href="#c-XmlSchemaContent">XmlSchemaContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaComplexContentExtension</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaComplexContentExtension()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaComplexContentExtension(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaComplexContentExtension().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaComplexContentExtension",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.BaseTypeName</code> <code>o.BaseTypeName = v</code></td></tr><tr><td><code>Particle</code></td><td><code>XmlSchemaParticle</code></td><td>read, write</td><td><code>o.Particle</code> <code>o.Particle = v</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaComplexContentRestriction"><summary><b>XmlSchemaComplexContentRestriction</b> <span class="muted">class · extends <a href="#c-XmlSchemaContent">XmlSchemaContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaComplexContentRestriction</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaComplexContentRestriction()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaComplexContentRestriction(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaComplexContentRestriction().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaComplexContentRestriction",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.BaseTypeName</code> <code>o.BaseTypeName = v</code></td></tr><tr><td><code>Particle</code></td><td><code>XmlSchemaParticle</code></td><td>read, write</td><td><code>o.Particle</code> <code>o.Particle = v</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaComplexType"><summary><b>XmlSchemaComplexType</b> <span class="muted">class · extends <a href="#c-XmlSchemaType">XmlSchemaType</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaComplexType</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaComplexType()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaComplexType(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaComplexType().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaComplexType",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAbstract</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsAbstract</code> <code>o.IsAbstract = v</code></td></tr><tr><td><code>Block</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.Block</code> <code>o.Block = v</code></td></tr><tr><td><code>IsMixed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsMixed()</code> <code>o.setIsMixed(v)</code></td></tr><tr><td><code>ContentModel</code></td><td><code>XmlSchemaContentModel</code></td><td>read, write</td><td><code>o.ContentModel</code> <code>o.ContentModel = v</code></td></tr><tr><td><code>Particle</code></td><td><code>XmlSchemaParticle</code></td><td>read, write</td><td><code>o.Particle</code> <code>o.Particle = v</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr><tr><td><code>ContentType</code></td><td><code>XmlSchemaContentType</code></td><td>read</td><td><code>o.ContentType</code></td></tr><tr><td><code>ContentTypeParticle</code></td><td><code>XmlSchemaParticle</code></td><td>read</td><td><code>o.ContentTypeParticle</code></td></tr><tr><td><code>BlockResolved</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read</td><td><code>o.BlockResolved</code></td></tr><tr><td><code>AttributeUses</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.AttributeUses</code></td></tr><tr><td><code>AttributeWildcard</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read</td><td><code>o.AttributeWildcard</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaContent"><summary><b>XmlSchemaContent</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaContent</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaContentModel"><summary><b>XmlSchemaContentModel</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaContentModel</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Content</code></td><td><code>XmlSchemaContent</code></td><td>read, write</td><td><code>o.Content</code> <code>o.Content = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaDatatype"><summary><b>XmlSchemaDatatype</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaDatatype</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValueType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ValueType</code></td></tr><tr><td><code>TokenizedType</code></td><td><code>XmlTokenizedType</code></td><td>read</td><td><code>o.TokenizedType</code></td></tr><tr><td><code>Variety</code></td><td><code>XmlSchemaDatatypeVariety</code></td><td>read</td><td><code>o.Variety</code></td></tr><tr><td><code>TypeCode</code></td><td><code>XmlTypeCode</code></td><td>read</td><td><code>o.TypeCode</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ChangeType</code></td><td><code>ChangeType([ :value = …, :targetType = … ])</code><br><code>ChangeType([ :value = …, :targetType = …, :namespaceResolver = … ])</code></td><td><code>object ChangeType(object value, Type targetType)</code><br><code>object ChangeType(object value, Type targetType, IXmlNamespaceResolver namespaceResolver)</code></td></tr><tr><td><code>IsDerivedFrom</code></td><td><code>IsDerivedFrom(p1)</code></td><td><code>bool IsDerivedFrom(XmlSchemaDatatype datatype)</code></td></tr><tr><td><code>ParseValue</code></td><td><code>ParseValue(p1,p2,p3)</code></td><td><code>object ParseValue(string s, XmlNameTable nameTable, IXmlNamespaceResolver nsmgr)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaDocumentation"><summary><b>XmlSchemaDocumentation</b> <span class="muted">class · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaDocumentation</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaDocumentation()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaDocumentation(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaDocumentation().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaDocumentation",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Source</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Source</code> <code>o.Source = v</code></td></tr><tr><td><code>Language</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Language</code> <code>o.Language = v</code></td></tr><tr><td><code>Markup</code></td><td><code>XmlNode[]</code></td><td>read, write</td><td><code>o.Markup</code> <code>o.Markup = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaElement"><summary><b>XmlSchemaElement</b> <span class="muted">class · extends <a href="#c-XmlSchemaParticle">XmlSchemaParticle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaElement</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaElement()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaElement(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaElement().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaElement",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsAbstract</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsAbstract</code> <code>o.IsAbstract = v</code></td></tr><tr><td><code>Block</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.Block</code> <code>o.Block = v</code></td></tr><tr><td><code>DefaultValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DefaultValue</code> <code>o.DefaultValue = v</code></td></tr><tr><td><code>Final</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.Final</code> <code>o.Final = v</code></td></tr><tr><td><code>FixedValue</code></td><td><code>string</code></td><td>read, write</td><td><code>o.FixedValue</code> <code>o.FixedValue = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>IsNillable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNillable</code> <code>o.IsNillable = v</code></td></tr><tr><td><code>RefName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.RefName</code> <code>o.RefName = v</code></td></tr><tr><td><code>SubstitutionGroup</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.SubstitutionGroup</code> <code>o.SubstitutionGroup = v</code></td></tr><tr><td><code>SchemaTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.SchemaTypeName</code> <code>o.SchemaTypeName = v</code></td></tr><tr><td><code>SchemaType</code></td><td><code>XmlSchemaType</code></td><td>read, write</td><td><code>o.SchemaType</code> <code>o.SchemaType = v</code></td></tr><tr><td><code>Constraints</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Constraints</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr><tr><td><code>ElementType</code></td><td><code>object</code></td><td>read</td><td><code>o.ElementType</code></td></tr><tr><td><code>ElementSchemaType</code></td><td><code>XmlSchemaType</code></td><td>read</td><td><code>o.ElementSchemaType</code></td></tr><tr><td><code>BlockResolved</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read</td><td><code>o.BlockResolved</code></td></tr><tr><td><code>FinalResolved</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read</td><td><code>o.FinalResolved</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaEnumerationFacet"><summary><b>XmlSchemaEnumerationFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaEnumerationFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaEnumerationFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaEnumerationFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaEnumerationFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaEnumerationFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaException"><summary><b>XmlSchemaException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaException</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaException()</code></td></tr><tr><td><code>new XmlSchemaException(string message)</code></td></tr><tr><td><code>new XmlSchemaException(string message, Exception innerException)</code></td></tr><tr><td><code>new XmlSchemaException(string message, Exception innerException, int lineNumber, int linePosition)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaException().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SourceUri</code></td><td><code>string</code></td><td>read</td><td><code>o.SourceUri</code></td></tr><tr><td><code>LineNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.LineNumber</code></td></tr><tr><td><code>LinePosition</code></td><td><code>int</code></td><td>read</td><td><code>o.LinePosition</code></td></tr><tr><td><code>SourceSchemaObject</code></td><td><code>XmlSchemaObject</code></td><td>read</td><td><code>o.SourceSchemaObject</code></td></tr><tr><td><code>Message</code></td><td><code>string</code></td><td>read</td><td><code>o.getMessage()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaExternal"><summary><b>XmlSchemaExternal</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaObject">XmlSchemaObject</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaExternal</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SchemaLocation</code></td><td><code>string</code></td><td>read, write</td><td><code>o.SchemaLocation</code> <code>o.SchemaLocation = v</code></td></tr><tr><td><code>Schema</code></td><td><code>XmlSchema</code></td><td>read, write</td><td><code>o.Schema</code> <code>o.Schema = v</code></td></tr><tr><td><code>Id</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Id</code> <code>o.Id = v</code></td></tr><tr><td><code>UnhandledAttributes</code></td><td><code>XmlAttribute[]</code></td><td>read, write</td><td><code>o.UnhandledAttributes</code> <code>o.UnhandledAttributes = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaFacet"><summary><b>XmlSchemaFacet</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Value</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Value</code> <code>o.Value = v</code></td></tr><tr><td><code>IsFixed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsFixed</code> <code>o.IsFixed = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaFractionDigitsFacet"><summary><b>XmlSchemaFractionDigitsFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaFractionDigitsFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaFractionDigitsFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaFractionDigitsFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaFractionDigitsFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaFractionDigitsFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaGroup"><summary><b>XmlSchemaGroup</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaGroup</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaGroup()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaGroup(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaGroup().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaGroup",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Particle</code></td><td><code>XmlSchemaGroupBase</code></td><td>read, write</td><td><code>o.Particle</code> <code>o.Particle = v</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaGroupBase"><summary><b>XmlSchemaGroupBase</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaParticle">XmlSchemaParticle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaGroupBase</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Items</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaGroupRef"><summary><b>XmlSchemaGroupRef</b> <span class="muted">class · extends <a href="#c-XmlSchemaParticle">XmlSchemaParticle</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaGroupRef</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaGroupRef()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaGroupRef(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaGroupRef().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaGroupRef",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RefName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.RefName</code> <code>o.RefName = v</code></td></tr><tr><td><code>Particle</code></td><td><code>XmlSchemaGroupBase</code></td><td>read</td><td><code>o.Particle</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaIdentityConstraint"><summary><b>XmlSchemaIdentityConstraint</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaIdentityConstraint</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaIdentityConstraint()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaIdentityConstraint(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaIdentityConstraint().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaIdentityConstraint",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Selector</code></td><td><code>XmlSchemaXPath</code></td><td>read, write</td><td><code>o.Selector</code> <code>o.Selector = v</code></td></tr><tr><td><code>Fields</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Fields</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaImport"><summary><b>XmlSchemaImport</b> <span class="muted">class · extends <a href="#c-XmlSchemaExternal">XmlSchemaExternal</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaImport</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaImport()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaImport(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaImport().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaImport",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>Annotation</code></td><td><code>XmlSchemaAnnotation</code></td><td>read, write</td><td><code>o.Annotation</code> <code>o.Annotation = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaInclude"><summary><b>XmlSchemaInclude</b> <span class="muted">class · extends <a href="#c-XmlSchemaExternal">XmlSchemaExternal</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaInclude</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaInclude()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaInclude(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaInclude().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaInclude",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Annotation</code></td><td><code>XmlSchemaAnnotation</code></td><td>read, write</td><td><code>o.Annotation</code> <code>o.Annotation = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaInference"><summary><b>XmlSchemaInference</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaInference</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaInference()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaInference(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaInference().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaInference",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Occurrence</code></td><td><code>XmlSchemaInference.InferenceOption</code></td><td>read, write</td><td><code>o.Occurrence</code> <code>o.Occurrence = v</code></td></tr><tr><td><code>TypeInference</code></td><td><code>XmlSchemaInference.InferenceOption</code></td><td>read, write</td><td><code>o.TypeInference</code> <code>o.TypeInference = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>InferSchema</code></td><td><code>InferSchema(value)</code><br><code>InferSchema([ :instanceDocument = … ])</code><br><code>InferSchema([ :instanceDocument = …, :schemas = … ])</code></td><td><code>XmlSchemaSet InferSchema(XmlReader instanceDocument)</code><br><code>XmlSchemaSet InferSchema(XmlReader instanceDocument, XmlSchemaSet schemas)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaInferenceException"><summary><b>XmlSchemaInferenceException</b> <span class="muted">class · extends <a href="#c-XmlSchemaException">XmlSchemaException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaInferenceException</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaInferenceException()</code></td></tr><tr><td><code>new XmlSchemaInferenceException(string message)</code></td></tr><tr><td><code>new XmlSchemaInferenceException(string message, Exception innerException)</code></td></tr><tr><td><code>new XmlSchemaInferenceException(string message, Exception innerException, int lineNumber, int linePosition)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaInferenceException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaInferenceException().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaInferenceException",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaInfo"><summary><b>XmlSchemaInfo</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaInfo</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IXmlSchemaInfo</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaInfo()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaInfo(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaInfo().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaInfo",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Validity</code></td><td><code>XmlSchemaValidity</code></td><td>read, write</td><td><code>o.Validity</code> <code>o.Validity = v</code></td></tr><tr><td><code>IsDefault</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsDefault</code> <code>o.IsDefault = v</code></td></tr><tr><td><code>IsNil</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNil</code> <code>o.IsNil = v</code></td></tr><tr><td><code>MemberType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.MemberType</code> <code>o.MemberType = v</code></td></tr><tr><td><code>SchemaType</code></td><td><code>XmlSchemaType</code></td><td>read, write</td><td><code>o.SchemaType</code> <code>o.SchemaType = v</code></td></tr><tr><td><code>SchemaElement</code></td><td><code>XmlSchemaElement</code></td><td>read, write</td><td><code>o.SchemaElement</code> <code>o.SchemaElement = v</code></td></tr><tr><td><code>SchemaAttribute</code></td><td><code>XmlSchemaAttribute</code></td><td>read, write</td><td><code>o.SchemaAttribute</code> <code>o.SchemaAttribute = v</code></td></tr><tr><td><code>ContentType</code></td><td><code>XmlSchemaContentType</code></td><td>read, write</td><td><code>o.ContentType</code> <code>o.ContentType = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaKey"><summary><b>XmlSchemaKey</b> <span class="muted">class · extends <a href="#c-XmlSchemaIdentityConstraint">XmlSchemaIdentityConstraint</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaKey</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaKey()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaKey(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaKey().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaKey",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaKeyref"><summary><b>XmlSchemaKeyref</b> <span class="muted">class · extends <a href="#c-XmlSchemaIdentityConstraint">XmlSchemaIdentityConstraint</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaKeyref</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaKeyref()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaKeyref(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaKeyref().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaKeyref",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Refer</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.Refer</code> <code>o.Refer = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaLengthFacet"><summary><b>XmlSchemaLengthFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaLengthFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaLengthFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaLengthFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaLengthFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaLengthFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMaxExclusiveFacet"><summary><b>XmlSchemaMaxExclusiveFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMaxExclusiveFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMaxExclusiveFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMaxExclusiveFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMaxExclusiveFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMaxExclusiveFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMaxInclusiveFacet"><summary><b>XmlSchemaMaxInclusiveFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMaxInclusiveFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMaxInclusiveFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMaxInclusiveFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMaxInclusiveFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMaxInclusiveFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMaxLengthFacet"><summary><b>XmlSchemaMaxLengthFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMaxLengthFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMaxLengthFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMaxLengthFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMaxLengthFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMaxLengthFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMinExclusiveFacet"><summary><b>XmlSchemaMinExclusiveFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMinExclusiveFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMinExclusiveFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMinExclusiveFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMinExclusiveFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMinExclusiveFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMinInclusiveFacet"><summary><b>XmlSchemaMinInclusiveFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMinInclusiveFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMinInclusiveFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMinInclusiveFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMinInclusiveFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMinInclusiveFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaMinLengthFacet"><summary><b>XmlSchemaMinLengthFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaMinLengthFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaMinLengthFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaMinLengthFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaMinLengthFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaMinLengthFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaNotation"><summary><b>XmlSchemaNotation</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaNotation</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaNotation()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaNotation(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaNotation().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaNotation",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Public</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Public</code> <code>o.Public = v</code></td></tr><tr><td><code>System</code></td><td><code>string</code></td><td>read, write</td><td><code>o.System</code> <code>o.System = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaNumericFacet"><summary><b>XmlSchemaNumericFacet</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaNumericFacet</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaObject"><summary><b>XmlSchemaObject</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaObject</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LineNumber</code></td><td><code>int</code></td><td>read, write</td><td><code>o.LineNumber</code> <code>o.LineNumber = v</code></td></tr><tr><td><code>LinePosition</code></td><td><code>int</code></td><td>read, write</td><td><code>o.LinePosition</code> <code>o.LinePosition = v</code></td></tr><tr><td><code>SourceUri</code></td><td><code>string</code></td><td>read, write</td><td><code>o.SourceUri</code> <code>o.SourceUri = v</code></td></tr><tr><td><code>Parent</code></td><td><code>XmlSchemaObject</code></td><td>read, write</td><td><code>o.Parent</code> <code>o.Parent = v</code></td></tr><tr><td><code>Namespaces</code></td><td><code>XmlSerializerNamespaces</code></td><td>read, write</td><td><code>o.Namespaces</code> <code>o.Namespaces = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaObjectCollection"><summary><b>XmlSchemaObjectCollection</b> <span class="muted">class · extends <a href="System.Collections.html#c-CollectionBase">CollectionBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaObjectCollection</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaObjectCollection()</code></td></tr><tr><td><code>new XmlSchemaObjectCollection(XmlSchemaObject parent)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaObjectCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaObjectCollection().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaObjectCollection",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlSchemaObject</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(XmlSchemaObject item)</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlSchemaObject item)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlSchemaObject[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>XmlSchemaObjectEnumerator GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(XmlSchemaObject item)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, XmlSchemaObject item)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(XmlSchemaObject item)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaObjectEnumerator"><summary><b>XmlSchemaObjectEnumerator</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaObjectEnumerator</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IEnumerator</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>XmlSchemaObject</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr><tr><td><code>Reset</code></td><td><code>Reset()</code></td><td><code>void Reset()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaObjectTable"><summary><b>XmlSchemaObjectTable</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaObjectTable</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>Names</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Names</code></td></tr><tr><td><code>Values</code></td><td><code>ICollection</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(XmlQualifiedName name)</code> → <code>XmlSchemaObject</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlQualifiedName name)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IDictionaryEnumerator GetEnumerator()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaParticle"><summary><b>XmlSchemaParticle</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaParticle</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MinOccursString</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MinOccursString</code> <code>o.MinOccursString = v</code></td></tr><tr><td><code>MaxOccursString</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MaxOccursString</code> <code>o.MaxOccursString = v</code></td></tr><tr><td><code>MinOccurs</code></td><td><code>decimal</code></td><td>read, write</td><td><code>o.MinOccurs</code> <code>o.MinOccurs = v</code></td></tr><tr><td><code>MaxOccurs</code></td><td><code>decimal</code></td><td>read, write</td><td><code>o.MaxOccurs</code> <code>o.MaxOccurs = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaPatternFacet"><summary><b>XmlSchemaPatternFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaPatternFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaPatternFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaPatternFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaPatternFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaPatternFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaRedefine"><summary><b>XmlSchemaRedefine</b> <span class="muted">class · extends <a href="#c-XmlSchemaExternal">XmlSchemaExternal</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaRedefine</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaRedefine()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaRedefine(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaRedefine().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaRedefine",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Items</code></td></tr><tr><td><code>AttributeGroups</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.AttributeGroups</code></td></tr><tr><td><code>SchemaTypes</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.SchemaTypes</code></td></tr><tr><td><code>Groups</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.Groups</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSequence"><summary><b>XmlSchemaSequence</b> <span class="muted">class · extends <a href="#c-XmlSchemaGroupBase">XmlSchemaGroupBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSequence</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSequence()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSequence(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSequence().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSequence",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Items</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.getItems()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSet"><summary><b>XmlSchemaSet</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSet()</code></td></tr><tr><td><code>new XmlSchemaSet(XmlNameTable nameTable)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSet",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>NameTable</code></td><td><code>XmlNameTable</code></td><td>read</td><td><code>o.NameTable</code></td></tr><tr><td><code>IsCompiled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCompiled</code></td></tr><tr><td><code>XmlResolver</code></td><td><code>XmlResolver</code></td><td>write</td><td><code>o.XmlResolver</code> <code>o.XmlResolver = v</code></td></tr><tr><td><code>CompilationSettings</code></td><td><code>XmlSchemaCompilationSettings</code></td><td>read, write</td><td><code>o.CompilationSettings</code> <code>o.CompilationSettings = v</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>GlobalElements</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.GlobalElements</code></td></tr><tr><td><code>GlobalAttributes</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.GlobalAttributes</code></td></tr><tr><td><code>GlobalTypes</code></td><td><code>XmlSchemaObjectTable</code></td><td>read</td><td><code>o.GlobalTypes</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(value)</code><br><code>Add([ :schemas = … ])</code><br><code>Add([ :schema = … ])</code><br><code>Add([ :targetNamespace = …, :schemaUri = … ])</code><br><code>Add([ :targetNamespace = …, :schemaDocument = … ])</code></td><td><code>XmlSchema Add(string targetNamespace, string schemaUri)</code><br><code>XmlSchema Add(string targetNamespace, XmlReader schemaDocument)</code><br><code>void Add(XmlSchemaSet schemas)</code><br><code>XmlSchema Add(XmlSchema schema)</code></td></tr><tr><td><code>Compile</code></td><td><code>Compile()</code></td><td><code>void Compile()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(string targetNamespace)</code><br><code>bool Contains(XmlSchema schema)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlSchema[] schemas, int index)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>XmlSchema Remove(XmlSchema schema)</code></td></tr><tr><td><code>RemoveRecursive</code></td><td><code>RemoveRecursive(p1)</code></td><td><code>bool RemoveRecursive(XmlSchema schemaToRemove)</code></td></tr><tr><td><code>Reprocess</code></td><td><code>Reprocess(p1)</code></td><td><code>XmlSchema Reprocess(XmlSchema schema)</code></td></tr><tr><td><code>Schemas</code></td><td><code>Schemas(NULL)</code><br><code>Schemas(value)</code><br><code>Schemas([ :targetNamespace = … ])</code></td><td><code>ICollection Schemas()</code><br><code>ICollection Schemas(string targetNamespace)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValidationEventHandler</code></td><td><code>ValidationEventHandler</code></td><td><code>o.setValidationEventHandlerEvent(code)</code> · <code>o.clearValidationEventHandlerEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleContent"><summary><b>XmlSchemaSimpleContent</b> <span class="muted">class · extends <a href="#c-XmlSchemaContentModel">XmlSchemaContentModel</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleContent</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleContent()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleContent(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleContent().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleContent",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Content</code></td><td><code>XmlSchemaContent</code></td><td>read, write</td><td><code>o.getContent()</code> <code>o.setContent(v)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleContentExtension"><summary><b>XmlSchemaSimpleContentExtension</b> <span class="muted">class · extends <a href="#c-XmlSchemaContent">XmlSchemaContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleContentExtension</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleContentExtension()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleContentExtension(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleContentExtension().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleContentExtension",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.BaseTypeName</code> <code>o.BaseTypeName = v</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleContentRestriction"><summary><b>XmlSchemaSimpleContentRestriction</b> <span class="muted">class · extends <a href="#c-XmlSchemaContent">XmlSchemaContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleContentRestriction</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleContentRestriction()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleContentRestriction(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleContentRestriction().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleContentRestriction",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.BaseTypeName</code> <code>o.BaseTypeName = v</code></td></tr><tr><td><code>BaseType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.BaseType</code> <code>o.BaseType = v</code></td></tr><tr><td><code>Facets</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Facets</code></td></tr><tr><td><code>Attributes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Attributes</code></td></tr><tr><td><code>AnyAttribute</code></td><td><code>XmlSchemaAnyAttribute</code></td><td>read, write</td><td><code>o.AnyAttribute</code> <code>o.AnyAttribute = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleType"><summary><b>XmlSchemaSimpleType</b> <span class="muted">class · extends <a href="#c-XmlSchemaType">XmlSchemaType</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleType</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleType()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleType(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleType().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleType",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Content</code></td><td><code>XmlSchemaSimpleTypeContent</code></td><td>read, write</td><td><code>o.Content</code> <code>o.Content = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleTypeContent"><summary><b>XmlSchemaSimpleTypeContent</b> <span class="muted">class abstract · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleTypeContent</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleTypeList"><summary><b>XmlSchemaSimpleTypeList</b> <span class="muted">class · extends <a href="#c-XmlSchemaSimpleTypeContent">XmlSchemaSimpleTypeContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleTypeList</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleTypeList()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleTypeList(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleTypeList().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleTypeList",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ItemTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.ItemTypeName</code> <code>o.ItemTypeName = v</code></td></tr><tr><td><code>ItemType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.ItemType</code> <code>o.ItemType = v</code></td></tr><tr><td><code>BaseItemType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.BaseItemType</code> <code>o.BaseItemType = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleTypeRestriction"><summary><b>XmlSchemaSimpleTypeRestriction</b> <span class="muted">class · extends <a href="#c-XmlSchemaSimpleTypeContent">XmlSchemaSimpleTypeContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleTypeRestriction</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleTypeRestriction()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleTypeRestriction(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleTypeRestriction().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleTypeRestriction",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypeName</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.BaseTypeName</code> <code>o.BaseTypeName = v</code></td></tr><tr><td><code>BaseType</code></td><td><code>XmlSchemaSimpleType</code></td><td>read, write</td><td><code>o.BaseType</code> <code>o.BaseType = v</code></td></tr><tr><td><code>Facets</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.Facets</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaSimpleTypeUnion"><summary><b>XmlSchemaSimpleTypeUnion</b> <span class="muted">class · extends <a href="#c-XmlSchemaSimpleTypeContent">XmlSchemaSimpleTypeContent</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaSimpleTypeUnion</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaSimpleTypeUnion()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaSimpleTypeUnion(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaSimpleTypeUnion().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaSimpleTypeUnion",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>BaseTypes</code></td><td><code>XmlSchemaObjectCollection</code></td><td>read</td><td><code>o.BaseTypes</code></td></tr><tr><td><code>MemberTypes</code></td><td><code>XmlQualifiedName[]</code></td><td>read, write</td><td><code>o.MemberTypes</code> <code>o.MemberTypes = v</code></td></tr><tr><td><code>BaseMemberTypes</code></td><td><code>XmlSchemaSimpleType[]</code></td><td>read</td><td><code>o.BaseMemberTypes</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaTotalDigitsFacet"><summary><b>XmlSchemaTotalDigitsFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaNumericFacet">XmlSchemaNumericFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaTotalDigitsFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaTotalDigitsFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaTotalDigitsFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaTotalDigitsFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaTotalDigitsFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaType"><summary><b>XmlSchemaType</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaType</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaType()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaType(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaType().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaType",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Final</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read, write</td><td><code>o.Final</code> <code>o.Final = v</code></td></tr><tr><td><code>QualifiedName</code></td><td><code>XmlQualifiedName</code></td><td>read</td><td><code>o.QualifiedName</code></td></tr><tr><td><code>FinalResolved</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read</td><td><code>o.FinalResolved</code></td></tr><tr><td><code>BaseSchemaType</code></td><td><code>object</code></td><td>read</td><td><code>o.BaseSchemaType</code></td></tr><tr><td><code>BaseXmlSchemaType</code></td><td><code>XmlSchemaType</code></td><td>read</td><td><code>o.BaseXmlSchemaType</code></td></tr><tr><td><code>DerivedBy</code></td><td><code>XmlSchemaDerivationMethod</code></td><td>read</td><td><code>o.DerivedBy</code></td></tr><tr><td><code>Datatype</code></td><td><code>XmlSchemaDatatype</code></td><td>read</td><td><code>o.Datatype</code></td></tr><tr><td><code>IsMixed</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsMixed</code> <code>o.IsMixed = v</code></td></tr><tr><td><code>TypeCode</code></td><td><code>XmlTypeCode</code></td><td>read</td><td><code>o.TypeCode</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetBuiltInComplexType</code></td><td><code>GetBuiltInComplexType(p1)</code></td><td><code>static XmlSchemaComplexType GetBuiltInComplexType(XmlTypeCode typeCode)</code><br><code>static XmlSchemaComplexType GetBuiltInComplexType(XmlQualifiedName qualifiedName)</code></td></tr><tr><td><code>GetBuiltInSimpleType</code></td><td><code>GetBuiltInSimpleType(p1)</code></td><td><code>static XmlSchemaSimpleType GetBuiltInSimpleType(XmlQualifiedName qualifiedName)</code><br><code>static XmlSchemaSimpleType GetBuiltInSimpleType(XmlTypeCode typeCode)</code></td></tr><tr><td><code>IsDerivedFrom</code></td><td><code>IsDerivedFrom(p1,p2,p3)</code></td><td><code>static bool IsDerivedFrom(XmlSchemaType derivedType, XmlSchemaType baseType, XmlSchemaDerivationMethod except)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaUnique"><summary><b>XmlSchemaUnique</b> <span class="muted">class · extends <a href="#c-XmlSchemaIdentityConstraint">XmlSchemaIdentityConstraint</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaUnique</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaUnique()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaUnique(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaUnique().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaUnique",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaValidationException"><summary><b>XmlSchemaValidationException</b> <span class="muted">class · extends <a href="#c-XmlSchemaException">XmlSchemaException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaValidationException</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaValidationException()</code></td></tr><tr><td><code>new XmlSchemaValidationException(string message)</code></td></tr><tr><td><code>new XmlSchemaValidationException(string message, Exception innerException)</code></td></tr><tr><td><code>new XmlSchemaValidationException(string message, Exception innerException, int lineNumber, int linePosition)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaValidationException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaValidationException().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaValidationException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SourceObject</code></td><td><code>object</code></td><td>read</td><td><code>o.SourceObject</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetObjectData</code></td><td><code>GetObjectData(p1,p2)</code></td><td><code>void GetObjectData(SerializationInfo info, StreamingContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaValidator"><summary><b>XmlSchemaValidator</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaValidator</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaValidator(XmlNameTable nameTable, XmlSchemaSet schemas, IXmlNamespaceResolver namespaceResolver, XmlSchemaValidationFlags validationFlags)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaValidator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaValidator().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaValidator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>XmlResolver</code></td><td><code>XmlResolver</code></td><td>write</td><td><code>o.XmlResolver</code> <code>o.XmlResolver = v</code></td></tr><tr><td><code>LineInfoProvider</code></td><td><code>IXmlLineInfo</code></td><td>read, write</td><td><code>o.LineInfoProvider</code> <code>o.LineInfoProvider = v</code></td></tr><tr><td><code>SourceUri</code></td><td><code>Uri</code></td><td>read, write</td><td><code>o.SourceUri</code> <code>o.SourceUri = v</code></td></tr><tr><td><code>ValidationEventSender</code></td><td><code>object</code></td><td>read, write</td><td><code>o.ValidationEventSender</code> <code>o.ValidationEventSender = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddSchema</code></td><td><code>AddSchema(p1)</code></td><td><code>void AddSchema(XmlSchema schema)</code></td></tr><tr><td><code>EndValidation</code></td><td><code>EndValidation()</code></td><td><code>void EndValidation()</code></td></tr><tr><td><code>GetExpectedAttributes</code></td><td><code>GetExpectedAttributes()</code></td><td><code>XmlSchemaAttribute[] GetExpectedAttributes()</code></td></tr><tr><td><code>GetExpectedParticles</code></td><td><code>GetExpectedParticles()</code></td><td><code>XmlSchemaParticle[] GetExpectedParticles()</code></td></tr><tr><td><code>GetUnspecifiedDefaultAttributes</code></td><td><code>GetUnspecifiedDefaultAttributes(p1)</code></td><td><code>void GetUnspecifiedDefaultAttributes(ArrayList defaultAttributes)</code></td></tr><tr><td><code>Initialize</code></td><td><code>Initialize(NULL)</code><br><code>Initialize(value)</code><br><code>Initialize([ :partialValidationType = … ])</code></td><td><code>void Initialize()</code><br><code>void Initialize(XmlSchemaObject partialValidationType)</code></td></tr><tr><td><code>SkipToEndElement</code></td><td><code>SkipToEndElement(p1)</code></td><td><code>void SkipToEndElement(XmlSchemaInfo schemaInfo)</code></td></tr><tr><td><code>ValidateAttribute</code></td><td><code>ValidateAttribute(p1,p2,p3,p4)</code></td><td><code>object ValidateAttribute(string localName, string namespaceUri, string attributeValue, XmlSchemaInfo schemaInfo)</code><br><code>object ValidateAttribute(string localName, string namespaceUri, XmlValueGetter attributeValue, XmlSchemaInfo schemaInfo)</code></td></tr><tr><td><code>ValidateElement</code></td><td><code>ValidateElement([ :localName = …, :namespaceUri = …, :schemaInfo = … ])</code><br><code>ValidateElement([ :localName = …, :namespaceUri = …, :schemaInfo = …, :xsiType = …, :xsiNil = …, :xsiSchemaLocation = …, :xsiNoNamespaceSchemaLocation = … ])</code></td><td><code>void ValidateElement(string localName, string namespaceUri, XmlSchemaInfo schemaInfo)</code><br><code>void ValidateElement(string localName, string namespaceUri, XmlSchemaInfo schemaInfo, string xsiType, string xsiNil, string xsiSchemaLocation, string xsiNoNamespaceSchemaLocation)</code></td></tr><tr><td><code>ValidateEndElement</code></td><td><code>ValidateEndElement(value)</code><br><code>ValidateEndElement([ :schemaInfo = … ])</code><br><code>ValidateEndElement([ :schemaInfo = …, :typedValue = … ])</code></td><td><code>object ValidateEndElement(XmlSchemaInfo schemaInfo)</code><br><code>object ValidateEndElement(XmlSchemaInfo schemaInfo, object typedValue)</code></td></tr><tr><td><code>ValidateEndOfAttributes</code></td><td><code>ValidateEndOfAttributes(p1)</code></td><td><code>void ValidateEndOfAttributes(XmlSchemaInfo schemaInfo)</code></td></tr><tr><td><code>ValidateText</code></td><td><code>ValidateText(p1)</code></td><td><code>void ValidateText(string elementValue)</code><br><code>void ValidateText(XmlValueGetter elementValue)</code></td></tr><tr><td><code>ValidateWhitespace</code></td><td><code>ValidateWhitespace(p1)</code></td><td><code>void ValidateWhitespace(string elementValue)</code><br><code>void ValidateWhitespace(XmlValueGetter elementValue)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValidationEventHandler</code></td><td><code>ValidationEventHandler</code></td><td><code>o.setValidationEventHandlerEvent(code)</code> · <code>o.clearValidationEventHandlerEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaWhiteSpaceFacet"><summary><b>XmlSchemaWhiteSpaceFacet</b> <span class="muted">class · extends <a href="#c-XmlSchemaFacet">XmlSchemaFacet</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaWhiteSpaceFacet</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaWhiteSpaceFacet()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaWhiteSpaceFacet(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaWhiteSpaceFacet().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaWhiteSpaceFacet",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaXPath"><summary><b>XmlSchemaXPath</b> <span class="muted">class · extends <a href="#c-XmlSchemaAnnotated">XmlSchemaAnnotated</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Schema.XmlSchemaXPath</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaXPath()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaXPath(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaXPath().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaXPath",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>XPath</code></td><td><code>string</code></td><td>read, write</td><td><code>o.XPath</code> <code>o.XPath = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

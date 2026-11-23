@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testing your programs · RingDotNet</title>
+<meta name="description" content="Tests tell you in seconds whether a change broke something. This lesson shows how to write small testable functions, check them with dnAssert, test that errors are raised, and make a window test itself.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html" class="cur">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Testing your programs</h1><p class="lead">Tests tell you in seconds whether a change broke something. This lesson shows how to write small testable functions, check them with dnAssert, test that errors are raised, and make a window test itself.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>why and when to test,</li><li>writing code that is easy to test,</li><li><code>dnAssert</code> and <code>dnTestSummary</code>,</li><li>testing for errors,</li><li>self-testing programs for windows.</li></ul>
+<h2 id="why-test">Why test?<a class="anchor" href="#why-test">#</a></h2>
+<p>A test is a small program that checks that another piece of code gives the right answers. You run all the tests after every change: if one fails, you know <em>what</em> broke and <em>when</em>. The tests of this package (<code>samples/UsingDotNet/tests/run.sh</code>) are what makes it possible to change the generator and regenerate thousands of classes with confidence.</p>
+<h2 id="make-code-testable">Make code testable<a class="anchor" href="#make-code-testable">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Do</th><th>Because</th></tr></thead><tbody><tr><td>small functions with one job</td><td>each can be tested alone</td></tr><tr><td><strong>return</strong> results instead of printing or showing them</td><td>a test can check a returned value</td></tr><tr><td>pass data <strong>in</strong> as parameters instead of reading globals</td><td>a test can try many inputs</td></tr><tr><td>keep window code thin: the logic is in functions</td><td>logic is easy to test, windows are not</td></tr></tbody></table></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_testing.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># testing your programs - small functions, dnAssert, expected errors, a test summary</span>
+<span class="c">#   ring ch13_testing.ring            all tests pass</span>
+<span class="c">#   ring ch13_testing.ring --break    one test fails on purpose, to show what a failure looks like</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	testFizzBuzz()
+	testWordCount()
+	testDates()
+	testErrors()
+	<span class="k">if</span> find(sysargv,<span class="s">"--break"</span>) &gt; <span class="n">0</span>
+		testBrokenOnPurpose()
+	<span class="k">ok</span>
+	nFailed = <span class="f">dnTestSummary</span>()               <span class="c"># prints "TESTS: n passed, m failed" and returns the number of failures</span>
+
+<span class="c"># ---------------------------------------------------------------- the code that is tested (small, with one job each)</span>
+
+<span class="k">func</span> <span class="f">fizzBuzz</span> nNumber
+
+	<span class="k">if</span> nNumber % <span class="n">15</span> = <span class="n">0</span>
+		<span class="k">return</span> <span class="s">"FizzBuzz"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> nNumber % <span class="n">3</span> = <span class="n">0</span>
+		<span class="k">return</span> <span class="s">"Fizz"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> nNumber % <span class="n">5</span> = <span class="n">0</span>
+		<span class="k">return</span> <span class="s">"Buzz"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span> + nNumber
+
+<span class="k">func</span> <span class="f">wordCount</span> cText
+
+	<span class="k">if</span> trim(cText) = <span class="s">""</span>
+		<span class="k">return</span> <span class="n">0</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"\s+"</span>).<span class="f">Split</span>(trim(cText)).Length
+
+<span class="k">func</span> <span class="f">daysUntil</span> nYear, nMonth, nDay, nFromYear, nFromMonth, nFromDay
+
+	oFrom = <span class="k">new</span> <span class="t">DateTime</span>(nFromYear,nFromMonth,nFromDay)
+	oTo = <span class="k">new</span> <span class="t">DateTime</span>(nYear,nMonth,nDay)
+	<span class="k">return</span> oTo.<span class="f">Subtract</span>(oFrom).Days
+
+<span class="k">func</span> <span class="f">toNumber</span> cText
+
+	aResult = <span class="k">new</span> <span class="t">Int32</span>().<span class="f">TryParse</span>(cText)
+	<span class="k">if</span> <span class="k">not</span> aResult[<span class="n">1</span>]
+		raise(<span class="s">"Not a number: "</span> + cText)
+	<span class="k">ok</span>
+	<span class="k">return</span> aResult[<span class="n">2</span>]
+
+<span class="c"># ---------------------------------------------------------------- the tests: dnAssert(name, actual, expected)</span>
+
+<span class="k">func</span> <span class="f">testFizzBuzz</span>
+
+	<span class="f">dnAssert</span>(<span class="s">"3 is Fizz"</span>,fizzBuzz(<span class="n">3</span>),<span class="s">"Fizz"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"10 is Buzz"</span>,fizzBuzz(<span class="n">10</span>),<span class="s">"Buzz"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"30 is FizzBuzz"</span>,fizzBuzz(<span class="n">30</span>),<span class="s">"FizzBuzz"</span>)
+	<span class="f">dnAssert</span>(<span class="s">"7 is 7"</span>,fizzBuzz(<span class="n">7</span>),<span class="s">"7"</span>)
+
+<span class="k">func</span> <span class="f">testWordCount</span>
+
+	<span class="f">dnAssert</span>(<span class="s">"empty text"</span>,wordCount(<span class="s">""</span>),<span class="n">0</span>)
+	<span class="f">dnAssert</span>(<span class="s">"spaces only"</span>,wordCount(<span class="s">"    "</span>),<span class="n">0</span>)
+	<span class="f">dnAssert</span>(<span class="s">"one word"</span>,wordCount(<span class="s">"Ring"</span>),<span class="n">1</span>)
+	<span class="f">dnAssert</span>(<span class="s">"many spaces between words"</span>,wordCount(<span class="s">"  Ring   and  .NET "</span>),<span class="n">3</span>)
+
+<span class="k">func</span> <span class="f">testDates</span>
+
+	<span class="f">dnAssert</span>(<span class="s">"a week"</span>,daysUntil(<span class="n">2024</span>,<span class="n">1</span>,<span class="n">8</span>,<span class="n">2024</span>,<span class="n">1</span>,<span class="n">1</span>),<span class="n">7</span>)
+	<span class="f">dnAssert</span>(<span class="s">"over a leap day"</span>,daysUntil(<span class="n">2024</span>,<span class="n">3</span>,<span class="n">1</span>,<span class="n">2024</span>,<span class="n">2</span>,<span class="n">28</span>),<span class="n">2</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the same day"</span>,daysUntil(<span class="n">2024</span>,<span class="n">5</span>,<span class="n">5</span>,<span class="n">2024</span>,<span class="n">5</span>,<span class="n">5</span>),<span class="n">0</span>)
+
+<span class="c"># Test that an error is raised: catch it and remember that it happened</span>
+<span class="k">func</span> <span class="f">testErrors</span>
+
+	<span class="f">dnAssert</span>(<span class="s">"a number"</span>,toNumber(<span class="s">"42"</span>),<span class="n">42</span>)
+	lRaised = <span class="k">False</span>
+	<span class="k">try</span>
+		toNumber(<span class="s">"abc"</span>)
+	<span class="k">catch</span>
+		lRaised = <span class="k">True</span>
+		<span class="f">dnAssert</span>(<span class="s">"the message says why"</span>,cCatchError,<span class="s">"Not a number: abc"</span>)
+	<span class="k">done</span>
+	<span class="f">dnAssert</span>(<span class="s">"an error was raised"</span>,lRaised,<span class="k">True</span>)
+
+<span class="k">func</span> <span class="f">testBrokenOnPurpose</span>
+
+	<span class="f">dnAssert</span>(<span class="s">"2 + 2 is 5 (wrong on purpose)"</span>,<span class="n">2</span> + <span class="n">2</span>,<span class="n">5</span>)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>TESTS: 14 passed, 0 failed</code></pre></div>
+<h3 id="when-a-test-fails">When a test fails<a class="anchor" href="#when-a-test-fails">#</a></h3>
+<p>The program has a switch that breaks one test on purpose:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring ch13_testing.ring --break</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>FAIL: 2 + 2 is 5 (wrong on purpose) expected &lt;5&gt; got &lt;4&gt;
+TESTS: 14 passed, 1 failed</code></pre></div>
+<p>A failure prints the name of the test, what was <strong>expected</strong> and what was <strong>got</strong>. <code>dnTestSummary()</code> prints the totals and returns the number of failures (use it to set an exit code in a script).</p>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="dnassert">dnAssert<a class="anchor" href="#dnassert">#</a></h3>
+<p><code>dnAssert("name", actual, expected)</code> compares two values. Texts are compared as text, numbers as numbers (with a small tolerance for decimals). A good name says <em>what should be true</em>: "30 is FizzBuzz", "spaces only", "a week".</p>
+<h3 id="what-to-test">What to test<a class="anchor" href="#what-to-test">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Kind</th><th>Example in the program</th></tr></thead><tbody><tr><td>normal cases</td><td><code>fizzBuzz(3)</code> is <code>Fizz</code></td></tr><tr><td>the edges</td><td>an empty text, spaces only, the same day</td></tr><tr><td>surprising input</td><td>many spaces between words</td></tr><tr><td>errors</td><td>a text that is not a number</td></tr></tbody></table></div>
+<h3 id="testing-an-error">Testing an error<a class="anchor" href="#testing-an-error">#</a></h3>
+<p>You cannot assert an error directly, so catch it, remember that it happened, and assert on the flag and the message:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>lRaised = <span class="k">False</span>
+<span class="k">try</span>
+	toNumber(<span class="s">"abc"</span>)
+<span class="k">catch</span>
+	lRaised = <span class="k">True</span>
+	<span class="f">dnAssert</span>(<span class="s">"the message says why"</span>,cCatchError,<span class="s">"Not a number: abc"</span>)
+<span class="k">done</span>
+<span class="f">dnAssert</span>(<span class="s">"an error was raised"</span>,lRaised,<span class="k">True</span>)</code></pre></div>
+<h3 id="windows-that-test-themselves">Windows that test themselves<a class="anchor" href="#windows-that-test-themselves">#</a></h3>
+<p>A window program can run its own test: put <code>func selfTest</code> in a file with the name of the program in a <code>selftest</code> folder next to it. When the program is started with <code>--selftest</code>, <code>uiRun</code> loads that file, the window opens, <code>selfTest()</code> runs (which clicks buttons with <code>PerformClick()</code> and checks the labels), closes, and prints <code>SELFTEST OK</code>. The tutorials <a href="tut-11-first-window.html">Your first window</a>, <a href="tut-14-animation.html">Drawing and animation</a>, <a href="tut-23-layout.html">Layout and richer controls</a> and <a href="tut-24-todo.html">A project: a to-do list that remembers</a> all have such a file. <code>uiSendKeys(oForm,"12{+}30{ENTER}")</code> types into the form through the real key processing. See <a href="testing.html">Testing</a> for the details and the <code>samples/UsingDotNet/tests/run.sh</code> script that runs everything.</p>
+<h3 id="run-them-all">Run them all<a class="anchor" href="#run-them-all">#</a></h3>
+<p>A single script that runs every test and reports a total is what turns tests from a chore into a habit:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>sh samples/UsingDotNet/tests/run.sh ring.exe      # 0 failed</code></pre></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>small, returning functions are testable,</li><li><code>dnAssert</code> + <code>dnTestSummary</code>,</li><li>test the normal case, the edges, and the errors,</li><li>windows can test themselves,</li><li>run all tests after every change.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write <code>isLeapYear(nYear)</code> and test years 1900, 2000, 2023 and 2024.</li><li>Write a function that formats a number of seconds as <code>h:mm:ss</code> and test five values, including 0 and 3600.</li><li>Add a test for a function that you wrote in an earlier tutorial.</li><li>Break a function on purpose and see which tests fail.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-119-distribution.html">Giving your program to others</a></p>
+<div class="pager"><a href="tut-166-systems.html"><small>Previous</small>More than one system</a><a class="next" href="tut-119-distribution.html"><small>Next</small>Giving your program to others</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

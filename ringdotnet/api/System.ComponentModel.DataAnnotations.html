@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.ComponentModel.DataAnnotations · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.ComponentModel.DataAnnotations</h1>
+<p class="lead">36 wrapped types. Load them with <code>using { "System.ComponentModel.DataAnnotations" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-AllowedValuesAttribute">AllowedValuesAttribute</a> <a href="#c-AssociatedMetadataTypeTypeDescriptionProvider">AssociatedMetadataTypeTypeDescriptionProvider</a> <a href="#c-Base64StringAttribute">Base64StringAttribute</a> <a href="#c-CompareAttribute">CompareAttribute</a> <a href="#c-ConcurrencyCheckAttribute">ConcurrencyCheckAttribute</a> <a href="#c-CreditCardAttribute">CreditCardAttribute</a> <a href="#c-CustomValidationAttribute">CustomValidationAttribute</a> <a href="#c-DataAnnotationsValidationResult">DataAnnotationsValidationResult</a> <a href="#c-DataTypeAttribute">DataTypeAttribute</a> <a href="#c-DeniedValuesAttribute">DeniedValuesAttribute</a> <a href="#c-DisplayAttribute">DisplayAttribute</a> <a href="#c-DisplayColumnAttribute">DisplayColumnAttribute</a> <a href="#c-DisplayFormatAttribute">DisplayFormatAttribute</a> <a href="#c-EditableAttribute">EditableAttribute</a> <a href="#c-EmailAddressAttribute">EmailAddressAttribute</a> <a href="#c-EnumDataTypeAttribute">EnumDataTypeAttribute</a> <a href="#c-FileExtensionsAttribute">FileExtensionsAttribute</a> <a href="#c-IValidatableObject">IValidatableObject</a> <a href="#c-KeyAttribute">KeyAttribute</a> <a href="#c-LengthAttribute">LengthAttribute</a> <a href="#c-MaxLengthAttribute">MaxLengthAttribute</a> <a href="#c-MetadataTypeAttribute">MetadataTypeAttribute</a> <a href="#c-MinLengthAttribute">MinLengthAttribute</a> <a href="#c-PhoneAttribute">PhoneAttribute</a> <a href="#c-RangeAttribute">RangeAttribute</a> <a href="#c-RegularExpressionAttribute">RegularExpressionAttribute</a> <a href="#c-RequiredAttribute">RequiredAttribute</a> <a href="#c-ScaffoldColumnAttribute">ScaffoldColumnAttribute</a> <a href="#c-StringLengthAttribute">StringLengthAttribute</a> <a href="#c-TimestampAttribute">TimestampAttribute</a> <a href="#c-UIHintAttribute">UIHintAttribute</a> <a href="#c-UrlAttribute">UrlAttribute</a> <a href="#c-ValidationAttribute">ValidationAttribute</a> <a href="#c-ValidationContext">ValidationContext</a> <a href="#c-ValidationException">ValidationException</a> <a href="#c-Validator">Validator</a></div><details class="cls" id="c-AllowedValuesAttribute"><summary><b>AllowedValuesAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.AllowedValuesAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AllowedValuesAttribute(object[] values)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AllowedValuesAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AllowedValuesAttribute().@New([ :param = value ])</code> or <code>dnNew("AllowedValuesAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Values</code></td><td><code>object[]</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AssociatedMetadataTypeTypeDescriptionProvider"><summary><b>AssociatedMetadataTypeTypeDescriptionProvider</b> <span class="muted">class · extends <a href="System.ComponentModel.html#c-TypeDescriptionProvider">TypeDescriptionProvider</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.AssociatedMetadataTypeTypeDescriptionProvider</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AssociatedMetadataTypeTypeDescriptionProvider(Type type)</code></td></tr><tr><td><code>new AssociatedMetadataTypeTypeDescriptionProvider(Type type, Type associatedMetadataType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AssociatedMetadataTypeTypeDescriptionProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AssociatedMetadataTypeTypeDescriptionProvider().@New([ :param = value ])</code> or <code>dnNew("AssociatedMetadataTypeTypeDescriptionProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetTypeDescriptor</code></td><td><code>GetTypeDescriptor([ :objectType = …, :instance = … ])</code></td><td><code>ICustomTypeDescriptor GetTypeDescriptor(Type objectType, object instance)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Base64StringAttribute"><summary><b>Base64StringAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.Base64StringAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new Base64StringAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new Base64StringAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new Base64StringAttribute().@New([ :param = value ])</code> or <code>dnNew("Base64StringAttribute",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CompareAttribute"><summary><b>CompareAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.CompareAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CompareAttribute(string otherProperty)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CompareAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CompareAttribute().@New([ :param = value ])</code> or <code>dnNew("CompareAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OtherProperty</code></td><td><code>string</code></td><td>read</td><td><code>o.OtherProperty</code></td></tr><tr><td><code>OtherPropertyDisplayName</code></td><td><code>string</code></td><td>read</td><td><code>o.OtherPropertyDisplayName</code></td></tr><tr><td><code>RequiresValidationContext</code></td><td><code>bool</code></td><td>read</td><td><code>o.getRequiresValidationContext()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ConcurrencyCheckAttribute"><summary><b>ConcurrencyCheckAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ConcurrencyCheckAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ConcurrencyCheckAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ConcurrencyCheckAttribute().@New([ :param = value ])</code> or <code>dnNew("ConcurrencyCheckAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CreditCardAttribute"><summary><b>CreditCardAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.CreditCardAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CreditCardAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CreditCardAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CreditCardAttribute().@New([ :param = value ])</code> or <code>dnNew("CreditCardAttribute",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CustomValidationAttribute"><summary><b>CustomValidationAttribute</b> <span class="muted">class sealed · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.CustomValidationAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CustomValidationAttribute(Type validatorType, string method)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CustomValidationAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CustomValidationAttribute().@New([ :param = value ])</code> or <code>dnNew("CustomValidationAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValidatorType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ValidatorType</code></td></tr><tr><td><code>TypeId</code></td><td><code>object</code></td><td>read</td><td><code>o.getTypeId()</code></td></tr><tr><td><code>Method</code></td><td><code>string</code></td><td>read</td><td><code>o.Method</code></td></tr><tr><td><code>RequiresValidationContext</code></td><td><code>bool</code></td><td>read</td><td><code>o.getRequiresValidationContext()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DataAnnotationsValidationResult"><summary><b>DataAnnotationsValidationResult</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ValidationResult</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataAnnotationsValidationResult(string errorMessage)</code></td></tr><tr><td><code>new DataAnnotationsValidationResult(string errorMessage, IEnumerable&lt;string&gt; memberNames)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataAnnotationsValidationResult(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataAnnotationsValidationResult().@New([ :param = value ])</code> or <code>dnNew("DataAnnotationsValidationResult",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MemberNames</code></td><td><code>IEnumerable&lt;string&gt;</code></td><td>read</td><td><code>o.MemberNames</code></td></tr><tr><td><code>ErrorMessage</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ErrorMessage</code> <code>o.ErrorMessage = v</code></td></tr><tr><td><code>Success</code></td><td><code>ValidationResult</code></td><td>read · static</td><td><code>o.Success</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DataTypeAttribute"><summary><b>DataTypeAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.DataTypeAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DataTypeAttribute(DataType dataType)</code></td></tr><tr><td><code>new DataTypeAttribute(string customDataType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DataTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DataTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("DataTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DataType</code></td><td><code>DataType</code></td><td>read</td><td><code>o.DataType</code></td></tr><tr><td><code>CustomDataType</code></td><td><code>string</code></td><td>read</td><td><code>o.CustomDataType</code></td></tr><tr><td><code>DisplayFormat</code></td><td><code>DisplayFormatAttribute</code></td><td>read</td><td><code>o.DisplayFormat</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetDataTypeName</code></td><td><code>GetDataTypeName()</code></td><td><code>string GetDataTypeName()</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DeniedValuesAttribute"><summary><b>DeniedValuesAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.DeniedValuesAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DeniedValuesAttribute(object[] values)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DeniedValuesAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DeniedValuesAttribute().@New([ :param = value ])</code> or <code>dnNew("DeniedValuesAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Values</code></td><td><code>object[]</code></td><td>read</td><td><code>o.Values</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DisplayAttribute"><summary><b>DisplayAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.DisplayAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DisplayAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DisplayAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DisplayAttribute().@New([ :param = value ])</code> or <code>dnNew("DisplayAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ShortName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ShortName</code> <code>o.ShortName = v</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Description</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Description</code> <code>o.Description = v</code></td></tr><tr><td><code>Prompt</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Prompt</code> <code>o.Prompt = v</code></td></tr><tr><td><code>GroupName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.GroupName</code> <code>o.GroupName = v</code></td></tr><tr><td><code>ResourceType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.ResourceType</code> <code>o.ResourceType = v</code></td></tr><tr><td><code>AutoGenerateField</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoGenerateField</code> <code>o.AutoGenerateField = v</code></td></tr><tr><td><code>AutoGenerateFilter</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoGenerateFilter</code> <code>o.AutoGenerateFilter = v</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetAutoGenerateField</code></td><td><code>@GetAutoGenerateField()</code></td><td><code>bool? GetAutoGenerateField()</code></td></tr><tr><td><code>GetAutoGenerateFilter</code></td><td><code>@GetAutoGenerateFilter()</code></td><td><code>bool? GetAutoGenerateFilter()</code></td></tr><tr><td><code>GetDescription</code></td><td><code>@GetDescription()</code></td><td><code>string GetDescription()</code></td></tr><tr><td><code>GetGroupName</code></td><td><code>@GetGroupName()</code></td><td><code>string GetGroupName()</code></td></tr><tr><td><code>GetName</code></td><td><code>@GetName()</code></td><td><code>string GetName()</code></td></tr><tr><td><code>GetOrder</code></td><td><code>@GetOrder()</code></td><td><code>int? GetOrder()</code></td></tr><tr><td><code>GetPrompt</code></td><td><code>@GetPrompt()</code></td><td><code>string GetPrompt()</code></td></tr><tr><td><code>GetShortName</code></td><td><code>@GetShortName()</code></td><td><code>string GetShortName()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DisplayColumnAttribute"><summary><b>DisplayColumnAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.DisplayColumnAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DisplayColumnAttribute(string displayColumn)</code></td></tr><tr><td><code>new DisplayColumnAttribute(string displayColumn, string sortColumn)</code></td></tr><tr><td><code>new DisplayColumnAttribute(string displayColumn, string sortColumn, bool sortDescending)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DisplayColumnAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DisplayColumnAttribute().@New([ :param = value ])</code> or <code>dnNew("DisplayColumnAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DisplayColumn</code></td><td><code>string</code></td><td>read</td><td><code>o.DisplayColumn</code></td></tr><tr><td><code>SortColumn</code></td><td><code>string</code></td><td>read</td><td><code>o.SortColumn</code></td></tr><tr><td><code>SortDescending</code></td><td><code>bool</code></td><td>read</td><td><code>o.SortDescending</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DisplayFormatAttribute"><summary><b>DisplayFormatAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.DisplayFormatAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DisplayFormatAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DisplayFormatAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DisplayFormatAttribute().@New([ :param = value ])</code> or <code>dnNew("DisplayFormatAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DataFormatString</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataFormatString</code> <code>o.DataFormatString = v</code></td></tr><tr><td><code>NullDisplayText</code></td><td><code>string</code></td><td>read, write</td><td><code>o.NullDisplayText</code> <code>o.NullDisplayText = v</code></td></tr><tr><td><code>ConvertEmptyStringToNull</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ConvertEmptyStringToNull</code> <code>o.ConvertEmptyStringToNull = v</code></td></tr><tr><td><code>ApplyFormatInEditMode</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ApplyFormatInEditMode</code> <code>o.ApplyFormatInEditMode = v</code></td></tr><tr><td><code>HtmlEncode</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.HtmlEncode</code> <code>o.HtmlEncode = v</code></td></tr><tr><td><code>NullDisplayTextResourceType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.NullDisplayTextResourceType</code> <code>o.NullDisplayTextResourceType = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetNullDisplayText</code></td><td><code>@GetNullDisplayText()</code></td><td><code>string GetNullDisplayText()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EditableAttribute"><summary><b>EditableAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.EditableAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EditableAttribute(bool allowEdit)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EditableAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EditableAttribute().@New([ :param = value ])</code> or <code>dnNew("EditableAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowEdit</code></td><td><code>bool</code></td><td>read</td><td><code>o.AllowEdit</code></td></tr><tr><td><code>AllowInitialValue</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowInitialValue</code> <code>o.AllowInitialValue = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EmailAddressAttribute"><summary><b>EmailAddressAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.EmailAddressAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EmailAddressAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EmailAddressAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EmailAddressAttribute().@New([ :param = value ])</code> or <code>dnNew("EmailAddressAttribute",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EnumDataTypeAttribute"><summary><b>EnumDataTypeAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.EnumDataTypeAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EnumDataTypeAttribute(Type enumType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EnumDataTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EnumDataTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("EnumDataTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EnumType</code></td><td><code>Type</code></td><td>read</td><td><code>o.EnumType</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FileExtensionsAttribute"><summary><b>FileExtensionsAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.FileExtensionsAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FileExtensionsAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FileExtensionsAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FileExtensionsAttribute().@New([ :param = value ])</code> or <code>dnNew("FileExtensionsAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Extensions</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Extensions</code> <code>o.Extensions = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-IValidatableObject"><summary><b>IValidatableObject</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.IValidatableObject</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Validate</code></td><td><code>Validate(p1)</code></td><td><code>IEnumerable&lt;ValidationResult&gt; Validate(ValidationContext validationContext)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-KeyAttribute"><summary><b>KeyAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.KeyAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new KeyAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new KeyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new KeyAttribute().@New([ :param = value ])</code> or <code>dnNew("KeyAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LengthAttribute"><summary><b>LengthAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.LengthAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LengthAttribute(int minimumLength, int maximumLength)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LengthAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LengthAttribute().@New([ :param = value ])</code> or <code>dnNew("LengthAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MinimumLength</code></td><td><code>int</code></td><td>read</td><td><code>o.MinimumLength</code></td></tr><tr><td><code>MaximumLength</code></td><td><code>int</code></td><td>read</td><td><code>o.MaximumLength</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MaxLengthAttribute"><summary><b>MaxLengthAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.MaxLengthAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MaxLengthAttribute(int length)</code></td></tr><tr><td><code>new MaxLengthAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MaxLengthAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MaxLengthAttribute().@New([ :param = value ])</code> or <code>dnNew("MaxLengthAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MetadataTypeAttribute"><summary><b>MetadataTypeAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.MetadataTypeAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MetadataTypeAttribute(Type metadataClassType)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MetadataTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MetadataTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("MetadataTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MetadataClassType</code></td><td><code>Type</code></td><td>read</td><td><code>o.MetadataClassType</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-MinLengthAttribute"><summary><b>MinLengthAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.MinLengthAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new MinLengthAttribute(int length)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new MinLengthAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new MinLengthAttribute().@New([ :param = value ])</code> or <code>dnNew("MinLengthAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PhoneAttribute"><summary><b>PhoneAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.PhoneAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PhoneAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PhoneAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PhoneAttribute().@New([ :param = value ])</code> or <code>dnNew("PhoneAttribute",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RangeAttribute"><summary><b>RangeAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.RangeAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RangeAttribute(int minimum, int maximum)</code></td></tr><tr><td><code>new RangeAttribute(double minimum, double maximum)</code></td></tr><tr><td><code>new RangeAttribute(Type type, string minimum, string maximum)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RangeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RangeAttribute().@New([ :param = value ])</code> or <code>dnNew("RangeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Minimum</code></td><td><code>object</code></td><td>read</td><td><code>o.Minimum</code></td></tr><tr><td><code>Maximum</code></td><td><code>object</code></td><td>read</td><td><code>o.Maximum</code></td></tr><tr><td><code>MinimumIsExclusive</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.MinimumIsExclusive</code> <code>o.MinimumIsExclusive = v</code></td></tr><tr><td><code>MaximumIsExclusive</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.MaximumIsExclusive</code> <code>o.MaximumIsExclusive = v</code></td></tr><tr><td><code>OperandType</code></td><td><code>Type</code></td><td>read</td><td><code>o.OperandType</code></td></tr><tr><td><code>ParseLimitsInInvariantCulture</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ParseLimitsInInvariantCulture</code> <code>o.ParseLimitsInInvariantCulture = v</code></td></tr><tr><td><code>ConvertValueInInvariantCulture</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ConvertValueInInvariantCulture</code> <code>o.ConvertValueInInvariantCulture = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RegularExpressionAttribute"><summary><b>RegularExpressionAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.RegularExpressionAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RegularExpressionAttribute(string pattern)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RegularExpressionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RegularExpressionAttribute().@New([ :param = value ])</code> or <code>dnNew("RegularExpressionAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MatchTimeoutInMilliseconds</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MatchTimeoutInMilliseconds</code> <code>o.MatchTimeoutInMilliseconds = v</code></td></tr><tr><td><code>MatchTimeout</code></td><td><code>TimeSpan</code></td><td>read</td><td><code>o.MatchTimeout</code></td></tr><tr><td><code>Pattern</code></td><td><code>string</code></td><td>read</td><td><code>o.Pattern</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-RequiredAttribute"><summary><b>RequiredAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.RequiredAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new RequiredAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new RequiredAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new RequiredAttribute().@New([ :param = value ])</code> or <code>dnNew("RequiredAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AllowEmptyStrings</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AllowEmptyStrings</code> <code>o.AllowEmptyStrings = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ScaffoldColumnAttribute"><summary><b>ScaffoldColumnAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ScaffoldColumnAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ScaffoldColumnAttribute(bool scaffold)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ScaffoldColumnAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ScaffoldColumnAttribute().@New([ :param = value ])</code> or <code>dnNew("ScaffoldColumnAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Scaffold</code></td><td><code>bool</code></td><td>read</td><td><code>o.Scaffold</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-StringLengthAttribute"><summary><b>StringLengthAttribute</b> <span class="muted">class · extends <a href="#c-ValidationAttribute">ValidationAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.StringLengthAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StringLengthAttribute(int maximumLength)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new StringLengthAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StringLengthAttribute().@New([ :param = value ])</code> or <code>dnNew("StringLengthAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MaximumLength</code></td><td><code>int</code></td><td>read</td><td><code>o.MaximumLength</code></td></tr><tr><td><code>MinimumLength</code></td><td><code>int</code></td><td>read, write</td><td><code>o.MinimumLength</code> <code>o.MinimumLength = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TimestampAttribute"><summary><b>TimestampAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.TimestampAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TimestampAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TimestampAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TimestampAttribute().@New([ :param = value ])</code> or <code>dnNew("TimestampAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UIHintAttribute"><summary><b>UIHintAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.UIHintAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UIHintAttribute(string uiHint)</code></td></tr><tr><td><code>new UIHintAttribute(string uiHint, string presentationLayer)</code></td></tr><tr><td><code>new UIHintAttribute(string uiHint, string presentationLayer, object[] controlParameters)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UIHintAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UIHintAttribute().@New([ :param = value ])</code> or <code>dnNew("UIHintAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UIHint</code></td><td><code>string</code></td><td>read</td><td><code>o.UIHint</code></td></tr><tr><td><code>PresentationLayer</code></td><td><code>string</code></td><td>read</td><td><code>o.PresentationLayer</code></td></tr><tr><td><code>ControlParameters</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.ControlParameters</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UrlAttribute"><summary><b>UrlAttribute</b> <span class="muted">class sealed · extends <a href="#c-DataTypeAttribute">DataTypeAttribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.UrlAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UrlAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UrlAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UrlAttribute().@New([ :param = value ])</code> or <code>dnNew("UrlAttribute",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ValidationAttribute"><summary><b>ValidationAttribute</b> <span class="muted">class abstract · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ValidationAttribute</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>RequiresValidationContext</code></td><td><code>bool</code></td><td>read</td><td><code>o.RequiresValidationContext</code></td></tr><tr><td><code>ErrorMessage</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ErrorMessage</code> <code>o.ErrorMessage = v</code></td></tr><tr><td><code>ErrorMessageResourceName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ErrorMessageResourceName</code> <code>o.ErrorMessageResourceName = v</code></td></tr><tr><td><code>ErrorMessageResourceType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.ErrorMessageResourceType</code> <code>o.ErrorMessageResourceType = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FormatErrorMessage</code></td><td><code>FormatErrorMessage(p1)</code></td><td><code>string FormatErrorMessage(string name)</code></td></tr><tr><td><code>GetValidationResult</code></td><td><code>GetValidationResult(p1,p2)</code></td><td><code>ValidationResult GetValidationResult(object value, ValidationContext validationContext)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>bool IsValid(object value)</code></td></tr><tr><td><code>Validate</code></td><td><code>Validate(p1,p2)</code></td><td><code>void Validate(object value, string name)</code><br><code>void Validate(object value, ValidationContext validationContext)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ValidationContext"><summary><b>ValidationContext</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ValidationContext</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<p class="muted">Implements: IServiceProvider</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ValidationContext(object instance)</code></td></tr><tr><td><code>new ValidationContext(object instance, IDictionary&lt;object, object&gt; items)</code></td></tr><tr><td><code>new ValidationContext(object instance, IServiceProvider serviceProvider, IDictionary&lt;object, object&gt; items)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ValidationContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ValidationContext().@New([ :param = value ])</code> or <code>dnNew("ValidationContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectInstance</code></td><td><code>object</code></td><td>read</td><td><code>o.ObjectInstance</code></td></tr><tr><td><code>ObjectType</code></td><td><code>Type</code></td><td>read</td><td><code>o.ObjectType</code></td></tr><tr><td><code>DisplayName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DisplayName</code> <code>o.DisplayName = v</code></td></tr><tr><td><code>MemberName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MemberName</code> <code>o.MemberName = v</code></td></tr><tr><td><code>Items</code></td><td><code>IDictionary&lt;object, object&gt;</code></td><td>read</td><td><code>o.Items</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetService</code></td><td><code>GetService(p1)</code></td><td><code>object GetService(Type serviceType)</code></td></tr><tr><td><code>InitializeServiceProvider</code></td><td><code>InitializeServiceProvider(p1)</code></td><td><code>void InitializeServiceProvider(Func&lt;Type, object&gt; serviceProvider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValidationException"><summary><b>ValidationException</b> <span class="muted">class · extends <a href="System.html#c-Exception">Exception</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.ValidationException</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ValidationException(ValidationResult validationResult, ValidationAttribute validatingAttribute, object value)</code></td></tr><tr><td><code>new ValidationException(string errorMessage, ValidationAttribute validatingAttribute, object value)</code></td></tr><tr><td><code>new ValidationException()</code></td></tr><tr><td><code>new ValidationException(string message)</code></td></tr><tr><td><code>new ValidationException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ValidationException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ValidationException().@New([ :param = value ])</code> or <code>dnNew("ValidationException",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ValidationAttribute</code></td><td><code>ValidationAttribute</code></td><td>read</td><td><code>o.ValidationAttribute</code></td></tr><tr><td><code>ValidationResult</code></td><td><code>ValidationResult</code></td><td>read</td><td><code>o.ValidationResult</code></td></tr><tr><td><code>Value</code></td><td><code>object</code></td><td>read</td><td><code>o.Value</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Validator"><summary><b>Validator</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.ComponentModel.DataAnnotations.Validator</code> · assembly <code>System.ComponentModel.Annotations</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TryValidateObject</code></td><td><code>TryValidateObject([ :instance = …, :validationContext = …, :validationResults = … ])</code><br><code>TryValidateObject([ :instance = …, :validationContext = …, :validationResults = …, :validateAllProperties = … ])</code></td><td><code>static bool TryValidateObject(object instance, ValidationContext validationContext, ICollection&lt;ValidationResult&gt; validationResults)</code><br><code>static bool TryValidateObject(object instance, ValidationContext validationContext, ICollection&lt;ValidationResult&gt; validationResults, bool validateAllProperties)</code></td></tr><tr><td><code>TryValidateProperty</code></td><td><code>TryValidateProperty(p1,p2,p3)</code></td><td><code>static bool TryValidateProperty(object value, ValidationContext validationContext, ICollection&lt;ValidationResult&gt; validationResults)</code></td></tr><tr><td><code>TryValidateValue</code></td><td><code>TryValidateValue(p1,p2,p3,p4)</code></td><td><code>static bool TryValidateValue(object value, ValidationContext validationContext, ICollection&lt;ValidationResult&gt; validationResults, IEnumerable&lt;ValidationAttribute&gt; validationAttributes)</code></td></tr><tr><td><code>ValidateObject</code></td><td><code>ValidateObject([ :instance = …, :validationContext = … ])</code><br><code>ValidateObject([ :instance = …, :validationContext = …, :validateAllProperties = … ])</code></td><td><code>static void ValidateObject(object instance, ValidationContext validationContext)</code><br><code>static void ValidateObject(object instance, ValidationContext validationContext, bool validateAllProperties)</code></td></tr><tr><td><code>ValidateProperty</code></td><td><code>ValidateProperty(p1,p2)</code></td><td><code>static void ValidateProperty(object value, ValidationContext validationContext)</code></td></tr><tr><td><code>ValidateValue</code></td><td><code>ValidateValue(p1,p2,p3)</code></td><td><code>static void ValidateValue(object value, ValidationContext validationContext, IEnumerable&lt;ValidationAttribute&gt; validationAttributes)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

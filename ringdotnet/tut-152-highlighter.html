@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A project: a syntax highlighter · RingDotNet</title>
+<meta name="description" content="A highlighter shows code in colors. This project splits code into tokens with one regular expression that has a named group for each kind, turns the tokens into HTML spans with escaped text, and checks that nothing was lost.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html" class="cur">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A project: a syntax highlighter</h1><p class="lead">A highlighter shows code in colors. This project splits code into tokens with one regular expression that has a named group for each kind, turns the tokens into HTML spans with escaped text, and checks that nothing was lost.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li><strong>tokens</strong>: comments, strings, numbers, words and the rest,</li><li>one regular expression with <strong>named groups</strong> and the alternatives in the right <strong>order</strong>,</li><li><code>Regex.Matches</code> and <code>Groups.Item(name).Success</code>,</li><li>keywords and names,</li><li>HTML output with <strong>escaped</strong> text,</li><li>a check: without the tags the text is the original,</li><li>what a pattern like this cannot do.</li></ul>
+<p>The tutorial <a href="tut-29-regex.html">Regular expressions in depth</a> explained groups and alternatives. This project uses them to read a language.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_highlighter.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a project: a syntax highlighter - one regular expression with named groups splits code into tokens, and each token becomes an HTML span</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># A highlighter reads code as TOKENS (comments, strings, numbers, words) and writes each kind in its own color. The idea is one</span>
+	<span class="c"># regular expression with an alternative for each kind of token: the first alternative that matches at a place wins. The order</span>
+	<span class="c"># matters: a comment must be tried before the words, so that a word inside a comment is not a keyword.</span>
+	cCode = <span class="s">"# count to three"</span> + nl + <span class="s">'for i = 1 to 3'</span> + nl + <span class="s">'	? "Number " + i   # print it'</span> + nl + <span class="s">"next"</span> + nl + <span class="s">'x = 3.14 * radius'</span>
+
+	<span class="c"># (the pattern is in single quotes because it has double quotes in it; the groups are: comment, string, number, word, any other character)</span>
+	cPattern = <span class="s">'(?&lt;comment&gt;#[^\n]*)|(?&lt;string&gt;"[^"\n]*")|(?&lt;number&gt;\b\d+(?:\.\d+)?\b)|(?&lt;word&gt;[A-Za-z_]\w*)|(?&lt;other&gt;[\s\S])'</span>
+
+	<span class="c"># 1. The tokens: Matches returns every match in order; the group that has Success is the kind of the token</span>
+	aTokens = tokens(cCode,cPattern)
+	? <span class="s">"1. the tokens (each token with its kind), without the spaces:"</span>
+	<span class="k">for</span> aToken <span class="k">in</span> aTokens
+		<span class="k">if</span> <span class="k">not</span> isBlank(aToken[<span class="n">2</span>])
+			? <span class="s">"   "</span> + padRight(aToken[<span class="n">1</span>],<span class="n">9</span>) + <span class="s">"["</span> + aToken[<span class="n">2</span>] + <span class="s">"]"</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+
+	<span class="c"># 2. Words are names or KEYWORDS: a list of the keywords of the language decides</span>
+	aKeywords = [ <span class="s">"for"</span>,<span class="s">"to"</span>,<span class="s">"next"</span>,<span class="s">"if"</span>,<span class="s">"else"</span>,<span class="s">"ok"</span>,<span class="s">"func"</span>,<span class="s">"return"</span>,<span class="s">"while"</span>,<span class="s">"end"</span> ]
+	? nl + <span class="s">"2. the keywords found: "</span> + joinList(findKind(aTokens,<span class="s">"word"</span>,aKeywords))
+	? <span class="s">"   the names found:    "</span> + joinList(findNames(aTokens,aKeywords))
+
+	<span class="c"># 3. The tokens as HTML. The text of each token is ESCAPED (&lt; &gt; &amp;): code has these characters, and HTML would read them as tags.</span>
+	? nl + <span class="s">"3. the code as HTML:"</span>
+	cHtml = toHtml(aTokens,aKeywords)
+	? cHtml
+
+	<span class="c"># 4. The check of a highlighter: the text without the tags is exactly the code that went in. Nothing was lost or changed.</span>
+	? nl + <span class="s">"4. the text without the tags is the original code: "</span> + yesNo(stripTags(cHtml) = htmlText(cCode))
+
+	<span class="c"># 5. Code with the characters of HTML in it</span>
+	cTricky = <span class="s">'if a &lt; b and c &gt; d  # a &lt;b&gt;tag&lt;/b&gt; &amp; more'</span>
+	? nl + <span class="s">"5. characters of HTML in code:"</span>
+	? <span class="s">"   "</span> + toHtml(tokens(cTricky,cPattern),aKeywords)
+
+	<span class="c"># 6. A # inside a string. The matching goes from left to right: the string alternative matches at the first quote, and the whole string</span>
+	<span class="c">#    (with the # in it) is one token, so the # is never looked at as the start of a comment. (What this pattern cannot do: a string that</span>
+	<span class="c">#    continues on the next line, or a quote inside a string; a real highlighter has more alternatives for such cases.)</span>
+	cInString = <span class="s">'text = "not # a comment"'</span>
+	? nl + <span class="s">"6. a # inside a string:"</span>
+	? <span class="s">"   "</span> + toHtml(tokens(cInString,cPattern),aKeywords)
+
+<span class="c"># the tokens of a text: a list of [kind, text]</span>
+<span class="k">func</span> <span class="f">tokens</span> cCode,cPattern
+
+	aList = []
+	aKinds = [ <span class="s">"comment"</span>,<span class="s">"string"</span>,<span class="s">"number"</span>,<span class="s">"word"</span>,<span class="s">"other"</span> ]
+	<span class="k">for</span> oMatch <span class="k">in</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cCode, cPattern ]).<span class="f">toList</span>()
+		<span class="k">for</span> cKind <span class="k">in</span> aKinds
+			<span class="k">if</span> oMatch.Groups.<span class="f">Item</span>(cKind).Success
+				aList + [ cKind, oMatch.Value ]
+				<span class="k">exit</span>
+			<span class="k">ok</span>
+		<span class="k">next</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aList
+
+<span class="c"># the words of a kind of list: the keywords that were used (each once)</span>
+<span class="k">func</span> <span class="f">findKind</span> aTokens,cKind,aKeywords
+
+	aFound = []
+	<span class="k">for</span> aToken <span class="k">in</span> aTokens
+		<span class="k">if</span> aToken[<span class="n">1</span>] = <span class="s">"word"</span> <span class="k">and</span> find(aKeywords,aToken[<span class="n">2</span>]) &gt; <span class="n">0</span> <span class="k">and</span> find(aFound,aToken[<span class="n">2</span>]) = <span class="n">0</span>
+			aFound + aToken[<span class="n">2</span>]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aFound
+
+<span class="k">func</span> <span class="f">findNames</span> aTokens,aKeywords
+
+	aFound = []
+	<span class="k">for</span> aToken <span class="k">in</span> aTokens
+		<span class="k">if</span> aToken[<span class="n">1</span>] = <span class="s">"word"</span> <span class="k">and</span> find(aKeywords,aToken[<span class="n">2</span>]) = <span class="n">0</span> <span class="k">and</span> find(aFound,aToken[<span class="n">2</span>]) = <span class="n">0</span>
+			aFound + aToken[<span class="n">2</span>]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aFound
+
+<span class="c"># the HTML of a list of tokens: a span with a class for comments, strings, numbers and keywords; the rest is plain</span>
+<span class="k">func</span> <span class="f">toHtml</span> aTokens,aKeywords
+
+	cHtml = <span class="s">""</span>
+	<span class="k">for</span> aToken <span class="k">in</span> aTokens
+		cKind = aToken[<span class="n">1</span>]
+		cText = htmlText(aToken[<span class="n">2</span>])
+		<span class="k">if</span> cKind = <span class="s">"word"</span>
+			<span class="k">if</span> find(aKeywords,aToken[<span class="n">2</span>]) &gt; <span class="n">0</span>
+				cKind = <span class="s">"keyword"</span>
+			<span class="k">else</span>
+				cKind = <span class="s">"name"</span>
+			<span class="k">ok</span>
+		<span class="k">ok</span>
+		<span class="k">if</span> cKind = <span class="s">"name"</span> <span class="k">or</span> cKind = <span class="s">"other"</span>
+			cHtml += cText
+		<span class="k">else</span>
+			cHtml += <span class="s">'&lt;span class="'</span> + cKind + <span class="s">'"&gt;'</span> + cText + <span class="s">"&lt;/span&gt;"</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> cHtml
+
+<span class="c"># the three characters that HTML reads as markup. &amp; first: otherwise the &amp; of the other two would be changed again.</span>
+<span class="k">func</span> <span class="f">htmlText</span> cText
+
+	cText = substr(cText,<span class="s">"&amp;"</span>,<span class="s">"&amp;amp;"</span>)
+	cText = substr(cText,<span class="s">"&lt;"</span>,<span class="s">"&amp;lt;"</span>)
+	<span class="k">return</span> substr(cText,<span class="s">"&gt;"</span>,<span class="s">"&amp;gt;"</span>)
+
+<span class="c"># the HTML without the tags (the spans that the program added): what is left must be the escaped code</span>
+<span class="k">func</span> <span class="f">stripTags</span> cHtml
+
+	<span class="k">return</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Replace"</span>,[ cHtml, <span class="s">'&lt;/?span[^&gt;]*&gt;'</span>, <span class="s">""</span> ])
+
+<span class="c"># a token of spaces, tabs or line breaks only</span>
+<span class="k">func</span> <span class="f">isBlank</span> cText
+
+	cText = substr(substr(substr(substr(cText,<span class="s">" "</span>,<span class="s">""</span>),char(<span class="n">9</span>),<span class="s">""</span>),char(<span class="n">10</span>),<span class="s">""</span>),char(<span class="n">13</span>),<span class="s">""</span>)
+	<span class="k">return</span> cText = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">joinList</span> aList
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> item <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += <span class="s">", "</span>
+		<span class="k">ok</span>
+		cText += <span class="s">""</span> + item
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the tokens (each token with its kind), without the spaces:
+   comment  [# count to three]
+   word     [for]
+   word     [i]
+   other    [=]
+   number   [1]
+   word     [to]
+   number   [3]
+   other    [?]
+   string   ["Number "]
+   other    [+]
+   word     [i]
+   comment  [# print it]
+   word     [next]
+   word     [x]
+   other    [=]
+   number   [3.14]
+   other    [*]
+   word     [radius]
+
+2. the keywords found: for, to, next
+   the names found:    i, x, radius
+
+3. the code as HTML:
+&lt;span class="comment"&gt;# count to three&lt;/span&gt;
+&lt;span class="keyword"&gt;for&lt;/span&gt; i = &lt;span class="number"&gt;1&lt;/span&gt; &lt;span class="keyword"&gt;to&lt;/span&gt; &lt;span class="number"&gt;3&lt;/span&gt;
+	? &lt;span class="string"&gt;"Number "&lt;/span&gt; + i   &lt;span class="comment"&gt;# print it&lt;/span&gt;
+&lt;span class="keyword"&gt;next&lt;/span&gt;
+x = &lt;span class="number"&gt;3.14&lt;/span&gt; * radius
+
+4. the text without the tags is the original code: yes
+
+5. characters of HTML in code:
+   &lt;span class="keyword"&gt;if&lt;/span&gt; a &amp;lt; b and c &amp;gt; d  &lt;span class="comment"&gt;# a &amp;lt;b&amp;gt;tag&amp;lt;/b&amp;gt; &amp;amp; more&lt;/span&gt;
+
+6. a # inside a string:
+   text = &lt;span class="string"&gt;"not # a comment"&lt;/span&gt;</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>dnStatic</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="one-pattern-for-all-the-tokens">One pattern for all the tokens<a class="anchor" href="#one-pattern-for-all-the-tokens">#</a></h3>
+<p>The pattern is a list of alternatives separated by <code>|</code>, each one a <strong>named group</strong>: <code>(?&lt;comment&gt;#[^\n]*)</code> is a <code>#</code> and everything to the end of the line, <code>(?&lt;string&gt;"[^"\n]*")</code> is a double quote, characters that are not a quote or a line break, and a double quote, <code>(?&lt;number&gt;\b\d+(?:\.\d+)?\b)</code> is a whole number or a number with a decimal point, <code>(?&lt;word&gt;[A-Za-z_]\w*)</code> is a name or a keyword, and <code>(?&lt;other&gt;[\s\S])</code> is <em>any</em> character, including line breaks. Because the last alternative matches every character, the matches cover the whole text, and every character belongs to one token. The pattern is in single quotes in Ring because it has double quotes.</p>
+<h3 id="the-order">The order<a class="anchor" href="#the-order">#</a></h3>
+<p>At each place the regular expression tries the alternatives from the first to the last, and the first that matches wins. A comment must come first, so that the words <em>print it</em> in <code># print it</code> are not read as words; a string comes before the numbers, so that the <code>3</code> in <code>"line 3"</code> is not a number; and <code>other</code> is last, because it matches everything. A <code>#</code> in a string (step 6) is part of the string, because the string alternative matches at the quote, and the matching never looks at the <code>#</code> on its own.</p>
+<h3 id="tokens">Tokens<a class="anchor" href="#tokens">#</a></h3>
+<p><code>Regex.Matches(text, pattern)</code> returns the matches in order. For each match the program asks the groups <code>Groups.Item("comment").Success</code> and so on, and the first group that is true is the kind of the token. The result is a list of <code>[kind, text]</code>. A <code>word</code> is a <strong>keyword</strong> when it is in the list of keywords of the language (<code>for</code>, <code>to</code>, <code>next</code>) and a <strong>name</strong> otherwise (<code>i</code>, <code>x</code>, <code>radius</code>). A new language is a new pattern and a new list.</p>
+<h3 id="html">HTML<a class="anchor" href="#html">#</a></h3>
+<p>Each comment, string, number and keyword becomes <code>&lt;span class="comment"&gt;...&lt;/span&gt;</code> (and so on); a style sheet gives each class a color. Names and the other characters stay plain. The text of <strong>every</strong> token is <strong>escaped</strong> first: <code>&lt;</code> becomes <code>&amp;lt;</code>, <code>&gt;</code> becomes <code>&amp;gt;</code> and <code>&amp;</code> becomes <code>&amp;amp;</code>. Code is full of these characters, and a browser would read them as tags. <code>&amp;</code> is replaced first, so that the <code>&amp;</code> of the other two replacements is not replaced again (the tutorial <a href="tut-86-escaping.html">Escaping</a>).</p>
+<h3 id="the-check">The check<a class="anchor" href="#the-check">#</a></h3>
+<p>A highlighter must not change the code. The program removes the tags it added (<code>&lt;/?span[^&gt;]*&gt;</code>) and compares the rest with the escaped original: they are equal. This one test finds most mistakes: a lost character, a changed space, a token that was written twice.</p>
+<h3 id="what-it-cannot-do">What it cannot do<a class="anchor" href="#what-it-cannot-do">#</a></h3>
+<p>A pattern is not a parser. It does not know a string that continues on the next line, a quote inside a string (<code>"a \" b"</code>), or a comment in the style <code>/* ... */</code> unless there is an alternative for it. Real highlighters add alternatives, and for languages with a complicated syntax they use a real parser. For a small language, one pattern is often enough.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>tokens with named groups in one pattern,</li><li>the order of the alternatives,</li><li>keywords and names,</li><li>escaped HTML and the check of the result.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a group for operators (<code>[+\-*/=&lt;&gt;]+</code>) and a class for them.</li><li>Add a style sheet and a page that shows the highlighted code (the tutorial <a href="tut-47-markdown.html">A project: Markdown to HTML</a>).</li><li>Add an alternative for strings with single quotes.</li><li>Count the tokens of each kind and print a table.</li></ol>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<p>This was the last tutorial of the chapter <strong>Text and data formats</strong>. The next chapter is <strong>Numbers, dates and money</strong>: it starts with <a href="tut-101-number-types.html">Number types</a>. The <a href="tutorials.html">Tutorials</a> page lists all the chapters, and you can start any of them.</p>
+<div class="pager"><a href="tut-144-mailmerge.html"><small>Previous</small>Mail merge</a><a class="next" href="tut-101-number-types.html"><small>Next</small>Number types</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

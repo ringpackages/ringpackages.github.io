@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebSockets · RingDotNet</title>
+<meta name="description" content="HTTP is a question and an answer. A WebSocket is a connection that stays open, so both sides can send a message whenever they like — the base of chats, live prices and games. This lesson runs a server and a client in one program and sends text, binary data and a long message in parts, and then closes the connection properly.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html" class="cur">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>WebSockets</h1><p class="lead">HTTP is a question and an answer. A WebSocket is a connection that stays open, so both sides can send a message whenever they like — the base of chats, live prices and games. This lesson runs a server and a client in one program and sends text, binary data and a long message in parts, and then closes the connection properly.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a <strong>WebSocket</strong> is and how it starts (an HTTP request that asks to <em>upgrade</em>),</li><li>a server with <code>HttpListener</code> and <code>AcceptWebSocketAsync</code>,</li><li>a client with <code>ClientWebSocket</code> and <code>ConnectAsync</code>,</li><li><strong>text</strong> and <strong>binary</strong> messages with <code>SendAsync</code> and <code>ReceiveAsync</code>,</li><li>how <strong>bytes</strong> go through the bridge: an <code>ArraySegment</code> that .NET fills,</li><li>messages that arrive in <strong>parts</strong> (<code>EndOfMessage</code>),</li><li>the <strong>close handshake</strong>.</li></ul>
+<p>The tutorials <a href="tut-25-sockets.html">Sockets</a> and <a href="tut-91-udp.html">UDP</a> sent bytes over TCP and UDP. A WebSocket adds <em>messages</em> on top of TCP, and a browser can use it.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch07_websockets.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># WebSockets - a connection that stays open: a client and a server in one program, text and binary messages, long messages in parts, closing</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Net"</span>
+	<span class="s">"System.Net.Sockets"</span>
+	<span class="s">"System.Net.WebSockets"</span>
+	<span class="s">"System.Threading"</span>
+}
+
+oToken = <span class="s">""</span>                       <span class="c"># a token that cancels everything after 20 seconds, so that a mistake cannot hang the program</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># HTTP is a question and an answer. A WEBSOCKET is a connection that stays open after the first HTTP request: both sides can send a</span>
+	<span class="c"># message whenever they like, which is what a chat, a live price list or a game needs. The first request asks to "upgrade" the</span>
+	<span class="c"># connection, and then the two sides send MESSAGES (text or binary) until one of them closes it.</span>
+	oSource = <span class="k">new</span> <span class="t">CancellationTokenSource</span>().@<span class="k">New</span>([ :<span class="t">millisecondsDelay</span> = <span class="n">20000</span> ])
+	oToken = oSource.Token
+
+	<span class="c"># 1. The server: an HttpListener that accepts the upgrade. The port is a free one, found by asking the system for port 0.</span>
+	oProbe = <span class="k">new</span> <span class="t">TcpListener</span>(<span class="k">new</span> <span class="t">IPAddress</span>().Loopback,<span class="n">0</span>)
+	oProbe.<span class="f">Start</span>(<span class="k">NULL</span>)
+	nPort = oProbe.LocalEndpoint.Port
+	oProbe.<span class="f">Stop</span>()
+	oListener = <span class="k">new</span> <span class="t">HttpListener</span>()
+	oListener.Prefixes.<span class="f">Add</span>(<span class="s">"http://localhost:"</span> + nPort + <span class="s">"/"</span>)
+	oListener.<span class="f">Start</span>()
+	? <span class="s">"1. the server listens"</span>
+
+	<span class="c"># 2. The client connects. Everything is done with tasks, and the program waits for each task where it must: connecting and accepting</span>
+	<span class="c">#    are two sides of one handshake, so both tasks are started first and then both are waited for.</span>
+	oClient = <span class="k">new</span> <span class="t">ClientWebSocket</span>()
+	oConnect = oClient.<span class="f">ConnectAsync</span>([ :uri = <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"ws://localhost:"</span> + nPort + <span class="s">"/chat"</span>), :cancellationToken = oToken ])
+	oContextTask = oListener.<span class="f">GetContextAsync</span>()
+	oContextTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oContext = oContextTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	? nl + <span class="s">"2. a request arrived for "</span> + oContext.Request.Url.AbsolutePath + <span class="s">", it is a WebSocket request: "</span> + yesNo(oContext.Request.IsWebSocketRequest)
+	oAccept = oContext.<span class="f">AcceptWebSocketAsync</span>(<span class="f">dnNull</span>())                  <span class="c"># (no sub protocol)</span>
+	oAccept.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oConnect.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oServer = oAccept.<span class="f">getProp</span>(<span class="s">"Result"</span>).WebSocket
+	? <span class="s">"   client state: "</span> + oClient.State + <span class="s">", server state: "</span> + oServer.State
+
+	<span class="c"># 3. Text messages. The client sends, the server receives and answers, the client receives the answer.</span>
+	? nl + <span class="s">"3. text messages:"</span>
+	<span class="k">for</span> cText <span class="k">in</span> [ <span class="s">"hello"</span>, <span class="s">"how are you?"</span> ]
+		sendText(oClient,cText,<span class="k">True</span>)
+		cGot = receiveText(oServer)
+		? <span class="s">"   the server received '"</span> + cGot + <span class="s">"'"</span>
+		sendText(oServer,upper(cGot),<span class="k">False</span>)
+		? <span class="s">"   the client received '"</span> + receiveText(oClient) + <span class="s">"'"</span>
+	<span class="k">next</span>
+
+	<span class="c"># 4. A binary message: all 256 byte values (a Ring text can hold any byte)</span>
+	cBytes = <span class="s">""</span>
+	<span class="k">for</span> i = <span class="n">0</span> <span class="k">to</span> <span class="n">255</span>
+		cBytes += char(i)
+	<span class="k">next</span>
+	send(oClient,cBytes,<span class="s">"Binary"</span>,<span class="k">True</span>)
+	aGot = receive(oServer,<span class="n">1024</span>)
+	? nl + <span class="s">"4. a binary message of "</span> + len(cBytes) + <span class="s">" bytes: the server received "</span> + len(aGot[<span class="n">1</span>]) + <span class="s">" bytes, of type "</span> + aGot[<span class="n">2</span>] + <span class="s">", the same: "</span> + yesNo(aGot[<span class="n">1</span>] = cBytes)
+
+	<span class="c"># 5. A long message comes in PARTS. The receiver has a buffer of 8 bytes, so a message of 20 bytes needs three calls of Receive; the</span>
+	<span class="c">#    result says EndOfMessage when the message is complete.</span>
+	sendText(oClient,<span class="s">"0123456789ABCDEFGHIJ"</span>,<span class="k">True</span>)
+	? nl + <span class="s">"5. a message of 20 bytes, a buffer of 8 bytes:"</span>
+	cWhole = <span class="s">""</span>
+	nParts = <span class="n">0</span>
+	<span class="k">while</span> <span class="k">True</span>
+		aPart = receive(oServer,<span class="n">8</span>)
+		cWhole += aPart[<span class="n">1</span>]
+		nParts++
+		? <span class="s">"   part "</span> + nParts + <span class="s">": '"</span> + aPart[<span class="n">1</span>] + <span class="s">"', last part: "</span> + yesNo(aPart[<span class="n">3</span>])
+		<span class="k">if</span> aPart[<span class="n">3</span>]
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">end</span>
+	? <span class="s">"   the whole message: "</span> + cWhole
+
+	<span class="c"># 6. Closing. One side starts the close handshake (CloseOutput says "I send no more"), the other receives the close message and</span>
+	<span class="c">#    answers with its own, and then both are Closed.</span>
+	oClient.<span class="f">CloseOutputAsync</span>(<span class="s">"NormalClosure"</span>,<span class="s">"bye"</span>,oToken).<span class="f">Wait</span>(<span class="k">NULL</span>)
+	aClose = receive(oServer,<span class="n">64</span>)
+	? nl + <span class="s">"6. the server received a message of type "</span> + aClose[<span class="n">2</span>] + <span class="s">", status "</span> + oServer.CloseStatus + <span class="s">", description '"</span> + oServer.CloseStatusDescription + <span class="s">"'"</span>
+	oServer.<span class="f">CloseAsync</span>(<span class="s">"NormalClosure"</span>,<span class="s">"bye too"</span>,oToken).<span class="f">Wait</span>(<span class="k">NULL</span>)
+	receive(oClient,<span class="n">64</span>)
+	? <span class="s">"   client state: "</span> + oClient.State + <span class="s">", server state: "</span> + oServer.State
+
+	oListener.<span class="f">Stop</span>()
+
+<span class="c"># send a text or binary message in one piece: the text is turned into an ArraySegment of bytes (the part of an array that is sent). The</span>
+<span class="c"># class ClientWebSocket has SendAsync with four values; the object that the server got is a WebSocket, where SendAsync has more forms and</span>
+<span class="c"># takes the values by name.</span>
+<span class="k">func</span> <span class="f">send</span> oSocket,cBytes,cType,lClient
+
+	oSegment = <span class="f">dnNew</span>(<span class="s">"System.ArraySegment`1[[System.Byte]]"</span>,[ cBytes ])
+	<span class="k">if</span> lClient
+		oSocket.<span class="f">SendAsync</span>(oSegment,cType,<span class="k">True</span>,oToken).<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">else</span>
+		oSocket.<span class="f">SendAsync</span>([ :buffer = oSegment, :messageType = cType, :endOfMessage = <span class="k">True</span>, :cancellationToken = oToken ]).<span class="f">Wait</span>(<span class="k">NULL</span>)
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">sendText</span> oSocket,cText,lClient
+
+	send(oSocket,cText,<span class="s">"Text"</span>,lClient)
+
+<span class="c"># Receive into a buffer of nSize bytes. The buffer is a byte buffer (dnBuffer): a .NET byte[] that Ring holds. The ArraySegment is made</span>
+<span class="c"># on that array, .NET fills it, and the received bytes are the first Count bytes of the buffer. The answer is [the bytes, the type,</span>
+<span class="c"># EndOfMessage].</span>
+<span class="k">func</span> <span class="f">receive</span> oSocket,nSize
+
+	oBuffer = <span class="f">dnBuffer</span>(nSize)
+	oSegment = <span class="f">dnNew</span>(<span class="s">"System.ArraySegment`1[[System.Byte]]"</span>,[ oBuffer ])
+	oTask = oSocket.<span class="f">ReceiveAsync</span>(oSegment,oToken)
+	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oResult = oTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	<span class="k">return</span> [ <span class="f">dnBufferBytes</span>(oBuffer,oResult.Count), <span class="s">""</span> + oResult.MessageType, oResult.EndOfMessage ]
+
+<span class="k">func</span> <span class="f">receiveText</span> oSocket
+
+	<span class="k">return</span> receive(oSocket,<span class="n">1024</span>)[<span class="n">1</span>]
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the server listens
+
+2. a request arrived for /chat, it is a WebSocket request: yes
+   client state: Open, server state: Open
+
+3. text messages:
+   the server received 'hello'
+   the client received 'HELLO'
+   the server received 'how are you?'
+   the client received 'HOW ARE YOU?'
+
+4. a binary message of 256 bytes: the server received 256 bytes, of type Binary, the same: yes
+
+5. a message of 20 bytes, a buffer of 8 bytes:
+   part 1: '01234567', last part: no
+   part 2: '89ABCDEF', last part: no
+   part 3: 'GHIJ', last part: yes
+   the whole message: 0123456789ABCDEFGHIJ
+
+6. the server received a message of type Close, status NormalClosure, description 'bye'
+   client state: Closed, server state: Closed</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>dnNew</code>, <code>getProp</code>, <code>dnBuffer</code>, <code>dnNull</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-upgrade">The upgrade<a class="anchor" href="#the-upgrade">#</a></h3>
+<p>A WebSocket starts as a normal HTTP request with the headers <code>Upgrade: websocket</code> and <code>Connection: Upgrade</code>. The server answers <em>101 Switching Protocols</em>, and from then on the connection is not HTTP any more: it carries messages in both directions until it is closed. In .NET the server side is an <code>HttpListener</code>: <code>GetContextAsync()</code> waits for a request, <code>Request.IsWebSocketRequest</code> says whether it asks for an upgrade, and <code>AcceptWebSocketAsync</code> does the upgrade and gives a <code>WebSocket</code>. (The <code>WebServer</code> of this package serves HTTP only; <code>HttpListener</code> is the .NET class for this job.) The program asks the system for a free port, so it cannot clash with another program.</p>
+<h3 id="one-thread-two-sides">One thread, two sides<a class="anchor" href="#one-thread-two-sides">#</a></h3>
+<p>Server and client are both in the program, and Ring runs on one thread. The connecting and the accepting are two halves of one handshake, so the program <strong>starts</strong> both tasks first and then waits for both (<code>Wait(NULL)</code>). A cancellation token with a limit of 20 seconds makes every call fail with an error instead of waiting for ever if something is wrong.</p>
+<h3 id="bytes-and-the-bridge">Bytes and the bridge<a class="anchor" href="#bytes-and-the-bridge">#</a></h3>
+<p>A message is a <strong>byte array</strong>. <code>SendAsync</code> takes an <code>ArraySegment&lt;byte&gt;</code>: a part of an array. A Ring text can hold any bytes, so <code>dnNew</code> with the .NET name of the closed type <code>ArraySegment&lt;byte&gt;</code> (the program shows how it is written) makes a segment, and the array inside it, from the bytes of the text. For receiving, .NET must <strong>write into an array that Ring can read afterwards</strong>, and a Ring text is copied when it goes in. So the program makes a <strong>byte buffer</strong> with <code>dnBuffer(nSize)</code>: a .NET object that holds a live <code>byte[]</code>. The segment is made on that buffer, <code>ReceiveAsync</code> fills it, and <code>dnBufferBytes(oBuffer, count)</code> copies the first <code>Count</code> bytes into a Ring text. Ring strings are binary strings, so nothing is lost on the way (step 4 sends all 256 byte values).</p>
+<h3 id="text-and-binary">Text and binary<a class="anchor" href="#text-and-binary">#</a></h3>
+<p>The message type is <code>"Text"</code> (the bytes are UTF-8 text) or <code>"Binary"</code> (anything). The server echoes each text in capital letters, so a round trip shows both directions. The result of <code>ReceiveAsync</code> has <code>Count</code>, <code>MessageType</code> and <code>EndOfMessage</code>.</p>
+<h3 id="messages-in-parts">Messages in parts<a class="anchor" href="#messages-in-parts">#</a></h3>
+<p>A receiver has a buffer of a fixed size. A message that is bigger than the buffer comes in several parts, and <code>EndOfMessage</code> is false until the last one. The program reads in a loop and joins the parts: a message of 20 bytes with a buffer of 8 arrives as 8, 8 and 4. Real programs use a buffer of a few kilobytes and the same loop.</p>
+<h3 id="closing">Closing<a class="anchor" href="#closing">#</a></h3>
+<p>Closing is a conversation too. The client calls <code>CloseOutputAsync("NormalClosure", "bye", token)</code>, which says <em>I send nothing more</em> and does not wait. The server receives a message of type <code>Close</code>, and its <code>CloseStatus</code> and <code>CloseStatusDescription</code> are the status and the text of the client. The server answers with <code>CloseAsync</code> and the client receives that answer: now both states are <code>Closed</code>. A connection that is just dropped (the program ends, the cable is pulled) makes the other side raise an error on the next receive, which a program must expect.</p>
+<h3 id="two-forms-of-sendasync">Two forms of SendAsync<a class="anchor" href="#two-forms-of-sendasync">#</a></h3>
+<p>The <code>ClientWebSocket</code> class has <code>SendAsync</code> with four plain values (<code>segment</code>, <code>type</code>, <code>endOfMessage</code>, <code>token</code>). The <code>WebSocket</code> that the server gets has more forms of the method, so there it is one method that takes a list of names. The function <code>send</code> knows which of the two it has.</p>
+<div class="callout note"><span class="t">Note</span><p>A server program that serves many clients needs one task for each connection, so that one slow client does not stop the others. Ring code runs on one thread, so such a server polls its connections in a loop (<code>Wait</code> with a short time limit) or uses the web server of the tutorial <a href="tut-16-web-service.html">A web service with a database</a> for the HTTP part.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a WebSocket as a connection that stays open,</li><li>the server with <code>HttpListener</code> and the client with <code>ClientWebSocket</code>,</li><li>sending and receiving text and binary messages through an <code>ArraySegment</code>,</li><li>reading long messages in parts,</li><li>the close handshake.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Make the server answer each message with its length.</li><li>Send a message of 10,000 bytes with a buffer of 1,024 and count the parts.</li><li>Let the client send a message after the server closed, and read the error.</li><li>Send a JSON text (the tutorial <a href="tut-80-json-nodes.html">JSON as a tree</a>) and parse it on the other side.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-84-http-client.html">HttpClient in depth</a></p>
+<div class="pager"><a href="tut-91-udp.html"><small>Previous</small>UDP</a><a class="next" href="tut-84-http-client.html"><small>Next</small>HttpClient in depth</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

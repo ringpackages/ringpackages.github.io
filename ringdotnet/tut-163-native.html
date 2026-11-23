@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Native DLLs · RingDotNet</title>
+<meta name="description" content="Windows has thousands of functions in DLLs such as kernel32 and user32, and many programs come with a DLL of their own. .NET calls them with P/Invoke. Ring does not declare them, but a small C# library does, and then Ring uses the functions like any other class. This lesson shows it with five functions of the Windows API.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html" class="cur">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Native DLLs</h1><p class="lead">Windows has thousands of functions in DLLs such as kernel32 and user32, and many programs come with a DLL of their own. .NET calls them with P/Invoke. Ring does not declare them, but a small C# library does, and then Ring uses the functions like any other class. This lesson shows it with five functions of the Windows API.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what <strong>P/Invoke</strong> is and why the bridge cannot do it alone,</li><li>how to write <code>[DllImport]</code> for a function, and how the types map,</li><li>numbers, texts, buffers and structures that go to a native function,</li><li>how to give the functions to Ring in four steps,</li><li>what to do when the call fails.</li></ul>
+<h2 id="the-problem">The problem<a class="anchor" href="#the-problem">#</a></h2>
+<p>The bridge calls the members that .NET already has: a method of a class, a property, a constructor. A function of a native DLL is <strong>not</strong> a .NET member until C# declares it. The declaration is called <strong>P/Invoke</strong> (<em>platform invoke</em>): <code>[DllImport("kernel32.dll")]</code> before a method with the same name and the same parameters as the native function.</p>
+<p>So the plan is the one of the tutorial <a href="tut-18-csharp-library.html">A library written in C#</a>: a few lines of C# declare the functions and give them public methods, the generator wraps that library, and Ring calls the methods.</p>
+<div class="callout note"><span class="t">Note</span><p>This lesson uses the DLLs of Windows, so it runs on Windows only (the program says so on another system). Other systems have their own libraries (<code>libc</code>, <code>libm</code>) and the same idea works with their names.</p></div>
+<h2 id="the-steps">The steps<a class="anchor" href="#the-steps">#</a></h2>
+<ol><li><strong>Declare</strong> the functions in C# with <code>[DllImport]</code> and give them public methods.</li><li><strong>Build</strong> the library: <code>dotnet build Native -c Release -o Native/bin</code>.</li><li><strong>Wrap and load</strong> it: <code>wrapassembly.ring</code>, <code>dnLoad</code>, <code>dnImportFrom</code>.</li><li><strong>Use</strong> it: <code>new Win32()</code> and the methods.</li></ol>
+<h2 id="the-c-library">The C# library<a class="anchor" href="#the-c-library">#</a></h2>
+<p>It is in <code>samples/UsingDotNet/tutorials/Native</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/Native/Win32.cs</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">using</span> System;
+<span class="k">using</span> System.Runtime.InteropServices;
+<span class="k">using</span> System.Text;
+
+<span class="k">namespace</span> Tutorial.Native
+{
+    <span class="c">// Ring cannot declare a function of a native DLL, because the bridge calls members that .NET already knows.</span>
+    <span class="c">// C# can: [DllImport] says in which DLL the function is, and the public methods below give the functions to Ring.</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Win32
+    {
+        [<span class="t">DllImport</span>(<span class="s">"kernel32.dll"</span>)]
+        <span class="k">private</span> <span class="k">static</span> extern <span class="k">int</span> <span class="t">MulDiv</span>(<span class="k">int</span> number, <span class="k">int</span> numerator, <span class="k">int</span> denominator);
+
+        [<span class="t">DllImport</span>(<span class="s">"user32.dll"</span>, <span class="t">CharSet</span> = CharSet.Unicode)]
+        <span class="k">private</span> <span class="k">static</span> extern <span class="t">IntPtr</span> <span class="t">CharUpperW</span>(<span class="t">IntPtr</span> text);
+
+        [<span class="t">DllImport</span>(<span class="s">"user32.dll"</span>)]
+        <span class="k">private</span> <span class="k">static</span> extern <span class="k">int</span> <span class="t">GetSystemMetrics</span>(<span class="k">int</span> index);
+
+        [<span class="t">DllImport</span>(<span class="s">"kernel32.dll"</span>, <span class="t">CharSet</span> = CharSet.Unicode, <span class="t">SetLastError</span> = <span class="k">true</span>)]
+        <span class="k">private</span> <span class="k">static</span> extern uint <span class="t">GetEnvironmentVariableW</span>(<span class="k">string</span> name, <span class="t">StringBuilder</span> buffer, uint size);
+
+        [<span class="t">StructLayout</span>(LayoutKind.Sequential)]
+        <span class="k">private</span> <span class="k">struct</span> MemoryStatus
+        {
+            <span class="k">public</span> uint Length;
+            <span class="k">public</span> uint MemoryLoad;
+            <span class="k">public</span> ulong TotalPhysical;
+            <span class="k">public</span> ulong AvailablePhysical;
+            <span class="k">public</span> ulong TotalPageFile;
+            <span class="k">public</span> ulong AvailablePageFile;
+            <span class="k">public</span> ulong TotalVirtual;
+            <span class="k">public</span> ulong AvailableVirtual;
+            <span class="k">public</span> ulong AvailableExtendedVirtual;
+        }
+
+        [<span class="t">DllImport</span>(<span class="s">"kernel32.dll"</span>, <span class="t">SetLastError</span> = <span class="k">true</span>)]
+        [<span class="k">return</span>: <span class="t">MarshalAs</span>(UnmanagedType.Bool)]
+        <span class="k">private</span> <span class="k">static</span> extern <span class="k">bool</span> <span class="t">GlobalMemoryStatusEx</span>(<span class="k">ref</span> <span class="t">MemoryStatus</span> status);
+
+        <span class="c">// numbers in, a number out: (number * numerator) / denominator, rounded</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Scale</span>(<span class="k">int</span> number, <span class="k">int</span> numerator, <span class="k">int</span> denominator)
+        {
+            <span class="k">return</span> <span class="t">MulDiv</span>(number, numerator, denominator);
+        }
+
+        <span class="c">// a text in, a text out: the function changes the text itself, so it gets a copy in native memory</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">UpperCase</span>(<span class="k">string</span> text)
+        {
+            <span class="t">IntPtr</span> copy = Marshal.<span class="f">StringToHGlobalUni</span>(text);
+            <span class="k">try</span>
+            {
+                <span class="t">CharUpperW</span>(copy);
+                <span class="k">return</span> Marshal.<span class="f">PtrToStringUni</span>(copy);
+            }
+            <span class="k">finally</span>
+            {
+                Marshal.<span class="f">FreeHGlobal</span>(copy);
+            }
+        }
+
+        <span class="c">// 0 is the width of the screen in pixels, 1 is the height</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">ScreenSize</span>(<span class="k">int</span> which)
+        {
+            <span class="k">return</span> <span class="t">GetSystemMetrics</span>(which);
+        }
+
+        <span class="c">// a function that fills a buffer: the text of an environment variable, or "" when there is none</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Variable</span>(<span class="k">string</span> name)
+        {
+            <span class="t">StringBuilder</span> buffer = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="n">32768</span>);
+            uint length = <span class="t">GetEnvironmentVariableW</span>(name, buffer, (uint)buffer.Capacity);
+            <span class="k">return</span> length == <span class="n">0</span> ? <span class="s">""</span> : buffer.<span class="f">ToString</span>();
+        }
+
+        <span class="c">// a function that fills a structure: the physical memory of the computer in megabytes</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">long</span> <span class="t">MemoryMegabytes</span>()
+        {
+            <span class="t">MemoryStatus</span> status = <span class="k">new</span> <span class="t">MemoryStatus</span>();
+            status.Length = (uint)Marshal.<span class="f">SizeOf</span>(typeof(MemoryStatus));
+            <span class="k">if</span> (!<span class="t">GlobalMemoryStatusEx</span>(<span class="k">ref</span> status))
+                <span class="k">throw</span> <span class="k">new</span> <span class="t">System</span>.ComponentModel.<span class="f">Win32Exception</span>(Marshal.<span class="f">GetLastWin32Error</span>());
+            <span class="k">return</span> (<span class="k">long</span>)(status.TotalPhysical / (<span class="n">1024</span> * <span class="n">1024</span>));
+        }
+    }
+}</code></pre></div>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/Native/Native.csproj</span><button class="copy" type="button">Copy</button></div><pre><code>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+    &lt;AssemblyName&gt;Native&lt;/AssemblyName&gt;
+    &lt;DebugType&gt;none&lt;/DebugType&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre></div>
+<h2 id="the-ring-program">The Ring program<a class="anchor" href="#the-ring-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_native.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a function of a native DLL (Windows API) - a small C# library with [DllImport] gives it to Ring, and Ring uses it like any other class</span>
+<span class="c">#   (the library is in the folder Native: Win32.cs and Native.csproj)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+<span class="k">if</span> <span class="k">not</span> iswindows()
+	? <span class="s">"The functions of this lesson are in the DLLs of Windows (kernel32 and user32), so it runs on Windows only."</span>
+	<span class="k">bye</span>
+<span class="k">ok</span>
+
+cHere = currentdir()
+cDll = cHere + <span class="s">"/Native/bin/Native.dll"</span>
+cClasses = cHere + <span class="s">"/Native/classes"</span>
+
+<span class="c"># STEP 1. Build the C# library (the .NET SDK is needed for this step only)</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cDll)
+	? <span class="s">"building the library..."</span>
+	system(<span class="s">"dotnet build Native -c Release -o Native/bin -nologo -v q &gt; nul"</span>)
+<span class="k">ok</span>
+
+<span class="c"># STEP 2. Make Ring classes for it (tools/dotnettools/wrapassembly.ring)</span>
+chdir(<span class="s">"../../../tools/dotnettools"</span>)
+system(exefilename() + <span class="s">" wrapassembly.ring "</span> + cDll + <span class="s">" "</span> + cClasses + <span class="s">" &gt; nul"</span>)
+chdir(cHere)
+
+<span class="c"># STEP 3. Load the assembly and the classes</span>
+<span class="f">dnLoad</span>(cDll)
+<span class="f">dnImportFrom</span>(cClasses + <span class="s">"/"</span>,<span class="s">"Tutorial.Native"</span>)
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># STEP 4. Use the class. Win32 is a static class, and a static method is called on an object, as with Math.</span>
+	oWin = <span class="k">new</span> <span class="t">Win32</span>()
+
+	<span class="c"># numbers in, a number out: kernel32.MulDiv(10, 3, 4) is 10 * 3 / 4 rounded</span>
+	? <span class="s">"Scale(10,3,4)             : "</span> + oWin.<span class="f">Scale</span>(<span class="n">10</span>,<span class="n">3</span>,<span class="n">4</span>)
+
+	<span class="c"># a text that the function changes in place</span>
+	? <span class="s">"UpperCase('ring')         : "</span> + oWin.<span class="f">UpperCase</span>(<span class="s">"ring"</span>)
+
+	<span class="c"># a function that fills a buffer with a text</span>
+	cPath = oWin.<span class="f">Variable</span>(<span class="s">"PATH"</span>)
+	? <span class="s">"the PATH is not empty     : "</span> + (len(cPath) &gt; <span class="n">0</span>)
+	? <span class="s">"a missing variable is ''  : ["</span> + oWin.<span class="f">Variable</span>(<span class="s">"NO_SUCH_VARIABLE_FOR_THE_TUTORIAL"</span>) + <span class="s">"]"</span>
+
+	<span class="c"># a function that fills a structure</span>
+	? <span class="s">"the computer has more than 1 GB of memory : "</span> + (oWin.<span class="f">MemoryMegabytes</span>() &gt; <span class="n">1024</span>)
+
+	<span class="c"># a number from the system (a yes/no is 1 or 0 in Ring)</span>
+	? <span class="s">"the screen is wider than 0 : "</span> + (oWin.<span class="f">ScreenSize</span>(<span class="n">0</span>) &gt; <span class="n">0</span>)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Scale(10,3,4)             : 8
+UpperCase('ring')         : RING
+the PATH is not empty     : 1
+a missing variable is ''  : []
+the computer has more than 1 GB of memory : 1
+the screen is wider than 0 : 1</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="declaring-a-function">Declaring a function<a class="anchor" href="#declaring-a-function">#</a></h3>
+<p>The documentation of a Windows function shows its C signature, for example <code>int MulDiv(int nNumber, int nNumerator, int nDenominator)</code> in <code>kernel32.dll</code>. The C# declaration repeats it with <code>static extern</code>. The names of the parameters do not matter, the <strong>order and the types</strong> do. Here the Windows types become C# types like this:</p>
+<div class="tablewrap"><table><thead><tr><th>In C (Windows)</th><th>In C#</th><th>In Ring</th></tr></thead><tbody><tr><td><code>int</code>, <code>DWORD</code>, <code>long</code></td><td><code>int</code>, <code>uint</code>, <code>int</code></td><td>a number</td></tr><tr><td><code>ULONGLONG</code>, <code>QWORD</code></td><td><code>ulong</code></td><td>a number</td></tr><tr><td><code>BOOL</code></td><td><code>bool</code> with <code>[return: MarshalAs(UnmanagedType.Bool)]</code></td><td>1 or 0</td></tr><tr><td><code>LPCWSTR</code> (a text that is only read)</td><td><code>string</code>, with <code>CharSet = CharSet.Unicode</code></td><td>a text</td></tr><tr><td><code>LPWSTR</code> (a buffer that the function fills)</td><td><code>StringBuilder</code> with a capacity</td><td>a text</td></tr><tr><td>a pointer to a structure</td><td>a <code>struct</code> with <code>[StructLayout]</code>, passed with <code>ref</code></td><td>–</td></tr><tr><td><code>HANDLE</code>, <code>HWND</code>, any pointer</td><td><code>IntPtr</code></td><td>not given to Ring (keep it inside C#)</td></tr></tbody></table></div>
+<p>Windows has two versions of a function that takes a text: <code>GetEnvironmentVariableA</code> for old 8-bit text and <code>GetEnvironmentVariableW</code> for Unicode (<em>wide</em>). Name the <strong>W</strong> version and use <code>CharSet.Unicode</code>.</p>
+<h3 id="what-ring-sees">What Ring sees<a class="anchor" href="#what-ring-sees">#</a></h3>
+<p>Ring never sees a pointer or a structure here: the public methods of <code>Win32</code> take and return <strong>numbers and texts</strong>, and everything else stays in C#. That is the rule to follow for your own library, because a method with simple types is the easiest to wrap and to call. (The bridge can pass an address, a buffer or a <code>Span&lt;T&gt;</code> to a method that takes one, see <a href="advanced-types.html">Advanced .NET types</a>; a small C# layer is still the simplest way to use a native library.)</p>
+<ul><li><code>Scale(10,3,4)</code> passes three numbers and gets one.</li><li><code>UpperCase</code> shows a function that <strong>changes</strong> its text. Windows writes into the memory that it gets, so C# makes a copy in native memory (<code>Marshal.StringToHGlobalUni</code>), calls the function, reads the result back and frees the copy.</li><li><code>Variable</code> shows a <strong>buffer</strong>: the function writes the text into a <code>StringBuilder</code> that has room, and returns the length (0 when the variable does not exist).</li><li><code>MemoryMegabytes</code> shows a <strong>structure</strong>: the function fills a <code>MemoryStatus</code>, and C# has set its <code>Length</code> first, which that function requires. The documentation of every function that takes a structure says which field must be set.</li></ul>
+<h3 id="when-the-call-fails">When the call fails<a class="anchor" href="#when-the-call-fails">#</a></h3>
+<p>A native function reports an error with a return value: <code>0</code> or <code>false</code>. The details are kept by Windows, and <code>SetLastError = true</code> in <code>[DllImport]</code> tells .NET to remember them. <code>Marshal.GetLastWin32Error()</code> reads the number, and <code>new Win32Exception(number)</code> makes an exception with the text of Windows for it. <code>MemoryMegabytes</code> does this. Ring then catches it like every other .NET error (the tutorial <a href="tut-07-errors.html">When things go wrong</a>).</p>
+<h3 id="some-rules">Some rules<a class="anchor" href="#some-rules">#</a></h3>
+<ul><li><strong>Check the signature twice.</strong> A wrong type does not give a message: a native function that gets the wrong kind of value may return nonsense, or stop the program. Copy the declaration from the documentation of the function (<a href="https://www.pinvoke.net">pinvoke.net</a> has many).</li><li><strong>The bit size matters.</strong> A 64-bit program needs 64-bit DLLs, and <code>IntPtr</code> has the size of a pointer. Use <code>long</code> and <code>IntPtr</code> where the documentation says a handle or a size.</li><li><strong>Free what you allocate.</strong> Memory from <code>Marshal.AllocHGlobal</code> or <code>StringToHGlobalUni</code> is not managed: a <code>try ... finally</code> frees it, as <code>UpperCase</code> does.</li><li><strong>Keep native things in C#.</strong> A callback that native code makes (for example <code>EnumWindows</code>) must be a .NET delegate. Give it to the library, collect the answers there, and return a list or a text to Ring.</li></ul>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a native function needs a C# declaration, <code>[DllImport]</code>, before Ring can use it,</li><li>the public methods of the library use numbers and texts, and C# does the marshalling,</li><li>buffers and structures are filled inside C#,</li><li><code>SetLastError</code> and <code>Win32Exception</code> bring the error of the system to Ring.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Declare <code>GetTickCount64</code> in <code>kernel32.dll</code> (it returns a <code>ulong</code>), give it a public method <code>UptimeSeconds()</code> and print how long the computer has been running.</li><li>Use <code>GetSystemMetrics(1)</code> to print the height of the screen, and <code>GetSystemMetrics(80)</code> for the number of monitors.</li><li>Declare <code>CharLowerW</code> the same way as <code>CharUpperW</code>, and write <code>SwapCase</code> in C# that uses both on one letter at a time.</li><li>Call <code>MulDiv</code> with 0 as the denominator. What does it return? Look the answer up in the documentation of the function.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a></p>
+<div class="pager"><a href="tut-164-sound.html"><small>Previous</small>Sound</a><a class="next" href="tut-171-csv-to-excel.html"><small>Next</small>A project: from CSV to Excel</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

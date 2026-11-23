@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced .NET types · RingDotNet</title>
+<meta name="description" content="Generic types and methods, nested types, operators, spans, ref structs, pointers and asynchronous streams — the parts of .NET that are not plain classes with plain methods.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html" class="cur">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Advanced .NET types</h1><p class="lead">Generic types and methods, nested types, operators, spans, ref structs, pointers and asynchronous streams — the parts of .NET that are not plain classes with plain methods.</p>
+<p>The <a href="concepts.html">core concepts</a> cover classes, methods, properties, enums and errors. This page is for the types that need a little more: each section says what Ring gives and what it gets back. Most programs never need them; they are here for the libraries that do (a serializer with <code>Deserialize&lt;T&gt;</code>, a date library with operators, a byte-level API with <code>Span&lt;T&gt;</code>).</p>
+<h2 id="generic-types">Generic types<a class="anchor" href="#generic-types">#</a></h2>
+<p>A generic type also has a Ring class: the class of its definition (<code>List</code>, <code>Dictionary</code>, <code>HashSet</code>, <code>SortedSet</code>...). Its objects are made with the type arguments in the named list, together with the constructor parameters if there are any, and the same class wraps every closed type of the definition that .NET gives back (a <code>Dictionary&lt;string, int&gt;</code> returned by a method is a <code>Dictionary</code>). When another type has the name already (<code>Queue</code> and <code>Stack</code> of <code>System.Collections</code>), the name of the generic one ends with the number of its type arguments.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnImport</span>(<span class="s">"System.Collections.Generic"</span>)
+oNumbers = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
+oNumbers.<span class="f">Add</span>(<span class="n">4</span>)
+oNumbers.<span class="f">Add</span>(<span class="n">4</span>)
+? oNumbers.Count    <span class="c"># 1</span>
+oScores = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>], :capacity = <span class="n">10</span> ])</code></pre></div>
+<p>A generic type that no simple type closes (<code>TAssertions : Assertions&lt;TAssertions&gt;</code>, <code>T : struct, Enum</code>) has its class too, made from the open definition; the objects are made the same way, with real type arguments.</p>
+<p>The members have the type argument as <code>object</code>, so Ring values go in and out as they are; the static members of a generic type need a closed type and are not in the class (use <code>dnNewGeneric</code>, <code>callMethod</code> on <code>dnType</code> with the closed name).</p>
+<h2 id="generic-methods">Generic methods<a class="anchor" href="#generic-methods">#</a></h2>
+<p>Generic <strong>methods</strong> work too (the bridge infers the type arguments from the values), which is what makes LINQ possible.</p>
+<p>When a type argument appears only in the result (<code>JsonSerializer.Deserialize&lt;T&gt;(json)</code>), the values cannot tell it, so you give it: in the named form with <code>:typeArguments</code>, a list of type names, or with <code>callGeneric</code> on a type object (<code>dnType</code>) or on an object that wraps an instance.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnImport</span>(<span class="s">"System.Text.Json"</span>)
+oJson = <span class="k">new</span> <span class="t">JsonSerializer</span>()
+oTags = oJson.<span class="f">Deserialize</span>([ :typeArguments = [<span class="s">"System.Collections.Generic.List`1[[System.String]]"</span>], :json = <span class="s">'["a","b"]'</span> ])
+? oTags.Count    <span class="c"># 2</span>
+oType = <span class="f">dnType</span>(<span class="s">"System.Text.Json.JsonSerializer"</span>)
+oTags = oType.<span class="f">callGeneric</span>(<span class="s">"Deserialize"</span>,[<span class="s">"System.Collections.Generic.List`1[[System.String]]"</span>],[<span class="s">'["a","b"]'</span>])
+? oTags.Count    <span class="c"># 2</span></code></pre></div>
+<h2 id="nested-types">Nested types<a class="anchor" href="#nested-types">#</a></h2>
+<p>A nested type has a class too, named after the types around it: <code>SqlMapper.GridReader</code> of Dapper is <code>SqlMapperGridReader</code>, <code>Control.ControlCollection</code> of Windows Forms is <code>ControlCollection</code> (its name in the manifest).</p>
+<h2 id="exceptions-and-attributes">Exceptions and attributes<a class="anchor" href="#exceptions-and-attributes">#</a></h2>
+<p>Exceptions and attributes have classes too: an exception that .NET gives back (<code>oError.InnerException</code>, the <code>Exception</code> of a task) is wrapped by the class of its type (<code>ArgumentException</code>, <code>AggregateException</code>) with its properties and methods. A .NET error that a call raises is still a Ring error with the message; the class is for the exception <em>objects</em>. Only the types marked obsolete are left out.</p>
+<h2 id="operators-and-conversions">Operators and conversions<a class="anchor" href="#operators-and-conversions">#</a></h2>
+<p>The operators of a .NET type work in Ring: a class with <code>op_Addition</code>, <code>op_Equality</code>, <code>op_LessThan</code> and the like gets the Ring <code>operator</code> method, so <code>+ - * / % = != &lt; &gt; &lt;= &gt;= &amp; | ^ &lt;&lt; &gt;&gt;</code> and the unary minus call them. The object may come on either side (<code>5 + oBig</code>); when the type has no <code>op_Equality</code> or <code>op_LessThan</code>, <code>=</code> uses <code>Equals</code> and <code>&lt;</code> uses <code>IComparable</code> or <code>IComparable&lt;T&gt;</code> (a type that only has <code>CompareTo</code> gets the operators <code>&lt; &gt; &lt;= &gt;=</code>). A cast of C# is <code>convertTo</code>.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnImport</span>(<span class="s">"System"</span>)
+<span class="f">dnImport</span>(<span class="s">"System.Numerics"</span>)
+oOneHour = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromHours</span>(<span class="n">1</span>)
+oHalfHour = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMinutes</span>(<span class="n">30</span>)
+oSum = oOneHour + oHalfHour          <span class="c"># TimeSpan + TimeSpan</span>
+? oSum.TotalMinutes                    <span class="c"># 90</span>
+? oOneHour &gt; oHalfHour               <span class="c"># 1</span>
+oBig = <span class="k">new</span> <span class="t">BigInteger</span>().<span class="f">Parse</span>(<span class="s">"42"</span>)
+? oBig.<span class="f">convertTo</span>(<span class="s">"System.Int64"</span>)     <span class="c"># the explicit conversion of BigInteger</span></code></pre></div>
+<h2 id="indexers-with-several-indexes">Indexers with several indexes<a class="anchor" href="#indexers-with-several-indexes">#</a></h2>
+<p>An indexer with several indexes (<code>matrix[row, column]</code>) takes the indexes as a list: <code>oMatrix.Item([1,2])</code> reads and <code>oMatrix.SetItem([1,2],4.5)</code> writes. A type that has a one-index indexer too keeps its plain form: <code>Item(1)</code>.</p>
+<h2 id="delegate-types-with-extension-methods">Delegate types with extension methods<a class="anchor" href="#delegate-types-with-extension-methods">#</a></h2>
+<p>A delegate is a callback in Ring (<code>dnCallback</code>) and has no class of its own. A delegate type that extension methods extend does have one, as a library of parser combinators does (<code>Parser&lt;T&gt;</code> of Sprache): an object of that type has the extension methods as its methods, and <code>Invoke</code> calls the delegate itself.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the Sprache package, wrapped as in "Your own assemblies" and loaded with dnLoad and dnImportFrom</span>
+oDigits = <span class="f">dnStatic</span>(<span class="s">"Sprache.Parse"</span>,<span class="s">"Digit"</span>,[]).<span class="f">AtLeastOnce</span>().<span class="f">Text</span>()
+? oDigits.<span class="f">Parse</span>(<span class="s">"12345"</span>)           <span class="c"># 12345</span></code></pre></div>
+<h2 id="spans">Spans<a class="anchor" href="#spans">#</a></h2>
+<p>A parameter of type <code>Span&lt;T&gt;</code> or <code>ReadOnlySpan&lt;T&gt;</code> takes what Ring has for an array: a text (<code>char</code>), a byte string or a list (<code>byte</code>, numbers), or an object that is an array. A <code>Span&lt;T&gt;</code> that the method fills takes a number, the size of a new buffer, or a buffer you made; the filled buffer is part of the answer, after the result and the <code>out</code> values (a list of bytes is a byte string, a list of chars a text).</p>
+<p>A <code>Span&lt;T&gt;</code> that comes back is an array (a text for <code>char</code>, a byte string for <code>byte</code>), and a span passed by reference (<code>ref</code> or <code>out</code>) is read from the array you give and answered as an array, after the result.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnImport</span>(<span class="s">"System"</span>)
+aResult = <span class="f">dnStatic</span>(<span class="s">"System.Convert"</span>,<span class="s">"TryToBase64Chars"</span>,[<span class="s">"Ring"</span>,<span class="n">16</span>])   <span class="c"># [done, chars, number of chars]</span>
+? left(aResult[<span class="n">2</span>],aResult[<span class="n">3</span>])                                          <span class="c"># UmluZw==</span></code></pre></div>
+<h2 id="ref-structs">Ref structs<a class="anchor" href="#ref-structs">#</a></h2>
+<p>A constructor can take a <code>Span&lt;T&gt;</code> or a ref struct the same way (<code>new Message("hello",3)</code>). A ref struct of a library (<code>MessagePackWriter</code>, <code>Utf8JsonReader</code>, a parser cursor) cannot be held by Ring, so the bridge makes it for the call from one value, with its public <code>op_Implicit</code>, a constructor whose first parameter takes it, or a static factory with one value (<code>FromString</code>, <code>Create...</code>, <code>Parse...</code>, <code>Wrap...</code>) (a text, bytes, an object such as an <code>IBufferWriter</code>); what the method does to the struct is lost, and a ref struct that has no such value, or that is only an <code>out</code> parameter, is still out of reach.</p>
+<p>A ref struct that a method <strong>returns</strong> cannot be held by Ring either, so the bridge reads it in one go and answers what it holds: an <strong>array</strong> when it has a <code>ToArray</code> method, a <strong>list of its items</strong> when it is an enumerator or has <code>GetEnumerator</code> (<code>foreach</code>: <code>EnumerateLines</code>, <code>EnumerateCodePoints</code>; an item that is a span is a text or an array), or a <strong>text</strong> when it has one method without parameters that returns a string (<code>ToString</code>, <code>utf8_to_string</code>). A struct that only holds values (a buffer lease with <code>Length</code>, <code>Data</code>, <code>Flags</code>) is answered as its <strong>properties</strong>, a list of <code>[name, value]</code> pairs (<code>aLease["Length"]</code>; a span property is an array or a text). A ref struct that has <code>Dispose()</code> is disposed after it was read, like <code>foreach</code> does. A result that is a reference to a ref struct (<code>ref readonly TensorSpan&lt;T&gt;</code>) is read the same way.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>aLines = <span class="f">dnStatic</span>(<span class="s">"System.MemoryExtensions"</span>,<span class="s">"EnumerateLines"</span>,[<span class="s">"one"</span> + nl + <span class="s">"two"</span>])
+? len(aLines)      <span class="c"># 2</span>
+? aLines[<span class="n">2</span>]        <span class="c"># two</span></code></pre></div>
+<h2 id="properties-fields-and-references">Properties, fields and references<a class="anchor" href="#properties-fields-and-references">#</a></h2>
+<p>A property (or field) of those types is read the same way: a <code>Span</code> property is an array (a text for <code>char</code>), a ref struct property is read like a ref struct result, a pointer is its address, and a <code>ref</code> property is its value (<code>oMemory.Span</code>, <code>oStream.PositionPointer</code>). These properties are read-only in Ring. A method that returns by reference (<code>ref int Number(int i)</code>) answers the value too; Ring cannot write through the reference.</p>
+<h2 id="pointers">Pointers<a class="anchor" href="#pointers">#</a></h2>
+<p>A pointer parameter (<code>byte*</code>, <code>char*</code>, <code>void*</code>, <code>int*</code>) takes an address or a buffer. A <strong>number</strong> is the address (from <code>NativeMemory.Alloc</code>, <code>Marshal.AllocHGlobal</code>, a native library); a <strong>text</strong>, a <strong>byte string</strong>, a <strong>list</strong> of numbers or a <strong>ByteBuffer</strong> is a buffer that is pinned for the call, so the method can read it (a text and a byte string end with a zero, for C strings) and a ByteBuffer is the live array that the method may fill. The address of a buffer is valid during the call only: a method that keeps the pointer needs memory that you allocate. A pointer that a method returns is its address, a number.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="f">dnImport</span>(<span class="s">"System"</span>)
+nMemory = <span class="f">dnStatic</span>(<span class="s">"System.Runtime.InteropServices.NativeMemory"</span>,<span class="s">"Alloc"</span>,[<span class="n">16</span>])      <span class="c"># a void*: a number</span>
+<span class="f">dnStatic</span>(<span class="s">"System.Buffer"</span>,<span class="s">"MemoryCopy"</span>,[<span class="s">"hello"</span>,nMemory,<span class="n">16</span>,<span class="n">5</span>])                        <span class="c"># the text is the source buffer</span>
+? <span class="f">dnStatic</span>(<span class="s">"System.Runtime.InteropServices.Marshal"</span>,<span class="s">"PtrToStringAnsi"</span>,[nMemory,<span class="n">5</span>])   <span class="c"># hello</span>
+<span class="f">dnStatic</span>(<span class="s">"System.Runtime.InteropServices.NativeMemory"</span>,<span class="s">"Free"</span>,[nMemory])</code></pre></div>
+<h2 id="asynchronous-streams">Asynchronous streams<a class="anchor" href="#asynchronous-streams">#</a></h2>
+<p>Ring has no <code>await foreach</code>, so an <code>IAsyncEnumerable&lt;T&gt;</code> that a method returns is read in one of two ways. <code>toList()</code> waits for every item and gives a Ring list; <code>asyncEnumerator()</code> gives the enumerator, <code>asyncNext()</code> waits for the next item (true while there is one), <code>Current</code> is the item and <code>asyncDispose()</code> ends the enumerator, which is the way to read a long or endless stream one item at a time.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a channel of numbers: ReadAllAsync() returns an IAsyncEnumerable&lt;int&gt;</span>
+oChannel = <span class="f">dnType</span>(<span class="s">"System.Threading.Channels.Channel"</span>).<span class="f">callGeneric</span>(<span class="s">"CreateUnbounded"</span>,[<span class="s">"System.Int32"</span>],[])
+oWriter = oChannel.<span class="f">getProp</span>(<span class="s">"Writer"</span>)
+<span class="k">for</span> n = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
+	oWriter.<span class="f">callMethod</span>(<span class="s">"TryWrite"</span>,[n * <span class="n">10</span>])
+<span class="k">next</span>
+oWriter.<span class="f">callMethod</span>(<span class="s">"TryComplete"</span>,[])
+oStream = oChannel.<span class="f">getProp</span>(<span class="s">"Reader"</span>).<span class="f">callMethod</span>(<span class="s">"ReadAllAsync"</span>,[])
+
+oEnum = oStream.<span class="f">asyncEnumerator</span>()
+<span class="k">while</span> oEnum.<span class="f">asyncNext</span>()
+	? oEnum.Current                 <span class="c"># 10, 20, 30</span>
+<span class="k">end</span>
+oEnum.<span class="f">asyncDispose</span>()</code></pre></div>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="concepts.html">Core concepts</a>: the names, overloads, properties and enums that every program uses.</li><li><a href="collections-linq.html">Collections &amp; LINQ</a>: the generic collections, and the generic methods of LINQ.</li><li><a href="generator.html">The generator</a>: how the classes are made, and the audit that counts what Ring can and cannot use.</li><li><a href="rules-and-limits.html">Rules and limits</a>: read it before a long program.</li></ul>
+<div class="pager"><a href="concepts.html"><small>Previous</small>Core concepts</a><a class="next" href="core-api.html"><small>Next</small>Core functions</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

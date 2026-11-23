@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text to speech · RingDotNet</title>
+<meta name="description" content="Windows has voices that read a text aloud. The System.Speech package from nuget.org gives them to a program. This lesson lists the voices, writes speech to a WAV file without any sound, compares speeds, and speaks aloud on request. It also shows what to do with a package that has a different DLL for each system.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html" class="cur">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Text to speech</h1><p class="lead">Windows has voices that read a text aloud. The System.Speech package from nuget.org gives them to a program. This lesson lists the voices, writes speech to a WAV file without any sound, compares speeds, and speaks aloud on request. It also shows what to do with a package that has a different DLL for each system.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>how to use the voices of Windows from Ring,</li><li>writing speech to a <strong>file</strong>, which can be tested without sound,</li><li>the rate of a voice,</li><li>a package with a <strong>different DLL for each system</strong>, and the project setting that picks the right one.</li></ul>
+<div class="callout note"><span class="t">Note</span><p>This lesson runs on Windows only. The voices are part of Windows, and the program says so on another system. (Linux and macOS have their own speech programs, which a Ring program can start as a command, as in the lesson <a href="tut-85-feed-programs.html">Working with other programs</a>.)</p></div>
+<h2 id="a-package-with-a-dll-for-each-system">A package with a DLL for each system<a class="anchor" href="#a-package-with-a-dll-for-each-system">#</a></h2>
+<p>The package <code>System.Speech</code> has the same name and the same classes on every system, but only on Windows does it do anything. A package like that contains an <strong>empty</strong> DLL for general use and the <strong>real</strong> one in a folder for Windows. A plain <code>dotnet publish</code> copies the empty one, and the first call stops with <em>Speech is not supported on this platform</em>. The project file therefore says which system the output is for:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/Speech/Speech.csproj</span><button class="copy" type="button">Copy</button></div><pre><code>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+    &lt;AssemblyName&gt;Speech&lt;/AssemblyName&gt;
+    &lt;DebugType&gt;none&lt;/DebugType&gt;
+    &lt;RuntimeIdentifier&gt;win-x64&lt;/RuntimeIdentifier&gt;
+    &lt;SelfContained&gt;false&lt;/SelfContained&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="System.Speech" Version="9.0.0" /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;</code></pre></div>
+<p><code>RuntimeIdentifier</code> <code>win-x64</code> makes <code>dotnet publish</code> take the files for Windows, 64-bit, and <code>SelfContained</code> <code>false</code> keeps the output small, because the program uses the .NET that is already installed. Use the same setting for any package that is meant for one system.</p>
+<h2 id="the-steps">The steps<a class="anchor" href="#the-steps">#</a></h2>
+<p>The steps are the ones of the lessons on packages (<a href="tut-162-nuget.html">A NuGet package</a> and the lessons after it): a project file, <code>dotnet publish</code>, <code>wrapassembly.ring</code> (only the namespace <code>System.Speech.Synthesis</code>), then <code>dnLoad</code> and <code>dnImportFrom</code>.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_speech.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># text to speech - System.Speech (a package from nuget.org) makes a voice of Windows speak, or writes the speech to a WAV file</span>
+<span class="c">#   (the project is in the folder Speech: Speech.csproj names the package for Windows, and Empty.cs is the one source file a project needs)</span>
+<span class="c">#   Run it with --speak to hear the voice; without it the program writes the speech to a file, silently.</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"System.IO"</span> }
+
+<span class="k">if</span> <span class="k">not</span> iswindows()
+	? <span class="s">"The voices are part of Windows, so this lesson runs on Windows only."</span>
+	<span class="k">bye</span>
+<span class="k">ok</span>
+
+cHere = currentdir()
+cDll = cHere + <span class="s">"/Speech/libs/System.Speech.dll"</span>
+cClasses = cHere + <span class="s">"/Speech/classes"</span>
+
+<span class="c"># STEP 1. Get the package (nuget.org the first time) with dotnet publish. The project says RuntimeIdentifier win-x64: the package has an</span>
+<span class="c"># empty version of the DLL for every system, and the real one only for Windows, which a publish for Windows puts in the folder.</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cDll)
+	? <span class="s">"getting the package..."</span>
+	system(<span class="s">"dotnet publish Speech -c Release -o Speech/libs -nologo -v q &gt; nul"</span>)
+<span class="k">ok</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cDll)
+	? <span class="s">"The package could not be restored. It is downloaded from nuget.org the first time, so the computer needs the internet once."</span>
+	<span class="k">bye</span>
+<span class="k">ok</span>
+
+<span class="c"># STEP 2. Make Ring classes for the namespace that makes speech</span>
+chdir(<span class="s">"../../../tools/dotnettools"</span>)
+system(exefilename() + <span class="s">" wrapassembly.ring "</span> + cDll + <span class="s">" "</span> + cClasses + <span class="s">" System.Speech.Synthesis &gt; nul"</span>)
+chdir(cHere)
+
+<span class="c"># STEP 3. Load the assembly and the classes</span>
+<span class="f">dnLoad</span>(cDll)
+<span class="f">dnImportFrom</span>(cClasses + <span class="s">"/"</span>,<span class="s">"System.Speech.Synthesis"</span>)
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oVoice = <span class="k">new</span> <span class="t">SpeechSynthesizer</span>()
+
+	<span class="c"># 1. The voices that are installed (the names depend on the computer, so the program only counts them)</span>
+	aVoices = oVoice.<span class="f">GetInstalledVoices</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	? <span class="s">"1. installed voices: "</span> + len(aVoices) + <span class="s">", at least one: "</span> + (len(aVoices) &gt; <span class="n">0</span>)
+
+	<span class="c"># 2. Speech goes to a file: SetOutputToWaveFile, then Speak. Rate is from -10 (slow) to 10 (fast): a slower voice needs more time,</span>
+	<span class="c">#    so its file is bigger.</span>
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet-speech.wav"</span>])
+	cText = <span class="s">"Hello from Ring. This sentence is spoken by a voice of Windows."</span>
+	nSizeNormal = speakToFile(oVoice,cText,<span class="n">0</span>,cFile)
+	nSizeSlow = speakToFile(oVoice,cText,-<span class="n">5</span>,cFile)
+	nSizeFast = speakToFile(oVoice,cText,<span class="n">5</span>,cFile)
+	? <span class="s">"2. a WAV file was written: "</span> + (nSizeNormal &gt; <span class="n">10000</span>)
+	? <span class="s">"   the slow voice makes a bigger file than the normal one, and the normal one a bigger file than the fast one: "</span> + (nSizeSlow &gt; nSizeNormal <span class="k">and</span> nSizeNormal &gt; nSizeFast)
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+
+	<span class="c"># 3. To hear it, the output goes back to the speakers: SetOutputToDefaultAudioDevice, and Speak waits until the text is spoken</span>
+	<span class="k">if</span> find(sysargv,<span class="s">"--speak"</span>) &gt; <span class="n">0</span>
+		oVoice.<span class="f">SetOutputToDefaultAudioDevice</span>()
+		oVoice.Rate = <span class="n">0</span>
+		? <span class="s">"3. speaking..."</span>
+		oVoice.<span class="f">Speak</span>(cText)
+	<span class="k">else</span>
+		? <span class="s">"3. (run the program with --speak to hear it)"</span>
+	<span class="k">ok</span>
+	oVoice.<span class="f">Dispose</span>()
+
+<span class="c"># speaks a text to a WAV file with a rate and gives the size of the file</span>
+<span class="k">func</span> <span class="f">speakToFile</span> oVoice, cText, nRate, cFile
+
+	oVoice.Rate = nRate
+	oVoice.<span class="f">SetOutputToWaveFile</span>(cFile)
+	oVoice.<span class="f">Speak</span>(cText)
+	oVoice.<span class="f">SetOutputToNull</span>()          <span class="c"># closes the file</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="t">FileInfo</span>(cFile).Length</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. installed voices: 2, at least one: 1
+2. a WAV file was written: 1
+   the slow voice makes a bigger file than the normal one, and the normal one a bigger file than the fast one: 1
+3. (run the program with --speak to hear it)</code></pre></div>
+<p>Run it with <code>--speak</code> to hear the voice.</p>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-voices">The voices<a class="anchor" href="#the-voices">#</a></h3>
+<p><code>new SpeechSynthesizer()</code> is the speaking voice. <code>GetInstalledVoices(NULL)</code> is a list of the voices of the computer, and <code>toList()</code> copies it into a Ring list. Each item describes one voice (its name, language and gender in <code>VoiceInfo</code>). The names are different on every computer, so the program only counts them. <code>SelectVoice(name)</code> picks one by name.</p>
+<h3 id="speech-to-a-file">Speech to a file<a class="anchor" href="#speech-to-a-file">#</a></h3>
+<p><code>SetOutputToWaveFile(cFile)</code> sends the speech to a WAV file and not to the speakers, and <code>Speak(cText)</code> makes it. That is quiet, so it can be used in a test: the program checks the <strong>size</strong> of the file. To end the file the output is set to nothing, with <code>SetOutputToNull()</code>, so that the file is closed before it is read.</p>
+<p><code>Rate</code> is a number from -10 (slow) to 10 (fast). A slow voice needs more time for the same text, so its WAV file is bigger: that is what the second line of the output tests. The WAV format is explained in the lesson <a href="tut-164-sound.html">Sound</a>, and the file can be played with a <code>SoundPlayer</code>.</p>
+<h3 id="speaking-aloud">Speaking aloud<a class="anchor" href="#speaking-aloud">#</a></h3>
+<p><code>SetOutputToDefaultAudioDevice()</code> sends the speech to the speakers again, and <code>Speak</code> <strong>waits</strong> until the text is spoken. <code>SpeakAsync</code> starts the speech and returns at once, but then the program must stay alive until the voice has finished; the lessons on timers and on tasks show ways to wait. The events of the synthesizer (the end of a sentence, for example) are raised while the speech runs; callbacks into Ring work only during a call from Ring (the lesson <a href="tut-19-callbacks.html">Callbacks and events</a>), so this lesson does not use them.</p>
+<h3 id="before-you-use-it">Before you use it<a class="anchor" href="#before-you-use-it">#</a></h3>
+<ul><li>A voice that is installed on your computer may not be installed on the computer of another person. The default voice always exists.</li><li>The quality is the quality of the voices of Windows: clear, not natural. Online voice services are better, but they need a key, the internet and often money.</li><li>Look at the license of a package before you give a program to others.</li></ul>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>speech is a part of Windows, brought to Ring by a package,</li><li>a package with a DLL for each system needs a project with <code>RuntimeIdentifier</code> for the system,</li><li>speech can be written to a WAV file, which makes it testable without sound,</li><li><code>Rate</code>, <code>Speak</code> and <code>SpeakAsync</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Run the program with <code>--speak</code>, and change the text.</li><li>Select a second voice with <code>SelectVoice</code> (print the names first: <code>aVoices[1].VoiceInfo.Name</code>) and compare how the two sound.</li><li>Write a function that reads the lines of a text file one by one with <code>Speak</code>.</li><li>Write the speech to a WAV file and play it with the program of the lesson <a href="tut-164-sound.html">Sound</a>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-164-sound.html">Sound</a></p>
+<div class="pager"><a href="tut-169-pdf.html"><small>Previous</small>PDF files</a><a class="next" href="tut-164-sound.html"><small>Next</small>Sound</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

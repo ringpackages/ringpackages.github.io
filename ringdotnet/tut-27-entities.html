@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entity objects and migrations · RingDotNet</title>
+<meta name="description" content="Work with the rows of your tables as real objects that EF Core tracks, and change a database that already holds data without losing it.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html" class="cur">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Entity objects and migrations</h1><p class="lead">Work with the rows of your tables as real objects that EF Core tracks, and change a database that already holds data without losing it.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the object style of Entity Framework: <code>RingEntityDb</code>,</li><li>navigation properties and <code>include</code>,</li><li>tracked objects and <code>save()</code>,</li><li>migrations: add columns, tables and indexes to an existing file,</li><li>named, run-once changes with <code>apply</code>.</li></ul>
+<h2 id="two-styles-one-schema">Two styles, one schema<a class="anchor" href="#two-styles-one-schema">#</a></h2>
+<p>The tutorial <a href="tut-17-databases.html">Databases step by step</a> used <code>RingDatabase</code>: a row is a list of <code>[column, value]</code> pairs. <code>RingEntityDb</code> uses the <strong>same schema</strong> but turns each table into a real .NET class. A row is an object; related rows are properties of the object.</p>
+<div class="tablewrap"><table><thead><tr><th></th><th><code>RingDatabase</code></th><th><code>RingEntityDb</code></th></tr></thead><tbody><tr><td>a row</td><td><code>[["Name","Ann"],["Goals",5]]</code></td><td>an object: <code>oPlayer.getProp("Name")</code></td></tr><tr><td>a related row</td><td><code>parent(...)</code>, <code>children(...)</code></td><td><code>oPlayer.getProp("Team")</code>, <code>oTeam.getProp("Players")</code></td></tr><tr><td>changing</td><td><code>update(table, key, values)</code></td><td><code>oPlayer.setProp("Goals",8)</code> then <code>save()</code></td></tr><tr><td>best for</td><td>scripts, quick tools</td><td>programs that work with objects for a while</td></tr></tbody></table></div>
+<h2 id="part-1-objects">Part 1: objects<a class="anchor" href="#part-1-objects">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_entities.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the tutorial "Entity objects and migrations", part 1: entity objects - the rows of a table as real objects with navigation properties</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"RingDotNet.Data"</span> }
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># The schema is the same as with RingDatabase. RingEntityDb turns every table into a .NET class.</span>
+	oDb = <span class="k">new</span> <span class="t">RingEntityDb</span>(<span class="s">"Data Source=:memory:"</span>,[
+		[<span class="s">"Teams"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>,[[<span class="s">"required"</span>,<span class="n">1</span>]]]]],
+		[<span class="s">"Players"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>],[<span class="s">"Goals"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"default"</span>,<span class="n">0</span>]]],[<span class="s">"TeamId"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"references"</span>,<span class="s">"Teams"</span>]]]]]
+	])
+
+	<span class="c"># The generated class has a property for every column, plus navigations that follow the foreign keys</span>
+	cProperties = <span class="s">""</span>
+	<span class="k">for</span> cProperty <span class="k">in</span> oDb.<span class="f">properties</span>(<span class="s">"Players"</span>)
+		cProperties += cProperty + <span class="s">" "</span>
+	<span class="k">next</span>
+	? <span class="s">"Properties of a Player : "</span> + cProperties
+	cProperties = <span class="s">""</span>
+	<span class="k">for</span> cProperty <span class="k">in</span> oDb.<span class="f">properties</span>(<span class="s">"Teams"</span>)
+		cProperties += cProperty + <span class="s">" "</span>
+	<span class="k">next</span>
+	? <span class="s">"Properties of a Team   : "</span> + cProperties
+
+	<span class="c"># STEP 1. Create objects: newEntity gives an empty object; set its properties; add() stores it</span>
+	oRed = oDb.<span class="f">newEntity</span>(<span class="s">"Teams"</span>)
+	oRed.<span class="f">setProp</span>(<span class="s">"Name"</span>,<span class="s">"Red"</span>)
+	oDb.<span class="f">add</span>(oRed)
+	? nl + <span class="s">"STEP 1: the team got its key from the database: Id = "</span> + oRed.<span class="f">getProp</span>(<span class="s">"Id"</span>)
+
+	oAnn = oDb.<span class="f">newEntity</span>(<span class="s">"Players"</span>)
+	oDb.<span class="f">fill</span>(oAnn,[[<span class="s">"Name"</span>,<span class="s">"Ann"</span>],[<span class="s">"Goals"</span>,<span class="n">5</span>]])
+	oAnn.<span class="f">setProp</span>(<span class="s">"Team"</span>,oRed)                       <span class="c"># a navigation property: the foreign key is set for you</span>
+	oDb.<span class="f">add</span>(oAnn)
+	? <span class="s">"        Ann's TeamId   = "</span> + oAnn.<span class="f">getProp</span>(<span class="s">"TeamId"</span>)
+
+	oBob = oDb.<span class="f">newEntity</span>(<span class="s">"Players"</span>)
+	oDb.<span class="f">fill</span>(oBob,[[<span class="s">"Name"</span>,<span class="s">"Bob"</span>],[<span class="s">"Goals"</span>,<span class="n">2</span>],[<span class="s">"TeamId"</span>,<span class="n">1</span>]])    <span class="c"># or set the foreign key directly</span>
+	oDb.<span class="f">add</span>(oBob)
+	? <span class="s">"        players stored : "</span> + oDb.<span class="f">count</span>(<span class="s">"Players"</span>,[])
+
+	<span class="c"># STEP 2. Read objects, with the related object loaded (include)</span>
+	? nl + <span class="s">"STEP 2: players with goals &gt;= 3, with their team:"</span>
+	<span class="k">for</span> oPlayer <span class="k">in</span> oDb.<span class="f">query</span>(<span class="s">"Players"</span>,[ [<span class="s">"where"</span>,[<span class="s">"Goals"</span>,<span class="s">"&gt;="</span>,<span class="n">3</span>]], [<span class="s">"include"</span>,[<span class="s">"Team"</span>]] ])
+		? <span class="s">"        "</span> + oPlayer.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" plays for "</span> + oPlayer.<span class="f">getProp</span>(<span class="s">"Team"</span>).<span class="f">getProp</span>(<span class="s">"Name"</span>)
+	<span class="k">next</span>
+
+	<span class="c"># STEP 3. Objects are TRACKED: change a property, call save(), the change is written</span>
+	oAnn.<span class="f">setProp</span>(<span class="s">"Goals"</span>,<span class="n">8</span>)
+	oDb.<span class="f">save</span>()
+	oDb.<span class="f">discard</span>()                                    <span class="c"># forget the tracked objects, so that the next read comes from the database</span>
+	? nl + <span class="s">"STEP 3: Ann's goals in the database: "</span> + oDb.<span class="f">getValue</span>(oDb.<span class="f">find</span>(<span class="s">"Players"</span>,<span class="n">1</span>),<span class="s">"Goals"</span>)
+
+	<span class="c"># STEP 4. The other direction: a team with its players</span>
+	<span class="k">for</span> oTeam <span class="k">in</span> oDb.<span class="f">query</span>(<span class="s">"Teams"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Players"</span>]] ])
+		? nl + <span class="s">"STEP 4: team "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" has "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Players"</span>).<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" players"</span>
+	<span class="k">next</span>
+
+	<span class="c"># STEP 5. Remove an object</span>
+	oDb.<span class="f">remove</span>(oDb.<span class="f">find</span>(<span class="s">"Players"</span>,<span class="n">2</span>))
+	? <span class="s">"STEP 5: after removing Bob there are "</span> + oDb.<span class="f">count</span>(<span class="s">"Players"</span>,[]) + <span class="s">" player(s)"</span>
+	oDb.<span class="f">close</span>()</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Properties of a Player : Id Name Goals TeamId Team 
+Properties of a Team   : Id Name Players 
+
+STEP 1: the team got its key from the database: Id = 1
+        Ann's TeamId   = 1
+        players stored : 2
+
+STEP 2: players with goals &gt;= 3, with their team:
+        Ann plays for Red
+
+STEP 3: Ann's goals in the database: 8
+
+STEP 4: team Red has 2 players
+STEP 5: after removing Bob there are 1 player(s)</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a few generic functions (<code>getProp</code>, <code>setProp</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h3 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h3>
+<p><strong>Properties.</strong> <code>oDb.properties("Players")</code> lists them: one per column (<code>Id Name Goals TeamId</code>) and one <strong>navigation</strong> (<code>Team</code>), generated from the foreign key <code>TeamId</code>. The team has <code>Players</code>, a collection of its players.</p>
+<p><strong>Create.</strong> <code>newEntity("Teams")</code> gives an empty object, <code>setProp</code> sets a property, <code>add</code> stores it and fills in the key. For a player, <code>oAnn.setProp("Team", oRed)</code> sets the <em>navigation</em>, and EF fills in <code>TeamId</code> itself (<code>1</code>). You can also set <code>TeamId</code> directly.</p>
+<p><strong>Read.</strong> <code>query(table, spec)</code> returns objects. <code>["include",["Team"]]</code> loads the related team in the same query; without it the navigation is empty. Read it with <code>oPlayer.getProp("Team").getProp("Name")</code>.</p>
+<p><strong>Tracked.</strong> EF remembers the objects it gave you. Change one (<code>setProp("Goals",8)</code>) and call <code>save()</code>: EF finds the change and writes only that. <code>discard()</code> forgets the tracked objects, so that the next <code>find</code> reads from the database again — the program uses it to prove that the change really reached the database.</p>
+<p><strong>Collections.</strong> <code>oTeam.getProp("Players")</code> is a .NET collection: <code>getProp("Count")</code> and <code>toList()</code> work on it.</p>
+<h2 id="part-2-migrations">Part 2: migrations<a class="anchor" href="#part-2-migrations">#</a></h2>
+<p>You shipped version 1 of a program. Users have data. In version 2 you need a <code>Phone</code> column and a <code>Notes</code> table. If you only change the schema in the program, the <em>old file still has the old tables</em>: new code meets old data. A <strong>migration</strong> brings the file up to date.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch09_migrations.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the tutorial "Entity objects and migrations", part 2: changing a database that already has data - migrations</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.IO"</span>
+	<span class="s">"RingDotNet.Data"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_migrations.db"</span>])
+	<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+		<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+	<span class="k">ok</span>
+	cConnection = <span class="s">"Data Source="</span> + cFile
+
+	<span class="c"># VERSION 1 of the program: a table of contacts with a name</span>
+	oDb = <span class="k">new</span> <span class="t">RingDatabase</span>(cConnection,[
+		[<span class="s">"Contacts"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>]]]
+	])
+	oDb.<span class="f">insert</span>(<span class="s">"Contacts"</span>,[[<span class="s">"Name"</span>,<span class="s">"Ann"</span>]])
+	oDb.<span class="f">insert</span>(<span class="s">"Contacts"</span>,[[<span class="s">"Name"</span>,<span class="s">"Bob"</span>]])
+	? <span class="s">"VERSION 1: "</span> + oDb.<span class="f">count</span>(<span class="s">"Contacts"</span>) + <span class="s">" contacts stored in the file"</span>
+	oDb.<span class="f">close</span>()
+
+	<span class="c"># VERSION 2: you want a Phone column, a Notes table, and an index on Name.</span>
+	<span class="c"># Opening the OLD file with the NEW schema is not enough: the file still has the old tables.</span>
+	oDb = <span class="k">new</span> <span class="t">RingDatabase</span>(cConnection,[
+		[<span class="s">"Contacts"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Name"</span>,<span class="s">"string"</span>,<span class="n">0</span>,[[<span class="s">"index"</span>,<span class="n">1</span>]]],[<span class="s">"Phone"</span>,<span class="s">"string"</span>,<span class="n">0</span>],[<span class="s">"Level"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"default"</span>,<span class="n">1</span>]]]]],
+		[<span class="s">"Notes"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Text"</span>,<span class="s">"string"</span>,<span class="n">0</span>],[<span class="s">"ContactId"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"references"</span>,<span class="s">"Contacts"</span>]]]]]
+	])
+
+	<span class="c"># migrate() compares the file with the schema and makes what is missing. The old rows are kept.</span>
+	aChanges = oDb.<span class="f">migrate</span>()
+	? nl + <span class="s">"VERSION 2: migrate() made "</span> + len(aChanges) + <span class="s">" changes:"</span>
+	<span class="k">for</span> cChange <span class="k">in</span> aChanges
+		? <span class="s">"   "</span> + cChange
+	<span class="k">next</span>
+	aOld = oDb.<span class="f">byKey</span>(<span class="s">"Contacts"</span>,<span class="n">1</span>)
+	? nl + <span class="s">"The old row is still there: "</span> + <span class="f">dbValue</span>(aOld,<span class="s">"Name"</span>) + <span class="s">", phone ["</span> + <span class="f">dbValue</span>(aOld,<span class="s">"Phone"</span>) + <span class="s">"], level "</span> + <span class="f">dbValue</span>(aOld,<span class="s">"Level"</span>)
+
+	<span class="c"># Now the new columns and the new table work</span>
+	oDb.<span class="f">update</span>(<span class="s">"Contacts"</span>,<span class="n">1</span>,[[<span class="s">"Phone"</span>,<span class="s">"555-0100"</span>]])
+	oDb.<span class="f">insert</span>(<span class="s">"Notes"</span>,[[<span class="s">"Text"</span>,<span class="s">"met at the conference"</span>],[<span class="s">"ContactId"</span>,<span class="n">1</span>]])
+	? <span class="s">"Ann's phone: "</span> + <span class="f">dbValue</span>(oDb.<span class="f">byKey</span>(<span class="s">"Contacts"</span>,<span class="n">1</span>),<span class="s">"Phone"</span>) + <span class="s">", notes: "</span> + len(oDb.<span class="f">children</span>(<span class="s">"Contacts"</span>,<span class="n">1</span>,<span class="s">"Notes"</span>))
+
+	<span class="c"># Migrating again changes nothing</span>
+	? <span class="s">"Migrating again: "</span> + len(oDb.<span class="f">migrate</span>()) + <span class="s">" changes"</span>
+
+	<span class="c"># A change that is not a new column or table is done with SQL, once, by name.</span>
+	? nl + <span class="s">"Promote everybody (first time) : "</span> + oDb.<span class="f">apply</span>(<span class="s">"001-promote"</span>,<span class="s">"UPDATE Contacts SET Level = 5"</span>)
+	? <span class="s">"Promote everybody (second time): "</span> + oDb.<span class="f">apply</span>(<span class="s">"001-promote"</span>,<span class="s">"UPDATE Contacts SET Level = 9"</span>)
+	oDb.<span class="f">discard</span>()
+	? <span class="s">"Level now: "</span> + <span class="f">dbValue</span>(oDb.<span class="f">byKey</span>(<span class="s">"Contacts"</span>,<span class="n">1</span>),<span class="s">"Level"</span>) + <span class="s">" (the second one did not run)"</span>
+	? <span class="s">"Applied changes: "</span> + oDb.<span class="f">applied</span>()[<span class="n">1</span>]
+	oDb.<span class="f">close</span>()
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>VERSION 1: 2 contacts stored in the file
+
+VERSION 2: migrate() made 5 changes:
+   add column Contacts.Phone
+   add column Contacts.Level
+   create table Notes
+   create index IX_Contacts_Name
+   create index IX_Notes_ContactId
+
+The old row is still there: Ann, phone [], level 1
+Ann's phone: 555-0100, notes: 1
+Migrating again: 0 changes
+
+Promote everybody (first time) : 1
+Promote everybody (second time): 0
+Level now: 5 (the second one did not run)
+Applied changes: 001-promote</code></pre></div>
+<h3 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h3>
+<ul><li><code>migrate()</code> compares the <strong>schema in the program</strong> with <strong>the file</strong> and creates what is missing: new columns (<code>add column Contacts.Phone</code>), new tables, new indexes. It returns the list of changes. Existing rows are kept; a new column gets its default (<code>level 1</code>) or stays empty.</li><li>Calling <code>migrate()</code> again changes nothing, so you may call it <strong>every time the program starts</strong>.</li><li><code>apply("001-promote", sql)</code> runs a SQL change <strong>once</strong>. The name is stored in a table (<code>RingMigrations</code>); the second call returns <code>0</code> and does nothing. Use it for what a schema comparison cannot do: change data, rename or drop things.</li></ul>
+<div class="callout note"><span class="t">Note</span><p><code>migrate()</code> never drops or changes a column. Removing a column is a decision about losing data: do it deliberately with <code>apply</code> and your own SQL. <code>migrate</code> works for SQLite files.</p></div>
+<div class="callout tip"><span class="t">Tip</span><p><code>byKey</code> returns the tracked row. After a raw SQL change (<code>apply</code>, <code>execute</code>) call <code>discard()</code> before reading, or you will see the old values.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>objects and navigation properties,</li><li><code>include</code> loads related objects,</li><li>change a property, <code>save()</code>,</li><li><code>migrate()</code> for schema changes, <code>apply()</code> for one-time data changes.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a <code>Matches</code> table (two teams, a score) and print every match with both team names.</li><li>Move a player to another team by changing the <code>Team</code> navigation and saving.</li><li>Add a <code>Email</code> column in version 3 and write the migration steps.</li><li>Count the goals of each team with a <code>for</code> loop over <code>query("Teams", [["include",["Players"]]])</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-115-access.html">Microsoft Access databases</a></p>
+<div class="pager"><a href="tut-73-sql-reports.html"><small>Previous</small>Reports with SQL</a><a class="next" href="tut-115-access.html"><small>Next</small>Microsoft Access databases</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

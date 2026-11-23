@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A chat over TCP · RingDotNet</title>
+<meta name="description" content="A server that relays every line to all clients, two chat windows that connect to it, and a timer that polls the sockets so the windows never freeze. A real network program in one file.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html" class="cur">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A chat over TCP</h1><p class="lead">A server that relays every line to all clients, two chat windows that connect to it, and a timer that polls the sockets so the windows never freeze. A real network program in one file.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the structure of a chat: one server, many clients,</li><li>a text protocol with one message per line,</li><li>why a window program must <strong>never wait</strong> for the network,</li><li>reading the bytes that are available, and building lines from them,</li><li>polling with a timer,</li><li>testing network code with a pump and a short wait.</li></ul>
+<h2 id="the-idea">The idea<a class="anchor" href="#the-idea">#</a></h2>
+<p>The server listens on a port. Each client connects and sends lines such as <code>Alice: Hello</code>. The server sends <strong>every</strong> line it receives to <strong>all</strong> clients, including the sender, so everybody sees the same conversation in the same order. The protocol is the simplest possible: one message per line, the sender's name at the start. The tutorial <a href="tut-25-sockets.html">Sockets</a> explains sockets; here they are used in a window program.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch12_chat.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a chat over TCP - a server that relays lines, two clients, and a timer that polls the sockets</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Net"</span>
+	<span class="s">"System.Net.Sockets"</span>
+	<span class="s">"System.Threading"</span>
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+oForm = <span class="s">""</span>
+oServer = <span class="s">""</span>
+aClients = []             <span class="c"># the two chat clients</span>
+aLogs = []                <span class="c"># the two text boxes that show the conversation</span>
+aInputs = []              <span class="c"># the two text boxes where the user types</span>
+oTimer = <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oServer = <span class="k">new</span> <span class="t">ChatServer</span>()
+	nPort = oServer.<span class="f">start</span>()
+	oForm = <span class="f">uiForm</span>(<span class="s">"Chat on port "</span> + nPort,<span class="n">620</span>,<span class="n">380</span>)
+	cNames = [<span class="s">"Alice"</span>,<span class="s">"Bob"</span>]
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> <span class="n">2</span>
+		nLeft = <span class="n">10</span> + (nIndex - <span class="n">1</span>) * <span class="n">300</span>
+		<span class="f">uiLabel</span>(oForm,cNames[nIndex],nLeft,<span class="n">8</span>,<span class="n">280</span>,<span class="n">20</span>)
+		oLog = <span class="f">uiMemo</span>(oForm,nLeft,<span class="n">30</span>,<span class="n">290</span>,<span class="n">250</span>)
+		oLog.ReadOnly = <span class="k">True</span>
+		aLogs + oLog
+		oInput = <span class="f">uiTextBox</span>(oForm,nLeft,<span class="n">290</span>,<span class="n">200</span>,<span class="n">24</span>)
+		aInputs + oInput
+		<span class="f">uiButton</span>(oForm,<span class="s">"Send"</span>,nLeft + <span class="n">210</span>,<span class="n">288</span>,<span class="n">80</span>,<span class="n">28</span>,<span class="s">"sendFrom("</span> + nIndex + <span class="s">")"</span>)
+		aClients + <span class="k">new</span> <span class="t">ChatClient</span>(cNames[nIndex],nPort)
+	<span class="k">next</span>
+	<span class="c"># the timer asks the server and the clients if something has arrived (Ring has one thread: nothing waits)</span>
+	oTimer = <span class="f">uiTimer</span>(<span class="n">100</span>,<span class="s">"pump()"</span>)
+	oTimer.<span class="f">Start</span>()
+	<span class="f">uiRun</span>(oForm)
+	oTimer.<span class="f">Stop</span>()
+	<span class="k">for</span> oClient <span class="k">in</span> aClients
+		oClient.<span class="f">close</span>()
+	<span class="k">next</span>
+	oServer.<span class="f">stop</span>()
+
+<span class="c"># the user pressed Send in window nIndex: send the text to the server</span>
+<span class="k">func</span> <span class="f">sendFrom</span> nIndex
+
+	cText = trim(aInputs[nIndex].Text)
+	<span class="k">if</span> cText != <span class="s">""</span>
+		aClients[nIndex].<span class="f">send</span>(cText)
+		aInputs[nIndex].Text = <span class="s">""</span>
+	<span class="k">ok</span>
+
+<span class="c"># one round: the server relays what it has received, and each client shows what it has received</span>
+<span class="k">func</span> <span class="f">pump</span>
+
+	oServer.<span class="f">poll</span>()
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> <span class="n">2</span>
+		aNew = aClients[nIndex].<span class="f">poll</span>()
+		<span class="k">for</span> cLine <span class="k">in</span> aNew
+			aLogs[nIndex].<span class="f">AppendText</span>(cLine + windowsnl())
+		<span class="k">next</span>
+	<span class="k">next</span>
+
+<span class="c"># A StreamReader waits (blocks) when no data has arrived, and the window would freeze. This reader asks first: it takes only the bytes</span>
+<span class="c"># that are already there (DataAvailable), builds lines from them, and keeps an unfinished line for the next call.</span>
+<span class="k">class</span> LineReader
+
+	oStream = <span class="s">""</span>
+	cPartial = <span class="s">""</span>
+
+	<span class="k">func</span> <span class="f">init</span> oNetworkStream
+
+		oStream = oNetworkStream
+		<span class="k">return</span> <span class="k">self</span>
+
+	<span class="k">func</span> <span class="f">lines</span>
+
+		aList = []
+		<span class="k">while</span> oStream.DataAvailable
+			nByte = oStream.<span class="f">ReadByte</span>()
+			<span class="k">if</span> nByte = <span class="n">10</span>                         <span class="c"># the end of a line</span>
+				aList + cPartial
+				cPartial = <span class="s">""</span>
+			<span class="k">but</span> nByte != <span class="n">13</span>
+				cPartial += char(nByte)           <span class="c"># a Ring text is a list of bytes: UTF-8 text stays correct</span>
+			<span class="k">ok</span>
+		<span class="k">end</span>
+		<span class="k">return</span> aList
+
+<span class="c"># ---------------------------------------------------------------- the server</span>
+
+<span class="c"># The server accepts connections and sends every line it receives to ALL clients (the sender included).</span>
+<span class="k">class</span> ChatServer
+
+	oListener = <span class="s">""</span>
+	aConnections = []         <span class="c"># [TcpClient, LineReader, StreamWriter]</span>
+
+	<span class="k">func</span> <span class="f">init</span>
+
+		<span class="k">return</span> <span class="k">self</span>
+
+	<span class="k">func</span> <span class="f">start</span>
+
+		oListener = <span class="k">new</span> <span class="t">TcpListener</span>(<span class="k">new</span> <span class="t">IPAddress</span>().Loopback,<span class="n">0</span>)
+		oListener.<span class="f">Start</span>(<span class="k">NULL</span>)
+		<span class="k">return</span> oListener.LocalEndpoint.Port
+
+	<span class="k">func</span> <span class="f">count</span>
+
+		<span class="k">return</span> len(aConnections)
+
+	<span class="c"># called often: accept new clients, read the lines that are waiting, relay them</span>
+	<span class="k">func</span> <span class="f">poll</span>
+
+		<span class="k">while</span> oListener.<span class="f">Pending</span>()
+			oSocket = oListener.<span class="f">AcceptTcpClient</span>()
+			oStream = oSocket.<span class="f">GetStream</span>()
+			oWriter = <span class="k">new</span> <span class="t">StreamWriter</span>(oStream)
+			oWriter.AutoFlush = <span class="k">True</span>
+			oReader = <span class="k">new</span> <span class="t">LineReader</span>(oStream)
+			aConnections + [oSocket,oReader,oWriter]
+		<span class="k">end</span>
+		aReceived = []
+		<span class="k">for</span> aConnection <span class="k">in</span> aConnections
+			oReader = aConnection[<span class="n">2</span>]
+			aNew = oReader.<span class="f">lines</span>()              <span class="c"># the lines that arrived</span>
+			<span class="k">for</span> cLine <span class="k">in</span> aNew
+				aReceived + cLine
+			<span class="k">next</span>
+		<span class="k">next</span>
+		<span class="k">for</span> cLine <span class="k">in</span> aReceived
+			<span class="k">for</span> aConnection <span class="k">in</span> aConnections
+				aConnection[<span class="n">3</span>].<span class="f">WriteLine</span>(cLine)
+			<span class="k">next</span>
+		<span class="k">next</span>
+
+	<span class="k">func</span> <span class="f">stop</span>
+
+		<span class="k">for</span> aConnection <span class="k">in</span> aConnections
+			aConnection[<span class="n">3</span>].<span class="f">Dispose</span>()
+		<span class="k">next</span>
+		aConnections = []
+		oListener.<span class="f">Stop</span>()
+
+<span class="c"># ---------------------------------------------------------------- a client</span>
+
+<span class="k">class</span> ChatClient
+
+	cName = <span class="s">""</span>
+	oSocket = <span class="s">""</span>
+	oReader = <span class="s">""</span>
+	oWriter = <span class="s">""</span>
+	aSent = []
+
+	<span class="k">func</span> <span class="f">init</span> cWho, nPort
+
+		cName = cWho
+		oSocket = <span class="k">new</span> <span class="t">TcpClient</span>()
+		oSocket.<span class="f">Connect</span>([ :hostname = <span class="s">"127.0.0.1"</span>, :port = nPort ])
+		oStream = oSocket.<span class="f">GetStream</span>()
+		oReader = <span class="k">new</span> <span class="t">LineReader</span>(oStream)
+		oWriter = <span class="k">new</span> <span class="t">StreamWriter</span>(oStream)
+		oWriter.AutoFlush = <span class="k">True</span>
+		<span class="k">return</span> <span class="k">self</span>
+
+	<span class="c"># the line that is sent to the server starts with the name: "Alice: Hello"</span>
+	<span class="k">func</span> <span class="f">send</span> cText
+
+		oWriter.<span class="f">WriteLine</span>(cName + <span class="s">": "</span> + cText)
+		aSent + cText
+
+	<span class="k">func</span> <span class="f">sent</span>
+
+		<span class="k">return</span> aSent
+
+	<span class="c"># the lines that have arrived since the last call</span>
+	<span class="k">func</span> <span class="f">poll</span>
+
+		<span class="k">return</span> oReader.<span class="f">lines</span>()
+
+	<span class="k">func</span> <span class="f">close</span>
+
+		oWriter.<span class="f">Dispose</span>()
+		oSocket.<span class="f">Close</span>()</code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g64.png" alt="The chat" loading="lazy"><figcaption>Two clients and one server in one program; the title shows the port that the server chose</figcaption></figure>
+
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="never-wait-in-a-window-program">Never wait in a window program<a class="anchor" href="#never-wait-in-a-window-program">#</a></h3>
+<p><code>StreamReader.ReadLine()</code> waits until a whole line arrives. In a window program that means the window freezes: it cannot repaint or answer clicks. Ring has one thread, so waiting is not allowed. The solution has two parts:</p>
+<ol><li><strong>Ask first.</strong> <code>NetworkStream.DataAvailable</code> says whether bytes are waiting. <code>LineReader.lines()</code> reads only the bytes that are there (<code>ReadByte</code>), adds them to a buffer, and returns a line each time it sees a line feed (byte 10). An unfinished line stays in <code>cPartial</code> until the next call.</li><li><strong>Ask often.</strong> A <code>uiTimer</code> calls <code>pump()</code> every 100 milliseconds: the server accepts new connections (<code>Pending()</code>), reads and relays the lines, and each client shows what it received.</li></ol>
+<p>A Ring text is a list of bytes, so <code>cPartial += char(nByte)</code> rebuilds UTF-8 text correctly, also for non-English letters.</p>
+<h3 id="the-classes">The classes<a class="anchor" href="#the-classes">#</a></h3>
+<ul><li><strong><code>LineReader</code></strong> turns a stream into lines without waiting.</li><li><strong><code>ChatServer</code></strong> keeps a list of connections <code>[socket, reader, writer]</code>; <code>poll()</code> accepts, reads, and writes each received line to every connection.</li><li><strong><code>ChatClient</code></strong> connects, sends <code>"Name: text"</code> and returns the lines that arrived.</li></ul>
+<p>The two windows live in the same program only to make the tutorial easy to run; the classes would work the same in different programs on different computers. Give the server's address instead of <code>127.0.0.1</code>.</p>
+<h3 id="testing">Testing<a class="anchor" href="#testing">#</a></h3>
+<p>The self test sends a line from Alice and calls <code>waitForText</code>, which pumps up to 50 times with a 20 ms sleep until both windows show the line — network messages arrive a little later, so a test must wait for them instead of checking at once. Then it checks that Bob's line arrives in both windows, that the server has two clients, and that an empty text is not sent.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch12_chat.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch12_chat.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch12_chat.ring: run with  ring ch12_chat.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="c"># wait (at most about a second) until the logs have changed: network messages arrive a little later</span>
+<span class="k">func</span> <span class="f">waitForText</span> cText
+
+	<span class="k">for</span> nTry = <span class="n">1</span> <span class="k">to</span> <span class="n">50</span>
+		pump()
+		<span class="k">if</span> substr(aLogs[<span class="n">1</span>].Text,cText) &gt; <span class="n">0</span> <span class="k">and</span> substr(aLogs[<span class="n">2</span>].Text,cText) &gt; <span class="n">0</span>
+			<span class="k">return</span> <span class="k">True</span>
+		<span class="k">ok</span>
+		<span class="k">new</span> <span class="t">Thread</span>().<span class="f">Sleep</span>(<span class="n">20</span>)
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="k">False</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	oTimer.<span class="f">Stop</span>()
+	aInputs[<span class="n">1</span>].Text = <span class="s">"Hello Bob"</span>
+	sendFrom(<span class="n">1</span>)
+	<span class="f">dnAssert</span>(<span class="s">"Bob received Alice's line"</span>,waitForText(<span class="s">"Alice: Hello Bob"</span>),<span class="k">True</span>)
+	<span class="f">dnAssert</span>(<span class="s">"Alice sees her own line too"</span>,substr(aLogs[<span class="n">1</span>].Text,<span class="s">"Alice: Hello Bob"</span>) &gt; <span class="n">0</span>,<span class="k">True</span>)
+	aInputs[<span class="n">2</span>].Text = <span class="s">"Hi Alice"</span>
+	sendFrom(<span class="n">2</span>)
+	<span class="f">dnAssert</span>(<span class="s">"both windows show Bob's line"</span>,waitForText(<span class="s">"Bob: Hi Alice"</span>),<span class="k">True</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the server has two clients"</span>,oServer.<span class="f">count</span>(),<span class="n">2</span>)
+	aInputs[<span class="n">1</span>].Text = <span class="s">"   "</span>
+	sendFrom(<span class="n">1</span>)
+	<span class="f">dnAssert</span>(<span class="s">"an empty line is not sent"</span>,len(aClients[<span class="n">1</span>].<span class="f">sent</span>()),<span class="n">1</span>)
+
+<span class="c"># ---------------------------------------------------------------- reading lines without waiting</span></code></pre></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>server and clients with <code>TcpListener</code> and <code>TcpClient</code>,</li><li>a line-based protocol,</li><li>polling with a timer instead of waiting,</li><li><code>DataAvailable</code> and <code>ReadByte</code>,</li><li>testing asynchronous code with a bounded wait.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Show a list of the connected names and tell everybody when somebody joins.</li><li>Add a third window.</li><li>Send a private message with <code>/to Bob text</code>: the server must send it only to Bob.</li><li>Close a client and make the server remove the dead connection from its list.</li></ol>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<p>This was the last tutorial of the chapter <strong>Projects with windows</strong>. The next chapter is <strong>Libraries and packages</strong>: it starts with <a href="tut-19-callbacks.html">Callbacks and events</a>. The <a href="tutorials.html">Tutorials</a> page lists all the chapters, and you can start any of them.</p>
+<div class="pager"><a href="tut-62-filters.html"><small>Previous</small>An image filter lab</a><a class="next" href="tut-19-callbacks.html"><small>Next</small>Callbacks and events</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

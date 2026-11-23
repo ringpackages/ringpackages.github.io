@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started · RingDotNet</title>
+<meta name="description" content="Install the package, run your first .NET call from Ring, and learn the four startup modes.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html" class="cur">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Getting started</h1><p class="lead">Install the package, run your first .NET call from Ring, and learn the four startup modes.</p>
+<p>New to Ring? The appendix has a <a href="ring-intro.html">Quick introduction to Ring</a> (about 15 minutes); read it first if you have never written a Ring program.</p>
+<h2 id="requirements">Requirements<a class="anchor" href="#requirements">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>You need</th><th>Why</th></tr></thead><tbody><tr><td><strong>Ring</strong> 1.28 or newer</td><td>The language. The package is a normal Ring package.</td></tr><tr><td><strong>.NET 6 or newer</strong> (tested with .NET 9)</td><td>The runtime that RingDotNet hosts inside the Ring process.</td></tr><tr><td><strong>Windows Desktop runtime</strong></td><td>Only for Windows Forms and WPF programs (it is part of the .NET Desktop runtime installer).</td></tr><tr><td><strong>ASP.NET Core runtime</strong></td><td>Only for web programs (<code>"RingDotNet.Web"</code>).</td></tr><tr><td><strong>.NET SDK</strong></td><td>Only to build C# libraries and to get NuGet packages (<code>dotnet publish</code>): <a href="tut-162-nuget.html">A NuGet package</a>.</td></tr></tbody></table></div>
+<div class="callout note"><span class="t">Note</span><p>The package is built and tested on Windows with Ring 1.28 and .NET 9. The C extension and the managed bridge are portable; the Windows Forms and WPF parts are Windows-only by nature.</p></div>
+<h2 id="install">Install<a class="anchor" href="#install">#</a></h2>
+<p>Install the package with <strong>RingPM</strong>, the Ring package manager, in one step:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ringpm install ringdotnet from ringpackages</code></pre></div>
+<p>That is all. The package is one zip file (<code>extensions/ringdotnet.zip</code>): RingPM copies it and its <code>setup.ring</code> extracts it into your Ring folder, which is much faster than installing thousands of files one by one. It brings the library, the extension (<code>ring_dotnet.dll</code>), the managed assemblies, the samples and the applications, so every program can start with:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span></code></pre></div>
+<p>You do not need to set a path or copy files. To test the installation, run a sample from the Ring folder:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>ring samples/UsingDotNet/introduction/test00_first.ring</code></pre></div>
+<h2 id="linux-and-macos">Linux and macOS<a class="anchor" href="#linux-and-macos">#</a></h2>
+<p>The package works on Linux (tested on Ubuntu 24.04, x64, with .NET 9) and should work on macOS. The extension is a C library, so it is <strong>built once</strong> for your system; the managed files are the same on every system and are installed in <code>ring/bin</code> by the package.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>cd ring/extensions/ringdotnet
+sh buildgcc.sh          # Linux (macOS: sh buildclang.sh); writes libring_dotnet.so to ring/lib</code></pre></div>
+<p>The build needs the Ring headers and library (<code>ring/language/include</code> and <code>ring/lib</code>). Install the .NET <strong>runtime</strong> (not only the SDK) with the packages of your system or with the <code>dotnet-install</code> script, and for the web programs also the ASP.NET Core runtime. The .NET <strong>SDK</strong> is needed only to build a project: the packages of the package lessons (<code>dotnet publish</code>) and your own C# libraries. If <code>dotnet</code> is not in the usual place, set <code>DOTNET_ROOT</code>. The extension finds the managed files in <code>ring/bin</code> when they are not next to the library. Windows Forms and WPF programs need Windows; everything else (text, files, collections, JSON, XML, HTTP, sockets, tasks, databases with Entity Framework and SQLite, the web server) runs the same way.</p>
+<h2 id="your-first-program">Your first program<a class="anchor" href="#your-first-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/introduction/test00_first.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The first program: simple syntax, the namespaces are opened with using</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Text"</span>
+}
+
+oSB = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>)
+oSB.<span class="f">Append</span>(<span class="s">", "</span>).<span class="f">Append</span>(<span class="s">"Ring!"</span>)
+? oSB.<span class="f">ToString</span>()
+? oSB.Length
+
+? <span class="k">new</span> <span class="t">Math</span>().<span class="f">Max</span>(<span class="n">3</span>,<span class="n">9</span>)
+? <span class="s">"Running on .NET "</span> + <span class="k">new</span> <span class="t">Environment</span>().Version.<span class="f">ToString</span>()</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Hello, Ring!
+12
+9
+Running on .NET 9.0.15</code></pre></div>
+<p>The <code>using { }</code> block opens the .NET namespaces, like <code>using System;</code> in C#. After it, every class of those namespaces is a Ring class with the same name: <code>new StringBuilder("Hello")</code>, <code>oSB.Append(...)</code>, <code>oSB.Length</code>, <code>new Math().Max(3,9)</code>. This is what you will use almost always.</p>
+<p>Everything you write in the first tutorials is object code like this: <code>new</code> makes an object, the dot calls its methods and reads its properties, and braces <code>{ }</code> set several properties at once. For the few cases where there is no generated class, <a href="concepts.html#plain-objects">Core concepts</a> shows the generic calls, and the sample <code>samples/UsingDotNet/introduction/test01_hello.ring</code> uses them.</p>
+<h2 id="the-startup-modes">The startup modes<a class="anchor" href="#the-startup-modes">#</a></h2>
+<p>The first .NET call starts the runtime, and the runtime can be started in one <strong>mode</strong> only. You do not have to choose it: the <code>using { }</code> block looks at the names and starts the mode that the program needs.</p>
+<div class="tablewrap"><table><thead><tr><th>The block names...</th><th>Mode that is started</th><th>Use it for</th></tr></thead><tbody><tr><td>only <code>System...</code> namespaces</td><td>the base runtime</td><td>Console programs, files, networking, JSON, XML, reflection, LINQ</td></tr><tr><td><code>System.Windows*</code> or <code>System.Drawing*</code></td><td>Windows Desktop runtime, Ring thread becomes STA</td><td>Windows Forms, WPF</td></tr><tr><td><code>Microsoft.AspNetCore*</code> or <code>"RingDotNet.Web"</code></td><td>ASP.NET Core runtime, loads the web server</td><td><code>WebServer</code> (<a href="aspnet.html">ASP.NET Core</a>)</td></tr><tr><td>both of the two above</td><td>Desktop and ASP.NET Core together</td><td>A GUI program that also serves HTTP</td></tr><tr><td><code>Microsoft.EntityFrameworkCore*</code> or <code>"RingDotNet.Data"</code></td><td>loads the Entity Framework assemblies</td><td><code>RingDatabase</code>, <code>RingEntityDb</code> (<a href="ef.html">Entity Framework</a>)</td></tr></tbody></table></div>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.Drawing"</span>                <span class="c"># starts the desktop mode: Windows Forms or WPF</span>
+	<span class="s">"System.Windows.Forms"</span>
+}</code></pre></div>
+<p><code>"RingDotNet.Web"</code> and <code>"RingDotNet.Data"</code> are not .NET namespaces: they name the helper classes of this package (<code>WebServer</code>; <code>RingDatabase</code>, <code>RingEntityDb</code>) so that you can ask for them in the same place.</p>
+<p>Put the <code>using</code> block <strong>before any other .NET call</strong>. If the mode is already started and the block asks for another one, the program stops with a message that says so. (Programs that do not use <code>using</code> choose the mode with functions such as <code>dnUseDesktop()</code>: <a href="core-api.html">Core functions</a>.)</p>
+<h2 id="importing-namespaces">Importing namespaces<a class="anchor" href="#importing-namespaces">#</a></h2>
+<p>The wrapper classes are loaded <strong>on demand</strong>, one namespace at a time, so a program only pays for what it uses. Name the namespaces in a <code>using</code> block, like C#. Each item must be a text; anything else is an error:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>using {
+	<span class="s">"System.IO"</span>                         <span class="c"># File, Directory, Path, StreamReader ...</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+	<span class="s">"System.Windows.Forms"</span>              <span class="c"># also loads the GUI helpers (uiForm, uiButton ...)</span>
+}</code></pre></div>
+<p><code>using</code> is the same as calling <code>dnImport("Namespace")</code> for each text; the function form is handy when the name is computed.</p>
+<p>If a method returns an object whose class belongs to a namespace you did not import, that namespace is imported automatically, so chains like <code>oProcess.StandardOutput.ReadToEnd()</code> just work.</p>
+<h2 id="your-first-window">Your first window<a class="anchor" href="#your-first-window">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/Forms/02_button_click.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A button that counts its clicks</span>
+
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+nClicks = <span class="n">0</span>
+oForm = <span class="f">uiForm</span>(<span class="s">"Click counter"</span>,<span class="n">260</span>,<span class="n">130</span>)
+oCount = <span class="f">uiLabel</span>(oForm,<span class="s">"0 clicks"</span>,<span class="n">20</span>,<span class="n">15</span>,<span class="n">220</span>,<span class="n">24</span>)
+<span class="f">uiButton</span>(oForm,<span class="s">"Click me"</span>,<span class="n">20</span>,<span class="n">50</span>,<span class="n">100</span>,<span class="n">32</span>,<span class="s">"clicked()"</span>)
+
+<span class="f">uiRun</span>(oForm)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">clicked</span>
+
+	nClicks++
+	oCount.Text = <span class="s">""</span> + nClicks + <span class="s">" clicks"</span></code></pre></div>
+<figure class="shot"><img src="img/shots/forms-02_button_click.png" alt="The click counter" loading="lazy"><figcaption>samples/UsingDotNet/Forms/02_button_click.ring — a form, a label and a button</figcaption></figure>
+<p>Run it with <code>ring samples/UsingDotNet/Forms/02_button_click.ring</code> (Windows). The tutorial <a href="tut-11-first-window.html">Your first window</a> explains each line.</p>
+<h2 id="run-the-tests">Run the tests<a class="anchor" href="#run-the-tests">#</a></h2>
+<p>Every feature has a test, and every sample and application can test itself:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Shell</span><button class="copy" type="button">Copy</button></div><pre><code>sh samples/UsingDotNet/tests/run.sh ring.exe          # runs tests, samples and applications (add --quick for a short run)
+ring samples/UsingDotNet/applications/Calculator/Calculator.ring --selftest   # drives the form and prints SELFTEST OK</code></pre></div>
+<p>Read <a href="testing.html">Testing</a> for how the self tests work.</p>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="tutorials.html">Tutorials</a>: lessons grouped by topic; start with the chapter <strong>The basics</strong>. The program of each lesson is in <code>samples/UsingDotNet/tutorials</code>.</li><li><a href="concepts.html">Core concepts</a>: how .NET names, overloads, properties, enums and events look in Ring.</li><li><a href="winforms.html">Windows Forms</a> and the <a href="gallery-apps.html">applications</a>.</li><li><a href="aspnet.html">ASP.NET Core</a> and <a href="ef.html">Entity Framework Core</a> for servers and databases.</li><li><a href="rules-and-limits.html">Rules and limits</a> before you write a long program.</li></ul>
+<div class="pager"><a href="index.html"><small>Previous</small>Overview</a><a class="next" href="how-it-works.html"><small>Next</small>How it works</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.EntityFrameworkCore.ChangeTracking · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.EntityFrameworkCore.ChangeTracking</h1>
+<p class="lead">43 wrapped types. Load them with <code>using { "Microsoft.EntityFrameworkCore.ChangeTracking" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-ArrayStructuralComparer">ArrayStructuralComparer</a> <a href="#c-CaseInsensitiveValueComparer">CaseInsensitiveValueComparer</a> <a href="#c-ChangeTracker">ChangeTracker</a> <a href="#c-CollectionEntry">CollectionEntry</a> <a href="#c-CollectionEntry2">CollectionEntry2</a> <a href="#c-ComplexPropertyEntry">ComplexPropertyEntry</a> <a href="#c-ComplexPropertyEntry2">ComplexPropertyEntry2</a> <a href="#c-DetectChangesEventArgs">DetectChangesEventArgs</a> <a href="#c-DetectedChangesEventArgs">DetectedChangesEventArgs</a> <a href="#c-DetectedEntityChangesEventArgs">DetectedEntityChangesEventArgs</a> <a href="#c-DetectEntityChangesEventArgs">DetectEntityChangesEventArgs</a> <a href="#c-EntityEntry">EntityEntry</a> <a href="#c-EntityEntry1">EntityEntry1</a> <a href="#c-EntityEntryEventArgs">EntityEntryEventArgs</a> <a href="#c-EntityEntryGraphNode">EntityEntryGraphNode</a> <a href="#c-EntityEntryGraphNode1">EntityEntryGraphNode1</a> <a href="#c-EntityStateChangedEventArgs">EntityStateChangedEventArgs</a> <a href="#c-EntityStateChangingEventArgs">EntityStateChangingEventArgs</a> <a href="#c-EntityTrackedEventArgs">EntityTrackedEventArgs</a> <a href="#c-EntityTrackingEventArgs">EntityTrackingEventArgs</a> <a href="#c-EntryCurrentValueComparer">EntryCurrentValueComparer</a> <a href="#c-GeometryValueComparer">GeometryValueComparer</a> <a href="#c-IDependentKeyValueFactory">IDependentKeyValueFactory</a> <a href="#c-IDependentKeyValueFactory1">IDependentKeyValueFactory1</a> <a href="#c-IEntityEntryGraphIterator">IEntityEntryGraphIterator</a> <a href="#c-IPrincipalKeyValueFactory">IPrincipalKeyValueFactory</a> <a href="#c-IPrincipalKeyValueFactory1">IPrincipalKeyValueFactory1</a> <a href="#c-ListOfNullableValueTypesComparer">ListOfNullableValueTypesComparer</a> <a href="#c-ListOfReferenceTypesComparer">ListOfReferenceTypesComparer</a> <a href="#c-ListOfValueTypesComparer">ListOfValueTypesComparer</a> <a href="#c-LocalView">LocalView</a> <a href="#c-MemberEntry">MemberEntry</a> <a href="#c-NavigationEntry">NavigationEntry</a> <a href="#c-ObservableCollectionListSource">ObservableCollectionListSource</a> <a href="#c-ObservableHashSet">ObservableHashSet</a> <a href="#c-PropertyEntry">PropertyEntry</a> <a href="#c-PropertyEntry2">PropertyEntry2</a> <a href="#c-PropertyValues">PropertyValues</a> <a href="#c-ReferenceEntry">ReferenceEntry</a> <a href="#c-ReferenceEntry2">ReferenceEntry2</a> <a href="#c-ValueComparer">ValueComparer</a> <a href="#c-ValueComparer1">ValueComparer1</a> <a href="#c-ValueComparerExtensions">ValueComparerExtensions</a></div><details class="cls" id="c-ArrayStructuralComparer"><summary><b>ArrayStructuralComparer</b> <span class="muted">class · extends ValueComparer&lt;TElement[]&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ArrayStructuralComparer`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;TElement[], TElement[], bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;TElement[], int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;TElement[], TElement[]&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CaseInsensitiveValueComparer"><summary><b>CaseInsensitiveValueComparer</b> <span class="muted">class · extends ValueComparer&lt;string&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.CaseInsensitiveValueComparer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CaseInsensitiveValueComparer()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CaseInsensitiveValueComparer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CaseInsensitiveValueComparer().@New([ :param = value ])</code> or <code>dnNew("CaseInsensitiveValueComparer",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;string, string, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;string, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;string, string&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals([ :left = …, :right = … ])</code></td><td><code>bool Equals(object left, object right)</code><br><code>bool Equals(string left, string right)</code></td></tr><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode(value)</code><br><code>GetHashCode([ :instance = … ])</code></td><td><code>int GetHashCode(object instance)</code><br><code>int GetHashCode(string instance)</code></td></tr><tr><td><code>Snapshot</code></td><td><code>Snapshot(p1)</code></td><td><code>object Snapshot(object instance)</code><br><code>string Snapshot(string instance)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ChangeTracker"><summary><b>ChangeTracker</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ChangeTracker(DbContext context, IStateManager stateManager, IChangeDetector changeDetector, IModel model, IEntityEntryGraphIterator graphIterator)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ChangeTracker(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ChangeTracker().@New([ :param = value ])</code> or <code>dnNew("ChangeTracker",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AutoDetectChangesEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AutoDetectChangesEnabled</code> <code>o.AutoDetectChangesEnabled = v</code></td></tr><tr><td><code>LazyLoadingEnabled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.LazyLoadingEnabled</code> <code>o.LazyLoadingEnabled = v</code></td></tr><tr><td><code>QueryTrackingBehavior</code></td><td><code>QueryTrackingBehavior</code></td><td>read, write</td><td><code>o.QueryTrackingBehavior</code> <code>o.QueryTrackingBehavior = v</code></td></tr><tr><td><code>DeleteOrphansTiming</code></td><td><code>CascadeTiming</code></td><td>read, write</td><td><code>o.DeleteOrphansTiming</code> <code>o.DeleteOrphansTiming = v</code></td></tr><tr><td><code>CascadeDeleteTiming</code></td><td><code>CascadeTiming</code></td><td>read, write</td><td><code>o.CascadeDeleteTiming</code> <code>o.CascadeDeleteTiming = v</code></td></tr><tr><td><code>Context</code></td><td><code>DbContext</code></td><td>read</td><td><code>o.Context</code></td></tr><tr><td><code>DebugView</code></td><td><code>DebugView</code></td><td>read</td><td><code>o.DebugView</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AcceptAllChanges</code></td><td><code>AcceptAllChanges()</code></td><td><code>void AcceptAllChanges()</code></td></tr><tr><td><code>CascadeChanges</code></td><td><code>CascadeChanges()</code></td><td><code>void CascadeChanges()</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>DetectChanges</code></td><td><code>DetectChanges()</code></td><td><code>void DetectChanges()</code></td></tr><tr><td><code>Entries</code></td><td><code>Entries()</code></td><td><code>IEnumerable&lt;EntityEntry&gt; Entries()</code><br><code>IEnumerable&lt;EntityEntry&lt;TEntity&gt;&gt; Entries&lt;TEntity&gt;()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>HasChanges</code></td><td><code>HasChanges()</code></td><td><code>bool HasChanges()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>TrackGraph</code></td><td><code>TrackGraph([ :rootEntity = …, :callback = … ])</code><br><code>TrackGraph([ :rootEntity = …, :state = …, :callback = … ])</code></td><td><code>void TrackGraph(object rootEntity, Action&lt;EntityEntryGraphNode&gt; callback)</code><br><code>void TrackGraph&lt;TState&gt;(object rootEntity, TState state, Func&lt;EntityEntryGraphNode&lt;TState&gt;, bool&gt; callback)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Tracking</code></td><td><code>EventHandler&lt;EntityTrackingEventArgs&gt;</code></td><td><code>o.setTrackingEvent(code)</code> · <code>o.clearTrackingEvent()</code></td></tr><tr><td><code>Tracked</code></td><td><code>EventHandler&lt;EntityTrackedEventArgs&gt;</code></td><td><code>o.setTrackedEvent(code)</code> · <code>o.clearTrackedEvent()</code></td></tr><tr><td><code>StateChanging</code></td><td><code>EventHandler&lt;EntityStateChangingEventArgs&gt;</code></td><td><code>o.setStateChangingEvent(code)</code> · <code>o.clearStateChangingEvent()</code></td></tr><tr><td><code>StateChanged</code></td><td><code>EventHandler&lt;EntityStateChangedEventArgs&gt;</code></td><td><code>o.setStateChangedEvent(code)</code> · <code>o.clearStateChangedEvent()</code></td></tr><tr><td><code>DetectingEntityChanges</code></td><td><code>EventHandler&lt;DetectEntityChangesEventArgs&gt;</code></td><td><code>o.setDetectingEntityChangesEvent(code)</code> · <code>o.clearDetectingEntityChangesEvent()</code></td></tr><tr><td><code>DetectedEntityChanges</code></td><td><code>EventHandler&lt;DetectedEntityChangesEventArgs&gt;</code></td><td><code>o.setDetectedEntityChangesEvent(code)</code> · <code>o.clearDetectedEntityChangesEvent()</code></td></tr><tr><td><code>DetectingAllChanges</code></td><td><code>EventHandler&lt;DetectChangesEventArgs&gt;</code></td><td><code>o.setDetectingAllChangesEvent(code)</code> · <code>o.clearDetectingAllChangesEvent()</code></td></tr><tr><td><code>DetectedAllChanges</code></td><td><code>EventHandler&lt;DetectedChangesEventArgs&gt;</code></td><td><code>o.setDetectedAllChangesEvent(code)</code> · <code>o.clearDetectedAllChangesEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CollectionEntry"><summary><b>CollectionEntry</b> <span class="muted">class · extends <a href="#c-NavigationEntry">NavigationEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CollectionEntry(InternalEntityEntry internalEntry, string name)</code></td></tr><tr><td><code>new CollectionEntry(InternalEntityEntry internalEntry, INavigationBase navigationBase)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CollectionEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CollectionEntry().@New([ :param = value ])</code> or <code>dnNew("CollectionEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CurrentValue</code></td><td><code>IEnumerable</code></td><td>read, write</td><td><code>o.getCurrentValue()</code> <code>o.setCurrentValue(v)</code></td></tr><tr><td><code>IsModified</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsModified()</code> <code>o.setIsModified(v)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FindEntry</code></td><td><code>FindEntry(p1)</code></td><td><code>EntityEntry FindEntry(object entity)</code></td></tr><tr><td><code>Load</code></td><td><code>@Load(NULL)</code><br><code>@Load(value)</code><br><code>@Load([ :options = … ])</code></td><td><code>void Load()</code><br><code>void Load(LoadOptions options)</code></td></tr><tr><td><code>LoadAsync</code></td><td><code>LoadAsync(value)</code><br><code>LoadAsync([ :cancellationToken = … ])</code><br><code>LoadAsync([ :options = …, :cancellationToken = … ])</code></td><td><code>Task LoadAsync(CancellationToken cancellationToken = …)</code><br><code>Task LoadAsync(LoadOptions options, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Query</code></td><td><code>Query()</code></td><td><code>IQueryable Query()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-CollectionEntry2"><summary><b>CollectionEntry2</b> <span class="muted">class · extends <a href="#c-CollectionEntry">CollectionEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.CollectionEntry`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EntityEntry</code></td><td><code>EntityEntry&lt;TEntity&gt;</code></td><td>read</td><td><code>o.getEntityEntry()</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>IEnumerable&lt;TRelatedEntity&gt;</code></td><td>read, write</td><td><code>o.getCurrentValue()</code> <code>o.setCurrentValue(v)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComplexPropertyEntry"><summary><b>ComplexPropertyEntry</b> <span class="muted">class · extends <a href="#c-MemberEntry">MemberEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ComplexPropertyEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ComplexPropertyEntry(InternalEntityEntry internalEntry, IComplexProperty complexProperty)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ComplexPropertyEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ComplexPropertyEntry().@New([ :param = value ])</code> or <code>dnNew("ComplexPropertyEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsModified</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsModified()</code> <code>o.setIsModified(v)</code></td></tr><tr><td><code>Metadata</code></td><td><code>IComplexProperty</code></td><td>read</td><td><code>o.getMetadata()</code></td></tr><tr><td><code>Properties</code></td><td><code>IEnumerable&lt;PropertyEntry&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>ComplexProperties</code></td><td><code>IEnumerable&lt;ComplexPropertyEntry&gt;</code></td><td>read</td><td><code>o.ComplexProperties</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ComplexProperty</code></td><td><code>ComplexProperty(p1)</code></td><td><code>ComplexPropertyEntry ComplexProperty(IComplexProperty property)</code><br><code>ComplexPropertyEntry ComplexProperty(string propertyName)</code></td></tr><tr><td><code>Property</code></td><td><code>Property(p1)</code></td><td><code>PropertyEntry Property(IProperty property)</code><br><code>PropertyEntry Property(string propertyName)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ComplexPropertyEntry2"><summary><b>ComplexPropertyEntry2</b> <span class="muted">class · extends <a href="#c-ComplexPropertyEntry">ComplexPropertyEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ComplexPropertyEntry`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EntityEntry</code></td><td><code>EntityEntry&lt;TEntity&gt;</code></td><td>read</td><td><code>o.getEntityEntry()</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>TComplexProperty</code></td><td>read, write</td><td><code>o.getCurrentValue()</code> <code>o.setCurrentValue(v)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ComplexProperty</code></td><td><code>ComplexProperty(p1)</code></td><td><code>ComplexPropertyEntry&lt;TEntity, TNestedComplexProperty&gt; ComplexProperty&lt;TNestedComplexProperty&gt;(Expression&lt;Func&lt;TComplexProperty, TNestedComplexProperty&gt;&gt; propertyExpression)</code><br><code>ComplexPropertyEntry&lt;TEntity, TNestedComplexProperty&gt; ComplexProperty&lt;TNestedComplexProperty&gt;(IComplexProperty complexProperty)</code><br><code>ComplexPropertyEntry&lt;TEntity, TNestedComplexProperty&gt; ComplexProperty&lt;TNestedComplexProperty&gt;(string propertyName)</code></td></tr><tr><td><code>Property</code></td><td><code>Property(p1)</code></td><td><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(Expression&lt;Func&lt;TComplexProperty, TProperty&gt;&gt; propertyExpression)</code><br><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(IProperty property)</code><br><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(string propertyName)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DetectChangesEventArgs"><summary><b>DetectChangesEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.DetectChangesEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DetectChangesEventArgs()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DetectChangesEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DetectChangesEventArgs().@New([ :param = value ])</code> or <code>dnNew("DetectChangesEventArgs",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DetectedChangesEventArgs"><summary><b>DetectedChangesEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.DetectedChangesEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DetectedChangesEventArgs(bool changesFound)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DetectedChangesEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DetectedChangesEventArgs().@New([ :param = value ])</code> or <code>dnNew("DetectedChangesEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ChangesFound</code></td><td><code>bool</code></td><td>read</td><td><code>o.ChangesFound</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DetectedEntityChangesEventArgs"><summary><b>DetectedEntityChangesEventArgs</b> <span class="muted">class · extends <a href="#c-DetectedChangesEventArgs">DetectedChangesEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.DetectedEntityChangesEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DetectedEntityChangesEventArgs(InternalEntityEntry internalEntityEntry, bool changesFound)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DetectedEntityChangesEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DetectedEntityChangesEventArgs().@New([ :param = value ])</code> or <code>dnNew("DetectedEntityChangesEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Entry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.Entry</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DetectEntityChangesEventArgs"><summary><b>DetectEntityChangesEventArgs</b> <span class="muted">class · extends <a href="#c-DetectChangesEventArgs">DetectChangesEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.DetectEntityChangesEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DetectEntityChangesEventArgs(InternalEntityEntry internalEntityEntry)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new DetectEntityChangesEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DetectEntityChangesEventArgs().@New([ :param = value ])</code> or <code>dnNew("DetectEntityChangesEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Entry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.Entry</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityEntry"><summary><b>EntityEntry</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityEntry(InternalEntityEntry internalEntry)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityEntry().@New([ :param = value ])</code> or <code>dnNew("EntityEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Entity</code></td><td><code>object</code></td><td>read</td><td><code>o.Entity</code></td></tr><tr><td><code>State</code></td><td><code>EntityState</code></td><td>read, write</td><td><code>o.State</code> <code>o.State = v</code></td></tr><tr><td><code>Context</code></td><td><code>DbContext</code></td><td>read</td><td><code>o.Context</code></td></tr><tr><td><code>Metadata</code></td><td><code>IEntityType</code></td><td>read</td><td><code>o.Metadata</code></td></tr><tr><td><code>Members</code></td><td><code>IEnumerable&lt;MemberEntry&gt;</code></td><td>read</td><td><code>o.Members</code></td></tr><tr><td><code>Navigations</code></td><td><code>IEnumerable&lt;NavigationEntry&gt;</code></td><td>read</td><td><code>o.Navigations</code></td></tr><tr><td><code>Properties</code></td><td><code>IEnumerable&lt;PropertyEntry&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>ComplexProperties</code></td><td><code>IEnumerable&lt;ComplexPropertyEntry&gt;</code></td><td>read</td><td><code>o.ComplexProperties</code></td></tr><tr><td><code>References</code></td><td><code>IEnumerable&lt;ReferenceEntry&gt;</code></td><td>read</td><td><code>o.References</code></td></tr><tr><td><code>Collections</code></td><td><code>IEnumerable&lt;CollectionEntry&gt;</code></td><td>read</td><td><code>o.Collections</code></td></tr><tr><td><code>IsKeySet</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsKeySet</code></td></tr><tr><td><code>CurrentValues</code></td><td><code>PropertyValues</code></td><td>read</td><td><code>o.CurrentValues</code></td></tr><tr><td><code>OriginalValues</code></td><td><code>PropertyValues</code></td><td>read</td><td><code>o.OriginalValues</code></td></tr><tr><td><code>DebugView</code></td><td><code>DebugView</code></td><td>read</td><td><code>o.DebugView</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Collection</code></td><td><code>Collection(p1)</code></td><td><code>CollectionEntry Collection(INavigationBase navigation)</code><br><code>CollectionEntry Collection(string propertyName)</code></td></tr><tr><td><code>ComplexProperty</code></td><td><code>ComplexProperty(p1)</code></td><td><code>ComplexPropertyEntry ComplexProperty(IComplexProperty property)</code><br><code>ComplexPropertyEntry ComplexProperty(string propertyName)</code></td></tr><tr><td><code>DetectChanges</code></td><td><code>DetectChanges()</code></td><td><code>void DetectChanges()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetDatabaseValues</code></td><td><code>GetDatabaseValues()</code></td><td><code>PropertyValues GetDatabaseValues()</code></td></tr><tr><td><code>GetDatabaseValuesAsync</code></td><td><code>GetDatabaseValuesAsync(value)</code><br><code>GetDatabaseValuesAsync([ :cancellationToken = … ])</code></td><td><code>Task&lt;PropertyValues&gt; GetDatabaseValuesAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>Member</code></td><td><code>Member(p1)</code></td><td><code>MemberEntry Member(IPropertyBase propertyBase)</code><br><code>MemberEntry Member(string propertyName)</code></td></tr><tr><td><code>Navigation</code></td><td><code>Navigation(p1)</code></td><td><code>NavigationEntry Navigation(INavigationBase navigationBase)</code><br><code>NavigationEntry Navigation(string propertyName)</code></td></tr><tr><td><code>Property</code></td><td><code>Property(p1)</code></td><td><code>PropertyEntry Property(IProperty property)</code><br><code>PropertyEntry Property(string propertyName)</code></td></tr><tr><td><code>Reference</code></td><td><code>Reference(p1)</code></td><td><code>ReferenceEntry Reference(INavigationBase navigation)</code><br><code>ReferenceEntry Reference(string propertyName)</code></td></tr><tr><td><code>Reload</code></td><td><code>Reload()</code></td><td><code>void Reload()</code></td></tr><tr><td><code>ReloadAsync</code></td><td><code>ReloadAsync(value)</code><br><code>ReloadAsync([ :cancellationToken = … ])</code></td><td><code>Task ReloadAsync(CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EntityEntry1"><summary><b>EntityEntry1</b> <span class="muted">class · extends <a href="#c-EntityEntry">EntityEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Entity</code></td><td><code>TEntity</code></td><td>read</td><td><code>o.getEntity()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Collection</code></td><td><code>Collection(p1)</code></td><td><code>CollectionEntry&lt;TEntity, TProperty&gt; Collection&lt;TProperty&gt;(Expression&lt;Func&lt;TEntity, IEnumerable&lt;TProperty&gt;&gt;&gt; propertyExpression)</code><br><code>CollectionEntry&lt;TEntity, TProperty&gt; Collection&lt;TProperty&gt;(INavigationBase navigation)</code><br><code>CollectionEntry&lt;TEntity, TProperty&gt; Collection&lt;TProperty&gt;(string propertyName)</code></td></tr><tr><td><code>ComplexProperty</code></td><td><code>ComplexProperty(p1)</code></td><td><code>ComplexPropertyEntry&lt;TEntity, TProperty&gt; ComplexProperty&lt;TProperty&gt;(Expression&lt;Func&lt;TEntity, TProperty&gt;&gt; propertyExpression)</code><br><code>ComplexPropertyEntry&lt;TEntity, TProperty&gt; ComplexProperty&lt;TProperty&gt;(IComplexProperty complexProperty)</code><br><code>ComplexPropertyEntry&lt;TEntity, TProperty&gt; ComplexProperty&lt;TProperty&gt;(string propertyName)</code></td></tr><tr><td><code>Property</code></td><td><code>Property(p1)</code></td><td><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(Expression&lt;Func&lt;TEntity, TProperty&gt;&gt; propertyExpression)</code><br><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(IProperty property)</code><br><code>PropertyEntry&lt;TEntity, TProperty&gt; Property&lt;TProperty&gt;(string propertyName)</code></td></tr><tr><td><code>Reference</code></td><td><code>Reference(p1)</code></td><td><code>ReferenceEntry&lt;TEntity, TProperty&gt; Reference&lt;TProperty&gt;(Expression&lt;Func&lt;TEntity, TProperty&gt;&gt; propertyExpression)</code><br><code>ReferenceEntry&lt;TEntity, TProperty&gt; Reference&lt;TProperty&gt;(INavigationBase navigation)</code><br><code>ReferenceEntry&lt;TEntity, TProperty&gt; Reference&lt;TProperty&gt;(string propertyName)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityEntryEventArgs"><summary><b>EntityEntryEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityEntryEventArgs(InternalEntityEntry internalEntityEntry)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityEntryEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityEntryEventArgs().@New([ :param = value ])</code> or <code>dnNew("EntityEntryEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Entry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.Entry</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityEntryGraphNode"><summary><b>EntityEntryGraphNode</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryGraphNode</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityEntryGraphNode(InternalEntityEntry entry, InternalEntityEntry sourceEntry, INavigationBase inboundNavigation)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityEntryGraphNode(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityEntryGraphNode().@New([ :param = value ])</code> or <code>dnNew("EntityEntryGraphNode",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SourceEntry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.SourceEntry</code></td></tr><tr><td><code>InboundNavigation</code></td><td><code>INavigationBase</code></td><td>read</td><td><code>o.InboundNavigation</code></td></tr><tr><td><code>Entry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.Entry</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateNode</code></td><td><code>CreateNode(p1,p2,p3)</code></td><td><code>EntityEntryGraphNode CreateNode(EntityEntryGraphNode currentNode, InternalEntityEntry internalEntityEntry, INavigationBase reachedVia)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EntityEntryGraphNode1"><summary><b>EntityEntryGraphNode1</b> <span class="muted">class · extends <a href="#c-EntityEntryGraphNode">EntityEntryGraphNode</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntryGraphNode`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>NodeState</code></td><td><code>TState</code></td><td>read, write</td><td><code>o.NodeState</code> <code>o.NodeState = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityStateChangedEventArgs"><summary><b>EntityStateChangedEventArgs</b> <span class="muted">class · extends <a href="#c-EntityEntryEventArgs">EntityEntryEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityStateChangedEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityStateChangedEventArgs(InternalEntityEntry internalEntityEntry, EntityState oldState, EntityState newState)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityStateChangedEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityStateChangedEventArgs().@New([ :param = value ])</code> or <code>dnNew("EntityStateChangedEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OldState</code></td><td><code>EntityState</code></td><td>read</td><td><code>o.OldState</code></td></tr><tr><td><code>NewState</code></td><td><code>EntityState</code></td><td>read</td><td><code>o.NewState</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityStateChangingEventArgs"><summary><b>EntityStateChangingEventArgs</b> <span class="muted">class · extends <a href="#c-EntityEntryEventArgs">EntityEntryEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityStateChangingEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityStateChangingEventArgs(InternalEntityEntry internalEntityEntry, EntityState oldState, EntityState newState)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityStateChangingEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityStateChangingEventArgs().@New([ :param = value ])</code> or <code>dnNew("EntityStateChangingEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OldState</code></td><td><code>EntityState</code></td><td>read</td><td><code>o.OldState</code></td></tr><tr><td><code>NewState</code></td><td><code>EntityState</code></td><td>read</td><td><code>o.NewState</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityTrackedEventArgs"><summary><b>EntityTrackedEventArgs</b> <span class="muted">class · extends <a href="#c-EntityEntryEventArgs">EntityEntryEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityTrackedEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityTrackedEventArgs(InternalEntityEntry internalEntityEntry, bool fromQuery)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityTrackedEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityTrackedEventArgs().@New([ :param = value ])</code> or <code>dnNew("EntityTrackedEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FromQuery</code></td><td><code>bool</code></td><td>read</td><td><code>o.FromQuery</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntityTrackingEventArgs"><summary><b>EntityTrackingEventArgs</b> <span class="muted">class · extends <a href="#c-EntityEntryEventArgs">EntityEntryEventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntityTrackingEventArgs</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EntityTrackingEventArgs(InternalEntityEntry internalEntityEntry, EntityState state, bool fromQuery)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EntityTrackingEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EntityTrackingEventArgs().@New([ :param = value ])</code> or <code>dnNew("EntityTrackingEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>State</code></td><td><code>EntityState</code></td><td>read</td><td><code>o.State</code></td></tr><tr><td><code>FromQuery</code></td><td><code>bool</code></td><td>read</td><td><code>o.FromQuery</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-EntryCurrentValueComparer"><summary><b>EntryCurrentValueComparer</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.EntryCurrentValueComparer`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+</div></details>
+<details class="cls" id="c-GeometryValueComparer"><summary><b>GeometryValueComparer</b> <span class="muted">class · extends ValueComparer&lt;TGeometry&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.GeometryValueComparer`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;TGeometry, TGeometry, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;TGeometry, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;TGeometry, TGeometry&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-IDependentKeyValueFactory"><summary><b>IDependentKeyValueFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.IDependentKeyValueFactory</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateDependentEquatableKey</code></td><td><code>CreateDependentEquatableKey([ :entry = …, :fromOriginalValues = … ])</code></td><td><code>object CreateDependentEquatableKey(IUpdateEntry entry, bool fromOriginalValues = …)</code></td></tr><tr><td><code>CreatePrincipalEquatableKey</code></td><td><code>CreatePrincipalEquatableKey([ :entry = …, :fromOriginalValues = … ])</code></td><td><code>object CreatePrincipalEquatableKey(IUpdateEntry entry, bool fromOriginalValues = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDependentKeyValueFactory1"><summary><b>IDependentKeyValueFactory1</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.IDependentKeyValueFactory`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EqualityComparer</code></td><td><code>IEqualityComparer&lt;TKey&gt;</code></td><td>read</td><td><code>o.EqualityComparer</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEntityEntryGraphIterator"><summary><b>IEntityEntryGraphIterator</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.IEntityEntryGraphIterator</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>TraverseGraph</code></td><td><code>TraverseGraph(p1,p2)</code></td><td><code>void TraverseGraph&lt;TState&gt;(EntityEntryGraphNode&lt;TState&gt; node, Func&lt;EntityEntryGraphNode&lt;TState&gt;, bool&gt; handleNode)</code></td></tr><tr><td><code>TraverseGraphAsync</code></td><td><code>TraverseGraphAsync([ :node = …, :handleNode = …, :cancellationToken = … ])</code></td><td><code>Task TraverseGraphAsync&lt;TState&gt;(EntityEntryGraphNode&lt;TState&gt; node, Func&lt;EntityEntryGraphNode&lt;TState&gt;, CancellationToken, Task&lt;bool&gt;&gt; handleNode, CancellationToken cancellationToken = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPrincipalKeyValueFactory"><summary><b>IPrincipalKeyValueFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.IPrincipalKeyValueFactory</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateEquatableKey</code></td><td><code>CreateEquatableKey([ :entry = …, :fromOriginalValues = … ])</code></td><td><code>object CreateEquatableKey(IUpdateEntry entry, bool fromOriginalValues = …)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPrincipalKeyValueFactory1"><summary><b>IPrincipalKeyValueFactory1</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.IPrincipalKeyValueFactory`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EqualityComparer</code></td><td><code>IEqualityComparer&lt;TKey&gt;</code></td><td>read</td><td><code>o.EqualityComparer</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ListOfNullableValueTypesComparer"><summary><b>ListOfNullableValueTypesComparer</b> <span class="muted">class sealed · extends ValueComparer&lt;IEnumerable&lt;TElement?&gt;&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ListOfNullableValueTypesComparer`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementComparer</code></td><td><code>ValueComparer</code></td><td>read</td><td><code>o.ElementComparer</code></td></tr><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement?&gt;, IEnumerable&lt;TElement?&gt;, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement?&gt;, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement?&gt;, IEnumerable&lt;TElement?&gt;&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ListOfReferenceTypesComparer"><summary><b>ListOfReferenceTypesComparer</b> <span class="muted">class sealed · extends ValueComparer&lt;object&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ListOfReferenceTypesComparer`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementComparer</code></td><td><code>ValueComparer</code></td><td>read</td><td><code>o.ElementComparer</code></td></tr><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;object, object, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;object, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;object, object&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals([ :left = …, :right = … ])</code></td><td><code>bool Equals(object left, object right)</code><br><code>bool Equals(object left, object right)</code></td></tr><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode(value)</code><br><code>GetHashCode([ :instance = … ])</code></td><td><code>int GetHashCode(object instance)</code><br><code>int GetHashCode(object instance)</code></td></tr><tr><td><code>Snapshot</code></td><td><code>Snapshot(p1)</code></td><td><code>object Snapshot(object instance)</code><br><code>object Snapshot(object instance)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ListOfValueTypesComparer"><summary><b>ListOfValueTypesComparer</b> <span class="muted">class sealed · extends ValueComparer&lt;IEnumerable&lt;TElement&gt;&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ListOfValueTypesComparer`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementComparer</code></td><td><code>ValueComparer</code></td><td>read</td><td><code>o.ElementComparer</code></td></tr><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement&gt;, IEnumerable&lt;TElement&gt;, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement&gt;, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;IEnumerable&lt;TElement&gt;, IEnumerable&lt;TElement&gt;&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LocalView"><summary><b>LocalView</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.LocalView`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, IListSource</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FindEntry</code></td><td><code>FindEntry(value)</code><br><code>FindEntry([ :keyValue = … ])</code><br><code>FindEntry([ :propertyName = …, :propertyValue = … ])</code><br><code>FindEntry([ :property = …, :propertyValue = … ])</code></td><td><code>EntityEntry&lt;TEntity&gt; FindEntry&lt;TKey&gt;(TKey keyValue)</code><br><code>EntityEntry&lt;TEntity&gt; FindEntry&lt;TProperty&gt;(string propertyName, TProperty propertyValue)</code><br><code>EntityEntry&lt;TEntity&gt; FindEntry&lt;TProperty&gt;(IProperty property, TProperty propertyValue)</code></td></tr><tr><td><code>GetEntries</code></td><td><code>GetEntries(p1,p2)</code></td><td><code>IEnumerable&lt;EntityEntry&lt;TEntity&gt;&gt; GetEntries&lt;TProperty&gt;(string propertyName, TProperty propertyValue)</code><br><code>IEnumerable&lt;EntityEntry&lt;TEntity&gt;&gt; GetEntries&lt;TProperty&gt;(IProperty property, TProperty propertyValue)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PropertyChanged</code></td><td><code>PropertyChangedEventHandler</code></td><td><code>o.setPropertyChangedEvent(code)</code> · <code>o.clearPropertyChangedEvent()</code></td></tr><tr><td><code>PropertyChanging</code></td><td><code>PropertyChangingEventHandler</code></td><td><code>o.setPropertyChangingEvent(code)</code> · <code>o.clearPropertyChangingEvent()</code></td></tr><tr><td><code>CollectionChanged</code></td><td><code>NotifyCollectionChangedEventHandler</code></td><td><code>o.setCollectionChangedEvent(code)</code> · <code>o.clearCollectionChangedEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-MemberEntry"><summary><b>MemberEntry</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.MemberEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsModified</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsModified</code> <code>o.IsModified = v</code></td></tr><tr><td><code>Metadata</code></td><td><code>IPropertyBase</code></td><td>read</td><td><code>o.Metadata</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.CurrentValue</code> <code>o.CurrentValue = v</code></td></tr><tr><td><code>EntityEntry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.EntityEntry</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-NavigationEntry"><summary><b>NavigationEntry</b> <span class="muted">class abstract · extends <a href="#c-MemberEntry">MemberEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.NavigationEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsLoaded</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsLoaded</code> <code>o.IsLoaded = v</code></td></tr><tr><td><code>Metadata</code></td><td><code>INavigationBase</code></td><td>read</td><td><code>o.getMetadata()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Load</code></td><td><code>@Load(NULL)</code><br><code>@Load(value)</code><br><code>@Load([ :options = … ])</code></td><td><code>void Load()</code><br><code>void Load(LoadOptions options)</code></td></tr><tr><td><code>LoadAsync</code></td><td><code>LoadAsync(value)</code><br><code>LoadAsync([ :cancellationToken = … ])</code><br><code>LoadAsync([ :options = …, :cancellationToken = … ])</code></td><td><code>Task LoadAsync(CancellationToken cancellationToken = …)</code><br><code>Task LoadAsync(LoadOptions options, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Query</code></td><td><code>Query()</code></td><td><code>IQueryable Query()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ObservableCollectionListSource"><summary><b>ObservableCollectionListSource</b> <span class="muted">class · extends ObservableCollection&lt;T&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ObservableCollectionListSource`1</code> · assembly <code>Microsoft.EntityFrameworkCore.Abstractions</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection, INotifyCollectionChanged, INotifyPropertyChanged, IListSource</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.getCount()</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>T</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CollectionChanged</code></td><td><code>NotifyCollectionChangedEventHandler</code></td><td><code>o.setCollectionChangedEvent(code)</code> · <code>o.clearCollectionChangedEvent()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ObservableHashSet"><summary><b>ObservableHashSet</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ObservableHashSet`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr><tr><td><code>IsReadOnly</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReadOnly</code></td></tr><tr><td><code>Comparer</code></td><td><code>IEqualityComparer&lt;T&gt;</code></td><td>read</td><td><code>o.Comparer</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PropertyChanged</code></td><td><code>PropertyChangedEventHandler</code></td><td><code>o.setPropertyChangedEvent(code)</code> · <code>o.clearPropertyChangedEvent()</code></td></tr><tr><td><code>PropertyChanging</code></td><td><code>PropertyChangingEventHandler</code></td><td><code>o.setPropertyChangingEvent(code)</code> · <code>o.clearPropertyChangingEvent()</code></td></tr><tr><td><code>CollectionChanged</code></td><td><code>NotifyCollectionChangedEventHandler</code></td><td><code>o.setCollectionChangedEvent(code)</code> · <code>o.clearCollectionChangedEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PropertyEntry"><summary><b>PropertyEntry</b> <span class="muted">class · extends <a href="#c-MemberEntry">MemberEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PropertyEntry(InternalEntityEntry internalEntry, IProperty property)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PropertyEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PropertyEntry().@New([ :param = value ])</code> or <code>dnNew("PropertyEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsModified</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsModified()</code> <code>o.setIsModified(v)</code></td></tr><tr><td><code>IsTemporary</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsTemporary</code> <code>o.IsTemporary = v</code></td></tr><tr><td><code>Metadata</code></td><td><code>IProperty</code></td><td>read</td><td><code>o.getMetadata()</code></td></tr><tr><td><code>OriginalValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.OriginalValue</code> <code>o.OriginalValue = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PropertyEntry2"><summary><b>PropertyEntry2</b> <span class="muted">class · extends <a href="#c-PropertyEntry">PropertyEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EntityEntry</code></td><td><code>EntityEntry&lt;TEntity&gt;</code></td><td>read</td><td><code>o.getEntityEntry()</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>TProperty</code></td><td>read, write</td><td><code>o.getCurrentValue()</code> <code>o.setCurrentValue(v)</code></td></tr><tr><td><code>OriginalValue</code></td><td><code>TProperty</code></td><td>read, write</td><td><code>o.getOriginalValue()</code> <code>o.setOriginalValue(v)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PropertyValues"><summary><b>PropertyValues</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.PropertyValues</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Properties</code></td><td><code>IReadOnlyList&lt;IProperty&gt;</code></td><td>read</td><td><code>o.Properties</code></td></tr><tr><td><code>EntityType</code></td><td><code>IEntityType</code></td><td>read</td><td><code>o.EntityType</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(string propertyName)</code> → <code>object</code> · <code>o.SetItem(propertyName,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>PropertyValues Clone()</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>GetValue</code></td><td><code>GetValue(value)</code><br><code>GetValue([ :propertyName = … ])</code><br><code>GetValue([ :property = … ])</code></td><td><code>TValue GetValue&lt;TValue&gt;(string propertyName)</code><br><code>TValue GetValue&lt;TValue&gt;(IProperty property)</code></td></tr><tr><td><code>SetValues</code></td><td><code>SetValues(p1)</code></td><td><code>void SetValues(object obj)</code><br><code>void SetValues(PropertyValues propertyValues)</code><br><code>void SetValues&lt;TProperty&gt;(IDictionary&lt;string, TProperty&gt; values)</code></td></tr><tr><td><code>ToObject</code></td><td><code>ToObject()</code></td><td><code>object ToObject()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr><tr><td><code>TryGetValue</code></td><td><code>TryGetValue(p1)</code></td><td><code>bool TryGetValue&lt;TValue&gt;(string propertyName, out TValue value)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ReferenceEntry"><summary><b>ReferenceEntry</b> <span class="muted">class · extends <a href="#c-NavigationEntry">NavigationEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ReferenceEntry(InternalEntityEntry internalEntry, string name)</code></td></tr><tr><td><code>new ReferenceEntry(InternalEntityEntry internalEntry, INavigation navigation)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ReferenceEntry(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ReferenceEntry().@New([ :param = value ])</code> or <code>dnNew("ReferenceEntry",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsModified</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.getIsModified()</code> <code>o.setIsModified(v)</code></td></tr><tr><td><code>TargetEntry</code></td><td><code>EntityEntry</code></td><td>read</td><td><code>o.TargetEntry</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Load</code></td><td><code>@Load(NULL)</code><br><code>@Load(value)</code><br><code>@Load([ :options = … ])</code></td><td><code>void Load()</code><br><code>void Load(LoadOptions options)</code></td></tr><tr><td><code>LoadAsync</code></td><td><code>LoadAsync(value)</code><br><code>LoadAsync([ :cancellationToken = … ])</code><br><code>LoadAsync([ :options = …, :cancellationToken = … ])</code></td><td><code>Task LoadAsync(CancellationToken cancellationToken = …)</code><br><code>Task LoadAsync(LoadOptions options, CancellationToken cancellationToken = …)</code></td></tr><tr><td><code>Query</code></td><td><code>Query()</code></td><td><code>IQueryable Query()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ReferenceEntry2"><summary><b>ReferenceEntry2</b> <span class="muted">class · extends <a href="#c-ReferenceEntry">ReferenceEntry</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ReferenceEntry`2</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EntityEntry</code></td><td><code>EntityEntry&lt;TEntity&gt;</code></td><td>read</td><td><code>o.getEntityEntry()</code></td></tr><tr><td><code>TargetEntry</code></td><td><code>EntityEntry&lt;TProperty&gt;</code></td><td>read</td><td><code>o.getTargetEntry()</code></td></tr><tr><td><code>CurrentValue</code></td><td><code>TProperty</code></td><td>read, write</td><td><code>o.getCurrentValue()</code> <code>o.setCurrentValue(v)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ValueComparer"><summary><b>ValueComparer</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.Type</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.EqualsExpression</code></td></tr><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.ObjectEqualsExpression</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.HashCodeExpression</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.SnapshotExpression</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.ConstructorExpression</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>static HashCode Add(HashCode hash, int code)</code></td></tr><tr><td><code>CreateDefault</code></td><td><code>CreateDefault(value)</code><br><code>CreateDefault([ :favorStructuralComparisons = … ])</code><br><code>CreateDefault([ :type = …, :favorStructuralComparisons = … ])</code></td><td><code>static ValueComparer CreateDefault(Type type, bool favorStructuralComparisons)</code><br><code>static ValueComparer CreateDefault&lt;T&gt;(bool favorStructuralComparisons)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals([ :left = …, :right = … ])</code></td><td><code>bool Equals(object left, object right)</code></td></tr><tr><td><code>ExtractEqualsBody</code></td><td><code>ExtractEqualsBody(p1,p2)</code></td><td><code>Expression ExtractEqualsBody(Expression leftExpression, Expression rightExpression)</code></td></tr><tr><td><code>ExtractHashCodeBody</code></td><td><code>ExtractHashCodeBody(p1)</code></td><td><code>Expression ExtractHashCodeBody(Expression expression)</code></td></tr><tr><td><code>ExtractSnapshotBody</code></td><td><code>ExtractSnapshotBody(p1)</code></td><td><code>Expression ExtractSnapshotBody(Expression expression)</code></td></tr><tr><td><code>GetGenericSnapshotMethod</code></td><td><code>GetGenericSnapshotMethod(p1)</code></td><td><code>static MethodInfo GetGenericSnapshotMethod(Type type)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode(value)</code><br><code>GetHashCode([ :instance = … ])</code></td><td><code>int GetHashCode(object instance)</code></td></tr><tr><td><code>Snapshot</code></td><td><code>Snapshot(p1)</code></td><td><code>object Snapshot(object instance)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ValueComparer1"><summary><b>ValueComparer1</b> <span class="muted">class · extends <a href="#c-ValueComparer">ValueComparer</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<p class="muted">Implements: IEqualityComparer</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectEqualsExpression</code></td><td><code>LambdaExpression</code></td><td>read</td><td><code>o.getObjectEqualsExpression()</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read</td><td><code>o.getType()</code></td></tr><tr><td><code>EqualsExpression</code></td><td><code>Expression&lt;Func&lt;T, T, bool&gt;&gt;</code></td><td>read</td><td><code>o.getEqualsExpression()</code></td></tr><tr><td><code>HashCodeExpression</code></td><td><code>Expression&lt;Func&lt;T, int&gt;&gt;</code></td><td>read</td><td><code>o.getHashCodeExpression()</code></td></tr><tr><td><code>SnapshotExpression</code></td><td><code>Expression&lt;Func&lt;T, T&gt;&gt;</code></td><td>read</td><td><code>o.getSnapshotExpression()</code></td></tr><tr><td><code>ConstructorExpression</code></td><td><code>Expression</code></td><td>read</td><td><code>o.getConstructorExpression()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ValueComparerExtensions"><summary><b>ValueComparerExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparerExtensions</code> · assembly <code>Microsoft.EntityFrameworkCore</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>IsDefault</code></td><td><code>IsDefault(p1)</code></td><td><code>static bool IsDefault(ValueComparer valueComparer)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

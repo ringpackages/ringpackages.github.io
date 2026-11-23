@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.Extensions.Logging · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.Extensions.Logging</h1>
+<p class="lead">27 wrapped types. Load them with <code>using { "Microsoft.Extensions.Logging" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-ConsoleLoggerExtensions">ConsoleLoggerExtensions</a> <a href="#c-DebugLoggerFactoryExtensions">DebugLoggerFactoryExtensions</a> <a href="#c-EventId">EventId</a> <a href="#c-EventLoggerFactoryExtensions">EventLoggerFactoryExtensions</a> <a href="#c-EventSourceLoggerFactoryExtensions">EventSourceLoggerFactoryExtensions</a> <a href="#c-FilterLoggingBuilderExtensions">FilterLoggingBuilderExtensions</a> <a href="#c-IExternalScopeProvider">IExternalScopeProvider</a> <a href="#c-ILogger">ILogger</a> <a href="#c-ILogger1">ILogger1</a> <a href="#c-ILoggerFactory">ILoggerFactory</a> <a href="#c-ILoggerProvider">ILoggerProvider</a> <a href="#c-ILoggingBuilder">ILoggingBuilder</a> <a href="#c-ISupportExternalScope">ISupportExternalScope</a> <a href="#c-LogDefineOptions">LogDefineOptions</a> <a href="#c-Logger">Logger</a> <a href="#c-LoggerExtensions">LoggerExtensions</a> <a href="#c-LoggerExternalScopeProvider">LoggerExternalScopeProvider</a> <a href="#c-LoggerFactory">LoggerFactory</a> <a href="#c-LoggerFactoryExtensions">LoggerFactoryExtensions</a> <a href="#c-LoggerFactoryOptions">LoggerFactoryOptions</a> <a href="#c-LoggerFilterOptions">LoggerFilterOptions</a> <a href="#c-LoggerFilterRule">LoggerFilterRule</a> <a href="#c-LoggerMessage">LoggerMessage</a> <a href="#c-LoggerMessageAttribute">LoggerMessageAttribute</a> <a href="#c-LoggingBuilderExtensions">LoggingBuilderExtensions</a> <a href="#c-ProviderAliasAttribute">ProviderAliasAttribute</a> <a href="#c-TraceSourceFactoryExtensions">TraceSourceFactoryExtensions</a></div><details class="cls" id="c-ConsoleLoggerExtensions"><summary><b>ConsoleLoggerExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ConsoleLoggerExtensions</code> · assembly <code>Microsoft.Extensions.Logging.Console</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddConsole</code></td><td><code>AddConsole(value)</code><br><code>AddConsole([ :builder = … ])</code><br><code>AddConsole([ :factory = … ])</code><br><code>AddConsole([ :builder = …, :configure = … ])</code><br><code>AddConsole([ :factory = …, :configuration = … ])</code></td><td><code>static ILoggingBuilder AddConsole(ILoggingBuilder builder)</code><br><code>static ILoggingBuilder AddConsole(ILoggingBuilder builder, Action&lt;ConsoleLoggerOptions&gt; configure)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, IConfiguration configuration)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, IConsoleLoggerSettings settings)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, LogLevel minLevel, bool includeScopes)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, LogLevel minLevel)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, bool includeScopes)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, Func&lt;string, LogLevel, bool&gt; filter, bool includeScopes)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory, Func&lt;string, LogLevel, bool&gt; filter)</code><br><code>static ILoggerFactory AddConsole(ILoggerFactory factory)</code></td></tr><tr><td><code>AddConsoleFormatter</code></td><td><code>AddConsoleFormatter(value)</code><br><code>AddConsoleFormatter([ :builder = … ])</code><br><code>AddConsoleFormatter([ :builder = …, :configure = … ])</code></td><td><code>static ILoggingBuilder AddConsoleFormatter&lt;TFormatter, TOptions&gt;(ILoggingBuilder builder)</code><br><code>static ILoggingBuilder AddConsoleFormatter&lt;TFormatter, TOptions&gt;(ILoggingBuilder builder, Action&lt;TOptions&gt; configure)</code></td></tr><tr><td><code>AddJsonConsole</code></td><td><code>AddJsonConsole(value)</code><br><code>AddJsonConsole([ :builder = … ])</code><br><code>AddJsonConsole([ :builder = …, :configure = … ])</code></td><td><code>static ILoggingBuilder AddJsonConsole(ILoggingBuilder builder)</code><br><code>static ILoggingBuilder AddJsonConsole(ILoggingBuilder builder, Action&lt;JsonConsoleFormatterOptions&gt; configure)</code></td></tr><tr><td><code>AddSimpleConsole</code></td><td><code>AddSimpleConsole(value)</code><br><code>AddSimpleConsole([ :builder = … ])</code><br><code>AddSimpleConsole([ :builder = …, :configure = … ])</code></td><td><code>static ILoggingBuilder AddSimpleConsole(ILoggingBuilder builder)</code><br><code>static ILoggingBuilder AddSimpleConsole(ILoggingBuilder builder, Action&lt;SimpleConsoleFormatterOptions&gt; configure)</code></td></tr><tr><td><code>AddSystemdConsole</code></td><td><code>AddSystemdConsole(value)</code><br><code>AddSystemdConsole([ :builder = … ])</code><br><code>AddSystemdConsole([ :builder = …, :configure = … ])</code></td><td><code>static ILoggingBuilder AddSystemdConsole(ILoggingBuilder builder, Action&lt;ConsoleFormatterOptions&gt; configure)</code><br><code>static ILoggingBuilder AddSystemdConsole(ILoggingBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-DebugLoggerFactoryExtensions"><summary><b>DebugLoggerFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions</code> · assembly <code>Microsoft.Extensions.Logging.Debug</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddDebug</code></td><td><code>AddDebug(value)</code><br><code>AddDebug([ :factory = … ])</code><br><code>AddDebug([ :builder = … ])</code><br><code>AddDebug([ :factory = …, :minLevel = … ])</code><br><code>AddDebug([ :factory = …, :filter = … ])</code></td><td><code>static ILoggerFactory AddDebug(ILoggerFactory factory, LogLevel minLevel)</code><br><code>static ILoggerFactory AddDebug(ILoggerFactory factory, Func&lt;string, LogLevel, bool&gt; filter)</code><br><code>static ILoggerFactory AddDebug(ILoggerFactory factory)</code><br><code>static ILoggingBuilder AddDebug(ILoggingBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EventId"><summary><b>EventId</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.EventId</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new EventId(int id, string name = …)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new EventId(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new EventId().@New([ :param = value ])</code> or <code>dnNew("EventId",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Id</code></td><td><code>int</code></td><td>read</td><td><code>o.Id</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(EventId other)</code><br><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EventLoggerFactoryExtensions"><summary><b>EventLoggerFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.EventLoggerFactoryExtensions</code> · assembly <code>Microsoft.Extensions.Logging.EventLog</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddEventLog</code></td><td><code>AddEventLog(value)</code><br><code>AddEventLog([ :factory = … ])</code><br><code>AddEventLog([ :builder = … ])</code><br><code>AddEventLog([ :factory = …, :settings = … ])</code><br><code>AddEventLog([ :factory = …, :minLevel = … ])</code></td><td><code>static ILoggerFactory AddEventLog(ILoggerFactory factory, EventLogSettings settings)</code><br><code>static ILoggerFactory AddEventLog(ILoggerFactory factory, LogLevel minLevel)</code><br><code>static ILoggerFactory AddEventLog(ILoggerFactory factory)</code><br><code>static ILoggingBuilder AddEventLog(ILoggingBuilder builder)</code><br><code>static ILoggingBuilder AddEventLog(ILoggingBuilder builder, EventLogSettings settings)</code><br><code>static ILoggingBuilder AddEventLog(ILoggingBuilder builder, Action&lt;EventLogSettings&gt; configure)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-EventSourceLoggerFactoryExtensions"><summary><b>EventSourceLoggerFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.EventSourceLoggerFactoryExtensions</code> · assembly <code>Microsoft.Extensions.Logging.EventSource</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddEventSourceLogger</code></td><td><code>AddEventSourceLogger(p1)</code></td><td><code>static ILoggerFactory AddEventSourceLogger(ILoggerFactory factory)</code><br><code>static ILoggingBuilder AddEventSourceLogger(ILoggingBuilder builder)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FilterLoggingBuilderExtensions"><summary><b>FilterLoggingBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddFilter</code></td><td><code>AddFilter([ :builder = …, :filter = … ])</code><br><code>AddFilter([ :builder = …, :categoryLevelFilter = … ])</code><br><code>AddFilter([ :builder = …, :levelFilter = … ])</code><br><code>AddFilter([ :builder = …, :category = …, :level = … ])</code></td><td><code>static ILoggingBuilder AddFilter(ILoggingBuilder builder, Func&lt;string, string, LogLevel, bool&gt; filter)</code><br><code>static ILoggingBuilder AddFilter(ILoggingBuilder builder, Func&lt;string, LogLevel, bool&gt; categoryLevelFilter)</code><br><code>static ILoggingBuilder AddFilter&lt;T&gt;(ILoggingBuilder builder, Func&lt;string, LogLevel, bool&gt; categoryLevelFilter)</code><br><code>static ILoggingBuilder AddFilter(ILoggingBuilder builder, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static ILoggingBuilder AddFilter&lt;T&gt;(ILoggingBuilder builder, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static ILoggingBuilder AddFilter(ILoggingBuilder builder, string category, LogLevel level)</code><br><code>static ILoggingBuilder AddFilter&lt;T&gt;(ILoggingBuilder builder, string category, LogLevel level)</code><br><code>static ILoggingBuilder AddFilter(ILoggingBuilder builder, string category, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static ILoggingBuilder AddFilter&lt;T&gt;(ILoggingBuilder builder, string category, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static LoggerFilterOptions AddFilter(LoggerFilterOptions builder, Func&lt;string, string, LogLevel, bool&gt; filter)</code><br><code>static LoggerFilterOptions AddFilter(LoggerFilterOptions builder, Func&lt;string, LogLevel, bool&gt; categoryLevelFilter)</code><br><code>static LoggerFilterOptions AddFilter&lt;T&gt;(LoggerFilterOptions builder, Func&lt;string, LogLevel, bool&gt; categoryLevelFilter)</code><br><code>static LoggerFilterOptions AddFilter(LoggerFilterOptions builder, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static LoggerFilterOptions AddFilter&lt;T&gt;(LoggerFilterOptions builder, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static LoggerFilterOptions AddFilter(LoggerFilterOptions builder, string category, LogLevel level)</code><br><code>static LoggerFilterOptions AddFilter&lt;T&gt;(LoggerFilterOptions builder, string category, LogLevel level)</code><br><code>static LoggerFilterOptions AddFilter(LoggerFilterOptions builder, string category, Func&lt;LogLevel, bool&gt; levelFilter)</code><br><code>static LoggerFilterOptions AddFilter&lt;T&gt;(LoggerFilterOptions builder, string category, Func&lt;LogLevel, bool&gt; levelFilter)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IExternalScopeProvider"><summary><b>IExternalScopeProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.IExternalScopeProvider</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ForEachScope</code></td><td><code>ForEachScope(p1,p2)</code></td><td><code>void ForEachScope&lt;TState&gt;(Action&lt;object, TState&gt; callback, TState state)</code></td></tr><tr><td><code>Push</code></td><td><code>Push(p1)</code></td><td><code>IDisposable Push(object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ILogger"><summary><b>ILogger</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ILogger</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BeginScope</code></td><td><code>BeginScope(p1)</code></td><td><code>IDisposable BeginScope&lt;TState&gt;(TState state)</code></td></tr><tr><td><code>IsEnabled</code></td><td><code>IsEnabled(p1)</code></td><td><code>bool IsEnabled(LogLevel logLevel)</code></td></tr><tr><td><code>Log</code></td><td><code>Log(p1,p2,p3,p4,p5)</code></td><td><code>void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func&lt;TState, Exception, string&gt; formatter)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ILogger1"><summary><b>ILogger1</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ILogger`1</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+</div></details>
+<details class="cls" id="c-ILoggerFactory"><summary><b>ILoggerFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ILoggerFactory</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddProvider</code></td><td><code>AddProvider(p1)</code></td><td><code>void AddProvider(ILoggerProvider provider)</code></td></tr><tr><td><code>CreateLogger</code></td><td><code>CreateLogger(p1)</code></td><td><code>ILogger CreateLogger(string categoryName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ILoggerProvider"><summary><b>ILoggerProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ILoggerProvider</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateLogger</code></td><td><code>CreateLogger(p1)</code></td><td><code>ILogger CreateLogger(string categoryName)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ILoggingBuilder"><summary><b>ILoggingBuilder</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ILoggingBuilder</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Services</code></td><td><code>IServiceCollection</code></td><td>read</td><td><code>o.Services</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ISupportExternalScope"><summary><b>ISupportExternalScope</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ISupportExternalScope</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SetScopeProvider</code></td><td><code>SetScopeProvider(p1)</code></td><td><code>void SetScopeProvider(IExternalScopeProvider scopeProvider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LogDefineOptions"><summary><b>LogDefineOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LogDefineOptions</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LogDefineOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LogDefineOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LogDefineOptions().@New([ :param = value ])</code> or <code>dnNew("LogDefineOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SkipEnabledCheck</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SkipEnabledCheck</code> <code>o.SkipEnabledCheck = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Logger"><summary><b>Logger</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.Logger`1</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+</div></details>
+<details class="cls" id="c-LoggerExtensions"><summary><b>LoggerExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerExtensions</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BeginScope</code></td><td><code>BeginScope(p1,p2,p3)</code></td><td><code>static IDisposable BeginScope(ILogger logger, string messageFormat, object[] args)</code></td></tr><tr><td><code>Log</code></td><td><code>Log([ :logger = …, :logLevel = …, :message = …, :args = … ])</code><br><code>Log([ :logger = …, :logLevel = …, :eventId = …, :message = …, :args = … ])</code><br><code>Log([ :logger = …, :logLevel = …, :exception = …, :message = …, :args = … ])</code><br><code>Log([ :logger = …, :logLevel = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void Log(ILogger logger, LogLevel logLevel, string message, object[] args)</code><br><code>static void Log(ILogger logger, LogLevel logLevel, EventId eventId, string message, object[] args)</code><br><code>static void Log(ILogger logger, LogLevel logLevel, Exception exception, string message, object[] args)</code><br><code>static void Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, string message, object[] args)</code></td></tr><tr><td><code>LogCritical</code></td><td><code>LogCritical([ :logger = …, :message = …, :args = … ])</code><br><code>LogCritical([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogCritical([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogCritical([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogCritical(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogCritical(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogCritical(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogCritical(ILogger logger, string message, object[] args)</code></td></tr><tr><td><code>LogDebug</code></td><td><code>LogDebug([ :logger = …, :message = …, :args = … ])</code><br><code>LogDebug([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogDebug([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogDebug([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogDebug(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogDebug(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogDebug(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogDebug(ILogger logger, string message, object[] args)</code></td></tr><tr><td><code>LogError</code></td><td><code>LogError([ :logger = …, :message = …, :args = … ])</code><br><code>LogError([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogError([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogError([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogError(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogError(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogError(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogError(ILogger logger, string message, object[] args)</code></td></tr><tr><td><code>LogInformation</code></td><td><code>LogInformation([ :logger = …, :message = …, :args = … ])</code><br><code>LogInformation([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogInformation([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogInformation([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogInformation(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogInformation(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogInformation(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogInformation(ILogger logger, string message, object[] args)</code></td></tr><tr><td><code>LogTrace</code></td><td><code>LogTrace([ :logger = …, :message = …, :args = … ])</code><br><code>LogTrace([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogTrace([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogTrace([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogTrace(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogTrace(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogTrace(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogTrace(ILogger logger, string message, object[] args)</code></td></tr><tr><td><code>LogWarning</code></td><td><code>LogWarning([ :logger = …, :message = …, :args = … ])</code><br><code>LogWarning([ :logger = …, :eventId = …, :message = …, :args = … ])</code><br><code>LogWarning([ :logger = …, :exception = …, :message = …, :args = … ])</code><br><code>LogWarning([ :logger = …, :eventId = …, :exception = …, :message = …, :args = … ])</code></td><td><code>static void LogWarning(ILogger logger, EventId eventId, Exception exception, string message, object[] args)</code><br><code>static void LogWarning(ILogger logger, EventId eventId, string message, object[] args)</code><br><code>static void LogWarning(ILogger logger, Exception exception, string message, object[] args)</code><br><code>static void LogWarning(ILogger logger, string message, object[] args)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerExternalScopeProvider"><summary><b>LoggerExternalScopeProvider</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerExternalScopeProvider</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerExternalScopeProvider()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerExternalScopeProvider(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerExternalScopeProvider().@New([ :param = value ])</code> or <code>dnNew("LoggerExternalScopeProvider",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ForEachScope</code></td><td><code>ForEachScope(p1,p2)</code></td><td><code>void ForEachScope&lt;TState&gt;(Action&lt;object, TState&gt; callback, TState state)</code></td></tr><tr><td><code>Push</code></td><td><code>Push(p1)</code></td><td><code>IDisposable Push(object state)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerFactory"><summary><b>LoggerFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerFactory</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerFactory()</code></td></tr><tr><td><code>new LoggerFactory(IEnumerable&lt;ILoggerProvider&gt; providers)</code></td></tr><tr><td><code>new LoggerFactory(IEnumerable&lt;ILoggerProvider&gt; providers, LoggerFilterOptions filterOptions)</code></td></tr><tr><td><code>new LoggerFactory(IEnumerable&lt;ILoggerProvider&gt; providers, IOptionsMonitor&lt;LoggerFilterOptions&gt; filterOption)</code></td></tr><tr><td><code>new LoggerFactory(IEnumerable&lt;ILoggerProvider&gt; providers, IOptionsMonitor&lt;LoggerFilterOptions&gt; filterOption, IOptions&lt;LoggerFactoryOptions&gt; options)</code></td></tr><tr><td><code>new LoggerFactory(IEnumerable&lt;ILoggerProvider&gt; providers, IOptionsMonitor&lt;LoggerFilterOptions&gt; filterOption, IOptions&lt;LoggerFactoryOptions&gt; options = …, IExternalScopeProvider scopeProvider = …)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerFactory().@New([ :param = value ])</code> or <code>dnNew("LoggerFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddProvider</code></td><td><code>AddProvider(p1)</code></td><td><code>void AddProvider(ILoggerProvider provider)</code></td></tr><tr><td><code>Create</code></td><td><code>Create(p1)</code></td><td><code>static ILoggerFactory Create(Action&lt;ILoggingBuilder&gt; configure)</code></td></tr><tr><td><code>CreateLogger</code></td><td><code>CreateLogger(p1)</code></td><td><code>ILogger CreateLogger(string categoryName)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerFactoryExtensions"><summary><b>LoggerFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerFactoryExtensions</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateLogger</code></td><td><code>CreateLogger(value)</code><br><code>CreateLogger([ :factory = … ])</code><br><code>CreateLogger([ :factory = …, :type = … ])</code></td><td><code>static ILogger&lt;T&gt; CreateLogger&lt;T&gt;(ILoggerFactory factory)</code><br><code>static ILogger CreateLogger(ILoggerFactory factory, Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerFactoryOptions"><summary><b>LoggerFactoryOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerFactoryOptions</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerFactoryOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerFactoryOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerFactoryOptions().@New([ :param = value ])</code> or <code>dnNew("LoggerFactoryOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActivityTrackingOptions</code></td><td><code>ActivityTrackingOptions</code></td><td>read, write</td><td><code>o.ActivityTrackingOptions</code> <code>o.ActivityTrackingOptions = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerFilterOptions"><summary><b>LoggerFilterOptions</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerFilterOptions</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerFilterOptions()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerFilterOptions(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerFilterOptions().@New([ :param = value ])</code> or <code>dnNew("LoggerFilterOptions",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CaptureScopes</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.CaptureScopes</code> <code>o.CaptureScopes = v</code></td></tr><tr><td><code>MinLevel</code></td><td><code>LogLevel</code></td><td>read, write</td><td><code>o.MinLevel</code> <code>o.MinLevel = v</code></td></tr><tr><td><code>Rules</code></td><td><code>IList&lt;LoggerFilterRule&gt;</code></td><td>read</td><td><code>o.Rules</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerFilterRule"><summary><b>LoggerFilterRule</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerFilterRule</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerFilterRule(string providerName, string categoryName, LogLevel? logLevel, Func&lt;string, string, LogLevel, bool&gt; filter)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerFilterRule(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerFilterRule().@New([ :param = value ])</code> or <code>dnNew("LoggerFilterRule",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ProviderName</code></td><td><code>string</code></td><td>read</td><td><code>o.ProviderName</code></td></tr><tr><td><code>CategoryName</code></td><td><code>string</code></td><td>read</td><td><code>o.CategoryName</code></td></tr><tr><td><code>LogLevel</code></td><td><code>LogLevel?</code></td><td>read</td><td><code>o.LogLevel</code></td></tr><tr><td><code>Filter</code></td><td><code>Func&lt;string, string, LogLevel, bool&gt;</code></td><td>read</td><td><code>o.Filter</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ToString</code></td><td><code>ToString()</code></td><td><code>string ToString()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerMessage"><summary><b>LoggerMessage</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerMessage</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Define</code></td><td><code>Define([ :logLevel = …, :eventId = …, :formatString = … ])</code><br><code>Define([ :logLevel = …, :eventId = …, :formatString = …, :options = … ])</code></td><td><code>static Action&lt;ILogger, Exception&gt; Define(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, Exception&gt; Define(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, Exception&gt; Define&lt;T1&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, Exception&gt; Define&lt;T1&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, T2, Exception&gt; Define&lt;T1, T2&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, T2, Exception&gt; Define&lt;T1, T2&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, T2, T3, Exception&gt; Define&lt;T1, T2, T3&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, T2, T3, Exception&gt; Define&lt;T1, T2, T3&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, Exception&gt; Define&lt;T1, T2, T3, T4&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, Exception&gt; Define&lt;T1, T2, T3, T4&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, T5, Exception&gt; Define&lt;T1, T2, T3, T4, T5&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, T5, Exception&gt; Define&lt;T1, T2, T3, T4, T5&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, T5, T6, Exception&gt; Define&lt;T1, T2, T3, T4, T5, T6&gt;(LogLevel logLevel, EventId eventId, string formatString)</code><br><code>static Action&lt;ILogger, T1, T2, T3, T4, T5, T6, Exception&gt; Define&lt;T1, T2, T3, T4, T5, T6&gt;(LogLevel logLevel, EventId eventId, string formatString, LogDefineOptions options)</code></td></tr><tr><td><code>DefineScope</code></td><td><code>DefineScope(p1)</code></td><td><code>static Func&lt;ILogger, IDisposable&gt; DefineScope(string formatString)</code><br><code>static Func&lt;ILogger, T1, IDisposable&gt; DefineScope&lt;T1&gt;(string formatString)</code><br><code>static Func&lt;ILogger, T1, T2, IDisposable&gt; DefineScope&lt;T1, T2&gt;(string formatString)</code><br><code>static Func&lt;ILogger, T1, T2, T3, IDisposable&gt; DefineScope&lt;T1, T2, T3&gt;(string formatString)</code><br><code>static Func&lt;ILogger, T1, T2, T3, T4, IDisposable&gt; DefineScope&lt;T1, T2, T3, T4&gt;(string formatString)</code><br><code>static Func&lt;ILogger, T1, T2, T3, T4, T5, IDisposable&gt; DefineScope&lt;T1, T2, T3, T4, T5&gt;(string formatString)</code><br><code>static Func&lt;ILogger, T1, T2, T3, T4, T5, T6, IDisposable&gt; DefineScope&lt;T1, T2, T3, T4, T5, T6&gt;(string formatString)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-LoggerMessageAttribute"><summary><b>LoggerMessageAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggerMessageAttribute</code> · assembly <code>Microsoft.Extensions.Logging.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new LoggerMessageAttribute()</code></td></tr><tr><td><code>new LoggerMessageAttribute(int eventId, LogLevel level, string message)</code></td></tr><tr><td><code>new LoggerMessageAttribute(LogLevel level, string message)</code></td></tr><tr><td><code>new LoggerMessageAttribute(LogLevel level)</code></td></tr><tr><td><code>new LoggerMessageAttribute(string message)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new LoggerMessageAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new LoggerMessageAttribute().@New([ :param = value ])</code> or <code>dnNew("LoggerMessageAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>EventId</code></td><td><code>int</code></td><td>read, write</td><td><code>o.EventId</code> <code>o.EventId = v</code></td></tr><tr><td><code>EventName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.EventName</code> <code>o.EventName = v</code></td></tr><tr><td><code>Level</code></td><td><code>LogLevel</code></td><td>read, write</td><td><code>o.Level</code> <code>o.Level = v</code></td></tr><tr><td><code>Message</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Message</code> <code>o.Message = v</code></td></tr><tr><td><code>SkipEnabledCheck</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SkipEnabledCheck</code> <code>o.SkipEnabledCheck = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-LoggingBuilderExtensions"><summary><b>LoggingBuilderExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.LoggingBuilderExtensions</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddProvider</code></td><td><code>AddProvider(p1,p2)</code></td><td><code>static ILoggingBuilder AddProvider(ILoggingBuilder builder, ILoggerProvider provider)</code></td></tr><tr><td><code>ClearProviders</code></td><td><code>ClearProviders(p1)</code></td><td><code>static ILoggingBuilder ClearProviders(ILoggingBuilder builder)</code></td></tr><tr><td><code>Configure</code></td><td><code>Configure(p1,p2)</code></td><td><code>static ILoggingBuilder Configure(ILoggingBuilder builder, Action&lt;LoggerFactoryOptions&gt; action)</code></td></tr><tr><td><code>SetMinimumLevel</code></td><td><code>SetMinimumLevel(p1,p2)</code></td><td><code>static ILoggingBuilder SetMinimumLevel(ILoggingBuilder builder, LogLevel level)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ProviderAliasAttribute"><summary><b>ProviderAliasAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.ProviderAliasAttribute</code> · assembly <code>Microsoft.Extensions.Logging</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ProviderAliasAttribute(string alias)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ProviderAliasAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ProviderAliasAttribute().@New([ :param = value ])</code> or <code>dnNew("ProviderAliasAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Alias</code></td><td><code>string</code></td><td>read</td><td><code>o.Alias</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TraceSourceFactoryExtensions"><summary><b>TraceSourceFactoryExtensions</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.Extensions.Logging.TraceSourceFactoryExtensions</code> · assembly <code>Microsoft.Extensions.Logging.TraceSource</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddTraceSource</code></td><td><code>AddTraceSource([ :factory = …, :sourceSwitch = … ])</code><br><code>AddTraceSource([ :factory = …, :switchName = … ])</code><br><code>AddTraceSource([ :builder = …, :switchName = … ])</code><br><code>AddTraceSource([ :builder = …, :sourceSwitch = … ])</code></td><td><code>static ILoggerFactory AddTraceSource(ILoggerFactory factory, SourceSwitch sourceSwitch, TraceListener listener)</code><br><code>static ILoggerFactory AddTraceSource(ILoggerFactory factory, SourceSwitch sourceSwitch)</code><br><code>static ILoggerFactory AddTraceSource(ILoggerFactory factory, string switchName, TraceListener listener)</code><br><code>static ILoggerFactory AddTraceSource(ILoggerFactory factory, string switchName)</code><br><code>static ILoggingBuilder AddTraceSource(ILoggingBuilder builder, string switchName)</code><br><code>static ILoggingBuilder AddTraceSource(ILoggingBuilder builder, string switchName, TraceListener listener)</code><br><code>static ILoggingBuilder AddTraceSource(ILoggingBuilder builder, SourceSwitch sourceSwitch)</code><br><code>static ILoggingBuilder AddTraceSource(ILoggingBuilder builder, SourceSwitch sourceSwitch, TraceListener listener)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

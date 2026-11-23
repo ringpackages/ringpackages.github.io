@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Xml.Serialization · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Xml.Serialization</h1>
+<p class="lead">60 wrapped types. Load them with <code>using { "System.Xml.Serialization" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-CodeIdentifier">CodeIdentifier</a> <a href="#c-CodeIdentifiers">CodeIdentifiers</a> <a href="#c-ImportContext">ImportContext</a> <a href="#c-IXmlSerializable">IXmlSerializable</a> <a href="#c-IXmlTextParser">IXmlTextParser</a> <a href="#c-SchemaImporter">SchemaImporter</a> <a href="#c-SoapAttributeAttribute">SoapAttributeAttribute</a> <a href="#c-SoapAttributeOverrides">SoapAttributeOverrides</a> <a href="#c-SoapAttributes">SoapAttributes</a> <a href="#c-SoapElementAttribute">SoapElementAttribute</a> <a href="#c-SoapEnumAttribute">SoapEnumAttribute</a> <a href="#c-SoapIgnoreAttribute">SoapIgnoreAttribute</a> <a href="#c-SoapIncludeAttribute">SoapIncludeAttribute</a> <a href="#c-SoapReflectionImporter">SoapReflectionImporter</a> <a href="#c-SoapSchemaMember">SoapSchemaMember</a> <a href="#c-SoapTypeAttribute">SoapTypeAttribute</a> <a href="#c-UnreferencedObjectEventArgs">UnreferencedObjectEventArgs</a> <a href="#c-XmlAnyAttributeAttribute">XmlAnyAttributeAttribute</a> <a href="#c-XmlAnyElementAttribute">XmlAnyElementAttribute</a> <a href="#c-XmlAnyElementAttributes">XmlAnyElementAttributes</a> <a href="#c-XmlArrayAttribute">XmlArrayAttribute</a> <a href="#c-XmlArrayItemAttribute">XmlArrayItemAttribute</a> <a href="#c-XmlArrayItemAttributes">XmlArrayItemAttributes</a> <a href="#c-XmlAttributeAttribute">XmlAttributeAttribute</a> <a href="#c-XmlAttributeEventArgs">XmlAttributeEventArgs</a> <a href="#c-XmlAttributeOverrides">XmlAttributeOverrides</a> <a href="#c-XmlAttributes">XmlAttributes</a> <a href="#c-XmlChoiceIdentifierAttribute">XmlChoiceIdentifierAttribute</a> <a href="#c-XmlDeserializationEvents">XmlDeserializationEvents</a> <a href="#c-XmlElementAttribute">XmlElementAttribute</a> <a href="#c-XmlElementAttributes">XmlElementAttributes</a> <a href="#c-XmlElementEventArgs">XmlElementEventArgs</a> <a href="#c-XmlEnumAttribute">XmlEnumAttribute</a> <a href="#c-XmlIgnoreAttribute">XmlIgnoreAttribute</a> <a href="#c-XmlIncludeAttribute">XmlIncludeAttribute</a> <a href="#c-XmlMapping">XmlMapping</a> <a href="#c-XmlMemberMapping">XmlMemberMapping</a> <a href="#c-XmlMembersMapping">XmlMembersMapping</a> <a href="#c-XmlNamespaceDeclarationsAttribute">XmlNamespaceDeclarationsAttribute</a> <a href="#c-XmlNodeEventArgs">XmlNodeEventArgs</a> <a href="#c-XmlReflectionImporter">XmlReflectionImporter</a> <a href="#c-XmlReflectionMember">XmlReflectionMember</a> <a href="#c-XmlRootAttribute">XmlRootAttribute</a> <a href="#c-XmlSchemaEnumerator">XmlSchemaEnumerator</a> <a href="#c-XmlSchemaExporter">XmlSchemaExporter</a> <a href="#c-XmlSchemaImporter">XmlSchemaImporter</a> <a href="#c-XmlSchemaProviderAttribute">XmlSchemaProviderAttribute</a> <a href="#c-XmlSchemas">XmlSchemas</a> <a href="#c-XmlSerializationGeneratedCode">XmlSerializationGeneratedCode</a> <a href="#c-XmlSerializationReader">XmlSerializationReader</a> <a href="#c-XmlSerializationWriter">XmlSerializationWriter</a> <a href="#c-XmlSerializer">XmlSerializer</a> <a href="#c-XmlSerializerAssemblyAttribute">XmlSerializerAssemblyAttribute</a> <a href="#c-XmlSerializerFactory">XmlSerializerFactory</a> <a href="#c-XmlSerializerImplementation">XmlSerializerImplementation</a> <a href="#c-XmlSerializerNamespaces">XmlSerializerNamespaces</a> <a href="#c-XmlSerializerVersionAttribute">XmlSerializerVersionAttribute</a> <a href="#c-XmlTextAttribute">XmlTextAttribute</a> <a href="#c-XmlTypeAttribute">XmlTypeAttribute</a> <a href="#c-XmlTypeMapping">XmlTypeMapping</a></div><details class="cls" id="c-CodeIdentifier"><summary><b>CodeIdentifier</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.CodeIdentifier</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CodeIdentifier()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CodeIdentifier(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CodeIdentifier().@New([ :param = value ])</code> or <code>dnNew("CodeIdentifier",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>MakeCamel</code></td><td><code>MakeCamel(p1)</code></td><td><code>static string MakeCamel(string identifier)</code></td></tr><tr><td><code>MakePascal</code></td><td><code>MakePascal(p1)</code></td><td><code>static string MakePascal(string identifier)</code></td></tr><tr><td><code>MakeValid</code></td><td><code>MakeValid(p1)</code></td><td><code>static string MakeValid(string identifier)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-CodeIdentifiers"><summary><b>CodeIdentifiers</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.CodeIdentifiers</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CodeIdentifiers()</code></td></tr><tr><td><code>new CodeIdentifiers(bool caseSensitive)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CodeIdentifiers(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CodeIdentifiers().@New([ :param = value ])</code> or <code>dnNew("CodeIdentifiers",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UseCamelCasing</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.UseCamelCasing</code> <code>o.UseCamelCasing = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(string identifier, object value)</code></td></tr><tr><td><code>AddReserved</code></td><td><code>AddReserved(p1)</code></td><td><code>void AddReserved(string identifier)</code></td></tr><tr><td><code>AddUnique</code></td><td><code>AddUnique(p1,p2)</code></td><td><code>string AddUnique(string identifier, object value)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>IsInUse</code></td><td><code>IsInUse(p1)</code></td><td><code>bool IsInUse(string identifier)</code></td></tr><tr><td><code>MakeRightCase</code></td><td><code>MakeRightCase(p1)</code></td><td><code>string MakeRightCase(string identifier)</code></td></tr><tr><td><code>MakeUnique</code></td><td><code>MakeUnique(p1)</code></td><td><code>string MakeUnique(string identifier)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(string identifier)</code></td></tr><tr><td><code>RemoveReserved</code></td><td><code>RemoveReserved(p1)</code></td><td><code>void RemoveReserved(string identifier)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray(p1)</code></td><td><code>object ToArray(Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ImportContext"><summary><b>ImportContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.ImportContext</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ImportContext(CodeIdentifiers identifiers, bool shareTypes)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ImportContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ImportContext().@New([ :param = value ])</code> or <code>dnNew("ImportContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TypeIdentifiers</code></td><td><code>CodeIdentifiers</code></td><td>read</td><td><code>o.TypeIdentifiers</code></td></tr><tr><td><code>ShareTypes</code></td><td><code>bool</code></td><td>read</td><td><code>o.ShareTypes</code></td></tr><tr><td><code>Warnings</code></td><td><code>StringCollection</code></td><td>read</td><td><code>o.Warnings</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IXmlSerializable"><summary><b>IXmlSerializable</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.IXmlSerializable</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetSchema</code></td><td><code>GetSchema()</code></td><td><code>XmlSchema GetSchema()</code></td></tr><tr><td><code>ReadXml</code></td><td><code>ReadXml(p1)</code></td><td><code>void ReadXml(XmlReader reader)</code></td></tr><tr><td><code>WriteXml</code></td><td><code>WriteXml(p1)</code></td><td><code>void WriteXml(XmlWriter writer)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IXmlTextParser"><summary><b>IXmlTextParser</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.IXmlTextParser</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Normalized</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Normalized</code> <code>o.Normalized = v</code></td></tr><tr><td><code>WhitespaceHandling</code></td><td><code>WhitespaceHandling</code></td><td>read, write</td><td><code>o.WhitespaceHandling</code> <code>o.WhitespaceHandling = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SchemaImporter"><summary><b>SchemaImporter</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SchemaImporter</code> · assembly <code>System.Private.Xml</code></p>
+</div></details>
+<details class="cls" id="c-SoapAttributeAttribute"><summary><b>SoapAttributeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapAttributeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapAttributeAttribute()</code></td></tr><tr><td><code>new SoapAttributeAttribute(string attributeName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapAttributeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapAttributeAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapAttributeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AttributeName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AttributeName</code> <code>o.AttributeName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SoapAttributeOverrides"><summary><b>SoapAttributeOverrides</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapAttributeOverrides</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapAttributeOverrides()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapAttributeOverrides(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapAttributeOverrides().@New([ :param = value ])</code> or <code>dnNew("SoapAttributeOverrides",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(Type type)</code> → <code>SoapAttributes</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add([ :type = …, :attributes = … ])</code><br><code>Add([ :type = …, :member = …, :attributes = … ])</code></td><td><code>void Add(Type type, SoapAttributes attributes)</code><br><code>void Add(Type type, string member, SoapAttributes attributes)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SoapAttributes"><summary><b>SoapAttributes</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapAttributes</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapAttributes()</code></td></tr><tr><td><code>new SoapAttributes(ICustomAttributeProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapAttributes(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapAttributes().@New([ :param = value ])</code> or <code>dnNew("SoapAttributes",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>SoapType</code></td><td><code>SoapTypeAttribute</code></td><td>read, write</td><td><code>o.SoapType</code> <code>o.SoapType = v</code></td></tr><tr><td><code>SoapEnum</code></td><td><code>SoapEnumAttribute</code></td><td>read, write</td><td><code>o.SoapEnum</code> <code>o.SoapEnum = v</code></td></tr><tr><td><code>SoapIgnore</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.SoapIgnore</code> <code>o.SoapIgnore = v</code></td></tr><tr><td><code>SoapElement</code></td><td><code>SoapElementAttribute</code></td><td>read, write</td><td><code>o.SoapElement</code> <code>o.SoapElement = v</code></td></tr><tr><td><code>SoapAttribute</code></td><td><code>SoapAttributeAttribute</code></td><td>read, write</td><td><code>o.SoapAttribute</code> <code>o.SoapAttribute = v</code></td></tr><tr><td><code>SoapDefaultValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.SoapDefaultValue</code> <code>o.SoapDefaultValue = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SoapElementAttribute"><summary><b>SoapElementAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapElementAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapElementAttribute()</code></td></tr><tr><td><code>new SoapElementAttribute(string elementName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapElementAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapElementAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapElementAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ElementName</code> <code>o.ElementName = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr><tr><td><code>IsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNullable</code> <code>o.IsNullable = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SoapEnumAttribute"><summary><b>SoapEnumAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapEnumAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapEnumAttribute()</code></td></tr><tr><td><code>new SoapEnumAttribute(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapEnumAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapEnumAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapEnumAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SoapIgnoreAttribute"><summary><b>SoapIgnoreAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapIgnoreAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapIgnoreAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapIgnoreAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapIgnoreAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapIgnoreAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SoapIncludeAttribute"><summary><b>SoapIncludeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapIncludeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapIncludeAttribute(Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapIncludeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapIncludeAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapIncludeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SoapReflectionImporter"><summary><b>SoapReflectionImporter</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapReflectionImporter</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapReflectionImporter()</code></td></tr><tr><td><code>new SoapReflectionImporter(string defaultNamespace)</code></td></tr><tr><td><code>new SoapReflectionImporter(SoapAttributeOverrides attributeOverrides)</code></td></tr><tr><td><code>new SoapReflectionImporter(SoapAttributeOverrides attributeOverrides, string defaultNamespace)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapReflectionImporter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapReflectionImporter().@New([ :param = value ])</code> or <code>dnNew("SoapReflectionImporter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ImportMembersMapping</code></td><td><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :writeAccessors = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :writeAccessors = …, :validate = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :writeAccessors = …, :validate = …, :access = … ])</code></td><td><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool writeAccessors)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool writeAccessors, bool validate)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool writeAccessors, bool validate, XmlMappingAccess access)</code></td></tr><tr><td><code>ImportTypeMapping</code></td><td><code>ImportTypeMapping(value)</code><br><code>ImportTypeMapping([ :type = … ])</code><br><code>ImportTypeMapping([ :type = …, :defaultNamespace = … ])</code></td><td><code>XmlTypeMapping ImportTypeMapping(Type type)</code><br><code>XmlTypeMapping ImportTypeMapping(Type type, string defaultNamespace)</code></td></tr><tr><td><code>IncludeType</code></td><td><code>IncludeType(p1)</code></td><td><code>void IncludeType(Type type)</code></td></tr><tr><td><code>IncludeTypes</code></td><td><code>IncludeTypes(p1)</code></td><td><code>void IncludeTypes(ICustomAttributeProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SoapSchemaMember"><summary><b>SoapSchemaMember</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapSchemaMember</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapSchemaMember()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapSchemaMember(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapSchemaMember().@New([ :param = value ])</code> or <code>dnNew("SoapSchemaMember",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MemberType</code></td><td><code>XmlQualifiedName</code></td><td>read, write</td><td><code>o.MemberType</code> <code>o.MemberType = v</code></td></tr><tr><td><code>MemberName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MemberName</code> <code>o.MemberName = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-SoapTypeAttribute"><summary><b>SoapTypeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.SoapTypeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SoapTypeAttribute()</code></td></tr><tr><td><code>new SoapTypeAttribute(string typeName)</code></td></tr><tr><td><code>new SoapTypeAttribute(string typeName, string ns)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SoapTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SoapTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("SoapTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IncludeInSchema</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IncludeInSchema</code> <code>o.IncludeInSchema = v</code></td></tr><tr><td><code>TypeName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getTypeName()</code> <code>o.setTypeName(v)</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-UnreferencedObjectEventArgs"><summary><b>UnreferencedObjectEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.UnreferencedObjectEventArgs</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnreferencedObjectEventArgs(object o, string id)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnreferencedObjectEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnreferencedObjectEventArgs().@New([ :param = value ])</code> or <code>dnNew("UnreferencedObjectEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UnreferencedObject</code></td><td><code>object</code></td><td>read</td><td><code>o.UnreferencedObject</code></td></tr><tr><td><code>UnreferencedId</code></td><td><code>string</code></td><td>read</td><td><code>o.UnreferencedId</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAnyAttributeAttribute"><summary><b>XmlAnyAttributeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAnyAttributeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAnyAttributeAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAnyAttributeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAnyAttributeAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlAnyAttributeAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAnyElementAttribute"><summary><b>XmlAnyElementAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAnyElementAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAnyElementAttribute()</code></td></tr><tr><td><code>new XmlAnyElementAttribute(string name)</code></td></tr><tr><td><code>new XmlAnyElementAttribute(string name, string ns)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAnyElementAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAnyElementAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlAnyElementAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAnyElementAttributes"><summary><b>XmlAnyElementAttributes</b> <span class="muted">class · extends <a href="System.Collections.html#c-CollectionBase">CollectionBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAnyElementAttributes</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAnyElementAttributes()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAnyElementAttributes(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAnyElementAttributes().@New([ :param = value ])</code> or <code>dnNew("XmlAnyElementAttributes",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlAnyElementAttribute</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(XmlAnyElementAttribute attribute)</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlAnyElementAttribute attribute)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlAnyElementAttribute[] array, int index)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(XmlAnyElementAttribute attribute)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, XmlAnyElementAttribute attribute)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(XmlAnyElementAttribute attribute)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlArrayAttribute"><summary><b>XmlArrayAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlArrayAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlArrayAttribute()</code></td></tr><tr><td><code>new XmlArrayAttribute(string elementName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlArrayAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlArrayAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlArrayAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ElementName</code> <code>o.ElementName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>IsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNullable</code> <code>o.IsNullable = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlArrayItemAttribute"><summary><b>XmlArrayItemAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlArrayItemAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlArrayItemAttribute()</code></td></tr><tr><td><code>new XmlArrayItemAttribute(string elementName)</code></td></tr><tr><td><code>new XmlArrayItemAttribute(Type type)</code></td></tr><tr><td><code>new XmlArrayItemAttribute(string elementName, Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlArrayItemAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlArrayItemAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlArrayItemAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ElementName</code> <code>o.ElementName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>NestingLevel</code></td><td><code>int</code></td><td>read, write</td><td><code>o.NestingLevel</code> <code>o.NestingLevel = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr><tr><td><code>IsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNullable</code> <code>o.IsNullable = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlArrayItemAttributes"><summary><b>XmlArrayItemAttributes</b> <span class="muted">class · extends <a href="System.Collections.html#c-CollectionBase">CollectionBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlArrayItemAttributes</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlArrayItemAttributes()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlArrayItemAttributes(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlArrayItemAttributes().@New([ :param = value ])</code> or <code>dnNew("XmlArrayItemAttributes",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlArrayItemAttribute</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(XmlArrayItemAttribute attribute)</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlArrayItemAttribute attribute)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlArrayItemAttribute[] array, int index)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(XmlArrayItemAttribute attribute)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, XmlArrayItemAttribute attribute)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(XmlArrayItemAttribute attribute)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAttributeAttribute"><summary><b>XmlAttributeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAttributeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAttributeAttribute()</code></td></tr><tr><td><code>new XmlAttributeAttribute(string attributeName)</code></td></tr><tr><td><code>new XmlAttributeAttribute(Type type)</code></td></tr><tr><td><code>new XmlAttributeAttribute(string attributeName, Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAttributeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAttributeAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlAttributeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr><tr><td><code>AttributeName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AttributeName</code> <code>o.AttributeName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAttributeEventArgs"><summary><b>XmlAttributeEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAttributeEventArgs</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectBeingDeserialized</code></td><td><code>object</code></td><td>read</td><td><code>o.ObjectBeingDeserialized</code></td></tr><tr><td><code>Attr</code></td><td><code>XmlAttribute</code></td><td>read</td><td><code>o.Attr</code></td></tr><tr><td><code>LineNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.LineNumber</code></td></tr><tr><td><code>LinePosition</code></td><td><code>int</code></td><td>read</td><td><code>o.LinePosition</code></td></tr><tr><td><code>ExpectedAttributes</code></td><td><code>string</code></td><td>read</td><td><code>o.ExpectedAttributes</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlAttributeOverrides"><summary><b>XmlAttributeOverrides</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAttributeOverrides</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAttributeOverrides()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAttributeOverrides(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAttributeOverrides().@New([ :param = value ])</code> or <code>dnNew("XmlAttributeOverrides",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(Type type)</code> → <code>XmlAttributes</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add([ :type = …, :attributes = … ])</code><br><code>Add([ :type = …, :member = …, :attributes = … ])</code></td><td><code>void Add(Type type, XmlAttributes attributes)</code><br><code>void Add(Type type, string member, XmlAttributes attributes)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlAttributes"><summary><b>XmlAttributes</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlAttributes</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlAttributes()</code></td></tr><tr><td><code>new XmlAttributes(ICustomAttributeProvider provider)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlAttributes(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlAttributes().@New([ :param = value ])</code> or <code>dnNew("XmlAttributes",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>XmlElements</code></td><td><code>XmlElementAttributes</code></td><td>read</td><td><code>o.XmlElements</code></td></tr><tr><td><code>XmlAttribute</code></td><td><code>XmlAttributeAttribute</code></td><td>read, write</td><td><code>o.XmlAttribute</code> <code>o.XmlAttribute = v</code></td></tr><tr><td><code>XmlEnum</code></td><td><code>XmlEnumAttribute</code></td><td>read, write</td><td><code>o.XmlEnum</code> <code>o.XmlEnum = v</code></td></tr><tr><td><code>XmlText</code></td><td><code>XmlTextAttribute</code></td><td>read, write</td><td><code>o.XmlText</code> <code>o.XmlText = v</code></td></tr><tr><td><code>XmlArray</code></td><td><code>XmlArrayAttribute</code></td><td>read, write</td><td><code>o.XmlArray</code> <code>o.XmlArray = v</code></td></tr><tr><td><code>XmlArrayItems</code></td><td><code>XmlArrayItemAttributes</code></td><td>read</td><td><code>o.XmlArrayItems</code></td></tr><tr><td><code>XmlDefaultValue</code></td><td><code>object</code></td><td>read, write</td><td><code>o.XmlDefaultValue</code> <code>o.XmlDefaultValue = v</code></td></tr><tr><td><code>XmlIgnore</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.XmlIgnore</code> <code>o.XmlIgnore = v</code></td></tr><tr><td><code>XmlType</code></td><td><code>XmlTypeAttribute</code></td><td>read, write</td><td><code>o.XmlType</code> <code>o.XmlType = v</code></td></tr><tr><td><code>XmlRoot</code></td><td><code>XmlRootAttribute</code></td><td>read, write</td><td><code>o.XmlRoot</code> <code>o.XmlRoot = v</code></td></tr><tr><td><code>XmlAnyElements</code></td><td><code>XmlAnyElementAttributes</code></td><td>read</td><td><code>o.XmlAnyElements</code></td></tr><tr><td><code>XmlAnyAttribute</code></td><td><code>XmlAnyAttributeAttribute</code></td><td>read, write</td><td><code>o.XmlAnyAttribute</code> <code>o.XmlAnyAttribute = v</code></td></tr><tr><td><code>XmlChoiceIdentifier</code></td><td><code>XmlChoiceIdentifierAttribute</code></td><td>read</td><td><code>o.XmlChoiceIdentifier</code></td></tr><tr><td><code>Xmlns</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Xmlns</code> <code>o.Xmlns = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlChoiceIdentifierAttribute"><summary><b>XmlChoiceIdentifierAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlChoiceIdentifierAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlChoiceIdentifierAttribute()</code></td></tr><tr><td><code>new XmlChoiceIdentifierAttribute(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlChoiceIdentifierAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlChoiceIdentifierAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlChoiceIdentifierAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MemberName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MemberName</code> <code>o.MemberName = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlDeserializationEvents"><summary><b>XmlDeserializationEvents</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlDeserializationEvents</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>OnUnknownNode</code></td><td><code>XmlNodeEventHandler</code></td><td>read, write</td><td><code>o.OnUnknownNode</code> <code>o.OnUnknownNode = v</code></td></tr><tr><td><code>OnUnknownAttribute</code></td><td><code>XmlAttributeEventHandler</code></td><td>read, write</td><td><code>o.OnUnknownAttribute</code> <code>o.OnUnknownAttribute = v</code></td></tr><tr><td><code>OnUnknownElement</code></td><td><code>XmlElementEventHandler</code></td><td>read, write</td><td><code>o.OnUnknownElement</code> <code>o.OnUnknownElement = v</code></td></tr><tr><td><code>OnUnreferencedObject</code></td><td><code>UnreferencedObjectEventHandler</code></td><td>read, write</td><td><code>o.OnUnreferencedObject</code> <code>o.OnUnreferencedObject = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlElementAttribute"><summary><b>XmlElementAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlElementAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlElementAttribute()</code></td></tr><tr><td><code>new XmlElementAttribute(string elementName)</code></td></tr><tr><td><code>new XmlElementAttribute(Type type)</code></td></tr><tr><td><code>new XmlElementAttribute(string elementName, Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlElementAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlElementAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlElementAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ElementName</code> <code>o.ElementName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr><tr><td><code>IsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNullable</code> <code>o.IsNullable = v</code></td></tr><tr><td><code>Form</code></td><td><code>XmlSchemaForm</code></td><td>read, write</td><td><code>o.Form</code> <code>o.Form = v</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlElementAttributes"><summary><b>XmlElementAttributes</b> <span class="muted">class · extends <a href="System.Collections.html#c-CollectionBase">CollectionBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlElementAttributes</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlElementAttributes()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlElementAttributes(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlElementAttributes().@New([ :param = value ])</code> or <code>dnNew("XmlElementAttributes",[ :param = value ])</code>.</p>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlElementAttribute</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1)</code></td><td><code>int Add(XmlElementAttribute attribute)</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlElementAttribute attribute)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlElementAttribute[] array, int index)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(XmlElementAttribute attribute)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, XmlElementAttribute attribute)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(XmlElementAttribute attribute)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlElementEventArgs"><summary><b>XmlElementEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlElementEventArgs</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectBeingDeserialized</code></td><td><code>object</code></td><td>read</td><td><code>o.ObjectBeingDeserialized</code></td></tr><tr><td><code>Element</code></td><td><code>XmlElement</code></td><td>read</td><td><code>o.Element</code></td></tr><tr><td><code>LineNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.LineNumber</code></td></tr><tr><td><code>LinePosition</code></td><td><code>int</code></td><td>read</td><td><code>o.LinePosition</code></td></tr><tr><td><code>ExpectedElements</code></td><td><code>string</code></td><td>read</td><td><code>o.ExpectedElements</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlEnumAttribute"><summary><b>XmlEnumAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlEnumAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlEnumAttribute()</code></td></tr><tr><td><code>new XmlEnumAttribute(string name)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlEnumAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlEnumAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlEnumAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Name</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Name</code> <code>o.Name = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlIgnoreAttribute"><summary><b>XmlIgnoreAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlIgnoreAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlIgnoreAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlIgnoreAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlIgnoreAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlIgnoreAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlIncludeAttribute"><summary><b>XmlIncludeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlIncludeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlIncludeAttribute(Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlIncludeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlIncludeAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlIncludeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlMapping"><summary><b>XmlMapping</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlMapping</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read</td><td><code>o.ElementName</code></td></tr><tr><td><code>XsdElementName</code></td><td><code>string</code></td><td>read</td><td><code>o.XsdElementName</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read</td><td><code>o.Namespace</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SetKey</code></td><td><code>SetKey(p1)</code></td><td><code>void SetKey(string key)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlMemberMapping"><summary><b>XmlMemberMapping</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlMemberMapping</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Any</code></td><td><code>bool</code></td><td>read</td><td><code>o.Any</code></td></tr><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read</td><td><code>o.ElementName</code></td></tr><tr><td><code>XsdElementName</code></td><td><code>string</code></td><td>read</td><td><code>o.XsdElementName</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read</td><td><code>o.Namespace</code></td></tr><tr><td><code>MemberName</code></td><td><code>string</code></td><td>read</td><td><code>o.MemberName</code></td></tr><tr><td><code>TypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.getTypeName()</code></td></tr><tr><td><code>TypeNamespace</code></td><td><code>string</code></td><td>read</td><td><code>o.TypeNamespace</code></td></tr><tr><td><code>TypeFullName</code></td><td><code>string</code></td><td>read</td><td><code>o.TypeFullName</code></td></tr><tr><td><code>CheckSpecified</code></td><td><code>bool</code></td><td>read</td><td><code>o.CheckSpecified</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlMembersMapping"><summary><b>XmlMembersMapping</b> <span class="muted">class · extends <a href="#c-XmlMapping">XmlMapping</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlMembersMapping</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.getTypeName()</code></td></tr><tr><td><code>TypeNamespace</code></td><td><code>string</code></td><td>read</td><td><code>o.TypeNamespace</code></td></tr><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlMemberMapping</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlNamespaceDeclarationsAttribute"><summary><b>XmlNamespaceDeclarationsAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlNamespaceDeclarationsAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlNamespaceDeclarationsAttribute()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlNamespaceDeclarationsAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlNamespaceDeclarationsAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlNamespaceDeclarationsAttribute",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlNodeEventArgs"><summary><b>XmlNodeEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlNodeEventArgs</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ObjectBeingDeserialized</code></td><td><code>object</code></td><td>read</td><td><code>o.ObjectBeingDeserialized</code></td></tr><tr><td><code>NodeType</code></td><td><code>XmlNodeType</code></td><td>read</td><td><code>o.NodeType</code></td></tr><tr><td><code>Name</code></td><td><code>string</code></td><td>read</td><td><code>o.Name</code></td></tr><tr><td><code>LocalName</code></td><td><code>string</code></td><td>read</td><td><code>o.LocalName</code></td></tr><tr><td><code>NamespaceURI</code></td><td><code>string</code></td><td>read</td><td><code>o.NamespaceURI</code></td></tr><tr><td><code>Text</code></td><td><code>string</code></td><td>read</td><td><code>o.Text</code></td></tr><tr><td><code>LineNumber</code></td><td><code>int</code></td><td>read</td><td><code>o.LineNumber</code></td></tr><tr><td><code>LinePosition</code></td><td><code>int</code></td><td>read</td><td><code>o.LinePosition</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlReflectionImporter"><summary><b>XmlReflectionImporter</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlReflectionImporter</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlReflectionImporter()</code></td></tr><tr><td><code>new XmlReflectionImporter(string defaultNamespace)</code></td></tr><tr><td><code>new XmlReflectionImporter(XmlAttributeOverrides attributeOverrides)</code></td></tr><tr><td><code>new XmlReflectionImporter(XmlAttributeOverrides attributeOverrides, string defaultNamespace)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlReflectionImporter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlReflectionImporter().@New([ :param = value ])</code> or <code>dnNew("XmlReflectionImporter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ImportMembersMapping</code></td><td><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :rpc = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :rpc = …, :openModel = … ])</code><br><code>ImportMembersMapping([ :elementName = …, :ns = …, :members = …, :hasWrapperElement = …, :rpc = …, :openModel = …, :access = … ])</code></td><td><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool rpc)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool rpc, bool openModel)</code><br><code>XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool rpc, bool openModel, XmlMappingAccess access)</code></td></tr><tr><td><code>ImportTypeMapping</code></td><td><code>ImportTypeMapping(value)</code><br><code>ImportTypeMapping([ :type = … ])</code><br><code>ImportTypeMapping([ :type = …, :defaultNamespace = … ])</code><br><code>ImportTypeMapping([ :type = …, :root = … ])</code><br><code>ImportTypeMapping([ :type = …, :root = …, :defaultNamespace = … ])</code></td><td><code>XmlTypeMapping ImportTypeMapping(Type type)</code><br><code>XmlTypeMapping ImportTypeMapping(Type type, string defaultNamespace)</code><br><code>XmlTypeMapping ImportTypeMapping(Type type, XmlRootAttribute root)</code><br><code>XmlTypeMapping ImportTypeMapping(Type type, XmlRootAttribute root, string defaultNamespace)</code></td></tr><tr><td><code>IncludeType</code></td><td><code>IncludeType(p1)</code></td><td><code>void IncludeType(Type type)</code></td></tr><tr><td><code>IncludeTypes</code></td><td><code>IncludeTypes(p1)</code></td><td><code>void IncludeTypes(ICustomAttributeProvider provider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlReflectionMember"><summary><b>XmlReflectionMember</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlReflectionMember</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlReflectionMember()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlReflectionMember(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlReflectionMember().@New([ :param = value ])</code> or <code>dnNew("XmlReflectionMember",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MemberType</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.MemberType</code> <code>o.MemberType = v</code></td></tr><tr><td><code>XmlAttributes</code></td><td><code>XmlAttributes</code></td><td>read, write</td><td><code>o.XmlAttributes</code> <code>o.XmlAttributes = v</code></td></tr><tr><td><code>SoapAttributes</code></td><td><code>SoapAttributes</code></td><td>read, write</td><td><code>o.SoapAttributes</code> <code>o.SoapAttributes = v</code></td></tr><tr><td><code>MemberName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.MemberName</code> <code>o.MemberName = v</code></td></tr><tr><td><code>IsReturnValue</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsReturnValue</code> <code>o.IsReturnValue = v</code></td></tr><tr><td><code>OverrideIsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.OverrideIsNullable</code> <code>o.OverrideIsNullable = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlRootAttribute"><summary><b>XmlRootAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlRootAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlRootAttribute()</code></td></tr><tr><td><code>new XmlRootAttribute(string elementName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlRootAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlRootAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlRootAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ElementName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ElementName</code> <code>o.ElementName = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr><tr><td><code>IsNullable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsNullable</code> <code>o.IsNullable = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaEnumerator"><summary><b>XmlSchemaEnumerator</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSchemaEnumerator</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IDisposable, IEnumerator</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaEnumerator(XmlSchemas list)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaEnumerator(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaEnumerator().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaEnumerator",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Current</code></td><td><code>XmlSchema</code></td><td>read</td><td><code>o.Current</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>MoveNext</code></td><td><code>MoveNext()</code></td><td><code>bool MoveNext()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaExporter"><summary><b>XmlSchemaExporter</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSchemaExporter</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaExporter(XmlSchemas schemas)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaExporter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaExporter().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaExporter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ExportAnyType</code></td><td><code>ExportAnyType(p1)</code></td><td><code>string ExportAnyType(string ns)</code><br><code>string ExportAnyType(XmlMembersMapping members)</code></td></tr><tr><td><code>ExportMembersMapping</code></td><td><code>ExportMembersMapping(value)</code><br><code>ExportMembersMapping([ :xmlMembersMapping = … ])</code><br><code>ExportMembersMapping([ :xmlMembersMapping = …, :exportEnclosingType = … ])</code></td><td><code>void ExportMembersMapping(XmlMembersMapping xmlMembersMapping)</code><br><code>void ExportMembersMapping(XmlMembersMapping xmlMembersMapping, bool exportEnclosingType)</code></td></tr><tr><td><code>ExportTypeMapping</code></td><td><code>ExportTypeMapping(p1)</code></td><td><code>void ExportTypeMapping(XmlTypeMapping xmlTypeMapping)</code><br><code>XmlQualifiedName ExportTypeMapping(XmlMembersMapping xmlMembersMapping)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSchemaImporter"><summary><b>XmlSchemaImporter</b> <span class="muted">class · extends <a href="#c-SchemaImporter">SchemaImporter</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSchemaImporter</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaImporter(XmlSchemas schemas)</code></td></tr><tr><td><code>new XmlSchemaImporter(XmlSchemas schemas, CodeIdentifiers typeIdentifiers)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaImporter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaImporter().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaImporter",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ImportAnyType</code></td><td><code>ImportAnyType(p1,p2)</code></td><td><code>XmlMembersMapping ImportAnyType(XmlQualifiedName typeName, string elementName)</code></td></tr><tr><td><code>ImportDerivedTypeMapping</code></td><td><code>ImportDerivedTypeMapping([ :name = …, :baseType = … ])</code><br><code>ImportDerivedTypeMapping([ :name = …, :baseType = …, :baseTypeCanBeIndirect = … ])</code></td><td><code>XmlTypeMapping ImportDerivedTypeMapping(XmlQualifiedName name, Type baseType)</code><br><code>XmlTypeMapping ImportDerivedTypeMapping(XmlQualifiedName name, Type baseType, bool baseTypeCanBeIndirect)</code></td></tr><tr><td><code>ImportMembersMapping</code></td><td><code>ImportMembersMapping(value)</code><br><code>ImportMembersMapping([ :name = … ])</code><br><code>ImportMembersMapping([ :names = … ])</code><br><code>ImportMembersMapping([ :names = …, :baseType = …, :baseTypeCanBeIndirect = … ])</code><br><code>ImportMembersMapping([ :name = …, :ns = …, :members = … ])</code></td><td><code>XmlMembersMapping ImportMembersMapping(XmlQualifiedName name)</code><br><code>XmlMembersMapping ImportMembersMapping(XmlQualifiedName[] names)</code><br><code>XmlMembersMapping ImportMembersMapping(XmlQualifiedName[] names, Type baseType, bool baseTypeCanBeIndirect)</code><br><code>XmlMembersMapping ImportMembersMapping(string name, string ns, SoapSchemaMember[] members)</code></td></tr><tr><td><code>ImportSchemaType</code></td><td><code>ImportSchemaType(value)</code><br><code>ImportSchemaType([ :typeName = … ])</code><br><code>ImportSchemaType([ :typeName = …, :baseType = … ])</code><br><code>ImportSchemaType([ :typeName = …, :baseType = …, :baseTypeCanBeIndirect = … ])</code></td><td><code>XmlTypeMapping ImportSchemaType(XmlQualifiedName typeName)</code><br><code>XmlTypeMapping ImportSchemaType(XmlQualifiedName typeName, Type baseType)</code><br><code>XmlTypeMapping ImportSchemaType(XmlQualifiedName typeName, Type baseType, bool baseTypeCanBeIndirect)</code></td></tr><tr><td><code>ImportTypeMapping</code></td><td><code>ImportTypeMapping(p1)</code></td><td><code>XmlTypeMapping ImportTypeMapping(XmlQualifiedName name)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemaProviderAttribute"><summary><b>XmlSchemaProviderAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSchemaProviderAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemaProviderAttribute(string methodName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemaProviderAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemaProviderAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlSchemaProviderAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>MethodName</code></td><td><code>string</code></td><td>read</td><td><code>o.MethodName</code></td></tr><tr><td><code>IsAny</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsAny</code> <code>o.IsAny = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSchemas"><summary><b>XmlSchemas</b> <span class="muted">class · extends <a href="System.Collections.html#c-CollectionBase">CollectionBase</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSchemas</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Implements: IList, ICollection, IEnumerable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSchemas()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSchemas(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSchemas().@New([ :param = value ])</code> or <code>dnNew("XmlSchemas",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsCompiled</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsCompiled</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>XmlSchema</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(value)</code><br><code>Add([ :schema = … ])</code><br><code>Add([ :schemas = … ])</code><br><code>Add([ :schema = …, :baseUri = … ])</code></td><td><code>int Add(XmlSchema schema)</code><br><code>int Add(XmlSchema schema, Uri baseUri)</code><br><code>void Add(XmlSchemas schemas)</code></td></tr><tr><td><code>AddReference</code></td><td><code>AddReference(p1)</code></td><td><code>void AddReference(XmlSchema schema)</code></td></tr><tr><td><code>Compile</code></td><td><code>Compile(p1,p2)</code></td><td><code>void Compile(ValidationEventHandler handler, bool fullCompile)</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(XmlSchema schema)</code><br><code>bool Contains(string targetNamespace)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(XmlSchema[] array, int index)</code></td></tr><tr><td><code>Find</code></td><td><code>Find(p1,p2)</code></td><td><code>object Find(XmlQualifiedName name, Type type)</code></td></tr><tr><td><code>GetSchemas</code></td><td><code>GetSchemas(p1)</code></td><td><code>IList GetSchemas(string ns)</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(XmlSchema schema)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, XmlSchema schema)</code></td></tr><tr><td><code>IsDataSet</code></td><td><code>IsDataSet(p1)</code></td><td><code>static bool IsDataSet(XmlSchema schema)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>void Remove(XmlSchema schema)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSerializationGeneratedCode"><summary><b>XmlSerializationGeneratedCode</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializationGeneratedCode</code> · assembly <code>System.Private.Xml</code></p>
+</div></details>
+<details class="cls" id="c-XmlSerializationReader"><summary><b>XmlSerializationReader</b> <span class="muted">class abstract · extends <a href="#c-XmlSerializationGeneratedCode">XmlSerializationGeneratedCode</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializationReader</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSerializationWriter"><summary><b>XmlSerializationWriter</b> <span class="muted">class abstract · extends <a href="#c-XmlSerializationGeneratedCode">XmlSerializationGeneratedCode</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializationWriter</code> · assembly <code>System.Private.Xml</code></p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSerializer"><summary><b>XmlSerializer</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializer</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSerializer(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace)</code></td></tr><tr><td><code>new XmlSerializer(Type type, XmlRootAttribute root)</code></td></tr><tr><td><code>new XmlSerializer(Type type, Type[] extraTypes)</code></td></tr><tr><td><code>new XmlSerializer(Type type, XmlAttributeOverrides overrides)</code></td></tr><tr><td><code>new XmlSerializer(XmlTypeMapping xmlTypeMapping)</code></td></tr><tr><td><code>new XmlSerializer(Type type)</code></td></tr><tr><td><code>new XmlSerializer(Type type, string defaultNamespace)</code></td></tr><tr><td><code>new XmlSerializer(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace, string location)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSerializer(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSerializer().@New([ :param = value ])</code> or <code>dnNew("XmlSerializer",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanDeserialize</code></td><td><code>CanDeserialize(p1)</code></td><td><code>bool CanDeserialize(XmlReader xmlReader)</code></td></tr><tr><td><code>Deserialize</code></td><td><code>Deserialize(value)</code><br><code>Deserialize([ :stream = … ])</code><br><code>Deserialize([ :textReader = … ])</code><br><code>Deserialize([ :xmlReader = … ])</code><br><code>Deserialize([ :xmlReader = …, :events = … ])</code></td><td><code>object Deserialize(Stream stream)</code><br><code>object Deserialize(TextReader textReader)</code><br><code>object Deserialize(XmlReader xmlReader)</code><br><code>object Deserialize(XmlReader xmlReader, XmlDeserializationEvents events)</code><br><code>object Deserialize(XmlReader xmlReader, string encodingStyle)</code><br><code>object Deserialize(XmlReader xmlReader, string encodingStyle, XmlDeserializationEvents events)</code></td></tr><tr><td><code>FromMappings</code></td><td><code>FromMappings(value)</code><br><code>FromMappings([ :mappings = … ])</code><br><code>FromMappings([ :mappings = …, :type = … ])</code></td><td><code>static XmlSerializer[] FromMappings(XmlMapping[] mappings)</code><br><code>static XmlSerializer[] FromMappings(XmlMapping[] mappings, Type type)</code></td></tr><tr><td><code>FromTypes</code></td><td><code>FromTypes(p1)</code></td><td><code>static XmlSerializer[] FromTypes(Type[] types)</code></td></tr><tr><td><code>GetXmlSerializerAssemblyName</code></td><td><code>GetXmlSerializerAssemblyName(value)</code><br><code>GetXmlSerializerAssemblyName([ :type = … ])</code><br><code>GetXmlSerializerAssemblyName([ :type = …, :defaultNamespace = … ])</code></td><td><code>static string GetXmlSerializerAssemblyName(Type type)</code><br><code>static string GetXmlSerializerAssemblyName(Type type, string defaultNamespace)</code></td></tr><tr><td><code>Serialize</code></td><td><code>Serialize([ :textWriter = …, :o = … ])</code><br><code>Serialize([ :stream = …, :o = … ])</code><br><code>Serialize([ :xmlWriter = …, :o = … ])</code><br><code>Serialize([ :textWriter = …, :o = …, :namespaces = … ])</code></td><td><code>void Serialize(TextWriter textWriter, object o)</code><br><code>void Serialize(TextWriter textWriter, object o, XmlSerializerNamespaces namespaces)</code><br><code>void Serialize(Stream stream, object o)</code><br><code>void Serialize(Stream stream, object o, XmlSerializerNamespaces namespaces)</code><br><code>void Serialize(XmlWriter xmlWriter, object o)</code><br><code>void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces)</code><br><code>void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces, string encodingStyle)</code><br><code>void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces, string encodingStyle, string id)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>UnknownNode</code></td><td><code>XmlNodeEventHandler</code></td><td><code>o.setUnknownNodeEvent(code)</code> · <code>o.clearUnknownNodeEvent()</code></td></tr><tr><td><code>UnknownAttribute</code></td><td><code>XmlAttributeEventHandler</code></td><td><code>o.setUnknownAttributeEvent(code)</code> · <code>o.clearUnknownAttributeEvent()</code></td></tr><tr><td><code>UnknownElement</code></td><td><code>XmlElementEventHandler</code></td><td><code>o.setUnknownElementEvent(code)</code> · <code>o.clearUnknownElementEvent()</code></td></tr><tr><td><code>UnreferencedObject</code></td><td><code>UnreferencedObjectEventHandler</code></td><td><code>o.setUnreferencedObjectEvent(code)</code> · <code>o.clearUnreferencedObjectEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSerializerAssemblyAttribute"><summary><b>XmlSerializerAssemblyAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializerAssemblyAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSerializerAssemblyAttribute()</code></td></tr><tr><td><code>new XmlSerializerAssemblyAttribute(string assemblyName)</code></td></tr><tr><td><code>new XmlSerializerAssemblyAttribute(string assemblyName, string codeBase)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSerializerAssemblyAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSerializerAssemblyAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlSerializerAssemblyAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>CodeBase</code></td><td><code>string</code></td><td>read, write</td><td><code>o.CodeBase</code> <code>o.CodeBase = v</code></td></tr><tr><td><code>AssemblyName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.AssemblyName</code> <code>o.AssemblyName = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlSerializerFactory"><summary><b>XmlSerializerFactory</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializerFactory</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSerializerFactory()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSerializerFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSerializerFactory().@New([ :param = value ])</code> or <code>dnNew("XmlSerializerFactory",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateSerializer</code></td><td><code>CreateSerializer(value)</code><br><code>CreateSerializer([ :xmlTypeMapping = … ])</code><br><code>CreateSerializer([ :type = … ])</code><br><code>CreateSerializer([ :type = …, :root = … ])</code><br><code>CreateSerializer([ :type = …, :extraTypes = … ])</code></td><td><code>XmlSerializer CreateSerializer(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace)</code><br><code>XmlSerializer CreateSerializer(Type type, XmlRootAttribute root)</code><br><code>XmlSerializer CreateSerializer(Type type, Type[] extraTypes)</code><br><code>XmlSerializer CreateSerializer(Type type, XmlAttributeOverrides overrides)</code><br><code>XmlSerializer CreateSerializer(XmlTypeMapping xmlTypeMapping)</code><br><code>XmlSerializer CreateSerializer(Type type)</code><br><code>XmlSerializer CreateSerializer(Type type, string defaultNamespace)</code><br><code>XmlSerializer CreateSerializer(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace, string location)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSerializerImplementation"><summary><b>XmlSerializerImplementation</b> <span class="muted">class abstract</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializerImplementation</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Reader</code></td><td><code>XmlSerializationReader</code></td><td>read</td><td><code>o.Reader</code></td></tr><tr><td><code>Writer</code></td><td><code>XmlSerializationWriter</code></td><td>read</td><td><code>o.Writer</code></td></tr><tr><td><code>ReadMethods</code></td><td><code>Hashtable</code></td><td>read</td><td><code>o.ReadMethods</code></td></tr><tr><td><code>WriteMethods</code></td><td><code>Hashtable</code></td><td>read</td><td><code>o.WriteMethods</code></td></tr><tr><td><code>TypedSerializers</code></td><td><code>Hashtable</code></td><td>read</td><td><code>o.TypedSerializers</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CanSerialize</code></td><td><code>CanSerialize(p1)</code></td><td><code>bool CanSerialize(Type type)</code></td></tr><tr><td><code>GetSerializer</code></td><td><code>GetSerializer(p1)</code></td><td><code>XmlSerializer GetSerializer(Type type)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSerializerNamespaces"><summary><b>XmlSerializerNamespaces</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializerNamespaces</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSerializerNamespaces()</code></td></tr><tr><td><code>new XmlSerializerNamespaces(XmlSerializerNamespaces namespaces)</code></td></tr><tr><td><code>new XmlSerializerNamespaces(XmlQualifiedName[] namespaces)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSerializerNamespaces(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSerializerNamespaces().@New([ :param = value ])</code> or <code>dnNew("XmlSerializerNamespaces",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(p1,p2)</code></td><td><code>void Add(string prefix, string ns)</code></td></tr><tr><td><code>ToArray</code></td><td><code>ToArray()</code></td><td><code>XmlQualifiedName[] ToArray()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-XmlSerializerVersionAttribute"><summary><b>XmlSerializerVersionAttribute</b> <span class="muted">class sealed · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlSerializerVersionAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlSerializerVersionAttribute()</code></td></tr><tr><td><code>new XmlSerializerVersionAttribute(Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlSerializerVersionAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlSerializerVersionAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlSerializerVersionAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ParentAssemblyId</code></td><td><code>string</code></td><td>read, write</td><td><code>o.ParentAssemblyId</code> <code>o.ParentAssemblyId = v</code></td></tr><tr><td><code>Version</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Version</code> <code>o.Version = v</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlTextAttribute"><summary><b>XmlTextAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlTextAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlTextAttribute()</code></td></tr><tr><td><code>new XmlTextAttribute(Type type)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlTextAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlTextAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlTextAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Type</code></td><td><code>Type</code></td><td>read, write</td><td><code>o.Type</code> <code>o.Type = v</code></td></tr><tr><td><code>DataType</code></td><td><code>string</code></td><td>read, write</td><td><code>o.DataType</code> <code>o.DataType = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlTypeAttribute"><summary><b>XmlTypeAttribute</b> <span class="muted">class · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlTypeAttribute</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new XmlTypeAttribute()</code></td></tr><tr><td><code>new XmlTypeAttribute(string typeName)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new XmlTypeAttribute(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new XmlTypeAttribute().@New([ :param = value ])</code> or <code>dnNew("XmlTypeAttribute",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>AnonymousType</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.AnonymousType</code> <code>o.AnonymousType = v</code></td></tr><tr><td><code>IncludeInSchema</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IncludeInSchema</code> <code>o.IncludeInSchema = v</code></td></tr><tr><td><code>TypeName</code></td><td><code>string</code></td><td>read, write</td><td><code>o.getTypeName()</code> <code>o.setTypeName(v)</code></td></tr><tr><td><code>Namespace</code></td><td><code>string</code></td><td>read, write</td><td><code>o.Namespace</code> <code>o.Namespace = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-XmlTypeMapping"><summary><b>XmlTypeMapping</b> <span class="muted">class · extends <a href="#c-XmlMapping">XmlMapping</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Xml.Serialization.XmlTypeMapping</code> · assembly <code>System.Private.Xml</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.getTypeName()</code></td></tr><tr><td><code>TypeFullName</code></td><td><code>string</code></td><td>read</td><td><code>o.TypeFullName</code></td></tr><tr><td><code>XsdTypeName</code></td><td><code>string</code></td><td>read</td><td><code>o.XsdTypeName</code></td></tr><tr><td><code>XsdTypeNamespace</code></td><td><code>string</code></td><td>read</td><td><code>o.XsdTypeNamespace</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

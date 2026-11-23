@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Text.Unicode · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Text.Unicode</h1>
+<p class="lead">3 wrapped types. Load them with <code>using { "System.Text.Unicode" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-UnicodeRange">UnicodeRange</a> <a href="#c-UnicodeRanges">UnicodeRanges</a> <a href="#c-Utf8">Utf8</a></div><details class="cls" id="c-UnicodeRange"><summary><b>UnicodeRange</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.Unicode.UnicodeRange</code> · assembly <code>System.Text.Encodings.Web</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UnicodeRange(int firstCodePoint, int length)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new UnicodeRange(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UnicodeRange().@New([ :param = value ])</code> or <code>dnNew("UnicodeRange",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FirstCodePoint</code></td><td><code>int</code></td><td>read</td><td><code>o.FirstCodePoint</code></td></tr><tr><td><code>Length</code></td><td><code>int</code></td><td>read</td><td><code>o.Length</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Create</code></td><td><code>Create(p1,p2)</code></td><td><code>static UnicodeRange Create(char firstCharacter, char lastCharacter)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-UnicodeRanges"><summary><b>UnicodeRanges</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.Unicode.UnicodeRanges</code> · assembly <code>System.Text.Encodings.Web</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>None</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.None</code></td></tr><tr><td><code>All</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.All</code></td></tr><tr><td><code>BasicLatin</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.BasicLatin</code></td></tr><tr><td><code>Latin1Supplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Latin1Supplement</code></td></tr><tr><td><code>LatinExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedA</code></td></tr><tr><td><code>LatinExtendedB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedB</code></td></tr><tr><td><code>IpaExtensions</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.IpaExtensions</code></td></tr><tr><td><code>SpacingModifierLetters</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SpacingModifierLetters</code></td></tr><tr><td><code>CombiningDiacriticalMarks</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CombiningDiacriticalMarks</code></td></tr><tr><td><code>GreekandCoptic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GreekandCoptic</code></td></tr><tr><td><code>Cyrillic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Cyrillic</code></td></tr><tr><td><code>CyrillicSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CyrillicSupplement</code></td></tr><tr><td><code>Armenian</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Armenian</code></td></tr><tr><td><code>Hebrew</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Hebrew</code></td></tr><tr><td><code>Arabic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Arabic</code></td></tr><tr><td><code>Syriac</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Syriac</code></td></tr><tr><td><code>ArabicSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ArabicSupplement</code></td></tr><tr><td><code>Thaana</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Thaana</code></td></tr><tr><td><code>NKo</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.NKo</code></td></tr><tr><td><code>Samaritan</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Samaritan</code></td></tr><tr><td><code>Mandaic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Mandaic</code></td></tr><tr><td><code>SyriacSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SyriacSupplement</code></td></tr><tr><td><code>ArabicExtendedB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ArabicExtendedB</code></td></tr><tr><td><code>ArabicExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ArabicExtendedA</code></td></tr><tr><td><code>Devanagari</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Devanagari</code></td></tr><tr><td><code>Bengali</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Bengali</code></td></tr><tr><td><code>Gurmukhi</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Gurmukhi</code></td></tr><tr><td><code>Gujarati</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Gujarati</code></td></tr><tr><td><code>Oriya</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Oriya</code></td></tr><tr><td><code>Tamil</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Tamil</code></td></tr><tr><td><code>Telugu</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Telugu</code></td></tr><tr><td><code>Kannada</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Kannada</code></td></tr><tr><td><code>Malayalam</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Malayalam</code></td></tr><tr><td><code>Sinhala</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Sinhala</code></td></tr><tr><td><code>Thai</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Thai</code></td></tr><tr><td><code>Lao</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Lao</code></td></tr><tr><td><code>Tibetan</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Tibetan</code></td></tr><tr><td><code>Myanmar</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Myanmar</code></td></tr><tr><td><code>Georgian</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Georgian</code></td></tr><tr><td><code>HangulJamo</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HangulJamo</code></td></tr><tr><td><code>Ethiopic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Ethiopic</code></td></tr><tr><td><code>EthiopicSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.EthiopicSupplement</code></td></tr><tr><td><code>Cherokee</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Cherokee</code></td></tr><tr><td><code>UnifiedCanadianAboriginalSyllabics</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.UnifiedCanadianAboriginalSyllabics</code></td></tr><tr><td><code>Ogham</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Ogham</code></td></tr><tr><td><code>Runic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Runic</code></td></tr><tr><td><code>Tagalog</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Tagalog</code></td></tr><tr><td><code>Hanunoo</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Hanunoo</code></td></tr><tr><td><code>Buhid</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Buhid</code></td></tr><tr><td><code>Tagbanwa</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Tagbanwa</code></td></tr><tr><td><code>Khmer</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Khmer</code></td></tr><tr><td><code>Mongolian</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Mongolian</code></td></tr><tr><td><code>UnifiedCanadianAboriginalSyllabicsExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.UnifiedCanadianAboriginalSyllabicsExtended</code></td></tr><tr><td><code>Limbu</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Limbu</code></td></tr><tr><td><code>TaiLe</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.TaiLe</code></td></tr><tr><td><code>NewTaiLue</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.NewTaiLue</code></td></tr><tr><td><code>KhmerSymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.KhmerSymbols</code></td></tr><tr><td><code>Buginese</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Buginese</code></td></tr><tr><td><code>TaiTham</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.TaiTham</code></td></tr><tr><td><code>CombiningDiacriticalMarksExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CombiningDiacriticalMarksExtended</code></td></tr><tr><td><code>Balinese</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Balinese</code></td></tr><tr><td><code>Sundanese</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Sundanese</code></td></tr><tr><td><code>Batak</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Batak</code></td></tr><tr><td><code>Lepcha</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Lepcha</code></td></tr><tr><td><code>OlChiki</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.OlChiki</code></td></tr><tr><td><code>CyrillicExtendedC</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CyrillicExtendedC</code></td></tr><tr><td><code>GeorgianExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GeorgianExtended</code></td></tr><tr><td><code>SundaneseSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SundaneseSupplement</code></td></tr><tr><td><code>VedicExtensions</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.VedicExtensions</code></td></tr><tr><td><code>PhoneticExtensions</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.PhoneticExtensions</code></td></tr><tr><td><code>PhoneticExtensionsSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.PhoneticExtensionsSupplement</code></td></tr><tr><td><code>CombiningDiacriticalMarksSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CombiningDiacriticalMarksSupplement</code></td></tr><tr><td><code>LatinExtendedAdditional</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedAdditional</code></td></tr><tr><td><code>GreekExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GreekExtended</code></td></tr><tr><td><code>GeneralPunctuation</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GeneralPunctuation</code></td></tr><tr><td><code>SuperscriptsandSubscripts</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SuperscriptsandSubscripts</code></td></tr><tr><td><code>CurrencySymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CurrencySymbols</code></td></tr><tr><td><code>CombiningDiacriticalMarksforSymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CombiningDiacriticalMarksforSymbols</code></td></tr><tr><td><code>LetterlikeSymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LetterlikeSymbols</code></td></tr><tr><td><code>NumberForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.NumberForms</code></td></tr><tr><td><code>Arrows</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Arrows</code></td></tr><tr><td><code>MathematicalOperators</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MathematicalOperators</code></td></tr><tr><td><code>MiscellaneousTechnical</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MiscellaneousTechnical</code></td></tr><tr><td><code>ControlPictures</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ControlPictures</code></td></tr><tr><td><code>OpticalCharacterRecognition</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.OpticalCharacterRecognition</code></td></tr><tr><td><code>EnclosedAlphanumerics</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.EnclosedAlphanumerics</code></td></tr><tr><td><code>BoxDrawing</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.BoxDrawing</code></td></tr><tr><td><code>BlockElements</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.BlockElements</code></td></tr><tr><td><code>GeometricShapes</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GeometricShapes</code></td></tr><tr><td><code>MiscellaneousSymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MiscellaneousSymbols</code></td></tr><tr><td><code>Dingbats</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Dingbats</code></td></tr><tr><td><code>MiscellaneousMathematicalSymbolsA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MiscellaneousMathematicalSymbolsA</code></td></tr><tr><td><code>SupplementalArrowsA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SupplementalArrowsA</code></td></tr><tr><td><code>BraillePatterns</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.BraillePatterns</code></td></tr><tr><td><code>SupplementalArrowsB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SupplementalArrowsB</code></td></tr><tr><td><code>MiscellaneousMathematicalSymbolsB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MiscellaneousMathematicalSymbolsB</code></td></tr><tr><td><code>SupplementalMathematicalOperators</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SupplementalMathematicalOperators</code></td></tr><tr><td><code>MiscellaneousSymbolsandArrows</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MiscellaneousSymbolsandArrows</code></td></tr><tr><td><code>Glagolitic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Glagolitic</code></td></tr><tr><td><code>LatinExtendedC</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedC</code></td></tr><tr><td><code>Coptic</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Coptic</code></td></tr><tr><td><code>GeorgianSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.GeorgianSupplement</code></td></tr><tr><td><code>Tifinagh</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Tifinagh</code></td></tr><tr><td><code>EthiopicExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.EthiopicExtended</code></td></tr><tr><td><code>CyrillicExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CyrillicExtendedA</code></td></tr><tr><td><code>SupplementalPunctuation</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SupplementalPunctuation</code></td></tr><tr><td><code>CjkRadicalsSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkRadicalsSupplement</code></td></tr><tr><td><code>KangxiRadicals</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.KangxiRadicals</code></td></tr><tr><td><code>IdeographicDescriptionCharacters</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.IdeographicDescriptionCharacters</code></td></tr><tr><td><code>CjkSymbolsandPunctuation</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkSymbolsandPunctuation</code></td></tr><tr><td><code>Hiragana</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Hiragana</code></td></tr><tr><td><code>Katakana</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Katakana</code></td></tr><tr><td><code>Bopomofo</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Bopomofo</code></td></tr><tr><td><code>HangulCompatibilityJamo</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HangulCompatibilityJamo</code></td></tr><tr><td><code>Kanbun</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Kanbun</code></td></tr><tr><td><code>BopomofoExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.BopomofoExtended</code></td></tr><tr><td><code>CjkStrokes</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkStrokes</code></td></tr><tr><td><code>KatakanaPhoneticExtensions</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.KatakanaPhoneticExtensions</code></td></tr><tr><td><code>EnclosedCjkLettersandMonths</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.EnclosedCjkLettersandMonths</code></td></tr><tr><td><code>CjkCompatibility</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkCompatibility</code></td></tr><tr><td><code>CjkUnifiedIdeographsExtensionA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkUnifiedIdeographsExtensionA</code></td></tr><tr><td><code>YijingHexagramSymbols</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.YijingHexagramSymbols</code></td></tr><tr><td><code>CjkUnifiedIdeographs</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkUnifiedIdeographs</code></td></tr><tr><td><code>YiSyllables</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.YiSyllables</code></td></tr><tr><td><code>YiRadicals</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.YiRadicals</code></td></tr><tr><td><code>Lisu</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Lisu</code></td></tr><tr><td><code>Vai</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Vai</code></td></tr><tr><td><code>CyrillicExtendedB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CyrillicExtendedB</code></td></tr><tr><td><code>Bamum</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Bamum</code></td></tr><tr><td><code>ModifierToneLetters</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ModifierToneLetters</code></td></tr><tr><td><code>LatinExtendedD</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedD</code></td></tr><tr><td><code>SylotiNagri</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SylotiNagri</code></td></tr><tr><td><code>CommonIndicNumberForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CommonIndicNumberForms</code></td></tr><tr><td><code>Phagspa</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Phagspa</code></td></tr><tr><td><code>Saurashtra</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Saurashtra</code></td></tr><tr><td><code>DevanagariExtended</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.DevanagariExtended</code></td></tr><tr><td><code>KayahLi</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.KayahLi</code></td></tr><tr><td><code>Rejang</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Rejang</code></td></tr><tr><td><code>HangulJamoExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HangulJamoExtendedA</code></td></tr><tr><td><code>Javanese</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Javanese</code></td></tr><tr><td><code>MyanmarExtendedB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MyanmarExtendedB</code></td></tr><tr><td><code>Cham</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Cham</code></td></tr><tr><td><code>MyanmarExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MyanmarExtendedA</code></td></tr><tr><td><code>TaiViet</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.TaiViet</code></td></tr><tr><td><code>MeeteiMayekExtensions</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MeeteiMayekExtensions</code></td></tr><tr><td><code>EthiopicExtendedA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.EthiopicExtendedA</code></td></tr><tr><td><code>LatinExtendedE</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.LatinExtendedE</code></td></tr><tr><td><code>CherokeeSupplement</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CherokeeSupplement</code></td></tr><tr><td><code>MeeteiMayek</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.MeeteiMayek</code></td></tr><tr><td><code>HangulSyllables</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HangulSyllables</code></td></tr><tr><td><code>HangulJamoExtendedB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HangulJamoExtendedB</code></td></tr><tr><td><code>CjkCompatibilityIdeographs</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkCompatibilityIdeographs</code></td></tr><tr><td><code>AlphabeticPresentationForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.AlphabeticPresentationForms</code></td></tr><tr><td><code>ArabicPresentationFormsA</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ArabicPresentationFormsA</code></td></tr><tr><td><code>VariationSelectors</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.VariationSelectors</code></td></tr><tr><td><code>VerticalForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.VerticalForms</code></td></tr><tr><td><code>CombiningHalfMarks</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CombiningHalfMarks</code></td></tr><tr><td><code>CjkCompatibilityForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.CjkCompatibilityForms</code></td></tr><tr><td><code>SmallFormVariants</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.SmallFormVariants</code></td></tr><tr><td><code>ArabicPresentationFormsB</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.ArabicPresentationFormsB</code></td></tr><tr><td><code>HalfwidthandFullwidthForms</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.HalfwidthandFullwidthForms</code></td></tr><tr><td><code>Specials</code></td><td><code>UnicodeRange</code></td><td>read · static</td><td><code>o.Specials</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-Utf8"><summary><b>Utf8</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Text.Unicode.Utf8</code> · assembly <code>System.Private.CoreLib</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FromUtf16</code></td><td><code>FromUtf16([ :source = …, :destination = …, :charsRead = …, :bytesWritten = …, :replaceInvalidSequences = …, :isFinalBlock = … ])</code></td><td><code>static OperationStatus FromUtf16(ReadOnlySpan&lt;char&gt; source, Span&lt;byte&gt; destination, out int charsRead, out int bytesWritten, bool replaceInvalidSequences = …, bool isFinalBlock = …)</code></td></tr><tr><td><code>IsValid</code></td><td><code>IsValid(p1)</code></td><td><code>static bool IsValid(ReadOnlySpan&lt;byte&gt; value)</code></td></tr><tr><td><code>ToUtf16</code></td><td><code>ToUtf16([ :source = …, :destination = …, :bytesRead = …, :charsWritten = …, :replaceInvalidSequences = …, :isFinalBlock = … ])</code></td><td><code>static OperationStatus ToUtf16(ReadOnlySpan&lt;byte&gt; source, Span&lt;char&gt; destination, out int bytesRead, out int charsWritten, bool replaceInvalidSequences = …, bool isFinalBlock = …)</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

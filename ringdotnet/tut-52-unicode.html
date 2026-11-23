@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unicode and encodings · RingDotNet</title>
+<meta name="description" content="Why len() of a text is not the number of letters you see, what UTF-8 and UTF-16 are, and what goes wrong when the wrong encoding is used.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html" class="cur">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Unicode and encodings</h1><p class="lead">Why len() of a text is not the number of letters you see, what UTF-8 and UTF-16 are, and what goes wrong when the wrong encoding is used.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the difference between bytes, code points and the letters you see,</li><li>UTF-8 and UTF-16 and what <code>Encoding</code> does,</li><li>why reading with the wrong encoding gives garbage,</li><li>why two texts that look the same can be different,</li><li>asking .NET what kind of character something is.</li></ul>
+<h2 id="the-three-levels">The three levels<a class="anchor" href="#the-three-levels">#</a></h2>
+<ul><li>A <strong>byte</strong> is what is stored in a file.</li><li>A <strong>code point</strong> is the number Unicode gives to a character (<code>é</code> is 233, an emoji is 128512).</li><li>A <strong>text element</strong> is what you see as one letter. It can be several code points: <code>e</code> plus a combining accent looks like <code>é</code>.</li></ul>
+<p>An <strong>encoding</strong> turns text into bytes. <strong>UTF-8</strong> uses 1 byte for English letters and up to 4 for others; it is the standard for files and the web. <strong>UTF-16</strong> is what .NET uses inside. A Ring text is a sequence of bytes (the text of a program and of most files is UTF-8), so <code>len()</code> counts <strong>bytes</strong>.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch02_unicode.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Unicode and text encodings - characters, code points, bytes, and why len() is not the number of letters</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Globalization"</span>
+	<span class="s">"System.Text"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oUtf8 = <span class="k">new</span> <span class="t">Encoding</span>().UTF8
+	oUtf16 = <span class="k">new</span> <span class="t">Encoding</span>().Unicode              <span class="c"># .NET's own text format: UTF-16</span>
+	oLatin1 = <span class="k">new</span> <span class="t">Encoding</span>().Latin1
+
+	? <span class="s">"Ring len() | UTF-8 bytes | UTF-16 bytes | letters you see | text"</span>
+	aSamples = [<span class="s">"Ring"</span>,<span class="s">"café"</span>,<span class="s">"Привет"</span>,<span class="s">"مرحبا"</span>,<span class="s">"日本語"</span>,<span class="s">"😀"</span>]
+	<span class="k">for</span> cText <span class="k">in</span> aSamples
+		oInfo = textElements(cText)
+		? padRight(<span class="s">""</span> + len(cText),<span class="n">11</span>) + <span class="s">" | "</span> + padRight(<span class="s">""</span> + len(oUtf8.<span class="f">GetBytes</span>(cText)),<span class="n">11</span>) + <span class="s">" | "</span> + padRight(<span class="s">""</span> + len(oUtf16.<span class="f">GetBytes</span>(cText)),<span class="n">12</span>) + <span class="s">" | "</span> + padRight(<span class="s">""</span> + oInfo.LengthInTextElements,<span class="n">16</span>) + <span class="s">" | "</span> + cText
+	<span class="k">next</span>
+
+	<span class="c"># 1. A Ring text is a list of BYTES in UTF-8: len() counts bytes. 'é' is two bytes, the Arabic letters two bytes each, Japanese three, an emoji four.</span>
+	<span class="c">#    So left(text, 4) may cut a letter in the middle. Count and cut with the .NET classes when the text can have such letters.</span>
+	cWord = <span class="s">"café"</span>
+	? nl + <span class="s">"1. len('café') = "</span> + len(cWord) + <span class="s">" (bytes), but "</span> + textElements(cWord).LengthInTextElements + <span class="s">" letters"</span>
+
+	<span class="c"># 2. Encodings: the same text, different bytes. Reading with the WRONG encoding gives garbage ("mojibake")</span>
+	cBytes = oUtf8.<span class="f">GetBytes</span>(<span class="s">"é"</span>)
+	? nl + <span class="s">"2. 'é' in UTF-8 is "</span> + len(cBytes) + <span class="s">" bytes: "</span> + ascii(cBytes[<span class="n">1</span>]) + <span class="s">" and "</span> + ascii(cBytes[<span class="n">2</span>])
+	? <span class="s">"   the same bytes read as Latin-1 give: "</span> + oLatin1.<span class="f">GetString</span>(cBytes) + <span class="s">"  (two wrong letters)"</span>
+	? <span class="s">"   read as UTF-8 again: "</span> + oUtf8.<span class="f">GetString</span>(cBytes)
+
+	<span class="c"># 3. A round trip: text -&gt; bytes -&gt; text, with the same encoding, gives the same text</span>
+	cArabic = <span class="s">"مرحبا بالعالم"</span>
+	? nl + <span class="s">"3. Arabic text survives the round trip: "</span> + yesNo(oUtf8.<span class="f">GetString</span>(oUtf8.<span class="f">GetBytes</span>(cArabic)) = cArabic)
+
+	<span class="c"># 4. One letter you see can be several code points: 'é' can be e + a combining accent. An emoji with a skin color is two.</span>
+	cDecomposed = <span class="s">"e"</span> + char(<span class="n">204</span>) + char(<span class="n">129</span>)        <span class="c"># the bytes of 'e' followed by U+0301 (combining acute accent)</span>
+	oShown = textElements(cDecomposed)
+	? nl + <span class="s">"4. 'e' + a combining accent: "</span> + len(cDecomposed) + <span class="s">" bytes, "</span> + oShown.LengthInTextElements + <span class="s">" letter shown: "</span> + cDecomposed
+
+	<span class="c"># 5. Comparing texts: "é" typed in the two ways looks the same but the bytes differ. Normalize before comparing.</span>
+	cComposed = <span class="s">"é"</span>
+	? nl + <span class="s">"5. Looks the same, but equal as bytes? "</span> + yesNo(cComposed = cDecomposed)
+	nSame = <span class="k">new</span> <span class="t">String</span>().<span class="f">Compare</span>([ :strA = cComposed, :strB = cDecomposed, :ignoreCase = <span class="k">False</span>, :culture = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"en-US"</span>) ])
+	? <span class="s">"   Compared as TEXT with a culture (en-US): "</span> + yesNo(nSame = <span class="n">0</span>)
+
+	<span class="c"># 6. Categories: .NET knows what kind of character something is</span>
+	<span class="k">for</span> cChar <span class="k">in</span> [<span class="s">"A"</span>,<span class="s">"7"</span>,<span class="s">"€"</span>,<span class="s">"!"</span>]
+		? <span class="s">"   '"</span> + cChar + <span class="s">"' is: "</span> + <span class="k">new</span> <span class="t">CharUnicodeInfo</span>().<span class="f">GetUnicodeCategory</span>(cChar)
+	<span class="k">next</span>
+
+<span class="c"># text padded with spaces on the right (the columns of the table)</span>
+<span class="k">func</span> <span class="f">padRight</span> cText, nWidth
+
+	cResult = cText
+	<span class="k">while</span> len(cResult) &lt; nWidth
+		cResult += <span class="s">" "</span>
+	<span class="k">end</span>
+	<span class="k">return</span> cResult
+
+<span class="c"># a StringInfo knows the letters you see (text elements) of a text</span>
+<span class="k">func</span> <span class="f">textElements</span> cText
+
+	<span class="k">return</span> <span class="k">new</span> <span class="t">StringInfo</span>().@<span class="k">New</span>([ :<span class="t">value</span> = cText ])
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Ring len() | UTF-8 bytes | UTF-16 bytes | letters you see | text
+4           | 4           | 8            | 4                | Ring
+5           | 5           | 8            | 4                | café
+12          | 12          | 12           | 6                | Привет
+10          | 10          | 10           | 5                | مرحبا
+9           | 9           | 6            | 3                | 日本語
+4           | 4           | 4            | 1                | 😀
+
+1. len('café') = 5 (bytes), but 4 letters
+
+2. 'é' in UTF-8 is 2 bytes: 195 and 169
+   the same bytes read as Latin-1 give: Ã©  (two wrong letters)
+   read as UTF-8 again: é
+
+3. Arabic text survives the round trip: yes
+
+4. 'e' + a combining accent: 3 bytes, 1 letter shown: é
+
+5. Looks the same, but equal as bytes? no
+   Compared as TEXT with a culture (en-US): yes
+   'A' is: UppercaseLetter
+   '7' is: DecimalDigitNumber
+   '€' is: CurrencySymbol
+   '!' is: OtherPunctuation</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<p>The table compares four counts for six texts. For <code>Ring</code> they are all the same; for <code>café</code> the byte count is 5 but you see 4 letters; Russian and Arabic use two bytes per letter; Japanese three; an emoji four (two units in UTF-16). <code>StringInfo.LengthInTextElements</code> counts what a person sees. Its constructor that takes the text is written <code>new StringInfo().@New([ :value = cText ])</code>.</p>
+<p>Step 2 turns <code>é</code> into two bytes (195 and 169) and reads them again as <strong>Latin-1</strong>: the result is <code>Ã©</code>, the classic <em>mojibake</em>. The rule: <strong>the encoding that wrote the bytes must be the one that reads them</strong>. When you read text files, say it: <code>File.ReadAllText(path, encoding)</code>.</p>
+<p>Steps 4 and 5 show that <code>é</code> can be one code point or two. They look the same, but compared as bytes they differ. Compare with a culture-aware method (<code>String.Compare</code>) when users type text.</p>
+<div class="callout note"><span class="t">Note</span><p><code>left()</code>, <code>right()</code> and <code>substr()</code> of Ring work on bytes. For text with accents or other alphabets do not cut by number; use .NET classes or split on spaces and separators.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>bytes, code points, text elements,</li><li><code>Encoding.UTF8</code>, <code>Unicode</code>, <code>Latin1</code>, <code>GetBytes</code>, <code>GetString</code>,</li><li>mojibake and how to avoid it,</li><li>comparing text in a culture-aware way,</li><li><code>CharUnicodeInfo.GetUnicodeCategory</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write a text to a file in UTF-8 and in UTF-16 and compare the file sizes.</li><li>Count the letters of your own name with <code>len()</code> and with <code>StringInfo</code>.</li><li>Find out what <code>Encoding.ASCII.GetBytes("é")</code> returns, and why.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-132-text-encodings.html">Text files and encodings</a></p>
+<div class="pager"><a href="tut-129-formatting.html"><small>Previous</small>Formatting numbers and dates</a><a class="next" href="tut-132-text-encodings.html"><small>Next</small>Text files and encodings</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

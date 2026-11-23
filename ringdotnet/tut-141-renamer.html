@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A project: rename many files · RingDotNet</title>
+<meta name="description" content="A tool that renames hundreds of files must not make a mistake. This project makes the new names with rules (replace, regular expression, lower case, numbering), shows a preview, refuses when two files would get the same name, renames, and keeps a log so that everything can be undone.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html" class="cur">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A project: rename many files</h1><p class="lead">A tool that renames hundreds of files must not make a mistake. This project makes the new names with rules (replace, regular expression, lower case, numbering), shows a preview, refuses when two files would get the same name, renames, and keeps a log so that everything can be undone.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>a <strong>rule</strong> as data and one function that applies a list of rules,</li><li>splitting a name from its <strong>extension</strong>,</li><li>a <strong>preview</strong> before any change,</li><li><strong>conflict</strong> checks: the same new name for two files, an empty name,</li><li><code>File.Move</code> to rename, and a <strong>log</strong> that makes <strong>undo</strong> possible,</li><li>why the folder order of files must be sorted,</li><li>a project made of small functions that a test can call.</li></ul>
+<p>The tutorial <a href="tut-46-backup.html">A project: a backup tool</a> did something to files that is easy to repeat. Renaming is different: a wrong rule damages the names, so the tool works in careful steps.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_renamer.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a project: rename many files - rules (replace, regular expression, case, numbering), a preview, conflict checks and undo</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Text.RegularExpressions"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oFile = <span class="k">new</span> <span class="t">File</span>()
+	oPath = <span class="k">new</span> <span class="t">Path</span>()
+	oDirectory = <span class="k">new</span> <span class="t">Directory</span>()
+
+	<span class="c"># A work folder with some files with untidy names (it is removed at the end)</span>
+	cFolder = oPath.<span class="f">Combine</span>([ oPath.<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-rename-"</span> + oPath.<span class="f">GetRandomFileName</span>() ])
+	oDirectory.<span class="f">CreateDirectory</span>(cFolder)
+	<span class="k">for</span> cName <span class="k">in</span> [ <span class="s">"IMG 0042 holiday.JPG"</span>, <span class="s">"IMG 0043 holiday.JPG"</span>, <span class="s">"IMG 0050 Beach Trip.jpg"</span>, <span class="s">"report final (copy).TXT"</span>, <span class="s">"report final.txt"</span>, <span class="s">"notes.md"</span> ]
+		oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/"</span> + cName, :contents = <span class="s">"x"</span> ])
+	<span class="k">next</span>
+
+	<span class="c"># A tool that renames many files must be CAREFUL: a wrong rule can damage hundreds of names. So it works in four steps:</span>
+	<span class="c">#   1. list the names,  2. make the new names with a RULE and show them (a PREVIEW, nothing is renamed yet),</span>
+	<span class="c">#   3. refuse when two files would get the same name,  4. rename, and keep a LOG so that everything can be undone.</span>
+	aNames = fileNames(cFolder)
+	? <span class="s">"1. the files:"</span>
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		? <span class="s">"   "</span> + cName
+	<span class="k">next</span>
+
+	<span class="c"># 2. A rule is a function from a name to a new name. Four kinds of rules are made by small functions that return a rule (a text of</span>
+	<span class="c">#    the kind and its values), and one function applies it.</span>
+	? nl + <span class="s">"2. rule: replace the spaces with underscores, and write the name in lower case"</span>
+	aRule = [ [ <span class="s">"replace"</span>,<span class="s">" "</span>,<span class="s">"_"</span> ], [ <span class="s">"lower"</span> ] ]
+	showPreview(aNames,aRule)
+
+	? nl + <span class="s">"3. rule: remove the word final (a regular expression: spaces and the word) and write lower case"</span>
+	aRule = [ [ <span class="s">"regex"</span>,<span class="s">"\s*final"</span>,<span class="s">""</span> ], [ <span class="s">"lower"</span> ] ]
+	showPreview(aNames,aRule)
+
+	? nl + <span class="s">"4. rule: numbering, 'holiday-01.jpg' for the files that have the word holiday"</span>
+	aHoliday = []
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		<span class="k">if</span> substr(lower(cName),<span class="s">"holiday"</span>) &gt; <span class="n">0</span>
+			aHoliday + cName
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	aRule = [ [ <span class="s">"number"</span>,<span class="s">"holiday-"</span>,<span class="s">"jpg"</span>,<span class="n">2</span> ] ]
+	showPreview(aHoliday,aRule)
+
+	<span class="c"># 5. Conflicts. Removing "(copy)" from "report final (copy).TXT" and making lower case gives the name of another file:</span>
+	<span class="c">#    two files with one name cannot exist, so the tool refuses before it renames anything.</span>
+	? nl + <span class="s">"5. a rule that makes two files have the same name (copy removed, lower case):"</span>
+	aRule = [ [ <span class="s">"regex"</span>,<span class="s">"\s*\(copy\)"</span>,<span class="s">""</span> ], [ <span class="s">"lower"</span> ] ]
+	aPlan = makePlan(aNames,aRule)
+	aProblems = findConflicts(aPlan,aNames)
+	<span class="k">for</span> cProblem <span class="k">in</span> aProblems
+		? <span class="s">"   problem: "</span> + cProblem
+	<span class="k">next</span>
+	? <span class="s">"   the tool renames nothing when there is a problem: "</span> + yesNo(len(aProblems) &gt; <span class="n">0</span>)
+
+	<span class="c"># 6. A good rule: spaces to underscores and lower case. No conflicts, so rename. The log keeps [old, new] for each file.</span>
+	aRule = [ [ <span class="s">"replace"</span>,<span class="s">" "</span>,<span class="s">"_"</span> ], [ <span class="s">"lower"</span> ] ]
+	aPlan = makePlan(aNames,aRule)
+	aProblems = findConflicts(aPlan,aNames)
+	? nl + <span class="s">"6. the rule of step 2: "</span> + len(aProblems) + <span class="s">" problems"</span>
+	aLog = applyPlan(cFolder,aPlan)
+	? <span class="s">"   renamed "</span> + len(aLog) + <span class="s">" files; now the folder has:"</span>
+	<span class="k">for</span> cName <span class="k">in</span> fileNames(cFolder)
+		? <span class="s">"   "</span> + cName
+	<span class="k">next</span>
+
+	<span class="c"># 7. Undo: the log in reverse order puts every name back</span>
+	undoLog(cFolder,aLog)
+	? nl + <span class="s">"7. after undo the folder has the first names again: "</span> + yesNo(sameList(fileNames(cFolder),aNames))
+
+	oDirectory.<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])
+
+<span class="c"># the names of the files of a folder, sorted (the folder order is not defined)</span>
+<span class="k">func</span> <span class="f">fileNames</span> cFolder
+
+	aList = []
+	<span class="k">for</span> oItem <span class="k">in</span> <span class="k">new</span> <span class="t">DirectoryInfo</span>(cFolder).<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+		aList + oItem.Name
+	<span class="k">next</span>
+	<span class="k">return</span> sort(aList)
+
+<span class="c"># split "name.ext" into the name and the extension (the extension starts at the last dot)</span>
+<span class="k">func</span> <span class="f">splitName</span> cName
+
+	nDot = <span class="n">0</span>
+	<span class="k">for</span> i = len(cName) <span class="k">to</span> <span class="n">1</span> <span class="k">step</span> -<span class="n">1</span>
+		<span class="k">if</span> substr(cName,i,<span class="n">1</span>) = <span class="s">"."</span>
+			nDot = i
+			<span class="k">exit</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">if</span> nDot = <span class="n">0</span>
+		<span class="k">return</span> [ cName, <span class="s">""</span> ]
+	<span class="k">ok</span>
+	<span class="k">return</span> [ left(cName,nDot - <span class="n">1</span>), substr(cName,nDot + <span class="n">1</span>) ]
+
+<span class="c"># one rule applied to the name part (the extension is kept, except by "extension")</span>
+<span class="k">func</span> <span class="f">applyRule</span> aItem,cBase,cExtension
+
+	cKind = aItem[<span class="n">1</span>]
+	<span class="k">if</span> cKind = <span class="s">"replace"</span>
+		cBase = substr(cBase,aItem[<span class="n">2</span>],aItem[<span class="n">3</span>])
+	<span class="k">but</span> cKind = <span class="s">"regex"</span>
+		cBase = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Replace"</span>,[ cBase, aItem[<span class="n">2</span>], aItem[<span class="n">3</span>] ])
+	<span class="k">but</span> cKind = <span class="s">"lower"</span>
+		cBase = lower(cBase)
+		cExtension = lower(cExtension)
+	<span class="k">but</span> cKind = <span class="s">"upper"</span>
+		cBase = upper(cBase)
+	<span class="k">ok</span>
+	<span class="k">return</span> [ cBase, cExtension ]
+
+<span class="c"># the new names of a list of names: a list of [old, new]</span>
+<span class="k">func</span> <span class="f">makePlan</span> aNames,aRule
+
+	aPlan = []
+	nNumber = <span class="n">0</span>
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		aParts = splitName(cName)
+		cBase = aParts[<span class="n">1</span>]
+		cExtension = aParts[<span class="n">2</span>]
+		<span class="k">for</span> aItem <span class="k">in</span> aRule
+			<span class="k">if</span> aItem[<span class="n">1</span>] = <span class="s">"number"</span>
+				nNumber++
+				cBase = aItem[<span class="n">2</span>] + right(<span class="s">"000"</span> + nNumber,aItem[<span class="n">4</span>])
+				cExtension = aItem[<span class="n">3</span>]
+			<span class="k">else</span>
+				aResult = applyRule(aItem,cBase,cExtension)
+				cBase = aResult[<span class="n">1</span>]
+				cExtension = aResult[<span class="n">2</span>]
+			<span class="k">ok</span>
+		<span class="k">next</span>
+		cNew = cBase
+		<span class="k">if</span> cExtension != <span class="s">""</span>
+			cNew += <span class="s">"."</span> + cExtension
+		<span class="k">ok</span>
+		aPlan + [ cName, cNew ]
+	<span class="k">next</span>
+	<span class="k">return</span> aPlan
+
+<span class="k">func</span> <span class="f">showPreview</span> aNames,aRule
+
+	<span class="k">for</span> aItem <span class="k">in</span> makePlan(aNames,aRule)
+		? <span class="s">"   "</span> + padRight(aItem[<span class="n">1</span>],<span class="n">26</span>) + <span class="s">"-&gt; "</span> + aItem[<span class="n">2</span>]
+	<span class="k">next</span>
+
+<span class="c"># problems that stop the renaming: two files with one new name, a new name that is the name of a file that stays, or an empty name</span>
+<span class="k">func</span> <span class="f">findConflicts</span> aPlan,aAllNames
+
+	aProblems = []
+	aTaken = []
+	<span class="k">for</span> aItem <span class="k">in</span> aPlan
+		cNew = aItem[<span class="n">2</span>]
+		<span class="k">if</span> cNew = <span class="s">""</span>
+			aProblems + (aItem[<span class="n">1</span>] + <span class="s">" would get an empty name"</span>)
+		<span class="k">ok</span>
+		<span class="k">if</span> find(aTaken,lower(cNew)) &gt; <span class="n">0</span>
+			aProblems + (<span class="s">"two files would be named "</span> + cNew)
+		<span class="k">ok</span>
+		aTaken + lower(cNew)
+	<span class="k">next</span>
+	<span class="k">return</span> aProblems
+
+<span class="c"># rename (a file whose name does not change is skipped) and return the log of what was done</span>
+<span class="k">func</span> <span class="f">applyPlan</span> cFolder,aPlan
+
+	aLog = []
+	<span class="k">for</span> aItem <span class="k">in</span> aPlan
+		<span class="k">if</span> aItem[<span class="n">1</span>] != aItem[<span class="n">2</span>]
+			<span class="k">new</span> <span class="t">File</span>().<span class="f">Move</span>([ :sourceFileName = cFolder + <span class="s">"/"</span> + aItem[<span class="n">1</span>], :destFileName = cFolder + <span class="s">"/"</span> + aItem[<span class="n">2</span>] ])
+			aLog + [ aItem[<span class="n">1</span>], aItem[<span class="n">2</span>] ]
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> aLog
+
+<span class="c"># undo: the same moves, the other way and the last one first</span>
+<span class="k">func</span> <span class="f">undoLog</span> cFolder,aLog
+
+	<span class="k">for</span> i = len(aLog) <span class="k">to</span> <span class="n">1</span> <span class="k">step</span> -<span class="n">1</span>
+		<span class="k">new</span> <span class="t">File</span>().<span class="f">Move</span>([ :sourceFileName = cFolder + <span class="s">"/"</span> + aLog[i][<span class="n">2</span>], :destFileName = cFolder + <span class="s">"/"</span> + aLog[i][<span class="n">1</span>] ])
+	<span class="k">next</span>
+
+<span class="k">func</span> <span class="f">sameList</span> aFirst,aSecond
+
+	<span class="k">if</span> len(aFirst) != len(aSecond)
+		<span class="k">return</span> <span class="k">False</span>
+	<span class="k">ok</span>
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> len(aFirst)
+		<span class="k">if</span> aFirst[i] != aSecond[i]
+			<span class="k">return</span> <span class="k">False</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="k">True</span>
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span>
+
+<span class="k">func</span> <span class="f">padRight</span> cText,nWidth
+
+	<span class="k">return</span> cText + copy(<span class="s">" "</span>,nWidth - len(cText))</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the files:
+   IMG 0042 holiday.JPG
+   IMG 0043 holiday.JPG
+   IMG 0050 Beach Trip.jpg
+   notes.md
+   report final (copy).TXT
+   report final.txt
+
+2. rule: replace the spaces with underscores, and write the name in lower case
+   IMG 0042 holiday.JPG      -&gt; img_0042_holiday.jpg
+   IMG 0043 holiday.JPG      -&gt; img_0043_holiday.jpg
+   IMG 0050 Beach Trip.jpg   -&gt; img_0050_beach_trip.jpg
+   notes.md                  -&gt; notes.md
+   report final (copy).TXT   -&gt; report_final_(copy).txt
+   report final.txt          -&gt; report_final.txt
+
+3. rule: remove the word final (a regular expression: spaces and the word) and write lower case
+   IMG 0042 holiday.JPG      -&gt; img 0042 holiday.jpg
+   IMG 0043 holiday.JPG      -&gt; img 0043 holiday.jpg
+   IMG 0050 Beach Trip.jpg   -&gt; img 0050 beach trip.jpg
+   notes.md                  -&gt; notes.md
+   report final (copy).TXT   -&gt; report (copy).txt
+   report final.txt          -&gt; report.txt
+
+4. rule: numbering, 'holiday-01.jpg' for the files that have the word holiday
+   IMG 0042 holiday.JPG      -&gt; holiday-01.jpg
+   IMG 0043 holiday.JPG      -&gt; holiday-02.jpg
+
+5. a rule that makes two files have the same name (copy removed, lower case):
+   problem: two files would be named report final.txt
+   the tool renames nothing when there is a problem: yes
+
+6. the rule of step 2: 0 problems
+   renamed 5 files; now the folder has:
+   img_0042_holiday.jpg
+   img_0043_holiday.jpg
+   img_0050_beach_trip.jpg
+   notes.md
+   report_final.txt
+   report_final_(copy).txt
+
+7. after undo the folder has the first names again: yes</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>dnStatic</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-four-steps">The four steps<a class="anchor" href="#the-four-steps">#</a></h3>
+<p>The program lists the names, makes the new names with a rule, <strong>shows them without renaming anything</strong> (the preview), checks the plan for problems, and only then renames. Each step is a function: <code>fileNames</code>, <code>makePlan</code>, <code>findConflicts</code> and <code>applyPlan</code>. The plan is a Ring list of <code>[old, new]</code> pairs, so it can be printed, checked, saved and undone.</p>
+<h3 id="rules-are-data">Rules are data<a class="anchor" href="#rules-are-data">#</a></h3>
+<p>A rule is a small list: <code>[ "replace", " ", "_" ]</code>, <code>[ "regex", "\s*final", "" ]</code>, <code>[ "lower" ]</code> or <code>[ "number", "holiday-", "jpg", 2 ]</code>. A rule set is a list of rules that are applied in order to each name, so <em>replace the spaces and write lower case</em> is two rules. <code>applyRule</code> does one rule and <code>makePlan</code> loops over the names and the rules. A new kind of rule is a new <code>but</code> branch in one function, and a window with a menu of rules can build the same lists.</p>
+<h3 id="name-and-extension">Name and extension<a class="anchor" href="#name-and-extension">#</a></h3>
+<p><code>splitName</code> finds the <strong>last</strong> dot and splits there, so <code>report final.txt</code> is <code>report final</code> and <code>txt</code>, and a name without a dot has no extension. Most rules change only the name part; the rule <code>lower</code> changes the extension too (<code>JPG</code> becomes <code>jpg</code>) and <code>number</code> sets the extension it was given. The program puts the dot back when the extension is not empty.</p>
+<h3 id="regular-expressions">Regular expressions<a class="anchor" href="#regular-expressions">#</a></h3>
+<p><code>Regex.Replace(text, pattern, replacement)</code> is called with <code>dnStatic</code>. The pattern <code>\s*final</code> means <em>any spaces and then the word final</em>, so <code>report final.txt</code> becomes <code>report.txt</code> and no space is left behind (the tutorial <a href="tut-29-regex.html">Regular expressions in depth</a>).</p>
+<h3 id="numbering">Numbering<a class="anchor" href="#numbering">#</a></h3>
+<p>The rule <code>number</code> ignores the old name: it makes <code>holiday-01</code>, <code>holiday-02</code>... with a counter that is kept in <code>makePlan</code>, and the width (2) pads the number with zeros so that the names sort correctly. The program selects the files that have the word <em>holiday</em> first and makes a plan for those only.</p>
+<h3 id="conflicts">Conflicts<a class="anchor" href="#conflicts">#</a></h3>
+<p>Two files cannot have one name. Step 5 uses a rule that turns <code>report final (copy).TXT</code> and <code>report final.txt</code> into the same name, and <code>findConflicts</code> reports it. <strong>Nothing is renamed when there is a problem</strong>: a tool that stops in the middle of a rename leaves a mess that is hard to repair. The check compares names in lower case, because Windows and macOS do not tell <code>A.txt</code> from <code>a.txt</code>.</p>
+<h3 id="rename-and-undo">Rename and undo<a class="anchor" href="#rename-and-undo">#</a></h3>
+<p><code>File.Move([ :sourceFileName = ..., :destFileName = ... ])</code> renames a file. <code>applyPlan</code> skips the files whose name does not change and returns the <strong>log</strong>: the pairs that were really renamed. <code>undoLog</code> goes through the log from the last pair to the first and moves each file back. The test at the end compares the names with the first list: they are the same. A real tool saves the log in a file, so the user can undo even after the program was closed.</p>
+<div class="callout note"><span class="t">Note</span><p>The order of the files that <code>GetFiles</code> returns is not defined, so <code>fileNames</code> sorts the list. Without it the preview would change from one computer to another and the numbering would not be the same.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>rules as data and a function that applies them,</li><li>the preview, the conflict check and the log,</li><li>renaming with <code>File.Move</code>, and undo,</li><li>sorting the names of a folder.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add the rule <code>extension</code> that changes only the extension.</li><li>Add a rule that puts the date of the file (<code>LastWriteTime</code>) in front of the name.</li><li>Save the log as a text file and write <code>undoFromFile(path)</code>.</li><li>Add a <em>dry run</em> switch that prints the plan and does not call <code>applyPlan</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-145-diff.html">A project: compare two files</a></p>
+<div class="pager"><a href="tut-46-backup.html"><small>Previous</small>A backup tool</a><a class="next" href="tut-145-diff.html"><small>Next</small>Compare two files</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

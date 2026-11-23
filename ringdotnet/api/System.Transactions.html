@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System.Transactions · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>System.Transactions</h1>
+<p class="lead">24 wrapped types. Load them with <code>using { "System.Transactions" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-CommittableTransaction">CommittableTransaction</a> <a href="#c-DependentTransaction">DependentTransaction</a> <a href="#c-Enlistment">Enlistment</a> <a href="#c-IDtcTransaction">IDtcTransaction</a> <a href="#c-IEnlistmentNotification">IEnlistmentNotification</a> <a href="#c-IPromotableSinglePhaseNotification">IPromotableSinglePhaseNotification</a> <a href="#c-ISimpleTransactionSuperior">ISimpleTransactionSuperior</a> <a href="#c-ISinglePhaseNotification">ISinglePhaseNotification</a> <a href="#c-ITransactionPromoter">ITransactionPromoter</a> <a href="#c-PreparingEnlistment">PreparingEnlistment</a> <a href="#c-SinglePhaseEnlistment">SinglePhaseEnlistment</a> <a href="#c-SubordinateTransaction">SubordinateTransaction</a> <a href="#c-Transaction">Transaction</a> <a href="#c-TransactionAbortedException">TransactionAbortedException</a> <a href="#c-TransactionEventArgs">TransactionEventArgs</a> <a href="#c-TransactionException">TransactionException</a> <a href="#c-TransactionInDoubtException">TransactionInDoubtException</a> <a href="#c-TransactionInformation">TransactionInformation</a> <a href="#c-TransactionInterop">TransactionInterop</a> <a href="#c-TransactionManager">TransactionManager</a> <a href="#c-TransactionManagerCommunicationException">TransactionManagerCommunicationException</a> <a href="#c-TransactionOptions">TransactionOptions</a> <a href="#c-TransactionPromotionException">TransactionPromotionException</a> <a href="#c-TransactionScope">TransactionScope</a></div><details class="cls" id="c-CommittableTransaction"><summary><b>CommittableTransaction</b> <span class="muted">class sealed · extends <a href="#c-Transaction">Transaction</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.CommittableTransaction</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IDisposable, ISerializable, IAsyncResult</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new CommittableTransaction()</code></td></tr><tr><td><code>new CommittableTransaction(TimeSpan timeout)</code></td></tr><tr><td><code>new CommittableTransaction(TransactionOptions options)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new CommittableTransaction(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new CommittableTransaction().@New([ :param = value ])</code> or <code>dnNew("CommittableTransaction",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>BeginCommit</code></td><td><code>BeginCommit(p1,p2)</code></td><td><code>IAsyncResult BeginCommit(AsyncCallback asyncCallback, object asyncState)</code></td></tr><tr><td><code>Commit</code></td><td><code>Commit()</code></td><td><code>void Commit()</code></td></tr><tr><td><code>EndCommit</code></td><td><code>EndCommit(p1)</code></td><td><code>void EndCommit(IAsyncResult asyncResult)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-DependentTransaction"><summary><b>DependentTransaction</b> <span class="muted">class sealed · extends <a href="#c-Transaction">Transaction</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.DependentTransaction</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IDisposable, ISerializable</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Complete</code></td><td><code>Complete()</code></td><td><code>void Complete()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Enlistment"><summary><b>Enlistment</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.Enlistment</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Done</code></td><td><code>Done()</code></td><td><code>void Done()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IDtcTransaction"><summary><b>IDtcTransaction</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.IDtcTransaction</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Abort</code></td><td><code>Abort(p1,p2,p3)</code></td><td><code>void Abort(IntPtr reason, int retaining, int async)</code></td></tr><tr><td><code>Commit</code></td><td><code>Commit(p1,p2,p3)</code></td><td><code>void Commit(int retaining, int commitType, int reserved)</code></td></tr><tr><td><code>GetTransactionInfo</code></td><td><code>GetTransactionInfo(p1)</code></td><td><code>void GetTransactionInfo(IntPtr transactionInformation)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IEnlistmentNotification"><summary><b>IEnlistmentNotification</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.IEnlistmentNotification</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Commit</code></td><td><code>Commit(p1)</code></td><td><code>void Commit(Enlistment enlistment)</code></td></tr><tr><td><code>InDoubt</code></td><td><code>InDoubt(p1)</code></td><td><code>void InDoubt(Enlistment enlistment)</code></td></tr><tr><td><code>Prepare</code></td><td><code>Prepare(p1)</code></td><td><code>void Prepare(PreparingEnlistment preparingEnlistment)</code></td></tr><tr><td><code>Rollback</code></td><td><code>Rollback(p1)</code></td><td><code>void Rollback(Enlistment enlistment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPromotableSinglePhaseNotification"><summary><b>IPromotableSinglePhaseNotification</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.IPromotableSinglePhaseNotification</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ITransactionPromoter</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Initialize</code></td><td><code>Initialize()</code></td><td><code>void Initialize()</code></td></tr><tr><td><code>Rollback</code></td><td><code>Rollback(p1)</code></td><td><code>void Rollback(SinglePhaseEnlistment singlePhaseEnlistment)</code></td></tr><tr><td><code>SinglePhaseCommit</code></td><td><code>SinglePhaseCommit(p1)</code></td><td><code>void SinglePhaseCommit(SinglePhaseEnlistment singlePhaseEnlistment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ISimpleTransactionSuperior"><summary><b>ISimpleTransactionSuperior</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.ISimpleTransactionSuperior</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ITransactionPromoter</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Rollback</code></td><td><code>Rollback()</code></td><td><code>void Rollback()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ISinglePhaseNotification"><summary><b>ISinglePhaseNotification</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.ISinglePhaseNotification</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IEnlistmentNotification</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>SinglePhaseCommit</code></td><td><code>SinglePhaseCommit(p1)</code></td><td><code>void SinglePhaseCommit(SinglePhaseEnlistment singlePhaseEnlistment)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-ITransactionPromoter"><summary><b>ITransactionPromoter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.ITransactionPromoter</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Promote</code></td><td><code>Promote()</code></td><td><code>byte[] Promote()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PreparingEnlistment"><summary><b>PreparingEnlistment</b> <span class="muted">class · extends <a href="#c-Enlistment">Enlistment</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.PreparingEnlistment</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>ForceRollback</code></td><td><code>ForceRollback(NULL)</code><br><code>ForceRollback(value)</code><br><code>ForceRollback([ :e = … ])</code></td><td><code>void ForceRollback()</code><br><code>void ForceRollback(Exception e)</code></td></tr><tr><td><code>Prepared</code></td><td><code>Prepared()</code></td><td><code>void Prepared()</code></td></tr><tr><td><code>RecoveryInformation</code></td><td><code>RecoveryInformation()</code></td><td><code>byte[] RecoveryInformation()</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SinglePhaseEnlistment"><summary><b>SinglePhaseEnlistment</b> <span class="muted">class · extends <a href="#c-Enlistment">Enlistment</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.SinglePhaseEnlistment</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Aborted</code></td><td><code>Aborted(NULL)</code><br><code>Aborted(value)</code><br><code>Aborted([ :e = … ])</code></td><td><code>void Aborted()</code><br><code>void Aborted(Exception e)</code></td></tr><tr><td><code>Committed</code></td><td><code>Committed()</code></td><td><code>void Committed()</code></td></tr><tr><td><code>InDoubt</code></td><td><code>InDoubt(NULL)</code><br><code>InDoubt(value)</code><br><code>InDoubt([ :e = … ])</code></td><td><code>void InDoubt()</code><br><code>void InDoubt(Exception e)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-SubordinateTransaction"><summary><b>SubordinateTransaction</b> <span class="muted">class sealed · extends <a href="#c-Transaction">Transaction</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.SubordinateTransaction</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IDisposable, ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new SubordinateTransaction(IsolationLevel isoLevel, ISimpleTransactionSuperior superior)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new SubordinateTransaction(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new SubordinateTransaction().@New([ :param = value ])</code> or <code>dnNew("SubordinateTransaction",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-Transaction"><summary><b>Transaction</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.Transaction</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IDisposable, ISerializable</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TransactionInformation</code></td><td><code>TransactionInformation</code></td><td>read</td><td><code>o.TransactionInformation</code></td></tr><tr><td><code>IsolationLevel</code></td><td><code>IsolationLevel</code></td><td>read</td><td><code>o.IsolationLevel</code></td></tr><tr><td><code>PromoterType</code></td><td><code>Guid</code></td><td>read</td><td><code>o.PromoterType</code></td></tr><tr><td><code>Current</code></td><td><code>Transaction</code></td><td>read, write · static</td><td><code>o.Current</code> <code>o.Current = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Clone</code></td><td><code>Clone()</code></td><td><code>Transaction Clone()</code></td></tr><tr><td><code>DependentClone</code></td><td><code>DependentClone(p1)</code></td><td><code>DependentTransaction DependentClone(DependentCloneOption cloneOption)</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr><tr><td><code>EnlistDurable</code></td><td><code>EnlistDurable(p1,p2,p3)</code></td><td><code>Enlistment EnlistDurable(Guid resourceManagerIdentifier, IEnlistmentNotification enlistmentNotification, EnlistmentOptions enlistmentOptions)</code><br><code>Enlistment EnlistDurable(Guid resourceManagerIdentifier, ISinglePhaseNotification singlePhaseNotification, EnlistmentOptions enlistmentOptions)</code></td></tr><tr><td><code>EnlistPromotableSinglePhase</code></td><td><code>EnlistPromotableSinglePhase(value)</code><br><code>EnlistPromotableSinglePhase([ :promotableSinglePhaseNotification = … ])</code><br><code>EnlistPromotableSinglePhase([ :promotableSinglePhaseNotification = …, :promoterType = … ])</code></td><td><code>bool EnlistPromotableSinglePhase(IPromotableSinglePhaseNotification promotableSinglePhaseNotification)</code><br><code>bool EnlistPromotableSinglePhase(IPromotableSinglePhaseNotification promotableSinglePhaseNotification, Guid promoterType)</code></td></tr><tr><td><code>EnlistVolatile</code></td><td><code>EnlistVolatile(p1,p2)</code></td><td><code>Enlistment EnlistVolatile(IEnlistmentNotification enlistmentNotification, EnlistmentOptions enlistmentOptions)</code><br><code>Enlistment EnlistVolatile(ISinglePhaseNotification singlePhaseNotification, EnlistmentOptions enlistmentOptions)</code></td></tr><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr><tr><td><code>GetPromotedToken</code></td><td><code>GetPromotedToken()</code></td><td><code>byte[] GetPromotedToken()</code></td></tr><tr><td><code>PromoteAndEnlistDurable</code></td><td><code>PromoteAndEnlistDurable(p1,p2,p3,p4)</code></td><td><code>Enlistment PromoteAndEnlistDurable(Guid resourceManagerIdentifier, IPromotableSinglePhaseNotification promotableNotification, ISinglePhaseNotification enlistmentNotification, EnlistmentOptions enlistmentOptions)</code></td></tr><tr><td><code>Rollback</code></td><td><code>Rollback(NULL)</code><br><code>Rollback(value)</code><br><code>Rollback([ :e = … ])</code></td><td><code>void Rollback()</code><br><code>void Rollback(Exception e)</code></td></tr><tr><td><code>SetDistributedTransactionIdentifier</code></td><td><code>SetDistributedTransactionIdentifier(p1,p2)</code></td><td><code>void SetDistributedTransactionIdentifier(IPromotableSinglePhaseNotification promotableNotification, Guid distributedTransactionIdentifier)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>TransactionCompleted</code></td><td><code>TransactionCompletedEventHandler</code></td><td><code>o.setTransactionCompletedEvent(code)</code> · <code>o.clearTransactionCompletedEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TransactionAbortedException"><summary><b>TransactionAbortedException</b> <span class="muted">class · extends <a href="#c-TransactionException">TransactionException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionAbortedException</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionAbortedException()</code></td></tr><tr><td><code>new TransactionAbortedException(string message)</code></td></tr><tr><td><code>new TransactionAbortedException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionAbortedException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionAbortedException().@New([ :param = value ])</code> or <code>dnNew("TransactionAbortedException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionEventArgs"><summary><b>TransactionEventArgs</b> <span class="muted">class · extends <a href="System.html#c-EventArgs">EventArgs</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionEventArgs</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionEventArgs()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionEventArgs(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionEventArgs().@New([ :param = value ])</code> or <code>dnNew("TransactionEventArgs",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Transaction</code></td><td><code>Transaction</code></td><td>read</td><td><code>o.Transaction</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionException"><summary><b>TransactionException</b> <span class="muted">class · extends <a href="System.html#c-SystemException">SystemException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionException</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionException()</code></td></tr><tr><td><code>new TransactionException(string message)</code></td></tr><tr><td><code>new TransactionException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionException().@New([ :param = value ])</code> or <code>dnNew("TransactionException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionInDoubtException"><summary><b>TransactionInDoubtException</b> <span class="muted">class · extends <a href="#c-TransactionException">TransactionException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionInDoubtException</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionInDoubtException()</code></td></tr><tr><td><code>new TransactionInDoubtException(string message)</code></td></tr><tr><td><code>new TransactionInDoubtException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionInDoubtException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionInDoubtException().@New([ :param = value ])</code> or <code>dnNew("TransactionInDoubtException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionInformation"><summary><b>TransactionInformation</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionInformation</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>LocalIdentifier</code></td><td><code>string</code></td><td>read</td><td><code>o.LocalIdentifier</code></td></tr><tr><td><code>DistributedIdentifier</code></td><td><code>Guid</code></td><td>read</td><td><code>o.DistributedIdentifier</code></td></tr><tr><td><code>CreationTime</code></td><td><code>DateTime</code></td><td>read</td><td><code>o.CreationTime</code></td></tr><tr><td><code>Status</code></td><td><code>TransactionStatus</code></td><td>read</td><td><code>o.Status</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TransactionInterop"><summary><b>TransactionInterop</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionInterop</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>PromoterTypeDtc</code></td><td><code>Guid</code></td><td>read · static</td><td><code>o.PromoterTypeDtc</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetDtcTransaction</code></td><td><code>GetDtcTransaction(p1)</code></td><td><code>static IDtcTransaction GetDtcTransaction(Transaction transaction)</code></td></tr><tr><td><code>GetExportCookie</code></td><td><code>GetExportCookie(p1,p2)</code></td><td><code>static byte[] GetExportCookie(Transaction transaction, byte[] whereabouts)</code></td></tr><tr><td><code>GetTransactionFromDtcTransaction</code></td><td><code>GetTransactionFromDtcTransaction(p1)</code></td><td><code>static Transaction GetTransactionFromDtcTransaction(IDtcTransaction transactionNative)</code></td></tr><tr><td><code>GetTransactionFromExportCookie</code></td><td><code>GetTransactionFromExportCookie(p1)</code></td><td><code>static Transaction GetTransactionFromExportCookie(byte[] cookie)</code></td></tr><tr><td><code>GetTransactionFromTransmitterPropagationToken</code></td><td><code>GetTransactionFromTransmitterPropagationToken(p1)</code></td><td><code>static Transaction GetTransactionFromTransmitterPropagationToken(byte[] propagationToken)</code></td></tr><tr><td><code>GetTransmitterPropagationToken</code></td><td><code>GetTransmitterPropagationToken(p1)</code></td><td><code>static byte[] GetTransmitterPropagationToken(Transaction transaction)</code></td></tr><tr><td><code>GetWhereabouts</code></td><td><code>GetWhereabouts()</code></td><td><code>static byte[] GetWhereabouts()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TransactionManager"><summary><b>TransactionManager</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionManager</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>HostCurrentCallback</code></td><td><code>HostCurrentTransactionCallback</code></td><td>read, write · static</td><td><code>o.HostCurrentCallback</code> <code>o.HostCurrentCallback = v</code></td></tr><tr><td><code>DefaultTimeout</code></td><td><code>TimeSpan</code></td><td>read, write · static</td><td><code>o.DefaultTimeout</code> <code>o.DefaultTimeout = v</code></td></tr><tr><td><code>MaximumTimeout</code></td><td><code>TimeSpan</code></td><td>read, write · static</td><td><code>o.MaximumTimeout</code> <code>o.MaximumTimeout = v</code></td></tr><tr><td><code>ImplicitDistributedTransactions</code></td><td><code>bool</code></td><td>read, write · static</td><td><code>o.ImplicitDistributedTransactions</code> <code>o.ImplicitDistributedTransactions = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>RecoveryComplete</code></td><td><code>RecoveryComplete(p1)</code></td><td><code>static void RecoveryComplete(Guid resourceManagerIdentifier)</code></td></tr><tr><td><code>Reenlist</code></td><td><code>Reenlist(p1,p2,p3)</code></td><td><code>static Enlistment Reenlist(Guid resourceManagerIdentifier, byte[] recoveryInformation, IEnlistmentNotification enlistmentNotification)</code></td></tr></tbody></table></div>
+<h4>Events</h4><div class="tablewrap"><table class="api"><thead><tr><th>Event</th><th>Handler type</th><th>In Ring</th></tr></thead><tbody><tr><td><code>DistributedTransactionStarted</code></td><td><code>TransactionStartedEventHandler</code></td><td><code>o.setDistributedTransactionStartedEvent(code)</code> · <code>o.clearDistributedTransactionStartedEvent()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TransactionManagerCommunicationException"><summary><b>TransactionManagerCommunicationException</b> <span class="muted">class · extends <a href="#c-TransactionException">TransactionException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionManagerCommunicationException</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionManagerCommunicationException()</code></td></tr><tr><td><code>new TransactionManagerCommunicationException(string message)</code></td></tr><tr><td><code>new TransactionManagerCommunicationException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionManagerCommunicationException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionManagerCommunicationException().@New([ :param = value ])</code> or <code>dnNew("TransactionManagerCommunicationException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionOptions"><summary><b>TransactionOptions</b> <span class="muted">struct</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionOptions</code> · assembly <code>System.Transactions.Local</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Timeout</code></td><td><code>TimeSpan</code></td><td>read, write</td><td><code>o.Timeout</code> <code>o.Timeout = v</code></td></tr><tr><td><code>IsolationLevel</code></td><td><code>IsolationLevel</code></td><td>read, write</td><td><code>o.IsolationLevel</code> <code>o.IsolationLevel = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Equals</code></td><td><code>Equals(p1)</code></td><td><code>bool Equals(object obj)</code><br><code>bool Equals(TransactionOptions other)</code></td></tr><tr><td><code>GetHashCode</code></td><td><code>GetHashCode()</code></td><td><code>int GetHashCode()</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-TransactionPromotionException"><summary><b>TransactionPromotionException</b> <span class="muted">class · extends <a href="#c-TransactionException">TransactionException</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionPromotionException</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: ISerializable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionPromotionException()</code></td></tr><tr><td><code>new TransactionPromotionException(string message)</code></td></tr><tr><td><code>new TransactionPromotionException(string message, Exception innerException)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionPromotionException(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionPromotionException().@New([ :param = value ])</code> or <code>dnNew("TransactionPromotionException",[ :param = value ])</code>.</p>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-TransactionScope"><summary><b>TransactionScope</b> <span class="muted">class sealed</span></summary>
+<div class="clsbody">
+<p class="net"><code>System.Transactions.TransactionScope</code> · assembly <code>System.Transactions.Local</code></p>
+<p class="muted">Implements: IDisposable</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new TransactionScope()</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TimeSpan scopeTimeout)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TimeSpan scopeTimeout, TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions, TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions, EnterpriseServicesInteropOption interopOption)</code></td></tr><tr><td><code>new TransactionScope(Transaction transactionToUse)</code></td></tr><tr><td><code>new TransactionScope(Transaction transactionToUse, TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout)</code></td></tr><tr><td><code>new TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout, TransactionScopeAsyncFlowOption asyncFlowOption)</code></td></tr><tr><td><code>new TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout, EnterpriseServicesInteropOption interopOption)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new TransactionScope(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new TransactionScope().@New([ :param = value ])</code> or <code>dnNew("TransactionScope",[ :param = value ])</code>.</p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Complete</code></td><td><code>Complete()</code></td><td><code>void Complete()</code></td></tr><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>

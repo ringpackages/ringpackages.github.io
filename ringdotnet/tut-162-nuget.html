@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A NuGet package · RingDotNet</title>
+<meta name="description" content="Most useful .NET libraries are NuGet packages. This lesson takes a real one, Newtonsoft.Json, from nuget.org to a Ring program in four steps - a project file, dotnet publish, the generator and new - and explains what to check for any other package.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html" class="cur">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A NuGet package</h1><p class="lead">Most useful .NET libraries are NuGet packages. This lesson takes a real one, Newtonsoft.Json, from nuget.org to a Ring program in four steps - a project file, dotnet publish, the generator and new - and explains what to check for any other package.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what a NuGet package is and where its DLLs come from,</li><li>a small <strong>project file</strong> that asks for a package, and <code>dotnet publish</code> that copies the package and what it needs into one folder,</li><li>wrapping the DLL and loading its classes,</li><li>calling the package like any other class,</li><li>what to look at when a package does not work at once.</li></ul>
+<h2 id="what-a-package-is">What a package is<a class="anchor" href="#what-a-package-is">#</a></h2>
+<p>A <strong>NuGet package</strong> is a zip file with one or more DLLs (one set for each version of .NET it supports), and a list of other packages that it needs. <a href="https://www.nuget.org">nuget.org</a> is the public place where packages are kept: a name and a version number find one, for example <code>Newtonsoft.Json</code> 13.0.3.</p>
+<p>You do not unzip a package by hand. The .NET SDK does it: a <strong>project file</strong> names the packages, and <code>dotnet publish</code> downloads them (once; they are kept on your computer afterwards) and copies all the DLLs that the program needs into one folder. That folder is what Ring uses.</p>
+<h2 id="the-steps">The steps<a class="anchor" href="#the-steps">#</a></h2>
+<ol><li><strong>Ask for the package</strong> in a project file.</li><li><strong>Publish</strong>: <code>dotnet publish Packages -c Release -o Packages/libs</code> copies the package DLLs to <code>Packages/libs</code>.</li><li><strong>Wrap</strong>: <code>ring wrapassembly.ring Packages/libs/Newtonsoft.Json.dll classes</code> writes the Ring classes.</li><li><strong>Load and use</strong>: <code>dnLoad</code>, <code>dnImportFrom</code>, then <code>new ClassName</code>.</li></ol>
+<p>The earlier tutorial <a href="tut-18-csharp-library.html">A library written in C#</a> does steps 3 and 4 for a library that you build yourself. Here the library comes from somebody else, so step 1 and 2 are new.</p>
+<h2 id="the-project-file">The project file<a class="anchor" href="#the-project-file">#</a></h2>
+<p>This is all that a project needs to get a package. It is in <code>samples/UsingDotNet/tutorials/Packages</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/Packages/Packages.csproj</span><button class="copy" type="button">Copy</button></div><pre><code>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;
+    &lt;AssemblyName&gt;Packages&lt;/AssemblyName&gt;
+    &lt;DebugType&gt;none&lt;/DebugType&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="Newtonsoft.Json" Version="13.0.3" /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;</code></pre></div>
+<p><code>PackageReference</code> is the line that names the package and its version. The project also needs one source file, even when you write no C#, so there is an empty class:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/Packages/Empty.cs</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c">// A project needs one source file to build; the program only wants the package that the project refers to.</span>
+<span class="k">namespace</span> Tutorial.Packages { <span class="k">class</span> <span class="t">Empty</span> { } }</code></pre></div>
+<p>To use another package, change the <code>Include</code> and <code>Version</code> values (nuget.org shows both on the page of every package), or run <code>dotnet add Packages package Name</code> and the SDK writes the line for you. You need the <strong>.NET SDK</strong> for this step only (<code>dotnet --version</code> prints its version); the finished program needs only the runtime and the DLLs.</p>
+<h2 id="the-ring-program">The Ring program<a class="anchor" href="#the-ring-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_nuget.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a NuGet package - the project file asks for the package, dotnet publish copies its DLLs, the generator wraps them, and the classes are used</span>
+<span class="c">#   (the project is in the folder Packages: Packages.csproj names Newtonsoft.Json, and Empty.cs is the one source file a project needs)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+cHere = currentdir()
+cDll = cHere + <span class="s">"/Packages/libs/Newtonsoft.Json.dll"</span>
+cClasses = cHere + <span class="s">"/Packages/classes"</span>
+
+<span class="c"># STEP 1. Get the package. dotnet publish restores the packages that the project names (from nuget.org the first time, from the</span>
+<span class="c"># computer afterwards) and copies their DLLs, with the DLLs they need, into one folder: Packages/libs</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cDll)
+	? <span class="s">"getting the package..."</span>
+	system(<span class="s">"dotnet publish Packages -c Release -o Packages/libs -nologo -v q &gt; nul"</span>)
+<span class="k">ok</span>
+<span class="k">if</span> <span class="k">not</span> fexists(cDll)
+	? <span class="s">"The package could not be restored. It is downloaded from nuget.org the first time, so the computer needs the internet once."</span>
+	<span class="k">bye</span>
+<span class="k">ok</span>
+
+<span class="c"># STEP 2. Make Ring classes for the DLL of the package (the generator is a Ring program of this package: tools/dotnettools/wrapassembly.ring)</span>
+chdir(<span class="s">"../../../tools/dotnettools"</span>)
+system(exefilename() + <span class="s">" wrapassembly.ring "</span> + cDll + <span class="s">" "</span> + cClasses + <span class="s">" &gt; nul"</span>)
+chdir(cHere)
+
+<span class="c"># STEP 3. Load the assembly and the classes of its namespaces. Newtonsoft.Json.Linq needs Newtonsoft.Json, and the loader finds it.</span>
+<span class="f">dnLoad</span>(cDll)
+<span class="f">dnImportFrom</span>(cClasses + <span class="s">"/"</span>,<span class="s">"Newtonsoft.Json.Linq"</span>)
+<span class="f">dnImportFrom</span>(cClasses + <span class="s">"/"</span>,<span class="s">"Newtonsoft.Json"</span>)
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># STEP 4. Use the classes like any other</span>
+	cText = <span class="s">'{"name":"Ann","age":31,"tags":["ring","dotnet"],"address":{"city":"Cairo"}}'</span>
+	oObject = <span class="k">new</span> <span class="t">JObject</span>().<span class="f">Parse</span>(cText)                 <span class="c"># Parse is a static method: it is called on an object, as in the tutorial about the C# library</span>
+	? <span class="s">"name    : "</span> + oObject.<span class="f">Item</span>(<span class="s">"name"</span>).<span class="f">ToString</span>()
+	? <span class="s">"age     : "</span> + oObject.<span class="f">Item</span>(<span class="s">"age"</span>).<span class="f">ToString</span>()
+	? <span class="s">"city    : "</span> + oObject.<span class="f">SelectToken</span>(<span class="s">"address.city"</span>).<span class="f">ToString</span>()          <span class="c"># a path into the document</span>
+	? <span class="s">"tags    : "</span> + oObject.<span class="f">Item</span>(<span class="s">"tags"</span>).Count
+
+	<span class="c"># a value is added with the name of the property and a JValue (the overload is chosen by the names of the parameters)</span>
+	oObject.<span class="f">Add</span>([ :propertyName = <span class="s">"country"</span>, :value = <span class="k">new</span> <span class="t">JValue</span>(<span class="s">"Egypt"</span>) ])
+	? nl + <span class="s">"the document with the new property:"</span>
+	? oObject.<span class="f">ToString</span>()
+
+	<span class="c"># the other namespace of the package: JsonConvert turns a value into JSON text</span>
+	? nl + <span class="s">"a text as JSON   : "</span> + <span class="k">new</span> <span class="t">JsonConvert</span>().<span class="f">SerializeObject</span>(<span class="s">"a b"</span>)
+	? <span class="s">"a number as JSON : "</span> + <span class="k">new</span> <span class="t">JsonConvert</span>().<span class="f">SerializeObject</span>(<span class="n">42</span>)          <span class="c"># a whole number that goes to an object is an Int32, so 42 is written as 42 (42.5 stays a double)</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>name    : Ann
+age     : 31
+city    : Cairo
+tags    : 2
+
+the document with the new property:
+{
+
+  "name": "Ann",
+
+  "age": 31,
+
+  "tags": [
+
+    "ring",
+
+    "dotnet"
+
+  ],
+
+  "address": {
+
+    "city": "Cairo"
+
+  },
+
+  "country": "Egypt"
+
+}
+
+a text as JSON   : "a b"
+a number as JSON : 42</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="why-publish">Why publish<a class="anchor" href="#why-publish">#</a></h3>
+<p>The DLL of the package is in the folder where the SDK keeps packages, in a sub-folder for each .NET version it supports, and the packages that it needs are somewhere else. <code>dotnet publish</code> chooses the right DLLs for the .NET of the project and puts them <strong>together</strong> in <code>Packages/libs</code>. A library that is copied alone may stop at its first call because a DLL that it needs is missing. Keep the folder together, and give it to the people who use your program (the tutorial <a href="tut-119-distribution.html">Giving your program to others</a>).</p>
+<p>The DLL called <code>Packages.dll</code> that is also in the folder belongs to the empty project and is not used.</p>
+<h3 id="one-dll-several-namespaces">One DLL, several namespaces<a class="anchor" href="#one-dll-several-namespaces">#</a></h3>
+<p>Newtonsoft.Json has the namespaces <code>Newtonsoft.Json</code> (for example <code>JsonConvert</code>) and <code>Newtonsoft.Json.Linq</code> (<code>JObject</code>, <code>JArray</code>, <code>JValue</code>). The generator writes one loader for each namespace, and <code>dnImportFrom(folder,"Newtonsoft.Json.Linq")</code> also loads the namespace that it needs. The program loads the other one too, because it uses <code>JsonConvert</code> from it.</p>
+<h3 id="static-methods-and-overloads">Static methods and overloads<a class="anchor" href="#static-methods-and-overloads">#</a></h3>
+<p><code>Parse</code> is a <strong>static</strong> method of <code>JObject</code>: Ring calls it on an object, <code>new JObject().Parse(cText)</code>. <code>Add</code> has several versions, so it takes a list of named values, <code>[ :propertyName = ..., :value = ... ]</code>, the same way as the methods of the C# library. A whole number that goes to an <code>object</code> parameter is an <code>Int32</code> and any other number is a <code>Double</code>, so <code>SerializeObject(42)</code> writes <code>42</code> and <code>SerializeObject(42.5)</code> writes <code>42.5</code>. Names of parameters are in the class files that the generator wrote (<code>Packages/classes</code>) and in the documentation of the package.</p>
+<h2 id="when-a-package-does-not-work-at-once">When a package does not work at once<a class="anchor" href="#when-a-package-does-not-work-at-once">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>What you see</th><th>What to check</th></tr></thead><tbody><tr><td><code>dotnet publish</code> fails with <code>Unable to find package</code></td><td>the name or the version, and that the computer is online the first time</td></tr><tr><td>the folder has no DLL with the name you expect</td><td>some packages are named after one name and hold DLLs with another: look in <code>libs</code></td></tr><tr><td><code>DotNet Error: Could not load file or assembly</code> at a call</td><td>a DLL that the package needs is not next to the others: publish again and copy the whole folder</td></tr><tr><td>a method is not found</td><td>the class that you used is in the other namespace: load it with <code>dnImportFrom</code></td></tr><tr><td><code>System.DllNotFoundException</code></td><td>the package has a native library (<code>.dll</code> for Windows); it is in <code>libs/runtimes/...</code>, so keep that folder, and use the one for your system</td></tr><tr><td>the program needs a newer .NET</td><td>change <code>TargetFramework</code> in the project file to one that your computer has</td></tr></tbody></table></div>
+<div class="callout tip"><span class="t">Tip</span><p>Before you build a program around a package, write a ten-line Ring program that calls the one method that you need. If that works, the rest is the same work.</p></div>
+<div class="callout note"><span class="t">Note</span><p>Look at the license of a package before you give your program to others: most are free to use, but each has its own terms, and they are shown on its page at nuget.org.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>a package is a set of DLLs on nuget.org, and a <strong>project file</strong> names the ones you need,</li><li><code>dotnet publish</code> copies a package with what it needs into one folder,</li><li>wrap the DLL, load the namespaces with <code>dnImportFrom</code>, and call the classes like any other,</li><li>a table of what to check when the first call fails.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Read the <code>Count</code> of <code>tags</code> and print every tag with a loop (<code>Item(0)</code>, <code>Item(1)</code>).</li><li>Read the <code>age</code> as a number, add one to it and print the result (<code>oObject.Item("age").ToString()</code> is a text; <code>number(...)</code> makes it a number).</li><li>Turn the text <code>[1,2,3]</code> into a <code>JArray</code> with <code>new JArray().Parse(...)</code> and print its <code>Count</code>.</li><li>Find another small package on nuget.org, name it in a second project file, publish it, wrap it and call one method.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-165-qr.html">A QR code</a></p>
+<div class="pager"><a href="tut-160-generic-calls.html"><small>Previous</small>The generic functions</a><a class="next" href="tut-165-qr.html"><small>Next</small>A QR code</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

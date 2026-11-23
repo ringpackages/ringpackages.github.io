@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binary files · RingDotNet</title>
+<meta name="description" content="Not every file is text. Pictures, archives and programs are bytes in a particular layout. This lesson writes and reads a tiny binary format, looks at its bytes with a hex dump, and learns the habits that protect against wrong files.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html" class="cur">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Binary files</h1><p class="lead">Not every file is text. Pictures, archives and programs are bytes in a particular layout. This lesson writes and reads a tiny binary format, looks at its bytes with a hex dump, and learns the habits that protect against wrong files.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the difference between text and binary files,</li><li><code>FileStream</code>, <code>BinaryWriter</code>, <code>BinaryReader</code>,</li><li>designing a small file format with a magic number,</li><li>a hex dump,</li><li>bytes, little endian and the type that you pass,</li><li>closing files in every case.</li></ul>
+<h2 id="text-and-binary">Text and binary<a class="anchor" href="#text-and-binary">#</a></h2>
+<p>A <strong>text</strong> file is a list of characters (encoded as bytes). A <strong>binary</strong> file is a list of bytes with a meaning that only the <em>format</em> tells: the first four bytes are a number, the next ones a name... A program that does not know the format sees garbage. A binary format is smaller and faster to read, and exact (a number is stored as a number, not as the text <code>21.5</code>).</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch05_binary.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># binary files - bytes, BinaryWriter and BinaryReader, a file format, and a hex dump</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Text"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_binary.dat"</span>])
+
+	<span class="c"># 1. A binary file stores values as bytes, not as readable text. We invent a tiny format:</span>
+	<span class="c">#      the text "RDN1" (a "magic number": it says what kind of file this is), then</span>
+	<span class="c">#      a 32-bit whole number (the count), a text (the title), and that many decimal numbers.</span>
+	<span class="c">#   Note: Write(21.5) writes a decimal number (8 bytes); Write(23) would write a whole number (4 bytes). The type that you pass decides.</span>
+	oStream = <span class="k">new</span> <span class="t">FileStream</span>(cFile,<span class="s">"Create"</span>)
+	oWriter = <span class="k">new</span> <span class="t">BinaryWriter</span>(oStream)
+	oWriter.<span class="f">Write</span>(<span class="s">"RDN1"</span>)
+	oWriter.<span class="f">Write</span>(<span class="n">3</span>)
+	oWriter.<span class="f">Write</span>(<span class="s">"Temperatures"</span>)
+	oWriter.<span class="f">Write</span>(<span class="n">21.5</span>)
+	oWriter.<span class="f">Write</span>(<span class="n">19.25</span>)
+	oWriter.<span class="f">Write</span>(<span class="n">23.75</span>)
+	oWriter.<span class="f">Close</span>()
+	? <span class="s">"1. Written: "</span> + <span class="k">new</span> <span class="t">FileInfo</span>(cFile).Length + <span class="s">" bytes"</span>
+
+	<span class="c"># 2. The raw bytes: a hex dump shows offset, bytes in hex, and the printable characters</span>
+	? nl + <span class="s">"2. The hex dump of the file:"</span>
+	? hexDump(cFile)
+
+	<span class="c"># 3. Read it back with a BinaryReader: the reads must follow the same order as the writes</span>
+	oReader = <span class="k">new</span> <span class="t">BinaryReader</span>(<span class="k">new</span> <span class="t">FileStream</span>(cFile,<span class="s">"Open"</span>))
+	cMagic = oReader.<span class="f">ReadString</span>()
+	nCount = oReader.<span class="f">ReadInt32</span>()
+	cTitle = oReader.<span class="f">ReadString</span>()
+	? nl + <span class="s">"3. Magic '"</span> + cMagic + <span class="s">"', "</span> + nCount + <span class="s">" values, title '"</span> + cTitle + <span class="s">"'"</span>
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nCount
+		? <span class="s">"   value "</span> + nIndex + <span class="s">" = "</span> + oReader.<span class="f">ReadDouble</span>()
+	<span class="k">next</span>
+	oReader.<span class="f">Close</span>()
+
+	<span class="c"># 4. Checking the magic number protects against opening the wrong kind of file</span>
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cFile, :contents = <span class="s">"just some text, not our format"</span> ])
+	<span class="k">if</span> readMagic(cFile) != <span class="s">"RDN1"</span>
+		? nl + <span class="s">"4. Not our file format: refused"</span>
+	<span class="k">ok</span>
+
+	<span class="c"># 5. Bytes and numbers: BitConverter shows how a number is stored. Little endian: the smallest byte comes first</span>
+	aBytes = <span class="k">new</span> <span class="t">BitConverter</span>().<span class="f">GetBytes</span>(<span class="n">1000</span>)
+	? nl + <span class="s">"5. 1000 as bytes: "</span> + len(aBytes) + <span class="s">" bytes, the first two are "</span> + ascii(aBytes[<span class="n">1</span>]) + <span class="s">" and "</span> + ascii(aBytes[<span class="n">2</span>]) + <span class="s">" (1000 = 3 * 256 + 232)"</span>
+
+	<span class="c"># 6. Reading into a BUFFER. Stream.Read(buffer, offset, count) writes into an array that you pass in, so it needs a live .NET array and not</span>
+	<span class="c">#    a Ring text (a text is copied on the way in). dnBuffer makes such an array; Read gives the number of bytes that it wrote, and</span>
+	<span class="c">#    dnBufferBytes copies them back into a Ring text. The file is the one of step 4, a text that starts with "just".</span>
+	oStream = <span class="k">new</span> <span class="t">FileStream</span>(cFile,<span class="s">"Open"</span>)
+	oBuffer = <span class="f">dnBuffer</span>(<span class="n">16</span>)
+	nRead = oStream.<span class="f">Read</span>(oBuffer,<span class="n">0</span>,<span class="n">16</span>)
+	oStream.<span class="f">Dispose</span>()
+	? nl + <span class="s">"6. read "</span> + nRead + <span class="s">" bytes into a buffer of "</span> + <span class="f">dnBufferSize</span>(oBuffer) + <span class="s">"; the first four are '"</span> + <span class="f">dnBufferBytes</span>(oBuffer,<span class="n">4</span>) + <span class="s">"' (the text file of step 4)"</span>
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+
+<span class="c"># a hex dump: 8 bytes per line</span>
+<span class="k">func</span> <span class="f">hexDump</span> cFile
+
+	cData = <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllBytes</span>(cFile)
+	cOut = <span class="s">""</span>
+	<span class="k">for</span> nStart = <span class="n">1</span> <span class="k">to</span> len(cData) <span class="k">step</span> <span class="n">8</span>
+		cHex = <span class="s">""</span>
+		cChars = <span class="s">""</span>
+		<span class="k">for</span> nIndex = nStart <span class="k">to</span> min(nStart + <span class="n">7</span>,len(cData))
+			nByte = ascii(cData[nIndex])
+			cHex += right(<span class="s">"0"</span> + hex(nByte),<span class="n">2</span>) + <span class="s">" "</span>
+			<span class="k">if</span> nByte &gt;= <span class="n">32</span> <span class="k">and</span> nByte &lt; <span class="n">127</span>
+				cChars += cData[nIndex]
+			<span class="k">else</span>
+				cChars += <span class="s">"."</span>
+			<span class="k">ok</span>
+		<span class="k">next</span>
+		cOut += <span class="s">"   "</span> + right(<span class="s">"0000"</span> + hex(nStart - <span class="n">1</span>),<span class="n">4</span>) + <span class="s">"  "</span> + cHex + copies(<span class="s">"   "</span>,<span class="n">8</span> - (min(nStart + <span class="n">7</span>,len(cData)) - nStart + <span class="n">1</span>)) + <span class="s">" "</span> + cChars + nl
+	<span class="k">next</span>
+	<span class="k">return</span> cOut
+
+<span class="k">func</span> <span class="f">readMagic</span> cFile
+
+	cMagic = <span class="s">""</span>
+	oReader = <span class="s">""</span>
+	<span class="k">try</span>
+		oReader = <span class="k">new</span> <span class="t">BinaryReader</span>(<span class="k">new</span> <span class="t">FileStream</span>(cFile,<span class="s">"Open"</span>))
+		cMagic = oReader.<span class="f">ReadString</span>()
+	<span class="k">catch</span>
+		cMagic = <span class="s">""</span>
+	<span class="k">done</span>
+	<span class="c"># close the file in every case, also after an error: an open file can not be deleted</span>
+	<span class="k">if</span> isobject(oReader)
+		oReader.<span class="f">Close</span>()
+	<span class="k">ok</span>
+	<span class="k">return</span> cMagic
+
+<span class="k">func</span> <span class="f">copies</span> cText, nTimes
+
+	cResult = <span class="s">""</span>
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> nTimes
+		cResult += cText
+	<span class="k">next</span>
+	<span class="k">return</span> cResult</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. Written: 46 bytes
+
+2. The hex dump of the file:
+   0000  04 52 44 4e 31 03 00 00  .RDN1...
+   0008  00 0c 54 65 6d 70 65 72  ..Temper
+   0010  61 74 75 72 65 73 00 00  atures..
+   0018  00 00 00 80 35 40 00 00  ....5@..
+   0020  00 00 00 40 33 40 00 00  ...@3@..
+   0028  00 00 00 c0 37 40        ....7@
+
+
+3. Magic 'RDN1', 3 values, title 'Temperatures'
+   value 1 = 21.50
+   value 2 = 19.25
+   value 3 = 23.75
+
+4. Not our file format: refused
+
+5. 1000 as bytes: 4 bytes, the first two are 232 and 3 (1000 = 3 * 256 + 232)
+
+6. read 16 bytes into a buffer of 16; the first four are 'just' (the text file of step 4)</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-format">The format<a class="anchor" href="#the-format">#</a></h3>
+<p>We invented it: first the text <code>RDN1</code>, then the count (3) as a 32-bit whole number, the title as a text, then that many decimal numbers. Any reader must follow <strong>exactly the same order</strong>. The <code>BinaryWriter</code> writes each value in a fixed, compact way, and the <code>BinaryReader</code> reads them back with matching calls: <code>ReadString</code>, <code>ReadInt32</code>, <code>ReadDouble</code>.</p>
+<h3 id="reading-the-hex-dump">Reading the hex dump<a class="anchor" href="#reading-the-hex-dump">#</a></h3>
+<p>Each line of the dump shows an offset (position), eight bytes in hexadecimal, and the same bytes as characters (<code>.</code> for unprintable ones). Read the real file:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span></span><button class="copy" type="button">Copy</button></div><pre><code>0000  04 52 44 4e 31 03 00 00  .RDN1...</code></pre></div>
+<ul><li><code>04</code> is the <strong>length</strong> of the text that follows: a <code>BinaryWriter</code> writes a text as <em>length + characters</em>: <code>04</code> then <code>52 44 4e 31</code> = <code>R D N 1</code>.</li><li><code>03 00 00 00</code> is the whole number 3 written in 4 bytes. The <strong>smallest byte comes first</strong> (<em>little endian</em>): that is how Windows computers store numbers. 1000 is <code>E8 03 00 00</code>: 1000 = 3 × 256 + 232 (<code>E8</code>), which step 5 shows with <code>BitConverter</code>.</li><li><code>0c</code> = 12, the length of <code>Temperatures</code>.</li><li>The three decimal numbers take 8 bytes each (<code>00 00 00 00 00 80 35 40</code> is 21.5).</li></ul>
+<h3 id="the-type-that-you-pass-decides">The type that you pass decides<a class="anchor" href="#the-type-that-you-pass-decides">#</a></h3>
+<p><code>Write(21.5)</code> writes a decimal (8 bytes); <code>Write(23)</code> would write a <em>whole</em> number (4 bytes) because Ring numbers without decimals are passed as integers. If you then read it back with <code>ReadDouble</code> you get an error ("unable to read beyond the end"). When the reader and the writer disagree, the file is garbage. Keep the values of a decimal field decimal (<code>23.0</code> is still whole to Ring: add a fraction or convert the value) and test your format by reading back what you wrote.</p>
+<h3 id="a-buffer-that-net-fills">A buffer that .NET fills<a class="anchor" href="#a-buffer-that-net-fills">#</a></h3>
+<p><code>File.ReadAllBytes</code> gives the whole file as a Ring text. For a big file, or for a network stream, a program reads in pieces with <code>Stream.Read(buffer, offset, count)</code>: .NET <strong>writes into the array that you pass in</strong>, and returns how many bytes it wrote. A Ring text cannot be that array (it is copied when it goes in), so the program makes a <strong>byte buffer</strong>: <code>dnBuffer(16)</code> is a .NET object that holds a <code>byte[]</code> of 16 bytes, and every parameter of type <code>byte[]</code> receives the live array inside it. After the call <code>dnBufferBytes(oBuffer, nRead)</code> copies the first <code>nRead</code> bytes into a Ring text. The text can hold any byte, so nothing is lost. The same buffer is used with sockets and with the registry (the tutorial <a href="tut-118-registry.html">The Windows Registry</a>).</p>
+<h3 id="the-magic-number">The magic number<a class="anchor" href="#the-magic-number">#</a></h3>
+<p>The first bytes of a file say what kind of file it is: PNG files start with <code>89 50 4E 47</code>, zip files with <code>PK</code>. A reader checks them first and refuses anything else. Step 4 writes a text file over our file and <code>readMagic</code> returns something that is not <code>RDN1</code>: refused, instead of reading nonsense.</p>
+<h3 id="close-files-in-every-case">Close files in every case<a class="anchor" href="#close-files-in-every-case">#</a></h3>
+<p>The reader and writer hold the file open. An open file cannot be deleted or replaced, and its last bytes may not be written yet. <code>readMagic</code> closes the reader <strong>after</strong> the <code>try</code> / <code>catch</code>, so it is closed also when reading failed. (The first version of this tutorial closed it inside <code>try</code>: the failed read left the file open and the final <code>Delete</code> failed. That is exactly the kind of mistake to look for.)</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>binary files are bytes with a format,</li><li><code>BinaryWriter</code> / <code>BinaryReader</code> read and write in the same order,</li><li>a hex dump shows the truth,</li><li>little endian,</li><li>magic numbers,</li><li>always close.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Add a version number to the format, and make the reader accept versions 1 and 2.</li><li>Write a list of names (count, then each name) and read it back.</li><li>Extend <code>hexDump</code> to take a start offset and a length.</li><li>Read the first 8 bytes of a PNG file and check that they are <code>89 50 4E 47 0D 0A 1A 0A</code>.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-130-random-access.html">Random access and file locks</a></p>
+<div class="pager"><a href="tut-56-streams.html"><small>Previous</small>Streams and compression</a><a class="next" href="tut-130-random-access.html"><small>Next</small>Random access and file locks</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

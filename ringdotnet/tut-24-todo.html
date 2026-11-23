@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A project: a to-do list that remembers · RingDotNet</title>
+<meta name="description" content="A complete small application — add, tick and remove tasks, see how many are done, and find them again the next time the program starts. Windows Forms, JSON and files together.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html" class="cur">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>A project: a to-do list that remembers</h1><p class="lead">A complete small application — add, tick and remove tasks, see how many are done, and find them again the next time the program starts. Windows Forms, JSON and files together.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>planning a small application: data, window, behavior, saving,</li><li>a <code>CheckedListBox</code>,</li><li>saving to JSON and loading it again,</li><li>keeping a window and its data in step.</li></ul>
+<h2 id="the-design">The design<a class="anchor" href="#the-design">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Part</th><th>Decision</th></tr></thead><tbody><tr><td><strong>Data</strong></td><td>the tasks live in the list control itself; each has a text and a done flag</td></tr><tr><td><strong>Window</strong></td><td>a text box and <em>Add</em> / <em>Remove</em> buttons on top, the list in the middle, a status line at the bottom</td></tr><tr><td><strong>Behavior</strong></td><td><em>Add</em> ignores blank text; clicking an item ticks it; the status says "n of m done"</td></tr><tr><td><strong>Saving</strong></td><td>after every change the tasks are written to a JSON file; at start-up the file is read</td></tr></tbody></table></div>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch12_todo.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># a project - a to-do list that remembers its tasks (Windows Forms + JSON + files)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+	<span class="s">"System.Text.Json"</span>
+	<span class="s">"System.Drawing"</span>
+	<span class="s">"System.Windows.Forms"</span>
+}
+
+oForm = <span class="s">""</span>
+oNew = <span class="s">""</span>
+oTasks = <span class="s">""</span>
+oStatus = <span class="s">""</span>
+cFile = <span class="s">""</span>
+lLoading = <span class="k">False</span>
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># the tasks are saved here (a test uses a temporary file)</span>
+	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_todo-tasks.json"</span>])
+	<span class="k">if</span> <span class="f">uiSelfTest</span>()
+		cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(),<span class="s">"ringdotnet_todo-test.json"</span>])
+		<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+			<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)
+		<span class="k">ok</span>
+	<span class="k">ok</span>
+
+	oForm = <span class="f">uiForm</span>(<span class="s">"My tasks"</span>,<span class="n">360</span>,<span class="n">320</span>)
+
+	<span class="c"># The window: a text box and a button on top, the list in the middle, a status line at the bottom.</span>
+	<span class="c"># (The control that fills is added FIRST: see the tutorial "A small text editor".)</span>
+	oTasks = <span class="k">new</span> <span class="t">CheckedListBox</span>() {
+		Dock = <span class="s">"Fill"</span>
+		CheckOnClick = <span class="k">True</span>
+		setMouseUpEvent(<span class="s">"tasksChanged()"</span>)           <span class="c"># after a click the state of the item is up to date</span>
+	}
+	oForm.Controls.<span class="f">Add</span>(oTasks)
+	oTop = <span class="f">uiPanel</span>(oForm,<span class="n">0</span>,<span class="n">0</span>,<span class="n">360</span>,<span class="n">36</span>)
+	oTop.Dock = <span class="s">"Top"</span>
+	oNew = <span class="f">uiTextBox</span>(oTop,<span class="n">8</span>,<span class="n">6</span>,<span class="n">230</span>,<span class="n">24</span>)
+	<span class="f">uiButton</span>(oTop,<span class="s">"Add"</span>,<span class="n">246</span>,<span class="n">5</span>,<span class="n">50</span>,<span class="n">26</span>,<span class="s">"addTask()"</span>)
+	<span class="f">uiButton</span>(oTop,<span class="s">"Remove"</span>,<span class="n">300</span>,<span class="n">5</span>,<span class="n">56</span>,<span class="n">26</span>,<span class="s">"removeTask()"</span>)
+	oStatus = <span class="f">uiLabel</span>(oForm,<span class="s">""</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">360</span>,<span class="n">22</span>)
+	oStatus.Dock = <span class="s">"Bottom"</span>
+
+	loadTasks()
+	refreshStatus()
+
+	oForm.<span class="f">setFormClosingEvent</span>(<span class="s">"saveTasks()"</span>)
+	<span class="f">uiRun</span>(oForm)
+
+<span class="k">func</span> <span class="f">addTask</span>
+
+	cText = trim(oNew.Text)
+	<span class="k">if</span> cText = <span class="s">""</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	oTasks.Items.<span class="f">Add</span>([ :item = cText, :isChecked = <span class="k">False</span> ])
+	oNew.Text = <span class="s">""</span>
+	saveTasks()
+	refreshStatus()
+
+<span class="k">func</span> <span class="f">removeTask</span>
+
+	nIndex = oTasks.SelectedIndex
+	<span class="k">if</span> nIndex &gt;= <span class="n">0</span>
+		oTasks.Items.<span class="f">RemoveAt</span>(nIndex)
+		saveTasks()
+		refreshStatus()
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">tasksChanged</span>
+
+	saveTasks()
+	refreshStatus()
+
+<span class="k">func</span> <span class="f">refreshStatus</span>
+
+	nDone = oTasks.CheckedItems.Count
+	oStatus.Text = <span class="s">"  "</span> + nDone + <span class="s">" of "</span> + oTasks.Items.Count + <span class="s">" done"</span>
+
+<span class="c"># ---------------------------------------------------------------- saving and loading (JSON: [[1 or 0, "text"], ...])</span>
+
+<span class="k">func</span> <span class="f">saveTasks</span>
+
+	<span class="k">if</span> lLoading
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	aList = []
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oTasks.Items.Count - <span class="n">1</span>
+		aList + [oTasks.<span class="f">GetItemChecked</span>(nIndex),oTasks.Items.<span class="f">Item</span>(nIndex)]          <span class="c"># [done, text]</span>
+	<span class="k">next</span>
+	cJson = <span class="k">new</span> <span class="t">JsonSerializer</span>().<span class="f">Serialize</span>(aList)
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cFile, :contents = cJson ])
+
+<span class="k">func</span> <span class="f">loadTasks</span>
+
+	<span class="k">if</span> <span class="k">not</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	lLoading = <span class="k">True</span>
+	oDocument = <span class="k">new</span> <span class="t">JsonDocument</span>().<span class="f">Parse</span>(<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cFile))
+	oRoot = oDocument.RootElement
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oRoot.<span class="f">GetArrayLength</span>() - <span class="n">1</span>
+		oTask = oRoot.<span class="f">Item</span>(nIndex)
+		oTasks.Items.<span class="f">Add</span>([ :item = oTask.<span class="f">Item</span>(<span class="n">1</span>).<span class="f">GetString</span>(), :isChecked = oTask.<span class="f">Item</span>(<span class="n">0</span>).<span class="f">GetInt32</span>() = <span class="n">1</span> ])
+	<span class="k">next</span>
+	oDocument.<span class="f">Dispose</span>()
+	lLoading = <span class="k">False</span></code></pre></div>
+<figure class="shot"><img src="img/shots/tut-g24.png" alt="The to-do list" loading="lazy"><figcaption>Two of three tasks are done</figcaption></figure>
+
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="the-window">The window<a class="anchor" href="#the-window">#</a></h3>
+<p>Remember the tutorial <a href="tut-13-editor.html">A small text editor</a>: the control that fills the window is added <strong>first</strong>, then the top panel and the status label (the helpers <code>uiPanel</code>, <code>uiLabel</code> and <code>Dock</code> do the rest). <code>CheckOnClick = True</code> makes one click tick or untick an item.</p>
+<h3 id="add-and-remove">Add and remove<a class="anchor" href="#add-and-remove">#</a></h3>
+<p><code>addTask</code> trims the text, ignores a blank one, adds <code>Items.Add([ :item = text, :isChecked = False ])</code> (the second parameter is the initial <em>checked</em> state), clears the text box, saves and refreshes the status. <code>removeTask</code> removes the selected item (<code>SelectedIndex</code> is <code>-1</code> when nothing is selected).</p>
+<h3 id="reacting-to-a-tick">Reacting to a tick<a class="anchor" href="#reacting-to-a-tick">#</a></h3>
+<p><code>setMouseUpEvent("tasksChanged()")</code> runs after the click, when the item's state is already up to date; the function saves and refreshes the status line. (The <code>ItemCheck</code> event runs <em>before</em> the state changes, which makes a status line show the old number.)</p>
+<h3 id="saving-as-json">Saving as JSON<a class="anchor" href="#saving-as-json">#</a></h3>
+<p>The file holds a list of lists, one <code>[done, text]</code> per task: <code>[[1,"Buy milk"],[0,"Write the tutorial"]]</code>. <code>JsonSerializer.Serialize(aList)</code> writes it, and loading uses <code>JsonDocument</code>: <code>GetArrayLength()</code>, <code>Item(i)</code>, <code>GetInt32()</code>, <code>GetString()</code>.</p>
+<h3 id="starting-and-stopping">Starting and stopping<a class="anchor" href="#starting-and-stopping">#</a></h3>
+<p><code>loadTasks</code> runs before the window is shown. <code>setFormClosingEvent("saveTasks()")</code> saves once more when the window closes. While loading, a flag <code>lLoading</code> stops <code>saveTasks</code> from rewriting the file in the middle of the loading.</p>
+<h3 id="testing">Testing<a class="anchor" href="#testing">#</a></h3>
+<p><code>selfTest</code> adds tasks, ticks one, saves, clears the list, loads again and checks the contents, the JSON text and the status. It uses a separate file name when started with <code>--selftest</code>, so that it never touches your real list.</p>
+<p>The checks of this program are in a separate file, <code>selftest/ch12_todo.ring</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/selftest/ch12_todo.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># the checks of ch12_todo.ring: run with  ring ch12_todo.ring --selftest  (the program loads this file and runs selfTest() once its window is shown)</span>
+
+<span class="k">func</span> <span class="f">selfTest</span>
+
+	oNew.Text = <span class="s">"Buy milk"</span>
+	addTask()
+	oNew.Text = <span class="s">"Write the tutorial"</span>
+	addTask()
+	oNew.Text = <span class="s">"   "</span>
+	addTask()                                         <span class="c"># blank: ignored</span>
+	<span class="f">dnAssert</span>(<span class="s">"two tasks"</span>,oTasks.Items.Count,<span class="n">2</span>)
+	oTasks.<span class="f">SetItemChecked</span>(<span class="n">0</span>,<span class="k">True</span>)
+	saveTasks()
+	refreshStatus()
+	<span class="f">dnAssert</span>(<span class="s">"status"</span>,oStatus.Text,<span class="s">"  1 of 2 done"</span>)
+	<span class="c"># the file holds the tasks</span>
+	<span class="f">dnAssert</span>(<span class="s">"saved as JSON"</span>,<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cFile),<span class="s">'[[1,"Buy milk"],[0,"Write the tutorial"]]'</span>)
+	<span class="c"># a second load shows the same tasks</span>
+	oTasks.Items.<span class="f">Clear</span>()
+	loadTasks()
+	<span class="f">dnAssert</span>(<span class="s">"loaded again"</span>,oTasks.Items.Count,<span class="n">2</span>)
+	<span class="f">dnAssert</span>(<span class="s">"the checked state"</span>,oTasks.<span class="f">GetItemChecked</span>(<span class="n">0</span>),<span class="k">True</span>)
+	oTasks.SelectedIndex = <span class="n">1</span>
+	removeTask()
+	<span class="f">dnAssert</span>(<span class="s">"removed"</span>,oTasks.Items.Count,<span class="n">1</span>)
+	<span class="k">new</span> <span class="t">File</span>().<span class="f">Delete</span>(cFile)</code></pre></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>design first: data, window, behavior, saving,</li><li><code>CheckedListBox</code>, events after a click,</li><li>JSON for saving the tasks as a list of [done, text] pairs,</li><li>a flag to avoid saving while loading,</li><li>tests that use their own file.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Show the done tasks in gray (use <code>DrawItem</code>, or simply move done tasks to the bottom).</li><li>Add <strong>Clear done</strong> that removes all ticked tasks.</li><li>Save to the user's documents folder (<code>Environment.GetFolderPath("MyDocuments")</code>).</li><li>Add a due date to each task and sort by it.</li></ol>
+<p>The full-size version is the <a href="gallery-apps.html#todo-list">TodoList</a> application.</p>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-35-tictactoe.html">A project: Tic-Tac-Toe</a></p>
+<div class="pager"><a href="tut-70-wpf-animation.html"><small>Previous</small>WPF animation</a><a class="next" href="tut-35-tictactoe.html"><small>Next</small>Tic-Tac-Toe</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

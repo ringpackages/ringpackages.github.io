@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UDP · RingDotNet</title>
+<meta name="description" content="UDP sends separate messages without a connection. This lesson sends datagrams between two sockets of your own computer, answers the sender, waits with a time limit, and shows that UDP can lose data without telling anyone.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html" class="cur">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>UDP</h1><p class="lead">UDP sends separate messages without a connection. This lesson sends datagrams between two sockets of your own computer, answers the sender, waits with a time limit, and shows that UDP can lose data without telling anyone.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the difference between UDP (messages) and TCP (a stream),</li><li><code>UdpClient</code>: <code>Send</code>, <code>Receive</code>, <code>ReceiveAsync</code>, <code>Available</code>,</li><li>binding to a port, and reading the port the system chose,</li><li>answering the sender,</li><li>a time limit with <code>Task.Wait(ms)</code>,</li><li>why a program that uses UDP must expect lost messages.</li></ul>
+<p>The tutorial <a href="tut-25-sockets.html">Sockets</a> used TCP: a connection, then a stream of bytes. UDP has no connection. Everything in this lesson runs on <code>127.0.0.1</code>, so it works without a network.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch07_udp.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># UDP - datagrams between two sockets of this computer, Receive with a time limit, broadcast-style replies and lost data</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Net"</span>
+	<span class="s">"System.Net.Sockets"</span>
+	<span class="s">"System.Text"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	oUtf8 = <span class="k">new</span> <span class="t">UTF8Encoding</span>()
+	oLoop = <span class="k">new</span> <span class="t">IPAddress</span>().Loopback
+
+	<span class="c"># 1. UDP sends separate messages (datagrams) without a connection: no Accept, no stream. A socket that listens binds to a port</span>
+	<span class="c">#    (0 = the system chooses a free one); LocalEndPoint tells which.</span>
+	oServer = <span class="k">new</span> <span class="t">UdpClient</span>().@<span class="k">New</span>([ :<span class="t">port</span> = <span class="n">0</span> ])
+	nPort = oServer.Client.LocalEndPoint.Port
+	? <span class="s">"1. the server socket is bound to a port: "</span> + (nPort &gt; <span class="n">0</span>)
+
+	<span class="c"># 2. The client sends three datagrams. Each Send is one message, and each Receive on the other side returns ONE message, not a</span>
+	<span class="c">#    part of a stream (TCP has no such borders).</span>
+	oClient = <span class="k">new</span> <span class="t">UdpClient</span>()
+	<span class="k">for</span> cText <span class="k">in</span> [<span class="s">"one"</span>,<span class="s">"two and more"</span>,<span class="s">"three"</span>]
+		aBytes = oUtf8.<span class="f">GetBytes</span>(cText)
+		oClient.<span class="f">Send</span>([ :dgram = aBytes, :bytes = len(aBytes), :hostname = <span class="s">"127.0.0.1"</span>, :port = nPort ])
+	<span class="k">next</span>
+	? nl + <span class="s">"2. three datagrams sent; the server has data waiting: "</span> + oServer.Available
+	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
+		oRemote = <span class="k">new</span> <span class="t">IPEndPoint</span>(oLoop,<span class="n">0</span>)
+		aGot = oServer.<span class="f">Receive</span>(oRemote)
+		cData = aGot[<span class="n">1</span>]
+		? <span class="s">"   datagram "</span> + i + <span class="s">": '"</span> + oUtf8.<span class="f">GetString</span>(cData) + <span class="s">"' ("</span> + len(cData) + <span class="s">" bytes)"</span>
+	<span class="k">next</span>
+
+	<span class="c"># 3. A reply goes to the address of the sender. ReceiveAsync gives a result with the data (Buffer) and the sender (RemoteEndPoint).</span>
+	oClient.<span class="f">Send</span>([ :dgram = oUtf8.<span class="f">GetBytes</span>(<span class="s">"ping"</span>), :bytes = <span class="n">4</span>, :hostname = <span class="s">"127.0.0.1"</span>, :port = nPort ])
+	oTask = oServer.<span class="f">ReceiveAsync</span>(<span class="k">NULL</span>)
+	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	oResult = oTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	? nl + <span class="s">"3. the server got '"</span> + oUtf8.<span class="f">GetString</span>(oResult.Buffer) + <span class="s">"' from the port of the client socket: "</span> + (oResult.RemoteEndPoint.Port &gt; <span class="n">0</span>)
+	cAnswer = oUtf8.<span class="f">GetBytes</span>(<span class="s">"pong"</span>)
+	oServer.<span class="f">Send</span>([ :dgram = cAnswer, :bytes = len(cAnswer), :endPoint = oResult.RemoteEndPoint ])
+	oTask2 = oClient.<span class="f">ReceiveAsync</span>(<span class="k">NULL</span>)
+	oTask2.<span class="f">Wait</span>(<span class="k">NULL</span>)
+	? <span class="s">"   the client got '"</span> + oUtf8.<span class="f">GetString</span>(oTask2.<span class="f">getProp</span>(<span class="s">"Result"</span>).Buffer) + <span class="s">"'"</span>
+
+	<span class="c"># 4. UDP does not promise delivery. Nothing is waiting now, so a Receive with a time limit ends without data:</span>
+	<span class="c">#    ReceiveAsync + Wait(ms) answers false when nothing arrived.</span>
+	oTask3 = oServer.<span class="f">ReceiveAsync</span>(<span class="k">NULL</span>)
+	lGot = oTask3.<span class="f">Wait</span>(<span class="n">300</span>)
+	? nl + <span class="s">"4. waited 300 ms with no sender: a datagram arrived = "</span> + lGot
+
+	<span class="c"># 5. A datagram sent to a port where nobody listens is lost without an error on the sender's side</span>
+	oClient.<span class="f">Send</span>([ :dgram = oUtf8.<span class="f">GetBytes</span>(<span class="s">"anyone?"</span>), :bytes = <span class="n">7</span>, :hostname = <span class="s">"127.0.0.1"</span>, :port = <span class="n">9</span> ])
+	? nl + <span class="s">"5. sent to port 9 where nobody listens: no error, the data is just gone"</span>
+	oServer.<span class="f">Close</span>()
+	oClient.<span class="f">Close</span>()</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. the server socket is bound to a port: 1
+
+2. three datagrams sent; the server has data waiting: 20
+   datagram 1: 'one' (3 bytes)
+   datagram 2: 'two and more' (12 bytes)
+   datagram 3: 'three' (5 bytes)
+
+3. the server got 'ping' from the port of the client socket: 1
+   the client got 'pong'
+
+4. waited 300 ms with no sender: a datagram arrived = 0
+
+5. sent to port 9 where nobody listens: no error, the data is just gone</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p>This program uses a generic function (<code>getProp</code>) where a class cannot be used. The lesson <a href="tut-160-generic-calls.html">The generic functions</a> explains them.</p></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="datagrams">Datagrams<a class="anchor" href="#datagrams">#</a></h3>
+<p>A UDP message is called a <strong>datagram</strong>. It is sent in one piece and received in one piece: three <code>Send</code> calls give three <code>Receive</code> results of 3, 12 and 5 bytes, never a joined or a half message (a TCP stream has no such borders). There is no <code>Accept</code> and no stream; a socket that wants to receive only needs a port. <code>new UdpClient([ :port = 0 ])</code> binds to a port that the system chooses, and <code>Client.LocalEndPoint.Port</code> tells which one. Texts are sent as bytes (<code>UTF8Encoding.GetBytes</code>) and read with <code>GetString</code>.</p>
+<h3 id="sending">Sending<a class="anchor" href="#sending">#</a></h3>
+<p><code>Send</code> has several forms, so it takes names: the bytes (<code>:dgram</code>), their count (<code>:bytes</code>) and the target (<code>:hostname</code> and <code>:port</code>, or an <code>:endPoint</code>). <code>Available</code> is the number of bytes waiting; after three datagrams of 3, 12 and 5 bytes it is 20.</p>
+<h3 id="receiving">Receiving<a class="anchor" href="#receiving">#</a></h3>
+<p><code>Receive</code> fills an <code>IPEndPoint</code> with the address of the sender (a <code>ref</code> parameter). In Ring the method returns a list: the data is the first item. <code>ReceiveAsync</code> is the task version; its result is read with <code>getProp("Result")</code> and has the data (<code>Buffer</code>) and the sender (<code>RemoteEndPoint</code>) (<a href="concepts.html">Core concepts</a>, <em>Plain objects</em>).</p>
+<h3 id="answering">Answering<a class="anchor" href="#answering">#</a></h3>
+<p>The sender's address is in the received datagram, so an answer is a <code>Send</code> to that <code>RemoteEndPoint</code>. The client socket sent without binding, so the system gave it a port; the server found it in the datagram.</p>
+<h3 id="time-limits-and-lost-data">Time limits and lost data<a class="anchor" href="#time-limits-and-lost-data">#</a></h3>
+<p><code>Receive</code> waits for ever when nothing comes. <code>ReceiveAsync</code> plus <code>Wait(300)</code> gives a time limit: false means <em>nothing came in 300 ms</em>. A program that talks by UDP must expect that. A datagram can be lost, doubled or delivered in another order, and the sender is <strong>not told</strong>: step 5 sends to a port where nobody listens, and there is no error. If you need every message in order, use TCP; if you need speed and can live with losses (games, sensor values, name lookups, discovery on a local network), use UDP, and add a counter and a timeout with a resend where it matters.</p>
+<div class="callout note"><span class="t">Note</span><p>Do not leave an unfinished <code>ReceiveAsync</code> when you close a socket in a real program: cancel it, or close the socket and catch the error that the waiting task then raises.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>UDP sends messages; TCP sends a stream,</li><li><code>UdpClient.Send</code>, <code>Receive</code>, <code>ReceiveAsync</code>, <code>Available</code>,</li><li>answering to the sender's endpoint,</li><li>a time limit for a receive,</li><li>UDP gives no promise of delivery.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Write a small <em>time server</em>: it answers every datagram <code>time</code> with the current time.</li><li>Send 100 numbered datagrams quickly to a socket that is slow to read and count how many arrive (on one computer the answer is usually all of them: why is that no proof for UDP in general?).</li><li>Add a resend: the client sends, waits 200 ms for an answer and tries three times.</li><li>Send a datagram larger than 1500 bytes and look at what <code>Receive</code> returns.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-156-websockets.html">WebSockets</a></p>
+<div class="pager"><a href="tut-158-framing.html"><small>Previous</small>Messages on a TCP stream</a><a class="next" href="tut-156-websockets.html"><small>Next</small>WebSockets</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

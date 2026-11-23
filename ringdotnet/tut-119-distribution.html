@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giving your program to others · RingDotNet</title>
+<meta name="description" content="A program that works on your computer is not finished until it works on somebody else's. This lesson turns a RingDotNet program into a folder with a program file that runs without Ring, explains what must be on the other computer, and adds a self check that says what is missing instead of crashing.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html" class="cur">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Giving your program to others</h1><p class="lead">A program that works on your computer is not finished until it works on somebody else's. This lesson turns a RingDotNet program into a folder with a program file that runs without Ring, explains what must be on the other computer, and adds a self check that says what is missing instead of crashing.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>what <strong>Ring2EXE</strong> makes and what it copies for a RingDotNet program,</li><li>the steps: build, look at the folder, test it without Ring,</li><li>what the other computer needs (the .NET runtime, and sometimes more),</li><li>a <strong>self check</strong> at the start of the program,</li><li>where a distributed program writes its data,</li><li>the usual errors and what they mean.</li></ul>
+<p><a href="getting-started.html">Getting started</a> installed the package for <em>you</em>. This lesson is about the people who only <em>use</em> your program.</p>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch13_distribution.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># giving your program to others - a self check that a program made with Ring2EXE can run when it starts</span>
+<span class="c">#   ring ring2exe.ring ch13_distribution.ring -dist -dotnet        (the page explains the steps)</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.IO"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	? <span class="s">"Self check of RingDotNet"</span>
+
+	<span class="c"># 1. The .NET runtime. The program can not start without it, so a distributed program checks the version first and says clearly what to</span>
+	<span class="c">#    install. (The bridge needs .NET 6 or newer; the files of RingDotNet are made for .NET 9.)</span>
+	cVersion = <span class="f">dnVersion</span>()                                   <span class="c"># a text like ".NET 9.0.15"</span>
+	cNumber = substr(cVersion,substr(cVersion,<span class="s">"NET "</span>) + <span class="n">4</span>)    <span class="c"># "9.0.15"</span>
+	nMajor = number(left(cNumber,substr(cNumber,<span class="s">"."</span>) - <span class="n">1</span>))
+	? nl + <span class="s">"1. the .NET runtime is version 6 or newer: "</span> + (nMajor &gt;= <span class="n">6</span>)
+
+	<span class="c"># 2. The files of RingDotNet next to the program (the bridge and the libraries that Ring2EXE copies)</span>
+	cFolder = <span class="f">dnRequest</span>(<span class="s">"bridgefolder"</span>,[])
+	? <span class="s">"2. the bridge assembly is in the program folder: "</span> + <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFolder + <span class="s">"/RingDotNet.Bridge.dll"</span>)
+	? <span class="s">"   the folder has the runtime configuration files: "</span> + (<span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFolder + <span class="s">"/RingDotNet.Bridge.runtimeconfig.json"</span>) <span class="k">and</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFolder + <span class="s">"/RingDotNet.Web.runtimeconfig.json"</span>))
+
+	<span class="c"># 3. The database libraries (Entity Framework and SQLite) with their native part: open a database in memory</span>
+	? <span class="s">"3. SQLite works: "</span> + sqliteWorks()
+
+	<span class="c"># 4. The web runtime. Programs that use the web server (the tutorial "A web service with a database") need the ASP.NET Core runtime on the computer; it is a separate</span>
+	<span class="c">#    runtime next to the .NET runtime. The folder of the .NET runtime tells where to look.</span>
+	? <span class="s">"4. the ASP.NET Core runtime is installed (needed only for web programs): "</span> + aspNetInstalled()
+
+	<span class="c"># 5. Writing next to the program is often not allowed (a program in "Program Files"): settings and data go to a folder of the user.</span>
+	<span class="c">#    The folder may not exist yet: the program makes it, and that shows that it can write there.</span>
+	cData = <span class="k">new</span> <span class="t">Environment</span>().<span class="f">GetFolderPath</span>([ :folder = <span class="s">"ApplicationData"</span>, :option = <span class="s">"Create"</span> ])          <span class="c"># "Create": made when it is missing (on Linux it often is)</span>
+	? <span class="s">"5. the folder for the data of the program exists or was made: "</span> + (cData != <span class="s">""</span> <span class="k">and</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">Exists</span>(cData))
+
+<span class="k">func</span> <span class="f">sqliteWorks</span>
+
+	<span class="k">try</span>
+		<span class="f">dnLoad</span>(<span class="f">dnRequest</span>(<span class="s">"bridgefolder"</span>,[]) + <span class="s">"/RingDotNet.Data.dll"</span>)      <span class="c"># it knows where the native SQLite library of this system is</span>
+		<span class="f">dnLoadName</span>(<span class="s">"SQLitePCLRaw.batteries_v2"</span>)               <span class="c"># the assembly that starts the native SQLite library</span>
+		<span class="f">dnStatic</span>(<span class="s">"SQLitePCL.Batteries_V2"</span>,<span class="s">"Init"</span>,[])
+		oConnection = <span class="f">dnNew</span>(<span class="s">"Microsoft.Data.Sqlite.SqliteConnection"</span>,[<span class="s">"Data Source=:memory:"</span>])
+		oConnection.<span class="f">Open</span>()
+		oCommand = oConnection.<span class="f">CreateCommand</span>()
+		oCommand.<span class="f">setProp</span>(<span class="s">"CommandText"</span>,<span class="s">"SELECT 40 + 2"</span>)
+		xAnswer = oCommand.<span class="f">ExecuteScalar</span>()
+		oConnection.<span class="f">Dispose</span>()
+		<span class="k">return</span> (xAnswer = <span class="n">42</span>)
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="k">False</span>
+	<span class="k">done</span>
+
+<span class="k">func</span> <span class="f">aspNetInstalled</span>
+
+	<span class="k">try</span>
+		cRuntime = <span class="f">dnStatic</span>(<span class="s">"System.Runtime.InteropServices.RuntimeEnvironment"</span>,<span class="s">"GetRuntimeDirectory"</span>,[])
+		<span class="c"># ...\shared\Microsoft.NETCore.App\9.0.15\ : two folders up is "shared", the folder of all the shared runtimes</span>
+		oShared = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetParent</span>(cRuntime).Parent.Parent
+		<span class="k">return</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">Exists</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([oShared.FullName,<span class="s">"Microsoft.AspNetCore.App"</span>]))
+	<span class="k">catch</span>
+		<span class="k">return</span> <span class="k">False</span>
+	<span class="k">done</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Self check of RingDotNet
+
+1. the .NET runtime is version 6 or newer: 1
+2. the bridge assembly is in the program folder: 1
+   the folder has the runtime configuration files: 1
+3. SQLite works: 1
+4. the ASP.NET Core runtime is installed (needed only for web programs): 1
+5. the folder for the data of the program exists or was made: 1</code></pre></div>
+<p>This program is the self check. It is a good start for your own program: put its checks in a function at the start, and call it when the program starts.</p>
+<h2 id="the-steps">The steps<a class="anchor" href="#the-steps">#</a></h2>
+<p><strong>1. Build.</strong> In the folder of the program (here <code>myprogram.ring</code>), with the Ring of the package installed:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>powershell</span><button class="copy" type="button">Copy</button></div><pre><code>ring ring2exe.ring myprogram.ring -dist -dotnet</code></pre></div>
+<p>(<code>ring2exe.ring</code> is in <code>ring/tools/ring2exe</code>; give its path, or build <code>ring2exe.exe</code> once and use <code>ring2exe myprogram.ring -dist -dotnet</code>.) The option <code>-dist</code> prepares a folder for distribution and <code>-dotnet</code> adds the files of RingDotNet. Use <code>-gui</code> too for a program with a window, so that no console window opens behind it.</p>
+<p><strong>2. Look at the folder.</strong> <code>target/windows</code> now holds the program (<code>myprogram.exe</code>), <code>ring.dll</code>, the compiled program (<code>ring.ringo</code>), the extension (<code>ring_dotnet.dll</code>), the <strong>bridge</strong> and its libraries (<code>RingDotNet.Bridge.dll</code>, <code>RingDotNet.Data.dll</code>, <code>RingDotNet.Web.dll</code> and the runtime configuration files), the libraries for databases (Entity Framework and SQLite with <code>e_sqlite3.dll</code>), and <code>System.Data.Odbc.dll</code> for Access (the tutorial <a href="tut-115-access.html">Microsoft Access databases</a>). The list of files is in <code>tools/ring2exe/libs/dotnet.ring</code>; the folder is about 11 MB.</p>
+<p><strong>3. Test it without Ring.</strong> The only real test is on a computer or a folder where Ring is <em>not</em> in the <code>PATH</code>: open a command window, go to <code>target/windows</code>, and run <code>myprogram.exe</code>. The self check of this lesson, built this way and run from its own folder, says <em>yes</em> to every line.</p>
+<p><strong>4. Give it.</strong> Copy the whole folder (a zip file is the simplest) and tell the user what to install first.</p>
+<h2 id="what-the-other-computer-needs">What the other computer needs<a class="anchor" href="#what-the-other-computer-needs">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Need</th><th>When</th></tr></thead><tbody><tr><td>the <strong>.NET runtime</strong>, version 6 or newer (the files are made for .NET 9: install the 9.0 runtime)</td><td>always. This is the <em>runtime</em>, not the SDK. Without it the program stops with <em>".NET runtime not found"</em></td></tr><tr><td>the <strong>ASP.NET Core runtime</strong>, same version</td><td>programs with a web server, or that use <code>Microsoft.AspNetCore</code>, <code>Microsoft.Extensions.*</code> (configuration, data protection, rate limiting, routing...). It is installed together with the "ASP.NET Core Runtime" or the "Hosting Bundle"</td></tr><tr><td>the <strong>Windows Desktop runtime</strong></td><td>programs with Windows Forms or WPF windows (Windows only)</td></tr><tr><td>the <strong>Microsoft Access Database Engine</strong> (64-bit)</td><td>programs that open Access files (the tutorial <a href="tut-115-access.html">Microsoft Access databases</a>)</td></tr><tr><td>the <strong>folder of <code>dotnet publish</code></strong> of each NuGet package or C# library that the program uses</td><td>the DLLs and the <code>runtimes</code> folder with the native libraries go with the program, next to the DLL that <code>dnLoad</code> loads (the tutorial <a href="tut-162-nuget.html">A NuGet package</a>)</td></tr><tr><td>64-bit Windows</td><td>the files are 64-bit</td></tr></tbody></table></div>
+<p>The runtimes are free downloads from <code>dotnet.microsoft.com</code>; tell users the exact name. If the runtime is installed in an unusual place, the variable <code>DOTNET_ROOT</code> points to it.</p>
+<h2 id="the-self-check">The self check<a class="anchor" href="#the-self-check">#</a></h2>
+<p>A program that cannot start should say <strong>why</strong>, in words the user understands. The program above checks, one by one, that the runtime has the right version, that the bridge and its configuration files are next to the program, that SQLite works (<code>RingDotNet.Data.dll</code> is loaded first, because it knows where the native library of this system is, and then a database in memory is opened, which proves that the library is found), whether the ASP.NET runtime is installed, and that a folder for the data exists. When a line says <em>0</em>, the program can print what to install and stop, instead of showing an error message of .NET. Do the check <strong>before</strong> you use the part that needs it, and only for what your program really uses.</p>
+<h2 id="where-the-data-goes">Where the data goes<a class="anchor" href="#where-the-data-goes">#</a></h2>
+<p>A program in <code>C:\Program Files</code> usually may not write next to itself. Put settings and data in a folder of the user: <code>Environment.GetFolderPath("ApplicationData")</code> is the folder for the settings of the user (inside, make a folder with the name of your program), <code>LocalApplicationData</code> for data that stays on this computer, and <code>CommonApplicationData</code> for data of all users (writing there may need rights). Never write into the folder of the program itself.</p>
+<h2 id="linux-and-macos">Linux and macOS<a class="anchor" href="#linux-and-macos">#</a></h2>
+<p>The same options work (<code>ring ring2exe.ring myprogram.ring -dist -dotnet</code>), and the program is made for the system it is built on. On these systems ring2exe takes the files from <code>ring/lib</code>, so <code>setup.ring</code> copies the managed files there when you install the package; the list takes the SQLite library of one system and processor (it says in the file which line to change for arm64 or an Intel Mac). The distribution for Linux and macOS is prepared in this way but <strong>not tested yet</strong>: build on the system you distribute for and run the result on a clean computer.</p>
+<h2 id="when-something-goes-wrong">When something goes wrong<a class="anchor" href="#when-something-goes-wrong">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Message</th><th>Cause and answer</th></tr></thead><tbody><tr><td><em>.NET runtime not found (install the .NET runtime or set DOTNET_ROOT)</em></td><td>the runtime is missing or in an unusual place: install it, or set <code>DOTNET_ROOT</code></td></tr><tr><td><em>Bridge assembly not found</em></td><td>the folder is incomplete: <code>RingDotNet.Bridge.dll</code> must be next to <code>ring_dotnet.dll</code>; copy the whole <code>target/windows</code> folder</td></tr><tr><td><em>Can't find the .NET type ...</em></td><td>the assembly of that class is not in the folder (a library of your own, a NuGet package): copy its DLL next to the program and load it with <code>dnLoad</code> (<a href="own-assemblies.html">Your own assemblies</a>)</td></tr><tr><td><em>A library or file cannot be loaded</em> for a web or Access program</td><td>the ASP.NET Core runtime or the Access engine is missing, or its bitness does not match</td></tr><tr><td><em>Unable to load e_sqlite3</em></td><td>the SQLite library of the right system is missing from the list</td></tr><tr><td>the program works on your computer and not on another</td><td>run the self check, then compare: the same runtime version? the same folder? a file next to the program that your computer has and the other does not?</td></tr></tbody></table></div>
+<div class="callout note"><span class="t">Note</span><p>Do not copy the folder of the .NET runtime into your program folder to avoid the install: the runtime is shared, updated by Windows Update, and its license allows it only in a <em>self-contained</em> publish, which Ring2EXE does not make.</p></div>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li><code>ring2exe -dist -dotnet</code> makes a folder that runs without Ring,</li><li>what is in the folder and what the other computer must have,</li><li>a self check that names what is missing,</li><li>user data goes to the folder of the user,</li><li>the usual errors and their causes.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Build the self check as <code>selfcheck.exe</code> and run it from a folder where Ring is not in the <code>PATH</code>.</li><li>Add your own library (<code>dnLoad</code>) and see what ring2exe does not copy; add it to your distribution by hand.</li><li>Make the program print <em>"Install the .NET runtime 9.0 from dotnet.microsoft.com"</em> and stop when line 1 says no.</li><li>Make a zip file of the folder with <code>ZipFile</code> (the tutorial <a href="tut-05-files.html">Files and folders</a>) and check its size.</li></ol>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<p>This was the last tutorial of the last chapter. Keep <a href="concepts.html">Core concepts</a>, the <a href="api.html">class reference</a> and <a href="rules-and-limits.html">Rules and limits</a> at hand, and read the <a href="gallery-apps.html">applications</a> for bigger programs.</p>
+<div class="pager"><a href="tut-28-testing.html"><small>Previous</small>Testing</a><a class="next" href="concepts.html"><small>Next</small>Core concepts</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

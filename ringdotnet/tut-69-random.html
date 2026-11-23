@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Randomness · RingDotNet</title>
+<meta name="description" content="Dice, cards, loot tables and unique ids all need random numbers — but not the same kind. This lesson uses a seeded generator, shuffles a deck correctly, draws with weights, makes unique ids, and shows when ordinary random numbers are not safe.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html" class="cur">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Randomness</h1><p class="lead">Dice, cards, loot tables and unique ids all need random numbers — but not the same kind. This lesson uses a seeded generator, shuffles a deck correctly, draws with weights, makes unique ids, and shows when ordinary random numbers are not safe.</p>
+<h2 id="what-you-will-learn">What you will learn<a class="anchor" href="#what-you-will-learn">#</a></h2>
+<ul><li>the <code>Random</code> class and the <strong>seed</strong>,</li><li>throwing dice and checking that they are fair,</li><li>shuffling with the Fisher–Yates algorithm,</li><li>weighted choices,</li><li><code>Guid</code> for unique ids,</li><li>secure randomness for passwords and tokens.</li></ul>
+<h2 id="the-program">The program<a class="anchor" href="#the-program">#</a></h2>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tutorials/ch03_random.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># randomness - seeds, dice, shuffling cards, weighted choices, unique ids, and when "random" must be secure</span>
+<span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using {
+	<span class="s">"System"</span>
+	<span class="s">"System.Security.Cryptography"</span>
+}
+
+<span class="k">func</span> <span class="f">main</span>
+
+	<span class="c"># 1. Random with a SEED gives the same sequence every time: perfect for tests and for repeating a simulation</span>
+	oFirst = <span class="k">new</span> <span class="t">Random</span>(<span class="n">2024</span>)
+	oSecond = <span class="k">new</span> <span class="t">Random</span>(<span class="n">2024</span>)
+	? <span class="s">"1. two generators with the same seed: "</span> + oFirst.@<span class="k">Next</span>(<span class="n">100</span>) + <span class="s">" "</span> + oFirst.@<span class="k">Next</span>(<span class="n">100</span>) + <span class="s">" "</span> + oFirst.@<span class="k">Next</span>(<span class="n">100</span>) + <span class="s">"  and  "</span> + oSecond.@<span class="k">Next</span>(<span class="n">100</span>) + <span class="s">" "</span> + oSecond.@<span class="k">Next</span>(<span class="n">100</span>) + <span class="s">" "</span> + oSecond.@<span class="k">Next</span>(<span class="n">100</span>)
+
+	<span class="c"># 2. @Next(max) is 0..max-1. A die is @Next(6) + 1. Throw it 6000 times: each side comes up about 1000 times.</span>
+	oRandom = <span class="k">new</span> <span class="t">Random</span>(<span class="n">7</span>)
+	aCount = [<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>]
+	<span class="k">for</span> nThrow = <span class="n">1</span> <span class="k">to</span> <span class="n">6000</span>
+		nSide = oRandom.@<span class="k">Next</span>(<span class="n">6</span>) + <span class="n">1</span>
+		aCount[nSide]++
+	<span class="k">next</span>
+	? nl + <span class="s">"2. 6000 throws of a die: "</span> + joinWith(aCount,<span class="s">" "</span>)
+	lFair = <span class="k">True</span>
+	<span class="k">for</span> nCount <span class="k">in</span> aCount
+		<span class="k">if</span> nCount &lt; <span class="n">900</span> <span class="k">or</span> nCount &gt; <span class="n">1100</span>
+			lFair = <span class="k">False</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	? <span class="s">"   every side between 900 and 1100 times? "</span> + yesNo(lFair)
+
+	<span class="c"># 3. Shuffling a deck: the Fisher-Yates way. Go from the end; swap each card with a random card from the start up to it.</span>
+	aDeck = []
+	<span class="k">for</span> nCard = <span class="n">1</span> <span class="k">to</span> <span class="n">10</span>
+		aDeck + nCard
+	<span class="k">next</span>
+	<span class="k">for</span> nIndex = len(aDeck) <span class="k">to</span> <span class="n">2</span> <span class="k">step</span> -<span class="n">1</span>
+		nOther = oRandom.@<span class="k">Next</span>(nIndex) + <span class="n">1</span>
+		aTemp = aDeck[nIndex]
+		aDeck[nIndex] = aDeck[nOther]
+		aDeck[nOther] = aTemp
+	<span class="k">next</span>
+	? nl + <span class="s">"3. a shuffled deck of 10: "</span> + joinWith(aDeck,<span class="s">" "</span>) + <span class="s">"   (still 10 different cards: "</span> + yesNo(len(aDeck) = <span class="n">10</span> <span class="k">and</span> sumOf(aDeck) = <span class="n">55</span>) + <span class="s">")"</span>
+
+	<span class="c"># 4. A weighted choice: some outcomes are more likely. Pick a number below the total and walk through the weights.</span>
+	aItems = [[<span class="s">"common"</span>,<span class="n">70</span>],[<span class="s">"rare"</span>,<span class="n">25</span>],[<span class="s">"legendary"</span>,<span class="n">5</span>]]
+	aWon = [<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>]
+	<span class="k">for</span> nDraw = <span class="n">1</span> <span class="k">to</span> <span class="n">10000</span>
+		nPick = oRandom.@<span class="k">Next</span>(<span class="n">100</span>)
+		nSum = <span class="n">0</span>
+		<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> len(aItems)
+			nSum += aItems[nIndex][<span class="n">2</span>]
+			<span class="k">if</span> nPick &lt; nSum
+				aWon[nIndex]++
+				<span class="k">exit</span>
+			<span class="k">ok</span>
+		<span class="k">next</span>
+	<span class="k">next</span>
+	? nl + <span class="s">"4. 10000 draws with chances 70 / 25 / 5 percent:"</span>
+	<span class="k">for</span> nIndex = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
+		? <span class="s">"   "</span> + padRight(aItems[nIndex][<span class="n">1</span>],<span class="n">10</span>) + aWon[nIndex]
+	<span class="k">next</span>
+
+	<span class="c"># 5. Unique identifiers: a Guid is 128 random bits; the chance of two equal Guids is practically zero</span>
+	oGuid = <span class="k">new</span> <span class="t">Guid</span>().<span class="f">NewGuid</span>()
+	cGuid = oGuid.<span class="f">ToString</span>()
+	? nl + <span class="s">"5. a Guid has "</span> + len(cGuid) + <span class="s">" characters (8-4-4-4-12 hexadecimal digits); two new Guids are different: "</span> + yesNo(<span class="k">new</span> <span class="t">Guid</span>().<span class="f">NewGuid</span>().<span class="f">ToString</span>() != <span class="k">new</span> <span class="t">Guid</span>().<span class="f">NewGuid</span>().<span class="f">ToString</span>())
+
+	<span class="c"># 6. Random is predictable: with a few outputs one can calculate the next ones. Passwords, tokens and keys need real randomness.</span>
+	oSecure = <span class="k">new</span> <span class="t">RandomNumberGenerator</span>()
+	nSecure = oSecure.<span class="f">GetInt32</span>(<span class="n">1000000</span>)
+	? nl + <span class="s">"6. a secure number from RandomNumberGenerator.GetInt32: "</span> + yesNo(nSecure &gt;= <span class="n">0</span> <span class="k">and</span> nSecure &lt; <span class="n">1000000</span>) + <span class="s">" (in range); a different one every run"</span>
+
+<span class="k">func</span> <span class="f">sumOf</span> aList
+
+	nSum = <span class="n">0</span>
+	<span class="k">for</span> nItem <span class="k">in</span> aList
+		nSum += nItem
+	<span class="k">next</span>
+	<span class="k">return</span> nSum
+
+<span class="k">func</span> <span class="f">joinWith</span> aList, cSeparator
+
+	cText = <span class="s">""</span>
+	<span class="k">for</span> xItem <span class="k">in</span> aList
+		<span class="k">if</span> cText != <span class="s">""</span>
+			cText += cSeparator
+		<span class="k">ok</span>
+		cText += xItem
+	<span class="k">next</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">padRight</span> cText, nWidth
+
+	<span class="k">while</span> len(cText) &lt; nWidth
+		cText += <span class="s">" "</span>
+	<span class="k">end</span>
+	<span class="k">return</span> cText
+
+<span class="k">func</span> <span class="f">yesNo</span> lValue
+
+	<span class="k">if</span> lValue
+		<span class="k">return</span> <span class="s">"yes"</span>
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">"no"</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. two generators with the same seed: 11 69 51  and  11 69 51
+
+2. 6000 throws of a die: 1051 974 1022 1000 1004 949
+   every side between 900 and 1100 times? yes
+
+3. a shuffled deck of 10: 9 6 1 10 2 3 4 8 7 5   (still 10 different cards: yes)
+
+4. 10000 draws with chances 70 / 25 / 5 percent:
+   common    6954
+   rare      2577
+   legendary 469
+
+5. a Guid has 36 characters (8-4-4-4-12 hexadecimal digits); two new Guids are different: yes
+
+6. a secure number from RandomNumberGenerator.GetInt32: yes (in range); a different one every run</code></pre></div>
+<h2 id="how-it-works">How it works<a class="anchor" href="#how-it-works">#</a></h2>
+<h3 id="random-numbers-are-calculated">Random numbers are calculated<a class="anchor" href="#random-numbers-are-calculated">#</a></h3>
+<p><code>Random</code> does not roll dice: it follows a formula that gives numbers that <em>look</em> random. The starting value is the <strong>seed</strong>. The same seed gives the same numbers (step 1), which is exactly what you want for a test or a replay: a game level that is the same for the same seed, a simulation you can repeat. Without a seed, <code>new Random(NULL)</code> starts from the clock. <code>@Next(100)</code> gives 0…99 (<code>Next</code> is a Ring keyword, so the method is called <code>@Next</code>).</p>
+<h3 id="dice">Dice<a class="anchor" href="#dice">#</a></h3>
+<p><code>@Next(6) + 1</code> is 1…6. With 6,000 throws every side comes up about 1,000 times; the test in the program accepts 900–1100. <em>About</em> is the important word: with a random generator you test that the result is <strong>in a range</strong>, not that it is a fixed number — unless you fix the seed.</p>
+<h3 id="shuffling">Shuffling<a class="anchor" href="#shuffling">#</a></h3>
+<p>A wrong shuffle is a classic bug. <strong>Fisher–Yates</strong> is right: go from the last card to the second; swap the card with a random card from the first position up to <em>itself</em>. Every order is equally likely. Swapping each card with <em>any</em> random card (<code>@Next(10)</code> every time) looks similar but gives some orders more often than others.</p>
+<h3 id="weighted-choice">Weighted choice<a class="anchor" href="#weighted-choice">#</a></h3>
+<p>To draw "common" 70 %, "rare" 25 % and "legendary" 5 % of the time, pick a number from 0 to 99 and walk through the weights adding them up until the number is below the sum. The output shows 6,954 / 2,577 / 469 for 10,000 draws, close to the expected 7,000 / 2,500 / 500.</p>
+<h3 id="guid">Guid<a class="anchor" href="#guid">#</a></h3>
+<p>A <code>Guid</code> has 128 random bits, written as 36 characters. Two Guids are equal with a probability so small that nobody ever sees it, so you can create ids without asking a database or another computer. Use them as keys for records created on different machines.</p>
+<h3 id="when-it-must-be-secure">When it must be secure<a class="anchor" href="#when-it-must-be-secure">#</a></h3>
+<p>Because <code>Random</code> is a formula, a person who sees a few of its numbers can calculate the next ones. For <strong>passwords, tokens, keys and anything that guards a secret</strong> use <code>RandomNumberGenerator</code> (the tutorial <a href="tut-08-security.html">Hashing and encryption</a> and the tutorial <a href="tut-49-login.html">Login, sessions and cookies</a> use it). Rule of thumb: games and simulations → <code>Random</code>; security → <code>RandomNumberGenerator</code>.</p>
+<h2 id="what-you-learned">What you learned<a class="anchor" href="#what-you-learned">#</a></h2>
+<ul><li>seeds and repeatable randomness,</li><li>ranges and testing random code,</li><li>Fisher–Yates shuffling,</li><li>weighted choice,</li><li><code>Guid</code>,</li><li><code>Random</code> against <code>RandomNumberGenerator</code>.</li></ul>
+<h2 id="exercises">Exercises<a class="anchor" href="#exercises">#</a></h2>
+<ol><li>Throw two dice 36,000 times and print how often each sum (2…12) appears.</li><li>Write a password generator with <code>RandomNumberGenerator.GetInt32</code> and a list of allowed characters.</li><li>Shuffle a deck of 52 cards (numbers 1–52) and deal four hands of five.</li><li>Estimate the probability of at least one six in four throws by simulation, then calculate it exactly.</li></ol>
+<h2 id="next">Next<a class="anchor" href="#next">#</a></h2>
+<p><a href="tut-44-statistics.html">Statistics and simulation</a></p>
+<div class="pager"><a href="tut-99-vectors.html"><small>Previous</small>Vectors and matrices</a><a class="next" href="tut-44-statistics.html"><small>Next</small>Statistics, simulation</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

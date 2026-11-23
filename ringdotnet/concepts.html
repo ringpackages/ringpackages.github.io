@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Core concepts · RingDotNet</title>
+<meta name="description" content="How .NET looks from Ring — class and method names, overloads, properties, enums, struct values, generics, out parameters and errors. The types that need more are on the page Advanced .NET types.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html" class="cur">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Core concepts</h1><p class="lead">How .NET looks from Ring — class and method names, overloads, properties, enums, struct values, generics, out parameters and errors. The types that need more are on the page Advanced .NET types.</p>
+<h2 id="classes-with-the-same-names-as-net">Classes with the same names as .NET<a class="anchor" href="#classes-with-the-same-names-as-net">#</a></h2>
+<p>After <code>using { "Namespace" }</code> every public type of that namespace is a Ring class with the <strong>same short name</strong> and the same members:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>using { <span class="s">"System.Text"</span> }
+
+oSB = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>)        <span class="c"># with arguments: parentheses (Ring calls init() only with them)</span>
+oSB.<span class="f">Append</span>(<span class="s">", Ring"</span>).<span class="f">Append</span>(<span class="s">"!"</span>)        <span class="c"># methods that return a wrapped class return that class</span>
+? oSB.<span class="f">ToString</span>()
+? oSB.Length                            <span class="c"># properties and fields are attributes</span>
+<span class="k">new</span> <span class="t">Console</span>().<span class="f">WriteLine</span>(<span class="s">"Hi"</span>)           <span class="c"># static members are called on an instance</span>
+? <span class="k">new</span> <span class="t">Math</span>().<span class="f">Max</span>(<span class="n">3</span>,<span class="n">9</span>)</code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Hello from .NET
+Max(3,9)   = 9
+Sqrt(144)  = 12
+PI         = 3.14
+Hello, Ring!
+Length    = 12
+Hello, Ring!!!?
+Elapsed ms &gt;= 0 : 1
+a\b
+file.txt
+1
+1</code></pre></div>
+<div class="callout note"><span class="t">Note</span><p><strong>With arguments, write the parentheses</strong>: <code>new StringBuilder("Hello")</code>. Ring calls <code>init()</code> only when they are there. A class that needs no argument can be written with or without them, <code>new MemoryStream</code> or <code>new MemoryStream()</code>: Ring runs the code of the class body in both cases, and the class makes its default .NET object there. A few classes have a first constructor parameter that you may leave out (<code>StringBuilder</code>, <code>Random</code>, <code>Version</code>): for them write <code>new StringBuilder</code> (the default object) or <code>new StringBuilder("text")</code>; <code>new StringBuilder()</code> with empty parentheses is an error ("less number of parameters").</p></div>
+<p>Inheritance is real: <code>Button</code> derives from <code>ButtonBase</code>, <code>Control</code> and so on, so a method defined on the base class works on every derived object.</p>
+<p>When two namespaces have a class with the same short name, the later one gets the last part of its namespace as a prefix (<code>WpfButton</code>, <code>TimersTimer</code>): the <a href="api.html">Class reference</a> shows the name of every class, and <a href="generator.html">Class generator</a> explains the rule.</p>
+<h2 id="short-names-for-static-classes">Short names for static classes<a class="anchor" href="#short-names-for-static-classes">#</a></h2>
+<p>A class such as <code>Math</code>, <code>Path</code> or <code>File</code> has only static members, so <code>new Math()</code> just makes an object that gives access to them. If you prefer the .NET style, make that object once at the top of the program and give it the name of the class:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">load</span> <span class="s">"dotnet.ring"</span>
+
+using { <span class="s">"System"</span> <span class="s">"System.IO"</span> }
+
+Math = <span class="k">new</span> <span class="t">Math</span>()
+Path = <span class="k">new</span> <span class="t">Path</span>()
+
+<span class="k">func</span> <span class="f">main</span>
+
+	? Math.<span class="f">Max</span>(<span class="n">3</span>,<span class="n">9</span>)                          <span class="c"># 9</span>
+	? Path.<span class="f">Combine</span>([<span class="s">"a"</span>,<span class="s">"b"</span>])                <span class="c"># a\b</span>
+	? <span class="k">new</span> <span class="t">Math</span>().<span class="f">Min</span>(<span class="n">3</span>,<span class="n">9</span>)                    <span class="c"># the class is still there: 3</span></code></pre></div>
+<p>The names of Ring variables are not case sensitive, so a variable <code>path</code> is the same name as <code>Path</code>, and a local variable with that name <strong>hides</strong> the object in its function:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">func</span> <span class="f">fileName</span>
+
+	path = <span class="s">"C:/temp/x.txt"</span>
+	<span class="k">return</span> Path.<span class="f">GetFileName</span>(path)            <span class="c"># Error (R13): Object is required (Path is now the text)</span></code></pre></div>
+<p>Names such as <code>Path</code>, <code>File</code>, <code>Directory</code>, <code>Console</code>, <code>Environment</code> and <code>Convert</code> are also the names that programs use for variables, so use this style only when you keep those names for the .NET classes. Only classes that have just static members suit it: <code>DateTime</code>, <code>String</code>, <code>Task</code> and <code>Process</code> also have instance members, and <code>new DateTime(...)</code> is how you make a value.</p>
+<h2 id="naming-rules">Naming rules<a class="anchor" href="#naming-rules">#</a></h2>
+<p>A Ring method has one name and one parameter list, so a .NET method name that has <strong>several overloads</strong> becomes <strong>one Ring method with one parameter</strong>; you choose the overload with the value you pass (see <em>Named arguments</em> below). A name with a single form keeps the .NET parameters.</p>
+<div class="tablewrap"><table><thead><tr><th>.NET</th><th>Ring</th><th>Rule</th></tr></thead><tbody><tr><td><code>Append()</code>, <code>Append(string)</code>, <code>Append(char, int)</code></td><td><code>Append(NULL)</code>, <code>Append("x")</code>, <code>Append([ :value = "x", :repeatCount = 3 ])</code></td><td>One method: <code>NULL</code> = no parameters, a value = one parameter, a <strong>list of <code>:name = value</code></strong> = the overload with those parameter names.</td></tr><tr><td><code>Math.Max(a, b)</code></td><td><code>Max(3,9)</code></td><td>A name with only one number of parameters stays positional.</td></tr><tr><td><code>Console.WriteLine("x")</code></td><td><code>WriteLine("x")</code></td><td>An overloaded name works like <code>Append</code>.</td></tr><tr><td><code>Next()</code>, <code>Next(int)</code>, <code>Next(int,int)</code></td><td><code>@Next(NULL)</code>, <code>@Next(10)</code>, <code>@Next([ :minValue = 1, :maxValue = 10 ])</code></td><td>A name that is a Ring keyword gets an <code>@</code> at the start.</td></tr><tr><td><code>Serialize(value, options = null)</code></td><td><code>Serialize(value)</code>, <code>Serialize([ :value = v, :options = o ])</code></td><td><strong>Optional parameters</strong> can be left out of the list.</td></tr><tr><td><code>Path.Combine(a, b, c)</code></td><td><code>Combine([ :path1 = a, :path2 = b ])</code> or <code>Combine([a, b, c])</code></td><td>A <code>params</code> array takes a plain list, a single value (an array of one item), or nothing (it is empty).</td></tr><tr><td><code>new MemoryStream(bytes)</code></td><td><code>new MemoryStream().@New([ :buffer = bytes ])</code> or <code>dnNew("MemoryStream",[ :buffer = bytes ])</code></td><td>Constructors: <code>init()</code> is the parameterless (or shortest) one; the others are chosen by name with <code>@New</code>.</td></tr><tr><td><code>date.ToString("yyyy-MM-dd")</code></td><td><code>oDate.Format("yyyy-MM-dd")</code> or <code>oDate.Format([ :format = "d", :provider = oCulture ])</code></td><td><code>ToString()</code> keeps its plain form; its forms with parameters are <code>Format</code>.</td></tr></tbody></table></div>
+<p>The bridge still <strong>picks the real overload from the argument types</strong>: whole numbers prefer <code>int</code>, strings prefer <code>string</code>, a .NET object prefers its own type.</p>
+<h2 id="named-arguments">Named arguments<a class="anchor" href="#named-arguments">#</a></h2>
+<p>Optional and overloaded parameters are written in Ring as a <strong>list of <code>:name = value</code> pairs</strong>. When a method has overloads with different numbers of parameters, its plain name takes <strong>one parameter</strong> and looks at what you pass:</p>
+<div class="tablewrap"><table><thead><tr><th>You pass</th><th>What happens</th></tr></thead><tbody><tr><td><code>NULL</code> (an empty string)</td><td>the <strong>parameterless</strong> overload is called: <code>oProcess.Start(NULL)</code></td></tr><tr><td>a list of <code>:name = value</code> pairs</td><td>the overload is chosen by the <strong>parameter names</strong> of the .NET method; the order does not matter and optional parameters can be left out</td></tr><tr><td>anything else</td><td>the overload with <strong>one parameter</strong> is called: <code>oMath.Round(2.5)</code></td></tr></tbody></table></div>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oMath = <span class="k">new</span> <span class="t">Math</span>()
+? oMath.<span class="f">Round</span>(<span class="n">2.5</span>)                                            <span class="c"># one argument: 2 (Round goes to the even neighbor)</span>
+? oMath.<span class="f">Round</span>([ :value = <span class="n">3.14159</span>, :digits = <span class="n">2</span> ])              <span class="c"># 3.14</span>
+? oMath.<span class="f">Round</span>([ :digits = <span class="n">1</span>, :value = <span class="n">2.74</span> ])                 <span class="c"># 2.70 : any order (Ring shows two decimals; the value is 2.7)</span>
+
+oRandom = <span class="k">new</span> <span class="t">Random</span>(<span class="n">42</span>)
+? oRandom.@<span class="k">Next</span>(<span class="k">NULL</span>)                                         <span class="c"># no arguments: the parameterless Next()</span>
+? oRandom.@<span class="k">Next</span>([ :maxValue = <span class="n">10</span> ])                           <span class="c"># by name: a number from 0 to 9</span>
+
+oSB = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"a"</span>)
+oSB.<span class="f">Append</span>([ :value = <span class="s">"b"</span> ])
+? oSB.<span class="f">ToString</span>()                                              <span class="c"># ab</span>
+
+oTime = <span class="k">new</span> <span class="t">TimeSpan</span>().@<span class="k">New</span>([ :<span class="t">hours</span> = <span class="n">1</span>, :minutes = <span class="n">2</span>, :seconds = <span class="n">3</span> ])   <span class="c"># a constructor chosen by names</span>
+? oTime.<span class="f">ToString</span>()                                            <span class="c"># 01:02:03</span>
+oSB = <span class="f">dnNew</span>(<span class="s">"StringBuilder"</span>,[ :value = <span class="s">"Hello"</span> ])             <span class="c"># the same with the generic function (it names the class as a text)</span></code></pre></div>
+<p>Rules and limits:</p>
+<ul><li><strong><code>NULL</code> for no arguments.</strong> A Ring call passes the number of arguments the method declares, so on an overloaded method the parameterless form is called with <code>NULL</code>: <code>oTask.Wait(NULL)</code>, <code>oList.Sort(NULL)</code>. A method that has no overloads still takes no argument: <code>oTimer.Start()</code>. The same rule holds for <strong>constructors</strong>: <code>init()</code> has one parameter list, so a class whose <code>init</code> takes one value (<code>StringBuilder</code>, <code>Random</code>, <code>Version</code>) creates the parameterless object with <code>NULL</code>: <code>new StringBuilder(NULL)</code>, <code>new Random(NULL)</code>, <code>new Version(NULL)</code>. Other constructors: <code>@New([ :name = value ])</code>, <code>dnNew("Class",[ :name = value ])</code>, or <code>dnNew("Class",[ value1, value2 ])</code> with the values in order (<code>dnNew("TimeSpan",[1,2,3])</code> is <code>new TimeSpan(1,2,3)</code>). The function index and the class files show which is which.</li><li><strong>A name whose overloads all have the same number of parameters</strong> (<code>Math.Max(a,b)</code>) stays positional. The bridge picks among same-arity overloads by the types of the values.</li><li><strong><code>ToString</code> and <code>ToList</code> keep their plain forms</strong>, because every object already has <code>toString()</code> / <code>toList()</code>. The forms of <code>ToString</code> with parameters are <code>Format</code>.</li><li>A method whose Ring name would clash with the getter or setter of a property (the static <code>GetValue(property)</code> of a WPF element next to a property <code>Value</code>) gets an <code>@</code> at the start: <code>@GetValue(property)</code>.</li><li>A name that matches no parameter, or a missing required parameter, raises an error that lists the names you gave. Names are not case sensitive.</li><li>A list of <code>[string, value]</code> pairs passed as the single argument is read as named arguments.</li><li>Names that are Ring keywords start with <code>@</code>, as C# writes <code>@class</code>: <code>oRnd.@Next([ :minValue = 1, :maxValue = 10 ])</code>, and so does <code>Init</code> (<code>init</code> is the constructor of a generated class): <code>oCipher.@Init(1,oParams)</code>. The words that Ring uses itself (<code>Get</code>, <code>Set</code>, <code>Call</code>) are called with <code>callMethod</code>.</li><li><code>dnNew("Class", ...)</code> takes a Ring class name or a full .NET type name.</li></ul>
+<h2 id="arguments-in-order-with-callmethod">Arguments in order with <code>callMethod</code><a class="anchor" href="#arguments-in-order-with-callmethod">#</a></h2>
+<p>The plain name of an overloaded method takes one argument (<code>NULL</code>, a value or a named list). To pass several arguments in order, call the method with <code>callMethod(name, [arguments])</code>: the bridge chooses the overload from the arguments, as C# does.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oSB = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">""</span>)
+oSB.<span class="f">callMethod</span>(<span class="s">"Append"</span>,[<span class="s">"a"</span>,<span class="n">3</span>])                             <span class="c"># Append(char, int): two arguments in order</span>
+? oSB.<span class="f">ToString</span>()                                             <span class="c"># aaa</span>
+oRegistry.<span class="f">callMethod</span>(<span class="s">"SetValue"</span>,[<span class="s">"Port"</span>,<span class="n">8080</span>,<span class="s">"DWord"</span>])       <span class="c"># three arguments in order (a Registry key, the tutorial "The Windows Registry")</span>
+oQuery.<span class="f">callMethod</span>(<span class="s">"Where"</span>,[<span class="s">"Age"</span>,<span class="s">"&gt;"</span>,<span class="n">18</span>])                    <span class="c"># the SqlKata package: a query that is built with calls in order</span>
+oRequest.<span class="f">callMethod</span>(<span class="s">"AddParameter"</span>,[<span class="s">"page"</span>,<span class="s">"2"</span>])             <span class="c"># the RestSharp package: an extension method with the name of a method of the object</span></code></pre></div>
+<p><code>callMethod</code> works on every object, also on one that has no generated class (a generic type), and finds the extension methods too. An extension method with the same name as a method of the object (<code>RestRequest.AddParameter(Parameter)</code> next to the extension <code>AddParameter(name, value)</code>) is not a method of the generated class, because an extension method never changes the signature of a method that the class already has; <code>callMethod</code> reaches it. <code>dnStatic(type, name, [arguments])</code> is the same call for a static method, and <code>getProp</code> and <code>setProp</code> read and write a property of an object that has no class.</p>
+<h2 id="properties-and-fields-are-attributes">Properties and fields are attributes<a class="anchor" href="#properties-and-fields-are-attributes">#</a></h2>
+<p>.NET properties are Ring attributes. Ring calls the generated <code>getName()</code> / <code>setName(value)</code> for you, so reading and writing is simple, also inside <code>{ }</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oForm = <span class="k">new</span> <span class="t">Form</span>() {
+	Text = <span class="s">"Hello"</span>
+	Width = <span class="n">400</span>
+}
+? oForm.Controls.Count                 <span class="c"># chained: Controls returns a ControlCollection</span>
+oForm { Height = <span class="n">300</span>  Text += <span class="s">"!"</span> }</code></pre></div>
+<p>Assigning a read-only property raises an error. Most properties named like Ring words (<code>From</code>, <code>To</code>, <code>Step</code>, <code>On</code>...) are read and set like any other (<code>oMessage.From = ...</code>). The few that Ring reserves after a dot (<code>Get</code>, <code>Next</code>, <code>End</code>, <code>Load</code>...) are read with <code>getProp("Name")</code> and set with <code>setProp("Name", value)</code>.</p>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>Length    = 5
+Truncated = Hel
+Math.PI   = 3.14
+Path sep  = \
+Count     = 2
+Capacity  = 50
+Caught: DotNet Error: Count is a read-only property
+Running = 0</code></pre></div>
+<h2 id="braces-instead-of-the-dot-operator">Braces instead of the dot operator<a class="anchor" href="#braces-instead-of-the-dot-operator">#</a></h2>
+<p>Ring lets you write <code>{ }</code> after an object, and everything inside is evaluated <strong>on that object</strong>. It is a simple way to configure a .NET object, and all the samples in this documentation use it:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oInfo = <span class="k">new</span> <span class="t">ProcessStartInfo</span>() {
+	FileName = <span class="s">"cmd"</span>
+	Arguments = <span class="s">"/c ver"</span>
+	RedirectStandardOutput = <span class="k">True</span>
+	UseShellExecute = <span class="k">False</span>
+	CreateNoWindow = <span class="k">True</span>
+}</code></pre></div>
+<p>This is exactly the same as writing <code>oInfo.FileName = "cmd"</code> line by line. Inside the braces you can assign properties, call methods (<code>setClickEvent("...")</code>, <code>Controls.Add(oButton)</code>) and use <code>+=</code>. Use it on any object: <code>oForm { Height = 300 }</code>.</p>
+<p>Use <code>True</code> and <code>False</code> for logical values; they are the numbers <code>1</code> and <code>0</code>, which is what .NET booleans become in Ring.</p>
+<div class="callout warn"><span class="t">Warning</span><p>Inside the braces a <strong>name is first looked up as a member of the object</strong>. If a variable of your program has the same name as a property of the object (a global called <code>text</code>, <code>width</code> or <code>count</code>), the braces use the property, not your variable. Keep your own names Hungarian-style (<code>cText</code>, <code>nWidth</code>) and the problem never appears.</p></div>
+<h2 id="enums-are-strings">Enums are strings<a class="anchor" href="#enums-are-strings">#</a></h2>
+<p>Enum values are strings in <strong>both directions</strong>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oForm {
+	WindowState = <span class="s">"Maximized"</span>
+	FormBorderStyle = <span class="s">"FixedDialog"</span>
+}
+oDate = <span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">12</span>,<span class="n">25</span>)
+? oDate.DayOfWeek                       <span class="c"># "Wednesday"</span>
+oLabel.TextAlign = <span class="s">"MiddleCenter"</span></code></pre></div>
+<p>Flag combinations use the .NET text form: <code>"Top, Left"</code>.</p>
+<h2 id="value-types-and-dnnull">Value types and <code>dnNull()</code><a class="anchor" href="#value-types-and-dnnull">#</a></h2>
+<p>Structs (<code>Point</code>, <code>Size</code>, <code>Color</code>, <code>DateTime</code>) are objects like any other. Their constructors take the numbers: <code>new Point(10,20)</code>, <code>new DateTime(2024,12,25)</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oButton {
+	Location = <span class="k">new</span> <span class="t">Point</span>(<span class="n">10</span>,<span class="n">20</span>)
+	Size = <span class="k">new</span> <span class="t">Size</span>(<span class="n">100</span>,<span class="n">30</span>)
+}
+oPictureBox.Image = <span class="f">dnNull</span>()           <span class="c"># the .NET null</span></code></pre></div>
+<p><code>dnNull()</code> is the .NET <code>null</code>. A .NET method that returns null gives an object whose <code>isNull()</code> is true, and <code>dnIsNull(value)</code> asks the same of any value: it is true for a null object and false for everything else (a number, a text, a list, an object that is not null), so it needs no check of the type first.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oValue = <span class="k">new</span> <span class="t">Environment</span>().<span class="f">GetEnvironmentVariable</span>(<span class="s">"NO_SUCH_VARIABLE"</span>)
+<span class="k">if</span> <span class="f">dnIsNull</span>(oValue)
+	? <span class="s">"not set"</span>
+<span class="k">ok</span></code></pre></div>
+<h2 id="out-and-ref-parameters"><code>out</code> and <code>ref</code> parameters<a class="anchor" href="#out-and-ref-parameters">#</a></h2>
+<p>A method with <code>out</code> or <code>ref</code> parameters returns a <strong>list</strong>: <code>[result, out values...]</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>aResult = oDict.<span class="f">TryGetValue</span>(<span class="s">"key"</span>)      <span class="c"># [1, value] or [0, the default of the type: 0 for a number, the null for a text]</span>
+<span class="k">if</span> aResult[<span class="n">1</span>]
+	? aResult[<span class="n">2</span>]
+<span class="k">ok</span>
+
+aParsed = <span class="k">new</span> <span class="t">Int32</span>().<span class="f">TryParse</span>(<span class="s">"123"</span>)   <span class="c"># [1, 123]</span></code></pre></div>
+<h2 id="extension-methods">Extension methods<a class="anchor" href="#extension-methods">#</a></h2>
+<p>An extension method is a static method that C# writes as if it were a method of another type: <code>table.AddColumn("Name")</code> is <code>TableExtensions.AddColumn(table, "Name")</code> (this one is from the Spectre.Console package, which has to be wrapped first: <a href="own-assemblies.html">Your own assemblies</a>). The generated Ring class of the extended type has a method for each extension method that is in the same generated set, so it is called like any method of the object. The classes that implement an interface get the extension methods of the interface, and so do the interfaces that inherit it (<code>oServices.BuildServiceProvider(NULL)</code> on a <code>ServiceCollection</code>, an extension of <code>IServiceCollection</code>):</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oTable = <span class="k">new</span> <span class="t">Table</span>()
+oTable.<span class="f">AddColumn</span>(<span class="s">"Name"</span>)                <span class="c"># TableExtensions.AddColumn(oTable, "Name")</span>
+oTable.<span class="f">AddRow</span>([<span class="s">"Ann"</span>,<span class="s">"31"</span>])</code></pre></div>
+<p>An extension method of a <strong>generic interface</strong> (<code>ValidateAndThrow</code> extends <code>IValidator&lt;T&gt;</code>) is a method of the classes that implement it, and of the class of a generic type that derives from it; the generic interfaces of <code>System</code> (<code>IEnumerable&lt;T&gt;</code>, the LINQ methods) are not added to every collection class, they are called with <code>dnQuery</code> or <code>callMethod</code>.</p>
+<p>An extension method of a <strong>struct that it takes by reference</strong> (<code>this in S</code>, as in the Sep library) and one of a <strong>delegate type</strong> (Sprache's <code>Parser&lt;T&gt;</code>, whose <code>AtLeastOnce()</code> and <code>Text()</code> are extension methods) are methods of the generated classes too: a delegate type has a Ring class only when extension methods extend it.</p>
+<p>The methods of the object itself come first, and an extension method never changes how a method that the class already has is called: it is added to a name that the class has only when it takes a number of parameters that the method already takes. An extension method has the same rule of names as every method: when it has several forms, the name takes one parameter and the names of the parameters choose the form. Extension methods that have no class to join (a type of another assembly than the one that is wrapped, a generic type, <code>string</code>, <code>object</code> and the numbers) are static calls on the class that holds them: <code>new StringHumanizeExtensions().Humanize("PascalCaseText")</code>. A generic extension method whose type cannot be known from its parameters (<code>Cast&lt;T&gt;</code>) cannot be called from Ring.</p>
+<h2 id="interfaces-and-classes-that-are-not-public">Interfaces and classes that are not public<a class="anchor" href="#interfaces-and-classes-that-are-not-public">#</a></h2>
+<p>Many methods return an interface (<code>IServiceScope</code>, <code>ICollection</code>) or an object of a class that is not public (a row of a database library, for example). The object is wrapped as the <strong>interface named after the class</strong> when there is one (<code>XLWorksheet</code> comes back as <code>IXLWorksheet</code>), otherwise as the most specific interface that has a Ring class. A wrapped interface has the members that it inherits from other interfaces (<code>oScope.Dispose()</code> from <code>IDisposable</code>, <code>oKeys.GetEnumerator()</code> on an <code>ICollection</code>), and the methods that a class implements explicitly are found through its public interfaces.</p>
+<p>A parameter of the type <code>System.Enum</code> does not say which enum it takes, so the text gives the full name of the member: <code>"System.DayOfWeek.Friday"</code>.</p>
+<h2 id="generics">Generics<a class="anchor" href="#generics">#</a></h2>
+<p>The most useful closed generic types have classes: <code>StringList</code>, <code>NumberList</code>, <code>ObjectList</code> (<code>List&lt;T&gt;</code>), <code>StringDictionary</code>, <code>NumberDictionary</code>, <code>ObjectDictionary</code> (<code>Dictionary&lt;string,T&gt;</code>), <code>StringSet</code>, <code>StringQueue</code>, <code>StringStack</code>. See <a href="collections-linq.html">Collections &amp; LINQ</a>.</p>
+<p>Any other closed generic type can be created without a class:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oList = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.Int32"</span>],[])
+oList.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="n">5</span>])</code></pre></div>
+<p>A generic type has a class of its own too (<code>new HashSet([ :typeArguments = ["System.Int32"] ])</code>), and a generic method whose type argument only the result shows takes <code>:typeArguments</code>. These, and the other types that need more than a plain class (nested types, operators, spans, ref structs, pointers, asynchronous streams), are on the page <a href="advanced-types.html">Advanced .NET types</a>.</p>
+<h2 id="numbers-for-an-object">Numbers for an object<a class="anchor" href="#numbers-for-an-object">#</a></h2>
+<p>Ring has one kind of number. Where a .NET parameter has a type (<code>int</code>, <code>double</code>, <code>long</code>) the number becomes that type; where the parameter is an <code>object</code> (an argument of <code>String.Format</code>, an item of <code>params object[]</code>, a value of a <code>Dictionary&lt;string, object&gt;</code>), a <strong>whole number is an <code>Int32</code></strong> and any other number is a <code>Double</code>. That is what <code>"{0:D3}"</code> and <code>"{0:X}"</code> need, and what JSON and a database write as <code>5</code>. A number beyond the range of <code>Int32</code> is a <code>Double</code>. For another exact type, <code>dnBox</code> makes the value:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>? <span class="f">dnStatic</span>(<span class="s">"System.String"</span>,<span class="s">"Format"</span>,[<span class="s">"{0:D3} {1:X}"</span>,[<span class="n">7</span>,<span class="n">255</span>]])            <span class="c"># 007 FF</span>
+oTen = <span class="f">dnBox</span>(<span class="s">"System.Double"</span>,<span class="n">10</span>)                                        <span class="c"># the Double 10, for a parameter of type object</span>
+oExpression.<span class="f">Constant</span>(oTen)                                              <span class="c"># a constant of type double</span></code></pre></div>
+<h2 id="return-values">Return values<a class="anchor" href="#return-values">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>.NET returns</th><th>Ring gets</th></tr></thead><tbody><tr><td><code>string</code></td><td>string</td></tr><tr><td>numbers (<code>int</code>, <code>long</code>, <code>double</code>, <code>decimal</code> ...)</td><td>number</td></tr><tr><td><code>bool</code></td><td><code>1</code> / <code>0</code></td></tr><tr><td>enum</td><td>string</td></tr><tr><td><code>byte[]</code></td><td>string: a Ring text of bytes, binary safe (a copy)</td></tr><tr><td>arrays and collections (<code>string[]</code>, <code>List&lt;T&gt;</code>...)</td><td>a wrapped object; <code>toList()</code> copies it into a Ring list</td></tr><tr><td>any other object</td><td>a wrapped object (generated class, or a plain <code>DotNetObject</code>)</td></tr><tr><td><code>null</code></td><td>an object whose <code>isNull()</code> is true</td></tr></tbody></table></div>
+<h2 id="bytes-and-byte-buffers">Bytes and byte buffers<a class="anchor" href="#bytes-and-byte-buffers">#</a></h2>
+<p>A Ring text can hold any byte, so a <code>byte[]</code> that .NET returns is a Ring text (<code>oStream.ToArray()</code>, <code>File.ReadAllBytes</code>, <code>BitConverter.GetBytes</code>), and a text that you pass to a <code>byte[]</code> parameter becomes the same bytes (<code>File.WriteAllBytes(path, cBytes)</code>, <code>stream.Write(cBytes, 0, len(cBytes))</code>). Both are <strong>copies</strong>.</p>
+<p>A method that <strong>fills</strong> an array that you pass in has to work on the array itself, so it needs a byte buffer: an object that holds a live <code>byte[]</code>.</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oBuffer = <span class="f">dnBuffer</span>(<span class="n">1024</span>)                  <span class="c"># a byte[] of 1024 bytes</span>
+n = oStream.<span class="f">Read</span>(oBuffer, <span class="n">0</span>, <span class="n">1024</span>)        <span class="c"># .NET writes into the array</span>
+cBytes = <span class="f">dnBufferBytes</span>(oBuffer, n)        <span class="c"># the first n bytes as a Ring text</span></code></pre></div>
+<p><code>dnBuffer(text)</code> makes a buffer with the bytes of a text, and <code>dnBufferSize(oBuffer)</code> is its size. A buffer is accepted by every parameter of type <code>byte[]</code>, and by a parameter of type <code>object</code> (as the data of a registry <code>Binary</code> value). The test <code>test_binary.ring</code> shows <code>MemoryStream</code>, <code>FileStream</code> and a TCP stream.</p>
+<h2 id="errors">Errors<a class="anchor" href="#errors">#</a></h2>
+<p>A .NET exception becomes a Ring error and can be caught with <code>try</code> / <code>catch</code>:</p>
+<div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="k">try</span>
+	<span class="k">new</span> <span class="t">Int32</span>().<span class="f">Parse</span>(<span class="s">"abc"</span>)
+<span class="k">catch</span>
+	? cCatchError
+<span class="k">done</span></code></pre></div>
+<div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>DotNet Error: System.FormatException: The input string 'abc' was not in a correct format.</code></pre></div>
+<p>Set the environment variable <code>RINGDOTNET_TRACE=1</code> to get the .NET stack trace in the message.</p>
+<h2 id="plain-objects">Plain objects<a class="anchor" href="#plain-objects">#</a></h2>
+<p>When no class exists for a type, or when you want the generic style, every wrapped object is also a <code>DotNetObject</code> and has:</p>
+<div class="tablewrap"><table><thead><tr><th>Method</th><th>What it does</th></tr></thead><tbody><tr><td><code>callMethod(name, [args])</code></td><td>call a method; the values are in order, also for a name that has several forms (<code>oKey.callMethod("SetValue",["Port",8080,"DWord"])</code>)</td></tr><tr><td><code>getProp(name)</code> / <code>setProp(name, value)</code></td><td>read or write a property or field</td></tr><tr><td><code>toString()</code></td><td><code>ToString()</code> of the object</td></tr><tr><td><code>typeName()</code></td><td>full .NET type name</td></tr><tr><td><code>toList()</code></td><td>copy an array or collection into a Ring list</td></tr><tr><td><code>isNull()</code></td><td>true for the .NET null</td></tr><tr><td><code>release()</code></td><td>release the handle at once (Ring does it for you when the object is dropped; the object is not used after this)</td></tr></tbody></table></div>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
+<ul><li><a href="core-api.html">Core functions</a>: every function of the bridge in one place.</li><li><a href="advanced-types.html">Advanced .NET types</a>: generic types and methods, operators, spans, ref structs, pointers.</li><li><a href="collections-linq.html">Collections &amp; LINQ</a> and <a href="callbacks-events.html">Callbacks &amp; events</a>: the two topics that need the most explanation.</li><li><a href="rules-and-limits.html">Rules and limits</a>: read it before a long program.</li></ul>
+<div class="pager"><a href="tut-119-distribution.html"><small>Previous</small>Giving your program to others</a><a class="next" href="advanced-types.html"><small>Next</small>Advanced .NET types</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>

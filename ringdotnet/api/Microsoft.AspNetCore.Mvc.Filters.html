@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft.AspNetCore.Mvc.Filters · RingDotNet</title>
+<meta name="description" content="Use .NET classes and methods from Ring programs">
+<link rel="stylesheet" href="../assets/style.css">
+<script>window.SITE_ROOT="../";</script>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/api-index.js"></script>
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="../index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="../index.html">Overview</a>
+<a href="../getting-started.html">Getting started</a>
+<a href="../how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="../tutorials.html">Tutorials home</a>
+<a href="../tut-concepts.html">.NET for Ring programmers</a>
+<a href="../tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="../tut-01-first-look.html">A first look</a>
+<a href="../tut-02-text.html">Working with text</a>
+<a href="../tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="../tut-04-collections.html">Collections and LINQ</a>
+<a href="../tut-05-files.html">Files and folders</a>
+<a href="../tut-06-json-xml.html">JSON and XML</a>
+<a href="../tut-07-errors.html">When things go wrong</a>
+<a href="../tut-08-security.html">Hashing and encryption</a>
+<a href="../tut-09-http.html">HTTP</a>
+<a href="../tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="../tut-29-regex.html">Regular expressions</a>
+<a href="../tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="../tut-52-unicode.html">Unicode and encodings</a>
+<a href="../tut-132-text-encodings.html">Text files and encodings</a>
+<a href="../tut-97-comparers.html">Comparing text</a>
+<a href="../tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="../tut-86-escaping.html">Escaping</a>
+<a href="../tut-64-urls.html">URLs and encodings</a>
+<a href="../tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="../tut-117-domain-names.html">International domain names</a>
+<a href="../tut-121-mime-types.html">MIME types</a>
+<a href="../tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="../tut-80-json-nodes.html">JSON as a tree</a>
+<a href="../tut-72-xml.html">XML in depth</a>
+<a href="../tut-77-xslt.html">XSLT</a>
+<a href="../tut-47-markdown.html">Markdown to HTML</a>
+<a href="../tut-66-spelling.html">A spell checker</a>
+<a href="../tut-144-mailmerge.html">Mail merge</a>
+<a href="../tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="../tut-101-number-types.html">Number types</a>
+<a href="../tut-126-rounding.html">Rounding and the Math class</a>
+<a href="../tut-90-big-numbers.html">Big numbers</a>
+<a href="../tut-67-bases.html">Number systems and big numbers</a>
+<a href="../tut-57-money.html">Money</a>
+<a href="../tut-99-vectors.html">Vectors and matrices</a>
+<a href="../tut-69-random.html">Randomness</a>
+<a href="../tut-44-statistics.html">Statistics, simulation</a>
+<a href="../tut-103-dates-and-times.html">Dates and times</a>
+<a href="../tut-68-timezones.html">Time zones</a>
+<a href="../tut-43-calendar.html">Calendars and dates</a>
+<a href="../tut-76-calendars.html">Other calendars</a>
+<a href="../tut-135-workdays.html">Working days</a>
+<a href="../tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="../tut-106-arrays.html">Arrays</a>
+<a href="../tut-107-sets.html">Sets</a>
+<a href="../tut-92-data-structures.html">More data structures</a>
+<a href="../tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="../tut-65-enums.html">Enums and flags</a>
+<a href="../tut-93-identifiers.html">Identifiers and versions</a>
+<a href="../tut-58-undo.html">Undo, redo and queues</a>
+<a href="../tut-75-recursion.html">Recursion</a>
+<a href="../tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="../tut-59-paths.html">Paths and the environment</a>
+<a href="../tut-123-file-info.html">File information</a>
+<a href="../tut-124-disks.html">Disks and free space</a>
+<a href="../tut-56-streams.html">Streams and compression</a>
+<a href="../tut-45-binary.html">Binary files</a>
+<a href="../tut-130-random-access.html">Random access and file locks</a>
+<a href="../tut-157-copy-progress.html">Copying a big file</a>
+<a href="../tut-159-file-types.html">What kind of file is it?</a>
+<a href="../tut-88-compression.html">Compression</a>
+<a href="../tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="../tut-96-tar.html">Tar archives</a>
+<a href="../tut-112-globbing.html">File patterns (globbing)</a>
+<a href="../tut-122-watch-folder.html">Watching a folder</a>
+<a href="../tut-21-log-analyzer.html">A log analyzer</a>
+<a href="../tut-31-duplicates.html">Duplicate files</a>
+<a href="../tut-46-backup.html">A backup tool</a>
+<a href="../tut-141-renamer.html">Rename many files</a>
+<a href="../tut-145-diff.html">Compare two files</a>
+<a href="../tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="../tut-74-system.html">Asking the computer</a>
+<a href="../tut-50-cli.html">A command-line tool</a>
+<a href="../tut-51-logging.html">Logging</a>
+<a href="../tut-136-tracing.html">Tracing</a>
+<a href="../tut-85-feed-programs.html">Working with other programs</a>
+<a href="../tut-79-processes-talk.html">Two programs talking</a>
+<a href="../tut-82-shared-memory.html">Shared memory</a>
+<a href="../tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="../tut-71-dispose.html">Releasing resources</a>
+<a href="../tut-53-speed.html">Speed: measure first</a>
+<a href="../tut-98-memory.html">Memory and the garbage collector</a>
+<a href="../tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="../tut-81-network-tools.html">Network tools</a>
+<a href="../tut-102-ip-networks.html">IP networks</a>
+<a href="../tut-25-sockets.html">Sockets</a>
+<a href="../tut-158-framing.html">Messages on a TCP stream</a>
+<a href="../tut-91-udp.html">UDP</a>
+<a href="../tut-156-websockets.html">WebSockets</a>
+<a href="../tut-84-http-client.html">HttpClient in depth</a>
+<a href="../tut-39-rest-client.html">A REST client</a>
+<a href="../tut-16-web-service.html">A web service</a>
+<a href="../tut-26-website.html">A small web site</a>
+<a href="../tut-55-miniweb.html">A tiny web framework</a>
+<a href="../tut-120-routes.html">Route templates</a>
+<a href="../tut-150-shortener.html">A link shortener</a>
+<a href="../tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="../tut-78-crypto.html">Protecting and signing messages</a>
+<a href="../tut-105-signatures.html">Digital signatures</a>
+<a href="../tut-116-certificates.html">Certificates</a>
+<a href="../tut-113-data-protection.html">Protecting data</a>
+<a href="../tut-49-login.html">Login and sessions</a>
+<a href="../tut-95-claims.html">Identities and claims</a>
+<a href="../tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="../tut-17-databases.html">Databases</a>
+<a href="../tut-30-tables.html">Tabular data</a>
+<a href="../tut-73-sql-reports.html">Reports with SQL</a>
+<a href="../tut-27-entities.html">Entities, migrations</a>
+<a href="../tut-115-access.html">Microsoft Access databases</a>
+<a href="../tut-32-settings.html">Settings</a>
+<a href="../tut-111-configuration.html">Configuration</a>
+<a href="../tut-109-memory-cache.html">Caching</a>
+<a href="../tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="../tut-11-first-window.html">Your first window</a>
+<a href="../tut-12-controls.html">Many controls</a>
+<a href="../tut-128-inputs.html">More input controls</a>
+<a href="../tut-146-keyboard.html">The keyboard in a form</a>
+<a href="../tut-23-layout.html">Layout and controls</a>
+<a href="../tut-134-listview.html">A list with columns</a>
+<a href="../tut-142-grid.html">Editing a grid</a>
+<a href="../tut-13-editor.html">A text editor</a>
+<a href="../tut-133-richtext.html">Formatted text</a>
+<a href="../tut-127-clipboard.html">The clipboard</a>
+<a href="../tut-154-dragdrop.html">Drag and drop</a>
+<a href="../tut-40-dialog.html">Your own dialog</a>
+<a href="../tut-137-closing.html">Closing a window</a>
+<a href="../tut-149-windows.html">More than one window</a>
+<a href="../tut-155-tray.html">A tray icon</a>
+<a href="../tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="../tut-34-timers.html">Timers and progress</a>
+<a href="../tut-14-animation.html">Drawing and animation</a>
+<a href="../tut-139-paint.html">Drawing with the mouse</a>
+<a href="../tut-22-images.html">Images</a>
+<a href="../tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="../tut-153-printing.html">Printing</a>
+<a href="../tut-36-chart.html">A chart</a>
+<a href="../tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="../tut-15-wpf.html">WPF</a>
+<a href="../tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="../tut-131-wpf-binding.html">WPF data binding</a>
+<a href="../tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="../tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="../tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="../tut-24-todo.html">A to-do list</a>
+<a href="../tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="../tut-143-quiz.html">A quiz</a>
+<a href="../tut-37-runner.html">A command runner</a>
+<a href="../tut-48-addressbook.html">An address book</a>
+<a href="../tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="../tut-61-maze.html">A maze</a>
+<a href="../tut-62-filters.html">An image filter lab</a>
+<a href="../tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="../tut-19-callbacks.html">Callbacks and events</a>
+<a href="../tut-20-reflection.html">Reflection</a>
+<a href="../tut-151-inspector.html">An object inspector</a>
+<a href="../tut-87-expressions.html">Expression trees</a>
+<a href="../tut-18-csharp-library.html">A C# library</a>
+<a href="../tut-160-generic-calls.html">The generic functions</a>
+<a href="../tut-162-nuget.html">A NuGet package</a>
+<a href="../tut-165-qr.html">A QR code</a>
+<a href="../tut-167-excel.html">Excel files</a>
+<a href="../tut-168-pictures.html">Pictures on every system</a>
+<a href="../tut-169-pdf.html">PDF files</a>
+<a href="../tut-170-speech.html">Text to speech</a>
+<a href="../tut-164-sound.html">Sound</a>
+<a href="../tut-163-native.html">Native DLLs</a>
+<a href="../tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="../tut-161-common-errors.html">Common mistakes</a>
+<a href="../tut-166-systems.html">More than one system</a>
+<a href="../tut-28-testing.html">Testing</a>
+<a href="../tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="../concepts.html">Core concepts</a>
+<a href="../advanced-types.html">Advanced .NET types</a>
+<a href="../core-api.html">Core functions</a>
+<a href="../collections-linq.html">Collections & LINQ</a>
+<a href="../callbacks-events.html">Callbacks & events</a>
+<a href="../foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="../winforms.html">Windows Forms</a>
+<a href="../gallery-forms.html">Forms samples</a>
+<a href="../gallery-apps.html">Applications</a>
+<a href="../wpf.html">WPF</a>
+<a href="../gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="../aspnet.html">ASP.NET Core</a>
+<a href="../ef.html">Entity Framework Core</a>
+<a href="../ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="../own-assemblies.html">Your own assemblies</a>
+<a href="../generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="../testing.html">Testing</a>
+<a href="../rules-and-limits.html">Rules and limits</a>
+<h4>Reference</h4>
+<a href="../reference.html">Function index</a>
+<a href="../api.html" class="cur">Class reference</a>
+<h4>Appendix</h4>
+<a href="../ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Microsoft.AspNetCore.Mvc.Filters</h1>
+<p class="lead">39 wrapped types. Load them with <code>using { "Microsoft.AspNetCore.Mvc.Filters" }</code>. Click a class to open it.</p><div class="chips"><a href="#c-ActionExecutedContext">ActionExecutedContext</a> <a href="#c-ActionExecutingContext">ActionExecutingContext</a> <a href="#c-ActionFilterAttribute">ActionFilterAttribute</a> <a href="#c-AuthorizationFilterContext">AuthorizationFilterContext</a> <a href="#c-ExceptionContext">ExceptionContext</a> <a href="#c-ExceptionFilterAttribute">ExceptionFilterAttribute</a> <a href="#c-FilterCollection">FilterCollection</a> <a href="#c-FilterContext">FilterContext</a> <a href="#c-FilterDescriptor">FilterDescriptor</a> <a href="#c-FilterItem">FilterItem</a> <a href="#c-FilterProviderContext">FilterProviderContext</a> <a href="#c-FilterScope">FilterScope</a> <a href="#c-IActionFilter">IActionFilter</a> <a href="#c-IAlwaysRunResultFilter">IAlwaysRunResultFilter</a> <a href="#c-IAsyncActionFilter">IAsyncActionFilter</a> <a href="#c-IAsyncAlwaysRunResultFilter">IAsyncAlwaysRunResultFilter</a> <a href="#c-IAsyncAuthorizationFilter">IAsyncAuthorizationFilter</a> <a href="#c-IAsyncExceptionFilter">IAsyncExceptionFilter</a> <a href="#c-IAsyncPageFilter">IAsyncPageFilter</a> <a href="#c-IAsyncResourceFilter">IAsyncResourceFilter</a> <a href="#c-IAsyncResultFilter">IAsyncResultFilter</a> <a href="#c-IAuthorizationFilter">IAuthorizationFilter</a> <a href="#c-IExceptionFilter">IExceptionFilter</a> <a href="#c-IFilterContainer">IFilterContainer</a> <a href="#c-IFilterFactory">IFilterFactory</a> <a href="#c-IFilterMetadata">IFilterMetadata</a> <a href="#c-IFilterProvider">IFilterProvider</a> <a href="#c-IOrderedFilter">IOrderedFilter</a> <a href="#c-IPageFilter">IPageFilter</a> <a href="#c-IResourceFilter">IResourceFilter</a> <a href="#c-IResultFilter">IResultFilter</a> <a href="#c-PageHandlerExecutedContext">PageHandlerExecutedContext</a> <a href="#c-PageHandlerExecutingContext">PageHandlerExecutingContext</a> <a href="#c-PageHandlerSelectedContext">PageHandlerSelectedContext</a> <a href="#c-ResourceExecutedContext">ResourceExecutedContext</a> <a href="#c-ResourceExecutingContext">ResourceExecutingContext</a> <a href="#c-ResultExecutedContext">ResultExecutedContext</a> <a href="#c-ResultExecutingContext">ResultExecutingContext</a> <a href="#c-ResultFilterAttribute">ResultFilterAttribute</a></div><details class="cls" id="c-ActionExecutedContext"><summary><b>ActionExecutedContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ActionExecutedContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters, object controller)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ActionExecutedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ActionExecutedContext().@New([ :param = value ])</code> or <code>dnNew("ActionExecutedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Canceled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Canceled</code> <code>o.Canceled = v</code></td></tr><tr><td><code>Controller</code></td><td><code>object</code></td><td>read</td><td><code>o.Controller</code></td></tr><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>ExceptionDispatchInfo</code></td><td><code>ExceptionDispatchInfo</code></td><td>read, write</td><td><code>o.ExceptionDispatchInfo</code> <code>o.ExceptionDispatchInfo = v</code></td></tr><tr><td><code>ExceptionHandled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExceptionHandled</code> <code>o.ExceptionHandled = v</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ActionExecutingContext"><summary><b>ActionExecutingContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ActionExecutingContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters, IDictionary&lt;string, object&gt; actionArguments, object controller)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ActionExecutingContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ActionExecutingContext().@New([ :param = value ])</code> or <code>dnNew("ActionExecutingContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr><tr><td><code>ActionArguments</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.ActionArguments</code></td></tr><tr><td><code>Controller</code></td><td><code>object</code></td><td>read</td><td><code>o.Controller</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ActionFilterAttribute"><summary><b>ActionFilterAttribute</b> <span class="muted">class abstract · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnActionExecuted</code></td><td><code>OnActionExecuted(p1)</code></td><td><code>void OnActionExecuted(ActionExecutedContext context)</code></td></tr><tr><td><code>OnActionExecuting</code></td><td><code>OnActionExecuting(p1)</code></td><td><code>void OnActionExecuting(ActionExecutingContext context)</code></td></tr><tr><td><code>OnActionExecutionAsync</code></td><td><code>OnActionExecutionAsync(p1,p2)</code></td><td><code>Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)</code></td></tr><tr><td><code>OnResultExecuted</code></td><td><code>OnResultExecuted(p1)</code></td><td><code>void OnResultExecuted(ResultExecutedContext context)</code></td></tr><tr><td><code>OnResultExecuting</code></td><td><code>OnResultExecuting(p1)</code></td><td><code>void OnResultExecuting(ResultExecutingContext context)</code></td></tr><tr><td><code>OnResultExecutionAsync</code></td><td><code>OnResultExecutionAsync(p1,p2)</code></td><td><code>Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-AuthorizationFilterContext"><summary><b>AuthorizationFilterContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new AuthorizationFilterContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new AuthorizationFilterContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new AuthorizationFilterContext().@New([ :param = value ])</code> or <code>dnNew("AuthorizationFilterContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ExceptionContext"><summary><b>ExceptionContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ExceptionContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ExceptionContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ExceptionContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ExceptionContext().@New([ :param = value ])</code> or <code>dnNew("ExceptionContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>ExceptionDispatchInfo</code></td><td><code>ExceptionDispatchInfo</code></td><td>read, write</td><td><code>o.ExceptionDispatchInfo</code> <code>o.ExceptionDispatchInfo = v</code></td></tr><tr><td><code>ExceptionHandled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExceptionHandled</code> <code>o.ExceptionHandled = v</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ExceptionFilterAttribute"><summary><b>ExceptionFilterAttribute</b> <span class="muted">class abstract · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ExceptionFilterAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnException</code></td><td><code>OnException(p1)</code></td><td><code>void OnException(ExceptionContext context)</code></td></tr><tr><td><code>OnExceptionAsync</code></td><td><code>OnExceptionAsync(p1)</code></td><td><code>Task OnExceptionAsync(ExceptionContext context)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FilterCollection"><summary><b>FilterCollection</b> <span class="muted">class · extends Collection&lt;IFilterMetadata&gt;</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterCollection</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<p class="muted">Implements: IEnumerable, IList, ICollection</p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FilterCollection()</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FilterCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FilterCollection().@New([ :param = value ])</code> or <code>dnNew("FilterCollection",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.getCount()</code></td></tr></tbody></table></div>
+<h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>IFilterMetadata</code> · <code>o.SetItem(index,value)</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Add</code></td><td><code>Add(NULL)</code><br><code>Add(value)</code><br><code>Add([ :filterType = … ])</code><br><code>Add([ :order = … ])</code><br><code>Add([ :item = … ])</code><br><code>Add([ :filterType = …, :order = … ])</code></td><td><code>IFilterMetadata Add&lt;TFilterType&gt;()</code><br><code>IFilterMetadata Add(Type filterType)</code><br><code>IFilterMetadata Add&lt;TFilterType&gt;(int order)</code><br><code>IFilterMetadata Add(Type filterType, int order)</code><br><code>void Add(IFilterMetadata item)</code></td></tr><tr><td><code>AddService</code></td><td><code>AddService(NULL)</code><br><code>AddService(value)</code><br><code>AddService([ :filterType = … ])</code><br><code>AddService([ :order = … ])</code><br><code>AddService([ :filterType = …, :order = … ])</code></td><td><code>IFilterMetadata AddService&lt;TFilterType&gt;()</code><br><code>IFilterMetadata AddService(Type filterType)</code><br><code>IFilterMetadata AddService&lt;TFilterType&gt;(int order)</code><br><code>IFilterMetadata AddService(Type filterType, int order)</code></td></tr><tr><td><code>Clear</code></td><td><code>Clear()</code></td><td><code>void Clear()</code></td></tr><tr><td><code>Contains</code></td><td><code>Contains(p1)</code></td><td><code>bool Contains(IFilterMetadata item)</code></td></tr><tr><td><code>CopyTo</code></td><td><code>CopyTo(p1,p2)</code></td><td><code>void CopyTo(IFilterMetadata[] array, int index)</code></td></tr><tr><td><code>GetEnumerator</code></td><td><code>GetEnumerator()</code></td><td><code>IEnumerator&lt;IFilterMetadata&gt; GetEnumerator()</code></td></tr><tr><td><code>IndexOf</code></td><td><code>IndexOf(p1)</code></td><td><code>int IndexOf(IFilterMetadata item)</code></td></tr><tr><td><code>Insert</code></td><td><code>Insert(p1,p2)</code></td><td><code>void Insert(int index, IFilterMetadata item)</code></td></tr><tr><td><code>Remove</code></td><td><code>Remove(p1)</code></td><td><code>bool Remove(IFilterMetadata item)</code></td></tr><tr><td><code>RemoveAt</code></td><td><code>RemoveAt(p1)</code></td><td><code>void RemoveAt(int index)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FilterContext"><summary><b>FilterContext</b> <span class="muted">class abstract · extends <a href="Microsoft.AspNetCore.Mvc.html#c-ActionContext">ActionContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Filters</code></td><td><code>IList&lt;IFilterMetadata&gt;</code></td><td>read</td><td><code>o.Filters</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FindEffectivePolicy</code></td><td><code>FindEffectivePolicy(NULL)</code></td><td><code>TMetadata FindEffectivePolicy&lt;TMetadata&gt;()</code></td></tr><tr><td><code>IsEffectivePolicy</code></td><td><code>IsEffectivePolicy(p1)</code></td><td><code>bool IsEffectivePolicy&lt;TMetadata&gt;(TMetadata policy)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-FilterDescriptor"><summary><b>FilterDescriptor</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FilterDescriptor(IFilterMetadata filter, int filterScope)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FilterDescriptor(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FilterDescriptor().@New([ :param = value ])</code> or <code>dnNew("FilterDescriptor",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Filter</code></td><td><code>IFilterMetadata</code></td><td>read</td><td><code>o.Filter</code></td></tr><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr><tr><td><code>Scope</code></td><td><code>int</code></td><td>read</td><td><code>o.Scope</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FilterItem"><summary><b>FilterItem</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterItem</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FilterItem(FilterDescriptor descriptor)</code></td></tr><tr><td><code>new FilterItem(FilterDescriptor descriptor, IFilterMetadata filter)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FilterItem(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FilterItem().@New([ :param = value ])</code> or <code>dnNew("FilterItem",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Descriptor</code></td><td><code>FilterDescriptor</code></td><td>read</td><td><code>o.Descriptor</code></td></tr><tr><td><code>Filter</code></td><td><code>IFilterMetadata</code></td><td>read, write</td><td><code>o.Filter</code> <code>o.Filter = v</code></td></tr><tr><td><code>IsReusable</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.IsReusable</code> <code>o.IsReusable = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FilterProviderContext"><summary><b>FilterProviderContext</b> <span class="muted">class</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new FilterProviderContext(ActionContext actionContext, IList&lt;FilterItem&gt; items)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new FilterProviderContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new FilterProviderContext().@New([ :param = value ])</code> or <code>dnNew("FilterProviderContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionContext</code></td><td><code>ActionContext</code></td><td>read, write</td><td><code>o.ActionContext</code> <code>o.ActionContext = v</code></td></tr><tr><td><code>Results</code></td><td><code>IList&lt;FilterItem&gt;</code></td><td>read, write</td><td><code>o.Results</code> <code>o.Results = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-FilterScope"><summary><b>FilterScope</b> <span class="muted">class static</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.FilterScope</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>First</code></td><td><code>int</code></td><td>read · static</td><td><code>o.First</code></td></tr><tr><td><code>Global</code></td><td><code>int</code></td><td>read · static</td><td><code>o.Global</code></td></tr><tr><td><code>Controller</code></td><td><code>int</code></td><td>read · static</td><td><code>o.Controller</code></td></tr><tr><td><code>Action</code></td><td><code>int</code></td><td>read · static</td><td><code>o.Action</code></td></tr><tr><td><code>Last</code></td><td><code>int</code></td><td>read · static</td><td><code>o.Last</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IActionFilter"><summary><b>IActionFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IActionFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnActionExecuted</code></td><td><code>OnActionExecuted(p1)</code></td><td><code>void OnActionExecuted(ActionExecutedContext context)</code></td></tr><tr><td><code>OnActionExecuting</code></td><td><code>OnActionExecuting(p1)</code></td><td><code>void OnActionExecuting(ActionExecutingContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAlwaysRunResultFilter"><summary><b>IAlwaysRunResultFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+</div></details>
+<details class="cls" id="c-IAsyncActionFilter"><summary><b>IAsyncActionFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnActionExecutionAsync</code></td><td><code>OnActionExecutionAsync(p1,p2)</code></td><td><code>Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAsyncAlwaysRunResultFilter"><summary><b>IAsyncAlwaysRunResultFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncAlwaysRunResultFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+</div></details>
+<details class="cls" id="c-IAsyncAuthorizationFilter"><summary><b>IAsyncAuthorizationFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnAuthorizationAsync</code></td><td><code>OnAuthorizationAsync(p1)</code></td><td><code>Task OnAuthorizationAsync(AuthorizationFilterContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAsyncExceptionFilter"><summary><b>IAsyncExceptionFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnExceptionAsync</code></td><td><code>OnExceptionAsync(p1)</code></td><td><code>Task OnExceptionAsync(ExceptionContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAsyncPageFilter"><summary><b>IAsyncPageFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnPageHandlerExecutionAsync</code></td><td><code>OnPageHandlerExecutionAsync(p1,p2)</code></td><td><code>Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next)</code></td></tr><tr><td><code>OnPageHandlerSelectionAsync</code></td><td><code>OnPageHandlerSelectionAsync(p1)</code></td><td><code>Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAsyncResourceFilter"><summary><b>IAsyncResourceFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnResourceExecutionAsync</code></td><td><code>OnResourceExecutionAsync(p1,p2)</code></td><td><code>Task OnResourceExecutionAsync(ResourceExecutingContext context, ResourceExecutionDelegate next)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAsyncResultFilter"><summary><b>IAsyncResultFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnResultExecutionAsync</code></td><td><code>OnResultExecutionAsync(p1,p2)</code></td><td><code>Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IAuthorizationFilter"><summary><b>IAuthorizationFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnAuthorization</code></td><td><code>OnAuthorization(p1)</code></td><td><code>void OnAuthorization(AuthorizationFilterContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IExceptionFilter"><summary><b>IExceptionFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnException</code></td><td><code>OnException(p1)</code></td><td><code>void OnException(ExceptionContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IFilterContainer"><summary><b>IFilterContainer</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IFilterContainer</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>FilterDefinition</code></td><td><code>IFilterMetadata</code></td><td>read, write</td><td><code>o.FilterDefinition</code> <code>o.FilterDefinition = v</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IFilterFactory"><summary><b>IFilterFactory</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IFilterFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>IsReusable</code></td><td><code>bool</code></td><td>read</td><td><code>o.IsReusable</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>CreateInstance</code></td><td><code>CreateInstance(p1)</code></td><td><code>IFilterMetadata CreateInstance(IServiceProvider serviceProvider)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IFilterMetadata"><summary><b>IFilterMetadata</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+</div></details>
+<details class="cls" id="c-IFilterProvider"><summary><b>IFilterProvider</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IFilterProvider</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read</td><td><code>o.Order</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnProvidersExecuted</code></td><td><code>OnProvidersExecuted(p1)</code></td><td><code>void OnProvidersExecuted(FilterProviderContext context)</code></td></tr><tr><td><code>OnProvidersExecuting</code></td><td><code>OnProvidersExecuting(p1)</code></td><td><code>void OnProvidersExecuting(FilterProviderContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IOrderedFilter"><summary><b>IOrderedFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read</td><td><code>o.Order</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IPageFilter"><summary><b>IPageFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IPageFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnPageHandlerExecuted</code></td><td><code>OnPageHandlerExecuted(p1)</code></td><td><code>void OnPageHandlerExecuted(PageHandlerExecutedContext context)</code></td></tr><tr><td><code>OnPageHandlerExecuting</code></td><td><code>OnPageHandlerExecuting(p1)</code></td><td><code>void OnPageHandlerExecuting(PageHandlerExecutingContext context)</code></td></tr><tr><td><code>OnPageHandlerSelected</code></td><td><code>OnPageHandlerSelected(p1)</code></td><td><code>void OnPageHandlerSelected(PageHandlerSelectedContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IResourceFilter"><summary><b>IResourceFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IResourceFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnResourceExecuted</code></td><td><code>OnResourceExecuted(p1)</code></td><td><code>void OnResourceExecuted(ResourceExecutedContext context)</code></td></tr><tr><td><code>OnResourceExecuting</code></td><td><code>OnResourceExecuting(p1)</code></td><td><code>void OnResourceExecuting(ResourceExecutingContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-IResultFilter"><summary><b>IResultFilter</b> <span class="muted">interface</span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.IResultFilter</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnResultExecuted</code></td><td><code>OnResultExecuted(p1)</code></td><td><code>void OnResultExecuted(ResultExecutedContext context)</code></td></tr><tr><td><code>OnResultExecuting</code></td><td><code>OnResultExecuting(p1)</code></td><td><code>void OnResultExecuting(ResultExecutingContext context)</code></td></tr></tbody></table></div>
+</div></details>
+<details class="cls" id="c-PageHandlerExecutedContext"><summary><b>PageHandlerExecutedContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.PageHandlerExecutedContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PageHandlerExecutedContext(PageContext pageContext, IList&lt;IFilterMetadata&gt; filters, HandlerMethodDescriptor handlerMethod, object handlerInstance)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PageHandlerExecutedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PageHandlerExecutedContext().@New([ :param = value ])</code> or <code>dnNew("PageHandlerExecutedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionDescriptor</code></td><td><code>CompiledPageActionDescriptor</code></td><td>read</td><td><code>o.getActionDescriptor()</code></td></tr><tr><td><code>Canceled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Canceled</code> <code>o.Canceled = v</code></td></tr><tr><td><code>HandlerInstance</code></td><td><code>object</code></td><td>read</td><td><code>o.HandlerInstance</code></td></tr><tr><td><code>HandlerMethod</code></td><td><code>HandlerMethodDescriptor</code></td><td>read</td><td><code>o.HandlerMethod</code></td></tr><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>ExceptionDispatchInfo</code></td><td><code>ExceptionDispatchInfo</code></td><td>read, write</td><td><code>o.ExceptionDispatchInfo</code> <code>o.ExceptionDispatchInfo = v</code></td></tr><tr><td><code>ExceptionHandled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExceptionHandled</code> <code>o.ExceptionHandled = v</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PageHandlerExecutingContext"><summary><b>PageHandlerExecutingContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.PageHandlerExecutingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PageHandlerExecutingContext(PageContext pageContext, IList&lt;IFilterMetadata&gt; filters, HandlerMethodDescriptor handlerMethod, IDictionary&lt;string, object&gt; handlerArguments, object handlerInstance)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PageHandlerExecutingContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PageHandlerExecutingContext().@New([ :param = value ])</code> or <code>dnNew("PageHandlerExecutingContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionDescriptor</code></td><td><code>CompiledPageActionDescriptor</code></td><td>read</td><td><code>o.getActionDescriptor()</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr><tr><td><code>HandlerArguments</code></td><td><code>IDictionary&lt;string, object&gt;</code></td><td>read</td><td><code>o.HandlerArguments</code></td></tr><tr><td><code>HandlerMethod</code></td><td><code>HandlerMethodDescriptor</code></td><td>read</td><td><code>o.HandlerMethod</code></td></tr><tr><td><code>HandlerInstance</code></td><td><code>object</code></td><td>read</td><td><code>o.HandlerInstance</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-PageHandlerSelectedContext"><summary><b>PageHandlerSelectedContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.PageHandlerSelectedContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.RazorPages</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PageHandlerSelectedContext(PageContext pageContext, IList&lt;IFilterMetadata&gt; filters, object handlerInstance)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new PageHandlerSelectedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PageHandlerSelectedContext().@New([ :param = value ])</code> or <code>dnNew("PageHandlerSelectedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>ActionDescriptor</code></td><td><code>CompiledPageActionDescriptor</code></td><td>read</td><td><code>o.getActionDescriptor()</code></td></tr><tr><td><code>HandlerMethod</code></td><td><code>HandlerMethodDescriptor</code></td><td>read, write</td><td><code>o.HandlerMethod</code> <code>o.HandlerMethod = v</code></td></tr><tr><td><code>HandlerInstance</code></td><td><code>object</code></td><td>read</td><td><code>o.HandlerInstance</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResourceExecutedContext"><summary><b>ResourceExecutedContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResourceExecutedContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResourceExecutedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResourceExecutedContext().@New([ :param = value ])</code> or <code>dnNew("ResourceExecutedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Canceled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Canceled</code> <code>o.Canceled = v</code></td></tr><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>ExceptionDispatchInfo</code></td><td><code>ExceptionDispatchInfo</code></td><td>read, write</td><td><code>o.ExceptionDispatchInfo</code> <code>o.ExceptionDispatchInfo = v</code></td></tr><tr><td><code>ExceptionHandled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExceptionHandled</code> <code>o.ExceptionHandled = v</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResourceExecutingContext"><summary><b>ResourceExecutingContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResourceExecutingContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters, IList&lt;IValueProviderFactory&gt; valueProviderFactories)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResourceExecutingContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResourceExecutingContext().@New([ :param = value ])</code> or <code>dnNew("ResourceExecutingContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr><tr><td><code>ValueProviderFactories</code></td><td><code>IList&lt;IValueProviderFactory&gt;</code></td><td>read</td><td><code>o.ValueProviderFactories</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResultExecutedContext"><summary><b>ResultExecutedContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResultExecutedContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters, IActionResult result, object controller)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResultExecutedContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResultExecutedContext().@New([ :param = value ])</code> or <code>dnNew("ResultExecutedContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Canceled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Canceled</code> <code>o.Canceled = v</code></td></tr><tr><td><code>Controller</code></td><td><code>object</code></td><td>read</td><td><code>o.Controller</code></td></tr><tr><td><code>Exception</code></td><td><code>Exception</code></td><td>read, write</td><td><code>o.Exception</code> <code>o.Exception = v</code></td></tr><tr><td><code>ExceptionDispatchInfo</code></td><td><code>ExceptionDispatchInfo</code></td><td>read, write</td><td><code>o.ExceptionDispatchInfo</code> <code>o.ExceptionDispatchInfo = v</code></td></tr><tr><td><code>ExceptionHandled</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.ExceptionHandled</code> <code>o.ExceptionHandled = v</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read</td><td><code>o.Result</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResultExecutingContext"><summary><b>ResultExecutingContext</b> <span class="muted">class · extends <a href="#c-FilterContext">FilterContext</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext</code> · assembly <code>Microsoft.AspNetCore.Mvc.Abstractions</code></p>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new ResultExecutingContext(ActionContext actionContext, IList&lt;IFilterMetadata&gt; filters, IActionResult result, object controller)</code></td></tr></tbody></table></div>
+<p class="muted">Ring: <code>new ResultExecutingContext(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new ResultExecutingContext().@New([ :param = value ])</code> or <code>dnNew("ResultExecutingContext",[ :param = value ])</code>.</p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Controller</code></td><td><code>object</code></td><td>read</td><td><code>o.Controller</code></td></tr><tr><td><code>Result</code></td><td><code>IActionResult</code></td><td>read, write</td><td><code>o.Result</code> <code>o.Result = v</code></td></tr><tr><td><code>Cancel</code></td><td><code>bool</code></td><td>read, write</td><td><code>o.Cancel</code> <code>o.Cancel = v</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<details class="cls" id="c-ResultFilterAttribute"><summary><b>ResultFilterAttribute</b> <span class="muted">class abstract · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
+<div class="clsbody">
+<p class="net"><code>Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
+<h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Order</code></td><td><code>int</code></td><td>read, write</td><td><code>o.Order</code> <code>o.Order = v</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>OnResultExecuted</code></td><td><code>OnResultExecuted(p1)</code></td><td><code>void OnResultExecuted(ResultExecutedContext context)</code></td></tr><tr><td><code>OnResultExecuting</code></td><td><code>OnResultExecuting(p1)</code></td><td><code>void OnResultExecuting(ResultExecutingContext context)</code></td></tr><tr><td><code>OnResultExecutionAsync</code></td><td><code>OnResultExecutionAsync(p1,p2)</code></td><td><code>Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)</code></td></tr></tbody></table></div>
+<p class="muted">Members of the base class are inherited.</p>
+</div></details>
+<div class="pager"></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+
+</main>
+</body>
+</html>
