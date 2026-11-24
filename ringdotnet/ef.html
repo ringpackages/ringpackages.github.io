@@ -284,7 +284,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	? <span class="s">"row 1: "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"Name"</span>) + <span class="s">", "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"Age"</span>) + <span class="s">", "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"City"</span>)
 
 	? nl + <span class="s">"adults in Cairo:"</span>
-	<span class="k">for</span> aCustomer <span class="k">in</span> oDb.<span class="f">where</span>(<span class="s">"Customers"</span>,<span class="s">"Age &gt;= {0} AND City = {1}"</span>,[<span class="n">18</span>,<span class="s">"Cairo"</span>])
+	aCustomers = oDb.<span class="f">where</span>(<span class="s">"Customers"</span>,<span class="s">"Age &gt;= {0} AND City = {1}"</span>,[<span class="n">18</span>,<span class="s">"Cairo"</span>])
+	<span class="k">for</span> aCustomer <span class="k">in</span> aCustomers
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aCustomer,<span class="s">"Name"</span>) + <span class="s">" ("</span> + <span class="f">dbValue</span>(aCustomer,<span class="s">"Age"</span>) + <span class="s">")"</span>
 	<span class="k">next</span>
 
@@ -332,13 +333,15 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	nNarnia = oDb.<span class="f">insert</span>(<span class="s">"Books"</span>,[[<span class="s">"Title"</span>,<span class="s">"Narnia"</span>],[<span class="s">"AuthorId"</span>,nLewis]])
 
 	? <span class="s">"books by Tolkien:"</span>
-	<span class="k">for</span> aBook <span class="k">in</span> oDb.<span class="f">children</span>(<span class="s">"Authors"</span>,nTolkien,<span class="s">"Books"</span>)
+	aBooks = oDb.<span class="f">children</span>(<span class="s">"Authors"</span>,nTolkien,<span class="s">"Books"</span>)
+	<span class="k">for</span> aBook <span class="k">in</span> aBooks
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>)
 	<span class="k">next</span>
 	? nl + <span class="s">"Narnia was written by "</span> + <span class="f">dbValue</span>(oDb.<span class="f">parent</span>(<span class="s">"Books"</span>,nNarnia,<span class="s">"Authors"</span>),<span class="s">"Name"</span>)
 
 	? nl + <span class="s">"include:"</span>
-	<span class="k">for</span> aItem <span class="k">in</span> oDb.<span class="f">include</span>(<span class="s">"Authors"</span>,<span class="s">"Books"</span>)
+	aItems = oDb.<span class="f">include</span>(<span class="s">"Authors"</span>,<span class="s">"Books"</span>)
+	<span class="k">for</span> aItem <span class="k">in</span> aItems
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aItem[<span class="n">1</span>],<span class="s">"Name"</span>) + <span class="s">" has "</span> + len(aItem[<span class="n">2</span>]) + <span class="s">" book(s)"</span>
 	<span class="k">next</span>
 
@@ -397,12 +400,14 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	? <span class="s">"max     : "</span> + oDb.<span class="f">max</span>(<span class="s">"People"</span>,<span class="s">"Score"</span>,[])
 
 	? nl + <span class="s">"people per city:"</span>
-	<span class="k">for</span> aGroup <span class="k">in</span> oDb.<span class="f">groupCount</span>(<span class="s">"People"</span>,<span class="s">"City"</span>,[])
+	aGroups = oDb.<span class="f">groupCount</span>(<span class="s">"People"</span>,<span class="s">"City"</span>,[])
+	<span class="k">for</span> aGroup <span class="k">in</span> aGroups
 		? <span class="s">"  "</span> + aGroup[<span class="n">1</span>] + <span class="s">": "</span> + aGroup[<span class="n">2</span>]
 	<span class="k">next</span>
 
 	? nl + <span class="s">"any SELECT shape:"</span>
-	<span class="k">for</span> aRow <span class="k">in</span> oDb.<span class="f">sqlRows</span>(<span class="s">"SELECT City, COUNT(*) AS N, AVG(Age) AS AvgAge FROM People WHERE Age &gt; {0} GROUP BY City ORDER BY City"</span>,[<span class="n">18</span>])
+	aCityRows = oDb.<span class="f">sqlRows</span>(<span class="s">"SELECT City, COUNT(*) AS N, AVG(Age) AS AvgAge FROM People WHERE Age &gt; {0} GROUP BY City ORDER BY City"</span>,[<span class="n">18</span>])
+	<span class="k">for</span> aRow <span class="k">in</span> aCityRows
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aRow,<span class="s">"City"</span>) + <span class="s">" n="</span> + <span class="f">dbValue</span>(aRow,<span class="s">"N"</span>) + <span class="s">" avg="</span> + <span class="f">dbValue</span>(aRow,<span class="s">"AvgAge"</span>)
 	<span class="k">next</span>
 	oDb.<span class="f">close</span>()</code></pre></div></details>
@@ -558,7 +563,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 		[<span class="s">"Books"</span>,[[<span class="s">"Id"</span>,<span class="s">"int"</span>,<span class="n">1</span>],[<span class="s">"Title"</span>,<span class="s">"string"</span>,<span class="n">0</span>],[<span class="s">"Year"</span>,<span class="s">"int"</span>,<span class="n">0</span>],[<span class="s">"AuthorId"</span>,<span class="s">"int"</span>,<span class="n">0</span>,[[<span class="s">"references"</span>,<span class="s">"Authors"</span>]]]]]
 	])
 	cProperties = <span class="s">""</span>
-	<span class="k">for</span> cProperty <span class="k">in</span> oDb.<span class="f">properties</span>(<span class="s">"Books"</span>)
+	aProperties = oDb.<span class="f">properties</span>(<span class="s">"Books"</span>)
+	<span class="k">for</span> cProperty <span class="k">in</span> aProperties
 		cProperties += cProperty + <span class="s">" "</span>
 	<span class="k">next</span>
 	? <span class="s">"properties of Books: "</span> + cProperties
@@ -574,7 +580,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	oDb.<span class="f">add</span>(oBook)
 	? <span class="s">"AuthorId of the book: "</span> + oBook.<span class="f">getProp</span>(<span class="s">"AuthorId"</span>)
 
-	<span class="k">for</span> oB <span class="k">in</span> oDb.<span class="f">query</span>(<span class="s">"Books"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Author"</span>]], [<span class="s">"where"</span>,[<span class="s">"Year"</span>,<span class="s">"&lt;"</span>,<span class="n">1950</span>]] ])
+	aBooks = oDb.<span class="f">query</span>(<span class="s">"Books"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Author"</span>]], [<span class="s">"where"</span>,[<span class="s">"Year"</span>,<span class="s">"&lt;"</span>,<span class="n">1950</span>]] ])
+	<span class="k">for</span> oB <span class="k">in</span> aBooks
 		? oB.<span class="f">getProp</span>(<span class="s">"Title"</span>) + <span class="s">" by "</span> + oB.<span class="f">getProp</span>(<span class="s">"Author"</span>).<span class="f">getProp</span>(<span class="s">"Name"</span>)
 	<span class="k">next</span>
 

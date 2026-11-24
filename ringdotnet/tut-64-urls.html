@@ -294,7 +294,8 @@ using {
 	<span class="c"># 5. Read a query string: split on &amp; and =, then decode each part</span>
 	cQuery = <span class="s">"q=rock+%26+roll&amp;page=2&amp;lang=ar"</span>
 	? nl + <span class="s">"5. the parameters of "</span> + cQuery + <span class="s">":"</span>
-	<span class="k">for</span> aPair <span class="k">in</span> parseQuery(cQuery)
+	aPairs = parseQuery(cQuery)
+	<span class="k">for</span> aPair <span class="k">in</span> aPairs
 		? <span class="s">"   "</span> + aPair[<span class="n">1</span>] + <span class="s">" = "</span> + aPair[<span class="n">2</span>]
 	<span class="k">next</span>
 
@@ -328,7 +329,8 @@ using {
 <span class="k">func</span> <span class="f">parseQuery</span> cQuery
 
 	aList = []
-	<span class="k">for</span> cPart <span class="k">in</span> str2list(substr(cQuery,<span class="s">"&amp;"</span>,nl))
+	aParts = str2list(substr(cQuery,<span class="s">"&amp;"</span>,nl))
+	<span class="k">for</span> cPart <span class="k">in</span> aParts
 		nPos = substr(cPart,<span class="s">"="</span>)
 		aList + [left(cPart,nPos - <span class="n">1</span>),<span class="k">new</span> <span class="t">WebUtility</span>().<span class="f">UrlDecode</span>(substr(cPart,nPos + <span class="n">1</span>))]
 	<span class="k">next</span>

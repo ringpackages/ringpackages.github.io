@@ -277,11 +277,13 @@ oList.@ForEach(<span class="f">dnCallback</span>(<span class="s">"printItem"</sp
 
 ? <span class="s">"Sort by length (Comparison&lt;string&gt;):"</span>
 oList.<span class="f">Sort</span>([ :comparison = <span class="f">dnCallback</span>(<span class="s">"compareLength"</span>) ])
-<span class="k">for</span> cItem <span class="k">in</span> oList.<span class="f">toList</span>() ? <span class="s">"  "</span> + cItem <span class="k">next</span>
+aItems = oList.<span class="f">toList</span>()
+<span class="k">for</span> cItem <span class="k">in</span> aItems ? <span class="s">"  "</span> + cItem <span class="k">next</span>
 
 ? <span class="s">"FindAll starting with a (Predicate&lt;string&gt;):"</span>
 oFound = oList.<span class="f">FindAll</span>(<span class="f">dnCallback</span>(<span class="s">"startsWithA"</span>))
-<span class="k">for</span> cItem <span class="k">in</span> oFound.<span class="f">toList</span>() ? <span class="s">"  "</span> + cItem <span class="k">next</span>
+aItems = oFound.<span class="f">toList</span>()
+<span class="k">for</span> cItem <span class="k">in</span> aItems ? <span class="s">"  "</span> + cItem <span class="k">next</span>
 ? <span class="s">"Exists(startsWithA) = "</span> + oList.<span class="f">Exists</span>(<span class="f">dnCallback</span>(<span class="s">"startsWithA"</span>))
 
 <span class="c"># Callbacks can be any Ring code (as in RingQt events): aDotNetArgs holds the arguments, xDotNetResult the result</span>

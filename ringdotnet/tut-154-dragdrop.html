@@ -347,7 +347,8 @@ oFilesList = <span class="s">""</span>
 	<span class="k">if</span> <span class="k">not</span> oArgs.Data.<span class="f">GetDataPresent</span>(<span class="s">"FileDrop"</span>)
 		<span class="k">return</span>
 	<span class="k">ok</span>
-	<span class="k">for</span> cPath <span class="k">in</span> oArgs.Data.<span class="f">GetData</span>(<span class="s">"FileDrop"</span>).<span class="f">toList</span>()
+	aPaths = oArgs.Data.<span class="f">GetData</span>(<span class="s">"FileDrop"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> cPath <span class="k">in</span> aPaths
 		oFilesList.Items.<span class="f">Add</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cPath))
 	<span class="k">next</span>
 	oStatus.Text = <span class="s">""</span> + oFilesList.Items.Count + <span class="s">" files dropped"</span></code></pre></div>

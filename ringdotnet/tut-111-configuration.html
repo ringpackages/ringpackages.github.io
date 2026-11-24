@@ -292,7 +292,8 @@ using {
 	<span class="c"># 3. A section: GetSection gives a part of the tree. Its Key is the last name; GetChildren lists what is directly inside</span>
 	oSection = oConfig.<span class="f">GetSection</span>(<span class="s">"Database"</span>)
 	? nl + <span class="s">"3. the section "</span> + oSection.Key + <span class="s">" has:"</span>
-	<span class="k">for</span> oChild <span class="k">in</span> oSection.<span class="f">GetChildren</span>().<span class="f">toList</span>()
+	aChildren = oSection.<span class="f">GetChildren</span>().<span class="f">toList</span>()
+	<span class="k">for</span> oChild <span class="k">in</span> aChildren
 		? <span class="s">"   "</span> + oChild.Key + <span class="s">" = "</span> + oChild.Value
 	<span class="k">next</span>
 

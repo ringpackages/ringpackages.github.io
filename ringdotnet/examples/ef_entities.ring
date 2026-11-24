@@ -10,7 +10,8 @@ func main
 		["Books",[["Id","int",1],["Title","string",0],["Year","int",0],["AuthorId","int",0,[["references","Authors"]]]]]
 	])
 	cProperties = ""
-	for cProperty in oDb.properties("Books")
+	aProperties = oDb.properties("Books")
+	for cProperty in aProperties
 		cProperties += cProperty + " "
 	next
 	? "properties of Books: " + cProperties
@@ -26,7 +27,8 @@ func main
 	oDb.add(oBook)
 	? "AuthorId of the book: " + oBook.getProp("AuthorId")
 
-	for oB in oDb.query("Books",[ ["include",["Author"]], ["where",["Year","<",1950]] ])
+	aBooks = oDb.query("Books",[ ["include",["Author"]], ["where",["Year","<",1950]] ])
+	for oB in aBooks
 		? oB.getProp("Title") + " by " + oB.getProp("Author").getProp("Name")
 	next
 

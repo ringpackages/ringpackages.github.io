@@ -320,7 +320,8 @@ cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 <span class="k">func</span> <span class="f">parseAccept</span> cAccept
 
 	aItems = []
-	<span class="k">for</span> cPart <span class="k">in</span> str2list(substr(cAccept,<span class="s">","</span>,nl))
+	aParts = str2list(substr(cAccept,<span class="s">","</span>,nl))
+	<span class="k">for</span> cPart <span class="k">in</span> aParts
 		oValue = <span class="f">dnStatic</span>(cHeaders + <span class="s">"MediaTypeHeaderValue"</span>,<span class="s">"Parse"</span>,[trim(cPart)])
 		nQuality = oValue.Quality
 		<span class="k">if</span> isObject(nQuality)

@@ -258,7 +258,8 @@ oList = <span class="k">new</span> <span class="t">StringList</span>()
 oList.<span class="f">Add</span>(<span class="s">"banana"</span>) oList.<span class="f">Add</span>(<span class="s">"apple"</span>) oList.<span class="f">Add</span>(<span class="s">"cherry"</span>)
 oList.<span class="f">Sort</span>(<span class="k">NULL</span>)
 ? oList.Count
-<span class="k">for</span> cItem <span class="k">in</span> oList.<span class="f">toList</span>()            <span class="c"># toList() copies the collection to a Ring list</span>
+aItems = oList.<span class="f">toList</span>()                <span class="c"># toList() copies the collection to a Ring list</span>
+<span class="k">for</span> cItem <span class="k">in</span> aItems
 	? cItem
 <span class="k">next</span>
 
@@ -283,7 +284,8 @@ oList.<span class="f">Sort</span>(<span class="k">NULL</span>)
 ? <span class="s">"First = "</span> + oList.<span class="f">Item</span>(<span class="n">0</span>)
 oList.<span class="f">SetItem</span>(<span class="n">0</span>,<span class="s">"avocado"</span>)
 ? <span class="s">"Contains(apple) = "</span> + oList.<span class="f">Contains</span>(<span class="s">"apple"</span>)
-<span class="k">for</span> cItem <span class="k">in</span> oList.<span class="f">toList</span>()
+aItems = oList.<span class="f">toList</span>()
+<span class="k">for</span> cItem <span class="k">in</span> aItems
 	? <span class="s">"  "</span> + cItem
 <span class="k">next</span>
 
@@ -353,7 +355,8 @@ using {
 
 <span class="c"># Word frequency with Dictionary&lt;string,double&gt; (entries are wrapped KeyValuePair objects)</span>
 oCount = <span class="k">new</span> <span class="t">NumberDictionary</span>()
-<span class="k">for</span> cWord <span class="k">in</span> split(<span class="s">"the quick brown fox jumps over the lazy dog the end"</span>,<span class="s">" "</span>)
+aWords = split(<span class="s">"the quick brown fox jumps over the lazy dog the end"</span>,<span class="s">" "</span>)
+<span class="k">for</span> cWord <span class="k">in</span> aWords
 	aGot = oCount.<span class="f">TryGetValue</span>(cWord)
 	nOld = <span class="n">0</span>
 	<span class="k">if</span> aGot[<span class="n">1</span>] nOld = aGot[<span class="n">2</span>] <span class="k">ok</span>
@@ -361,7 +364,8 @@ oCount = <span class="k">new</span> <span class="t">NumberDictionary</span>()
 <span class="k">next</span>
 ? <span class="s">"Distinct words : "</span> + oCount.Count
 ? <span class="s">"'the' appears  : "</span> + oCount.<span class="f">Item</span>(<span class="s">"the"</span>) + <span class="s">" times"</span>
-<span class="k">for</span> oPair <span class="k">in</span> oCount.<span class="f">toList</span>()
+aPairs = oCount.<span class="f">toList</span>()
+<span class="k">for</span> oPair <span class="k">in</span> aPairs
 	<span class="k">if</span> oPair.Value &gt; <span class="n">1</span> ? <span class="s">"  "</span> + oPair.Key + <span class="s">" = "</span> + oPair.Value <span class="k">ok</span>
 <span class="k">next</span>
 

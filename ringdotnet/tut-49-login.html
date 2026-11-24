@@ -366,7 +366,8 @@ aSessions = []            <span class="c"># [token, user name]: who is logged in
 <span class="k">func</span> <span class="f">tokenOf</span> oRequest
 
 	cHeader = oRequest.<span class="f">header</span>(<span class="s">"Cookie"</span>)
-	<span class="k">for</span> cPart <span class="k">in</span> str2list(substr(cHeader,<span class="s">";"</span>,nl))
+	aParts = str2list(substr(cHeader,<span class="s">";"</span>,nl))
+	<span class="k">for</span> cPart <span class="k">in</span> aParts
 		cPart = trim(cPart)
 		<span class="k">if</span> left(cPart,<span class="n">8</span>) = <span class="s">"session="</span>
 			<span class="k">return</span> substr(cPart,<span class="n">9</span>)

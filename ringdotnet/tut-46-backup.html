@@ -317,7 +317,8 @@ using {
 
 <span class="k">func</span> <span class="f">showBackups</span> cBackups
 
-	<span class="k">for</span> cFile <span class="k">in</span> listBackups(cBackups)
+	aFiles = listBackups(cBackups)
+	<span class="k">for</span> cFile <span class="k">in</span> aFiles
 		? <span class="s">"   "</span> + <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cFile)
 	<span class="k">next</span>
 

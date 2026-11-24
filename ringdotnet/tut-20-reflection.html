@@ -274,13 +274,15 @@ using {
 
 	<span class="c"># Its public properties</span>
 	? nl + <span class="s">"Properties:"</span>
-	<span class="k">for</span> oProperty <span class="k">in</span> oType.<span class="f">GetProperties</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aProperties = oType.<span class="f">GetProperties</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oProperty <span class="k">in</span> aProperties
 		? <span class="s">"  "</span> + oProperty.Name + <span class="s">" : "</span> + oProperty.PropertyType.Name + iif(oProperty.CanWrite,<span class="s">" (read/write)"</span>,<span class="s">" (read only)"</span>)
 	<span class="k">next</span>
 
 	<span class="c"># Its methods: many names appear several times (overloads), so list each name once</span>
 	aNames = []
-	<span class="k">for</span> oMethod <span class="k">in</span> oType.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aMethods = oType.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oMethod <span class="k">in</span> aMethods
 		<span class="k">if</span> find(aNames,oMethod.Name) = <span class="n">0</span>
 			aNames + oMethod.Name
 		<span class="k">ok</span>
@@ -293,7 +295,8 @@ using {
 
 	<span class="c"># The overloads of one method, with their parameters</span>
 	aVersions = []
-	<span class="k">for</span> oMethod <span class="k">in</span> oType.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aMethods = oType.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oMethod <span class="k">in</span> aMethods
 		<span class="k">if</span> oMethod.Name = <span class="s">"Append"</span>
 			aParameters = oMethod.<span class="f">GetParameters</span>().<span class="f">toList</span>()
 			<span class="k">if</span> len(aParameters) = <span class="n">1</span>

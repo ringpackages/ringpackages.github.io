@@ -285,7 +285,8 @@ using {
 	oStrict = <span class="k">new</span> <span class="t">IdnMapping</span>()
 	oStrict.UseStd3AsciiRules = <span class="k">True</span>                       <span class="c"># only letters, digits and hyphens are allowed in a name (a space is refused)</span>
 	? nl + <span class="s">"3. checking names (the second answer is with UseStd3AsciiRules):"</span>
-	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"good-name.example"</span>,<span class="s">"-bad.example"</span>,<span class="s">"empty..label.example"</span>,copy(<span class="s">"a"</span>,<span class="n">64</span>) + <span class="s">".example"</span>,<span class="s">"has space.example"</span>]
+	aNames = [<span class="s">"good-name.example"</span>,<span class="s">"-bad.example"</span>,<span class="s">"empty..label.example"</span>,copy(<span class="s">"a"</span>,<span class="n">64</span>) + <span class="s">".example"</span>,<span class="s">"has space.example"</span>]
+	<span class="k">for</span> cName <span class="k">in</span> aNames
 		? <span class="s">"   "</span> + padRight(shortText(cName),<span class="n">24</span>) + padRight(checkName(oIdn,cName),<span class="n">32</span>) + checkName(oStrict,cName)
 	<span class="k">next</span>
 
@@ -301,7 +302,8 @@ using {
 	<span class="c"># 5. A defense: look at the SCRIPTS (alphabets) of the letters in each part. A normal name uses one script; a name that mixes</span>
 	<span class="c">#    Latin and Cyrillic letters is suspicious. Browsers show such names in Punycode instead of the letters.</span>
 	? nl + <span class="s">"5. the alphabets in each part of the name (the parts are separated by dots):"</span>
-	<span class="k">for</span> cName <span class="k">in</span> [cLatin,cLookAlike,cGerman,cArabic,<span class="s">"dom"</span> + char(<span class="n">208</span>) + char(<span class="n">176</span>) + <span class="s">"in.com"</span>]
+	aNames = [cLatin,cLookAlike,cGerman,cArabic,<span class="s">"dom"</span> + char(<span class="n">208</span>) + char(<span class="n">176</span>) + <span class="s">"in.com"</span>]
+	<span class="k">for</span> cName <span class="k">in</span> aNames
 		? <span class="s">"   "</span> + padRight(oIdn.<span class="f">GetAscii</span>(cName),<span class="n">26</span>) + padRight(scriptsOf(cName),<span class="n">18</span>) + decision(cName)
 	<span class="k">next</span>
 
@@ -348,7 +350,8 @@ using {
 <span class="k">func</span> <span class="f">scriptList</span> cLabel
 
 	aScripts = []
-	<span class="k">for</span> nCode <span class="k">in</span> codePoints(cLabel)
+	aCodePoints = codePoints(cLabel)
+	<span class="k">for</span> nCode <span class="k">in</span> aCodePoints
 		cScript = scriptOf(nCode)
 		<span class="k">if</span> cScript != <span class="s">"other"</span> <span class="k">and</span> find(aScripts,cScript) = <span class="n">0</span>
 			aScripts + cScript
@@ -364,14 +367,16 @@ using {
 <span class="k">func</span> <span class="f">scriptsOf</span> cName
 
 	cText = <span class="s">""</span>
-	<span class="k">for</span> cLabel <span class="k">in</span> labels(cName)
+	aLabels = labels(cName)
+	<span class="k">for</span> cLabel <span class="k">in</span> aLabels
 		cText += joinWith(scriptList(cLabel),<span class="s">"+"</span>) + <span class="s">" "</span>
 	<span class="k">next</span>
 	<span class="k">return</span> cText
 
 <span class="k">func</span> <span class="f">isMixed</span> cName
 
-	<span class="k">for</span> cLabel <span class="k">in</span> labels(cName)
+	aLabels = labels(cName)
+	<span class="k">for</span> cLabel <span class="k">in</span> aLabels
 		<span class="k">if</span> len(scriptList(cLabel)) &gt; <span class="n">1</span>
 			<span class="k">return</span> <span class="k">True</span>
 		<span class="k">ok</span>

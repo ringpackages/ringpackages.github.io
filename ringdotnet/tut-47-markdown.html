@@ -294,7 +294,8 @@ using {
 
 	oHtml = <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">""</span>)
 	lInList = <span class="k">False</span>
-	<span class="k">for</span> cLine <span class="k">in</span> str2list(cMarkdown)
+	aLines = str2list(cMarkdown)
+	<span class="k">for</span> cLine <span class="k">in</span> aLines
 		cLine = trim(cLine)
 		<span class="c"># an empty line ends a list and a paragraph</span>
 		<span class="k">if</span> cLine = <span class="s">""</span>

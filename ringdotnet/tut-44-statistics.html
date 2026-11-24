@@ -279,7 +279,8 @@ using {
 	<span class="c"># 3. A histogram: how often each value occurs, as bars of #</span>
 	? nl + <span class="s">"Histogram:"</span>
 	aValues = []
-	<span class="k">for</span> nValue <span class="k">in</span> sort(aData)
+	aSortedValues = sort(aData)
+	<span class="k">for</span> nValue <span class="k">in</span> aSortedValues
 		<span class="k">if</span> find(aValues,nValue) = <span class="n">0</span>
 			aValues + nValue
 		<span class="k">ok</span>

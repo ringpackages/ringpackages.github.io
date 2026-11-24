@@ -319,7 +319,8 @@ cRoot = <span class="s">""</span>
 
 	oNode = oNodes.<span class="f">Add</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cFolder))
 	oNode.Tag = cFolder
-	<span class="k">for</span> cSub <span class="k">in</span> sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetDirectories</span>(cFolder).<span class="f">toList</span>())
+	aSubs = sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetDirectories</span>(cFolder).<span class="f">toList</span>())
+	<span class="k">for</span> cSub <span class="k">in</span> aSubs
 		addFolderNode(oNode.Nodes,cSub)
 	<span class="k">next</span>
 	<span class="k">return</span> oNode
@@ -331,7 +332,8 @@ cRoot = <span class="s">""</span>
 	oList.Items.<span class="f">Clear</span>()
 	nFiles = <span class="n">0</span>
 	nBytes = <span class="n">0</span>
-	<span class="k">for</span> cFile <span class="k">in</span> sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cFolder).<span class="f">toList</span>())
+	aFiles = sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cFolder).<span class="f">toList</span>())
+	<span class="k">for</span> cFile <span class="k">in</span> aFiles
 		oInfo = <span class="k">new</span> <span class="t">FileInfo</span>(cFile)
 		oItem = <span class="k">new</span> <span class="t">ListViewItem</span>().@<span class="k">New</span>([ :<span class="t">text</span> = oInfo.Name ])
 		oItem.SubItems.<span class="f">Add</span>(sizeText(oInfo.Length))

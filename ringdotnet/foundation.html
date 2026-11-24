@@ -558,7 +558,8 @@ oZ = <span class="k">new</span> <span class="t">Complex</span>().@<span class="k
 <span class="c"># Reflection: explore a type</span>
 oMath = <span class="k">new</span> <span class="t">Type</span>().<span class="f">GetType</span>([ :typeName = <span class="s">"System.Math"</span> ])
 aNames = []
-<span class="k">for</span> oMethod <span class="k">in</span> oMath.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+aMethods = oMath.<span class="f">GetMethods</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+<span class="k">for</span> oMethod <span class="k">in</span> aMethods
 	<span class="k">if</span> find(aNames,oMethod.Name) = <span class="n">0</span> aNames + oMethod.Name <span class="k">ok</span>
 <span class="k">next</span>
 ? <span class="s">"Math methods   : "</span> + len(aNames) + <span class="s">" names, e.g. "</span> + aNames[<span class="n">1</span>] + <span class="s">", "</span> + aNames[<span class="n">2</span>] + <span class="s">", "</span> + aNames[<span class="n">3</span>]

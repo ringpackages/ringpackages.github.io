@@ -359,7 +359,8 @@ lLoading = <span class="k">False</span>
 	lLoading = <span class="k">True</span>
 	oDocument = <span class="k">new</span> <span class="t">JsonDocument</span>().<span class="f">Parse</span>(<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cFile))
 	oRoot = oDocument.RootElement
-	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oRoot.<span class="f">GetArrayLength</span>() - <span class="n">1</span>
+	nLastIndex = oRoot.<span class="f">GetArrayLength</span>() - <span class="n">1</span>
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> nLastIndex
 		oTask = oRoot.<span class="f">Item</span>(nIndex)
 		oTasks.Items.<span class="f">Add</span>([ :item = oTask.<span class="f">Item</span>(<span class="n">1</span>).<span class="f">GetString</span>(), :isChecked = oTask.<span class="f">Item</span>(<span class="n">0</span>).<span class="f">GetInt32</span>() = <span class="n">1</span> ])
 	<span class="k">next</span>

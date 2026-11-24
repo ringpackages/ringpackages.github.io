@@ -314,7 +314,8 @@ cTempFile = <span class="s">""</span>
 	nShown = <span class="n">0</span>
 	nFailed = <span class="n">0</span>
 	aRows = []
-	<span class="k">for</span> oProperty <span class="k">in</span> oObject.<span class="f">GetType</span>().<span class="f">GetProperties</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aProperties = oObject.<span class="f">GetType</span>().<span class="f">GetProperties</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oProperty <span class="k">in</span> aProperties
 		<span class="k">if</span> len(oProperty.<span class="f">GetIndexParameters</span>().<span class="f">toList</span>()) &gt; <span class="n">0</span>
 			<span class="k">loop</span>
 		<span class="k">ok</span>
@@ -327,7 +328,8 @@ cTempFile = <span class="s">""</span>
 		<span class="k">done</span>
 		aRows + [ oProperty.Name, oProperty.PropertyType.Name, cValue ]
 	<span class="k">next</span>
-	<span class="k">for</span> aRow <span class="k">in</span> sortRows(aRows)
+	aSortedRows = sortRows(aRows)
+	<span class="k">for</span> aRow <span class="k">in</span> aSortedRows
 		oItem = <span class="k">new</span> <span class="t">ListViewItem</span>().@<span class="k">New</span>([ :<span class="t">text</span> = aRow[<span class="n">1</span>] ])
 		oItem.SubItems.<span class="f">Add</span>(aRow[<span class="n">2</span>])
 		oItem.SubItems.<span class="f">Add</span>(aRow[<span class="n">3</span>])

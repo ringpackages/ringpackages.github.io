@@ -295,7 +295,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 
 	<span class="c"># STEP 4. Search with a SQL condition: {0} and {1} are parameters, never paste text into SQL yourself</span>
 	? nl + <span class="s">"STEP 4: books after 1940:"</span>
-	<span class="k">for</span> aBook <span class="k">in</span> oDb.<span class="f">where</span>(<span class="s">"Books"</span>,<span class="s">"Year &gt; {0}"</span>,[<span class="n">1940</span>])
+	aBooks = oDb.<span class="f">where</span>(<span class="s">"Books"</span>,<span class="s">"Year &gt; {0}"</span>,[<span class="n">1940</span>])
+	<span class="k">for</span> aBook <span class="k">in</span> aBooks
 		? <span class="s">"        "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>) + <span class="s">" ("</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Year"</span>) + <span class="s">")"</span>
 	<span class="k">next</span>
 
@@ -370,12 +371,14 @@ using {
 
 	<span class="c"># RELATIONS: the rows that belong to a row</span>
 	? <span class="s">"Books by Tolkien:"</span>
-	<span class="k">for</span> aBook <span class="k">in</span> oDb.<span class="f">children</span>(<span class="s">"Authors"</span>,nTolkien,<span class="s">"Books"</span>)
+	aBooks = oDb.<span class="f">children</span>(<span class="s">"Authors"</span>,nTolkien,<span class="s">"Books"</span>)
+	<span class="k">for</span> aBook <span class="k">in</span> aBooks
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aBook,<span class="s">"Title"</span>)
 	<span class="k">next</span>
 	? <span class="s">"Narnia was written by "</span> + <span class="f">dbValue</span>(oDb.<span class="f">parent</span>(<span class="s">"Books"</span>,<span class="n">4</span>,<span class="s">"Authors"</span>),<span class="s">"Name"</span>)
 	? nl + <span class="s">"Authors with their books:"</span>
-	<span class="k">for</span> aItem <span class="k">in</span> oDb.<span class="f">include</span>(<span class="s">"Authors"</span>,<span class="s">"Books"</span>)
+	aItems = oDb.<span class="f">include</span>(<span class="s">"Authors"</span>,<span class="s">"Books"</span>)
+	<span class="k">for</span> aItem <span class="k">in</span> aItems
 		? <span class="s">"  "</span> + <span class="f">dbValue</span>(aItem[<span class="n">1</span>],<span class="s">"Name"</span>) + <span class="s">": "</span> + len(aItem[<span class="n">2</span>]) + <span class="s">" book(s)"</span>
 	<span class="k">next</span>
 
@@ -392,7 +395,8 @@ using {
 	? nl + <span class="s">"Average stars : "</span> + oDb.<span class="f">average</span>(<span class="s">"Books"</span>,<span class="s">"Stars"</span>,[])
 	? <span class="s">"Best rating   : "</span> + oDb.<span class="f">max</span>(<span class="s">"Books"</span>,<span class="s">"Stars"</span>,[])
 	? <span class="s">"Books per author:"</span>
-	<span class="k">for</span> aGroup <span class="k">in</span> oDb.<span class="f">groupCount</span>(<span class="s">"Books"</span>,<span class="s">"AuthorId"</span>,[])
+	aGroups = oDb.<span class="f">groupCount</span>(<span class="s">"Books"</span>,<span class="s">"AuthorId"</span>,[])
+	<span class="k">for</span> aGroup <span class="k">in</span> aGroups
 		? <span class="s">"  author "</span> + aGroup[<span class="n">1</span>] + <span class="s">" -&gt; "</span> + aGroup[<span class="n">2</span>]
 	<span class="k">next</span>
 

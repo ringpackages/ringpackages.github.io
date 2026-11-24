@@ -30,12 +30,14 @@ func main
 	? "max     : " + oDb.max("People","Score",[])
 
 	? nl + "people per city:"
-	for aGroup in oDb.groupCount("People","City",[])
+	aGroups = oDb.groupCount("People","City",[])
+	for aGroup in aGroups
 		? "  " + aGroup[1] + ": " + aGroup[2]
 	next
 
 	? nl + "any SELECT shape:"
-	for aRow in oDb.sqlRows("SELECT City, COUNT(*) AS N, AVG(Age) AS AvgAge FROM People WHERE Age > {0} GROUP BY City ORDER BY City",[18])
+	aCityRows = oDb.sqlRows("SELECT City, COUNT(*) AS N, AVG(Age) AS AvgAge FROM People WHERE Age > {0} GROUP BY City ORDER BY City",[18])
+	for aRow in aCityRows
 		? "  " + dbValue(aRow,"City") + " n=" + dbValue(aRow,"N") + " avg=" + dbValue(aRow,"AvgAge")
 	next
 	oDb.close()

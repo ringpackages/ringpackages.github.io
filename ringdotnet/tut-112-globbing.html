@@ -298,7 +298,8 @@ using {
 	aPaths = [<span class="s">"src/main.ring"</span>,<span class="s">"src/old_main.ring"</span>,<span class="s">"README.md"</span>,<span class="s">"docs/guide/intro.md"</span>,<span class="s">"docs/logo.png"</span>]
 	oResult = <span class="f">dnStatic</span>(cExt,<span class="s">"Match"</span>,[oMatcher3,<span class="s">"."</span>,aPaths])
 	? nl + <span class="s">"4. which of the names are matched: has matches = "</span> + oResult.<span class="f">getProp</span>(<span class="s">"HasMatches"</span>)
-	<span class="k">for</span> oFile <span class="k">in</span> oResult.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()
+	aFiles = oResult.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oFile <span class="k">in</span> aFiles
 		? <span class="s">"   "</span> + oFile.<span class="f">getProp</span>(<span class="s">"Path"</span>)
 	<span class="k">next</span>
 
@@ -315,10 +316,12 @@ using {
 
 	oResult = <span class="f">dnStatic</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions"</span>,<span class="s">"GetResultsInFullPath"</span>,[oMatcher,cBase])
 	aNames = []
-	<span class="k">for</span> cFull <span class="k">in</span> oResult.<span class="f">toList</span>()
+	aFullNames = oResult.<span class="f">toList</span>()
+	<span class="k">for</span> cFull <span class="k">in</span> aFullNames
 		aNames + substr(substr(cFull,cBase + <span class="s">"\","</span><span class="s">"),cBase + "</span>/<span class="s">","</span>")
 	<span class="k">next</span>
-	<span class="k">for</span> cName <span class="k">in</span> sort(aNames)
+	aSortedNames = sort(aNames)
+	<span class="k">for</span> cName <span class="k">in</span> aSortedNames
 		? <span class="s">"   "</span> + substr(cName,<span class="s">"\","</span>/")
 	<span class="k">next</span>
 	? <span class="s">"   ("</span> + len(aNames) + <span class="s">" files)"</span>

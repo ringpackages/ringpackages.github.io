@@ -320,7 +320,8 @@ using {
 
 	aPaths = []
 	nCut = len(cFolder) + <span class="n">2</span>
-	<span class="k">for</span> cFile <span class="k">in</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>([ :path = cFolder, :searchPattern = <span class="s">"*"</span>, :searchOption = <span class="s">"AllDirectories"</span> ]).<span class="f">toList</span>()
+	aFiles = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>([ :path = cFolder, :searchPattern = <span class="s">"*"</span>, :searchOption = <span class="s">"AllDirectories"</span> ]).<span class="f">toList</span>()
+	<span class="k">for</span> cFile <span class="k">in</span> aFiles
 		cRelative = substr(substr(cFile,<span class="s">"\","</span>/"),nCut)
 		<span class="k">if</span> cRelative != <span class="s">"checksums.txt"</span>
 			aPaths + cRelative
@@ -331,7 +332,8 @@ using {
 <span class="k">func</span> <span class="f">makeList</span> cFolder
 
 	aList = []
-	<span class="k">for</span> cRelative <span class="k">in</span> relativeFiles(cFolder)
+	aRelatives = relativeFiles(cFolder)
+	<span class="k">for</span> cRelative <span class="k">in</span> aRelatives
 		aList + [ checksumOf(cFolder + <span class="s">"/"</span> + cRelative), cRelative ]
 	<span class="k">next</span>
 	<span class="k">return</span> aList
@@ -348,7 +350,8 @@ using {
 <span class="k">func</span> <span class="f">readList</span> cListFile
 
 	aList = []
-	<span class="k">for</span> cLine <span class="k">in</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cListFile).<span class="f">toList</span>()
+	aLines = <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cListFile).<span class="f">toList</span>()
+	<span class="k">for</span> cLine <span class="k">in</span> aLines
 		<span class="k">if</span> len(cLine) &gt; <span class="n">66</span> <span class="k">and</span> left(cLine,<span class="n">1</span>) != <span class="s">"#"</span>
 			aList + [ left(cLine,<span class="n">64</span>), substr(cLine,<span class="n">67</span>) ]
 		<span class="k">ok</span>
@@ -369,7 +372,8 @@ using {
 			aProblems + [ <span class="s">"CHANGED"</span>,aItem[<span class="n">2</span>] ]
 		<span class="k">ok</span>
 	<span class="k">next</span>
-	<span class="k">for</span> cRelative <span class="k">in</span> relativeFiles(cFolder)
+	aRelatives = relativeFiles(cFolder)
+	<span class="k">for</span> cRelative <span class="k">in</span> aRelatives
 		<span class="k">if</span> find(aKnown,cRelative) = <span class="n">0</span>
 			aProblems + [ <span class="s">"NEW"</span>,cRelative ]
 		<span class="k">ok</span>

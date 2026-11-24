@@ -338,7 +338,8 @@ using {
 <span class="c"># the lines of a text, each one indented by three spaces (the trace output has the line ending of the system)</span>
 <span class="k">func</span> <span class="f">showLines</span> cText
 
-	<span class="k">for</span> cLine <span class="k">in</span> str2list(substr(cText,char(<span class="n">13</span>),<span class="s">""</span>))
+	aLines = str2list(substr(cText,char(<span class="n">13</span>),<span class="s">""</span>))
+	<span class="k">for</span> cLine <span class="k">in</span> aLines
 		<span class="k">if</span> cLine != <span class="s">""</span>
 			? <span class="s">"   ["</span> + cLine + <span class="s">"]"</span>
 		<span class="k">ok</span>

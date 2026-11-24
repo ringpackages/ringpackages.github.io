@@ -277,7 +277,8 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 	<span class="k">for</span> cRoute <span class="k">in</span> [<span class="s">"users/{id}/orders/{orderId?}"</span>,<span class="s">"products/{category}/{page=1}"</span>,<span class="s">"files/{*path}"</span>,<span class="s">"items/{id:int}"</span>]
 		oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cRoute])
 		cParts = <span class="s">""</span>
-		<span class="k">for</span> oPart <span class="k">in</span> oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+		aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+		<span class="k">for</span> oPart <span class="k">in</span> aParts
 			cKind = <span class="s">"required"</span>
 			<span class="k">if</span> oPart.<span class="f">getProp</span>(<span class="s">"IsOptional"</span>)
 				cKind = <span class="s">"optional"</span>
@@ -325,7 +326,8 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 		<span class="k">return</span> <span class="s">"no match"</span>
 	<span class="k">ok</span>
 	cText = <span class="s">""</span>
-	<span class="k">for</span> cKey <span class="k">in</span> sort(oValues.Keys.<span class="f">toList</span>())
+	aKeys = sort(oValues.Keys.<span class="f">toList</span>())
+	<span class="k">for</span> cKey <span class="k">in</span> aKeys
 		cText += cKey + <span class="s">" = "</span> + oValues.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[cKey]) + <span class="s">"   "</span>
 	<span class="k">next</span>
 	<span class="k">return</span> <span class="s">"match   "</span> + cText
@@ -335,7 +337,8 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 	oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cTemplate])
 	<span class="c"># the defaults of the template ({page=1}) are given to the matcher: a part with a default may be missing at the END of the path</span>
 	oDefaults = <span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[])
-	<span class="k">for</span> oPart <span class="k">in</span> oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+	aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oPart <span class="k">in</span> aParts
 		xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)
 		<span class="k">if</span> <span class="k">not</span> isObject(xDefault)
 			oDefaults.<span class="f">Add</span>(oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>),xDefault)

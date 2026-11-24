@@ -303,7 +303,8 @@ using {
 		oSmall.<span class="f">info</span>(<span class="s">"message number "</span> + nLine + <span class="s">" with some more text to fill the file"</span>)
 	<span class="k">next</span>
 	? nl + <span class="s">"4. Files in the folder after 12 messages with a limit of 300 bytes:"</span>
-	<span class="k">for</span> cName <span class="k">in</span> sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>([ :path = cFolder, :searchPattern = <span class="s">"small*"</span> ]).<span class="f">toList</span>())
+	aNames = sort(<span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>([ :path = cFolder, :searchPattern = <span class="s">"small*"</span> ]).<span class="f">toList</span>())
+	<span class="k">for</span> cName <span class="k">in</span> aNames
 		? <span class="s">"   "</span> + <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cName)
 	<span class="k">next</span>
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cFolder, :recursive = <span class="k">True</span> ])

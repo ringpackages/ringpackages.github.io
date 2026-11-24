@@ -333,7 +333,8 @@ using {
 <span class="k">func</span> <span class="f">arrayText</span> oArray
 
 	cText = <span class="s">""</span>
-	<span class="k">for</span> item <span class="k">in</span> oArray.<span class="f">toList</span>()
+	aItems = oArray.<span class="f">toList</span>()
+	<span class="k">for</span> item <span class="k">in</span> aItems
 		cText += <span class="s">""</span> + item + <span class="s">" "</span>
 	<span class="k">next</span>
 	<span class="k">return</span> cText

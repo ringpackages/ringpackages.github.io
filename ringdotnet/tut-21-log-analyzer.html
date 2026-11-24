@@ -286,7 +286,8 @@ using {
 	oParts = <span class="k">new</span> <span class="t">NumberDictionary</span>()           <span class="c"># part with errors -&gt; how many</span>
 	aErrors = []                              <span class="c"># the texts of the errors</span>
 	nLines = <span class="n">0</span>
-	<span class="k">for</span> cLine <span class="k">in</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cLog).<span class="f">toList</span>()
+	aLogLines = <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cLog).<span class="f">toList</span>()
+	<span class="k">for</span> cLine <span class="k">in</span> aLogLines
 		oMatch = oLine.<span class="f">Match</span>(cLine)
 		<span class="k">if</span> <span class="k">not</span> oMatch.Success
 			<span class="k">loop</span>

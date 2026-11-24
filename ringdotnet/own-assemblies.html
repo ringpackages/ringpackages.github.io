@@ -512,6 +512,41 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 	{
 		<span class="k">public</span> <span class="k">static</span> <span class="t">IBox</span> <span class="t">NewBox</span>(<span class="k">double</span> side) { <span class="k">return</span> <span class="k">new</span> <span class="t">Box</span>(side); }
 	}
+
+	<span class="c">// A class that is not public and implements two interfaces that do not inherit each other (the elements of a fluent API are like this). No interface</span>
+	<span class="c">// is named after the class, so Ring wraps the object with a class that has the members of both interfaces, and of their extension methods.</span>
+	<span class="k">public</span> <span class="k">interface</span> IChannelSource
+	{
+		<span class="k">string</span> <span class="t">Read</span>();
+		<span class="k">int</span> <span class="t">Position</span> { <span class="k">get</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">interface</span> IChannelSink
+	{
+		<span class="k">void</span> <span class="t">Write</span>(<span class="k">string</span> text);
+		<span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; }
+	}
+
+	<span class="k">internal</span> <span class="k">class</span> <span class="t">Channel</span> : IChannelSource, IChannelSink
+	{
+		<span class="k">private</span> <span class="k">string</span> data = <span class="s">""</span>;
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; <span class="k">set</span>; } = <span class="s">"channel"</span>;
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Position</span> { <span class="k">get</span> { <span class="k">return</span> data.Length; } }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Read</span>() { <span class="k">return</span> data; }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Write</span>(<span class="k">string</span> text) { data += text; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> ChannelExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Shout</span>(this <span class="t">IChannelSource</span> source) { <span class="k">return</span> source.<span class="f">Read</span>().<span class="f">ToUpperInvariant</span>() + <span class="s">"!"</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSink</span> <span class="t">Tag</span>(this <span class="t">IChannelSink</span> sink, <span class="k">string</span> tag) { sink.<span class="f">Write</span>(<span class="s">"["</span> + tag + <span class="s">"]"</span>); <span class="k">return</span> sink; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Channels
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSink</span> <span class="t">NewChannel</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Channel</span>(); }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSource</span> <span class="t">AsSource</span>(<span class="t">IChannelSink</span> sink) { <span class="k">return</span> (IChannelSource) sink; }
+	}
 	<span class="c">// A class that is not public and implements a public interface explicitly (a row of Dapper is like this): the methods of the interface</span>
 	<span class="c">// are called on the object although the class has no public method of that name.</span>
 	<span class="k">public</span> <span class="k">interface</span> IGetter
@@ -754,6 +789,23 @@ oBox.Name = <span class="s">"big"</span>
 <span class="c"># an extension method of an interface is a method of the classes that implement it and of the interfaces that inherit it</span>
 <span class="f">dnAssert</span>(<span class="s">"a class gets the extension methods of its interface"</span>,<span class="k">new</span> <span class="t">Circle</span>().<span class="f">Label</span>(<span class="s">"a "</span>),<span class="s">"a circle"</span>)
 <span class="f">dnAssert</span>(<span class="s">"an interface gets the extension methods of the interface it inherits"</span>,oBox.<span class="f">Label</span>(<span class="s">"a "</span>),<span class="s">"a big"</span>)
+
+<span class="c"># a class that is not public and is two interfaces at once (neither is named after it): the wrapper has the members of both, with their properties</span>
+<span class="c"># and the extension methods of each</span>
+oChannel = <span class="k">new</span> <span class="t">Channels</span>().<span class="f">NewChannel</span>()
+oChannel.<span class="f">Write</span>(<span class="s">"ab"</span>)          <span class="c"># a method of the interface that was asked for</span>
+<span class="f">dnAssert</span>(<span class="s">"a method of the other interface"</span>,oChannel.<span class="f">Read</span>(),<span class="s">"ab"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a property of the other interface"</span>,oChannel.Position,<span class="n">2</span>)
+<span class="f">dnAssert</span>(<span class="s">"a property of the first interface"</span>,oChannel.Name,<span class="s">"channel"</span>)
+oChannel.Name = <span class="s">"changed"</span>
+<span class="f">dnAssert</span>(<span class="s">"a property of the first interface can be set"</span>,oChannel.Name,<span class="s">"changed"</span>)
+<span class="f">dnAssert</span>(<span class="s">"an extension method of the other interface"</span>,oChannel.<span class="f">Shout</span>(),<span class="s">"AB!"</span>)
+<span class="f">dnAssert</span>(<span class="s">"an extension method of the first interface, and it answers the same object"</span>,oChannel.<span class="f">Tag</span>(<span class="s">"x"</span>).<span class="f">Read</span>(),<span class="s">"ab[x]"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a chain of calls goes on"</span>,oChannel.<span class="f">Tag</span>(<span class="s">"y"</span>).<span class="f">Tag</span>(<span class="s">"z"</span>).<span class="f">Shout</span>(),<span class="s">"AB[X][Y][Z]!"</span>)
+oSource = <span class="k">new</span> <span class="t">Channels</span>().<span class="f">AsSource</span>(oChannel)
+<span class="f">dnAssert</span>(<span class="s">"the same object as the other interface"</span>,oSource.<span class="f">Read</span>(),<span class="s">"ab[x][y][z]"</span>)
+<span class="f">dnAssert</span>(<span class="s">"it has the members of both again"</span>,oSource.Name,<span class="s">"changed"</span>)
+<span class="f">dnAssert</span>(<span class="s">"and a copy of the object keeps them"</span>,classname(oSource),classname(oChannel))
 
 oCounter = <span class="k">new</span> <span class="t">Counter</span>()
 oCounter.<span class="f">Increment</span>()

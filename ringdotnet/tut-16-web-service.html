@@ -300,7 +300,8 @@ oDb = <span class="s">""</span>
 <span class="k">func</span> <span class="f">listNotes</span> oRequest
 
 	aList = []
-	<span class="k">for</span> aRow <span class="k">in</span> oDb.<span class="f">all</span>(<span class="s">"Notes"</span>)
+	aRows = oDb.<span class="f">all</span>(<span class="s">"Notes"</span>)
+	<span class="k">for</span> aRow <span class="k">in</span> aRows
 		aList + [[<span class="s">"id"</span>,<span class="f">dbValue</span>(aRow,<span class="s">"Id"</span>)],[<span class="s">"text"</span>,<span class="f">dbValue</span>(aRow,<span class="s">"Text"</span>)]]
 	<span class="k">next</span>
 	<span class="k">return</span> <span class="f">webJson</span>(aList)

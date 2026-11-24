@@ -281,7 +281,8 @@ using {
 	oMemory.Position = <span class="n">0</span>
 	oRead = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Read"</span>, :leaveOpen = <span class="k">True</span> ])
 	? nl + <span class="s">"2. the entries:"</span>
-	<span class="k">for</span> oEntry <span class="k">in</span> oRead.Entries.<span class="f">toList</span>()
+	aEntries = oRead.Entries.<span class="f">toList</span>()
+	<span class="k">for</span> oEntry <span class="k">in</span> aEntries
 		? <span class="s">"   "</span> + padRight(oEntry.FullName,<span class="n">18</span>) + padLeft(<span class="s">""</span> + oEntry.Length,<span class="n">6</span>) + <span class="s">" bytes, packed smaller than the original: "</span> + (oEntry.CompressedLength &lt; oEntry.Length)
 	<span class="k">next</span>
 
@@ -314,7 +315,8 @@ using {
 	oMemory.Position = <span class="n">0</span>
 	oCheck = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Read"</span> ])
 	cNames = <span class="s">""</span>
-	<span class="k">for</span> oItem <span class="k">in</span> oCheck.Entries.<span class="f">toList</span>()
+	aItems = oCheck.Entries.<span class="f">toList</span>()
+	<span class="k">for</span> oItem <span class="k">in</span> aItems
 		cNames += oItem.FullName + <span class="s">" "</span>
 	<span class="k">next</span>
 	? nl + <span class="s">"5. after the update: "</span> + cNames

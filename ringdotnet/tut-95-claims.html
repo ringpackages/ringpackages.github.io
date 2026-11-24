@@ -274,14 +274,16 @@ using {
 
 	? <span class="s">"1. authentication type: "</span> + oIdentity.AuthenticationType + <span class="s">", authenticated: "</span> + oIdentity.IsAuthenticated
 	? <span class="s">"   claims: "</span> + len(oIdentity.Claims.<span class="f">toList</span>())
-	<span class="k">for</span> oClaim <span class="k">in</span> oIdentity.Claims.<span class="f">toList</span>()
+	aClaims = oIdentity.Claims.<span class="f">toList</span>()
+	<span class="k">for</span> oClaim <span class="k">in</span> aClaims
 		? <span class="s">"      "</span> + oClaim.Type + <span class="s">" = "</span> + oClaim.Value
 	<span class="k">next</span>
 
 	<span class="c"># 2. Find a claim: FindFirst gives the first claim of a type, FindAll all of them, HasClaim answers yes or no</span>
 	? nl + <span class="s">"2. email: "</span> + oPrincipal.<span class="f">FindFirst</span>(<span class="s">"Email"</span>).Value
 	cRoles = <span class="s">""</span>
-	<span class="k">for</span> oRole <span class="k">in</span> oPrincipal.<span class="f">FindAll</span>(<span class="s">"Role"</span>).<span class="f">toList</span>()
+	aRoles = oPrincipal.<span class="f">FindAll</span>(<span class="s">"Role"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oRole <span class="k">in</span> aRoles
 		cRoles += oRole.Value + <span class="s">" "</span>
 	<span class="k">next</span>
 	? <span class="s">"   roles: "</span> + cRoles
@@ -305,7 +307,8 @@ using {
 <span class="c"># True when one of the roles of the principal allows the action</span>
 <span class="k">func</span> <span class="f">mayDo</span> oPrincipal, aRules, cAction
 
-	<span class="k">for</span> oRole <span class="k">in</span> oPrincipal.<span class="f">FindAll</span>(<span class="s">"Role"</span>).<span class="f">toList</span>()
+	aRoles = oPrincipal.<span class="f">FindAll</span>(<span class="s">"Role"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oRole <span class="k">in</span> aRoles
 		aAllowed = aRules[lower(oRole.Value)]
 		<span class="k">if</span> <span class="k">not</span> islist(aAllowed) <span class="k">loop</span> <span class="k">ok</span>
 		<span class="k">if</span> find(aAllowed,cAction) &gt; <span class="n">0</span>

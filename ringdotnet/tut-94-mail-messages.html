@@ -283,7 +283,8 @@ using {
 	oMessage.Body = <span class="s">"Hello,"</span> + nl + <span class="s">"the meeting is on Friday at 10:00."</span> + nl + <span class="s">"Ann"</span>
 	? nl + <span class="s">"2. from: "</span> + oMessage.<span class="k">From</span>.Address
 	? <span class="s">"   to: "</span> + oMessage.<span class="k">To</span>.Count + <span class="s">" people, cc: "</span> + oMessage.CC.Count + <span class="s">" person"</span>
-	<span class="k">for</span> oPerson <span class="k">in</span> oMessage.<span class="k">To</span>.<span class="f">toList</span>()
+	aPersons = oMessage.<span class="k">To</span>.<span class="f">toList</span>()
+	<span class="k">for</span> oPerson <span class="k">in</span> aPersons
 		? <span class="s">"      "</span> + oPerson.DisplayName + <span class="s">" &lt;"</span> + oPerson.Address + <span class="s">"&gt;"</span>
 	<span class="k">next</span>
 	? <span class="s">"   subject: "</span> + oMessage.Subject

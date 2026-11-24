@@ -16,13 +16,15 @@ func main
 	nNarnia = oDb.insert("Books",[["Title","Narnia"],["AuthorId",nLewis]])
 
 	? "books by Tolkien:"
-	for aBook in oDb.children("Authors",nTolkien,"Books")
+	aBooks = oDb.children("Authors",nTolkien,"Books")
+	for aBook in aBooks
 		? "  " + dbValue(aBook,"Title")
 	next
 	? nl + "Narnia was written by " + dbValue(oDb.parent("Books",nNarnia,"Authors"),"Name")
 
 	? nl + "include:"
-	for aItem in oDb.include("Authors","Books")
+	aItems = oDb.include("Authors","Books")
+	for aItem in aItems
 		? "  " + dbValue(aItem[1],"Name") + " has " + len(aItem[2]) + " book(s)"
 	next
 

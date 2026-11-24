@@ -310,7 +310,8 @@ using {
 
 	aList = []
 	aKinds = [ <span class="s">"comment"</span>,<span class="s">"string"</span>,<span class="s">"number"</span>,<span class="s">"word"</span>,<span class="s">"other"</span> ]
-	<span class="k">for</span> oMatch <span class="k">in</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cCode, cPattern ]).<span class="f">toList</span>()
+	aMatches = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cCode, cPattern ]).<span class="f">toList</span>()
+	<span class="k">for</span> oMatch <span class="k">in</span> aMatches
 		<span class="k">for</span> cKind <span class="k">in</span> aKinds
 			<span class="k">if</span> oMatch.Groups.<span class="f">Item</span>(cKind).Success
 				aList + [ cKind, oMatch.Value ]

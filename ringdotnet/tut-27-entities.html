@@ -270,12 +270,14 @@ using { <span class="s">"RingDotNet.Data"</span> }
 
 	<span class="c"># The generated class has a property for every column, plus navigations that follow the foreign keys</span>
 	cProperties = <span class="s">""</span>
-	<span class="k">for</span> cProperty <span class="k">in</span> oDb.<span class="f">properties</span>(<span class="s">"Players"</span>)
+	aProperties = oDb.<span class="f">properties</span>(<span class="s">"Players"</span>)
+	<span class="k">for</span> cProperty <span class="k">in</span> aProperties
 		cProperties += cProperty + <span class="s">" "</span>
 	<span class="k">next</span>
 	? <span class="s">"Properties of a Player : "</span> + cProperties
 	cProperties = <span class="s">""</span>
-	<span class="k">for</span> cProperty <span class="k">in</span> oDb.<span class="f">properties</span>(<span class="s">"Teams"</span>)
+	aProperties = oDb.<span class="f">properties</span>(<span class="s">"Teams"</span>)
+	<span class="k">for</span> cProperty <span class="k">in</span> aProperties
 		cProperties += cProperty + <span class="s">" "</span>
 	<span class="k">next</span>
 	? <span class="s">"Properties of a Team   : "</span> + cProperties
@@ -299,7 +301,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 
 	<span class="c"># STEP 2. Read objects, with the related object loaded (include)</span>
 	? nl + <span class="s">"STEP 2: players with goals &gt;= 3, with their team:"</span>
-	<span class="k">for</span> oPlayer <span class="k">in</span> oDb.<span class="f">query</span>(<span class="s">"Players"</span>,[ [<span class="s">"where"</span>,[<span class="s">"Goals"</span>,<span class="s">"&gt;="</span>,<span class="n">3</span>]], [<span class="s">"include"</span>,[<span class="s">"Team"</span>]] ])
+	aPlayers = oDb.<span class="f">query</span>(<span class="s">"Players"</span>,[ [<span class="s">"where"</span>,[<span class="s">"Goals"</span>,<span class="s">"&gt;="</span>,<span class="n">3</span>]], [<span class="s">"include"</span>,[<span class="s">"Team"</span>]] ])
+	<span class="k">for</span> oPlayer <span class="k">in</span> aPlayers
 		? <span class="s">"        "</span> + oPlayer.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" plays for "</span> + oPlayer.<span class="f">getProp</span>(<span class="s">"Team"</span>).<span class="f">getProp</span>(<span class="s">"Name"</span>)
 	<span class="k">next</span>
 
@@ -310,7 +313,8 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	? nl + <span class="s">"STEP 3: Ann's goals in the database: "</span> + oDb.<span class="f">getValue</span>(oDb.<span class="f">find</span>(<span class="s">"Players"</span>,<span class="n">1</span>),<span class="s">"Goals"</span>)
 
 	<span class="c"># STEP 4. The other direction: a team with its players</span>
-	<span class="k">for</span> oTeam <span class="k">in</span> oDb.<span class="f">query</span>(<span class="s">"Teams"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Players"</span>]] ])
+	aTeams = oDb.<span class="f">query</span>(<span class="s">"Teams"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Players"</span>]] ])
+	<span class="k">for</span> oTeam <span class="k">in</span> aTeams
 		? nl + <span class="s">"STEP 4: team "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" has "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Players"</span>).<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" players"</span>
 	<span class="k">next</span>
 

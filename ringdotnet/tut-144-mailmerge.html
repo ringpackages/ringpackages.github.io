@@ -318,7 +318,8 @@ aMissing = []                    <span class="c"># the names of the fields that 
 <span class="k">func</span> <span class="f">fieldNames</span> cTemplate
 
 	aNames = []
-	<span class="k">for</span> oMatch <span class="k">in</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cTemplate, cPattern() ]).<span class="f">toList</span>()
+	aMatches = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cTemplate, cPattern() ]).<span class="f">toList</span>()
+	<span class="k">for</span> oMatch <span class="k">in</span> aMatches
 		aNames + oMatch.Groups.<span class="f">Item</span>(<span class="n">1</span>).Value
 	<span class="k">next</span>
 	<span class="k">return</span> aNames
@@ -411,7 +412,8 @@ aMissing = []                    <span class="c"># the names of the fields that 
 <span class="k">func</span> <span class="f">indent</span> cText
 
 	cOut = <span class="s">""</span>
-	<span class="k">for</span> cLine <span class="k">in</span> str2list(cText)
+	aTextLines = str2list(cText)
+	<span class="k">for</span> cLine <span class="k">in</span> aTextLines
 		cOut += <span class="s">"   | "</span> + cLine + nl
 	<span class="k">next</span>
 	<span class="k">return</span> left(cOut,len(cOut) - <span class="n">1</span>)

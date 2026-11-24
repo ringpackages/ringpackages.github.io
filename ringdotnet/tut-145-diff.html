@@ -299,7 +299,8 @@ using {
 
 	<span class="c"># 5. Only the changes, with one line of context around them. A long file has few changes, and a person wants to see only those.</span>
 	? nl + <span class="s">"5. changes with 1 line of context:"</span>
-	<span class="k">for</span> cLine <span class="k">in</span> withContext(aDiff,<span class="n">1</span>)
+	aLines = withContext(aDiff,<span class="n">1</span>)
+	<span class="k">for</span> cLine <span class="k">in</span> aLines
 		? <span class="s">"   "</span> + cLine
 	<span class="k">next</span>
 

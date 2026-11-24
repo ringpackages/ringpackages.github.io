@@ -351,7 +351,8 @@ chdir(cHere)
 	<span class="c"># 4. A query: the rows with 9 units or more. The condition is a text in the query language of LiteDB.</span>
 	oBig = oSales.<span class="f">callMethod</span>(<span class="s">"Find"</span>,[ <span class="k">new</span> <span class="t">BsonExpression</span>().<span class="f">Create</span>(<span class="s">"$.units &gt;= 9"</span>) ])
 	aBig = []
-	<span class="k">for</span> oRow <span class="k">in</span> oBig.<span class="f">toList</span>()
+	aRows = oBig.<span class="f">toList</span>()
+	<span class="k">for</span> oRow <span class="k">in</span> aRows
 		aBig + [oRow.<span class="f">Item</span>(<span class="s">"region"</span>).AsString,oRow.<span class="f">Item</span>(<span class="s">"product"</span>).AsString,oRow.<span class="f">Item</span>(<span class="s">"units"</span>).AsInt32]
 	<span class="k">next</span>
 	aBig = sort(aBig,<span class="n">1</span>)
@@ -363,7 +364,8 @@ chdir(cHere)
 	<span class="c"># 5. Totals by region: the rows come out of the database as documents and Ring adds them up</span>
 	aTotals = []          <span class="c"># [region, amount]</span>
 	aAll = []
-	<span class="k">for</span> oRow <span class="k">in</span> oSales.<span class="f">callMethod</span>(<span class="s">"FindAll"</span>,[]).<span class="f">toList</span>()
+	aRows = oSales.<span class="f">callMethod</span>(<span class="s">"FindAll"</span>,[]).<span class="f">toList</span>()
+	<span class="k">for</span> oRow <span class="k">in</span> aRows
 		cRegion = oRow.<span class="f">Item</span>(<span class="s">"region"</span>).AsString
 		nAmount = oRow.<span class="f">Item</span>(<span class="s">"units"</span>).AsInt32 * oRow.<span class="f">Item</span>(<span class="s">"price"</span>).AsDouble
 		nPos = find(aTotals,cRegion,<span class="n">1</span>)

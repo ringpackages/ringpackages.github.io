@@ -293,7 +293,8 @@ using {
 		oDict.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[cName,len(cName)])
 	<span class="k">next</span>
 	cKeys = <span class="s">""</span>
-	<span class="k">for</span> cKey <span class="k">in</span> oDict.<span class="f">getProp</span>(<span class="s">"Keys"</span>).<span class="f">toList</span>()
+	aKeys = oDict.<span class="f">getProp</span>(<span class="s">"Keys"</span>).<span class="f">toList</span>()
+	<span class="k">for</span> cKey <span class="k">in</span> aKeys
 		cKeys += cKey + <span class="s">" "</span>
 	<span class="k">next</span>
 	? nl + <span class="s">"3. sorted dictionary, keys in order: "</span> + cKeys

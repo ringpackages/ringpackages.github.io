@@ -303,13 +303,15 @@ using {
 	<span class="c"># STEP 4. Report the contents that exist more than once</span>
 	? nl + <span class="s">"STEP 4: duplicates"</span>
 	nWasted = <span class="n">0</span>
-	<span class="k">for</span> cHash <span class="k">in</span> oGroups.Keys.<span class="f">toList</span>()
+	aHashes = oGroups.Keys.<span class="f">toList</span>()
+	<span class="k">for</span> cHash <span class="k">in</span> aHashes
 		aPaths = str2list(substr(oGroups.<span class="f">Item</span>(cHash),<span class="s">"|"</span>,nl))
 		<span class="k">if</span> len(aPaths) &gt; <span class="n">1</span>
 			nSize = <span class="k">new</span> <span class="t">FileInfo</span>(aPaths[<span class="n">1</span>]).Length
 			nWasted += nSize * (len(aPaths) - <span class="n">1</span>)
 			? <span class="s">"   "</span> + len(aPaths) + <span class="s">" copies of the same "</span> + nSize + <span class="s">" bytes:"</span>
-			<span class="k">for</span> cPath <span class="k">in</span> sort(aPaths)
+			aSortedPaths = sort(aPaths)
+			<span class="k">for</span> cPath <span class="k">in</span> aSortedPaths
 				? <span class="s">"      "</span> + substr(cPath,cFolder + <span class="s">"\","</span>")
 			<span class="k">next</span>
 		<span class="k">ok</span>

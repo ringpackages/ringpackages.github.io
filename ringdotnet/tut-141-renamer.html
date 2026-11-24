@@ -322,7 +322,8 @@ using {
 	? nl + <span class="s">"6. the rule of step 2: "</span> + len(aProblems) + <span class="s">" problems"</span>
 	aLog = applyPlan(cFolder,aPlan)
 	? <span class="s">"   renamed "</span> + len(aLog) + <span class="s">" files; now the folder has:"</span>
-	<span class="k">for</span> cName <span class="k">in</span> fileNames(cFolder)
+	aFileNames = fileNames(cFolder)
+	<span class="k">for</span> cName <span class="k">in</span> aFileNames
 		? <span class="s">"   "</span> + cName
 	<span class="k">next</span>
 
@@ -336,7 +337,8 @@ using {
 <span class="k">func</span> <span class="f">fileNames</span> cFolder
 
 	aList = []
-	<span class="k">for</span> oItem <span class="k">in</span> <span class="k">new</span> <span class="t">DirectoryInfo</span>(cFolder).<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aItems = <span class="k">new</span> <span class="t">DirectoryInfo</span>(cFolder).<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oItem <span class="k">in</span> aItems
 		aList + oItem.Name
 	<span class="k">next</span>
 	<span class="k">return</span> sort(aList)
@@ -402,7 +404,8 @@ using {
 
 <span class="k">func</span> <span class="f">showPreview</span> aNames,aRule
 
-	<span class="k">for</span> aItem <span class="k">in</span> makePlan(aNames,aRule)
+	aItems = makePlan(aNames,aRule)
+	<span class="k">for</span> aItem <span class="k">in</span> aItems
 		? <span class="s">"   "</span> + padRight(aItem[<span class="n">1</span>],<span class="n">26</span>) + <span class="s">"-&gt; "</span> + aItem[<span class="n">2</span>]
 	<span class="k">next</span>
 

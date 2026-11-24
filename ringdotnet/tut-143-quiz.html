@@ -388,7 +388,8 @@ cScoreFile = <span class="s">""</span>
 
 	aScores = []
 	<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cScoreFile)
-		<span class="k">for</span> cLine <span class="k">in</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cScoreFile).<span class="f">toList</span>()
+		aLines = <span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllLines</span>(cScoreFile).<span class="f">toList</span>()
+		<span class="k">for</span> cLine <span class="k">in</span> aLines
 			<span class="k">if</span> trim(cLine) != <span class="s">""</span>
 				aScores + (<span class="n">0</span> + trim(cLine))
 			<span class="k">ok</span>

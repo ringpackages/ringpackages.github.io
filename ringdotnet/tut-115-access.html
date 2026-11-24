@@ -318,20 +318,23 @@ using {
 
 	<span class="c"># 4. A query gives rows. Reading goes through a reader: Read() moves to the next row and GetValue(n) reads a column (0 is the first).</span>
 	? nl + <span class="s">"4. the customers in Cairo, by name:"</span>
-	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT Id, Name, City FROM Customers WHERE City = ? ORDER BY Name"</span>,[<span class="s">"Cairo"</span>])
+	aCityRows = rows(oConnection,<span class="s">"SELECT Id, Name, City FROM Customers WHERE City = ? ORDER BY Name"</span>,[<span class="s">"Cairo"</span>])
+	<span class="k">for</span> aRow <span class="k">in</span> aCityRows
 		? <span class="s">"   "</span> + aRow[<span class="n">1</span>] + <span class="s">": "</span> + aRow[<span class="n">2</span>] + <span class="s">" ("</span> + aRow[<span class="n">3</span>] + <span class="s">")"</span>
 	<span class="k">next</span>
 	? <span class="s">"   the apostrophe and the Arabic name came back as they went in: "</span> + (scalar(oConnection,<span class="s">"SELECT Name FROM Customers WHERE Id = ?"</span>,[<span class="n">2</span>]) = <span class="s">"Bob O'Neil"</span>) + <span class="s">", "</span> + (scalar(oConnection,<span class="s">"SELECT Name FROM Customers WHERE Id = ?"</span>,[<span class="n">3</span>]) = arabicName())
 
 	<span class="c"># 5. A join puts the data of two tables side by side</span>
 	? nl + <span class="s">"5. each order with its customer (INNER JOIN):"</span>
-	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT c.Name, o.Total, o.Ordered FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId ORDER BY o.Ordered"</span>,[])
+	aOrderRows = rows(oConnection,<span class="s">"SELECT c.Name, o.Total, o.Ordered FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId ORDER BY o.Ordered"</span>,[])
+	<span class="k">for</span> aRow <span class="k">in</span> aOrderRows
 		? <span class="s">"   "</span> + padRight(shortName(aRow[<span class="n">1</span>]),<span class="n">12</span>) + padLeft(money(aRow[<span class="n">2</span>]),<span class="n">8</span>) + <span class="s">"   "</span> + aRow[<span class="n">3</span>]
 	<span class="k">next</span>
 
 	<span class="c"># 6. Totals: GROUP BY makes one row for each customer, with SUM, COUNT and AVG. HAVING filters the groups.</span>
 	? nl + <span class="s">"6. orders for each customer (customers with 2 orders or more):"</span>
-	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT c.Name, COUNT(*) AS Orders, SUM(o.Total) AS Total, AVG(o.Total) AS Average FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId GROUP BY c.Name HAVING COUNT(*) &gt;= ? ORDER BY SUM(o.Total) DESC"</span>,[<span class="n">2</span>])
+	aTotalRows = rows(oConnection,<span class="s">"SELECT c.Name, COUNT(*) AS Orders, SUM(o.Total) AS Total, AVG(o.Total) AS Average FROM Customers AS c INNER JOIN Orders AS o ON c.Id = o.CustomerId GROUP BY c.Name HAVING COUNT(*) &gt;= ? ORDER BY SUM(o.Total) DESC"</span>,[<span class="n">2</span>])
+	<span class="k">for</span> aRow <span class="k">in</span> aTotalRows
 		? <span class="s">"   "</span> + padRight(shortName(aRow[<span class="n">1</span>]),<span class="n">12</span>) + aRow[<span class="n">2</span>] + <span class="s">" orders, total "</span> + money(aRow[<span class="n">3</span>]) + <span class="s">", average "</span> + money(aRow[<span class="n">4</span>])
 	<span class="k">next</span>
 
@@ -341,7 +344,8 @@ using {
 
 	<span class="c"># 8. Dates. A DateTime object goes in as a parameter and comes back as a DateTime. Access has date functions: Year, Month, Format.</span>
 	? nl + <span class="s">"8. the total of each month (Month function):"</span>
-	<span class="k">for</span> aRow <span class="k">in</span> rows(oConnection,<span class="s">"SELECT Month(Ordered) AS M, SUM(Total) FROM Orders GROUP BY Month(Ordered) ORDER BY Month(Ordered)"</span>,[])
+	aMonthRows = rows(oConnection,<span class="s">"SELECT Month(Ordered) AS M, SUM(Total) FROM Orders GROUP BY Month(Ordered) ORDER BY Month(Ordered)"</span>,[])
+	<span class="k">for</span> aRow <span class="k">in</span> aMonthRows
 		? <span class="s">"   month "</span> + aRow[<span class="n">1</span>] + <span class="s">": "</span> + money(aRow[<span class="n">2</span>])
 	<span class="k">next</span>
 	? <span class="s">"   orders after 15 February: "</span> + scalar(oConnection,<span class="s">"SELECT COUNT(*) FROM Orders WHERE Ordered &gt; ?"</span>,[<span class="k">new</span> <span class="t">DateTime</span>(<span class="n">2024</span>,<span class="n">2</span>,<span class="n">15</span>)])
@@ -463,7 +467,8 @@ using {
 <span class="k">func</span> <span class="f">tableNames</span> oConnection
 
 	aNames = []
-	<span class="k">for</span> oRow <span class="k">in</span> oConnection.<span class="f">GetSchema</span>(<span class="s">"Tables"</span>).Rows.<span class="f">toList</span>()
+	aTableRows = oConnection.<span class="f">GetSchema</span>(<span class="s">"Tables"</span>).Rows.<span class="f">toList</span>()
+	<span class="k">for</span> oRow <span class="k">in</span> aTableRows
 		<span class="k">if</span> oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_TYPE"</span>]) = <span class="s">"TABLE"</span>
 			aNames + oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_NAME"</span>])
 		<span class="k">ok</span>

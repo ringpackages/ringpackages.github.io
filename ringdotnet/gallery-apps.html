@@ -1082,7 +1082,8 @@ draw()
 	nX = <span class="n">10</span> + (nIndex - <span class="n">1</span>) * <span class="n">80</span>
 	oCanvas.<span class="f">fillRect</span>(nX,<span class="n">10</span>,<span class="n">70</span>,<span class="n">70</span>,<span class="s">"White"</span>)
 	oCanvas.<span class="f">drawRect</span>(nX,<span class="n">10</span>,<span class="n">70</span>,<span class="n">70</span>,<span class="s">"Black"</span>)
-	<span class="k">for</span> nPip <span class="k">in</span> pips(nFace)
+	aPips = pips(nFace)
+	<span class="k">for</span> nPip <span class="k">in</span> aPips
 		nRow = floor((nPip - <span class="n">1</span>) / <span class="n">3</span>)
 		nCol = (nPip - <span class="n">1</span>) % <span class="n">3</span>
 		oCanvas.<span class="f">fillCircle</span>(nX + <span class="n">15</span> + nCol * <span class="n">20</span>,<span class="n">25</span> + nRow * <span class="n">20</span>,<span class="n">6</span>,<span class="s">"Black"</span>)
@@ -1537,7 +1538,8 @@ oTree {
 
 	oNode.Nodes.<span class="f">Clear</span>()
 	<span class="k">try</span>
-		<span class="k">for</span> cFolder <span class="k">in</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetDirectories</span>(oNode.Tag).<span class="f">toList</span>()
+		aFolders = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetDirectories</span>(oNode.Tag).<span class="f">toList</span>()
+		<span class="k">for</span> cFolder <span class="k">in</span> aFolders
 			oChild = oNode.Nodes.<span class="f">Add</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cFolder))
 			oChild.Tag = cFolder
 			<span class="c"># a placeholder child makes the "+" visible</span>
@@ -1571,7 +1573,8 @@ oTree {
 	cFolder = oTree.SelectedNode.Tag
 	nFiles = <span class="n">0</span>
 	<span class="k">try</span>
-		<span class="k">for</span> cFile <span class="k">in</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cFolder).<span class="f">toList</span>()
+		aFiles = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cFolder).<span class="f">toList</span>()
+		<span class="k">for</span> cFile <span class="k">in</span> aFiles
 			oInfo = <span class="k">new</span> <span class="t">FileInfo</span>(cFile)
 			oItem = <span class="k">new</span> <span class="t">ListViewItem</span>().@<span class="k">New</span>([ :<span class="t">text</span> = oInfo.Name ])
 			oItem.SubItems.<span class="f">Add</span>(sizeText(oInfo.Length))
@@ -2700,7 +2703,8 @@ newGame()
 <span class="k">func</span> <span class="f">mineCount</span> nCell
 
 	nTotal = <span class="n">0</span>
-	<span class="k">for</span> nNear <span class="k">in</span> neighbors(nCell)
+	aNears = neighbors(nCell)
+	<span class="k">for</span> nNear <span class="k">in</span> aNears
 		nTotal += aMine[nNear]
 	<span class="k">next</span>
 	<span class="k">return</span> nTotal
@@ -2791,7 +2795,8 @@ newGame()
 			aButtons[nCurrent].ForeColor = numberColor(nNear)
 		<span class="k">else</span>
 			aButtons[nCurrent].Text = <span class="s">""</span>
-			<span class="k">for</span> nOther <span class="k">in</span> neighbors(nCurrent)
+			aOthers = neighbors(nCurrent)
+			<span class="k">for</span> nOther <span class="k">in</span> aOthers
 				<span class="k">if</span> <span class="k">not</span> aRevealed[nOther] <span class="k">and</span> <span class="k">not</span> aFlagged[nOther]
 					aQueue + nOther
 				<span class="k">ok</span>
@@ -3285,7 +3290,8 @@ generate()
 		<span class="k">return</span>
 	<span class="k">ok</span>
 	cPassword = <span class="s">""</span>
-	<span class="k">for</span> x = <span class="n">1</span> <span class="k">to</span> number(oLength.Value)
+	nPasswordLength = number(oLength.Value)
+	<span class="k">for</span> x = <span class="n">1</span> <span class="k">to</span> nPasswordLength
 		cPassword += cChars[secureRandom(len(cChars)) + <span class="n">1</span>]
 	<span class="k">next</span>
 	oPassword.Text = cPassword
@@ -4600,7 +4606,8 @@ loadTasks()
 
 	oList.Items.<span class="f">Clear</span>()
 	<span class="k">if</span> <span class="k">new</span> <span class="t">File</span>().<span class="f">Exists</span>(cFile)
-		<span class="k">for</span> cLine <span class="k">in</span> str2list(<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cFile))
+		aLines = str2list(<span class="k">new</span> <span class="t">File</span>().<span class="f">ReadAllText</span>(cFile))
+		<span class="k">for</span> cLine <span class="k">in</span> aLines
 			cLine = trim(cLine)
 			<span class="k">if</span> len(cLine) &gt; <span class="n">4</span>
 				oList.Items.<span class="f">Add</span>([ :item = substr(cLine,<span class="n">5</span>), :isChecked = (left(cLine,<span class="n">3</span>) = <span class="s">"[x]"</span>) ])
@@ -5030,7 +5037,8 @@ update()
 
 	oMatches = <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"[\p{L}\p{N}']+"</span>).<span class="f">Matches</span>(cText)
 	aWords = []
-	<span class="k">for</span> oMatch <span class="k">in</span> oMatches.<span class="f">toList</span>()
+	aMatches = oMatches.<span class="f">toList</span>()
+	<span class="k">for</span> oMatch <span class="k">in</span> aMatches
 		aWords + lower(oMatch.Value)
 	<span class="k">next</span>
 	<span class="k">return</span> aWords
@@ -5072,7 +5080,8 @@ update()
 		oCounts.<span class="f">SetItem</span>(cWord,nOld + <span class="n">1</span>)
 	<span class="k">next</span>
 	aList = []
-	<span class="k">for</span> oPair <span class="k">in</span> oCounts.<span class="f">toList</span>()
+	aPairs = oCounts.<span class="f">toList</span>()
+	<span class="k">for</span> oPair <span class="k">in</span> aPairs
 		aList + [oPair.Key,oPair.Value]
 	<span class="k">next</span>
 	<span class="k">return</span> sort(aList,<span class="n">2</span>)</code></pre></div></details></div></div><div class="item" id="wpf-calculator"><div class="pic"><img src="img/shots/app-WpfCalculator.png" alt="Wpf Calculator" loading="lazy"></div><div class="info"><h3>Wpf Calculator</h3><p>Calculator with a WPF window described in XAML (the calculator logic is the one of the Windows Forms Calculator)</p><div class="run"><code>cd samples/UsingDotNet/applications/WpfCalculator  then  ring WpfCalculator.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Calculator with a WPF window described in XAML (the calculator logic is the one of the Windows Forms Calculator)</span>

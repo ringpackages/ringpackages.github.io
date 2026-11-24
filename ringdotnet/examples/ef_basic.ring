@@ -24,7 +24,8 @@ func main
 	? "row 1: " + dbValue(aRow,"Name") + ", " + dbValue(aRow,"Age") + ", " + dbValue(aRow,"City")
 
 	? nl + "adults in Cairo:"
-	for aCustomer in oDb.where("Customers","Age >= {0} AND City = {1}",[18,"Cairo"])
+	aCustomers = oDb.where("Customers","Age >= {0} AND City = {1}",[18,"Cairo"])
+	for aCustomer in aCustomers
 		? "  " + dbValue(aCustomer,"Name") + " (" + dbValue(aCustomer,"Age") + ")"
 	next
 

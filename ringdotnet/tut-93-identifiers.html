@@ -293,7 +293,8 @@ using {
 	<span class="k">next</span>
 	oList.<span class="f">callMethod</span>(<span class="s">"Sort"</span>,[])
 	cSorted = <span class="s">""</span>
-	<span class="k">for</span> oItem <span class="k">in</span> oList.<span class="f">toList</span>()
+	aItems = oList.<span class="f">toList</span>()
+	<span class="k">for</span> oItem <span class="k">in</span> aItems
 		cSorted += oItem.<span class="f">ToString</span>() + <span class="s">" "</span>
 	<span class="k">next</span>
 	? nl + <span class="s">"4. sorted versions: "</span> + cSorted

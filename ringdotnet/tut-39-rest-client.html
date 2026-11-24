@@ -291,7 +291,8 @@ aBooks = [[<span class="n">1</span>,<span class="s">"The Hobbit"</span>,<span cl
 	? <span class="s">"1. GET /api/books -&gt; status "</span> + aAnswer[<span class="n">1</span>]
 	oDocument = <span class="k">new</span> <span class="t">JsonDocument</span>().<span class="f">Parse</span>(aAnswer[<span class="n">2</span>])
 	oList = oDocument.RootElement
-	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> oList.<span class="f">GetArrayLength</span>() - <span class="n">1</span>
+	nLastIndex = oList.<span class="f">GetArrayLength</span>() - <span class="n">1</span>
+	<span class="k">for</span> nIndex = <span class="n">0</span> <span class="k">to</span> nLastIndex
 		oBook = oList.<span class="f">Item</span>(nIndex)
 		? <span class="s">"   "</span> + oBook.<span class="f">GetProperty</span>(<span class="s">"id"</span>).<span class="f">GetInt32</span>() + <span class="s">"  "</span> + oBook.<span class="f">GetProperty</span>(<span class="s">"title"</span>).<span class="f">GetString</span>() + <span class="s">" ("</span> + oBook.<span class="f">GetProperty</span>(<span class="s">"year"</span>).<span class="f">GetInt32</span>() + <span class="s">")"</span>
 	<span class="k">next</span>

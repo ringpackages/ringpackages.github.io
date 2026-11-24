@@ -329,7 +329,8 @@ C_CONFIG = <span class="s">'{"name":"shop","port":8080,"debug":false,"tags":["we
 <span class="c"># copy the keys of oSource into oTarget; where both are objects, merge them</span>
 <span class="k">func</span> <span class="f">merge</span> oTarget, oSource
 
-	<span class="k">for</span> cKey <span class="k">in</span> keysOf(oSource)
+	aSourceKeys = keysOf(oSource)
+	<span class="k">for</span> cKey <span class="k">in</span> aSourceKeys
 		oValue = oSource.<span class="f">Item</span>(cKey)
 		<span class="k">if</span> oTarget.<span class="f">ContainsKey</span>(cKey) <span class="k">and</span> oTarget.<span class="f">Item</span>(cKey).<span class="f">GetValueKind</span>() = <span class="s">"Object"</span> <span class="k">and</span> oValue.<span class="f">GetValueKind</span>() = <span class="s">"Object"</span>
 			merge(oTarget.<span class="f">Item</span>(cKey).<span class="f">AsObject</span>(),oValue.<span class="f">AsObject</span>())

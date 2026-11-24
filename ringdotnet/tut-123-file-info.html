@@ -322,11 +322,13 @@ using {
 	<span class="c"># 7. The files of a folder with their sizes, from DirectoryInfo (the names are sorted so that the output is always the same)</span>
 	oFolder = <span class="k">new</span> <span class="t">DirectoryInfo</span>(cFolder)
 	aNames = []
-	<span class="k">for</span> oItem <span class="k">in</span> oFolder.<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	aItems = oFolder.<span class="f">GetFiles</span>(<span class="k">NULL</span>).<span class="f">toList</span>()
+	<span class="k">for</span> oItem <span class="k">in</span> aItems
 		aNames + (oItem.Name + <span class="s">" ("</span> + oItem.Length + <span class="s">" bytes)"</span>)
 	<span class="k">next</span>
 	? nl + <span class="s">"7. in the folder:"</span>
-	<span class="k">for</span> cName <span class="k">in</span> sort(aNames)
+	aSortedNames = sort(aNames)
+	<span class="k">for</span> cName <span class="k">in</span> aSortedNames
 		? <span class="s">"   "</span> + cName
 	<span class="k">next</span>
 

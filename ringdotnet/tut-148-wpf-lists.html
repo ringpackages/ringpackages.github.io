@@ -370,7 +370,8 @@ oWindow = <span class="s">""</span>
 <span class="k">func</span> <span class="f">itemsText</span>
 
 	cText = <span class="s">""</span>
-	<span class="k">for</span> i = <span class="n">0</span> <span class="k">to</span> listBox().Items.Count - <span class="n">1</span>
+	nLastItem = listBox().Items.Count - <span class="n">1</span>
+	<span class="k">for</span> i = <span class="n">0</span> <span class="k">to</span> nLastItem
 		<span class="k">if</span> cText != <span class="s">""</span>
 			cText += <span class="s">","</span>
 		<span class="k">ok</span>
