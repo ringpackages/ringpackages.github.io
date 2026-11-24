@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Ring Programming Language</title>
+  <link rel="icon" href="images/ringicon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="title" content="Ring Language">
+  <meta name="description" content="Ring is an innovative and practical general-purpose multi-paradigm language. The supported programming paradigms are imperative, procedural, object-oriented, declarative using nested structures, functional, meta programming and natural programming.">
+  <meta name="keywords" content="Ring, Ring Language, innovative , practical , programming language, multi paradigm language, general purpose language, imperative, procedural, object-oriented, declarative using nested structures, functional, meta programming and natural programming. The language is portable Windows, Linux, macOS, Android, create Console, GUI, Web, Games, Mobile applications">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">  
+  <meta name="og:title" property="og:title" content="Ring Language - Innovative and practical general-purpose multi-paradigm language">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://ring-lang.github.io/" />
+  <meta property="og:image" content="http://ring-lang.github.io/images/theringlogo.jpg" />
+	
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+
+

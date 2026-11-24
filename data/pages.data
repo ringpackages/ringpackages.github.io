@@ -1,0 +1,7 @@
+# using C_HEADER and C_FOOTER we determine the header/footer files
+C_HEADER = "template/header.template"   C_FOOTER = "template/footer.template"
+
+# In the list aPages we define the website templates
+aPages = [
+	  "template/index.template"
+]

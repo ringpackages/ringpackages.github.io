@@ -1,0 +1,28 @@
+﻿  <%  eval(read("data/registry.data"))  %>
+  <div id="news" class="panel-group">
+    <div class="panel panel-info">
+      <div class="panel-heading"><h4>Packages <span class="badge"><%=len(aPackagesRegistry) %></span></h4></div>
+      <div class="panel-body">
+  		<div class="table-responsive">
+			<pre><code>Use <b>ringpm refresh</b> to get the latest version of Packages Registry</code></pre><pre><code>Use <b>ringpm install &lt;PackageName&gt;</b> to install any package</code></pre>
+			<table class="table table-striped">
+				<thead>
+				  <tr>
+					<th width="20%">Package Name</th>
+					<th>Description</th>
+				  </tr>
+				</thead>
+				<tbody>
+				<% for x in aPackagesRegistry %>
+				  <tr>
+					<td><%= '<a href="https://github.com/'+x[:providerusername]+'/'+lower(x[:name])+'">' + lower(x[:name]) + '</a>'%></td>
+					<td><%= x[:description] %></td>
+				  </tr>
+				<% next %>				 	  
+				</tbody>
+			</table>
+		</div>
+	  </div>
+     </div>  
+  </div>
+
