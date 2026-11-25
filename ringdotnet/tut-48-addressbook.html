@@ -397,8 +397,7 @@ oStatus = <span class="s">""</span>
 	nId = currentId()
 	<span class="k">if</span> nId = <span class="n">0</span>
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> <span class="f">uiAsk</span>(<span class="s">"Delete "</span> + oName.Text + <span class="s">"?"</span>,<span class="s">"Delete"</span>)
+	<span class="k">but</span> <span class="f">uiAsk</span>(<span class="s">"Delete "</span> + oName.Text + <span class="s">"?"</span>,<span class="s">"Delete"</span>)
 		oDb.<span class="f">remove</span>(<span class="s">"Contacts"</span>,nId)
 		clearFields()
 		reload()

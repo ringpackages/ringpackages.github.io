@@ -591,8 +591,7 @@ oUnits.<span class="f">setSelectedIndexChangedEvent</span>(<span class="s">"unit
 		oBmi.Text = <span class="s">"Enter a weight and a height"</span>
 		oCategory.Text = <span class="s">""</span>
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> oUnits.SelectedIndex = <span class="n">0</span>
+	<span class="k">but</span> oUnits.SelectedIndex = <span class="n">0</span>
 		nKilograms = nWeight
 		nMeters = nHeight / <span class="n">100</span>
 	<span class="k">else</span>
@@ -1755,8 +1754,7 @@ newGame()
 
 	<span class="k">if</span> lGameOver <span class="k">or</span> find([<span class="s">"Left"</span>,<span class="s">"Right"</span>,<span class="s">"Up"</span>,<span class="s">"Down"</span>],cKey) = <span class="n">0</span>
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> moveBoard(cKey)
+	<span class="k">but</span> moveBoard(cKey)
 		addRandomTile()
 		<span class="k">if</span> <span class="k">not</span> canMove()
 			lGameOver = <span class="k">true</span>
@@ -2747,8 +2745,7 @@ newGame()
 
 	<span class="k">if</span> <span class="k">not</span> lPlaying
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> cButton = <span class="s">"Right"</span>
+	<span class="k">but</span> cButton = <span class="s">"Right"</span>
 		toggleFlag(nCell)
 	<span class="k">else</span>
 		reveal(nCell)
@@ -2774,8 +2771,7 @@ newGame()
 
 	<span class="k">if</span> aRevealed[nCell] <span class="k">or</span> aFlagged[nCell]
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> aMine[nCell]
+	<span class="k">but</span> aMine[nCell]
 		gameOver()
 		<span class="k">return</span>
 	<span class="k">ok</span>
@@ -3474,8 +3470,7 @@ showScore()
 
 	<span class="k">if</span> nPlayer = nComputer
 		<span class="k">return</span> <span class="n">0</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> (nPlayer = <span class="n">1</span> <span class="k">and</span> nComputer = <span class="n">3</span>) <span class="k">or</span> (nPlayer = <span class="n">2</span> <span class="k">and</span> nComputer = <span class="n">1</span>) <span class="k">or</span> (nPlayer = <span class="n">3</span> <span class="k">and</span> nComputer = <span class="n">2</span>)
+	<span class="k">but</span> (nPlayer = <span class="n">1</span> <span class="k">and</span> nComputer = <span class="n">3</span>) <span class="k">or</span> (nPlayer = <span class="n">2</span> <span class="k">and</span> nComputer = <span class="n">1</span>) <span class="k">or</span> (nPlayer = <span class="n">3</span> <span class="k">and</span> nComputer = <span class="n">2</span>)
 		<span class="k">return</span> <span class="n">1</span>
 	<span class="k">ok</span>
 	<span class="k">return</span> -<span class="n">1</span>
@@ -3790,8 +3785,7 @@ loadLevel(<span class="n">1</span>)
 	cTarget = tileAt(nTargetColumn,nTargetRow)
 	<span class="k">if</span> cTarget = <span class="s">"#"</span>
 		<span class="k">return</span> <span class="k">false</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> isBox(cTarget)
+	<span class="k">but</span> isBox(cTarget)
 		cBeyond = tileAt(nTargetColumn + nDx,nTargetRow + nDy)
 		<span class="k">if</span> cBeyond = <span class="s">"#"</span> <span class="k">or</span> isBox(cBeyond)
 			<span class="k">return</span> <span class="k">false</span>
@@ -4022,8 +4016,7 @@ loadPuzzle(cPuzzle)
 	<span class="k">for</span> nOther = <span class="n">0</span> <span class="k">to</span> <span class="n">8</span>
 		<span class="k">if</span> aCells[nRow * <span class="n">9</span> + nOther + <span class="n">1</span>] = nDigit <span class="k">and</span> nRow * <span class="n">9</span> + nOther + <span class="n">1</span> != nCell
 			<span class="k">return</span> <span class="k">false</span>
-		<span class="k">ok</span>
-		<span class="k">if</span> aCells[nOther * <span class="n">9</span> + nColumn + <span class="n">1</span>] = nDigit <span class="k">and</span> nOther * <span class="n">9</span> + nColumn + <span class="n">1</span> != nCell
+		<span class="k">but</span> aCells[nOther * <span class="n">9</span> + nColumn + <span class="n">1</span>] = nDigit <span class="k">and</span> nOther * <span class="n">9</span> + nColumn + <span class="n">1</span> != nCell
 			<span class="k">return</span> <span class="k">false</span>
 		<span class="k">ok</span>
 	<span class="k">next</span>
@@ -4243,8 +4236,7 @@ newGame()
 		nRow = nY + aCell[<span class="n">2</span>]
 		<span class="k">if</span> nColumn &lt; <span class="n">0</span> <span class="k">or</span> nColumn &gt;= C_COLUMNS <span class="k">or</span> nRow &gt;= C_ROWS
 			<span class="k">return</span> <span class="k">false</span>
-		<span class="k">ok</span>
-		<span class="k">if</span> nRow &gt;= <span class="n">0</span> <span class="k">and</span> aBoard[cellOf(nColumn,nRow)] != <span class="n">0</span>
+		<span class="k">but</span> nRow &gt;= <span class="n">0</span> <span class="k">and</span> aBoard[cellOf(nColumn,nRow)] != <span class="n">0</span>
 			<span class="k">return</span> <span class="k">false</span>
 		<span class="k">ok</span>
 	<span class="k">next</span>
@@ -4328,8 +4320,7 @@ newGame()
 
 	<span class="k">if</span> lGameOver
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> fits(aCurrent,nPieceX,nPieceY + <span class="n">1</span>)
+	<span class="k">but</span> fits(aCurrent,nPieceX,nPieceY + <span class="n">1</span>)
 		nPieceY++
 	<span class="k">else</span>
 		lockPiece()
@@ -4708,8 +4699,7 @@ newGame()
 
 	<span class="k">if</span> nFrom = nTo <span class="k">or</span> len(aPegs[nFrom]) = <span class="n">0</span>
 		<span class="k">return</span> <span class="k">false</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> len(aPegs[nTo]) = <span class="n">0</span>
+	<span class="k">but</span> len(aPegs[nTo]) = <span class="n">0</span>
 		<span class="k">return</span> <span class="k">true</span>
 	<span class="k">ok</span>
 	<span class="k">return</span> aPegs[nFrom][len(aPegs[nFrom])] &lt; aPegs[nTo][len(aPegs[nTo])]
@@ -4855,8 +4845,7 @@ newSentence()
 	cTyped = oInput.Text
 	<span class="k">if</span> cTyped = <span class="s">""</span> <span class="k">or</span> cTarget = <span class="s">""</span>
 		<span class="k">return</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> <span class="k">not</span> lStarted
+	<span class="k">but</span> <span class="k">not</span> lStarted
 		oWatch.<span class="f">Start</span>()
 		lStarted = <span class="k">true</span>
 	<span class="k">ok</span>

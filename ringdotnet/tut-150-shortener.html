@@ -343,8 +343,7 @@ nCounter = <span class="n">1000</span>                   <span class="c"># the n
 	cAddress = trim(oRequest.<span class="f">form</span>(<span class="s">"address"</span>))
 	<span class="k">if</span> cAddress = <span class="s">""</span>
 		<span class="k">return</span> [<span class="n">400</span>,<span class="s">"text/plain"</span>,<span class="s">"the field address is needed"</span>]
-	<span class="k">ok</span>
-	<span class="k">if</span> <span class="k">not</span> isAllowed(cAddress)
+	<span class="k">but</span> <span class="k">not</span> isAllowed(cAddress)
 		<span class="k">return</span> [<span class="n">400</span>,<span class="s">"text/plain"</span>,<span class="s">"the address must be a http or https address"</span>]
 	<span class="k">ok</span>
 	<span class="c"># the same address gets the same code</span>

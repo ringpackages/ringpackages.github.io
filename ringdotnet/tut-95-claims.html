@@ -310,8 +310,8 @@ using {
 	aRoles = oPrincipal.<span class="f">FindAll</span>(<span class="s">"Role"</span>).<span class="f">toList</span>()
 	<span class="k">for</span> oRole <span class="k">in</span> aRoles
 		aAllowed = aRules[lower(oRole.Value)]
-		<span class="k">if</span> <span class="k">not</span> islist(aAllowed) <span class="k">loop</span> <span class="k">ok</span>
-		<span class="k">if</span> find(aAllowed,cAction) &gt; <span class="n">0</span>
+		<span class="k">if</span> <span class="k">not</span> islist(aAllowed) <span class="k">loop</span>
+		<span class="k">but</span> find(aAllowed,cAction) &gt; <span class="n">0</span>
 			<span class="k">return</span> <span class="k">True</span>
 		<span class="k">ok</span>
 	<span class="k">next</span>

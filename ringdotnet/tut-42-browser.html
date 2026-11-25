@@ -349,8 +349,7 @@ cRoot = <span class="s">""</span>
 
 	<span class="k">if</span> nBytes &lt; <span class="n">1024</span>
 		<span class="k">return</span> <span class="s">""</span> + nBytes + <span class="s">" B"</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> nBytes &lt; <span class="n">1024</span> * <span class="n">1024</span>
+	<span class="k">but</span> nBytes &lt; <span class="n">1024</span> * <span class="n">1024</span>
 		<span class="k">return</span> <span class="f">uiNumber</span>(floor(nBytes / <span class="n">102.4</span>) / <span class="n">10</span>) + <span class="s">" KB"</span>      <span class="c"># uiNumber: 1.5, not Ring's fixed 1.50</span>
 	<span class="k">ok</span>
 	<span class="k">return</span> <span class="f">uiNumber</span>(floor(nBytes / <span class="n">104857.6</span>) / <span class="n">10</span>) + <span class="s">" MB"</span>

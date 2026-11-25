@@ -350,14 +350,11 @@ using {
 
 	<span class="k">if</span> left(cBytes,<span class="n">3</span>) = char(<span class="n">239</span>) + char(<span class="n">187</span>) + char(<span class="n">191</span>)
 		<span class="k">return</span> <span class="s">"UTF-8 with a BOM"</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> left(cBytes,<span class="n">2</span>) = char(<span class="n">255</span>) + char(<span class="n">254</span>)
+	<span class="k">but</span> left(cBytes,<span class="n">2</span>) = char(<span class="n">255</span>) + char(<span class="n">254</span>)
 		<span class="k">return</span> <span class="s">"UTF-16 little endian (the BOM FF FE)"</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> left(cBytes,<span class="n">2</span>) = char(<span class="n">254</span>) + char(<span class="n">255</span>)
+	<span class="k">but</span> left(cBytes,<span class="n">2</span>) = char(<span class="n">254</span>) + char(<span class="n">255</span>)
 		<span class="k">return</span> <span class="s">"UTF-16 big endian (the BOM FE FF)"</span>
-	<span class="k">ok</span>
-	<span class="k">if</span> isValidUtf8(cBytes)
+	<span class="k">but</span> isValidUtf8(cBytes)
 		<span class="k">return</span> <span class="s">"UTF-8 (no BOM)"</span>
 	<span class="k">ok</span>
 	<span class="k">return</span> <span class="s">"not UTF-8: try Latin-1"</span>

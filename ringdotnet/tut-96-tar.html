@@ -309,8 +309,8 @@ using {
 	cFound = <span class="s">""</span>
 	<span class="k">while</span> <span class="k">true</span>
 		oEntry = oReader.<span class="f">GetNextEntry</span>(<span class="k">NULL</span>)
-		<span class="k">if</span> oEntry.<span class="f">isNull</span>() <span class="k">exit</span> <span class="k">ok</span>
-		<span class="k">if</span> oEntry.Name = <span class="s">"notes/b.txt"</span>
+		<span class="k">if</span> oEntry.<span class="f">isNull</span>() <span class="k">exit</span>
+		<span class="k">but</span> oEntry.Name = <span class="s">"notes/b.txt"</span>
 			cFound = <span class="k">new</span> <span class="t">StreamReader</span>(oEntry.DataStream).<span class="f">ReadToEnd</span>()
 			<span class="k">exit</span>
 		<span class="k">ok</span>

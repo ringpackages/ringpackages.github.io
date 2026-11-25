@@ -398,13 +398,11 @@ using {
 		nPos++
 		<span class="k">if</span> <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"^\d"</span>).<span class="f">IsMatch</span>(cToken)
 			<span class="k">return</span> number(cToken)
-		<span class="k">ok</span>
-		<span class="k">if</span> cToken = <span class="s">"("</span>
+		<span class="k">but</span> cToken = <span class="s">"("</span>
 			nValue = expression()
 			expect(<span class="s">")"</span>)
 			<span class="k">return</span> nValue
-		<span class="k">ok</span>
-		<span class="k">if</span> <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"^[A-Za-z]"</span>).<span class="f">IsMatch</span>(cToken)
+		<span class="k">but</span> <span class="k">new</span> <span class="t">Regex</span>(<span class="s">"^[A-Za-z]"</span>).<span class="f">IsMatch</span>(cToken)
 			<span class="k">return</span> callFunction(cToken)
 		<span class="k">ok</span>
 		cError = <span class="s">"unexpected '"</span> + cToken + <span class="s">"'"</span>
@@ -414,8 +412,7 @@ using {
 
 		<span class="k">if</span> cError != <span class="s">""</span>
 			<span class="k">return</span>
-		<span class="k">ok</span>
-		<span class="k">if</span> peek() != cToken
+		<span class="k">but</span> peek() != cToken
 			cError = <span class="s">"'"</span> + cToken + <span class="s">"' expected"</span>
 			<span class="k">return</span>
 		<span class="k">ok</span>

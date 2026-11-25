@@ -542,6 +542,51 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSink</span> <span class="t">Tag</span>(this <span class="t">IChannelSink</span> sink, <span class="k">string</span> tag) { sink.<span class="f">Write</span>(<span class="s">"["</span> + tag + <span class="s">"]"</span>); <span class="k">return</span> sink; }
 	}
 
+	<span class="c">// Overloads of one name with the same number of parameters and different kinds of answer, in a base class and in a class derived from it: the</span>
+	<span class="c">// generated method of each class must finish an answer that is not a number (an object, a text).</span>
+	<span class="k">public</span> <span class="k">class</span> ParserBox
+	{
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Text</span> { <span class="k">get</span>; <span class="k">set</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> ParserBase
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Read</span>(<span class="k">int</span> value) { <span class="k">return</span> value * <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Size</span> { <span class="k">get</span> { <span class="k">return</span> <span class="n">7</span>; } }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">ParserDerived</span> : ParserBase
+	{
+		<span class="k">public</span> <span class="t">ParserBox</span> <span class="t">Read</span>(<span class="k">string</span> text) { <span class="k">return</span> <span class="k">new</span> <span class="t">ParserBox</span> { <span class="t">Text</span> = text }; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Describe</span>(<span class="k">int</span> value) { <span class="k">return</span> value &gt; <span class="n">0</span> ? <span class="s">"positive"</span> : <span class="k">null</span>; }
+	}
+
+	<span class="c">// A class with two indexers: the first one that .NET lists answers a number (the position of a box), and the one that Ring calls with a number answers an object</span>
+	<span class="k">public</span> <span class="k">class</span> BoxList
+	{
+		<span class="k">private</span> <span class="k">readonly</span> System.Collections.Generic.List&lt;ParserBox&gt; items = <span class="k">new</span> <span class="t">System</span>.Collections.Generic.List&lt;ParserBox&gt; { <span class="k">new</span> <span class="t">ParserBox</span> { <span class="t">Text</span> = <span class="s">"first"</span> }, <span class="k">new</span> <span class="t">ParserBox</span> { <span class="t">Text</span> = <span class="s">"second"</span> } };
+		<span class="k">public</span> <span class="k">int</span> this[<span class="t">ParserBox</span> box] { <span class="k">get</span> { <span class="k">return</span> items.<span class="f">IndexOf</span>(box); } }
+		<span class="k">public</span> <span class="t">ParserBox</span> this[<span class="k">int</span> index] { <span class="k">get</span> { <span class="k">return</span> items[index]; } }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span> { <span class="k">get</span> { <span class="k">return</span> items.Count; } }
+	}
+
+	<span class="c">// A class that is not public derives from a public one and adds an overload with another kind of answer: the object is wrapped as the public</span>
+	<span class="c">// class, which does not show the overload, but the bridge chooses the method from the real object.</span>
+	<span class="k">public</span> <span class="k">class</span> PlainBase
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Measure</span>(<span class="k">int</span> value) { <span class="k">return</span> value + <span class="n">1</span>; }
+	}
+
+	<span class="k">internal</span> <span class="k">class</span> <span class="t">HiddenDerived</span> : PlainBase
+	{
+		<span class="k">public</span> <span class="t">ParserBox</span> <span class="t">Measure</span>(<span class="k">string</span> text) { <span class="k">return</span> <span class="k">new</span> <span class="t">ParserBox</span> { <span class="t">Text</span> = <span class="s">"measured "</span> + text }; }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Parsers
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">PlainBase</span> <span class="t">NewPlain</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">HiddenDerived</span>(); }
+	}
+
 	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Channels
 	{
 		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSink</span> <span class="t">NewChannel</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Channel</span>(); }
@@ -806,6 +851,32 @@ oSource = <span class="k">new</span> <span class="t">Channels</span>().<span cla
 <span class="f">dnAssert</span>(<span class="s">"the same object as the other interface"</span>,oSource.<span class="f">Read</span>(),<span class="s">"ab[x][y][z]"</span>)
 <span class="f">dnAssert</span>(<span class="s">"it has the members of both again"</span>,oSource.Name,<span class="s">"changed"</span>)
 <span class="f">dnAssert</span>(<span class="s">"and a copy of the object keeps them"</span>,classname(oSource),classname(oChannel))
+
+<span class="c"># a base class and a derived class: overloads of one name that answer a number and an object</span>
+oBase = <span class="k">new</span> <span class="t">ParserBase</span>()
+<span class="f">dnAssert</span>(<span class="s">"the base class: a number answer"</span>,oBase.<span class="f">Read</span>(<span class="n">21</span>),<span class="n">42</span>)
+<span class="f">dnAssert</span>(<span class="s">"the base class: a property that answers a number"</span>,oBase.Size,<span class="n">7</span>)
+oDerived = <span class="k">new</span> <span class="t">ParserDerived</span>()
+<span class="f">dnAssert</span>(<span class="s">"the derived class: the inherited overload answers a number"</span>,oDerived.<span class="f">Read</span>(<span class="n">21</span>),<span class="n">42</span>)
+oBox = oDerived.<span class="f">Read</span>(<span class="s">"text"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the derived class: the overload that answers an object"</span>,oBox.Text,<span class="s">"text"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the derived class: an inherited property"</span>,oDerived.Size,<span class="n">7</span>)
+<span class="f">dnAssert</span>(<span class="s">"the derived class: a text answer"</span>,oDerived.<span class="f">Describe</span>(<span class="n">1</span>),<span class="s">"positive"</span>)
+<span class="f">dnAssert</span>(<span class="s">"the derived class: a null text is the null object"</span>,<span class="f">dnIsNull</span>(oDerived.<span class="f">Describe</span>(<span class="n">0</span>)),<span class="k">true</span>)
+
+<span class="c"># a class with two indexers: the generated Item method is made from the first indexer that .NET lists (position of a box: a number), and the call with</span>
+<span class="c"># a number answers an object</span>
+oBoxes = <span class="k">new</span> <span class="t">BoxList</span>()
+<span class="f">dnAssert</span>(<span class="s">"an indexer: the count"</span>,oBoxes.Count,<span class="n">2</span>)
+oSecond = oBoxes.<span class="f">Item</span>(<span class="n">1</span>)
+<span class="f">dnAssert</span>(<span class="s">"an indexer that answers an object, with another indexer that answers a number"</span>,oSecond.Text,<span class="s">"second"</span>)
+
+<span class="c"># a class that is not public derives from a public one and adds an overload: wrapped as the public class</span>
+oPlain = <span class="k">new</span> <span class="t">Parsers</span>().<span class="f">NewPlain</span>()
+<span class="f">dnAssert</span>(<span class="s">"a hidden subclass is wrapped as the public class"</span>,classname(oPlain),<span class="s">"plainbase"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a hidden subclass: the overload that the public class has"</span>,oPlain.<span class="f">Measure</span>(<span class="n">4</span>),<span class="n">5</span>)
+oMeasured = oPlain.<span class="f">Measure</span>(<span class="s">"x"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a hidden subclass: an overload that only the real class has"</span>,oMeasured.Text,<span class="s">"measured x"</span>)
 
 oCounter = <span class="k">new</span> <span class="t">Counter</span>()
 oCounter.<span class="f">Increment</span>()
