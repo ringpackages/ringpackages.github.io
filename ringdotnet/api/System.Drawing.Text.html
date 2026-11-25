@@ -254,7 +254,7 @@
 <p class="net"><code>System.Drawing.Text.FontCollection</code> · assembly <code>System.Drawing.Common</code></p>
 <p class="muted">Implements: IDisposable</p>
 <h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Families</code></td><td><code>FontFamily[]</code></td><td>read</td><td><code>o.Families</code></td></tr></tbody></table></div>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>Dispose()</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Dispose</code></td><td><code>callMethod("Dispose",[])</code></td><td><code>void Dispose()</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-InstalledFontCollection"><summary><b>InstalledFontCollection</b> <span class="muted">class sealed · extends <a href="#c-FontCollection">FontCollection</a></span></summary>
 <div class="clsbody">
@@ -270,7 +270,7 @@
 <p class="muted">Implements: IDisposable</p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new PrivateFontCollection()</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new PrivateFontCollection(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new PrivateFontCollection().@New([ :param = value ])</code> or <code>dnNew("PrivateFontCollection",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddFontFile</code></td><td><code>AddFontFile(p1)</code></td><td><code>void AddFontFile(string filename)</code></td></tr><tr><td><code>AddMemoryFont</code></td><td><code>AddMemoryFont(p1,p2)</code></td><td><code>void AddMemoryFont(IntPtr memory, int length)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>AddFontFile</code></td><td><code>callMethod("AddFontFile",[p1])</code></td><td><code>void AddFontFile(string filename)</code></td></tr><tr><td><code>AddMemoryFont</code></td><td><code>AddMemoryFont(p1,p2)</code></td><td><code>void AddMemoryFont(IntPtr memory, int length)</code></td></tr></tbody></table></div>
 <p class="muted">Members of the base class are inherited.</p>
 </div></details>
 <div class="pager"></div>

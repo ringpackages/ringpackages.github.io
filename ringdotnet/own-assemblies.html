@@ -587,6 +587,201 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> <span class="k">static</span> <span class="t">PlainBase</span> <span class="t">NewPlain</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">HiddenDerived</span>(); }
 	}
 
+	<span class="c">// Properties and fields of every kind that the typed read and write handle (a number, a yes/no, a text), and kinds that they leave to the generic</span>
+	<span class="c">// request: an enum, a char, a nullable, a byte array, an indexer, a struct, a property that throws, one that hides another</span>
+	<span class="k">public</span> <span class="k">enum</span> <span class="t">TypedColor</span> { Red, Green, <span class="t">Blue</span> }
+	[Flags] <span class="k">public</span> <span class="k">enum</span> <span class="t">TypedFlags</span> { <span class="t">None</span> = <span class="n">0</span>, A = <span class="n">1</span>, B = <span class="n">2</span>, C = <span class="n">4</span> }
+
+	<span class="k">public</span> <span class="k">class</span> TypedBox
+	{
+		<span class="k">public</span> sbyte <span class="t">SByteValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> byte <span class="t">ByteValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> short <span class="t">ShortValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> ushort <span class="t">UShortValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">IntValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> uint <span class="t">UIntValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">long</span> <span class="t">LongValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> ulong <span class="t">ULongValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> float <span class="t">FloatValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">double</span> <span class="t">DoubleValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> decimal <span class="t">DecimalValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">Flag</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Text</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> char <span class="t">Letter</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">TypedColor</span> <span class="t">Color</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">TypedFlags</span> <span class="t">Flags</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">TypedColor</span> ColorField;
+		<span class="k">public</span> <span class="t">TypedColor</span> <span class="t">ReadOnlyColor</span> { <span class="k">get</span> { <span class="k">return</span> TypedColor.Green; } }
+		<span class="k">public</span> <span class="k">int</span>? <span class="t">Maybe</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> byte[] <span class="t">Bytes</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">ReadOnly</span> { <span class="k">get</span> { <span class="k">return</span> <span class="n">42</span>; } }
+		<span class="k">public</span> <span class="k">int</span> LastWritten;
+		<span class="k">public</span> <span class="k">int</span> <span class="t">WriteOnlyValue</span> { <span class="k">set</span> { <span class="t">LastWritten</span> = value; } }
+		<span class="k">public</span> <span class="k">string</span> Field;
+		<span class="k">public</span> <span class="k">int</span> CountField;
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Throws</span> { <span class="k">get</span> { <span class="k">throw</span> <span class="k">new</span> <span class="t">InvalidOperationException</span>(<span class="s">"no read"</span>); } <span class="k">set</span> { <span class="k">throw</span> <span class="k">new</span> <span class="t">ArgumentException</span>(<span class="s">"no write"</span>); } }
+		<span class="k">public</span> <span class="k">int</span> this[<span class="k">int</span> index] { <span class="k">get</span> { <span class="k">return</span> index; } }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">TypedDerived</span> : TypedBox
+	{
+		<span class="k">public</span> <span class="k">new</span> <span class="k">string</span> <span class="t">IntValue</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Extra</span> { <span class="k">get</span>; <span class="k">set</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">struct</span> TypedPoint
+	{
+		<span class="k">public</span> <span class="k">int</span> X { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="k">int</span> Y;
+	}
+
+	<span class="c">// Instance methods that are called directly by the extension (typed calls): parameters of numbers, yes/nos and texts, answers of a number, a yes/no, a text or</span>
+	<span class="c">// nothing. The others in this class must still give the answers and the errors of the generic request: overloads, optional parameters, params, generic</span>
+	<span class="c">// methods, out and ref, an enum, a char, a nullable, an object, a method that throws, a static method.</span>
+	<span class="k">public</span> <span class="k">class</span> TypedMath
+	{
+		<span class="k">public</span> <span class="k">string</span> Last;
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Add</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a + b; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Sum3</span>(<span class="k">int</span> a, <span class="k">int</span> b, <span class="k">int</span> c) { <span class="k">return</span> a + b + c; }
+		<span class="k">public</span> <span class="k">double</span> <span class="t">Mix4</span>(<span class="k">double</span> a, <span class="k">double</span> b, <span class="k">double</span> c, <span class="k">double</span> d) { <span class="k">return</span> a * b + c - d; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Join4</span>(<span class="k">string</span> a, <span class="k">int</span> b, <span class="k">bool</span> c, <span class="k">string</span> d) { <span class="k">return</span> a + b + (c ? <span class="s">"T"</span> : <span class="s">"F"</span>) + d; }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">Between</span>(<span class="k">int</span> value, <span class="k">int</span> low, <span class="k">int</span> high) { <span class="k">return</span> value &gt;= low &amp;&amp; value &lt;= high; }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Set2</span>(<span class="k">int</span> a, <span class="k">string</span> b) { <span class="t">Last</span> = a + b; }
+		<span class="k">public</span> <span class="k">long</span> <span class="t">Big</span>(<span class="k">long</span> a) { <span class="k">return</span> a * <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">ByteIn</span>(byte a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">SByteIn</span>(sbyte a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">ShortIn</span>(short a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">UShortIn</span>(ushort a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">long</span> <span class="t">UIntIn</span>(uint a) { <span class="k">return</span> (<span class="k">long</span>)a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">double</span> <span class="t">ULongIn</span>(ulong a) { <span class="k">return</span> (<span class="k">double</span>)a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">double</span> <span class="t">FloatIn</span>(float a) { <span class="k">return</span> a * <span class="n">2</span>; }
+		<span class="k">public</span> decimal <span class="t">DecimalIn</span>(decimal a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">TextOrNull</span>(<span class="k">string</span> a) { <span class="k">return</span> a.Length == <span class="n">0</span> ? <span class="k">null</span> : a + <span class="s">"!"</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Echo</span>(<span class="k">string</span> a) { <span class="k">return</span> a; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Length</span>(<span class="k">string</span> a) { <span class="k">return</span> a.Length; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Throws</span>(<span class="k">int</span> a) { <span class="k">throw</span> <span class="k">new</span> <span class="t">ArgumentException</span>(<span class="s">"typed call error "</span> + a); }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">IsFive</span>(<span class="k">int</span> a) { <span class="k">return</span> a == <span class="n">5</span>; }
+		<span class="k">public</span> char <span class="t">LetterOf</span>(<span class="k">string</span> a) { <span class="k">return</span> a[<span class="n">0</span>]; }
+		<span class="k">public</span> char <span class="t">NextLetter</span>(char c) { <span class="k">return</span> (char)(c + <span class="n">1</span>); }
+		<span class="k">public</span> <span class="t">TypedColor</span> <span class="t">Paint</span>(<span class="t">TypedColor</span> c) { <span class="k">return</span> c; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Maybe</span>(<span class="k">int</span>? a) { <span class="k">return</span> a.HasValue ? a.Value : -<span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Opt</span>(<span class="k">int</span> a, <span class="k">int</span> b = <span class="n">5</span>) { <span class="k">return</span> a * <span class="n">100</span> + b; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Many</span>(<span class="k">params</span> <span class="k">int</span>[] values) { <span class="k">return</span> values.Length; }
+		<span class="k">public</span> T Same&lt;T&gt;(T value) { <span class="k">return</span> value; }
+		<span class="k">public</span> <span class="k">bool</span> <span class="t">OutValue</span>(<span class="k">out</span> <span class="k">int</span> result) { result = <span class="n">9</span>; <span class="k">return</span> <span class="k">true</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">RefValue</span>(<span class="k">ref</span> <span class="k">int</span> value) { value++; <span class="k">return</span> value; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Square</span>(<span class="k">int</span> a) { <span class="k">return</span> a * a; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Over</span>(<span class="k">int</span> a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Over</span>(<span class="k">string</span> a) { <span class="k">return</span> a + <span class="s">"?"</span>; }
+		<span class="k">public</span> <span class="t">TypedBox</span> <span class="t">Box</span>(<span class="k">int</span> a) { <span class="k">return</span> <span class="k">new</span> <span class="t">TypedBox</span> { <span class="t">IntValue</span> = a }; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Pair</span>() { <span class="k">return</span> <span class="s">"none"</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Pair</span>(<span class="k">int</span> a) { <span class="k">return</span> <span class="s">"int "</span> + a; }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Reset</span>() { <span class="t">Last</span> = <span class="s">"reset"</span>; }
+		<span class="k">public</span> <span class="k">void</span> <span class="t">Reset</span>(<span class="k">int</span> a) { <span class="t">Last</span> = <span class="s">"reset "</span> + a; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span>() { <span class="k">return</span> <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span>(<span class="k">string</span> a) { <span class="k">return</span> <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Count</span>(<span class="k">int</span> a) { <span class="k">return</span> <span class="n">3</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Scale</span>(<span class="k">int</span> a) { <span class="k">return</span> a * <span class="n">10</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Scale</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a * b; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>() { <span class="k">return</span> <span class="s">"hi"</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>(<span class="k">string</span> a) { <span class="k">return</span> <span class="s">"hi "</span> + a; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>(<span class="k">string</span> a, <span class="k">string</span> b) { <span class="k">return</span> <span class="s">"hi "</span> + a + b; }
+	}
+
+	<span class="c">// Static methods for the typed static call (dotnet_callts): the same kinds as TypedMath, and the cases that stay with the generic request</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> TypedStatic
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> Last;
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Add</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a + b; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Sum3</span>(<span class="k">int</span> a, <span class="k">int</span> b, <span class="k">int</span> c) { <span class="k">return</span> a + b + c; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">double</span> <span class="t">Mix4</span>(<span class="k">double</span> a, <span class="k">double</span> b, <span class="k">double</span> c, <span class="k">double</span> d) { <span class="k">return</span> a * b + c - d; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Join4</span>(<span class="k">string</span> a, <span class="k">int</span> b, <span class="k">bool</span> c, <span class="k">string</span> d) { <span class="k">return</span> a + b + (c ? <span class="s">"T"</span> : <span class="s">"F"</span>) + d; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">bool</span> <span class="t">Between</span>(<span class="k">int</span> value, <span class="k">int</span> low, <span class="k">int</span> high) { <span class="k">return</span> value &gt;= low &amp;&amp; value &lt;= high; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="t">Set2</span>(<span class="k">int</span> a, <span class="k">string</span> b) { <span class="t">Last</span> = a + b; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">GetLast</span>() { <span class="k">return</span> Last; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">long</span> <span class="t">Big</span>(<span class="k">long</span> a) { <span class="k">return</span> a * <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">ByteIn</span>(byte a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">SByteIn</span>(sbyte a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">long</span> <span class="t">UIntIn</span>(uint a) { <span class="k">return</span> (<span class="k">long</span>)a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">double</span> <span class="t">FloatIn</span>(float a) { <span class="k">return</span> a * <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">static</span> decimal <span class="t">DecimalIn</span>(decimal a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">TextOrNull</span>(<span class="k">string</span> a) { <span class="k">return</span> a.Length == <span class="n">0</span> ? <span class="k">null</span> : a + <span class="s">"!"</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Echo</span>(<span class="k">string</span> a) { <span class="k">return</span> a; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Throws</span>(<span class="k">int</span> a) { <span class="k">throw</span> <span class="k">new</span> <span class="t">ArgumentException</span>(<span class="s">"typed static error "</span> + a); }
+		<span class="k">public</span> <span class="k">static</span> char <span class="t">LetterOf</span>(<span class="k">string</span> a) { <span class="k">return</span> a[<span class="n">0</span>]; }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">TypedColor</span> <span class="t">Paint</span>(<span class="t">TypedColor</span> c) { <span class="k">return</span> c; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Maybe</span>(<span class="k">int</span>? a) { <span class="k">return</span> a.HasValue ? a.Value : -<span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Opt</span>(<span class="k">int</span> a, <span class="k">int</span> b = <span class="n">5</span>) { <span class="k">return</span> a * <span class="n">100</span> + b; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Many</span>(<span class="k">params</span> <span class="k">int</span>[] values) { <span class="k">return</span> values.Length; }
+		<span class="k">public</span> <span class="k">static</span> T Same&lt;T&gt;(T value) { <span class="k">return</span> value; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">bool</span> <span class="t">OutValue</span>(<span class="k">out</span> <span class="k">int</span> result) { result = <span class="n">9</span>; <span class="k">return</span> <span class="k">true</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Over</span>(<span class="k">int</span> a) { <span class="k">return</span> a + <span class="n">1</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Over</span>(<span class="k">string</span> a) { <span class="k">return</span> a + <span class="s">"?"</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Pair</span>() { <span class="k">return</span> <span class="s">"none"</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Pair</span>(<span class="k">int</span> a) { <span class="k">return</span> <span class="s">"int "</span> + a; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Scale</span>(<span class="k">int</span> a) { <span class="k">return</span> a * <span class="n">10</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Scale</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a * b; }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">TypedBox</span> <span class="t">Box</span>(<span class="k">int</span> a) { <span class="k">return</span> <span class="k">new</span> <span class="t">TypedBox</span> { <span class="t">IntValue</span> = a }; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="t">Reset</span>() { <span class="t">Last</span> = <span class="s">"reset"</span>; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Choose</span>(<span class="k">string</span> a) { <span class="k">return</span> <span class="s">"text "</span> + a; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">Choose</span>(<span class="t">TypedColor</span> c) { <span class="k">return</span> <span class="s">"color "</span> + c; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">OnlyColor</span>(<span class="t">TypedColor</span> c) { <span class="k">return</span> <span class="s">"color "</span> + c; }
+	}
+
+	<span class="c">// A class with a static and an instance method of one name (a class used without an object calls the static one), and one that a derived class inherits</span>
+	<span class="k">public</span> <span class="k">class</span> TypedBoth
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Twice</span>(<span class="k">int</span> a) { <span class="k">return</span> a * <span class="n">2</span>; }
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Twice</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a * <span class="n">2</span> + b; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">Inherited</span>(<span class="k">int</span> a) { <span class="k">return</span> a + <span class="n">1</span>; }
+	}
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">TypedBothDerived</span> : TypedBoth
+	{
+	}
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">TypedMathDerived</span> : TypedMath
+	{
+		<span class="k">public</span> <span class="k">new</span> <span class="k">int</span> <span class="t">Add</span>(<span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> a + b + <span class="n">1000</span>; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Add</span>(<span class="k">string</span> a, <span class="k">string</span> b) { <span class="k">return</span> a + b; }
+	}
+
+	<span class="c">// A class with two indexers (the first that .NET lists maps a number to a text, the other a text to a number): its Item is the generic request's,</span>
+	<span class="c">// because two get_Item can take one argument</span>
+	<span class="k">public</span> <span class="k">class</span> TypedIndexed
+	{
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">string</span>[] texts = { <span class="s">"zero"</span>, <span class="s">"one"</span>, <span class="s">"two"</span> };
+		<span class="k">public</span> <span class="k">string</span> this[<span class="k">int</span> index] { <span class="k">get</span> { <span class="k">return</span> texts[index]; } <span class="k">set</span> { texts[index] = value; } }
+		<span class="k">public</span> <span class="k">int</span> this[<span class="k">string</span> text] { <span class="k">get</span> { <span class="k">return</span> text.Length; } <span class="k">set</span> { texts[<span class="n">0</span>] = text; } }
+	}
+
+	<span class="c">// Collections of every kind for toList(): items that are all texts, numbers or yes/nos are made into a Ring list in C; a null, an object, a list that</span>
+	<span class="c">// holds one, bytes, or an error while the items are read are the generic answer</span>
+	<span class="k">public</span> <span class="k">class</span> TypedLists
+	{
+		<span class="k">public</span> List&lt;<span class="k">string</span>&gt; <span class="t">Texts</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt; { <span class="s">"a"</span>, <span class="s">""</span>, <span class="s">"héllo ✓"</span>, <span class="s">"line\nbreak"</span>, <span class="s">"tab\t"</span>, <span class="s">"nul\0nul"</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">int</span>&gt; <span class="t">Numbers</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">int</span>&gt; { <span class="n">0</span>, <span class="n">1</span>, -<span class="n">1</span>, <span class="n">2147483647</span>, -<span class="n">2147483648</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">long</span>&gt; <span class="t">Longs</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">long</span>&gt; { <span class="n">9007199254740993</span>, -<span class="n">9007199254740993</span>, <span class="k">long</span>.MaxValue }; }
+		<span class="k">public</span> List&lt;<span class="k">double</span>&gt; <span class="t">Doubles</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">double</span>&gt; { <span class="n">0.1</span>, -<span class="n">2.5</span>, 1e300, <span class="k">double</span>.Epsilon }; }
+		<span class="k">public</span> List&lt;float&gt; <span class="t">Floats</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;float&gt; { <span class="n">0</span>.1f, <span class="n">1</span>.5f }; }
+		<span class="k">public</span> List&lt;decimal&gt; <span class="t">Decimals</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;decimal&gt; { <span class="n">1</span>.5m, <span class="n">12345678</span>.9m }; }
+		<span class="k">public</span> List&lt;<span class="k">bool</span>&gt; <span class="t">Bools</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">bool</span>&gt; { <span class="k">true</span>, <span class="k">false</span>, <span class="k">true</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">object</span>&gt; <span class="t">Mixed</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">object</span>&gt; { <span class="n">1</span>, <span class="s">"two"</span>, <span class="n">3.5</span>, <span class="k">true</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">object</span>&gt; <span class="t">WithNull</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">object</span>&gt; { <span class="n">1</span>, <span class="k">null</span>, <span class="s">"x"</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">object</span>&gt; <span class="t">WithObject</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">object</span>&gt; { <span class="n">1</span>, <span class="k">new</span> <span class="t">TypedBox</span> { <span class="t">IntValue</span> = <span class="n">7</span> } }; }
+		<span class="k">public</span> List&lt;<span class="k">string</span>&gt; <span class="t">Nulls</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt; { <span class="s">"a"</span>, <span class="k">null</span>, <span class="s">"b"</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">string</span>&gt; <span class="t">Empty</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt;(); }
+		<span class="k">public</span> List&lt;byte[]&gt; <span class="t">Bytes</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;byte[]&gt; { <span class="k">new</span> <span class="t">byte</span>[] { <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span> }, <span class="k">new</span> <span class="t">byte</span>[] { <span class="n">255</span>, <span class="n">254</span> } }; }
+		<span class="k">public</span> List&lt;List&lt;<span class="k">string</span>&gt;&gt; <span class="t">Nested</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;List&lt;<span class="k">string</span>&gt;&gt; { <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt; { <span class="s">"x"</span> } }; }
+		<span class="k">public</span> Dictionary&lt;<span class="k">string</span>, <span class="k">int</span>&gt; <span class="t">Dict</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Dictionary</span>&lt;<span class="k">string</span>, <span class="k">int</span>&gt; { { <span class="s">"a"</span>, <span class="n">1</span> }, { <span class="s">"b"</span>, <span class="n">2</span> } }; }
+		<span class="k">public</span> <span class="k">string</span>[] <span class="t">Array</span>() { <span class="k">return</span> <span class="k">new</span>[] { <span class="s">"p"</span>, <span class="s">"q"</span> }; }
+		<span class="k">public</span> <span class="k">int</span>[] <span class="t">Ints</span>() { <span class="k">return</span> <span class="k">new</span>[] { <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span> }; }
+		<span class="k">public</span> List&lt;<span class="k">int</span>&gt; <span class="t">Big</span>() { List&lt;<span class="k">int</span>&gt; list = <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">int</span>&gt;(); <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; <span class="n">20000</span>; i++) list.<span class="f">Add</span>(i); <span class="k">return</span> list; }
+		<span class="k">public</span> List&lt;<span class="k">string</span>&gt; <span class="t">BigTexts</span>() { List&lt;<span class="k">string</span>&gt; list = <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">string</span>&gt;(); <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; <span class="n">5000</span>; i++) list.<span class="f">Add</span>(<span class="s">"item number "</span> + i); <span class="k">return</span> list; }
+		<span class="k">public</span> IEnumerable&lt;<span class="k">int</span>&gt; <span class="t">Throws</span>() { yield <span class="k">return</span> <span class="n">1</span>; yield <span class="k">return</span> <span class="n">2</span>; <span class="k">throw</span> <span class="k">new</span> <span class="t">InvalidOperationException</span>(<span class="s">"enumeration failed"</span>); }
+		<span class="k">public</span> IEnumerable&lt;<span class="k">int</span>&gt; <span class="t">Lazy</span>() { yield <span class="k">return</span> <span class="n">10</span>; yield <span class="k">return</span> <span class="n">20</span>; }
+	}
+
 	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> Channels
 	{
 		<span class="k">public</span> <span class="k">static</span> <span class="t">IChannelSink</span> <span class="t">NewChannel</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">Channel</span>(); }
