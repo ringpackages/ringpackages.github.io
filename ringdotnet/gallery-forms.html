@@ -1124,8 +1124,7 @@ oCanvas.<span class="f">clear</span>(<span class="s">"White"</span>)
 			nSaturation = sqrt(nX * nX + nYSquared) / nRadius
 			<span class="k">if</span> nSaturation &lt;= <span class="n">1</span>
 				nHue = (atan2(nX,nY) + nPi) / (<span class="n">2</span> * nPi)
-				aRGB = hsvToRgb(nHue,nSaturation)
-				cLine += char(aRGB[<span class="n">1</span>]) + char(aRGB[<span class="n">2</span>]) + char(aRGB[<span class="n">3</span>])
+				cLine += hsvToBytes(nHue,nSaturation)
 			<span class="k">else</span>
 				cLine += cWhite
 			<span class="k">ok</span>
@@ -1139,8 +1138,8 @@ oCanvas.<span class="f">clear</span>(<span class="s">"White"</span>)
 	oCanvas.<span class="f">setPixels</span>(<span class="n">0</span>,<span class="n">0</span>,nSize,nSize,cPixels)
 	oCanvas.<span class="f">show</span>()
 
-<span class="c"># The color of a hue and a saturation (0 to 1) at full brightness: [red, green, blue] from 0 to 255</span>
-<span class="k">func</span> <span class="f">hsvToRgb</span> nHue, nSaturation
+<span class="c"># The color of a hue and a saturation (0 to 1) at full brightness, as the 3 bytes red, green, blue (a text, not a list: no list is made for each pixel)</span>
+<span class="k">func</span> <span class="f">hsvToBytes</span> nHue, nSaturation
 
 	nSector = floor(nHue * <span class="n">6</span>)
 	nFraction = nHue * <span class="n">6</span> - nSector
@@ -1149,17 +1148,17 @@ oCanvas.<span class="f">clear</span>(<span class="s">"White"</span>)
 	nT = floor((<span class="n">1</span> - nSaturation * (<span class="n">1</span> - nFraction)) * <span class="n">255</span> + <span class="n">0.5</span>)
 	<span class="k">switch</span> nSector % <span class="n">6</span>
 	<span class="k">on</span> <span class="n">0</span>
-		<span class="k">return</span> [<span class="n">255</span>,nT,nP]
+		<span class="k">return</span> char(<span class="n">255</span>) + char(nT) + char(nP)
 	<span class="k">on</span> <span class="n">1</span>
-		<span class="k">return</span> [nQ,<span class="n">255</span>,nP]
+		<span class="k">return</span> char(nQ) + char(<span class="n">255</span>) + char(nP)
 	<span class="k">on</span> <span class="n">2</span>
-		<span class="k">return</span> [nP,<span class="n">255</span>,nT]
+		<span class="k">return</span> char(nP) + char(<span class="n">255</span>) + char(nT)
 	<span class="k">on</span> <span class="n">3</span>
-		<span class="k">return</span> [nP,nQ,<span class="n">255</span>]
+		<span class="k">return</span> char(nP) + char(nQ) + char(<span class="n">255</span>)
 	<span class="k">on</span> <span class="n">4</span>
-		<span class="k">return</span> [nT,nP,<span class="n">255</span>]
+		<span class="k">return</span> char(nT) + char(nP) + char(<span class="n">255</span>)
 	<span class="k">off</span>
-	<span class="k">return</span> [<span class="n">255</span>,nP,nQ]</code></pre></div></details></div></div><div class="item" id="mandelbrot"><div class="pic"><img src="img/shots/forms-34_mandelbrot.png" alt="Mandelbrot" loading="lazy"></div><div class="info"><h3>Mandelbrot</h3><p>The Mandelbrot set drawn pixel by pixel when the button is clicked: each pixel is a point c of the complex plane, and its color is the number of steps that z = z * z + c takes to leave the circle of radius 2 (black for a point that never does). The colors are computed first, then the whole picture is drawn with one call. Run it with --draw to draw without a click.</p><div class="run"><code>ring samples/UsingDotNet/Forms/34_mandelbrot.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The Mandelbrot set drawn pixel by pixel when the button is clicked: each pixel is a point c of the complex plane, and its color is the number of steps that</span>
+	<span class="k">return</span> char(<span class="n">255</span>) + char(nP) + char(nQ)</code></pre></div></details></div></div><div class="item" id="mandelbrot"><div class="pic"><img src="img/shots/forms-34_mandelbrot.png" alt="Mandelbrot" loading="lazy"></div><div class="info"><h3>Mandelbrot</h3><p>The Mandelbrot set drawn pixel by pixel when the button is clicked: each pixel is a point c of the complex plane, and its color is the number of steps that z = z * z + c takes to leave the circle of radius 2 (black for a point that never does). The colors are computed first, then the whole picture is drawn with one call. Run it with --draw to draw without a click.</p><div class="run"><code>ring samples/UsingDotNet/Forms/34_mandelbrot.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The Mandelbrot set drawn pixel by pixel when the button is clicked: each pixel is a point c of the complex plane, and its color is the number of steps that</span>
 <span class="c"># z = z * z + c takes to leave the circle of radius 2 (black for a point that never does). The colors are computed first, then the whole picture is drawn with one call.</span>
 <span class="c"># Run it with --draw to draw without a click.</span>
 
@@ -1271,12 +1270,11 @@ makePalette()
 	aPalette = []
 	<span class="k">for</span> nSteps = <span class="n">0</span> <span class="k">to</span> nMaxSteps - <span class="n">1</span>
 		nHue = (<span class="n">0.6</span> + nSteps * <span class="n">0.035</span>) % <span class="n">1</span>
-		aRGB = hsvToRgb(nHue,<span class="n">0.85</span>)
-		aPalette + (char(aRGB[<span class="n">1</span>]) + char(aRGB[<span class="n">2</span>]) + char(aRGB[<span class="n">3</span>]))
+		aPalette + hsvToBytes(nHue,<span class="n">0.85</span>)
 	<span class="k">next</span>
 
-<span class="c"># The color of a hue and a saturation (0 to 1) at full brightness: [red, green, blue] from 0 to 255</span>
-<span class="k">func</span> <span class="f">hsvToRgb</span> nHue, nSaturation
+<span class="c"># The color of a hue and a saturation (0 to 1) at full brightness, as the 3 bytes red, green, blue (a text, not a list: no list is made for each pixel)</span>
+<span class="k">func</span> <span class="f">hsvToBytes</span> nHue, nSaturation
 
 	nSector = floor(nHue * <span class="n">6</span>)
 	nFraction = nHue * <span class="n">6</span> - nSector
@@ -1285,17 +1283,17 @@ makePalette()
 	nT = floor((<span class="n">1</span> - nSaturation * (<span class="n">1</span> - nFraction)) * <span class="n">255</span> + <span class="n">0.5</span>)
 	<span class="k">switch</span> nSector % <span class="n">6</span>
 	<span class="k">on</span> <span class="n">0</span>
-		<span class="k">return</span> [<span class="n">255</span>,nT,nP]
+		<span class="k">return</span> char(<span class="n">255</span>) + char(nT) + char(nP)
 	<span class="k">on</span> <span class="n">1</span>
-		<span class="k">return</span> [nQ,<span class="n">255</span>,nP]
+		<span class="k">return</span> char(nQ) + char(<span class="n">255</span>) + char(nP)
 	<span class="k">on</span> <span class="n">2</span>
-		<span class="k">return</span> [nP,<span class="n">255</span>,nT]
+		<span class="k">return</span> char(nP) + char(<span class="n">255</span>) + char(nT)
 	<span class="k">on</span> <span class="n">3</span>
-		<span class="k">return</span> [nP,nQ,<span class="n">255</span>]
+		<span class="k">return</span> char(nP) + char(nQ) + char(<span class="n">255</span>)
 	<span class="k">on</span> <span class="n">4</span>
-		<span class="k">return</span> [nT,nP,<span class="n">255</span>]
+		<span class="k">return</span> char(nT) + char(nP) + char(<span class="n">255</span>)
 	<span class="k">off</span>
-	<span class="k">return</span> [<span class="n">255</span>,nP,nQ]</code></pre></div></details></div></div></div>
+	<span class="k">return</span> char(<span class="n">255</span>) + char(nP) + char(nQ)</code></pre></div></details></div></div></div>
 <div class="pager"><a href="winforms.html"><small>Previous</small>Windows Forms</a><a class="next" href="gallery-apps.html"><small>Next</small>Applications</a></div>
 <footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
 </article>
