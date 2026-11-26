@@ -314,10 +314,8 @@ using {
 <span class="c"># target is then deleted. The answer is the number of bytes copied.</span>
 <span class="k">func</span> <span class="f">copyFile</span> cSource,cTarget,nBufferSize,nStopAfter
 
-	oIn = <span class="k">new</span> <span class="t">FileStream</span>
-	oIn.@<span class="k">New</span>([ :<span class="t">path</span> = cSource, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
-	oOut = <span class="k">new</span> <span class="t">FileStream</span>
-	oOut.@<span class="k">New</span>([ :<span class="t">path</span> = cTarget, :mode = <span class="s">"Create"</span>, :access = <span class="s">"Write"</span> ])
+	oIn = (<span class="k">new</span> <span class="t">FileStream</span>).@<span class="k">New</span>([ :<span class="t">path</span> = cSource, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
+	oOut = (<span class="k">new</span> <span class="t">FileStream</span>).@<span class="k">New</span>([ :<span class="t">path</span> = cTarget, :mode = <span class="s">"Create"</span>, :access = <span class="s">"Write"</span> ])
 	nTotal = oIn.Length
 	oBuffer = <span class="f">dnBuffer</span>(nBufferSize)
 	nCopied = <span class="n">0</span>
@@ -350,8 +348,7 @@ using {
 <span class="c"># how many calls of Read a buffer of this size needs for the whole file</span>
 <span class="k">func</span> <span class="f">countCalls</span> cFile,nBufferSize
 
-	oIn = <span class="k">new</span> <span class="t">FileStream</span>
-	oIn.@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
+	oIn = (<span class="k">new</span> <span class="t">FileStream</span>).@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
 	oBuffer = <span class="f">dnBuffer</span>(nBufferSize)
 	nCalls = <span class="n">0</span>
 	<span class="k">while</span> oIn.<span class="f">Read</span>(oBuffer,<span class="n">0</span>,nBufferSize) &gt; <span class="n">0</span>

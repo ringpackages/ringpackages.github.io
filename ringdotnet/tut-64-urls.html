@@ -302,8 +302,7 @@ using {
 
 	<span class="c"># 6. Combining an address with a relative path</span>
 	oBase = <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"https://example.com/docs/guide/index.html"</span>)
-	oUri = <span class="k">new</span> <span class="t">Uri</span>
-	oUri.@<span class="k">New</span>([ :<span class="t">baseUri</span> = oBase, :relativeUri = <span class="s">"../images/logo.png"</span> ])
+	oUri = (<span class="k">new</span> <span class="t">Uri</span>).@<span class="k">New</span>([ :<span class="t">baseUri</span> = oBase, :relativeUri = <span class="s">"../images/logo.png"</span> ])
 	? nl + <span class="s">"6. ../images/logo.png from the guide page: "</span> + oUri.<span class="f">ToString</span>()
 
 	<span class="c"># 7. Base64: bytes as safe text (e-mails, JSON, data URLs). It is NOT encryption: anybody can decode it.</span>

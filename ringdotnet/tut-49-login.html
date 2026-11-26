@@ -398,9 +398,7 @@ aSessions = []            <span class="c"># [token, user name]: who is logged in
 
 <span class="k">func</span> <span class="f">hashPassword</span> cPassword, cSalt
 
-	oDerive = <span class="k">new</span> <span class="t">Rfc2898DeriveBytes</span>
-	oDerive.@<span class="k">New</span>([ :<span class="t">password</span> = cPassword, :salt = cSalt, :iterations = <span class="n">10000</span>, :hashAlgorithm = <span class="k">new</span> <span class="t">HashAlgorithmName</span>().SHA256 ])
-	<span class="k">return</span> lower(<span class="k">new</span> <span class="t">Convert</span>().<span class="f">ToHexString</span>(oDerive.<span class="f">GetBytes</span>(<span class="n">32</span>)))
+	<span class="k">return</span> lower(<span class="k">new</span> <span class="t">Convert</span>().<span class="f">ToHexString</span>((<span class="k">new</span> <span class="t">Rfc2898DeriveBytes</span>).@<span class="k">New</span>([ :<span class="t">password</span> = cPassword, :salt = cSalt, :iterations = <span class="n">10000</span>, :hashAlgorithm = <span class="k">new</span> <span class="t">HashAlgorithmName</span>().SHA256 ]).<span class="f">GetBytes</span>(<span class="n">32</span>)))
 
 <span class="c"># ---------------------------------------------------------------- the test client</span>
 
@@ -409,8 +407,7 @@ aSessions = []            <span class="c"># [token, user name]: who is logged in
 
 	oMessage = <span class="k">new</span> <span class="t">HttpRequestMessage</span>().@<span class="k">New</span>([ :<span class="t">method</span> = <span class="k">new</span> <span class="t">HttpMethod</span>(cMethod), :requestUri = cUrl + cPath ])
 	<span class="k">if</span> cForm != <span class="s">""</span>
-		oContent = <span class="k">new</span> <span class="t">StringContent</span>
-		oContent.@<span class="k">New</span>([ :<span class="t">content</span> = cForm, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/x-www-form-urlencoded"</span> ])
+		oContent = (<span class="k">new</span> <span class="t">StringContent</span>).@<span class="k">New</span>([ :<span class="t">content</span> = cForm, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/x-www-form-urlencoded"</span> ])
 		oMessage.Content = oContent
 	<span class="k">ok</span>
 	<span class="k">if</span> cCookie != <span class="s">""</span>

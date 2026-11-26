@@ -292,9 +292,7 @@ using {
 	? nl + <span class="s">"2. the byte order marks:"</span>
 	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/a.txt"</span>, :contents = cText ])
 	? <span class="s">"   File.WriteAllText with no encoding writes UTF-8 and no BOM: first bytes "</span> + toHex(left(oFile.<span class="f">ReadAllBytes</span>(cFolder + <span class="s">"/a.txt"</span>),<span class="n">3</span>))
-	oWithBom = <span class="k">new</span> <span class="t">UTF8Encoding</span>
-	oWithBom.@<span class="k">New</span>(<span class="k">True</span>)  <span class="c"># True: write the byte order mark</span>
-	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/e.txt"</span>, :contents = cText, :encoding = oWithBom ])
+	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/e.txt"</span>, :contents = cText, :encoding = (<span class="k">new</span> <span class="t">UTF8Encoding</span>).@<span class="k">New</span>(<span class="k">True</span>) ])
 	? <span class="s">"   with UTF8Encoding(True) the file starts with "</span> + toHex(left(oFile.<span class="f">ReadAllBytes</span>(cFolder + <span class="s">"/e.txt"</span>),<span class="n">3</span>)) + <span class="s">"   (the BOM of UTF-8)"</span>
 	oFile.<span class="f">WriteAllText</span>([ :path = cFolder + <span class="s">"/b.txt"</span>, :contents = cText, :encoding = oUtf16 ])
 	? <span class="s">"   with the UTF-16 encoding the file starts with "</span> + toHex(left(oFile.<span class="f">ReadAllBytes</span>(cFolder + <span class="s">"/b.txt"</span>),<span class="n">2</span>)) + <span class="s">" and has "</span> + len(oFile.<span class="f">ReadAllBytes</span>(cFolder + <span class="s">"/b.txt"</span>)) + <span class="s">" bytes   (the BOM FF FE: little endian)"</span>
@@ -339,7 +337,7 @@ using {
 <span class="c"># does the text of bytes decode without a replacement as UTF-8? (the strict encoding raises an error for bad bytes)</span>
 <span class="k">func</span> <span class="f">isValidUtf8</span> cBytes
 
-	oStrict = <span class="f">dnNew</span>(<span class="s">"UTF8Encoding"</span>,[ <span class="k">False</span>, <span class="k">True</span> ])
+	oStrict = (<span class="k">new</span> <span class="t">UTF8Encoding</span>).@<span class="k">New</span>([ :<span class="t">encoderShouldEmitUTF8Identifier</span> = <span class="k">False</span>, :throwOnInvalidBytes = <span class="k">True</span> ])
 	<span class="k">try</span>
 		oStrict.<span class="f">GetString</span>(cBytes)
 		<span class="k">return</span> <span class="k">True</span>

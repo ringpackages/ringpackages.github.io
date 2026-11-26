@@ -262,6 +262,7 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"Microsoft.Win32"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.IO"</span>
 }
@@ -381,7 +382,7 @@ using {
 <span class="k">func</span> <span class="f">driverInstalled</span> cDriver
 
 	<span class="k">try</span>
-		oMachine = <span class="f">dnType</span>(<span class="s">"Microsoft.Win32.Registry"</span>).<span class="f">getProp</span>(<span class="s">"LocalMachine"</span>)
+		oMachine = (<span class="k">new</span> <span class="t">Registry</span>).LocalMachine
 		oKey = oMachine.<span class="f">OpenSubKey</span>(<span class="s">"SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers"</span>)
 		<span class="k">if</span> oKey.<span class="f">isNull</span>()
 			<span class="k">return</span> <span class="k">false</span>

@@ -319,7 +319,7 @@ aMissing = []                    <span class="c"># the names of the fields that 
 <span class="k">func</span> <span class="f">fieldNames</span> cTemplate
 
 	aNames = []
-	aMatches = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cTemplate, cPattern() ]).<span class="f">toList</span>()
+	aMatches = (<span class="k">new</span> <span class="t">Regex</span>).<span class="f">Matches</span>([ :input = cTemplate, :pattern = cPattern() ]).<span class="f">toList</span>()
 	<span class="k">for</span> oMatch <span class="k">in</span> aMatches
 		aNames + oMatch.Groups.<span class="f">Item</span>(<span class="n">1</span>).Value
 	<span class="k">next</span>
@@ -334,7 +334,7 @@ aMissing = []                    <span class="c"># the names of the fields that 
 <span class="k">func</span> <span class="f">merge</span> cTemplate,aRow
 
 	aFields = aRow
-	<span class="k">return</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Replace"</span>,[ cTemplate, cPattern(), <span class="f">dnCallback</span>(<span class="s">"replaceField"</span>) ])
+	<span class="k">return</span> (<span class="k">new</span> <span class="t">Regex</span>).<span class="f">Replace</span>([ :input = cTemplate, :pattern = cPattern(), :evaluator = <span class="f">dnCallback</span>(<span class="s">"replaceField"</span>) ])
 
 <span class="c"># The callback. A callback that is the NAME of a function gets the arguments as a list: aArgs[1] is the Match. Group 1 is the name of the</span>
 <span class="c"># field and group 2 the format (empty when there is none). The text that the function RETURNS replaces the field in the letter.</span>
@@ -358,7 +358,7 @@ aMissing = []                    <span class="c"># the names of the fields that 
 
 	oInvariant = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"en-US"</span>).InvariantCulture
 	<span class="k">if</span> isDate(cValue)
-		oDate = <span class="f">dnStatic</span>(<span class="s">"System.DateTime"</span>,<span class="s">"Parse"</span>,[ cValue, oInvariant ])
+		oDate = (<span class="k">new</span> <span class="t">DateTime</span>).<span class="f">Parse</span>([ :s = cValue, :provider = oInvariant ])
 		<span class="k">return</span> oDate.<span class="f">Format</span>([ :format = cFormat, :provider = oInvariant ])
 	<span class="k">ok</span>
 	<span class="k">return</span> <span class="k">new</span> <span class="t">String</span>().<span class="f">Format</span>([ :provider = oInvariant, :format = <span class="s">"{0:"</span> + cFormat + <span class="s">"}"</span>, :arg0 = <span class="n">0</span> + cValue ])

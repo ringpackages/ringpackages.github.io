@@ -484,9 +484,7 @@ nFile = <span class="n">0</span>
 	nFile++
 	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([cFolder,<span class="s">"image"</span> + nFile + <span class="s">".bmp"</span>])
 	saveBmp(aPixels,cFile)
-	oBitmap = <span class="k">new</span> <span class="t">Bitmap</span>
-	oBitmap.@<span class="k">New</span>([ :<span class="t">filename</span> = cFile ])
-	oPicture.Image = oBitmap</code></pre></div>
+	oPicture.Image = (<span class="k">new</span> <span class="t">Bitmap</span>).@<span class="k">New</span>([ :<span class="t">filename</span> = cFile ])</code></pre></div>
 <figure class="shot"><img src="img/shots/tut-g63.png" alt="The filter lab with sepia" loading="lazy"><figcaption>Sepia: the original on the left, the filtered picture on the right</figcaption></figure>
 <figure class="shot"><img src="img/shots/tut-g63-edges.png" alt="The filter lab with edges" loading="lazy"><figcaption>Edges: flat areas are black, the outlines are light</figcaption></figure>
 

@@ -278,8 +278,7 @@ using {
 	oName = <span class="k">new</span> <span class="t">X500DistinguishedName</span>(<span class="s">"CN=Demo Server, O=RingDotNet, C=EG"</span>)
 	oSha = <span class="k">new</span> <span class="t">HashAlgorithmName</span>().SHA256
 	oPadding = <span class="k">new</span> <span class="t">RSASignaturePadding</span>().Pkcs1
-	oRequest = <span class="k">new</span> <span class="t">CertificateRequest</span>
-	oRequest.@<span class="k">New</span>([ :<span class="t">subjectName</span> = oName, :key = oRsa, :hashAlgorithm = oSha, :padding = oPadding ])
+	oRequest = (<span class="k">new</span> <span class="t">CertificateRequest</span>).@<span class="k">New</span>([ :<span class="t">subjectName</span> = oName, :key = oRsa, :hashAlgorithm = oSha, :padding = oPadding ])
 
 	<span class="c">#    Extensions say what the certificate may be used for. This one is a plain server certificate (not a CA that signs others).</span>
 	oBasic = <span class="k">new</span> <span class="t">X509BasicConstraintsExtension</span>().@<span class="k">New</span>([ :<span class="t">certificateAuthority</span> = <span class="k">False</span>, :hasPathLengthConstraint = <span class="k">False</span>, :pathLengthConstraint = <span class="n">0</span>, :critical = <span class="k">True</span> ])
@@ -332,7 +331,7 @@ using {
 
 <span class="k">func</span> <span class="f">isValidNow</span> oCertificate
 
-	oNow = <span class="f">dnStatic</span>(<span class="s">"System.DateTime"</span>,<span class="s">"get_Now"</span>,[])
+	oNow = (<span class="k">new</span> <span class="t">DateTime</span>).Now
 	<span class="k">return</span> oNow.<span class="f">CompareTo</span>(oCertificate.NotBefore) &gt;= <span class="n">0</span> <span class="k">and</span> oNow.<span class="f">CompareTo</span>(oCertificate.NotAfter) &lt;= <span class="n">0</span>
 
 <span class="k">func</span> <span class="f">canSign</span> oPublic

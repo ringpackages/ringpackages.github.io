@@ -259,6 +259,7 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"Microsoft.Extensions.FileSystemGlobbing"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.IO"</span>
 	<span class="s">"RingDotNet.Web"</span>                  <span class="c"># Microsoft.Extensions.FileSystemGlobbing is part of the ASP.NET Core runtime: this line starts it</span>
@@ -271,16 +272,15 @@ using {
 	<span class="c">#   **     any number of folders (also none)         **/*.ring  src/a.ring, src/sub/b.ring, a.ring</span>
 	<span class="c">#   ?      one character                             file?.txt  file1.txt, fileA.txt</span>
 	cBase = makeTree()
-	cExt = <span class="s">"Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions"</span>          <span class="c"># Match and GetResultsInFullPath are extension methods (the tutorial "Caching")</span>
 
 	<span class="c"># 1. A Matcher has include rules and exclude rules. A file is in the result when an include rule matches it and no exclude rule does.</span>
-	oMatcher = <span class="f">dnNew</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.Matcher"</span>,[])
+	oMatcher = <span class="k">new</span> <span class="t">Matcher</span>()
 	oMatcher.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.ring"</span>])
 	? <span class="s">"1. **/*.ring :"</span>
 	showFiles(oMatcher,cBase)
 
 	<span class="c"># 2. Exclude: everything under "tests" and every file whose name starts with "old_" is left out</span>
-	oMatcher2 = <span class="f">dnNew</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.Matcher"</span>,[])
+	oMatcher2 = <span class="k">new</span> <span class="t">Matcher</span>()
 	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.ring"</span>])
 	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddExclude"</span>,[<span class="s">"tests/**"</span>])
 	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddExclude"</span>,[<span class="s">"**/old_*"</span>])
@@ -288,7 +288,7 @@ using {
 	showFiles(oMatcher2,cBase)
 
 	<span class="c"># 3. Several include rules at once: the code and the documents</span>
-	oMatcher3 = <span class="f">dnNew</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.Matcher"</span>,[])
+	oMatcher3 = <span class="k">new</span> <span class="t">Matcher</span>()
 	oMatcher3.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"src/*.ring"</span>])
 	oMatcher3.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"docs/**/*.md"</span>])
 	? nl + <span class="s">"3. src/*.ring (one folder only) and docs/**/*.md :"</span>
@@ -297,7 +297,7 @@ using {
 	<span class="c"># 4. A pattern does not need files on a disk: Match(root, list of paths) tests a list of names, for example the files of an archive</span>
 	<span class="c">#    (the tutorial "ZIP archives in memory") or the changed files of a project. The paths use / and are relative to the root.</span>
 	aPaths = [<span class="s">"src/main.ring"</span>,<span class="s">"src/old_main.ring"</span>,<span class="s">"README.md"</span>,<span class="s">"docs/guide/intro.md"</span>,<span class="s">"docs/logo.png"</span>]
-	oResult = <span class="f">dnStatic</span>(cExt,<span class="s">"Match"</span>,[oMatcher3,<span class="s">"."</span>,aPaths])
+	oResult = oMatcher3.<span class="f">Match</span>([ :rootDir = <span class="s">"."</span>, :files = aPaths ])
 	? nl + <span class="s">"4. which of the names are matched: has matches = "</span> + oResult.<span class="f">getProp</span>(<span class="s">"HasMatches"</span>)
 	aFiles = oResult.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()
 	<span class="k">for</span> oFile <span class="k">in</span> aFiles
@@ -305,9 +305,9 @@ using {
 	<span class="k">next</span>
 
 	<span class="c"># 5. By default a Matcher ignores case (OrdinalIgnoreCase). The constructor takes a StringComparison: with Ordinal, case counts.</span>
-	oStrict = <span class="f">dnNew</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.Matcher"</span>,[ :comparisonType = <span class="s">"Ordinal"</span> ])
+	oStrict = (<span class="k">new</span> <span class="t">Matcher</span>).@<span class="k">New</span>([ :<span class="t">comparisonType</span> = <span class="s">"Ordinal"</span> ])
 	oStrict.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.RING"</span>])
-	oResultStrict = <span class="f">dnStatic</span>(cExt,<span class="s">"Match"</span>,[oStrict,<span class="s">"."</span>,[<span class="s">"a.ring"</span>,<span class="s">"b.RING"</span>]])
+	oResultStrict = oStrict.<span class="f">Match</span>([ :rootDir = <span class="s">"."</span>, :files = [<span class="s">"a.ring"</span>,<span class="s">"b.RING"</span>] ])
 	? nl + <span class="s">"5. with Ordinal comparison, **/*.RING matches only: "</span> + oResultStrict.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()[<span class="n">1</span>].<span class="f">getProp</span>(<span class="s">"Path"</span>)
 
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cBase, :recursive = <span class="k">True</span> ])
@@ -315,7 +315,7 @@ using {
 <span class="c"># the files of the program, with their relative paths in sorted order (the order of a disk is not the same on every system)</span>
 <span class="k">func</span> <span class="f">showFiles</span> oMatcher,cBase
 
-	oResult = <span class="f">dnStatic</span>(<span class="s">"Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions"</span>,<span class="s">"GetResultsInFullPath"</span>,[oMatcher,cBase])
+	oResult = oMatcher.<span class="f">GetResultsInFullPath</span>(cBase)
 	aNames = []
 	aFullNames = oResult.<span class="f">toList</span>()
 	<span class="k">for</span> cFull <span class="k">in</span> aFullNames

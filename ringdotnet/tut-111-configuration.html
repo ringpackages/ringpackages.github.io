@@ -284,10 +284,9 @@ using {
 	? <span class="s">"   a key that does not exist is null: "</span> + oConfig.<span class="f">Item</span>(<span class="s">"App:Missing"</span>).<span class="f">isNull</span>()
 
 	<span class="c"># 2. Every value is TEXT. GetValue converts it to the type you ask for, and takes a default for a missing key</span>
-	cBinder = <span class="s">"Microsoft.Extensions.Configuration.ConfigurationBinder"</span>
-	nPort = <span class="f">dnStatic</span>(cBinder,<span class="s">"GetValue"</span>,[oConfig,<span class="f">dnType</span>(<span class="s">"System.Int32"</span>),<span class="s">"App:Port"</span>])
-	lDebug = <span class="f">dnStatic</span>(cBinder,<span class="s">"GetValue"</span>,[oConfig,<span class="f">dnType</span>(<span class="s">"System.Boolean"</span>),<span class="s">"App:Debug"</span>])
-	nMissing = <span class="f">dnStatic</span>(cBinder,<span class="s">"GetValue"</span>,[oConfig,<span class="f">dnType</span>(<span class="s">"System.Int32"</span>),<span class="s">"App:Retries"</span>,<span class="n">3</span>])
+	nPort = oConfig.<span class="f">GetValue</span>([ :typeArguments = [<span class="s">"System.Int32"</span>], :key = <span class="s">"App:Port"</span> ])
+	lDebug = oConfig.<span class="f">GetValue</span>([ :typeArguments = [<span class="s">"System.Boolean"</span>], :key = <span class="s">"App:Debug"</span> ])
+	nMissing = oConfig.<span class="f">GetValue</span>([ :typeArguments = [<span class="s">"System.Int32"</span>], :key = <span class="s">"App:Retries"</span>, :defaultValue = <span class="n">3</span> ])
 	? nl + <span class="s">"2. the port as a number: "</span> + nPort + <span class="s">" (+1 = "</span> + (nPort + <span class="n">1</span>) + <span class="s">"), debug as a yes or no: "</span> + lDebug + <span class="s">", Retries (not set, default 3): "</span> + nMissing
 
 	<span class="c"># 3. A section: GetSection gives a part of the tree. Its Key is the last name; GetChildren lists what is directly inside</span>

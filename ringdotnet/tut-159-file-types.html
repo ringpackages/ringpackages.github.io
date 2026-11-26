@@ -328,8 +328,7 @@ aSignatures = []                  <span class="c"># [ name, mime type, the first
 <span class="c"># the first nCount bytes of a file (fewer when the file is shorter), read into a byte buffer</span>
 <span class="k">func</span> <span class="f">firstBytes</span> cFile,nCount
 
-	oStream = <span class="k">new</span> <span class="t">FileStream</span>
-	oStream.@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
+	oStream = (<span class="k">new</span> <span class="t">FileStream</span>).@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
 	oBuffer = <span class="f">dnBuffer</span>(nCount)
 	nRead = oStream.<span class="f">Read</span>(oBuffer,<span class="n">0</span>,nCount)
 	oStream.<span class="f">Dispose</span>()
@@ -361,7 +360,7 @@ aSignatures = []                  <span class="c"># [ name, mime type, the first
 			<span class="k">return</span> <span class="k">False</span>
 		<span class="k">ok</span>
 	<span class="k">next</span>
-	oStrict = <span class="f">dnNew</span>(<span class="s">"UTF8Encoding"</span>,[ <span class="k">False</span>, <span class="k">True</span> ])
+	oStrict = (<span class="k">new</span> <span class="t">UTF8Encoding</span>).@<span class="k">New</span>([ :<span class="t">encoderShouldEmitUTF8Identifier</span> = <span class="k">False</span>, :throwOnInvalidBytes = <span class="k">True</span> ])
 	<span class="k">try</span>
 		oStrict.<span class="f">GetString</span>(cBytes)
 		<span class="k">return</span> <span class="k">True</span>

@@ -291,9 +291,7 @@ using {
 	<span class="k">next</span>
 	aBytes = oUtf8.<span class="f">GetBytes</span>(cText)
 	oPacked = <span class="k">new</span> <span class="t">MemoryStream</span>()
-	oGzip = <span class="k">new</span> <span class="t">GZipStream</span>
-	oGzip.@<span class="k">New</span>([ :<span class="t">stream</span> = oPacked, :mode = <span class="s">"Compress"</span>, :leaveOpen = <span class="k">True</span> ])  <span class="c"># leaveOpen: keep the inner stream usable</span>
-	oGzipWriter = <span class="k">new</span> <span class="t">StreamWriter</span>(oGzip)
+	oGzipWriter = <span class="k">new</span> <span class="t">StreamWriter</span>((<span class="k">new</span> <span class="t">GZipStream</span>).@<span class="k">New</span>([ :<span class="t">stream</span> = oPacked, :mode = <span class="s">"Compress"</span>, :leaveOpen = <span class="k">True</span> ]))
 	oGzipWriter.<span class="f">Write</span>(cText)
 	oGzipWriter.<span class="f">Dispose</span>()                             <span class="c"># Dispose finishes the compressed data: without it the result is incomplete</span>
 	? nl + <span class="s">"3. "</span> + len(aBytes) + <span class="s">" bytes became "</span> + oPacked.Length + <span class="s">" bytes ("</span> + floor(oPacked.Length * <span class="n">100</span> / len(aBytes)) + <span class="s">" %)"</span>

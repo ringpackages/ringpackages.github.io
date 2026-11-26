@@ -259,6 +259,7 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"Microsoft.AspNetCore.DataProtection"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.Threading"</span>
 	<span class="s">"System.IO"</span>
@@ -267,8 +268,6 @@ using {
 
 <span class="k">func</span> <span class="f">main</span>
 
-	cExt = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions"</span>
-	cProviderType = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionProvider"</span>
 
 	<span class="c"># The Data Protection API encrypts and signs small pieces of data (a cookie, a token, a "remember me" value, a link in an e-mail)</span>
 	<span class="c"># without you handling keys, algorithms or initialization vectors. It makes keys, keeps them in a folder, renews them,</span>
@@ -278,55 +277,54 @@ using {
 		<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cKeys, :recursive = <span class="k">True</span> ])
 	<span class="k">ok</span>
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cKeys)
-	oProvider = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys)])
+	oProvider = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys))
 
 	<span class="c"># 1. A protector is made for a PURPOSE (a text that names what the data is for). Protect turns a text into an unreadable token</span>
 	<span class="c">#    and Unprotect gives the text back.</span>
 	oProtector = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
-	cToken = <span class="f">dnStatic</span>(cExt,<span class="s">"Protect"</span>,[oProtector,<span class="s">"user=ann;role=admin"</span>])
+	cToken = (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Protect</span>(oProtector,<span class="s">"user=ann;role=admin"</span>)
 	? <span class="s">"1. the protected text starts with CfDJ8 (every token of this API does): "</span> + (left(cToken,<span class="n">5</span>) = <span class="s">"CfDJ8"</span>)
 	? <span class="s">"   it does not show the data: "</span> + (substr(cToken,<span class="s">"ann"</span>) = <span class="n">0</span>) + <span class="s">", and it is longer than the data: "</span> + (len(cToken) &gt; <span class="n">40</span>)
-	? <span class="s">"   Unprotect gives back: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken])
+	? <span class="s">"   Unprotect gives back: "</span> + (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Unprotect</span>(oProtector,cToken)
 
 	<span class="c"># 2. The same data protected twice gives different tokens (a random value is part of each one), but both unprotect to the same text</span>
-	cToken2 = <span class="f">dnStatic</span>(cExt,<span class="s">"Protect"</span>,[oProtector,<span class="s">"user=ann;role=admin"</span>])
-	? nl + <span class="s">"2. two tokens of the same text are different: "</span> + (cToken != cToken2) + <span class="s">"; the second also gives: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken2])
+	cToken2 = (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Protect</span>(oProtector,<span class="s">"user=ann;role=admin"</span>)
+	? nl + <span class="s">"2. two tokens of the same text are different: "</span> + (cToken != cToken2) + <span class="s">"; the second also gives: "</span> + (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Unprotect</span>(oProtector,cToken2)
 
 	<span class="c"># 3. Purposes keep uses apart: a token made for "tutorial.cookies" cannot be opened with the protector of "tutorial.password-reset".</span>
 	<span class="c">#    So a stolen cookie value does not work as a reset link, even though the same keys are used.</span>
 	oOther = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.password-reset"</span>])
-	? nl + <span class="s">"3. unprotect with another purpose: "</span> + tryUnprotect(cExt,oOther,cToken)
+	? nl + <span class="s">"3. unprotect with another purpose: "</span> + tryUnprotect(oOther,cToken)
 
 	<span class="c"># 4. Tampering: change one character of the token and the check fails. The data can not be modified, only replaced by a valid token.</span>
 	cTampered = left(cToken,<span class="n">20</span>) + changeChar(substr(cToken,<span class="n">21</span>,<span class="n">1</span>)) + substr(cToken,<span class="n">22</span>)
-	? nl + <span class="s">"4. unprotect a token with one changed character: "</span> + tryUnprotect(cExt,oProtector,cTampered)
+	? nl + <span class="s">"4. unprotect a token with one changed character: "</span> + tryUnprotect(oProtector,cTampered)
 
 	<span class="c"># 5. The keys are on disk, so a NEW provider on the same folder opens the old tokens (after a restart of the program, or in another</span>
 	<span class="c">#    copy of it). Without the key folder the tokens can not be opened: it is as secret as a password.</span>
 	aFiles = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cKeys)
-	oProvider2 = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys)])
+	oProvider2 = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys))
 	oProtector2 = oProvider2.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
-	? nl + <span class="s">"5. key files in the folder: "</span> + len(aFiles.<span class="f">toList</span>()) + <span class="s">", a second provider on the same folder opens the token: "</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector2,cToken])
+	? nl + <span class="s">"5. key files in the folder: "</span> + len(aFiles.<span class="f">toList</span>()) + <span class="s">", a second provider on the same folder opens the token: "</span> + (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Unprotect</span>(oProtector2,cToken)
 	cOtherFolder = cKeys + <span class="s">"_other"</span>
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cOtherFolder)
-	oStranger = <span class="f">dnStatic</span>(cProviderType,<span class="s">"Create"</span>,[<span class="k">new</span> <span class="t">DirectoryInfo</span>(cOtherFolder)]).<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
-	? <span class="s">"   a provider with other keys: "</span> + tryUnprotect(cExt,oStranger,cToken)
+	oStranger = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cOtherFolder)).<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	? <span class="s">"   a provider with other keys: "</span> + tryUnprotect(oStranger,cToken)
 
 	<span class="c"># 6. Time limits: a token that is valid for a short time only (a link in an e-mail, a one-time code)</span>
-	cAdvanced = <span class="s">"Microsoft.AspNetCore.DataProtection.DataProtectionAdvancedExtensions"</span>          <span class="c"># (in the Extensions assembly of the API)</span>
-	oLimited = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"ToTimeLimitedDataProtector"</span>,[oProtector])
-	cShort = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"Protect"</span>,[oLimited,<span class="s">"reset:42"</span>,<span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(<span class="n">1200</span>)])
-	? nl + <span class="s">"6. a token that is valid for 1.2 seconds: now "</span> + tryUnprotectLimited(cAdvanced,oLimited,cShort)
+	oLimited = oProtector.<span class="f">ToTimeLimitedDataProtector</span>()
+	cShort = (<span class="k">new</span> <span class="t">DataProtectionAdvancedExtensions</span>).<span class="f">Protect</span>(oLimited,<span class="s">"reset:42"</span>,<span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(<span class="n">1200</span>))
+	? nl + <span class="s">"6. a token that is valid for 1.2 seconds: now "</span> + tryUnprotectLimited(oLimited,cShort)
 	<span class="k">new</span> <span class="t">Thread</span>().<span class="f">Sleep</span>(<span class="n">2000</span>)
-	? <span class="s">"   after 2 seconds: "</span> + tryUnprotectLimited(cAdvanced,oLimited,cShort)
+	? <span class="s">"   after 2 seconds: "</span> + tryUnprotectLimited(oLimited,cShort)
 
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cKeys, :recursive = <span class="k">True</span> ])
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cOtherFolder, :recursive = <span class="k">True</span> ])
 
-<span class="k">func</span> <span class="f">tryUnprotect</span> cExt,oProtector,cToken
+<span class="k">func</span> <span class="f">tryUnprotect</span> oProtector,cToken
 
 	<span class="k">try</span>
-		<span class="k">return</span> <span class="s">"valid, it gives '"</span> + <span class="f">dnStatic</span>(cExt,<span class="s">"Unprotect"</span>,[oProtector,cToken]) + <span class="s">"'"</span>
+		<span class="k">return</span> <span class="s">"valid, it gives '"</span> + (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Unprotect</span>(oProtector,cToken) + <span class="s">"'"</span>
 	<span class="k">catch</span>
 		<span class="k">return</span> <span class="s">"refused (a cryptographic error)"</span>
 	<span class="k">done</span>
@@ -339,10 +337,10 @@ using {
 	<span class="k">return</span> <span class="s">"A"</span>
 
 <span class="c"># the time-limited protector also gives the time when the token expires (an out value: the answer is a list)</span>
-<span class="k">func</span> <span class="f">tryUnprotectLimited</span> cAdvanced,oLimited,cToken
+<span class="k">func</span> <span class="f">tryUnprotectLimited</span> oLimited,cToken
 
 	<span class="k">try</span>
-		aResult = <span class="f">dnStatic</span>(cAdvanced,<span class="s">"Unprotect"</span>,[oLimited,cToken])
+		aResult = (<span class="k">new</span> <span class="t">DataProtectionAdvancedExtensions</span>).<span class="f">Unprotect</span>(oLimited,cToken)
 		<span class="k">if</span> islist(aResult)
 			<span class="k">return</span> <span class="s">"valid, it gives '"</span> + aResult[<span class="n">1</span>] + <span class="s">"'"</span>
 		<span class="k">ok</span>

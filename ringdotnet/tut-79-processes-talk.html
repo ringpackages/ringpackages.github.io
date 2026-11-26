@@ -289,8 +289,7 @@ C_MUTEX = <span class="s">"ringdotnet_talk_single_copy"</span>
 	? <span class="s">"1. the parent got the lock: "</span> + yesNo(oLock.<span class="f">WaitOne</span>(<span class="n">0</span>))              <span class="c"># WaitOne(0): do not wait, just try</span>
 
 	<span class="c"># 2. A named pipe server waits for a client. The pipe has a name that any program of this computer can open.</span>
-	oServer = <span class="k">new</span> <span class="t">NamedPipeServerStream</span>
-	oServer.@<span class="k">New</span>([ :<span class="t">pipeName</span> = C_PIPE, :direction = <span class="s">"InOut"</span> ])
+	oServer = (<span class="k">new</span> <span class="t">NamedPipeServerStream</span>).@<span class="k">New</span>([ :<span class="t">pipeName</span> = C_PIPE, :direction = <span class="s">"InOut"</span> ])
 	? nl + <span class="s">"2. the pipe server is listening on '"</span> + C_PIPE + <span class="s">"'"</span>
 
 	<span class="c"># 3. Start the child: a second copy of this program, with its output redirected so that the parent can read it</span>
@@ -332,8 +331,7 @@ C_MUTEX = <span class="s">"ringdotnet_talk_single_copy"</span>
 	<span class="k">else</span>
 		? <span class="s">"another copy of the program holds the lock: I am the second copy"</span>
 	<span class="k">ok</span>
-	oClient = <span class="k">new</span> <span class="t">NamedPipeClientStream</span>
-	oClient.@<span class="k">New</span>([ :<span class="t">serverName</span> = <span class="s">"."</span>, :pipeName = C_PIPE, :direction = <span class="s">"InOut"</span> ])
+	oClient = (<span class="k">new</span> <span class="t">NamedPipeClientStream</span>).@<span class="k">New</span>([ :<span class="t">serverName</span> = <span class="s">"."</span>, :pipeName = C_PIPE, :direction = <span class="s">"InOut"</span> ])
 	oClient.<span class="f">Connect</span>(<span class="n">5000</span>)                                  <span class="c"># wait up to 5 seconds for the server</span>
 	oReader = <span class="k">new</span> <span class="t">StreamReader</span>(oClient)
 	oWriter = <span class="k">new</span> <span class="t">StreamWriter</span>(oClient)

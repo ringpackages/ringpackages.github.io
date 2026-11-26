@@ -280,9 +280,7 @@ using {
 	? <span class="s">"   name without extension: "</span> + oPath.<span class="f">GetFileNameWithoutExtension</span>(cFile) + <span class="s">", size: "</span> + oInfo.Length + <span class="s">" bytes"</span>
 
 	<span class="c"># 2. The times of a file: created, last written, last read. The program sets one to a known moment, so that the output is always the same.</span>
-	oMoment = <span class="k">new</span> <span class="t">DateTime</span>
-	oMoment.@<span class="k">New</span>([ :<span class="t">year</span> = <span class="n">2024</span>, :month = <span class="n">3</span>, :day = <span class="n">15</span>, :hour = <span class="n">9</span>, :minute = <span class="n">30</span>, :second = <span class="n">0</span> ])
-	oFile.<span class="f">SetLastWriteTime</span>(cFile,oMoment)
+	oFile.<span class="f">SetLastWriteTime</span>(cFile,(<span class="k">new</span> <span class="t">DateTime</span>).@<span class="k">New</span>([ :<span class="t">year</span> = <span class="n">2024</span>, :month = <span class="n">3</span>, :day = <span class="n">15</span>, :hour = <span class="n">9</span>, :minute = <span class="n">30</span>, :second = <span class="n">0</span> ]))
 	oInfo.<span class="f">Refresh</span>()                                        <span class="c"># FileInfo keeps what it read: Refresh reads it again</span>
 	? nl + <span class="s">"2. last written: "</span> + oInfo.LastWriteTime.<span class="f">Format</span>(<span class="s">"yyyy-MM-dd HH:mm"</span>)
 	? <span class="s">"   older than a day: "</span> + yesNo(daysOld(oInfo) &gt; <span class="n">1</span>)
@@ -346,7 +344,7 @@ using {
 <span class="c"># how many days ago the file was written</span>
 <span class="k">func</span> <span class="f">daysOld</span> oInfo
 
-	oNow = <span class="f">dnStatic</span>(<span class="s">"System.DateTime"</span>,<span class="s">"get_Now"</span>,[])
+	oNow = (<span class="k">new</span> <span class="t">DateTime</span>).Now
 	oSpan = oNow.<span class="f">Subtract</span>(oInfo.LastWriteTime)
 	<span class="k">return</span> oSpan.TotalDays
 

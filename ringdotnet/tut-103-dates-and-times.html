@@ -307,9 +307,9 @@ using {
 	? <span class="s">"   days between the two dates: "</span> + (oToday.DayNumber - oBirthday.DayNumber)
 
 	<span class="c"># 6. Parsing a date from text with an exact format, so that 03/04/2024 can not be read as the wrong day and month</span>
-	aParsed = <span class="f">dnStatic</span>(<span class="s">"System.DateOnly"</span>,<span class="s">"TryParseExact"</span>,[<span class="s">"03/04/2024"</span>,<span class="s">"dd/MM/yyyy"</span>,<span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">""</span>),<span class="s">"None"</span>])
+	aParsed = (<span class="k">new</span> <span class="t">DateOnly</span>).<span class="f">TryParseExact</span>([ :s = <span class="s">"03/04/2024"</span>, :format = <span class="s">"dd/MM/yyyy"</span>, :provider = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">""</span>), :style = <span class="s">"None"</span> ])
 	? nl + <span class="s">"6. '03/04/2024' read as day/month/year: "</span> + aParsed[<span class="n">2</span>].<span class="f">Format</span>(<span class="s">"yyyy-MM-dd"</span>) + <span class="s">" (the 3rd of April)"</span>
-	aParsed = <span class="f">dnStatic</span>(<span class="s">"System.DateOnly"</span>,<span class="s">"TryParseExact"</span>,[<span class="s">"31/04/2024"</span>,<span class="s">"dd/MM/yyyy"</span>,<span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">""</span>),<span class="s">"None"</span>])
+	aParsed = (<span class="k">new</span> <span class="t">DateOnly</span>).<span class="f">TryParseExact</span>([ :s = <span class="s">"31/04/2024"</span>, :format = <span class="s">"dd/MM/yyyy"</span>, :provider = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">""</span>), :style = <span class="s">"None"</span> ])
 	? <span class="s">"   '31/04/2024' is a date: "</span> + aParsed[<span class="n">1</span>] + <span class="s">"   (April has 30 days)"</span>
 
 <span class="k">func</span> <span class="f">makeDate</span> nYear,nMonth,nDay
@@ -318,9 +318,7 @@ using {
 
 <span class="k">func</span> <span class="f">makeDateTime</span> nYear,nMonth,nDay,nHour,nMinute
 
-	oDateTime = <span class="k">new</span> <span class="t">DateTime</span>
-	oDateTime.@<span class="k">New</span>([ :<span class="t">year</span> = nYear, :month = nMonth, :day = nDay, :hour = nHour, :minute = nMinute, :second = <span class="n">0</span> ])
-	<span class="k">return</span> oDateTime</code></pre></div>
+	<span class="k">return</span> (<span class="k">new</span> <span class="t">DateTime</span>).@<span class="k">New</span>([ :<span class="t">year</span> = nYear, :month = nMonth, :day = nDay, :hour = nHour, :minute = nMinute, :second = <span class="n">0</span> ])</code></pre></div>
 <div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. a date:  2024-02-28, Wednesday, day 59 of the year
    2 days later: 2024-03-01   (2024 is a leap year: February has 29 days)
    a time: 22:30, 3 hours later: 01:30   (it goes round the clock: no date to move to)

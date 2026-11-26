@@ -311,7 +311,7 @@ using {
 
 	aList = []
 	aKinds = [ <span class="s">"comment"</span>,<span class="s">"string"</span>,<span class="s">"number"</span>,<span class="s">"word"</span>,<span class="s">"other"</span> ]
-	aMatches = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Matches"</span>,[ cCode, cPattern ]).<span class="f">toList</span>()
+	aMatches = (<span class="k">new</span> <span class="t">Regex</span>).<span class="f">Matches</span>([ :input = cCode, :pattern = cPattern ]).<span class="f">toList</span>()
 	<span class="k">for</span> oMatch <span class="k">in</span> aMatches
 		<span class="k">for</span> cKind <span class="k">in</span> aKinds
 			<span class="k">if</span> oMatch.Groups.<span class="f">Item</span>(cKind).Success
@@ -375,7 +375,7 @@ using {
 <span class="c"># the HTML without the tags (the spans that the program added): what is left must be the escaped code</span>
 <span class="k">func</span> <span class="f">stripTags</span> cHtml
 
-	<span class="k">return</span> <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Replace"</span>,[ cHtml, <span class="s">'&lt;/?span[^&gt;]*&gt;'</span>, <span class="s">""</span> ])
+	<span class="k">return</span> (<span class="k">new</span> <span class="t">Regex</span>).<span class="f">Replace</span>([ :input = cHtml, :pattern = <span class="s">'&lt;/?span[^&gt;]*&gt;'</span>, :replacement = <span class="s">""</span> ])
 
 <span class="c"># a token of spaces, tabs or line breaks only</span>
 <span class="k">func</span> <span class="f">isBlank</span> cText

@@ -292,8 +292,8 @@ using {
 	? <span class="s">"   body is HTML: "</span> + oMessage.IsBodyHtml
 
 	<span class="c"># 3. HTML with a text version: AlternateViews hold the same message in more than one form, and the mail program shows the best one</span>
-	oText = <span class="f">dnStatic</span>(<span class="s">"System.Net.Mail.AlternateView"</span>,<span class="s">"CreateAlternateViewFromString"</span>,[<span class="s">"Meeting on Friday at 10:00"</span>,<span class="f">dnNull</span>(),<span class="s">"text/plain"</span>])
-	oHtml = <span class="f">dnStatic</span>(<span class="s">"System.Net.Mail.AlternateView"</span>,<span class="s">"CreateAlternateViewFromString"</span>,[<span class="s">"&lt;p&gt;Meeting on &lt;b&gt;Friday&lt;/b&gt; at 10:00&lt;/p&gt;"</span>,<span class="f">dnNull</span>(),<span class="s">"text/html"</span>])
+	oText = (<span class="k">new</span> <span class="t">AlternateView</span>).<span class="f">CreateAlternateViewFromString</span>([ :content = <span class="s">"Meeting on Friday at 10:00"</span>, :contentEncoding = <span class="f">dnNull</span>(), :mediaType = <span class="s">"text/plain"</span> ])
+	oHtml = (<span class="k">new</span> <span class="t">AlternateView</span>).<span class="f">CreateAlternateViewFromString</span>([ :content = <span class="s">"&lt;p&gt;Meeting on &lt;b&gt;Friday&lt;/b&gt; at 10:00&lt;/p&gt;"</span>, :contentEncoding = <span class="f">dnNull</span>(), :mediaType = <span class="s">"text/html"</span> ])
 	oMessage.AlternateViews.<span class="f">Add</span>(oText)
 	oMessage.AlternateViews.<span class="f">Add</span>(oHtml)
 	? nl + <span class="s">"3. views: "</span> + oMessage.AlternateViews.Count + <span class="s">" ("</span> + oText.ContentType.MediaType + <span class="s">", "</span> + oHtml.ContentType.MediaType + <span class="s">")"</span>

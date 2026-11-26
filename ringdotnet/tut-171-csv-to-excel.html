@@ -328,8 +328,7 @@ chdir(cHere)
 	<span class="c"># 2. CsvHelper reads it: ReadHeader takes the first line, and Read goes to the next row. A field is read by the name of its column.</span>
 	oText = <span class="k">new</span> <span class="t">StringReader</span>(cCsv)
 	oCulture = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"en-US"</span>)
-	oCsv = <span class="k">new</span> <span class="t">CsvReader</span>
-	oCsv.@<span class="k">New</span>([ :<span class="t">reader</span> = oText, :culture = oCulture ])
+	oCsv = (<span class="k">new</span> <span class="t">CsvReader</span>).@<span class="k">New</span>([ :<span class="t">reader</span> = oText, :culture = oCulture ])
 	oCsv.<span class="f">Read</span>()
 	oCsv.<span class="f">ReadHeader</span>()
 

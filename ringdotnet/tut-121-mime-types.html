@@ -259,12 +259,13 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"Microsoft.Net.Http.Headers"</span>
+	<span class="s">"Microsoft.AspNetCore.StaticFiles"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.Net.Mime"</span>
 	<span class="s">"RingDotNet.Web"</span>                  <span class="c"># the content type classes of ASP.NET Core are part of its runtime: this line starts it</span>
 }
 
-cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 
 <span class="k">func</span> <span class="f">main</span>
 
@@ -272,7 +273,7 @@ cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 	<span class="c"># the Content-Type header so that the browser knows what to do with the bytes, and a client sends Accept to say what it understands.</span>
 
 	<span class="c"># 1. From a file name to a type. The provider knows the common extensions.</span>
-	oProvider = <span class="f">dnNew</span>(<span class="s">"Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider"</span>,[])
+	oProvider = <span class="k">new</span> <span class="t">FileExtensionContentTypeProvider</span>
 	? <span class="s">"1. file name -&gt; content type:"</span>
 	<span class="k">for</span> cFile <span class="k">in</span> [<span class="s">"index.html"</span>,<span class="s">"logo.png"</span>,<span class="s">"photo.JPG"</span>,<span class="s">"data.json"</span>,<span class="s">"report.pdf"</span>,<span class="s">"archive.zip"</span>,<span class="s">"notes.txt"</span>,<span class="s">"song.mp3"</span>,<span class="s">"movie.mp4"</span>,<span class="s">"style.css"</span>,<span class="s">"app.js"</span>,<span class="s">"unknown.xyz123"</span>]
 		? <span class="s">"   "</span> + padRight(cFile,<span class="n">16</span>) + contentTypeOf(oProvider,cFile)
@@ -284,10 +285,9 @@ cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 	? <span class="s">"   (a file with an unknown type is sent as application/octet-stream: 'some bytes, download them')"</span>
 
 	<span class="c"># 3. Reading a Content-Type header: the type, the subtype and the parameters (the charset says how text is encoded)</span>
-	oContentType = <span class="k">new</span> <span class="t">ContentType</span>
-	oContentType.@<span class="k">New</span>(<span class="s">"text/html; charset=utf-8"</span>)
+	oContentType = (<span class="k">new</span> <span class="t">ContentType</span>).@<span class="k">New</span>(<span class="s">"text/html; charset=utf-8"</span>)
 	? nl + <span class="s">"3. text/html; charset=utf-8  -&gt;  media type: "</span> + oContentType.MediaType + <span class="s">", charset: "</span> + oContentType.CharSet
-	oSplit = <span class="f">dnStatic</span>(cHeaders + <span class="s">"MediaTypeHeaderValue"</span>,<span class="s">"Parse"</span>,[<span class="s">"application/json; charset=utf-8; q=0.9"</span>])
+	oSplit = (<span class="k">new</span> <span class="t">AspMediaTypeHeaderValue</span>).<span class="f">Parse</span>(<span class="s">"application/json; charset=utf-8; q=0.9"</span>)
 	? <span class="s">"   with the headers library: type "</span> + oSplit.Type.<span class="f">toString</span>() + <span class="s">", subtype "</span> + oSplit.SubType.<span class="f">toString</span>() + <span class="s">", quality "</span> + oSplit.Quality
 
 	<span class="c"># 4. The Accept header lists what the client understands, with a QUALITY (q) from 0 to 1 for each: the higher, the better. */* means</span>
@@ -324,7 +324,7 @@ cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 	aItems = []
 	aParts = str2list(substr(cAccept,<span class="s">","</span>,nl))
 	<span class="k">for</span> cPart <span class="k">in</span> aParts
-		oValue = <span class="f">dnStatic</span>(cHeaders + <span class="s">"MediaTypeHeaderValue"</span>,<span class="s">"Parse"</span>,[trim(cPart)])
+		oValue = (<span class="k">new</span> <span class="t">AspMediaTypeHeaderValue</span>).<span class="f">Parse</span>(trim(cPart))
 		nQuality = oValue.Quality
 		<span class="k">if</span> isObject(nQuality)
 			nQuality = <span class="n">1</span>                                        <span class="c"># no q parameter: quality 1</span>

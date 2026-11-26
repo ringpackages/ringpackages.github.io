@@ -259,11 +259,12 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"Microsoft.AspNetCore.Routing.Template"</span>
+	<span class="s">"Microsoft.AspNetCore.Routing"</span>
 	<span class="s">"System"</span>
 	<span class="s">"RingDotNet.Web"</span>                  <span class="c"># the routing classes are part of the ASP.NET Core runtime: this line starts it</span>
 }
 
-cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 
 <span class="k">func</span> <span class="f">main</span>
 
@@ -276,7 +277,7 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 	<span class="c"># {id:int}         a constraint (a router checks it: only whole numbers): the template keeps it as a name</span>
 	? <span class="s">"1. the templates and their parts:"</span>
 	<span class="k">for</span> cRoute <span class="k">in</span> [<span class="s">"users/{id}/orders/{orderId?}"</span>,<span class="s">"products/{category}/{page=1}"</span>,<span class="s">"files/{*path}"</span>,<span class="s">"items/{id:int}"</span>]
-		oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cRoute])
+		oTemplate = (<span class="k">new</span> <span class="t">TemplateParser</span>).<span class="f">Parse</span>(cRoute)
 		cParts = <span class="s">""</span>
 		aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
 		<span class="k">for</span> oPart <span class="k">in</span> aParts
@@ -322,7 +323,7 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 <span class="c"># the dictionary of values for a template and a path, as text; "no match" when the path does not fit the template</span>
 <span class="k">func</span> <span class="f">showMatch</span> cTemplate,cPath
 
-	oValues = <span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[])
+	oValues = <span class="k">new</span> <span class="t">RouteValueDictionary</span>
 	<span class="k">if</span> <span class="k">not</span> matches(cTemplate,cPath,oValues)
 		<span class="k">return</span> <span class="s">"no match"</span>
 	<span class="k">ok</span>
@@ -335,9 +336,9 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 
 <span class="k">func</span> <span class="f">matches</span> cTemplate,cPath,oValues
 
-	oTemplate = <span class="f">dnStatic</span>(cRouting + <span class="s">"Template.TemplateParser"</span>,<span class="s">"Parse"</span>,[cTemplate])
+	oTemplate = (<span class="k">new</span> <span class="t">TemplateParser</span>).<span class="f">Parse</span>(cTemplate)
 	<span class="c"># the defaults of the template ({page=1}) are given to the matcher: a part with a default may be missing at the END of the path</span>
-	oDefaults = <span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[])
+	oDefaults = <span class="k">new</span> <span class="t">RouteValueDictionary</span>
 	aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
 	<span class="k">for</span> oPart <span class="k">in</span> aParts
 		xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)
@@ -345,15 +346,14 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 			oDefaults.<span class="f">Add</span>(oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>),xDefault)
 		<span class="k">ok</span>
 	<span class="k">next</span>
-	oMatcher = <span class="f">dnNew</span>(cRouting + <span class="s">"Template.TemplateMatcher"</span>,[oTemplate,oDefaults])
-	oPath = <span class="k">new</span> <span class="t">PathString</span>
-	oPath.@<span class="k">New</span>(<span class="t">cPath</span>)
-	<span class="k">return</span> oMatcher.<span class="f">callMethod</span>(<span class="s">"TryMatch"</span>,[oPath,oValues])
+	oMatcher = <span class="k">new</span> <span class="t">TemplateMatcher</span>(oTemplate,oDefaults)
+	<span class="k">return</span> oMatcher.<span class="f">callMethod</span>(<span class="s">"TryMatch"</span>,[(<span class="k">new</span> <span class="t">PathString</span>).@<span class="k">New</span>(<span class="t">cPath</span>),oValues])
 
 <span class="k">func</span> <span class="f">chooseRoute</span> aTable,cPath
 
 	<span class="k">for</span> aRoute <span class="k">in</span> aTable
-		<span class="k">if</span> matches(aRoute[<span class="n">1</span>],cPath,<span class="f">dnNew</span>(cRouting + <span class="s">"RouteValueDictionary"</span>,[]))
+		oValues = <span class="k">new</span> <span class="t">RouteValueDictionary</span>
+		<span class="k">if</span> matches(aRoute[<span class="n">1</span>],cPath,oValues)
 			<span class="k">return</span> aRoute[<span class="n">1</span>] + <span class="s">"  -&gt;  "</span> + aRoute[<span class="n">2</span>]
 		<span class="k">ok</span>
 	<span class="k">next</span>

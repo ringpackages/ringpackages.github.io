@@ -351,7 +351,7 @@ oToken = <span class="s">""</span>                       <span class="c"># a tok
 <span class="c"># takes the values by name.</span>
 <span class="k">func</span> <span class="f">send</span> oSocket,cBytes,cType,lClient
 
-	oSegment = <span class="f">dnNew</span>(<span class="s">"System.ArraySegment`1[[System.Byte]]"</span>,[ cBytes ])
+	oSegment = <span class="k">new</span> <span class="t">ArraySegment</span>([ :typeArguments = [<span class="s">"System.Byte"</span>], :array = cBytes ])
 	<span class="k">if</span> lClient
 		oSocket.<span class="f">SendAsync</span>(oSegment,cType,<span class="k">True</span>,oToken).<span class="f">Wait</span>(<span class="k">NULL</span>)
 	<span class="k">else</span>
@@ -368,7 +368,7 @@ oToken = <span class="s">""</span>                       <span class="c"># a tok
 <span class="k">func</span> <span class="f">receive</span> oSocket,nSize
 
 	oBuffer = <span class="f">dnBuffer</span>(nSize)
-	oSegment = <span class="f">dnNew</span>(<span class="s">"System.ArraySegment`1[[System.Byte]]"</span>,[ oBuffer ])
+	oSegment = <span class="k">new</span> <span class="t">ArraySegment</span>([ :typeArguments = [<span class="s">"System.Byte"</span>], :array = oBuffer ])
 	oTask = oSocket.<span class="f">ReceiveAsync</span>(oSegment,oToken)
 	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
 	oResult = oTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)

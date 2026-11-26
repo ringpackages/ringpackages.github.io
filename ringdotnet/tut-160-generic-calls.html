@@ -284,8 +284,8 @@ using {
 	? nl + <span class="s">"2. dnType(...).callMethod: "</span> + oMath.<span class="f">callMethod</span>(<span class="s">"Max"</span>,[<span class="n">3</span>,<span class="n">9</span>]) + <span class="s">"   the same with a class: "</span> + <span class="k">new</span> <span class="t">Math</span>().<span class="f">Max</span>(<span class="n">3</span>,<span class="n">9</span>)
 	? <span class="s">"   a static property: "</span> + oMath.<span class="f">getProp</span>(<span class="s">"PI"</span>)
 
-	<span class="c"># 3. A constructor with named values. A class that has no constructor without values (FileStream is one) is made without parentheses (new FileStream)</span>
-	<span class="c">#    and @New chooses the constructor by the NAMES of its parameters; dnNew("Class",[ :name = value ]) does the same in one call.</span>
+	<span class="c"># 3. A constructor with named values. A class that has no constructor without values (FileStream is one) is made without parentheses, (new FileStream),</span>
+	<span class="c">#    and @New chooses the constructor by the NAMES of its parameters: (new FileStream).@New([ :name = value ]); dnNew("Class",[ :name = value ]) does the same.</span>
 	cFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([ <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-generic.txt"</span> ])
 	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cFile, :contents = <span class="s">"Hello, generic calls"</span> ])
 	oStream = <span class="f">dnNew</span>(<span class="s">"FileStream"</span>,[ :path = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])

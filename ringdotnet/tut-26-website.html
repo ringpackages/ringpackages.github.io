@@ -357,9 +357,7 @@ aEntries = []                 <span class="c"># the guestbook: [name, message]</
 
 <span class="k">func</span> <span class="f">postForm</span> cPath, cForm
 
-	oContent = <span class="k">new</span> <span class="t">StringContent</span>
-	oContent.@<span class="k">New</span>([ :<span class="t">content</span> = cForm, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/x-www-form-urlencoded"</span> ])
-	<span class="k">return</span> send(oClient.<span class="f">PostAsync</span>([ :requestUri = cUrl + cPath, :content = oContent ]))
+	<span class="k">return</span> send(oClient.<span class="f">PostAsync</span>([ :requestUri = cUrl + cPath, :content = (<span class="k">new</span> <span class="t">StringContent</span>).@<span class="k">New</span>([ :<span class="t">content</span> = cForm, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/x-www-form-urlencoded"</span> ]) ]))
 
 <span class="k">func</span> <span class="f">send</span> oTask
 

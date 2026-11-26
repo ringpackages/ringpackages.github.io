@@ -366,7 +366,7 @@ using {
 	<span class="k">if</span> cKind = <span class="s">"replace"</span>
 		cBase = substr(cBase,aItem[<span class="n">2</span>],aItem[<span class="n">3</span>])
 	<span class="k">but</span> cKind = <span class="s">"regex"</span>
-		cBase = <span class="f">dnStatic</span>(<span class="s">"System.Text.RegularExpressions.Regex"</span>,<span class="s">"Replace"</span>,[ cBase, aItem[<span class="n">2</span>], aItem[<span class="n">3</span>] ])
+		cBase = (<span class="k">new</span> <span class="t">Regex</span>).<span class="f">Replace</span>([ :input = cBase, :pattern = aItem[<span class="n">2</span>], :replacement = aItem[<span class="n">3</span>] ])
 	<span class="k">but</span> cKind = <span class="s">"lower"</span>
 		cBase = lower(cBase)
 		cExtension = lower(cExtension)

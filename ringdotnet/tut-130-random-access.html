@@ -323,9 +323,7 @@ nSize = <span class="n">20</span>                        <span class="c"># every
 <span class="c"># a FileStream: the path, the mode, the access and the share</span>
 <span class="k">func</span> <span class="f">openFile</span> cFile,cMode,cAccess,cShare
 
-	oFileStream = <span class="k">new</span> <span class="t">FileStream</span>
-	oFileStream.@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = cMode, :access = cAccess, :share = cShare ])
-	<span class="k">return</span> oFileStream
+	<span class="k">return</span> (<span class="k">new</span> <span class="t">FileStream</span>).@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = cMode, :access = cAccess, :share = cShare ])
 
 <span class="c"># a record: the name to 12 characters (spaces on the right), the quantity to 4 digits (zeros on the left), and 4 spaces</span>
 <span class="k">func</span> <span class="f">makeRecord</span> cName,nQuantity
