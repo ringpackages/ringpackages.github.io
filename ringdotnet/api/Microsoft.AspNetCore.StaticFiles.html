@@ -254,14 +254,14 @@
 <p class="net"><code>Microsoft.AspNetCore.StaticFiles.DefaultFilesMiddleware</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DefaultFilesMiddleware(RequestDelegate next, IWebHostEnvironment hostingEnv, IOptions&lt;DefaultFilesOptions&gt; options)</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new DefaultFilesMiddleware(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DefaultFilesMiddleware().@New([ :param = value ])</code> or <code>dnNew("DefaultFilesMiddleware",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>Invoke(p1)</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>callMethod("Invoke",[p1])</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-DirectoryBrowserMiddleware"><summary><b>DirectoryBrowserMiddleware</b> <span class="muted">class</span></summary>
 <div class="clsbody">
 <p class="net"><code>Microsoft.AspNetCore.StaticFiles.DirectoryBrowserMiddleware</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new DirectoryBrowserMiddleware(RequestDelegate next, IWebHostEnvironment hostingEnv, IOptions&lt;DirectoryBrowserOptions&gt; options)</code></td></tr><tr><td><code>new DirectoryBrowserMiddleware(RequestDelegate next, IWebHostEnvironment hostingEnv, HtmlEncoder encoder, IOptions&lt;DirectoryBrowserOptions&gt; options)</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new DirectoryBrowserMiddleware(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new DirectoryBrowserMiddleware().@New([ :param = value ])</code> or <code>dnNew("DirectoryBrowserMiddleware",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>Invoke(p1)</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>callMethod("Invoke",[p1])</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-FileExtensionContentTypeProvider"><summary><b>FileExtensionContentTypeProvider</b> <span class="muted">class</span></summary>
 <div class="clsbody">
@@ -276,7 +276,7 @@
 <p class="net"><code>Microsoft.AspNetCore.StaticFiles.HtmlDirectoryFormatter</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new HtmlDirectoryFormatter(HtmlEncoder encoder)</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new HtmlDirectoryFormatter(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new HtmlDirectoryFormatter().@New([ :param = value ])</code> or <code>dnNew("HtmlDirectoryFormatter",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GenerateContentAsync</code></td><td><code>GenerateContentAsync(p1,p2)</code></td><td><code>Task GenerateContentAsync(HttpContext context, IEnumerable&lt;IFileInfo&gt; contents)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GenerateContentAsync</code></td><td><code>callMethod("GenerateContentAsync",[p1,p2])</code></td><td><code>Task GenerateContentAsync(HttpContext context, IEnumerable&lt;IFileInfo&gt; contents)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-IContentTypeProvider"><summary><b>IContentTypeProvider</b> <span class="muted">interface</span></summary>
 <div class="clsbody">
@@ -286,14 +286,14 @@
 <details class="cls" id="c-IDirectoryFormatter"><summary><b>IDirectoryFormatter</b> <span class="muted">interface</span></summary>
 <div class="clsbody">
 <p class="net"><code>Microsoft.AspNetCore.StaticFiles.IDirectoryFormatter</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GenerateContentAsync</code></td><td><code>GenerateContentAsync(p1,p2)</code></td><td><code>Task GenerateContentAsync(HttpContext context, IEnumerable&lt;IFileInfo&gt; contents)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GenerateContentAsync</code></td><td><code>callMethod("GenerateContentAsync",[p1,p2])</code></td><td><code>Task GenerateContentAsync(HttpContext context, IEnumerable&lt;IFileInfo&gt; contents)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-StaticFileMiddleware"><summary><b>StaticFileMiddleware</b> <span class="muted">class</span></summary>
 <div class="clsbody">
 <p class="net"><code>Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware</code> · assembly <code>Microsoft.AspNetCore.StaticFiles</code></p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new StaticFileMiddleware(RequestDelegate next, IWebHostEnvironment hostingEnv, IOptions&lt;StaticFileOptions&gt; options, ILoggerFactory loggerFactory)</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new StaticFileMiddleware(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new StaticFileMiddleware().@New([ :param = value ])</code> or <code>dnNew("StaticFileMiddleware",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>Invoke(p1)</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>Invoke</code></td><td><code>callMethod("Invoke",[p1])</code></td><td><code>Task Invoke(HttpContext context)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-StaticFileResponseContext"><summary><b>StaticFileResponseContext</b> <span class="muted">class</span></summary>
 <div class="clsbody">

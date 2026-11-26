@@ -746,6 +746,23 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> <span class="k">string</span> <span class="t">Add</span>(<span class="k">string</span> a, <span class="k">string</span> b) { <span class="k">return</span> a + b; }
 	}
 
+	<span class="c">// Methods that answer the object they were called on (a fluent class): Ring keeps the wrapper it has instead of making a new one</span>
+	<span class="k">public</span> <span class="k">interface</span> <span class="t">IFluentChain</span> { <span class="k">int</span> <span class="t">Value</span> { <span class="k">get</span>; } }
+
+	<span class="k">public</span> <span class="k">class</span> <span class="t">FluentChain</span> : IFluentChain
+	{
+		<span class="k">public</span> <span class="k">int</span> <span class="t">Value</span> { <span class="k">get</span>; <span class="k">set</span>; }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Add</span>(<span class="k">int</span> n) { <span class="t">Value</span> += n; <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Copy</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">FluentChain</span> { <span class="t">Value</span> = <span class="t">Value</span> }; }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Maybe</span>(<span class="k">bool</span> same) { <span class="k">return</span> same ? this : <span class="k">new</span> <span class="t">FluentChain</span> { <span class="t">Value</span> = <span class="t">Value</span> + <span class="n">100</span> }; }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Nothing</span>() { <span class="k">return</span> <span class="k">null</span>; }
+		<span class="k">public</span> <span class="k">object</span> <span class="t">AsObject</span>() { <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="t">IFluentChain</span> <span class="t">AsInterface</span>() { <span class="k">return</span> this; }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Over</span>(<span class="k">int</span> n) { <span class="k">return</span> <span class="t">Add</span>(n); }
+		<span class="k">public</span> <span class="t">FluentChain</span> <span class="t">Over</span>(<span class="k">string</span> s) { <span class="k">return</span> <span class="k">new</span> <span class="t">FluentChain</span> { <span class="t">Value</span> = s.Length }; }
+		<span class="k">public</span> <span class="k">static</span> <span class="t">FluentChain</span> <span class="t">Make</span>(<span class="k">int</span> n) { <span class="k">return</span> <span class="k">new</span> <span class="t">FluentChain</span> { <span class="t">Value</span> = n }; }
+	}
+
 	<span class="c">// A class with two indexers (the first that .NET lists maps a number to a text, the other a text to a number): its Item is the generic request's,</span>
 	<span class="c">// because two get_Item can take one argument</span>
 	<span class="k">public</span> <span class="k">class</span> TypedIndexed
@@ -763,6 +780,7 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> List&lt;<span class="k">int</span>&gt; <span class="t">Numbers</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">int</span>&gt; { <span class="n">0</span>, <span class="n">1</span>, -<span class="n">1</span>, <span class="n">2147483647</span>, -<span class="n">2147483648</span> }; }
 		<span class="k">public</span> List&lt;<span class="k">long</span>&gt; <span class="t">Longs</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">long</span>&gt; { <span class="n">9007199254740993</span>, -<span class="n">9007199254740993</span>, <span class="k">long</span>.MaxValue }; }
 		<span class="k">public</span> List&lt;<span class="k">double</span>&gt; <span class="t">Doubles</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">double</span>&gt; { <span class="n">0.1</span>, -<span class="n">2.5</span>, 1e300, <span class="k">double</span>.Epsilon }; }
+		<span class="k">public</span> List&lt;<span class="k">double</span>&gt; <span class="t">NotFinite</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">double</span>&gt; { <span class="n">1.5</span>, <span class="k">double</span>.NaN, <span class="k">double</span>.PositiveInfinity, <span class="k">double</span>.NegativeInfinity, -<span class="n">2</span> }; }
 		<span class="k">public</span> List&lt;float&gt; <span class="t">Floats</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;float&gt; { <span class="n">0</span>.1f, <span class="n">1</span>.5f }; }
 		<span class="k">public</span> List&lt;decimal&gt; <span class="t">Decimals</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;decimal&gt; { <span class="n">1</span>.5m, <span class="n">12345678</span>.9m }; }
 		<span class="k">public</span> List&lt;<span class="k">bool</span>&gt; <span class="t">Bools</span>() { <span class="k">return</span> <span class="k">new</span> <span class="t">List</span>&lt;<span class="k">bool</span>&gt; { <span class="k">true</span>, <span class="k">false</span>, <span class="k">true</span> }; }

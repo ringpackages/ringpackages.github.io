@@ -260,7 +260,7 @@
 <div class="clsbody">
 <p class="net"><code>Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
 <h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>State</code></td><td><code>object</code></td><td>read, write</td><td><code>o.State</code> <code>o.State = v</code></td></tr></tbody></table></div>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FilterAsync</code></td><td><code>FilterAsync(p1,p2,p3)</code></td><td><code>ValueTask&lt;IReadOnlyList&lt;Endpoint&gt;&gt; FilterAsync(HttpContext httpContext, RouteValueDictionary values, IReadOnlyList&lt;Endpoint&gt; endpoints)</code></td></tr><tr><td><code>TransformAsync</code></td><td><code>TransformAsync(p1,p2)</code></td><td><code>ValueTask&lt;RouteValueDictionary&gt; TransformAsync(HttpContext httpContext, RouteValueDictionary values)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>FilterAsync</code></td><td><code>callMethod("FilterAsync",[p1,p2,p3])</code></td><td><code>ValueTask&lt;IReadOnlyList&lt;Endpoint&gt;&gt; FilterAsync(HttpContext httpContext, RouteValueDictionary values, IReadOnlyList&lt;Endpoint&gt; endpoints)</code></td></tr><tr><td><code>TransformAsync</code></td><td><code>callMethod("TransformAsync",[p1,p2])</code></td><td><code>ValueTask&lt;RouteValueDictionary&gt; TransformAsync(HttpContext httpContext, RouteValueDictionary values)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-HttpMethodAttribute"><summary><b>HttpMethodAttribute</b> <span class="muted">class abstract · extends <a href="System.html#c-Attribute">Attribute</a></span></summary>
 <div class="clsbody">
@@ -286,7 +286,7 @@
 <details class="cls" id="c-IUrlHelperFactory"><summary><b>IUrlHelperFactory</b> <span class="muted">interface</span></summary>
 <div class="clsbody">
 <p class="net"><code>Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetUrlHelper</code></td><td><code>GetUrlHelper(p1)</code></td><td><code>IUrlHelper GetUrlHelper(ActionContext context)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetUrlHelper</code></td><td><code>callMethod("GetUrlHelper",[p1])</code></td><td><code>IUrlHelper GetUrlHelper(ActionContext context)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-KnownRouteValueConstraint"><summary><b>KnownRouteValueConstraint</b> <span class="muted">class</span></summary>
 <div class="clsbody">
@@ -327,7 +327,7 @@
 <p class="net"><code>Microsoft.AspNetCore.Mvc.Routing.UrlHelperFactory</code> · assembly <code>Microsoft.AspNetCore.Mvc.Core</code></p>
 <h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new UrlHelperFactory()</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new UrlHelperFactory(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new UrlHelperFactory().@New([ :param = value ])</code> or <code>dnNew("UrlHelperFactory",[ :param = value ])</code>.</p>
-<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetUrlHelper</code></td><td><code>GetUrlHelper(p1)</code></td><td><code>IUrlHelper GetUrlHelper(ActionContext context)</code></td></tr></tbody></table></div>
+<h4>Methods</h4><div class="tablewrap"><table class="api"><thead><tr><th>Method</th><th>Ring call</th><th>.NET overloads</th></tr></thead><tbody><tr><td><code>GetUrlHelper</code></td><td><code>callMethod("GetUrlHelper",[p1])</code></td><td><code>IUrlHelper GetUrlHelper(ActionContext context)</code></td></tr></tbody></table></div>
 </div></details>
 <details class="cls" id="c-UrlRouteContext"><summary><b>UrlRouteContext</b> <span class="muted">class</span></summary>
 <div class="clsbody">
