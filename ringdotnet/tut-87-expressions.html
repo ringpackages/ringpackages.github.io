@@ -277,31 +277,31 @@ using {
 	<span class="c"># 2. A lambda is a whole function: a body and its parameters. Compile turns the tree into a real function of the runtime.</span>
 	oLambda = oExpression.<span class="f">Lambda</span>([ :body = oSum, :parameters = [oA,oB] ])
 	oAdd = oLambda.<span class="f">Compile</span>(<span class="k">NULL</span>)
-	? nl + <span class="s">"2. the lambda: "</span> + oLambda.<span class="f">ToString</span>() + <span class="s">"; calling it with 2 and 3.5 gives "</span> + oAdd.<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">2</span>,<span class="n">3.5</span>]])
+	? nl + <span class="s">"2. the lambda: "</span> + oLambda.<span class="f">ToString</span>() + <span class="s">"; calling it with 2 and 3.5 gives "</span> + oAdd.<span class="f">DynamicInvoke</span>([<span class="n">2</span>,<span class="n">3.5</span>])
 
 	<span class="c"># 3. Bigger trees: (a + b) * 10, and a decision: if a &gt; b then a else b</span>
 	oTimes = oExpression.<span class="f">Multiply</span>([ :left = oSum, :right = oExpression.<span class="f">Constant</span>(<span class="f">dnBox</span>(<span class="s">"System.Double"</span>,<span class="n">10</span>)) ])
 	oScaled = oExpression.<span class="f">Lambda</span>([ :body = oTimes, :parameters = [oA,oB] ])
-	? nl + <span class="s">"3. "</span> + oScaled.<span class="f">ToString</span>() + <span class="s">" with 1 and 2 gives "</span> + oScaled.<span class="f">Compile</span>(<span class="k">NULL</span>).<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">1</span>,<span class="n">2</span>]])
+	? nl + <span class="s">"3. "</span> + oScaled.<span class="f">ToString</span>() + <span class="s">" with 1 and 2 gives "</span> + oScaled.<span class="f">Compile</span>(<span class="k">NULL</span>).<span class="f">DynamicInvoke</span>([<span class="n">1</span>,<span class="n">2</span>])
 	oTest = oExpression.<span class="f">GreaterThan</span>([ :left = oA, :right = oB ])
 	oChoice = oExpression.<span class="f">Condition</span>([ :test = oTest, :ifTrue = oA, :ifFalse = oB ])
 	oMax = oExpression.<span class="f">Lambda</span>([ :body = oChoice, :parameters = [oA,oB] ])
 	oMaxFunction = oMax.<span class="f">Compile</span>(<span class="k">NULL</span>)
-	? <span class="s">"   "</span> + oMax.<span class="f">ToString</span>() + <span class="s">": max of 7 and 3 is "</span> + oMaxFunction.<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">7</span>,<span class="n">3</span>]]) + <span class="s">", of 2 and 9 is "</span> + oMaxFunction.<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">2</span>,<span class="n">9</span>]])
+	? <span class="s">"   "</span> + oMax.<span class="f">ToString</span>() + <span class="s">": max of 7 and 3 is "</span> + oMaxFunction.<span class="f">DynamicInvoke</span>([<span class="n">7</span>,<span class="n">3</span>]) + <span class="s">", of 2 and 9 is "</span> + oMaxFunction.<span class="f">DynamicInvoke</span>([<span class="n">2</span>,<span class="n">9</span>])
 
 	<span class="c"># 4. A call of a .NET method inside the tree: Math.Sqrt(a * a + b * b), the length of the hypotenuse</span>
 	oSqrt = <span class="k">new</span> <span class="t">Type</span>().<span class="f">GetType</span>(<span class="s">"System.Math"</span>).<span class="f">GetMethod</span>(<span class="s">"Sqrt"</span>)
 	oSquares = oExpression.<span class="f">Add</span>([ :left = oExpression.<span class="f">Multiply</span>([ :left = oA, :right = oA ]), :right = oExpression.<span class="f">Multiply</span>([ :left = oB, :right = oB ]) ])
 	oHypotenuse = oExpression.@<span class="k">Call</span>([ :instance = <span class="f">dnNull</span>(), :method = oSqrt, :arguments = [oSquares] ])
 	oLength = oExpression.<span class="f">Lambda</span>([ :body = oHypotenuse, :parameters = [oA,oB] ])
-	? nl + <span class="s">"4. "</span> + oLength.<span class="f">ToString</span>() + <span class="s">" with 3 and 4 gives "</span> + oLength.<span class="f">Compile</span>(<span class="k">NULL</span>).<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">3</span>,<span class="n">4</span>]])
+	? nl + <span class="s">"4. "</span> + oLength.<span class="f">ToString</span>() + <span class="s">" with 3 and 4 gives "</span> + oLength.<span class="f">Compile</span>(<span class="k">NULL</span>).<span class="f">DynamicInvoke</span>([<span class="n">3</span>,<span class="n">4</span>])
 
 	<span class="c"># 5. Why? The tree is data: a program can BUILD it from something the user wrote (a formula, a rule, a filter), look at it, and run it as fast</span>
 	<span class="c">#    compiled code. Here a small helper builds "a OP b" from the name of an operator.</span>
 	? nl + <span class="s">"5. one helper, four functions (compiled from a tree built for each operator):"</span>
 	<span class="k">for</span> cOperator <span class="k">in</span> [<span class="s">"+"</span>,<span class="s">"-"</span>,<span class="s">"*"</span>,<span class="s">"/"</span>]
 		oFunction = binaryFunction(oExpression,oA,oB,cOperator)
-		? <span class="s">"   a "</span> + cOperator + <span class="s">" b with 12 and 4: "</span> + oFunction.<span class="f">callMethod</span>(<span class="s">"DynamicInvoke"</span>,[[<span class="n">12</span>,<span class="n">4</span>]])
+		? <span class="s">"   a "</span> + cOperator + <span class="s">" b with 12 and 4: "</span> + oFunction.<span class="f">DynamicInvoke</span>([<span class="n">12</span>,<span class="n">4</span>])
 	<span class="k">next</span>
 
 <span class="c"># the compiled function of "a OP b" for an operator written as text</span>

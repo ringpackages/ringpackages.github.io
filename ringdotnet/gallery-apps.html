@@ -2131,7 +2131,7 @@ oForm.<span class="f">setMouseWheelEvent</span>(<span class="s">"wheelZoom(aDotN
 	oAttributes.<span class="f">SetColorMatrix</span>(oMatrix)
 	oGray = <span class="k">new</span> <span class="t">Bitmap</span>(nWidth,nHeight)
 	oGraphics = <span class="k">new</span> <span class="t">Graphics</span>().<span class="f">FromImage</span>(oGray)
-	oGraphics.<span class="f">callMethod</span>(<span class="s">"DrawImage"</span>,[oImage,<span class="k">new</span> <span class="t">Rectangle</span>(<span class="n">0</span>,<span class="n">0</span>,nWidth,nHeight),<span class="n">0</span>,<span class="n">0</span>,nWidth,nHeight,<span class="s">"Pixel"</span>,oAttributes])
+	oGraphics.<span class="f">DrawImage</span>([ :image = oImage, :destRect = <span class="k">new</span> <span class="t">Rectangle</span>(<span class="n">0</span>,<span class="n">0</span>,nWidth,nHeight), :srcX = <span class="n">0</span>, :srcY = <span class="n">0</span>, :srcWidth = nWidth, :srcHeight = nHeight, :srcUnit = <span class="s">"Pixel"</span>, :imageAttr = oAttributes ])
 	oGraphics.<span class="f">Dispose</span>()
 	oImage.<span class="f">Dispose</span>()
 	oImage = oGray

@@ -272,7 +272,7 @@ using {
 	cText = <span class="s">"System.String"</span>
 
 	<span class="c"># 1. ConcurrentQueue: first in, first out. TryDequeue answers [ success, item ] (an out parameter comes back as a list).</span>
-	oQueue = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Concurrent.ConcurrentQueue"</span>,[cText],[])
+	oQueue = <span class="k">new</span> <span class="t">ConcurrentQueue</span>([ :typeArguments = [cText] ])
 	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"Ann"</span>,<span class="s">"Bob"</span>,<span class="s">"Cy"</span>]
 		oQueue.<span class="f">Enqueue</span>(cName)
 	<span class="k">next</span>

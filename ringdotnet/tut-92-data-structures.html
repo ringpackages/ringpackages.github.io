@@ -305,7 +305,7 @@ using {
 	oList.<span class="f">AddLast</span>(<span class="s">"b"</span>)
 	oList.<span class="f">AddLast</span>(<span class="s">"c"</span>)
 	oList.<span class="f">AddFirst</span>(<span class="s">"a"</span>)
-	oNodeB = oList.First.<span class="f">getProp</span>(<span class="s">"Next"</span>)
+	oNodeB = oList.First.@<span class="k">Next</span>
 	oList.<span class="f">AddAfter</span>(oNodeB,<span class="s">"b2"</span>)
 	? nl + <span class="s">"4. linked list: "</span> + list2str2(oList.<span class="f">toList</span>()) + <span class="s">" (first = "</span> + oList.First.Value + <span class="s">", last = "</span> + oList.Last.Value + <span class="s">")"</span>
 	oList.<span class="f">Remove</span>(<span class="s">"b"</span>)
