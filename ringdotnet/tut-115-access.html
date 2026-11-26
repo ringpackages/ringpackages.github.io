@@ -470,8 +470,8 @@ using {
 	aNames = []
 	aTableRows = oConnection.<span class="f">GetSchema</span>(<span class="s">"Tables"</span>).Rows.<span class="f">toList</span>()
 	<span class="k">for</span> oRow <span class="k">in</span> aTableRows
-		<span class="k">if</span> oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_TYPE"</span>]) = <span class="s">"TABLE"</span>
-			aNames + oRow.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"TABLE_NAME"</span>])
+		<span class="k">if</span> oRow.<span class="f">Item</span>(<span class="s">"TABLE_TYPE"</span>) = <span class="s">"TABLE"</span>
+			aNames + oRow.<span class="f">Item</span>(<span class="s">"TABLE_NAME"</span>)
 		<span class="k">ok</span>
 	<span class="k">next</span>
 	<span class="k">return</span> sort(aNames)

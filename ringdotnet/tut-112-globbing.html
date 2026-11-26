@@ -275,22 +275,22 @@ using {
 
 	<span class="c"># 1. A Matcher has include rules and exclude rules. A file is in the result when an include rule matches it and no exclude rule does.</span>
 	oMatcher = <span class="k">new</span> <span class="t">Matcher</span>()
-	oMatcher.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.ring"</span>])
+	oMatcher.<span class="f">AddInclude</span>(<span class="s">"**/*.ring"</span>)
 	? <span class="s">"1. **/*.ring :"</span>
 	showFiles(oMatcher,cBase)
 
 	<span class="c"># 2. Exclude: everything under "tests" and every file whose name starts with "old_" is left out</span>
 	oMatcher2 = <span class="k">new</span> <span class="t">Matcher</span>()
-	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.ring"</span>])
-	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddExclude"</span>,[<span class="s">"tests/**"</span>])
-	oMatcher2.<span class="f">callMethod</span>(<span class="s">"AddExclude"</span>,[<span class="s">"**/old_*"</span>])
+	oMatcher2.<span class="f">AddInclude</span>(<span class="s">"**/*.ring"</span>)
+	oMatcher2.<span class="f">AddExclude</span>(<span class="s">"tests/**"</span>)
+	oMatcher2.<span class="f">AddExclude</span>(<span class="s">"**/old_*"</span>)
 	? nl + <span class="s">"2. **/*.ring without tests/** and old_* :"</span>
 	showFiles(oMatcher2,cBase)
 
 	<span class="c"># 3. Several include rules at once: the code and the documents</span>
 	oMatcher3 = <span class="k">new</span> <span class="t">Matcher</span>()
-	oMatcher3.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"src/*.ring"</span>])
-	oMatcher3.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"docs/**/*.md"</span>])
+	oMatcher3.<span class="f">AddInclude</span>(<span class="s">"src/*.ring"</span>)
+	oMatcher3.<span class="f">AddInclude</span>(<span class="s">"docs/**/*.md"</span>)
 	? nl + <span class="s">"3. src/*.ring (one folder only) and docs/**/*.md :"</span>
 	showFiles(oMatcher3,cBase)
 
@@ -306,7 +306,7 @@ using {
 
 	<span class="c"># 5. By default a Matcher ignores case (OrdinalIgnoreCase). The constructor takes a StringComparison: with Ordinal, case counts.</span>
 	oStrict = (<span class="k">new</span> <span class="t">Matcher</span>).@<span class="k">New</span>([ :<span class="t">comparisonType</span> = <span class="s">"Ordinal"</span> ])
-	oStrict.<span class="f">callMethod</span>(<span class="s">"AddInclude"</span>,[<span class="s">"**/*.RING"</span>])
+	oStrict.<span class="f">AddInclude</span>(<span class="s">"**/*.RING"</span>)
 	oResultStrict = oStrict.<span class="f">Match</span>([ :rootDir = <span class="s">"."</span>, :files = [<span class="s">"a.ring"</span>,<span class="s">"b.RING"</span>] ])
 	? nl + <span class="s">"5. with Ordinal comparison, **/*.RING matches only: "</span> + oResultStrict.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()[<span class="n">1</span>].<span class="f">getProp</span>(<span class="s">"Path"</span>)
 

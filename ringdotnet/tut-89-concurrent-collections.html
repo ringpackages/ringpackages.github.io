@@ -287,19 +287,19 @@ using {
 	<span class="c">#    used in the plain style: callMethod(name, [arguments]) and getProp(name).</span>
 	oStack = <span class="k">new</span> <span class="t">ConcurrentStack</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
-		oStack.<span class="f">callMethod</span>(<span class="s">"Push"</span>,[n])
+		oStack.<span class="f">Push</span>(n)
 	<span class="k">next</span>
-	nFirst = oStack.<span class="f">callMethod</span>(<span class="s">"TryPop"</span>,[])[<span class="n">2</span>]
-	nSecond = oStack.<span class="f">callMethod</span>(<span class="s">"TryPop"</span>,[])[<span class="n">2</span>]
+	nFirst = oStack.<span class="f">TryPop</span>()[<span class="n">2</span>]
+	nSecond = oStack.<span class="f">TryPop</span>()[<span class="n">2</span>]
 	? nl + <span class="s">"2. stack: pop gives "</span> + nFirst + <span class="s">" then "</span> + nSecond + <span class="s">", "</span> + oStack.<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" left"</span>
 
 	<span class="c"># 3. BlockingCollection: a queue for a producer and a consumer. Take waits while the queue is empty; CompleteAdding says</span>
 	<span class="c">#    that nothing more will come, and then IsCompleted becomes true when the queue is empty.</span>
 	oBlocking = <span class="k">new</span> <span class="t">BlockingCollection</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n = <span class="n">1</span> <span class="k">to</span> <span class="n">5</span>
-		oBlocking.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[n * n])
+		oBlocking.<span class="f">Add</span>(n * n)
 	<span class="k">next</span>
-	oBlocking.<span class="f">callMethod</span>(<span class="s">"CompleteAdding"</span>,[])
+	oBlocking.<span class="f">CompleteAdding</span>()
 	cTaken = <span class="s">""</span>
 	<span class="k">while</span> <span class="k">not</span> oBlocking.<span class="f">getProp</span>(<span class="s">"IsCompleted"</span>)
 		cTaken += <span class="s">""</span> + oBlocking.<span class="f">callMethod</span>(<span class="s">"Take"</span>,[]) + <span class="s">" "</span>
@@ -308,18 +308,18 @@ using {
 
 	<span class="c"># 4. A bounded queue holds at most N items: Add waits when it is full, TryAdd answers at once</span>
 	oSmall = <span class="k">new</span> <span class="t">BlockingCollection</span>([ :typeArguments = [cInt], :boundedCapacity = <span class="n">2</span> ])
-	? nl + <span class="s">"4. bounded to 2: TryAdd gives "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">10</span>]) + <span class="s">", "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">20</span>]) + <span class="s">", "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">30</span>]) + <span class="s">" (the third does not fit)"</span>
+	? nl + <span class="s">"4. bounded to 2: TryAdd gives "</span> + oSmall.<span class="f">TryAdd</span>(<span class="n">10</span>) + <span class="s">", "</span> + oSmall.<span class="f">TryAdd</span>(<span class="n">20</span>) + <span class="s">", "</span> + oSmall.<span class="f">TryAdd</span>(<span class="n">30</span>) + <span class="s">" (the third does not fit)"</span>
 
 	<span class="c"># 5. ConcurrentDictionary: TryAdd, TryUpdate (key, new value, the value we expect) and TryRemove</span>
 	oCount = <span class="k">new</span> <span class="t">ConcurrentDictionary</span>([ :typeArguments = [cText,cInt] ])
 	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"red"</span>,<span class="s">"green"</span>,<span class="s">"red"</span>,<span class="s">"blue"</span>,<span class="s">"red"</span>,<span class="s">"green"</span>]
-		oCount.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[cWord,<span class="n">0</span>])          <span class="c"># does nothing when the key exists</span>
-		nOld = oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[cWord])
-		oCount.<span class="f">callMethod</span>(<span class="s">"TryUpdate"</span>,[cWord,nOld + <span class="n">1</span>,nOld])
+		oCount.<span class="f">TryAdd</span>(cWord,<span class="n">0</span>)          <span class="c"># does nothing when the key exists</span>
+		nOld = oCount.<span class="f">Item</span>(cWord)
+		oCount.<span class="f">TryUpdate</span>(cWord,nOld + <span class="n">1</span>,nOld)
 	<span class="k">next</span>
-	? nl + <span class="s">"5. word counts: red = "</span> + oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"red"</span>]) + <span class="s">", green = "</span> + oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"green"</span>]) + <span class="s">", blue = "</span> + oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"blue"</span>])
-	? <span class="s">"   TryAdd of an existing key: "</span> + oCount.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="s">"red"</span>,<span class="n">99</span>]) + <span class="s">" (the value stays "</span> + oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[<span class="s">"red"</span>]) + <span class="s">")"</span>
-	aRemoved = oCount.<span class="f">callMethod</span>(<span class="s">"TryRemove"</span>,[<span class="s">"blue"</span>])
+	? nl + <span class="s">"5. word counts: red = "</span> + oCount.<span class="f">Item</span>(<span class="s">"red"</span>) + <span class="s">", green = "</span> + oCount.<span class="f">Item</span>(<span class="s">"green"</span>) + <span class="s">", blue = "</span> + oCount.<span class="f">Item</span>(<span class="s">"blue"</span>)
+	? <span class="s">"   TryAdd of an existing key: "</span> + oCount.<span class="f">TryAdd</span>(<span class="s">"red"</span>,<span class="n">99</span>) + <span class="s">" (the value stays "</span> + oCount.<span class="f">Item</span>(<span class="s">"red"</span>) + <span class="s">")"</span>
+	aRemoved = oCount.<span class="f">TryRemove</span>(<span class="s">"blue"</span>)
 	? <span class="s">"   TryRemove(blue): success = "</span> + aRemoved[<span class="n">1</span>] + <span class="s">", the removed value was "</span> + aRemoved[<span class="n">2</span>] + <span class="s">", keys left: "</span> + oCount.<span class="f">getProp</span>(<span class="s">"Count"</span>)</code></pre></div>
 <div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. queue of 3 names, first = Ann
    dequeued Ann

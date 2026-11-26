@@ -294,11 +294,11 @@ using {
 
 	<span class="c"># 4. A dictionary that ignores case: the comparer is the second argument of the constructor</span>
 	oPeople = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>], :comparer = <span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase ])
-	oPeople.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
-	? nl + <span class="s">"4. the key 'ANN' finds the key 'Ann': "</span> + oPeople.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
+	oPeople.<span class="f">Add</span>(<span class="s">"Ann"</span>,<span class="n">31</span>)
+	? nl + <span class="s">"4. the key 'ANN' finds the key 'Ann': "</span> + oPeople.<span class="f">ContainsKey</span>(<span class="s">"ANN"</span>)
 	oPlain = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>] ])
-	oPlain.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
-	? <span class="s">"   a plain dictionary does not: "</span> + oPlain.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
+	oPlain.<span class="f">Add</span>(<span class="s">"Ann"</span>,<span class="n">31</span>)
+	? <span class="s">"   a plain dictionary does not: "</span> + oPlain.<span class="f">ContainsKey</span>(<span class="s">"ANN"</span>)
 
 	<span class="c"># 5. A sorted set with the same idea keeps one of 'Apple' and 'apple'</span>
 	oSet = <span class="k">new</span> <span class="t">SortedSet</span>([ :typeArguments = [<span class="s">"System.String"</span>], :comparer = <span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase ])

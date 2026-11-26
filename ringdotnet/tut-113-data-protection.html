@@ -281,7 +281,7 @@ using {
 
 	<span class="c"># 1. A protector is made for a PURPOSE (a text that names what the data is for). Protect turns a text into an unreadable token</span>
 	<span class="c">#    and Unprotect gives the text back.</span>
-	oProtector = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	oProtector = oProvider.<span class="f">CreateProtector</span>(<span class="s">"tutorial.cookies"</span>)
 	cToken = (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Protect</span>(oProtector,<span class="s">"user=ann;role=admin"</span>)
 	? <span class="s">"1. the protected text starts with CfDJ8 (every token of this API does): "</span> + (left(cToken,<span class="n">5</span>) = <span class="s">"CfDJ8"</span>)
 	? <span class="s">"   it does not show the data: "</span> + (substr(cToken,<span class="s">"ann"</span>) = <span class="n">0</span>) + <span class="s">", and it is longer than the data: "</span> + (len(cToken) &gt; <span class="n">40</span>)
@@ -293,7 +293,7 @@ using {
 
 	<span class="c"># 3. Purposes keep uses apart: a token made for "tutorial.cookies" cannot be opened with the protector of "tutorial.password-reset".</span>
 	<span class="c">#    So a stolen cookie value does not work as a reset link, even though the same keys are used.</span>
-	oOther = oProvider.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.password-reset"</span>])
+	oOther = oProvider.<span class="f">CreateProtector</span>(<span class="s">"tutorial.password-reset"</span>)
 	? nl + <span class="s">"3. unprotect with another purpose: "</span> + tryUnprotect(oOther,cToken)
 
 	<span class="c"># 4. Tampering: change one character of the token and the check fails. The data can not be modified, only replaced by a valid token.</span>
@@ -304,11 +304,11 @@ using {
 	<span class="c">#    copy of it). Without the key folder the tokens can not be opened: it is as secret as a password.</span>
 	aFiles = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetFiles</span>(cKeys)
 	oProvider2 = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cKeys))
-	oProtector2 = oProvider2.<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	oProtector2 = oProvider2.<span class="f">CreateProtector</span>(<span class="s">"tutorial.cookies"</span>)
 	? nl + <span class="s">"5. key files in the folder: "</span> + len(aFiles.<span class="f">toList</span>()) + <span class="s">", a second provider on the same folder opens the token: "</span> + (<span class="k">new</span> <span class="t">DataProtectionCommonExtensions</span>).<span class="f">Unprotect</span>(oProtector2,cToken)
 	cOtherFolder = cKeys + <span class="s">"_other"</span>
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">CreateDirectory</span>(cOtherFolder)
-	oStranger = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cOtherFolder)).<span class="f">callMethod</span>(<span class="s">"CreateProtector"</span>,[<span class="s">"tutorial.cookies"</span>])
+	oStranger = (<span class="k">new</span> <span class="t">DataProtectionProvider</span>).<span class="f">Create</span>(<span class="k">new</span> <span class="t">DirectoryInfo</span>(cOtherFolder)).<span class="f">CreateProtector</span>(<span class="s">"tutorial.cookies"</span>)
 	? <span class="s">"   a provider with other keys: "</span> + tryUnprotect(oStranger,cToken)
 
 	<span class="c"># 6. Time limits: a token that is valid for a short time only (a link in an e-mail, a one-time code)</span>

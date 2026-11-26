@@ -330,7 +330,7 @@ using {
 	cText = <span class="s">""</span>
 	aKeys = sort(oValues.Keys.<span class="f">toList</span>())
 	<span class="k">for</span> cKey <span class="k">in</span> aKeys
-		cText += cKey + <span class="s">" = "</span> + oValues.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[cKey]) + <span class="s">"   "</span>
+		cText += cKey + <span class="s">" = "</span> + oValues.<span class="f">Item</span>(cKey) + <span class="s">"   "</span>
 	<span class="k">next</span>
 	<span class="k">return</span> <span class="s">"match   "</span> + cText
 
@@ -347,7 +347,7 @@ using {
 		<span class="k">ok</span>
 	<span class="k">next</span>
 	oMatcher = <span class="k">new</span> <span class="t">TemplateMatcher</span>(oTemplate,oDefaults)
-	<span class="k">return</span> oMatcher.<span class="f">callMethod</span>(<span class="s">"TryMatch"</span>,[(<span class="k">new</span> <span class="t">PathString</span>).@<span class="k">New</span>(<span class="t">cPath</span>),oValues])
+	<span class="k">return</span> oMatcher.<span class="f">TryMatch</span>((<span class="k">new</span> <span class="t">PathString</span>).@<span class="k">New</span>(<span class="t">cPath</span>),oValues)
 
 <span class="k">func</span> <span class="f">chooseRoute</span> aTable,cPath
 

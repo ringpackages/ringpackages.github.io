@@ -310,7 +310,7 @@ using {
 	aWithDuplicates = [<span class="n">5</span>,<span class="n">3</span>,<span class="n">5</span>,<span class="n">1</span>,<span class="n">3</span>,<span class="n">8</span>,<span class="n">1</span>,<span class="n">5</span>]
 	oIntSet = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
 	<span class="k">for</span> nNumber <span class="k">in</span> aWithDuplicates
-		oIntSet.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[nNumber])
+		oIntSet.<span class="f">Add</span>(nNumber)
 	<span class="k">next</span>
 	aUnique = sort(oIntSet.<span class="f">toList</span>())
 	? nl + <span class="s">"6. "</span> + len(aWithDuplicates) + <span class="s">" numbers, "</span> + len(aUnique) + <span class="s">" different: "</span> + list2text(aUnique)

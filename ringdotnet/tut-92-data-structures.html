@@ -270,28 +270,28 @@ using {
 
 	<span class="c"># 1. PriorityQueue&lt;element, priority&gt;: Dequeue always gives the element with the SMALLEST priority, whatever the order of Enqueue.</span>
 	oTasks = <span class="k">new</span> <span class="t">PriorityQueue</span>([ :typeArguments = [cText,cInt] ])
-	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"write the report"</span>,<span class="n">3</span>])
-	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"fix the server"</span>,<span class="n">1</span>])
-	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"answer the mail"</span>,<span class="n">5</span>])
-	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"call the customer"</span>,<span class="n">2</span>])
+	oTasks.<span class="f">Enqueue</span>(<span class="s">"write the report"</span>,<span class="n">3</span>)
+	oTasks.<span class="f">Enqueue</span>(<span class="s">"fix the server"</span>,<span class="n">1</span>)
+	oTasks.<span class="f">Enqueue</span>(<span class="s">"answer the mail"</span>,<span class="n">5</span>)
+	oTasks.<span class="f">Enqueue</span>(<span class="s">"call the customer"</span>,<span class="n">2</span>)
 	? <span class="s">"1. "</span> + oTasks.<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" tasks, most urgent first:"</span>
 	<span class="k">while</span> oTasks.<span class="f">getProp</span>(<span class="s">"Count"</span>) &gt; <span class="n">0</span>
-		? <span class="s">"   "</span> + oTasks.<span class="f">callMethod</span>(<span class="s">"Dequeue"</span>,[])
+		? <span class="s">"   "</span> + oTasks.<span class="f">Dequeue</span>()
 	<span class="k">end</span>
 
 	<span class="c"># 2. SortedSet: no duplicates, always sorted. Add answers false for a value that is already there. Min and Max are ready.</span>
 	oSet = <span class="k">new</span> <span class="t">SortedSet</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n <span class="k">in</span> [<span class="n">42</span>,<span class="n">7</span>,<span class="n">19</span>,<span class="n">7</span>,<span class="n">3</span>,<span class="n">42</span>,<span class="n">100</span>]
-		oSet.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[n])
+		oSet.<span class="f">Add</span>(n)
 	<span class="k">next</span>
 	? nl + <span class="s">"2. sorted set of 7 numbers with duplicates: "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" kept, from "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Min"</span>) + <span class="s">" to "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Max"</span>)
 	? <span class="s">"   in order: "</span> + list2str2(oSet.<span class="f">toList</span>())
-	? <span class="s">"   Contains(19): "</span> + oSet.<span class="f">callMethod</span>(<span class="s">"Contains"</span>,[<span class="n">19</span>]) + <span class="s">", Contains(20): "</span> + oSet.<span class="f">callMethod</span>(<span class="s">"Contains"</span>,[<span class="n">20</span>])
+	? <span class="s">"   Contains(19): "</span> + oSet.<span class="f">Contains</span>(<span class="n">19</span>) + <span class="s">", Contains(20): "</span> + oSet.<span class="f">Contains</span>(<span class="n">20</span>)
 
 	<span class="c"># 3. SortedDictionary: keys stay in order, so a loop over it is alphabetical</span>
 	oDict = <span class="k">new</span> <span class="t">SortedDictionary</span>([ :typeArguments = [cText,cInt] ])
 	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"pear"</span>,<span class="s">"apple"</span>,<span class="s">"fig"</span>,<span class="s">"banana"</span>]
-		oDict.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[cName,len(cName)])
+		oDict.<span class="f">Add</span>(cName,len(cName))
 	<span class="k">next</span>
 	cKeys = <span class="s">""</span>
 	aKeys = oDict.<span class="f">getProp</span>(<span class="s">"Keys"</span>).<span class="f">toList</span>()

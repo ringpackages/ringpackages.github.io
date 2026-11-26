@@ -290,7 +290,7 @@ using {
 	<span class="c"># 4. Sorting versions: a sorted list of Version objects. Sort() uses CompareTo of every Version.</span>
 	oList = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.Version"</span>] ])
 	<span class="k">for</span> cText <span class="k">in</span> [<span class="s">"2.0.1"</span>,<span class="s">"1.10.0"</span>,<span class="s">"1.2.0"</span>,<span class="s">"1.9.0"</span>,<span class="s">"10.0.0"</span>]
-		oList.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[oVer.<span class="f">Parse</span>(cText)])
+		oList.<span class="f">Add</span>(oVer.<span class="f">Parse</span>(cText))
 	<span class="k">next</span>
 	oList.<span class="f">callMethod</span>(<span class="s">"Sort"</span>,[])
 	cSorted = <span class="s">""</span>
