@@ -360,7 +360,8 @@ aBooks = [[<span class="n">1</span>,<span class="s">"The Hobbit"</span>,<span cl
 
 	oMessage = <span class="k">new</span> <span class="t">HttpRequestMessage</span>().@<span class="k">New</span>([ :<span class="t">method</span> = <span class="k">new</span> <span class="t">HttpMethod</span>(cMethod), :requestUri = cUrl + cPath ])
 	<span class="k">if</span> cBody != <span class="s">""</span>
-		oContent = <span class="f">dnNew</span>(<span class="s">"StringContent"</span>,[ :content = cBody, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/json"</span> ])
+		oContent = <span class="k">new</span> <span class="t">StringContent</span>
+		oContent.@<span class="k">New</span>([ :<span class="t">content</span> = cBody, :encoding = <span class="k">new</span> <span class="t">Encoding</span>().UTF8, :mediaType = <span class="s">"application/json"</span> ])
 		oMessage.Content = oContent
 	<span class="k">ok</span>
 	oTask = oClient.<span class="f">SendAsync</span>(oMessage)

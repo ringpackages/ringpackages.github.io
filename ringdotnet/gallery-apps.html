@@ -2121,12 +2121,13 @@ oForm.<span class="f">setMouseWheelEvent</span>(<span class="s">"wheelZoom(aDotN
 	<span class="k">ok</span>
 	nWidth = oImage.Width
 	nHeight = oImage.Height
-	oMatrix = <span class="f">dnNew</span>(<span class="s">"ColorMatrix"</span>,[ [
+	oMatrix = <span class="k">new</span> <span class="t">ColorMatrix</span>
+	oMatrix.@<span class="k">New</span>([
 		[<span class="n">0.299</span>,<span class="n">0.299</span>,<span class="n">0.299</span>,<span class="n">0</span>,<span class="n">0</span>],
 		[<span class="n">0.587</span>,<span class="n">0.587</span>,<span class="n">0.587</span>,<span class="n">0</span>,<span class="n">0</span>],
 		[<span class="n">0.114</span>,<span class="n">0.114</span>,<span class="n">0.114</span>,<span class="n">0</span>,<span class="n">0</span>],
 		[<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">1</span>,<span class="n">0</span>],
-		[<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">1</span>] ] ])
+		[<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">1</span>] ])
 	oAttributes = <span class="k">new</span> <span class="t">ImageAttributes</span>()
 	oAttributes.<span class="f">SetColorMatrix</span>(oMatrix)
 	oGray = <span class="k">new</span> <span class="t">Bitmap</span>(nWidth,nHeight)

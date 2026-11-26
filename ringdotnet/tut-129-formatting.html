@@ -306,7 +306,8 @@ oInvariant = <span class="s">""</span>
 
 	<span class="c"># 5. Dates: the letters mean year (yyyy), month (MM), day (dd), hour (HH), minute (mm), second (ss), month name (MMMM, MMM) and the</span>
 	<span class="c">#    day of the week (dddd). A standard letter is a ready-made pattern: d short date, D long date, t short time, o round trip.</span>
-	oDate = <span class="f">dnNew</span>(<span class="s">"DateTime"</span>,[ :year = <span class="n">2030</span>, :month = <span class="n">3</span>, :day = <span class="n">9</span>, :hour = <span class="n">14</span>, :minute = <span class="n">5</span>, :second = <span class="n">7</span> ])
+	oDate = <span class="k">new</span> <span class="t">DateTime</span>
+	oDate.@<span class="k">New</span>([ :<span class="t">year</span> = <span class="n">2030</span>, :month = <span class="n">3</span>, :day = <span class="n">9</span>, :hour = <span class="n">14</span>, :minute = <span class="n">5</span>, :second = <span class="n">7</span> ])
 	? nl + <span class="s">"5. dates (2030-03-09 14:05:07):"</span>
 	<span class="k">for</span> cPattern <span class="k">in</span> [ <span class="s">"yyyy-MM-dd"</span>, <span class="s">"dd/MM/yyyy"</span>, <span class="s">"d MMMM yyyy"</span>, <span class="s">"dddd"</span>, <span class="s">"MMM d, yyyy"</span>, <span class="s">"HH:mm:ss"</span>, <span class="s">"h:mm tt"</span>, <span class="s">"yyyyMMdd_HHmmss"</span>, <span class="s">"d"</span>, <span class="s">"D"</span>, <span class="s">"t"</span>, <span class="s">"o"</span> ]
 		? <span class="s">"   "</span> + padRight(cPattern,<span class="n">18</span>) + oDate.<span class="f">Format</span>([ :format = cPattern, :provider = oInvariant ])

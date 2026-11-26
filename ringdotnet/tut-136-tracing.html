@@ -274,7 +274,8 @@ using {
 	<span class="c"># 1. A listener that writes into memory: a TextWriterTraceListener on a StringWriter. (A StringWriter is a text writer that keeps</span>
 	<span class="c">#    its text in memory; the tutorial about text readers and writers uses it.)</span>
 	oWriter = <span class="k">new</span> <span class="t">StringWriter</span>()
-	oMemory = <span class="f">dnNew</span>(<span class="s">"TextWriterTraceListener"</span>,[ oWriter ])
+	oMemory = <span class="k">new</span> <span class="t">TextWriterTraceListener</span>
+	oMemory.@<span class="k">New</span>(<span class="t">oWriter</span>)
 	oTrace.Listeners.<span class="f">Add</span>(oMemory)
 	oTrace.AutoFlush = <span class="k">True</span>               <span class="c"># write each message at once</span>
 	oTrace.<span class="f">WriteLine</span>(<span class="s">"program started"</span>)
@@ -308,7 +309,8 @@ using {
 	<span class="c"># 4. A second listener, on a file: now each message goes to two places. The file keeps the trace after the program ended.</span>
 	oPath = <span class="k">new</span> <span class="t">Path</span>()
 	cFile = oPath.<span class="f">Combine</span>([ oPath.<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-trace-"</span> + oPath.<span class="f">GetRandomFileName</span>() + <span class="s">".log"</span> ])
-	oFileListener = <span class="f">dnNew</span>(<span class="s">"TextWriterTraceListener"</span>,[ cFile ])
+	oFileListener = <span class="k">new</span> <span class="t">TextWriterTraceListener</span>
+	oFileListener.@<span class="k">New</span>(<span class="t">cFile</span>)
 	oTrace.Listeners.<span class="f">Add</span>(oFileListener)
 	oWriter.<span class="f">GetStringBuilder</span>().<span class="f">Clear</span>()
 	oTrace.<span class="f">WriteLine</span>(<span class="s">"one message, two listeners"</span>)

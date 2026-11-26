@@ -280,7 +280,9 @@ cTempFile = <span class="s">""</span>
 	cTempFile = <span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([ <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetTempPath</span>(), <span class="s">"ringdotnet-inspect.txt"</span> ])
 	<span class="k">new</span> <span class="t">File</span>().<span class="f">WriteAllText</span>([ :path = cTempFile, :contents = <span class="s">"Hello, inspector"</span> ])
 	aObjects + [ <span class="s">"A Uri"</span>, <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"https://example.com:8080/docs/page?x=1#top"</span>) ]
-	aObjects + [ <span class="s">"A DateTime"</span>, <span class="f">dnNew</span>(<span class="s">"DateTime"</span>,[ :year = <span class="n">2030</span>, :month = <span class="n">3</span>, :day = <span class="n">9</span>, :hour = <span class="n">14</span>, :minute = <span class="n">5</span>, :second = <span class="n">7</span> ]) ]
+	oDateTime = <span class="k">new</span> <span class="t">DateTime</span>
+	oDateTime.@<span class="k">New</span>([ :<span class="t">year</span> = <span class="n">2030</span>, :month = <span class="n">3</span>, :day = <span class="n">9</span>, :hour = <span class="n">14</span>, :minute = <span class="n">5</span>, :second = <span class="n">7</span> ])
+	aObjects + [ <span class="s">"A DateTime"</span>, oDateTime ]
 	aObjects + [ <span class="s">"A FileInfo"</span>, <span class="k">new</span> <span class="t">FileInfo</span>(cTempFile) ]
 	aObjects + [ <span class="s">"A StringBuilder"</span>, <span class="k">new</span> <span class="t">StringBuilder</span>(<span class="s">"Hello"</span>) ]
 

@@ -293,9 +293,11 @@ using {
 	<span class="c">#    the form itself also has its title bar and its border.)</span>
 	oForm = <span class="f">uiForm</span>(<span class="s">"Picture me"</span>,<span class="n">300</span>,<span class="n">200</span>)
 	oPanel = <span class="f">uiPanel</span>(oForm,<span class="n">10</span>,<span class="n">10</span>,<span class="n">240</span>,<span class="n">120</span>)
-	oPanel.BackColor = <span class="f">dnStatic</span>(<span class="s">"System.Drawing.Color"</span>,<span class="s">"FromArgb"</span>,[ <span class="n">255</span>, <span class="n">220</span>, <span class="n">40</span>, <span class="n">40</span> ])
+	oRed = <span class="k">new</span> <span class="t">Color</span>().<span class="f">FromArgb</span>([ :alpha = <span class="n">255</span>, :red = <span class="n">220</span>, :green = <span class="n">40</span>, :blue = <span class="n">40</span> ])
+	oPanel.BackColor = oRed
 	oLabel = <span class="f">uiLabel</span>(oPanel,<span class="s">"Hello"</span>,<span class="n">20</span>,<span class="n">20</span>,<span class="n">100</span>,<span class="n">24</span>)
-	oLabel.BackColor = <span class="f">dnStatic</span>(<span class="s">"System.Drawing.Color"</span>,<span class="s">"FromArgb"</span>,[ <span class="n">255</span>, <span class="n">255</span>, <span class="n">255</span>, <span class="n">255</span> ])
+	oWhite = <span class="k">new</span> <span class="t">Color</span>().<span class="f">FromArgb</span>([ :alpha = <span class="n">255</span>, :red = <span class="n">255</span>, :green = <span class="n">255</span>, :blue = <span class="n">255</span> ])
+	oLabel.BackColor = oWhite
 	oForm.<span class="f">Show</span>(<span class="k">NULL</span>)
 	nPanelWidth = oPanel.Width
 	nPanelHeight = oPanel.Height

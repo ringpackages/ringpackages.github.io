@@ -326,14 +326,15 @@ chdir(cHere)
 	cCsv += <span class="s">"2024-03-04,South,Cake,2,8"</span> + nl
 
 	<span class="c"># 2. CsvHelper reads it: ReadHeader takes the first line, and Read goes to the next row. A field is read by the name of its column.</span>
-	oText = <span class="f">dnNew</span>(<span class="s">"System.IO.StringReader"</span>,[ :s = cCsv ])
-	oCulture = <span class="f">dnNew</span>(<span class="s">"System.Globalization.CultureInfo"</span>,[ :name = <span class="s">"en-US"</span> ])
-	oCsv = <span class="f">dnNew</span>(<span class="s">"CsvHelper.CsvReader"</span>,[ :reader = oText, :culture = oCulture ])
+	oText = <span class="k">new</span> <span class="t">StringReader</span>(cCsv)
+	oCulture = <span class="k">new</span> <span class="t">CultureInfo</span>(<span class="s">"en-US"</span>)
+	oCsv = <span class="k">new</span> <span class="t">CsvReader</span>
+	oCsv.@<span class="k">New</span>([ :<span class="t">reader</span> = oText, :culture = oCulture ])
 	oCsv.<span class="f">Read</span>()
 	oCsv.<span class="f">ReadHeader</span>()
 
 	<span class="c"># 3. LiteDB keeps each row as a document. The database is a file, the collection is like a table.</span>
-	oDb = <span class="f">dnNew</span>(<span class="s">"LiteDB.LiteDatabase"</span>,[ :connectionString = cDbFile ])
+	oDb = <span class="k">new</span> <span class="t">LiteDatabase</span>(cDbFile)
 	oSales = oDb.<span class="f">GetCollection</span>([ :name = <span class="s">"sales"</span> ])
 	nRows = <span class="n">0</span>
 	<span class="k">while</span> oCsv.<span class="f">Read</span>()

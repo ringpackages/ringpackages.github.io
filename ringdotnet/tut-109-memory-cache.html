@@ -280,7 +280,8 @@ nRuns = <span class="n">0</span>
 
 	<span class="c"># 2. Absolute expiration: the value lives for a fixed time after it was stored. After that it is gone, even if it was used.</span>
 	oOptions = <span class="k">new</span> <span class="t">MemoryCacheEntryOptions</span>()
-	oOptions.AbsoluteExpirationRelativeToNow = <span class="f">dnStatic</span>(<span class="s">"System.TimeSpan"</span>,<span class="s">"FromMilliseconds"</span>,[<span class="n">500</span>])
+	oLimit = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(<span class="n">500</span>)
+	oOptions.AbsoluteExpirationRelativeToNow = oLimit
 	cacheSet(oCache,<span class="s">"price"</span>,<span class="n">9.99</span>,oOptions)
 	? nl + <span class="s">"2. right after storing, the price is there:  "</span> + oCache.<span class="f">TryGetValue</span>(<span class="s">"price"</span>)[<span class="n">1</span>]
 	sleepMs(<span class="n">900</span>)
@@ -289,7 +290,8 @@ nRuns = <span class="n">0</span>
 	<span class="c"># 3. Sliding expiration: the time starts again every time the value is READ. A value that is used often stays, one that is</span>
 	<span class="c">#    not used goes. (Good for sessions and for caches of things that are used in bursts.)</span>
 	oSliding = <span class="k">new</span> <span class="t">MemoryCacheEntryOptions</span>()
-	oSliding.SlidingExpiration = <span class="f">dnStatic</span>(<span class="s">"System.TimeSpan"</span>,<span class="s">"FromMilliseconds"</span>,[<span class="n">1000</span>])
+	oWindow = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(<span class="n">1000</span>)
+	oSliding.SlidingExpiration = oWindow
 	cacheSet(oCache,<span class="s">"session"</span>,<span class="s">"token-123"</span>,oSliding)
 	cResult = <span class="s">""</span>
 	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> <span class="n">4</span>

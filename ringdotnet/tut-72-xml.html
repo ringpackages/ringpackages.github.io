@@ -300,7 +300,8 @@ using {
 	? <span class="s">"   the title of book 3: "</span> + oXml.<span class="f">SelectSingleNode</span>(<span class="s">"//book[@id='3']/title"</span>).InnerText
 
 	<span class="c"># 4. Build a new document from scratch. An element is made with a name and, if you like, content.</span>
-	oNew = <span class="f">dnNew</span>(<span class="s">"XElement"</span>,[ :name = <span class="s">"book"</span> ])
+	oNew = <span class="k">new</span> <span class="t">XElement</span>
+	oNew.@<span class="k">New</span>([ :<span class="t">name</span> = <span class="s">"book"</span> ])
 	oNew.<span class="f">SetAttributeValue</span>(<span class="s">"id"</span>,<span class="s">"4"</span>)
 	oNew.<span class="f">SetAttributeValue</span>(<span class="s">"year"</span>,<span class="s">"1951"</span>)
 	oNew.<span class="f">Add</span>(<span class="k">new</span> <span class="t">XElement</span>(<span class="s">"title"</span>,<span class="s">"Foundation"</span>))

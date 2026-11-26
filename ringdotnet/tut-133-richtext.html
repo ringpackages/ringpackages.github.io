@@ -331,7 +331,7 @@ oFind = <span class="s">""</span>
 			<span class="k">exit</span>
 		<span class="k">ok</span>
 		oRich.<span class="f">Select</span>([ :start = nPlace, :length = len(cWord) ])
-		oRich.SelectionBackColor = <span class="f">dnStatic</span>(<span class="s">"System.Drawing.Color"</span>,<span class="s">"FromArgb"</span>,[ <span class="n">255</span>, <span class="n">255</span>, <span class="n">235</span>, <span class="n">120</span> ])
+		oRich.SelectionBackColor = <span class="k">new</span> <span class="t">Color</span>().<span class="f">FromArgb</span>([ :alpha = <span class="n">255</span>, :red = <span class="n">255</span>, :green = <span class="n">235</span>, :blue = <span class="n">120</span> ])
 		nCount++
 		nStart = nPlace + len(cWord)
 	<span class="k">end</span>

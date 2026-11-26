@@ -280,7 +280,8 @@ using {
 	? <span class="s">"   TryParse of 'hello': success = "</span> + oGuid.<span class="f">TryParse</span>(<span class="s">"hello"</span>)[<span class="n">1</span>]
 
 	<span class="c"># 3. Version: major.minor.build.revision, compared by NUMBER. As text, "1.10" comes before "1.9"; as Version it is later.</span>
-	oVer = <span class="f">dnNew</span>(<span class="s">"Version"</span>,[ :major = <span class="n">0</span>, :minor = <span class="n">0</span> ])      <span class="c"># any Version works as a handle for the static methods</span>
+	oVer = <span class="k">new</span> <span class="t">Version</span>
+	oVer.@<span class="k">New</span>([ :<span class="t">major</span> = <span class="n">0</span>, :minor = <span class="n">0</span> ])  <span class="c"># any Version works as a handle for the static methods</span>
 	oV9 = oVer.<span class="f">Parse</span>(<span class="s">"1.9.0"</span>)
 	oV10 = oVer.<span class="f">Parse</span>(<span class="s">"1.10.0"</span>)
 	? nl + <span class="s">"3. as text, '1.10.0' &lt; '1.9.0' is "</span> + (strcmp(<span class="s">"1.10.0"</span>,<span class="s">"1.9.0"</span>) &lt; <span class="n">0</span>)

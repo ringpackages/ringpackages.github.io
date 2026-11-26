@@ -318,7 +318,9 @@ using {
 
 <span class="k">func</span> <span class="f">makeDateTime</span> nYear,nMonth,nDay,nHour,nMinute
 
-	<span class="k">return</span> <span class="f">dnNew</span>(<span class="s">"DateTime"</span>,[ :year = nYear, :month = nMonth, :day = nDay, :hour = nHour, :minute = nMinute, :second = <span class="n">0</span> ])</code></pre></div>
+	oDateTime = <span class="k">new</span> <span class="t">DateTime</span>
+	oDateTime.@<span class="k">New</span>([ :<span class="t">year</span> = nYear, :month = nMonth, :day = nDay, :hour = nHour, :minute = nMinute, :second = <span class="n">0</span> ])
+	<span class="k">return</span> oDateTime</code></pre></div>
 <div class="code out"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Output</span><button class="copy" type="button">Copy</button></div><pre><code>1. a date:  2024-02-28, Wednesday, day 59 of the year
    2 days later: 2024-03-01   (2024 is a leap year: February has 29 days)
    a time: 22:30, 3 hours later: 01:30   (it goes round the clock: no date to move to)

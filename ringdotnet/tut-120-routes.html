@@ -346,7 +346,8 @@ cRouting = <span class="s">"Microsoft.AspNetCore.Routing."</span>
 		<span class="k">ok</span>
 	<span class="k">next</span>
 	oMatcher = <span class="f">dnNew</span>(cRouting + <span class="s">"Template.TemplateMatcher"</span>,[oTemplate,oDefaults])
-	oPath = <span class="f">dnNew</span>(<span class="s">"Microsoft.AspNetCore.Http.PathString"</span>,[cPath])
+	oPath = <span class="k">new</span> <span class="t">PathString</span>
+	oPath.@<span class="k">New</span>(<span class="t">cPath</span>)
 	<span class="k">return</span> oMatcher.<span class="f">callMethod</span>(<span class="s">"TryMatch"</span>,[oPath,oValues])
 
 <span class="k">func</span> <span class="f">chooseRoute</span> aTable,cPath

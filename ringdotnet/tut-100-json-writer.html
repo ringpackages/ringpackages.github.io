@@ -271,7 +271,8 @@ using {
 	oStream = <span class="k">new</span> <span class="t">MemoryStream</span>
 	oOptions = <span class="k">new</span> <span class="t">JsonWriterOptions</span>()
 	oOptions.Indented = <span class="k">True</span>
-	oWriter = <span class="f">dnNew</span>(<span class="s">"Utf8JsonWriter"</span>,[ :utf8Json = oStream, :options = oOptions ])
+	oWriter = <span class="k">new</span> <span class="t">Utf8JsonWriter</span>
+	oWriter.@<span class="k">New</span>([ :<span class="t">utf8Json</span> = oStream, :options = oOptions ])
 	oWriter.<span class="f">WriteStartObject</span>(<span class="k">NULL</span>)
 	oWriter.<span class="f">WriteString</span>(<span class="s">"name"</span>,<span class="s">"Ann"</span>)
 	oWriter.<span class="f">WriteNumber</span>(<span class="s">"age"</span>,<span class="n">31</span>)

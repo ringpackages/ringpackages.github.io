@@ -284,7 +284,8 @@ cHeaders = <span class="s">"Microsoft.Net.Http.Headers."</span>
 	? <span class="s">"   (a file with an unknown type is sent as application/octet-stream: 'some bytes, download them')"</span>
 
 	<span class="c"># 3. Reading a Content-Type header: the type, the subtype and the parameters (the charset says how text is encoded)</span>
-	oContentType = <span class="f">dnNew</span>(<span class="s">"ContentType"</span>,[<span class="s">"text/html; charset=utf-8"</span>])
+	oContentType = <span class="k">new</span> <span class="t">ContentType</span>
+	oContentType.@<span class="k">New</span>(<span class="s">"text/html; charset=utf-8"</span>)
 	? nl + <span class="s">"3. text/html; charset=utf-8  -&gt;  media type: "</span> + oContentType.MediaType + <span class="s">", charset: "</span> + oContentType.CharSet
 	oSplit = <span class="f">dnStatic</span>(cHeaders + <span class="s">"MediaTypeHeaderValue"</span>,<span class="s">"Parse"</span>,[<span class="s">"application/json; charset=utf-8; q=0.9"</span>])
 	? <span class="s">"   with the headers library: type "</span> + oSplit.Type.<span class="f">toString</span>() + <span class="s">", subtype "</span> + oSplit.SubType.<span class="f">toString</span>() + <span class="s">", quality "</span> + oSplit.Quality

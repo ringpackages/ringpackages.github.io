@@ -309,8 +309,8 @@ chdir(cHere)
 	<span class="c">#    parameters of the constructor; the brush and the pen are ready objects of the classes XBrushes and XPens.</span>
 	oDocument = <span class="k">new</span> <span class="t">PdfDocument</span>()
 	oDocument.Info.Title = <span class="s">"Sales report"</span>
-	oTitleFont = <span class="f">dnNew</span>(<span class="s">"PdfSharp.Drawing.XFont"</span>,[ :familyName = <span class="s">"Arial"</span>, :emSize = <span class="n">22</span> ])
-	oTextFont = <span class="f">dnNew</span>(<span class="s">"PdfSharp.Drawing.XFont"</span>,[ :familyName = <span class="s">"Arial"</span>, :emSize = <span class="n">12</span> ])
+	oTitleFont = <span class="k">new</span> <span class="t">XFont</span>(<span class="s">"Arial"</span>,<span class="n">22</span>)
+	oTextFont = <span class="k">new</span> <span class="t">XFont</span>(<span class="s">"Arial"</span>,<span class="n">12</span>)
 	oBlack = <span class="k">new</span> <span class="t">XBrushes</span>().Black
 	oPen = <span class="k">new</span> <span class="t">XPens</span>().Black
 

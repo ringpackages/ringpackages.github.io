@@ -354,8 +354,8 @@ cBefore = <span class="s">""</span>
 
 	oBitmap = <span class="k">new</span> <span class="t">Bitmap</span>(<span class="n">120</span>,<span class="n">80</span>)
 	oGraphics = <span class="k">new</span> <span class="t">Graphics</span>().<span class="f">FromImage</span>(oBitmap)
-	oGraphics.<span class="f">Clear</span>(<span class="f">dnStatic</span>(<span class="s">"System.Drawing.Color"</span>,<span class="s">"FromArgb"</span>,[ <span class="n">255</span>, <span class="n">40</span>, <span class="n">90</span>, <span class="n">200</span> ]))
-	oBrush = <span class="k">new</span> <span class="t">SolidBrush</span>(<span class="f">dnStatic</span>(<span class="s">"System.Drawing.Color"</span>,<span class="s">"FromArgb"</span>,[ <span class="n">255</span>, <span class="n">250</span>, <span class="n">210</span>, <span class="n">40</span> ]))
+	oGraphics.<span class="f">Clear</span>(<span class="k">new</span> <span class="t">Color</span>().<span class="f">FromArgb</span>([ :alpha = <span class="n">255</span>, :red = <span class="n">40</span>, :green = <span class="n">90</span>, :blue = <span class="n">200</span> ]))
+	oBrush = <span class="k">new</span> <span class="t">SolidBrush</span>(<span class="k">new</span> <span class="t">Color</span>().<span class="f">FromArgb</span>([ :alpha = <span class="n">255</span>, :red = <span class="n">250</span>, :green = <span class="n">210</span>, :blue = <span class="n">40</span> ]))
 	oGraphics.<span class="f">FillEllipse</span>([ :brush = oBrush, :rect = <span class="k">new</span> <span class="t">Rectangle</span>(<span class="n">35</span>,<span class="n">15</span>,<span class="n">50</span>,<span class="n">50</span>) ])
 	oGraphics.<span class="f">Dispose</span>()
 	<span class="k">return</span> oBitmap</code></pre></div>

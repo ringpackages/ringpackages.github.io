@@ -312,7 +312,8 @@ using {
 <span class="c"># the keys of a password: PBKDF2 with SHA-256, 100000 rounds, nBytes long</span>
 <span class="k">func</span> <span class="f">deriveKeys</span> cPassword, cSalt
 
-	oDerive = <span class="f">dnNew</span>(<span class="s">"Rfc2898DeriveBytes"</span>,[ :password = cPassword, :salt = cSalt, :iterations = <span class="n">100000</span>, :hashAlgorithm = <span class="k">new</span> <span class="t">HashAlgorithmName</span>().SHA256 ])
+	oDerive = <span class="k">new</span> <span class="t">Rfc2898DeriveBytes</span>
+	oDerive.@<span class="k">New</span>([ :<span class="t">password</span> = cPassword, :salt = cSalt, :iterations = <span class="n">100000</span>, :hashAlgorithm = <span class="k">new</span> <span class="t">HashAlgorithmName</span>().SHA256 ])
 	cKeys = oDerive.<span class="f">GetBytes</span>(<span class="n">64</span>)
 	oDerive.<span class="f">Dispose</span>()
 	<span class="k">return</span> cKeys

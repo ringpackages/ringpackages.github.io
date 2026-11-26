@@ -267,10 +267,18 @@ using {
 	<span class="c"># A claim is a statement about a user: a type and a value ("Role" = "Admin", "Email" = "ann@example.com").</span>
 	<span class="c"># An identity is a list of claims from one source; a principal holds identities. ASP.NET uses these classes for every login.</span>
 	oIdentity = <span class="k">new</span> <span class="t">ClaimsIdentity</span>().@<span class="k">New</span>([ :<span class="t">authenticationType</span> = <span class="s">"Password"</span> ])
-	oIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Name"</span>, :value = <span class="s">"Ann"</span> ]))
-	oIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Email"</span>, :value = <span class="s">"ann@example.com"</span> ]))
-	oIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Role"</span>, :value = <span class="s">"Editor"</span> ]))
-	oIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Role"</span>, :value = <span class="s">"Reviewer"</span> ]))
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Name"</span>, :value = <span class="s">"Ann"</span> ])
+	oIdentity.<span class="f">AddClaim</span>(oClaim)
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Email"</span>, :value = <span class="s">"ann@example.com"</span> ])
+	oIdentity.<span class="f">AddClaim</span>(oClaim)
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Role"</span>, :value = <span class="s">"Editor"</span> ])
+	oIdentity.<span class="f">AddClaim</span>(oClaim)
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Role"</span>, :value = <span class="s">"Reviewer"</span> ])
+	oIdentity.<span class="f">AddClaim</span>(oClaim)
 	oPrincipal = <span class="k">new</span> <span class="t">ClaimsPrincipal</span>().@<span class="k">New</span>([ :<span class="t">identity</span> = oIdentity ])
 
 	? <span class="s">"1. authentication type: "</span> + oIdentity.AuthenticationType + <span class="s">", authenticated: "</span> + oIdentity.IsAuthenticated
@@ -292,8 +300,12 @@ using {
 
 	<span class="c"># 3. Roles: IsInRole looks at the claims of the role type. A new identity must say which claim type is the role.</span>
 	oRoleIdentity = <span class="k">new</span> <span class="t">ClaimsIdentity</span>().@<span class="k">New</span>([ :<span class="t">authenticationType</span> = <span class="s">"Password"</span>, :nameType = <span class="s">"Name"</span>, :roleType = <span class="s">"Role"</span> ])
-	oRoleIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Name"</span>, :value = <span class="s">"Ann"</span> ]))
-	oRoleIdentity.<span class="f">AddClaim</span>(<span class="f">dnNew</span>(<span class="s">"Claim"</span>,[ :type = <span class="s">"Role"</span>, :value = <span class="s">"Editor"</span> ]))
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Name"</span>, :value = <span class="s">"Ann"</span> ])
+	oRoleIdentity.<span class="f">AddClaim</span>(oClaim)
+	oClaim = <span class="k">new</span> <span class="t">Claim</span>
+	oClaim.@<span class="k">New</span>([ :<span class="t">type</span> = <span class="s">"Role"</span>, :value = <span class="s">"Editor"</span> ])
+	oRoleIdentity.<span class="f">AddClaim</span>(oClaim)
 	oRolePrincipal = <span class="k">new</span> <span class="t">ClaimsPrincipal</span>().@<span class="k">New</span>([ :<span class="t">identity</span> = oRoleIdentity ])
 	? nl + <span class="s">"3. name: "</span> + oRoleIdentity.Name
 	? <span class="s">"   is Editor: "</span> + oRolePrincipal.<span class="f">IsInRole</span>(<span class="s">"Editor"</span>) + <span class="s">", is Admin: "</span> + oRolePrincipal.<span class="f">IsInRole</span>(<span class="s">"Admin"</span>)

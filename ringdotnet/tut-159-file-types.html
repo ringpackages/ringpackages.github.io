@@ -328,7 +328,8 @@ aSignatures = []                  <span class="c"># [ name, mime type, the first
 <span class="c"># the first nCount bytes of a file (fewer when the file is shorter), read into a byte buffer</span>
 <span class="k">func</span> <span class="f">firstBytes</span> cFile,nCount
 
-	oStream = <span class="f">dnNew</span>(<span class="s">"FileStream"</span>,[ :path = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
+	oStream = <span class="k">new</span> <span class="t">FileStream</span>
+	oStream.@<span class="k">New</span>([ :<span class="t">path</span> = cFile, :mode = <span class="s">"Open"</span>, :access = <span class="s">"Read"</span> ])
 	oBuffer = <span class="f">dnBuffer</span>(nCount)
 	nRead = oStream.<span class="f">Read</span>(oBuffer,<span class="n">0</span>,nCount)
 	oStream.<span class="f">Dispose</span>()

@@ -271,7 +271,8 @@ using {
 	<span class="c"># 1. A ZIP archive does not have to be a file. ZipArchive works on any stream: a MemoryStream keeps the whole archive in memory, which is</span>
 	<span class="c">#    what a web program does when it sends a download, or a test that does not want to leave files on the disk.</span>
 	oMemory = <span class="k">new</span> <span class="t">MemoryStream</span>
-	oZip = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Create"</span>, :leaveOpen = <span class="k">True</span> ])
+	oZip = <span class="k">new</span> <span class="t">ZipArchive</span>
+	oZip.@<span class="k">New</span>([ :<span class="t">stream</span> = oMemory, :mode = <span class="s">"Create"</span>, :leaveOpen = <span class="k">True</span> ])
 	addEntry(oZip,<span class="s">"readme.txt"</span>,<span class="s">"Read me first."</span> + nl + <span class="s">"Second line."</span>)
 	addEntry(oZip,<span class="s">"data/numbers.txt"</span>,copy(<span class="s">"1234567890 "</span>,<span class="n">500</span>))
 	addEntry(oZip,<span class="s">"data/names.txt"</span>,<span class="s">"Ann"</span> + nl + <span class="s">"Bob"</span> + nl + <span class="s">"Cy"</span>)
@@ -280,7 +281,8 @@ using {
 
 	<span class="c"># 2. Read it: open the archive again for reading and list the entries (full name, size, compressed size)</span>
 	oMemory.Position = <span class="n">0</span>
-	oRead = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Read"</span>, :leaveOpen = <span class="k">True</span> ])
+	oRead = <span class="k">new</span> <span class="t">ZipArchive</span>
+	oRead.@<span class="k">New</span>([ :<span class="t">stream</span> = oMemory, :mode = <span class="s">"Read"</span>, :leaveOpen = <span class="k">True</span> ])
 	? nl + <span class="s">"2. the entries:"</span>
 	aEntries = oRead.Entries.<span class="f">toList</span>()
 	<span class="k">for</span> oEntry <span class="k">in</span> aEntries
@@ -309,12 +311,14 @@ using {
 
 	<span class="c"># 5. Update: open the archive in Update mode, add a file and delete another one</span>
 	oMemory.Position = <span class="n">0</span>
-	oUpdate = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Update"</span>, :leaveOpen = <span class="k">True</span> ])
+	oUpdate = <span class="k">new</span> <span class="t">ZipArchive</span>
+	oUpdate.@<span class="k">New</span>([ :<span class="t">stream</span> = oMemory, :mode = <span class="s">"Update"</span>, :leaveOpen = <span class="k">True</span> ])
 	addEntry(oUpdate,<span class="s">"notes/new.txt"</span>,<span class="s">"added later"</span>)
 	oUpdate.<span class="f">GetEntry</span>(<span class="s">"data/numbers.txt"</span>).<span class="f">Delete</span>()
 	oUpdate.<span class="f">Dispose</span>()
 	oMemory.Position = <span class="n">0</span>
-	oCheck = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oMemory, :mode = <span class="s">"Read"</span> ])
+	oCheck = <span class="k">new</span> <span class="t">ZipArchive</span>
+	oCheck.@<span class="k">New</span>([ :<span class="t">stream</span> = oMemory, :mode = <span class="s">"Read"</span> ])
 	cNames = <span class="s">""</span>
 	aItems = oCheck.Entries.<span class="f">toList</span>()
 	<span class="k">for</span> oItem <span class="k">in</span> aItems
@@ -337,7 +341,8 @@ using {
 <span class="k">func</span> <span class="f">packSize</span> cLevel,cText
 
 	oStream = <span class="k">new</span> <span class="t">MemoryStream</span>
-	oZip = <span class="f">dnNew</span>(<span class="s">"ZipArchive"</span>,[ :stream = oStream, :mode = <span class="s">"Create"</span>, :leaveOpen = <span class="k">True</span> ])
+	oZip = <span class="k">new</span> <span class="t">ZipArchive</span>
+	oZip.@<span class="k">New</span>([ :<span class="t">stream</span> = oStream, :mode = <span class="s">"Create"</span>, :leaveOpen = <span class="k">True</span> ])
 	oEntry = oZip.<span class="f">CreateEntry</span>([ :entryName = <span class="s">"text.txt"</span>, :compressionLevel = cLevel ])
 	oWriter = <span class="k">new</span> <span class="t">StreamWriter</span>(oEntry.<span class="f">Open</span>())
 	oWriter.<span class="f">Write</span>(cText)

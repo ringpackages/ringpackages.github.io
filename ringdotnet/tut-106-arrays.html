@@ -282,17 +282,17 @@ using {
 	<span class="c"># 3. Searching: IndexOf answers the position (0-based, as in .NET) or -1. BinarySearch is much faster, but the array must be</span>
 	<span class="c">#    SORTED; it answers a negative number (the complement of the place to insert) when the value is not there.</span>
 	<span class="k">new</span> <span class="t">Array</span>().<span class="f">Sort</span>(oInts)
-	? nl + <span class="s">"3. IndexOf(19) in the sorted array: "</span> + <span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"IndexOf"</span>,[oInts,<span class="n">19</span>]) + <span class="s">"   (0-based: Ring would say 3)"</span>
-	? <span class="s">"   IndexOf(99): "</span> + <span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"IndexOf"</span>,[oInts,<span class="n">99</span>])
-	nFound = <span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"BinarySearch"</span>,[oInts,<span class="n">19</span>])
-	nMissing = <span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"BinarySearch"</span>,[oInts,<span class="n">20</span>])
+	? nl + <span class="s">"3. IndexOf(19) in the sorted array: "</span> + <span class="k">new</span> <span class="t">Array</span>().<span class="f">IndexOf</span>([ :array = oInts, :value = <span class="n">19</span> ]) + <span class="s">"   (0-based: Ring would say 3)"</span>
+	? <span class="s">"   IndexOf(99): "</span> + <span class="k">new</span> <span class="t">Array</span>().<span class="f">IndexOf</span>([ :array = oInts, :value = <span class="n">99</span> ])
+	nFound = <span class="k">new</span> <span class="t">Array</span>().<span class="f">BinarySearch</span>([ :array = oInts, :value = <span class="n">19</span> ])
+	nMissing = <span class="k">new</span> <span class="t">Array</span>().<span class="f">BinarySearch</span>([ :array = oInts, :value = <span class="n">20</span> ])
 	? <span class="s">"   BinarySearch(19): "</span> + nFound + <span class="s">", BinarySearch(20): "</span> + nMissing + <span class="s">"   (negative: not found; the complement "</span> + (-nMissing - <span class="n">1</span>) + <span class="s">" is where 20 would go, 0-based)"</span>
 
 	<span class="c"># 4. Copy and Clear. Array.Copy(source, target, count) copies the first items into another array; Clear(array, start, count) sets items to zero</span>
 	oTarget = makeIntArray([<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>])
-	<span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"Copy"</span>,[oInts,oTarget,oInts.Length])
+	<span class="k">new</span> <span class="t">Array</span>().<span class="f">Copy</span>([ :sourceArray = oInts, :destinationArray = oTarget, :length = oInts.Length ])
 	? nl + <span class="s">"4. copied into a bigger array: "</span> + arrayText(oTarget)
-	<span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"Clear"</span>,[oTarget,<span class="n">0</span>,<span class="n">3</span>])
+	<span class="k">new</span> <span class="t">Array</span>().<span class="f">Clear</span>([ :array = oTarget, :index = <span class="n">0</span>, :length = <span class="n">3</span> ])
 	? <span class="s">"   Array.Clear(array, 0, 3) sets 3 items to zero: "</span> + arrayText(oTarget)
 
 	<span class="c"># 5. An array of texts, and the join of a list into one text</span>

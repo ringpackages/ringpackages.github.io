@@ -305,7 +305,8 @@ using {
 	? <span class="s">"STEP 4: saved "</span> + <span class="k">new</span> <span class="t">Path</span>().<span class="f">GetFileName</span>(cPng) + <span class="s">", "</span> + (<span class="k">new</span> <span class="t">FileInfo</span>(cPng).Length &gt; <span class="n">0</span>) + <span class="s">" (the file has data)"</span>
 
 	<span class="c"># STEP 5. Load it again and make a gray copy: gray = the average of red, green and blue</span>
-	oLoaded = <span class="f">dnNew</span>(<span class="s">"Bitmap"</span>,[ :filename = cPng ])          <span class="c"># a constructor chosen by the name of its parameter</span>
+	oLoaded = <span class="k">new</span> <span class="t">Bitmap</span>
+	oLoaded.@<span class="k">New</span>([ :<span class="t">filename</span> = cPng ])  <span class="c"># a constructor chosen by the name of its parameter</span>
 	oGray = <span class="k">new</span> <span class="t">Bitmap</span>(oLoaded.Width,oLoaded.Height)
 	<span class="k">for</span> nY = <span class="n">0</span> <span class="k">to</span> oLoaded.Height - <span class="n">1</span>
 		<span class="k">for</span> nX = <span class="n">0</span> <span class="k">to</span> oLoaded.Width - <span class="n">1</span>
