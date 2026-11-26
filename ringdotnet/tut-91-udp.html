@@ -294,13 +294,13 @@ using {
 	oClient.<span class="f">Send</span>([ :dgram = oUtf8.<span class="f">GetBytes</span>(<span class="s">"ping"</span>), :bytes = <span class="n">4</span>, :hostname = <span class="s">"127.0.0.1"</span>, :port = nPort ])
 	oTask = oServer.<span class="f">ReceiveAsync</span>(<span class="k">NULL</span>)
 	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
-	oResult = oTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	oResult = oTask.Result
 	? nl + <span class="s">"3. the server got '"</span> + oUtf8.<span class="f">GetString</span>(oResult.Buffer) + <span class="s">"' from the port of the client socket: "</span> + (oResult.RemoteEndPoint.Port &gt; <span class="n">0</span>)
 	cAnswer = oUtf8.<span class="f">GetBytes</span>(<span class="s">"pong"</span>)
 	oServer.<span class="f">Send</span>([ :dgram = cAnswer, :bytes = len(cAnswer), :endPoint = oResult.RemoteEndPoint ])
 	oTask2 = oClient.<span class="f">ReceiveAsync</span>(<span class="k">NULL</span>)
 	oTask2.<span class="f">Wait</span>(<span class="k">NULL</span>)
-	? <span class="s">"   the client got '"</span> + oUtf8.<span class="f">GetString</span>(oTask2.<span class="f">getProp</span>(<span class="s">"Result"</span>).Buffer) + <span class="s">"'"</span>
+	? <span class="s">"   the client got '"</span> + oUtf8.<span class="f">GetString</span>(oTask2.Result.Buffer) + <span class="s">"'"</span>
 
 	<span class="c"># 4. UDP does not promise delivery. Nothing is waiting now, so a Receive with a time limit ends without data:</span>
 	<span class="c">#    ReceiveAsync + Wait(ms) answers false when nothing arrived.</span>

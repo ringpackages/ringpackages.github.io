@@ -298,17 +298,17 @@ using {
 	<span class="c">#    (the tutorial "ZIP archives in memory") or the changed files of a project. The paths use / and are relative to the root.</span>
 	aPaths = [<span class="s">"src/main.ring"</span>,<span class="s">"src/old_main.ring"</span>,<span class="s">"README.md"</span>,<span class="s">"docs/guide/intro.md"</span>,<span class="s">"docs/logo.png"</span>]
 	oResult = oMatcher3.<span class="f">Match</span>([ :rootDir = <span class="s">"."</span>, :files = aPaths ])
-	? nl + <span class="s">"4. which of the names are matched: has matches = "</span> + oResult.<span class="f">getProp</span>(<span class="s">"HasMatches"</span>)
-	aFiles = oResult.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()
+	? nl + <span class="s">"4. which of the names are matched: has matches = "</span> + oResult.HasMatches
+	aFiles = oResult.Files.<span class="f">toList</span>()
 	<span class="k">for</span> oFile <span class="k">in</span> aFiles
-		? <span class="s">"   "</span> + oFile.<span class="f">getProp</span>(<span class="s">"Path"</span>)
+		? <span class="s">"   "</span> + oFile.Path
 	<span class="k">next</span>
 
 	<span class="c"># 5. By default a Matcher ignores case (OrdinalIgnoreCase). The constructor takes a StringComparison: with Ordinal, case counts.</span>
 	oStrict = (<span class="k">new</span> <span class="t">Matcher</span>).@<span class="k">New</span>([ :<span class="t">comparisonType</span> = <span class="s">"Ordinal"</span> ])
 	oStrict.<span class="f">AddInclude</span>(<span class="s">"**/*.RING"</span>)
 	oResultStrict = oStrict.<span class="f">Match</span>([ :rootDir = <span class="s">"."</span>, :files = [<span class="s">"a.ring"</span>,<span class="s">"b.RING"</span>] ])
-	? nl + <span class="s">"5. with Ordinal comparison, **/*.RING matches only: "</span> + oResultStrict.<span class="f">getProp</span>(<span class="s">"Files"</span>).<span class="f">toList</span>()[<span class="n">1</span>].<span class="f">getProp</span>(<span class="s">"Path"</span>)
+	? nl + <span class="s">"5. with Ordinal comparison, **/*.RING matches only: "</span> + oResultStrict.Files.<span class="f">toList</span>()[<span class="n">1</span>].Path
 
 	<span class="k">new</span> <span class="t">Directory</span>().<span class="f">Delete</span>([ :path = cBase, :recursive = <span class="k">True</span> ])
 

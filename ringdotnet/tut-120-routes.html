@@ -279,20 +279,20 @@ using {
 	<span class="k">for</span> cRoute <span class="k">in</span> [<span class="s">"users/{id}/orders/{orderId?}"</span>,<span class="s">"products/{category}/{page=1}"</span>,<span class="s">"files/{*path}"</span>,<span class="s">"items/{id:int}"</span>]
 		oTemplate = (<span class="k">new</span> <span class="t">TemplateParser</span>).<span class="f">Parse</span>(cRoute)
 		cParts = <span class="s">""</span>
-		aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+		aParts = oTemplate.Parameters.<span class="f">toList</span>()
 		<span class="k">for</span> oPart <span class="k">in</span> aParts
 			cKind = <span class="s">"required"</span>
-			<span class="k">if</span> oPart.<span class="f">getProp</span>(<span class="s">"IsOptional"</span>)
+			<span class="k">if</span> oPart.IsOptional
 				cKind = <span class="s">"optional"</span>
 			<span class="k">ok</span>
-			<span class="k">if</span> oPart.<span class="f">getProp</span>(<span class="s">"IsCatchAll"</span>)
+			<span class="k">if</span> oPart.IsCatchAll
 				cKind = <span class="s">"catch-all"</span>
 			<span class="k">ok</span>
-			xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)          <span class="c"># a text, or the null object when there is no default</span>
+			xDefault = oPart.DefaultValue          <span class="c"># a text, or the null object when there is no default</span>
 			<span class="k">if</span> <span class="k">not</span> isObject(xDefault)
 				cKind = <span class="s">"default "</span> + xDefault
 			<span class="k">ok</span>
-			cParts += oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" ("</span> + cKind + <span class="s">")  "</span>
+			cParts += oPart.Name + <span class="s">" ("</span> + cKind + <span class="s">")  "</span>
 		<span class="k">next</span>
 		? <span class="s">"   "</span> + padRight(cRoute,<span class="n">32</span>) + cParts
 	<span class="k">next</span>
@@ -339,11 +339,11 @@ using {
 	oTemplate = (<span class="k">new</span> <span class="t">TemplateParser</span>).<span class="f">Parse</span>(cTemplate)
 	<span class="c"># the defaults of the template ({page=1}) are given to the matcher: a part with a default may be missing at the END of the path</span>
 	oDefaults = <span class="k">new</span> <span class="t">RouteValueDictionary</span>
-	aParts = oTemplate.<span class="f">getProp</span>(<span class="s">"Parameters"</span>).<span class="f">toList</span>()
+	aParts = oTemplate.Parameters.<span class="f">toList</span>()
 	<span class="k">for</span> oPart <span class="k">in</span> aParts
-		xDefault = oPart.<span class="f">getProp</span>(<span class="s">"DefaultValue"</span>)
+		xDefault = oPart.DefaultValue
 		<span class="k">if</span> <span class="k">not</span> isObject(xDefault)
-			oDefaults.<span class="f">Add</span>(oPart.<span class="f">getProp</span>(<span class="s">"Name"</span>),xDefault)
+			oDefaults.<span class="f">Add</span>(oPart.Name,xDefault)
 		<span class="k">ok</span>
 	<span class="k">next</span>
 	oMatcher = <span class="k">new</span> <span class="t">TemplateMatcher</span>(oTemplate,oDefaults)

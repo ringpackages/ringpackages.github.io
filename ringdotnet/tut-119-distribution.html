@@ -302,7 +302,7 @@ using {
 		oConnection = (<span class="k">new</span> <span class="t">SqliteConnection</span>).@<span class="k">New</span>(<span class="s">"Data Source=:memory:"</span>)
 		oConnection.<span class="f">Open</span>()
 		oCommand = oConnection.<span class="f">CreateCommand</span>()
-		oCommand.<span class="f">setProp</span>(<span class="s">"CommandText"</span>,<span class="s">"SELECT 40 + 2"</span>)
+		oCommand.CommandText = <span class="s">"SELECT 40 + 2"</span>
 		xAnswer = oCommand.<span class="f">ExecuteScalar</span>()
 		oConnection.<span class="f">Dispose</span>()
 		<span class="k">return</span> (xAnswer = <span class="n">42</span>)

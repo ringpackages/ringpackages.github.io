@@ -274,8 +274,8 @@ using {
 	oTasks.<span class="f">Enqueue</span>(<span class="s">"fix the server"</span>,<span class="n">1</span>)
 	oTasks.<span class="f">Enqueue</span>(<span class="s">"answer the mail"</span>,<span class="n">5</span>)
 	oTasks.<span class="f">Enqueue</span>(<span class="s">"call the customer"</span>,<span class="n">2</span>)
-	? <span class="s">"1. "</span> + oTasks.<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" tasks, most urgent first:"</span>
-	<span class="k">while</span> oTasks.<span class="f">getProp</span>(<span class="s">"Count"</span>) &gt; <span class="n">0</span>
+	? <span class="s">"1. "</span> + oTasks.Count + <span class="s">" tasks, most urgent first:"</span>
+	<span class="k">while</span> oTasks.Count &gt; <span class="n">0</span>
 		? <span class="s">"   "</span> + oTasks.<span class="f">Dequeue</span>()
 	<span class="k">end</span>
 
@@ -284,7 +284,7 @@ using {
 	<span class="k">for</span> n <span class="k">in</span> [<span class="n">42</span>,<span class="n">7</span>,<span class="n">19</span>,<span class="n">7</span>,<span class="n">3</span>,<span class="n">42</span>,<span class="n">100</span>]
 		oSet.<span class="f">Add</span>(n)
 	<span class="k">next</span>
-	? nl + <span class="s">"2. sorted set of 7 numbers with duplicates: "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" kept, from "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Min"</span>) + <span class="s">" to "</span> + oSet.<span class="f">getProp</span>(<span class="s">"Max"</span>)
+	? nl + <span class="s">"2. sorted set of 7 numbers with duplicates: "</span> + oSet.Count + <span class="s">" kept, from "</span> + oSet.Min + <span class="s">" to "</span> + oSet.Max
 	? <span class="s">"   in order: "</span> + list2str2(oSet.<span class="f">toList</span>())
 	? <span class="s">"   Contains(19): "</span> + oSet.<span class="f">Contains</span>(<span class="n">19</span>) + <span class="s">", Contains(20): "</span> + oSet.<span class="f">Contains</span>(<span class="n">20</span>)
 
@@ -294,7 +294,7 @@ using {
 		oDict.<span class="f">Add</span>(cName,len(cName))
 	<span class="k">next</span>
 	cKeys = <span class="s">""</span>
-	aKeys = oDict.<span class="f">getProp</span>(<span class="s">"Keys"</span>).<span class="f">toList</span>()
+	aKeys = oDict.Keys.<span class="f">toList</span>()
 	<span class="k">for</span> cKey <span class="k">in</span> aKeys
 		cKeys += cKey + <span class="s">" "</span>
 	<span class="k">next</span>
@@ -307,7 +307,7 @@ using {
 	oList.<span class="f">AddFirst</span>(<span class="s">"a"</span>)
 	oNodeB = oList.First.<span class="f">getProp</span>(<span class="s">"Next"</span>)
 	oList.<span class="f">AddAfter</span>(oNodeB,<span class="s">"b2"</span>)
-	? nl + <span class="s">"4. linked list: "</span> + list2str2(oList.<span class="f">toList</span>()) + <span class="s">" (first = "</span> + oList.First.<span class="f">getProp</span>(<span class="s">"Value"</span>) + <span class="s">", last = "</span> + oList.Last.<span class="f">getProp</span>(<span class="s">"Value"</span>) + <span class="s">")"</span>
+	? nl + <span class="s">"4. linked list: "</span> + list2str2(oList.<span class="f">toList</span>()) + <span class="s">" (first = "</span> + oList.First.Value + <span class="s">", last = "</span> + oList.Last.Value + <span class="s">")"</span>
 	oList.<span class="f">Remove</span>(<span class="s">"b"</span>)
 	? <span class="s">"   after Remove(b): "</span> + list2str2(oList.<span class="f">toList</span>())
 

@@ -416,7 +416,7 @@ using {
 <span class="k">func</span> <span class="f">makeCommand</span> oConnection,cSql,aValues
 
 	oCommand = oConnection.<span class="f">CreateCommand</span>()
-	oCommand.<span class="f">setProp</span>(<span class="s">"CommandText"</span>,cSql)
+	oCommand.CommandText = cSql
 	oParameters = oCommand.Parameters
 	nNumber = <span class="n">0</span>
 	<span class="k">for</span> xValue <span class="k">in</span> aValues
@@ -433,7 +433,7 @@ using {
 <span class="k">func</span> <span class="f">runSqlIn</span> oConnection,oTransaction,cSql,aValues
 
 	oCommand = makeCommand(oConnection,cSql,aValues)
-	oCommand.<span class="f">setProp</span>(<span class="s">"Transaction"</span>,oTransaction)
+	oCommand.Transaction = oTransaction
 	<span class="k">return</span> oCommand.<span class="f">ExecuteNonQuery</span>()
 
 <span class="c"># one value: the first column of the first row</span>

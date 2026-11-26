@@ -319,7 +319,7 @@ chdir(cHere)
 	? <span class="s">"2. the size of the code for "</span> + cText + <span class="s">" (modules on a side, with the empty border):"</span>
 	<span class="k">for</span> cLevel <span class="k">in</span> [<span class="s">"L"</span>,<span class="s">"M"</span>,<span class="s">"Q"</span>,<span class="s">"H"</span>]
 		oSized = oGenerator.<span class="f">CreateQrCode</span>([ :plainText = cText, :eccLevel = cLevel ])
-		? <span class="s">"   level "</span> + cLevel + <span class="s">": "</span> + oSized.ModuleMatrix.<span class="f">getProp</span>(<span class="s">"Count"</span>)
+		? <span class="s">"   level "</span> + cLevel + <span class="s">": "</span> + oSized.ModuleMatrix.Count
 	<span class="k">next</span>
 
 	<span class="c"># 3. A picture: PngByteQRCode gives the bytes of a PNG file, and a byte[] that .NET returns is a Ring text</span>

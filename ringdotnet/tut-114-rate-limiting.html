@@ -280,15 +280,15 @@ using {
 	? <span class="s">"1. a bucket of 3 tokens, 5 requests at once:"</span>
 	<span class="k">for</span> nRequest = <span class="n">1</span> <span class="k">to</span> <span class="n">5</span>
 		oLease = oBucket.<span class="f">AttemptAcquire</span>(<span class="n">1</span>)
-		? <span class="s">"   request "</span> + nRequest + <span class="s">": "</span> + answer(oLease.<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>))
+		? <span class="s">"   request "</span> + nRequest + <span class="s">": "</span> + answer(oLease.IsAcquired)
 	<span class="k">next</span>
 	<span class="k">new</span> <span class="t">Thread</span>().<span class="f">Sleep</span>(<span class="n">300</span>)      <span class="c"># more than the period of 100 ms</span>
 	? <span class="s">"   after the period, TryReplenish adds a token: "</span> + oBucket.<span class="f">TryReplenish</span>()
-	? <span class="s">"   the next request: "</span> + answer(oBucket.<span class="f">AttemptAcquire</span>(<span class="n">1</span>).<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>)) + <span class="s">"   (how many tokens come back depends on how long the pause was)"</span>
+	? <span class="s">"   the next request: "</span> + answer(oBucket.<span class="f">AttemptAcquire</span>(<span class="n">1</span>).IsAcquired) + <span class="s">"   (how many tokens come back depends on how long the pause was)"</span>
 
 	<span class="c"># 2. Statistics: how many tokens are left, how many requests were granted and how many refused</span>
 	oStatistics = oBucket.<span class="f">GetStatistics</span>()
-	? nl + <span class="s">"2. tokens left (not more than the bucket holds): "</span> + (oStatistics.<span class="f">getProp</span>(<span class="s">"CurrentAvailablePermits"</span>) &lt;= <span class="n">3</span>) + <span class="s">", granted in total: "</span> + oStatistics.<span class="f">getProp</span>(<span class="s">"TotalSuccessfulLeases"</span>) + <span class="s">", refused in total: "</span> + oStatistics.<span class="f">getProp</span>(<span class="s">"TotalFailedLeases"</span>)
+	? nl + <span class="s">"2. tokens left (not more than the bucket holds): "</span> + (oStatistics.CurrentAvailablePermits &lt;= <span class="n">3</span>) + <span class="s">", granted in total: "</span> + oStatistics.TotalSuccessfulLeases + <span class="s">", refused in total: "</span> + oStatistics.TotalFailedLeases
 
 	<span class="c"># 3. CONCURRENCY LIMITER: at most 2 requests are being handled at the same time. A request gets a LEASE and gives it back when it is</span>
 	<span class="c">#    finished (Dispose). While two leases are out, the third request is refused. This protects a slow resource (a database connection).</span>
@@ -296,10 +296,10 @@ using {
 	oLeaseA = oConcurrency.<span class="f">AttemptAcquire</span>(<span class="n">1</span>)
 	oLeaseB = oConcurrency.<span class="f">AttemptAcquire</span>(<span class="n">1</span>)
 	oLeaseC = oConcurrency.<span class="f">AttemptAcquire</span>(<span class="n">1</span>)
-	? nl + <span class="s">"3. three requests at once, 2 allowed: "</span> + answer(oLeaseA.<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>)) + <span class="s">", "</span> + answer(oLeaseB.<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>)) + <span class="s">", "</span> + answer(oLeaseC.<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>))
+	? nl + <span class="s">"3. three requests at once, 2 allowed: "</span> + answer(oLeaseA.IsAcquired) + <span class="s">", "</span> + answer(oLeaseB.IsAcquired) + <span class="s">", "</span> + answer(oLeaseC.IsAcquired)
 	oLeaseA.<span class="f">Dispose</span>()                  <span class="c"># the first request is finished: its place is free</span>
 	oLeaseD = oConcurrency.<span class="f">AttemptAcquire</span>(<span class="n">1</span>)
-	? <span class="s">"   after the first one finished, a new request: "</span> + answer(oLeaseD.<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>))
+	? <span class="s">"   after the first one finished, a new request: "</span> + answer(oLeaseD.IsAcquired)
 
 	<span class="c"># 4. Why a request was refused: a refused lease can carry the time to wait (the metadata RETRY_AFTER). The answer to the client</span>
 	<span class="c">#    ("try again in 5 seconds") is better than only "no".</span>
@@ -325,18 +325,18 @@ using {
 <span class="k">func</span> <span class="f">makeBucket</span> nTokens,nPeriodMs
 
 	oOptions = <span class="k">new</span> <span class="t">TokenBucketRateLimiterOptions</span>
-	oOptions.<span class="f">setProp</span>(<span class="s">"TokenLimit"</span>,nTokens)
-	oOptions.<span class="f">setProp</span>(<span class="s">"TokensPerPeriod"</span>,<span class="n">1</span>)
+	oOptions.TokenLimit = nTokens
+	oOptions.TokensPerPeriod = <span class="n">1</span>
 	oOptions.<span class="f">setProp</span>(<span class="s">"ReplenishmentPeriod"</span>,<span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(nPeriodMs))
-	oOptions.<span class="f">setProp</span>(<span class="s">"AutoReplenishment"</span>,<span class="k">False</span>)
-	oOptions.<span class="f">setProp</span>(<span class="s">"QueueLimit"</span>,<span class="n">0</span>)
+	oOptions.AutoReplenishment = <span class="k">False</span>
+	oOptions.QueueLimit = <span class="n">0</span>
 	<span class="k">return</span> <span class="k">new</span> <span class="t">TokenBucketRateLimiter</span>(oOptions)
 
 <span class="k">func</span> <span class="f">makeConcurrencyOptions</span> nLimit
 
 	oOptions = <span class="k">new</span> <span class="t">ConcurrencyLimiterOptions</span>
-	oOptions.<span class="f">setProp</span>(<span class="s">"PermitLimit"</span>,nLimit)
-	oOptions.<span class="f">setProp</span>(<span class="s">"QueueLimit"</span>,<span class="n">0</span>)
+	oOptions.PermitLimit = nLimit
+	oOptions.QueueLimit = <span class="n">0</span>
 	<span class="k">return</span> oOptions
 
 <span class="c"># the answers of one client for n requests, as a text of yes and no</span>
@@ -344,7 +344,7 @@ using {
 
 	cText = <span class="s">""</span>
 	<span class="k">for</span> i = <span class="n">1</span> <span class="k">to</span> nCount
-		cText += answer(oBucket.<span class="f">AttemptAcquire</span>(<span class="n">1</span>).<span class="f">getProp</span>(<span class="s">"IsAcquired"</span>)) + <span class="s">" "</span>
+		cText += answer(oBucket.<span class="f">AttemptAcquire</span>(<span class="n">1</span>).IsAcquired) + <span class="s">" "</span>
 	<span class="k">next</span>
 	<span class="k">return</span> cText
 

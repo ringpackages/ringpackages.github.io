@@ -316,7 +316,7 @@ using { <span class="s">"RingDotNet.Data"</span> }
 	<span class="c"># STEP 4. The other direction: a team with its players</span>
 	aTeams = oDb.<span class="f">query</span>(<span class="s">"Teams"</span>,[ [<span class="s">"include"</span>,[<span class="s">"Players"</span>]] ])
 	<span class="k">for</span> oTeam <span class="k">in</span> aTeams
-		? nl + <span class="s">"STEP 4: team "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" has "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Players"</span>).<span class="f">getProp</span>(<span class="s">"Count"</span>) + <span class="s">" players"</span>
+		? nl + <span class="s">"STEP 4: team "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Name"</span>) + <span class="s">" has "</span> + oTeam.<span class="f">getProp</span>(<span class="s">"Players"</span>).Count + <span class="s">" players"</span>
 	<span class="k">next</span>
 
 	<span class="c"># STEP 5. Remove an object</span>

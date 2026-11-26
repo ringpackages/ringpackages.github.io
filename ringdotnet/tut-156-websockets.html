@@ -291,12 +291,12 @@ oToken = <span class="s">""</span>                       <span class="c"># a tok
 	oConnect = oClient.<span class="f">ConnectAsync</span>([ :uri = <span class="k">new</span> <span class="t">Uri</span>(<span class="s">"ws://localhost:"</span> + nPort + <span class="s">"/chat"</span>), :cancellationToken = oToken ])
 	oContextTask = oListener.<span class="f">GetContextAsync</span>()
 	oContextTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
-	oContext = oContextTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	oContext = oContextTask.Result
 	? nl + <span class="s">"2. a request arrived for "</span> + oContext.Request.Url.AbsolutePath + <span class="s">", it is a WebSocket request: "</span> + yesNo(oContext.Request.IsWebSocketRequest)
 	oAccept = oContext.<span class="f">AcceptWebSocketAsync</span>(<span class="f">dnNull</span>())                  <span class="c"># (no sub protocol)</span>
 	oAccept.<span class="f">Wait</span>(<span class="k">NULL</span>)
 	oConnect.<span class="f">Wait</span>(<span class="k">NULL</span>)
-	oServer = oAccept.<span class="f">getProp</span>(<span class="s">"Result"</span>).WebSocket
+	oServer = oAccept.Result.WebSocket
 	? <span class="s">"   client state: "</span> + oClient.State + <span class="s">", server state: "</span> + oServer.State
 
 	<span class="c"># 3. Text messages. The client sends, the server receives and answers, the client receives the answer.</span>
@@ -371,7 +371,7 @@ oToken = <span class="s">""</span>                       <span class="c"># a tok
 	oSegment = <span class="k">new</span> <span class="t">ArraySegment</span>([ :typeArguments = [<span class="s">"System.Byte"</span>], :array = oBuffer ])
 	oTask = oSocket.<span class="f">ReceiveAsync</span>(oSegment,oToken)
 	oTask.<span class="f">Wait</span>(<span class="k">NULL</span>)
-	oResult = oTask.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+	oResult = oTask.Result
 	<span class="k">return</span> [ <span class="f">dnBufferBytes</span>(oBuffer,oResult.Count), <span class="s">""</span> + oResult.MessageType, oResult.EndOfMessage ]
 
 <span class="k">func</span> <span class="f">receiveText</span> oSocket
