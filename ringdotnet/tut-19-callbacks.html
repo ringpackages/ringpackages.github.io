@@ -263,6 +263,7 @@
 using {
 	<span class="s">"System.Collections.Generic"</span>
 	<span class="s">"System.Collections.ObjectModel"</span>
+	<span class="s">"System.Collections.Specialized"</span>
 }
 
 <span class="c"># Callback code can only see global variables</span>
@@ -295,7 +296,7 @@ nChanges = <span class="n">0</span>
 
 	<span class="c"># 5. An EVENT: .NET calls your code when something happens</span>
 	oList = <span class="k">new</span> <span class="t">ObservableStringList</span>()
-	oList.<span class="f">setCollectionChangedEvent</span>(<span class="s">"nChanges++ ? '   event ' + nChanges + ': ' + aDotNetArgs[2].getProp('Action')"</span>)
+	oList.<span class="f">setCollectionChangedEvent</span>(<span class="s">"nChanges++ ? '   event ' + nChanges + ': ' + aDotNetArgs[2].Action"</span>)
 	? nl + <span class="s">"5. Changing an observable list:"</span>
 	oList.<span class="f">Add</span>(<span class="s">"one"</span>)
 	oList.<span class="f">Add</span>(<span class="s">"two"</span>)
