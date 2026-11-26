@@ -262,6 +262,7 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"System.Data.Odbc"</span>
 	<span class="s">"Microsoft.Win32"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.IO"</span>
@@ -294,7 +295,7 @@ using {
 
 	<span class="c">#    The connection string names the driver and the file (Dbq). The ODBC classes have no generated Ring classes: dnNew makes the</span>
 	<span class="c">#    objects and callMethod / getProp use them.</span>
-	oConnection = <span class="f">dnNew</span>(<span class="s">"System.Data.Odbc.OdbcConnection"</span>,[<span class="s">"Driver={"</span> + cDriver + <span class="s">"};Dbq="</span> + cFile + <span class="s">";"</span>])
+	oConnection = (<span class="k">new</span> <span class="t">OdbcConnection</span>).@<span class="k">New</span>(<span class="s">"Driver={"</span> + cDriver + <span class="s">"};Dbq="</span> + cFile + <span class="s">";"</span>)
 	oConnection.<span class="f">Open</span>()
 	? <span class="s">"   the connection is: "</span> + oConnection.State
 
@@ -357,7 +358,7 @@ using {
 
 	<span class="c"># 10. A transaction makes several statements ONE change: all of them happen or none. Here the second statement fails (a table that</span>
 	<span class="c">#     does not exist), so the first one is undone.</span>
-	oTransaction = oConnection.<span class="f">callMethod</span>(<span class="s">"BeginTransaction"</span>,[])
+	oTransaction = oConnection.<span class="f">BeginTransaction</span>(<span class="k">NULL</span>)
 	lFailed = <span class="k">False</span>
 	<span class="k">try</span>
 		runSqlIn(oConnection,oTransaction,<span class="s">"UPDATE Customers SET City = ? WHERE Id = ?"</span>,[<span class="s">"Luxor"</span>,<span class="n">1</span>])
@@ -365,7 +366,7 @@ using {
 		oTransaction.<span class="f">Commit</span>()
 	<span class="k">catch</span>
 		lFailed = <span class="k">True</span>
-		oTransaction.<span class="f">callMethod</span>(<span class="s">"Rollback"</span>,[])
+		oTransaction.<span class="f">Rollback</span>(<span class="k">NULL</span>)
 	<span class="k">done</span>
 	? nl + <span class="s">"10. the second statement failed: "</span> + lFailed + <span class="s">"; the city of Ann is still "</span> + scalar(oConnection,<span class="s">"SELECT City FROM Customers WHERE Id = ?"</span>,[<span class="n">1</span>])
 
@@ -373,7 +374,7 @@ using {
 	<span class="c">#     until the program ends, so the program does not delete it here.</span>
 	oConnection.<span class="f">Close</span>()
 	oConnection.<span class="f">Dispose</span>()
-	<span class="f">dnStatic</span>(<span class="s">"System.Data.Odbc.OdbcConnection"</span>,<span class="s">"ReleaseObjectPool"</span>,[])
+	(<span class="k">new</span> <span class="t">OdbcConnection</span>).<span class="f">ReleaseObjectPool</span>()
 	? nl + <span class="s">"11. the connection is closed; the file stays on the disk until the next run of the program deletes it"</span>
 
 <span class="c"># ---------------------------------------------------------------- the database</span>
@@ -420,7 +421,7 @@ using {
 	nNumber = <span class="n">0</span>
 	<span class="k">for</span> xValue <span class="k">in</span> aValues
 		nNumber++
-		oParameters.<span class="f">callMethod</span>(<span class="s">"AddWithValue"</span>,[<span class="s">"p"</span> + nNumber,xValue])
+		oParameters.<span class="f">AddWithValue</span>(<span class="s">"p"</span> + nNumber,xValue)
 	<span class="k">next</span>
 	<span class="k">return</span> oCommand
 
@@ -444,7 +445,7 @@ using {
 <span class="k">func</span> <span class="f">rows</span> oConnection,cSql,aValues
 
 	aRows = []
-	oReader = makeCommand(oConnection,cSql,aValues).<span class="f">callMethod</span>(<span class="s">"ExecuteReader"</span>,[])
+	oReader = makeCommand(oConnection,cSql,aValues).<span class="f">ExecuteReader</span>(<span class="k">NULL</span>)
 	nColumns = oReader.FieldCount
 	<span class="k">while</span> oReader.<span class="f">Read</span>()
 		aRow = []
@@ -480,7 +481,7 @@ using {
 <span class="k">func</span> <span class="f">columnNames</span> oConnection,cTable
 
 	aNames = []
-	oReader = makeCommand(oConnection,<span class="s">"SELECT * FROM "</span> + cTable + <span class="s">" WHERE 1 = 0"</span>,[]).<span class="f">callMethod</span>(<span class="s">"ExecuteReader"</span>,[])
+	oReader = makeCommand(oConnection,<span class="s">"SELECT * FROM "</span> + cTable + <span class="s">" WHERE 1 = 0"</span>,[]).<span class="f">ExecuteReader</span>(<span class="k">NULL</span>)
 	<span class="k">for</span> nColumn = <span class="n">0</span> <span class="k">to</span> oReader.FieldCount - <span class="n">1</span>
 		aNames + (oReader.<span class="f">GetName</span>(nColumn) + <span class="s">" ("</span> + lower(oReader.<span class="f">GetDataTypeName</span>(nColumn)) + <span class="s">")"</span>)
 	<span class="k">next</span>

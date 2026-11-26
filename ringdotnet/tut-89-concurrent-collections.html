@@ -302,7 +302,7 @@ using {
 	oBlocking.<span class="f">CompleteAdding</span>()
 	cTaken = <span class="s">""</span>
 	<span class="k">while</span> <span class="k">not</span> oBlocking.<span class="f">getProp</span>(<span class="s">"IsCompleted"</span>)
-		cTaken += <span class="s">""</span> + oBlocking.<span class="f">callMethod</span>(<span class="s">"Take"</span>,[]) + <span class="s">" "</span>
+		cTaken += <span class="s">""</span> + oBlocking.<span class="f">Take</span>(<span class="k">NULL</span>) + <span class="s">" "</span>
 	<span class="k">end</span>
 	? nl + <span class="s">"3. blocking collection, taken in order: "</span> + cTaken
 

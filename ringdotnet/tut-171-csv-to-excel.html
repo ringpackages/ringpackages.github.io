@@ -343,7 +343,7 @@ chdir(cHere)
 		oDoc.<span class="f">Add</span>([ :key = <span class="s">"product"</span>, :value = oCsv.<span class="f">GetField</span>(<span class="s">"product"</span>) ])
 		oDoc.<span class="f">Add</span>([ :key = <span class="s">"units"</span>, :value = number(oCsv.<span class="f">GetField</span>(<span class="s">"units"</span>)) ])
 		oDoc.<span class="f">Add</span>([ :key = <span class="s">"price"</span>, :value = number(oCsv.<span class="f">GetField</span>(<span class="s">"price"</span>)) ])
-		oSales.<span class="f">callMethod</span>(<span class="s">"Insert"</span>,[ oDoc ])
+		oSales.<span class="f">Insert</span>(oDoc)
 		nRows++
 	<span class="k">end</span>
 	oText.<span class="f">Dispose</span>()

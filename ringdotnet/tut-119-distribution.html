@@ -259,6 +259,7 @@
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
 
 using {
+	<span class="s">"SQLitePCL"</span>
 	<span class="s">"Microsoft.Data.Sqlite"</span>
 	<span class="s">"System"</span>
 	<span class="s">"System.IO"</span>
@@ -297,7 +298,7 @@ using {
 	<span class="k">try</span>
 		<span class="f">dnLoad</span>(<span class="f">dnRequest</span>(<span class="s">"bridgefolder"</span>,[]) + <span class="s">"/RingDotNet.Data.dll"</span>)      <span class="c"># it knows where the native SQLite library of this system is</span>
 		<span class="f">dnLoadName</span>(<span class="s">"SQLitePCLRaw.batteries_v2"</span>)               <span class="c"># the assembly that starts the native SQLite library</span>
-		<span class="f">dnStatic</span>(<span class="s">"SQLitePCL.Batteries_V2"</span>,<span class="s">"Init"</span>,[])
+		(<span class="k">new</span> <span class="t">Batteries_V2</span>).<span class="f">Init</span>()
 		oConnection = (<span class="k">new</span> <span class="t">SqliteConnection</span>).@<span class="k">New</span>(<span class="s">"Data Source=:memory:"</span>)
 		oConnection.<span class="f">Open</span>()
 		oCommand = oConnection.<span class="f">CreateCommand</span>()
