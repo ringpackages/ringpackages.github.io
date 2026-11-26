@@ -234,6 +234,7 @@
 <a href="aspnet.html">ASP.NET Core</a>
 <a href="ef.html">Entity Framework Core</a>
 <a href="ef-reference.html">Entity Framework reference</a>
+<a href="ml-chess.html">Machine learning: the chess end game</a>
 <h4>Guide: extending</h4>
 <a href="own-assemblies.html" class="cur">Your own assemblies</a>
 <a href="generator.html">Class generator</a>
@@ -686,6 +687,25 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>() { <span class="k">return</span> <span class="s">"hi"</span>; }
 		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>(<span class="k">string</span> a) { <span class="k">return</span> <span class="s">"hi "</span> + a; }
 		<span class="k">public</span> <span class="k">string</span> <span class="t">Say</span>(<span class="k">string</span> a, <span class="k">string</span> b) { <span class="k">return</span> <span class="s">"hi "</span> + a + b; }
+	}
+
+	<span class="c">// Delegates that Ring callbacks become: the method of the delegate must have a type (some libraries, ML.NET CustomMapping among them, read it), and every arity must work</span>
+	<span class="k">public</span> delegate <span class="k">int</span> <span class="t">EightInts</span>(<span class="k">int</span> a, <span class="k">int</span> b, <span class="k">int</span> c, <span class="k">int</span> d, <span class="k">int</span> e, <span class="k">int</span> f, <span class="k">int</span> g, <span class="k">int</span> h);
+	<span class="k">public</span> delegate <span class="k">int</span> <span class="t">NineInts</span>(<span class="k">int</span> a, <span class="k">int</span> b, <span class="k">int</span> c, <span class="k">int</span> d, <span class="k">int</span> e, <span class="k">int</span> f, <span class="k">int</span> g, <span class="k">int</span> h, <span class="k">int</span> i);
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> DelegateInfo
+	{
+		<span class="k">private</span> <span class="k">static</span> <span class="k">string</span> <span class="t">TypeOf</span>(<span class="t">Delegate</span> d) { <span class="k">return</span> d.Method.DeclaringType == <span class="k">null</span> ? <span class="s">"none"</span> : d.Method.DeclaringType.Name; }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">TypeOfAction2</span>(Action&lt;<span class="k">int</span>, <span class="k">int</span>&gt; d) { <span class="k">return</span> <span class="t">TypeOf</span>(d); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">TypeOfFunc2</span>(Func&lt;<span class="k">int</span>, <span class="k">int</span>, <span class="k">int</span>&gt; d) { <span class="k">return</span> <span class="t">TypeOf</span>(d); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">TypeOfEight</span>(<span class="t">EightInts</span> d) { <span class="k">return</span> <span class="t">TypeOf</span>(d); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="t">CallAction0</span>(<span class="t">Action</span> a) { a(); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="t">CallAction2</span>(Action&lt;<span class="k">int</span>, <span class="k">int</span>&gt; a, <span class="k">int</span> x, <span class="k">int</span> y) { a(x, y); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CallFunc0</span>(Func&lt;<span class="k">int</span>&gt; f) { <span class="k">return</span> f(); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CallFunc2</span>(Func&lt;<span class="k">int</span>, <span class="k">int</span>, <span class="k">int</span>&gt; f, <span class="k">int</span> a, <span class="k">int</span> b) { <span class="k">return</span> f(a, b); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">string</span> <span class="t">CallText</span>(Func&lt;<span class="k">string</span>, <span class="k">string</span>&gt; f, <span class="k">string</span> s) { <span class="k">return</span> f(s); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CallEight</span>(<span class="t">EightInts</span> e) { <span class="k">return</span> e(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>); }
+		<span class="k">public</span> <span class="k">static</span> <span class="k">int</span> <span class="t">CallNine</span>(<span class="t">NineInts</span> n) { <span class="k">return</span> n(<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>, <span class="n">7</span>, <span class="n">8</span>, <span class="n">9</span>); }
 	}
 
 	<span class="c">// Static methods for the typed static call (dotnet_callts): the same kinds as TypedMath, and the cases that stay with the generic request</span>
@@ -1151,7 +1171,7 @@ oTable.<span class="f">AddRow</span>([<span class="s">"Ann"</span>,<span class="
 <ul><li>Generated loaders use the names of the .NET classes. When a class name is also the name of a class of the library, or of another namespace of the same assembly, the generator adds the prefix of its namespace (<code>CoreVersion</code>) and lists the renames — see <a href="generator.html">Class generator</a>.</li><li>Keep the DLL and its dependencies in one folder: assemblies are resolved next to the DLL you load.</li><li>The runtime mode matters: a DLL that needs Windows Forms requires the desktop mode first (a <code>using</code> block that names <code>System.Windows.Forms</code>, or <code>dnUseDesktop()</code>).</li></ul>
 <h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next">#</a></h2>
 <ul><li><a href="generator.html">Class generator</a>: how the wrapper classes are made, and how to make more.</li><li>The tutorial chapter <a href="tutorials.html#libraries-and-packages">Libraries and packages</a>.</li></ul>
-<div class="pager"><a href="ef-reference.html"><small>Previous</small>Entity Framework reference</a><a class="next" href="generator.html"><small>Next</small>Class generator</a></div>
+<div class="pager"><a href="ml-chess.html"><small>Previous</small>Machine learning: the chess end game</a><a class="next" href="generator.html"><small>Next</small>Class generator</a></div>
 <footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
 </article>
 <aside class="toc" id="toc"></aside>

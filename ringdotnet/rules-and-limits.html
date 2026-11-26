@@ -234,6 +234,7 @@
 <a href="aspnet.html">ASP.NET Core</a>
 <a href="ef.html">Entity Framework Core</a>
 <a href="ef-reference.html">Entity Framework reference</a>
+<a href="ml-chess.html">Machine learning: the chess end game</a>
 <h4>Guide: extending</h4>
 <a href="own-assemblies.html">Your own assemblies</a>
 <a href="generator.html">Class generator</a>
@@ -289,7 +290,7 @@ cResult = <span class="k">new</span> <span class="t">Regex</span>(<span class="s
 <h3 id="put-the-using-block-before-the-first-net-call">Put the <code>using</code> block before the first .NET call<a class="anchor" href="#put-the-using-block-before-the-first-net-call">#</a></h3>
 <p>The runtime mode (desktop, web, both) is chosen by the <code>using { }</code> block (or by <code>dnUseDesktop()</code>, <code>dnUseWeb()</code>, <code>dnUseAll()</code>) and must come <strong>before any other .NET call</strong>: the first call starts the runtime and the mode does not change afterwards. If a program needs both Windows Forms/WPF and ASP.NET Core, name both in the first <code>using</code> block.</p>
 <h3 id="callbacks-run-on-the-ring-thread-only">Callbacks run on the Ring thread only<a class="anchor" href="#callbacks-run-on-the-ring-thread-only">#</a></h3>
-<p>Events from timers on other threads (<code>System.Threading.Timer</code>, <code>Task.Run(...)</code>) do not run Ring code; they print a message on stderr instead. Use the Windows Forms <code>Timer</code> (<code>uiTimer</code>) or wait for tasks on the Ring thread. The web server queues requests for the same reason.</p>
+<p>Events from timers on other threads (<code>System.Threading.Timer</code>, <code>Task.Run(...)</code>) do not run Ring code; they print a message on stderr instead. Use the Windows Forms <code>Timer</code> (<code>uiTimer</code>) or wait for tasks on the Ring thread. The web server queues requests for the same reason. The same holds for a library that calls your function from its own background threads: the <code>CustomMapping</code> transform of ML.NET, for example, runs its function on the threads that read the rows, so it cannot be written as a Ring callback.</p>
 <h3 id="value-types-are-returned-by-value">Value types are returned by value<a class="anchor" href="#value-types-are-returned-by-value">#</a></h3>
 <p><code>oForm.Location</code> returns a copy of the <code>Point</code>. Change it by assigning a new value: <code>oForm.Location = new Point(10,20)</code>.</p>
 <h3 id="enums-are-strings">Enums are strings<a class="anchor" href="#enums-are-strings">#</a></h3>
