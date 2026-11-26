@@ -281,7 +281,7 @@ using {
 	<span class="c">#    a culture puts "a" and "A" next to each other</span>
 	oOrdinal = <span class="k">new</span> <span class="t">StringComparer</span>().Ordinal
 	oCulture = <span class="k">new</span> <span class="t">StringComparer</span>().InvariantCulture
-	oWords = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.String"</span>],[])
+	oWords = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.String"</span>] ])
 	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"banana"</span>,<span class="s">"Cherry"</span>,<span class="s">"apple"</span>,<span class="s">"Banana"</span>,<span class="s">"cherry"</span>,<span class="s">"Apple"</span>]
 		oWords.<span class="f">Add</span>(cWord)
 	<span class="k">next</span>
@@ -293,15 +293,15 @@ using {
 	? <span class="s">"   ignore case:    "</span> + joinList(oWords.<span class="f">toList</span>()) + <span class="s">"   (equal words can come in any order)"</span>
 
 	<span class="c"># 4. A dictionary that ignores case: the comparer is the second argument of the constructor</span>
-	oPeople = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>],[<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase])
+	oPeople = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>], :comparer = <span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase ])
 	oPeople.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
 	? nl + <span class="s">"4. the key 'ANN' finds the key 'Ann': "</span> + oPeople.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
-	oPlain = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>],[])
+	oPlain = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Int32"</span>] ])
 	oPlain.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[<span class="s">"Ann"</span>,<span class="n">31</span>])
 	? <span class="s">"   a plain dictionary does not: "</span> + oPlain.<span class="f">callMethod</span>(<span class="s">"ContainsKey"</span>,[<span class="s">"ANN"</span>])
 
 	<span class="c"># 5. A sorted set with the same idea keeps one of 'Apple' and 'apple'</span>
-	oSet = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.SortedSet"</span>,[<span class="s">"System.String"</span>],[<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase])
+	oSet = <span class="k">new</span> <span class="t">SortedSet</span>([ :typeArguments = [<span class="s">"System.String"</span>], :comparer = <span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase ])
 	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"Apple"</span>,<span class="s">"apple"</span>,<span class="s">"Pear"</span>,<span class="s">"APPLE"</span>,<span class="s">"pear"</span>]
 		oSet.<span class="f">Add</span>(cWord)
 	<span class="k">next</span>

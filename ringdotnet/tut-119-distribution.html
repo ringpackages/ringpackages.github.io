@@ -311,7 +311,7 @@ using {
 <span class="k">func</span> <span class="f">aspNetInstalled</span>
 
 	<span class="k">try</span>
-		cRuntime = <span class="f">dnStatic</span>(<span class="s">"System.Runtime.InteropServices.RuntimeEnvironment"</span>,<span class="s">"GetRuntimeDirectory"</span>,[])
+		cRuntime = <span class="k">new</span> <span class="t">RuntimeEnvironment</span>().<span class="f">GetRuntimeDirectory</span>()
 		<span class="c"># ...\shared\Microsoft.NETCore.App\9.0.15\ : two folders up is "shared", the folder of all the shared runtimes</span>
 		oShared = <span class="k">new</span> <span class="t">Directory</span>().<span class="f">GetParent</span>(cRuntime).Parent.Parent
 		<span class="k">return</span> <span class="k">new</span> <span class="t">Directory</span>().<span class="f">Exists</span>(<span class="k">new</span> <span class="t">Path</span>().<span class="f">Combine</span>([oShared.FullName,<span class="s">"Microsoft.AspNetCore.App"</span>]))

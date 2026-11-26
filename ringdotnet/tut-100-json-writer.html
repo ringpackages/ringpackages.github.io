@@ -322,12 +322,12 @@ using {
 
 	<span class="c"># 4. JsonSerializer turns .NET objects into JSON; JsonSerializerOptions choose the form. A list of numbers and a dictionary:</span>
 	oSerializer = <span class="k">new</span> <span class="t">JsonSerializer</span>()
-	oNumbers = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.Int32"</span>],[])
+	oNumbers = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
 	<span class="k">for</span> n <span class="k">in</span> [<span class="n">3</span>,<span class="n">1</span>,<span class="n">2</span>]
 		oNumbers.<span class="f">Add</span>(n)
 	<span class="k">next</span>
 	? nl + <span class="s">"4. a list: "</span> + oSerializer.<span class="f">Serialize</span>(oNumbers)
-	oScores = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.Double"</span>],[])
+	oScores = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.Double"</span>] ])
 	oScores.<span class="f">Add</span>(<span class="s">"ann"</span>,<span class="n">9.5</span>)
 	oScores.<span class="f">Add</span>(<span class="s">"bob"</span>,<span class="n">7</span>)
 	? <span class="s">"   a dictionary: "</span> + oSerializer.<span class="f">Serialize</span>(oScores)

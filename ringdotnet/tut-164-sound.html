@@ -308,7 +308,7 @@ cClasses = cHere + <span class="s">"/Sound/classes"</span>
 	? <span class="s">"samples: "</span> + nSamples + <span class="s">", bytes of the file: "</span> + len(cWav)
 
 	<span class="c"># STEP 4. The bytes go to a MemoryStream, and the stream to a SoundPlayer</span>
-	oStream = <span class="f">dnNew</span>(<span class="s">"System.IO.MemoryStream"</span>,[ :buffer = cWav ])          <span class="c"># the constructor is chosen by the name of its parameter</span>
+	oStream = <span class="k">new</span> <span class="t">MemoryStream</span>().@<span class="k">New</span>([ :<span class="t">buffer</span> = cWav ])          <span class="c"># the constructor is chosen by the name of its parameter</span>
 	oPlayer = <span class="k">new</span> <span class="t">SoundPlayer</span>().@<span class="k">New</span>([ :<span class="t">stream</span> = oStream ])
 	oPlayer.@<span class="k">Load</span>()
 	? <span class="s">"the sound is loaded: "</span> + oPlayer.IsLoadCompleted

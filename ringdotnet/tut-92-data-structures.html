@@ -269,7 +269,7 @@ using {
 	cText = <span class="s">"System.String"</span>
 
 	<span class="c"># 1. PriorityQueue&lt;element, priority&gt;: Dequeue always gives the element with the SMALLEST priority, whatever the order of Enqueue.</span>
-	oTasks = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.PriorityQueue"</span>,[cText,cInt],[])
+	oTasks = <span class="k">new</span> <span class="t">PriorityQueue</span>([ :typeArguments = [cText,cInt] ])
 	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"write the report"</span>,<span class="n">3</span>])
 	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"fix the server"</span>,<span class="n">1</span>])
 	oTasks.<span class="f">callMethod</span>(<span class="s">"Enqueue"</span>,[<span class="s">"answer the mail"</span>,<span class="n">5</span>])
@@ -280,7 +280,7 @@ using {
 	<span class="k">end</span>
 
 	<span class="c"># 2. SortedSet: no duplicates, always sorted. Add answers false for a value that is already there. Min and Max are ready.</span>
-	oSet = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.SortedSet"</span>,[cInt],[])
+	oSet = <span class="k">new</span> <span class="t">SortedSet</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n <span class="k">in</span> [<span class="n">42</span>,<span class="n">7</span>,<span class="n">19</span>,<span class="n">7</span>,<span class="n">3</span>,<span class="n">42</span>,<span class="n">100</span>]
 		oSet.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[n])
 	<span class="k">next</span>
@@ -289,7 +289,7 @@ using {
 	? <span class="s">"   Contains(19): "</span> + oSet.<span class="f">callMethod</span>(<span class="s">"Contains"</span>,[<span class="n">19</span>]) + <span class="s">", Contains(20): "</span> + oSet.<span class="f">callMethod</span>(<span class="s">"Contains"</span>,[<span class="n">20</span>])
 
 	<span class="c"># 3. SortedDictionary: keys stay in order, so a loop over it is alphabetical</span>
-	oDict = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.SortedDictionary"</span>,[cText,cInt],[])
+	oDict = <span class="k">new</span> <span class="t">SortedDictionary</span>([ :typeArguments = [cText,cInt] ])
 	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"pear"</span>,<span class="s">"apple"</span>,<span class="s">"fig"</span>,<span class="s">"banana"</span>]
 		oDict.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[cName,len(cName)])
 	<span class="k">next</span>
@@ -301,7 +301,7 @@ using {
 	? nl + <span class="s">"3. sorted dictionary, keys in order: "</span> + cKeys
 
 	<span class="c"># 4. LinkedList: items are linked to their neighbors. Adding or removing at either end, or next to a known node, is quick.</span>
-	oList = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.LinkedList"</span>,[cText],[])
+	oList = <span class="k">new</span> <span class="t">LinkedList</span>([ :typeArguments = [cText] ])
 	oList.<span class="f">AddLast</span>(<span class="s">"b"</span>)
 	oList.<span class="f">AddLast</span>(<span class="s">"c"</span>)
 	oList.<span class="f">AddFirst</span>(<span class="s">"a"</span>)

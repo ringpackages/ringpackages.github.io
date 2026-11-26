@@ -349,7 +349,7 @@ C_PATH = <span class="s">"Software\RingDotNetTutorial"</span>
 <span class="c"># a string[] from a Ring list (the registry wants the exact type)</span>
 <span class="k">func</span> <span class="f">stringArray</span> aList
 
-	oList = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.String"</span>],[])
+	oList = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.String"</span>] ])
 	<span class="k">for</span> cItem <span class="k">in</span> aList
 		oList.<span class="f">Add</span>(cItem)
 	<span class="k">next</span>

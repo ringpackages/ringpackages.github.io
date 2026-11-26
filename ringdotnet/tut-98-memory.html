@@ -274,7 +274,7 @@ using {
 
 	<span class="c"># 2. A list with the capacity of 10 million bytes takes about 10 MB at once. GetTotalMemory(True) collects first and then answers.</span>
 	<span class="c">#    release() lets the bridge forget its handle, so nothing keeps the list alive.</span>
-	oBig = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.Byte"</span>],[<span class="n">10000000</span>])
+	oBig = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.Byte"</span>], :capacity = <span class="n">10000000</span> ])
 	nWith = oGC.<span class="f">GetTotalMemory</span>(<span class="k">True</span>)
 	? nl + <span class="s">"2. a list with room for 10 million bytes grew the memory by at least 9 MB: "</span> + (nWith - nBefore &gt; <span class="n">9000000</span>)
 	oBig = <span class="k">NULL</span>                     <span class="c"># nothing in Ring uses the list now: Ring frees it, and its handle is released with the next .NET calls</span>

@@ -300,7 +300,7 @@ using {
 	? <span class="s">"   A equals A with the same items in another order: "</span> + oSetA.<span class="f">SetEquals</span>(makeSet([<span class="s">"web"</span>,<span class="s">"json"</span>,<span class="s">"linq"</span>,<span class="s">"dotnet"</span>,<span class="s">"ring"</span>]))
 
 	<span class="c"># 5. A set with a comparer: names that differ only in case are the same item (the tutorial "Comparing text")</span>
-	oNames = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.HashSet"</span>,[cText],[<span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase])
+	oNames = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [cText], :comparer = <span class="k">new</span> <span class="t">StringComparer</span>().OrdinalIgnoreCase ])
 	<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"Ann"</span>,<span class="s">"ann"</span>,<span class="s">"BOB"</span>,<span class="s">"Bob"</span>,<span class="s">"Cy"</span>]
 		oNames.<span class="f">Add</span>(cName)
 	<span class="k">next</span>
@@ -308,7 +308,7 @@ using {
 
 	<span class="c"># 6. Removing duplicates from a Ring list is one line with a set. The order of a HashSet is not defined: sort when it matters.</span>
 	aWithDuplicates = [<span class="n">5</span>,<span class="n">3</span>,<span class="n">5</span>,<span class="n">1</span>,<span class="n">3</span>,<span class="n">8</span>,<span class="n">1</span>,<span class="n">5</span>]
-	oIntSet = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.HashSet"</span>,[<span class="s">"System.Int32"</span>],[])
+	oIntSet = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
 	<span class="k">for</span> nNumber <span class="k">in</span> aWithDuplicates
 		oIntSet.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[nNumber])
 	<span class="k">next</span>
@@ -317,7 +317,7 @@ using {
 
 <span class="k">func</span> <span class="f">makeSet</span> aList
 
-	oSet = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.HashSet"</span>,[<span class="s">"System.String"</span>],[])
+	oSet = <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.String"</span>] ])
 	<span class="k">for</span> cItem <span class="k">in</span> aList
 		oSet.<span class="f">Add</span>(cItem)
 	<span class="k">next</span>
@@ -326,7 +326,7 @@ using {
 <span class="c"># a copy of a set: the constructor of HashSet takes a collection</span>
 <span class="k">func</span> <span class="f">copySet</span> oSet
 
-	<span class="k">return</span> <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.HashSet"</span>,[<span class="s">"System.String"</span>],[oSet])
+	<span class="k">return</span> <span class="k">new</span> <span class="t">HashSet</span>([ :typeArguments = [<span class="s">"System.String"</span>], :collection = oSet ])
 
 <span class="k">func</span> <span class="f">sortedText</span> oSet
 

@@ -906,6 +906,26 @@ aDivide = oCalc.<span class="f">TryDivide</span>(<span class="n">4</span>)      
 		<span class="k">public</span> <span class="k">static</span> <span class="t">Transform</span> <span class="t">Plus</span>(this <span class="t">Transform</span> t, <span class="k">int</span> n) { <span class="k">return</span> x =&gt; t(x) + n; }
 		<span class="k">public</span> <span class="k">static</span> Step&lt;T&gt; Repeat&lt;T&gt;(this Step&lt;T&gt; s, <span class="k">int</span> times) { <span class="k">return</span> x =&gt; { <span class="k">for</span> (<span class="k">int</span> i = <span class="n">0</span>; i &lt; times; i++) x = s(x); <span class="k">return</span> x; }; }
 	}
+
+	<span class="c">// a covariant generic interface (ML.NET's IEstimator&lt;out T&gt;) and an extension method on a closed type of it with a type parameter of its own (Append&lt;TNext&gt;): the classes that</span>
+	<span class="c">// implement the generic interface get the method, and the type argument is inferred from the argument</span>
+	<span class="k">public</span> <span class="k">interface</span> IStage&lt;<span class="k">out</span> T&gt; { <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span>; } }
+	<span class="k">public</span> <span class="k">interface</span> <span class="t">IStageMarker</span> { }
+	<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="t">StageOne</span> : IStage&lt;StageOneResult&gt; { <span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span> { <span class="k">return</span> <span class="s">"one"</span>; } } }
+	<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="t">StageTwo</span> : IStage&lt;StageTwoResult&gt; { <span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span> { <span class="k">return</span> <span class="s">"two"</span>; } } }
+	<span class="k">public</span> <span class="k">class</span> <span class="t">StageOneResult</span> : <span class="t">IStageMarker</span> { }
+	<span class="k">public</span> <span class="k">class</span> <span class="t">StageTwoResult</span> : <span class="t">IStageMarker</span> { }
+	<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="t">StageChain</span> : IStage&lt;IStageMarker&gt;
+	{
+		<span class="k">private</span> <span class="k">readonly</span> <span class="k">string</span> name;
+		<span class="k">public</span> <span class="t">StageChain</span>(<span class="k">string</span> name) { this.name = name; }
+		<span class="k">public</span> <span class="k">string</span> <span class="t">Name</span> { <span class="k">get</span> { <span class="k">return</span> name; } }
+	}
+
+	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> StageExtensions
+	{
+		<span class="k">public</span> <span class="k">static</span> <span class="t">StageChain</span> Append&lt;TNext&gt;(this IStage&lt;IStageMarker&gt; start, IStage&lt;TNext&gt; next) where <span class="t">TNext</span> : <span class="t">IStageMarker</span> { <span class="k">return</span> <span class="k">new</span> <span class="t">StageChain</span>(start.Name + <span class="s">"&gt;"</span> + next.Name); }
+	}
 }</code></pre></div></details>
 <details class="src"><summary>samples/UsingDotNet/tests/test_userassembly.ring</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>samples/UsingDotNet/tests/test_userassembly.ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Your own assemblies: tools/dotnettools/wrapassembly.ring generates the classes, dnImportFrom() loads them</span>
 <span class="k">load</span> <span class="s">"dotnet.ring"</span>
@@ -1137,6 +1157,12 @@ oIncrement = <span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.De
 oExclaim = <span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.DelegateFactory"</span>,<span class="s">"Exclaim"</span>,[])
 <span class="f">dnAssert</span>(<span class="s">"a generic delegate"</span>,oExclaim.<span class="f">Repeat</span>(<span class="n">3</span>).<span class="f">Invoke</span>(<span class="s">"hi"</span>),<span class="s">"hi!!!"</span>)
 
+<span class="c"># an extension method of a closed generic type with a type parameter of its own (IStage&lt;IStageMarker&gt;.Append&lt;TNext&gt;): the implementing classes have it</span>
+oChain = <span class="k">new</span> <span class="t">StageOne</span>().<span class="f">Append</span>(<span class="k">new</span> <span class="t">StageTwo</span>())
+<span class="f">dnAssert</span>(<span class="s">"an extension method on a closed generic interface"</span>,oChain.Name,<span class="s">"one&gt;two"</span>)
+<span class="f">dnAssert</span>(<span class="s">"its result is wrapped by its real type"</span>,classname(oChain),<span class="s">"stagechain"</span>)
+<span class="f">dnAssert</span>(<span class="s">"and it is chained"</span>,oChain.<span class="f">Append</span>(<span class="k">new</span> <span class="t">StageTwo</span>()).Name,<span class="s">"one&gt;two&gt;two"</span>)
+
 <span class="c"># dnIsNull: true for the .NET null, false for every other value</span>
 <span class="f">dnAssert</span>(<span class="s">"a method that returns null"</span>,<span class="f">dnIsNull</span>(<span class="f">dnStatic</span>(<span class="s">"MyCompany.Tools.ParamsTools"</span>,<span class="s">"NoShape"</span>,[])),<span class="n">1</span>)
 <span class="f">dnAssert</span>(<span class="s">"the null of dnNull"</span>,<span class="f">dnIsNull</span>(<span class="f">dnNull</span>()),<span class="n">1</span>)
@@ -1163,9 +1189,9 @@ nFail = <span class="f">dnTestSummary</span>()</code></pre></div></details>
 <div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code>oTable = <span class="k">new</span> <span class="t">Table</span>()
 oTable.<span class="f">AddColumn</span>(<span class="s">"Name"</span>)            <span class="c"># TableExtensions.AddColumn(oTable, "Name")</span>
 oTable.<span class="f">AddRow</span>([<span class="s">"Ann"</span>,<span class="s">"31"</span>])</code></pre></div>
-<p>The classes that implement an interface get the extension methods of the interface. <code>wrapassembly.ring</code> wraps one assembly at a time, so the extension methods of a type of <strong>another</strong> assembly (a sink of Serilog that extends a class of Serilog itself), and of a type that has no class (a generic type, <code>string</code>), are static calls (<code>new StringHumanizeExtensions().Humanize("PascalCaseText")</code>) or a <code>callMethod</code> on the object (<code>oNode.callMethod("QuerySelectorAll",["li"])</code>, the selectors of Fizzler on a node of HtmlAgilityPack).</p>
+<p>The classes that implement an interface get the extension methods of the interface. An extension method of a <strong>closed</strong> generic type (<code>IEstimator&lt;ITransformer&gt;</code>, the extended type of ML.NET's <code>Append&lt;TNext&gt;</code>) is a method of the classes that implement the generic interface, and the type argument of the method is worked out from the arguments. <code>wrapassembly.ring</code> wraps the assemblies of one run (join the paths with <code>;</code> for assemblies that belong together, as ML.NET and its trainers do: <code>Microsoft.ML.Data.dll;Microsoft.ML.LightGbm.dll</code>), so the extension methods of a type of <strong>another</strong> assembly that is not in the run (a sink of Serilog that extends a class of Serilog itself), and of a type that has no class (a generic type, <code>string</code>), are static calls (<code>new StringHumanizeExtensions().Humanize("PascalCaseText")</code>) or a <code>callMethod</code> on the object (<code>oNode.callMethod("QuerySelectorAll",["li"])</code>, the selectors of Fizzler on a node of HtmlAgilityPack).</p>
 <h2 id="which-namespaces-to-wrap">Which namespaces to wrap<a class="anchor" href="#which-namespaces-to-wrap">#</a></h2>
-<p><code>wrapassembly.ring &lt;dll&gt; &lt;folder&gt; [namespace ...]</code> wraps only the namespaces you list. Without names, every namespace of the assembly is wrapped.</p>
+<p><code>wrapassembly.ring &lt;dll&gt; &lt;folder&gt; [namespace ...]</code> wraps only the namespaces you list (<code>&lt;dll&gt;</code> can be several paths joined with <code>;</code>). Without names, every namespace of the assembly is wrapped.</p>
 <p>Several assemblies can go into one folder (the index of the classes keeps the types of all of them when each one is wrapped without names), or each one into a folder of its own, as the project lesson does for its three packages. An object that comes back from a namespace that was not imported is wrapped when the folder has the index: its namespace is loaded from that folder.</p>
 <h2 id="rules">Rules<a class="anchor" href="#rules">#</a></h2>
 <ul><li>Generated loaders use the names of the .NET classes. When a class name is also the name of a class of the library, or of another namespace of the same assembly, the generator adds the prefix of its namespace (<code>CoreVersion</code>) and lists the renames — see <a href="generator.html">Class generator</a>.</li><li>Keep the DLL and its dependencies in one folder: assemblies are resolved next to the DLL you load.</li><li>The runtime mode matters: a DLL that needs Windows Forms requires the desktop mode first (a <code>using</code> block that names <code>System.Windows.Forms</code>, or <code>dnUseDesktop()</code>).</li></ul>

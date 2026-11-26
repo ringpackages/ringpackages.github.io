@@ -300,7 +300,7 @@ using {
 
 	<span class="c"># 4. More sources. AddInMemoryCollection adds values from a dictionary (good for defaults and for tests). Because it comes AFTER the</span>
 	<span class="c">#    file, its values win.</span>
-	oOverrides = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.Dictionary"</span>,[<span class="s">"System.String"</span>,<span class="s">"System.String"</span>],[])
+	oOverrides = <span class="k">new</span> <span class="t">Dictionary</span>([ :typeArguments = [<span class="s">"System.String"</span>,<span class="s">"System.String"</span>] ])
 	oOverrides.<span class="f">Add</span>(<span class="s">"App:Port"</span>,<span class="s">"9090"</span>)
 	oOverrides.<span class="f">Add</span>(<span class="s">"App:Extra"</span>,<span class="s">"only in memory"</span>)
 	oBuilder.<span class="f">AddInMemoryCollection</span>([ :initialData = oOverrides ])

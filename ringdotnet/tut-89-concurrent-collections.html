@@ -285,7 +285,7 @@ using {
 
 	<span class="c"># 2. ConcurrentStack: last in, first out. This closed generic type has no Ring class, so the objects of dnNewGeneric are</span>
 	<span class="c">#    used in the plain style: callMethod(name, [arguments]) and getProp(name).</span>
-	oStack = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Concurrent.ConcurrentStack"</span>,[cInt],[])
+	oStack = <span class="k">new</span> <span class="t">ConcurrentStack</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
 		oStack.<span class="f">callMethod</span>(<span class="s">"Push"</span>,[n])
 	<span class="k">next</span>
@@ -295,7 +295,7 @@ using {
 
 	<span class="c"># 3. BlockingCollection: a queue for a producer and a consumer. Take waits while the queue is empty; CompleteAdding says</span>
 	<span class="c">#    that nothing more will come, and then IsCompleted becomes true when the queue is empty.</span>
-	oBlocking = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Concurrent.BlockingCollection"</span>,[cInt],[])
+	oBlocking = <span class="k">new</span> <span class="t">BlockingCollection</span>([ :typeArguments = [cInt] ])
 	<span class="k">for</span> n = <span class="n">1</span> <span class="k">to</span> <span class="n">5</span>
 		oBlocking.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[n * n])
 	<span class="k">next</span>
@@ -307,11 +307,11 @@ using {
 	? nl + <span class="s">"3. blocking collection, taken in order: "</span> + cTaken
 
 	<span class="c"># 4. A bounded queue holds at most N items: Add waits when it is full, TryAdd answers at once</span>
-	oSmall = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Concurrent.BlockingCollection"</span>,[cInt],[<span class="n">2</span>])
+	oSmall = <span class="k">new</span> <span class="t">BlockingCollection</span>([ :typeArguments = [cInt], :boundedCapacity = <span class="n">2</span> ])
 	? nl + <span class="s">"4. bounded to 2: TryAdd gives "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">10</span>]) + <span class="s">", "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">20</span>]) + <span class="s">", "</span> + oSmall.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[<span class="n">30</span>]) + <span class="s">" (the third does not fit)"</span>
 
 	<span class="c"># 5. ConcurrentDictionary: TryAdd, TryUpdate (key, new value, the value we expect) and TryRemove</span>
-	oCount = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Concurrent.ConcurrentDictionary"</span>,[cText,cInt],[])
+	oCount = <span class="k">new</span> <span class="t">ConcurrentDictionary</span>([ :typeArguments = [cText,cInt] ])
 	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"red"</span>,<span class="s">"green"</span>,<span class="s">"red"</span>,<span class="s">"blue"</span>,<span class="s">"red"</span>,<span class="s">"green"</span>]
 		oCount.<span class="f">callMethod</span>(<span class="s">"TryAdd"</span>,[cWord,<span class="n">0</span>])          <span class="c"># does nothing when the key exists</span>
 		nOld = oCount.<span class="f">callMethod</span>(<span class="s">"get_Item"</span>,[cWord])

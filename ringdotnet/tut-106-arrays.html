@@ -296,7 +296,7 @@ using {
 	? <span class="s">"   Array.Clear(array, 0, 3) sets 3 items to zero: "</span> + arrayText(oTarget)
 
 	<span class="c"># 5. An array of texts, and the join of a list into one text</span>
-	oWordList = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.String"</span>],[])
+	oWordList = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.String"</span>] ])
 	<span class="k">for</span> cWord <span class="k">in</span> [<span class="s">"pear"</span>,<span class="s">"apple"</span>,<span class="s">"fig"</span>]
 		oWordList.<span class="f">Add</span>(cWord)
 	<span class="k">next</span>
@@ -325,7 +325,7 @@ using {
 <span class="c"># an Int32 there and fits an Int32 array, a number with a fraction is a Double and does not.)</span>
 <span class="k">func</span> <span class="f">makeIntArray</span> aList
 
-	oList = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.Int32"</span>],[])
+	oList = <span class="k">new</span> <span class="t">List</span>([ :typeArguments = [<span class="s">"System.Int32"</span>] ])
 	<span class="k">for</span> nValue <span class="k">in</span> aList
 		oList.<span class="f">Add</span>(nValue)
 	<span class="k">next</span>
