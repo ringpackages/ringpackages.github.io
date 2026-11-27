@@ -327,7 +327,8 @@ using {
 	oOptions = <span class="k">new</span> <span class="t">TokenBucketRateLimiterOptions</span>
 	oOptions.TokenLimit = nTokens
 	oOptions.TokensPerPeriod = <span class="n">1</span>
-	oOptions.<span class="f">setProp</span>(<span class="s">"ReplenishmentPeriod"</span>,<span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(nPeriodMs))
+	oPeriod = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromMilliseconds</span>(nPeriodMs)
+	oOptions.ReplenishmentPeriod = oPeriod
 	oOptions.AutoReplenishment = <span class="k">False</span>
 	oOptions.QueueLimit = <span class="n">0</span>
 	<span class="k">return</span> <span class="k">new</span> <span class="t">TokenBucketRateLimiter</span>(oOptions)

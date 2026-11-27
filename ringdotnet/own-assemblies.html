@@ -1077,7 +1077,7 @@ oGetter = <span class="k">new</span> <span class="t">Hiding</span>().<span class
 
 <span class="c"># a class that is not public comes back as the interface named after it (IBox), and an interface has the members of the interfaces it inherits</span>
 oBox = <span class="k">new</span> <span class="t">Shapes</span>().<span class="f">NewBox</span>(<span class="n">3</span>)
-<span class="f">dnAssert</span>(<span class="s">"a non-public class is wrapped as the interface named after it"</span>,classname(oBox),<span class="s">"ibox"</span>)
+<span class="f">dnAssert</span>(<span class="s">"a non-public class is wrapped as the interface named after it (and the interfaces that it implements)"</span>,parentclassname(oBox),<span class="s">"ibox"</span>)
 <span class="f">dnAssert</span>(<span class="s">"a member of the interface itself"</span>,oBox.Side,<span class="n">3</span>)
 <span class="f">dnAssert</span>(<span class="s">"a method inherited from another interface"</span>,oBox.<span class="f">Area</span>(),<span class="n">9</span>)
 <span class="f">dnAssert</span>(<span class="s">"a property inherited from another interface"</span>,oBox.Name,<span class="s">"box"</span>)

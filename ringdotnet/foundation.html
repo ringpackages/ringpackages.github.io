@@ -393,7 +393,7 @@ oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
 oRequest = oClient.<span class="f">GetStringAsync</span>(cPrefix + <span class="s">"greet?name=Ring"</span>)
 
 oWaiting.<span class="f">Wait</span>(<span class="k">NULL</span>)
-oContext = oWaiting.<span class="f">getProp</span>(<span class="s">"Result"</span>)
+oContext = oWaiting.Result
 ? <span class="s">"Request        : "</span> + oContext.Request.HttpMethod + <span class="s">" "</span> + oContext.Request.Url.PathAndQuery
 cReply = <span class="s">"Hello "</span> + oContext.Request.QueryString.<span class="f">Item</span>(<span class="s">"name"</span>) + <span class="s">", this is .NET speaking Ring!"</span>
 cBytes = <span class="k">new</span> <span class="t">UTF8Encoding</span>().<span class="f">GetBytes</span>(cReply)

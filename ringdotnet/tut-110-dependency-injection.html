@@ -298,9 +298,11 @@ nScoped = <span class="n">0</span>
 	oStream = <span class="f">dnType</span>(<span class="s">"System.IO.MemoryStream"</span>)
 	oScope1 = oProvider.<span class="f">CreateScope</span>()
 	oScope2 = oProvider.<span class="f">CreateScope</span>()
-	oInScope1a = oScope1.ServiceProvider.<span class="f">callMethod</span>(<span class="s">"GetService"</span>,[oStream])
-	oInScope1b = oScope1.ServiceProvider.<span class="f">callMethod</span>(<span class="s">"GetService"</span>,[oStream])
-	oInScope2 = oScope2.ServiceProvider.<span class="f">callMethod</span>(<span class="s">"GetService"</span>,[oStream])
+	oServices1 = oScope1.ServiceProvider
+	oServices2 = oScope2.ServiceProvider
+	oInScope1a = oServices1.<span class="f">GetService</span>(oStream)
+	oInScope1b = oServices1.<span class="f">GetService</span>(oStream)
+	oInScope2 = oServices2.<span class="f">GetService</span>(oStream)
 	? nl + <span class="s">"4. scoped: made "</span> + nScoped + <span class="s">" time(s) for 2 scopes"</span>
 	? <span class="s">"   twice in the same scope, the same object: "</span> + oInScope1a.<span class="f">Equals</span>(oInScope1b)
 	? <span class="s">"   in another scope, the same object:        "</span> + oInScope1a.<span class="f">Equals</span>(oInScope2)
@@ -330,7 +332,7 @@ nScoped = <span class="n">0</span>
 
 	nScoped++
 	oProvider = aArguments[<span class="n">1</span>]
-	oList = oProvider.<span class="f">callMethod</span>(<span class="s">"GetService"</span>,[<span class="f">dnType</span>(<span class="s">"System.Collections.ArrayList"</span>)])
+	oList = oProvider.<span class="f">GetService</span>(<span class="f">dnType</span>(<span class="s">"System.Collections.ArrayList"</span>))
 	<span class="k">if</span> nScoped = <span class="n">1</span>
 		oList.<span class="f">Add</span>(<span class="s">"first scope"</span>)
 	<span class="k">else</span>
@@ -360,7 +362,7 @@ nScoped = <span class="n">0</span>
 <h3 id="transient">Transient<a class="anchor" href="#transient">#</a></h3>
 <p><strong>A new object every time.</strong> Asked twice, the factory ran twice and the objects are different. Use it for light things that must not share state.</p>
 <h3 id="scoped">Scoped<a class="anchor" href="#scoped">#</a></h3>
-<p><strong>One object for each scope.</strong> A <em>scope</em> is one unit of work: in a web server, one request. <code>CreateScope</code> makes one; the objects asked for <strong>through the scope</strong> are the same inside it and different in another scope. In the output the factory ran twice for two scopes, the same scope gives the same object and another scope gives another. When the scope is disposed, the scoped objects that need it are disposed too (files, connections). <code>CreateScope</code> is an extension method and the scope's provider is a plain object, so it is used with <code>callMethod("GetService",[type])</code>.</p>
+<p><strong>One object for each scope.</strong> A <em>scope</em> is one unit of work: in a web server, one request. <code>CreateScope</code> makes one; the objects asked for <strong>through the scope</strong> are the same inside it and different in another scope. In the output the factory ran twice for two scopes, the same scope gives the same object and another scope gives another. When the scope is disposed, the scoped objects that need it are disposed too (files, connections). <code>CreateScope</code> is an extension method and the scope's provider has the method <code>GetService</code>: keep it in a variable (<code>oServices = oScope.ServiceProvider</code>) and call <code>oServices.GetService(type)</code>.</p>
 <h3 id="services-that-need-services">Services that need services<a class="anchor" href="#services-that-need-services">#</a></h3>
 <p>A factory receives the provider as its first value, so it can ask for what it needs. The scoped <code>MemoryStream</code> of the program asks for the singleton <code>ArrayList</code> and writes the name of its scope in it; both scopes reach the <strong>same</strong> list, which then holds two entries. This is how a singleton shares data between requests — and why it must be safe for that.</p>
 <h3 id="rules-of-thumb">Rules of thumb<a class="anchor" href="#rules-of-thumb">#</a></h3>
