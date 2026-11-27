@@ -328,7 +328,8 @@ cNextName = <span class="s">""</span>
 	}
 	oDialog.Controls.<span class="f">Add</span>(oAgeBox)
 	oError = <span class="f">uiLabel</span>(oDialog,<span class="s">""</span>,<span class="n">15</span>,<span class="n">82</span>,<span class="n">270</span>,<span class="n">20</span>)
-	oError.ForeColor = <span class="k">new</span> <span class="t">Color</span>().Crimson
+	oForeColor = <span class="k">new</span> <span class="t">Color</span>().Crimson
+	oError.ForeColor = oForeColor
 
 	oOk = <span class="f">uiButton</span>(oDialog,<span class="s">"OK"</span>,<span class="n">120</span>,<span class="n">112</span>,<span class="n">80</span>,<span class="n">28</span>,<span class="s">"okPressed()"</span>)
 	oCancel = <span class="f">uiButton</span>(oDialog,<span class="s">"Cancel"</span>,<span class="n">206</span>,<span class="n">112</span>,<span class="n">80</span>,<span class="n">28</span>,<span class="s">""</span>)

@@ -314,9 +314,11 @@ oCheck = <span class="s">""</span>
 	oMove = <span class="k">new</span> <span class="t">DoubleAnimation</span>()
 	oMove.<span class="f">SetProp</span>(<span class="s">"From"</span>,<span class="n">10</span>)                      <span class="c"># From and To can be empty in WPF, so they are set by name</span>
 	oMove.<span class="f">SetProp</span>(<span class="s">"To"</span>,<span class="n">340</span>)
-	oMove.Duration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">2</span>) ])
+	oDuration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">2</span>) ])
+	oMove.Duration = oDuration
 	oMove.AutoReverse = <span class="k">True</span>
-	oMove.RepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oRepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oMove.RepeatBehavior = oRepeatBehavior
 	oEase = <span class="k">new</span> <span class="t">SineEase</span>()
 	oEase.EasingMode = <span class="s">"EaseInOut"</span>
 	oMove.EasingFunction = oEase
@@ -326,17 +328,21 @@ oCheck = <span class="s">""</span>
 	oFade = <span class="k">new</span> <span class="t">DoubleAnimation</span>()
 	oFade.<span class="f">SetProp</span>(<span class="s">"From"</span>,<span class="n">1</span>)
 	oFade.<span class="f">SetProp</span>(<span class="s">"To"</span>,<span class="n">0.1</span>)
-	oFade.Duration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">1.5</span>) ])
+	oDuration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">1.5</span>) ])
+	oFade.Duration = oDuration
 	oFade.AutoReverse = <span class="k">True</span>
-	oFade.RepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oRepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oFade.RepeatBehavior = oRepeatBehavior
 	oBox.<span class="f">BeginAnimation</span>([ :dp = oBox.OpacityProperty, :animation = oFade ])
 
 	<span class="c"># the green square: the angle of its rotation from 0 to 360 in 3 seconds, a new turn each time</span>
 	oTurn = <span class="k">new</span> <span class="t">DoubleAnimation</span>()
 	oTurn.<span class="f">SetProp</span>(<span class="s">"From"</span>,<span class="n">0</span>)
 	oTurn.<span class="f">SetProp</span>(<span class="s">"To"</span>,<span class="n">360</span>)
-	oTurn.Duration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">3</span>) ])
-	oTurn.RepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oDuration = <span class="k">new</span> <span class="t">Duration</span>().@<span class="k">New</span>([ :<span class="t">timeSpan</span> = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">3</span>) ])
+	oTurn.Duration = oDuration
+	oRepeatBehavior = <span class="k">new</span> <span class="t">RepeatBehavior</span>().Forever
+	oTurn.RepeatBehavior = oRepeatBehavior
 	oSpin.<span class="f">BeginAnimation</span>([ :dp = oSpin.AngleProperty, :animation = oTurn ])
 	oStatus.Text = <span class="s">"Running"</span>
 

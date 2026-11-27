@@ -285,7 +285,8 @@ aBooks = [[<span class="n">1</span>,<span class="s">"The Hobbit"</span>,<span cl
 
 	<span class="c"># --- the client</span>
 	oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
-	oClient.Timeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">5</span>)          <span class="c"># never wait forever for a server</span>
+	oTimeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">5</span>)          <span class="c"># never wait forever for a server</span>
+	oClient.Timeout = oTimeout
 
 	<span class="c"># 1. GET a list: read the JSON array</span>
 	aAnswer = request(<span class="s">"GET"</span>,<span class="s">"/api/books"</span>,<span class="s">""</span>)

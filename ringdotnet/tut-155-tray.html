@@ -278,7 +278,8 @@ nShown = <span class="n">0</span>                        <span class="c"># how m
 
 	<span class="c"># The tray icon needs an ICON (a small picture). SystemIcons has the standard ones, and an icon can also be made from a file.</span>
 	oTray = <span class="k">new</span> <span class="t">NotifyIcon</span>()
-	oTray.Icon = <span class="k">new</span> <span class="t">SystemIcons</span>().Application
+	oIcon = <span class="k">new</span> <span class="t">SystemIcons</span>().Application
+	oTray.Icon = oIcon
 	oTray.Text = <span class="s">"Tray demo (double-click to open)"</span>           <span class="c"># the tip when the mouse rests on the icon (63 characters at most)</span>
 	oTray.Visible = <span class="k">True</span>
 

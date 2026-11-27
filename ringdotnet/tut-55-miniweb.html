@@ -277,7 +277,8 @@ oRouter = <span class="s">""</span>
 	oRouter.<span class="f">add</span>(<span class="s">"GET"</span>,<span class="s">"/users/:name/posts/:id"</span>,<span class="s">"postPage"</span>)
 	oServer.<span class="f">notFound</span>(<span class="s">"dispatch"</span>)                  <span class="c"># every request that has no ordinary route comes here: the router decides</span>
 	oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
-	oClient.Timeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">5</span>)
+	oTimeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">5</span>)
+	oClient.Timeout = oTimeout
 	<span class="k">for</span> cPath <span class="k">in</span> [<span class="s">"/"</span>,<span class="s">"/users/ali"</span>,<span class="s">"/users/sara/posts/7"</span>,<span class="s">"/users/&lt;b&gt;sara"</span>,<span class="s">"/nothing/here"</span>]
 		aAnswer = fetch(cPath)
 		? padRight(cPath,<span class="n">22</span>) + aAnswer[<span class="n">1</span>] + <span class="s">"  "</span> + aAnswer[<span class="n">2</span>]

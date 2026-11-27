@@ -280,7 +280,8 @@ oClient = <span class="s">""</span>
 
 	<span class="c"># One HttpClient for the whole program: it keeps connections open. DefaultRequestHeaders are sent with EVERY request.</span>
 	oClient = <span class="k">new</span> <span class="t">HttpClient</span>()
-	oClient.Timeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">10</span>)
+	oTimeout = <span class="k">new</span> <span class="t">TimeSpan</span>().<span class="f">FromSeconds</span>(<span class="n">10</span>)
+	oClient.Timeout = oTimeout
 	oClient.DefaultRequestHeaders.<span class="f">Add</span>(<span class="s">"X-Client"</span>,<span class="s">"ringdotnet-http-client"</span>)
 	oClient.DefaultRequestHeaders.<span class="f">Add</span>(<span class="s">"Accept"</span>,<span class="s">"text/plain"</span>)
 

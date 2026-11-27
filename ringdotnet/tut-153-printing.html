@@ -328,8 +328,10 @@ aOnPage = []                      <span class="c"># how many rows each page got<
 <span class="c"># A4 is 827 x 1169 hundredths of an inch; the margins are 50 (half an inch). Landscape turns the page.</span>
 <span class="k">func</span> <span class="f">setupPaper</span> oDocument,lLandscape
 
-	oDocument.DefaultPageSettings.PaperSize = <span class="k">new</span> <span class="t">PaperSize</span>().@<span class="k">New</span>([ :<span class="t">name</span> = <span class="s">"A4"</span>, :width = <span class="n">827</span>, :height = <span class="n">1169</span> ])
-	oDocument.DefaultPageSettings.Margins = <span class="k">new</span> <span class="t">Margins</span>().@<span class="k">New</span>([ :<span class="t">left</span> = <span class="n">50</span>, :right = <span class="n">50</span>, :top = <span class="n">50</span>, :bottom = <span class="n">50</span> ])
+	oPaperSize = <span class="k">new</span> <span class="t">PaperSize</span>().@<span class="k">New</span>([ :<span class="t">name</span> = <span class="s">"A4"</span>, :width = <span class="n">827</span>, :height = <span class="n">1169</span> ])
+	oDocument.DefaultPageSettings.PaperSize = oPaperSize
+	oMargins = <span class="k">new</span> <span class="t">Margins</span>().@<span class="k">New</span>([ :<span class="t">left</span> = <span class="n">50</span>, :right = <span class="n">50</span>, :top = <span class="n">50</span>, :bottom = <span class="n">50</span> ])
+	oDocument.DefaultPageSettings.Margins = oMargins
 	oDocument.DefaultPageSettings.Landscape = lLandscape
 
 <span class="c"># The PrintPage event: draw one page. e.MarginBounds is the rectangle inside the margins (in hundredths of an inch).</span>
