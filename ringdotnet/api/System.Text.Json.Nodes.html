@@ -254,7 +254,7 @@
 <div class="clsbody">
 <p class="net"><code>System.Text.Json.Nodes.JsonArray</code> · assembly <code>System.Text.Json</code></p>
 <p class="muted">Implements: IEnumerable</p>
-<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JsonArray(JsonNodeOptions? options = …)</code></td></tr><tr><td><code>new JsonArray(JsonNodeOptions options, JsonNode[] items)</code></td></tr><tr><td><code>new JsonArray(JsonNode[] items)</code></td></tr></tbody></table></div>
+<h4>Constructors</h4><div class="tablewrap"><table class="api"><tbody><tr><td><code>new JsonArray(JsonNodeOptions? options = …)</code></td></tr><tr><td><code>new JsonArray(JsonNodeOptions options, JsonNode[] items)</code></td></tr><tr><td><code>new JsonArray(JsonNodeOptions options, ReadOnlySpan&lt;JsonNode&gt; items)</code></td></tr><tr><td><code>new JsonArray(JsonNode[] items)</code></td></tr><tr><td><code>new JsonArray(ReadOnlySpan&lt;JsonNode&gt; items)</code></td></tr></tbody></table></div>
 <p class="muted">Ring: <code>new JsonArray(args)</code> uses one constructor; the others are chosen by the parameter names: <code>new JsonArray().@New([ :param = value ])</code> or <code>dnNew("JsonArray",[ :param = value ])</code>.</p>
 <h4>Properties and fields</h4><div class="tablewrap"><table class="api"><thead><tr><th>Name</th><th>Type</th><th>Access</th><th>In Ring</th></tr></thead><tbody><tr><td><code>Count</code></td><td><code>int</code></td><td>read</td><td><code>o.Count</code></td></tr></tbody></table></div>
 <h4>Indexer</h4><p><code>o.Item(int index)</code> → <code>JsonNode</code> · <code>o.SetItem(index,value)</code></p>
