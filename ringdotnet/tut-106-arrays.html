@@ -306,7 +306,7 @@ using {
 
 	<span class="c"># 6. Two dimensions: a table with rows and columns. Array.CreateInstance(type, rows, columns); items are written with SetValue(value, row, column)</span>
 	<span class="c">#    and read with GetValue(row, column). The items are Doubles, because SetValue needs the type that a Ring number has.</span>
-	oGrid = <span class="f">dnStatic</span>(<span class="s">"System.Array"</span>,<span class="s">"CreateInstance"</span>,[<span class="f">dnType</span>(<span class="s">"System.Double"</span>),<span class="n">3</span>,<span class="n">4</span>])
+	oGrid = <span class="k">new</span> <span class="t">Array</span>().<span class="f">CreateInstance</span>([ :elementType = <span class="f">dnType</span>(<span class="s">"System.Double"</span>), :length1 = <span class="n">3</span>, :length2 = <span class="n">4</span> ])
 	<span class="k">for</span> nRow = <span class="n">0</span> <span class="k">to</span> <span class="n">2</span>
 		<span class="k">for</span> nColumn = <span class="n">0</span> <span class="k">to</span> <span class="n">3</span>
 			oGrid.<span class="f">SetValue</span>([ :value = nRow * <span class="n">10</span> + nColumn, :index1 = nRow, :index2 = nColumn ])
