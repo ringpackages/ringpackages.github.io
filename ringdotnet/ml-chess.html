@@ -212,6 +212,7 @@
 <a href="tut-164-sound.html">Sound</a>
 <a href="tut-163-native.html">Native DLLs</a>
 <a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<a href="ml-chess.html" class="cur">Machine learning: the chess end game</a>
 <h4>Tutorials: Testing and release</h4>
 <a href="tut-161-common-errors.html">Common mistakes</a>
 <a href="tut-166-systems.html">More than one system</a>
@@ -234,7 +235,6 @@
 <a href="aspnet.html">ASP.NET Core</a>
 <a href="ef.html">Entity Framework Core</a>
 <a href="ef-reference.html">Entity Framework reference</a>
-<a href="ml-chess.html" class="cur">Machine learning: the chess end game</a>
 <h4>Guide: extending</h4>
 <a href="own-assemblies.html">Your own assemblies</a>
 <a href="generator.html">Class generator</a>
@@ -325,7 +325,7 @@ white king e4, white rook e1, black king h8:
 <p>The window and the three programs share <code>chesslib.ring</code>. <code>chessTrainAll()</code> trains, tests and saves every algorithm, and calls a function of the program after each one (<code>train.ring</code> prints a line, the window moves a progress bar); <code>chessModels()</code> reads <code>models/index.txt</code>; <code>chessPredictOne()</code> answers for a position. Each model is loaded once, when the first position needs it. The window tests itself (<code>ring ChessEndgame.ring --selftest</code>): it drags pieces with the mouse functions, filters and pages the data, asks the models, and trains if there are no models.</p>
 <h2 id="the-test-of-the-example">The test of the example<a class="anchor" href="#the-test-of-the-example">#</a></h2>
 <p><code>samples/UsingDotNet/tests/packages/pkgtest_mlnet_chess.ring</code> runs the three programs the way a user does: <code>train.ring --quick</code>, <code>evaluate.ring</code> and <code>predict.ring</code>. It checks the 70 / 30 split (the number of positions in each file, and that no position is in both), that the models are saved and ranked, that the saved model gives the accuracy that the training measured, and the answers for positions, for a position and the same position turned half a turn (the answer is the same), for another model, and for positions that are not positions (two pieces on a square, kings that touch). The window has its own checks.</p>
-<div class="pager"><a href="ef-reference.html"><small>Previous</small>Entity Framework reference</a><a class="next" href="own-assemblies.html"><small>Next</small>Your own assemblies</a></div>
+<div class="pager"><a href="tut-171-csv-to-excel.html"><small>Previous</small>A project: from CSV to Excel</a><a class="next" href="tut-161-common-errors.html"><small>Next</small>Common mistakes</a></div>
 <footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
 </article>
 <aside class="toc" id="toc"></aside>
