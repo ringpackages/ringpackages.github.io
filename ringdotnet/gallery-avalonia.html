@@ -1,0 +1,2952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avalonia samples · RingDotNet</title>
+<meta name="description" content="Short Avalonia programs — controls, layout, drawing, text, input, windows, themes and bindings.">
+<link rel="stylesheet" href="assets/style.css">
+<script>window.SITE_ROOT="";</script>
+<script src="assets/search-index.js"></script>
+<script src="assets/api-index.js"></script>
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="topbar">
+	<button class="iconbtn" id="menu" aria-label="Menu">☰</button>
+	<a class="brand" href="index.html"><span class="logo">.N</span>RingDotNet<small>for Ring</small></a>
+	<span class="spacer"></span>
+	<div class="search">
+		<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M14 14l4 4"/></svg>
+		<input id="q" type="search" placeholder="Search the docs  ( / )" autocomplete="off">
+		<div class="results" id="results"></div>
+	</div>
+	<button class="iconbtn" id="theme" aria-label="Theme">☾</button>
+</header>
+<nav class="sidebar">
+<h4>Start</h4>
+<a href="index.html">Overview</a>
+<a href="getting-started.html">Getting started</a>
+<a href="how-it-works.html">How it works</a>
+<h4>Tutorials: start here</h4>
+<a href="tutorials.html">Tutorials home</a>
+<a href="tut-concepts.html">.NET for Ring programmers</a>
+<a href="tut-reading-docs.html">Reading the .NET docs</a>
+<h4>Tutorials: The basics</h4>
+<a href="tut-01-first-look.html">A first look</a>
+<a href="tut-02-text.html">Working with text</a>
+<a href="tut-03-numbers-dates.html">Numbers, dates, times</a>
+<a href="tut-04-collections.html">Collections and LINQ</a>
+<a href="tut-05-files.html">Files and folders</a>
+<a href="tut-06-json-xml.html">JSON and XML</a>
+<a href="tut-07-errors.html">When things go wrong</a>
+<a href="tut-08-security.html">Hashing and encryption</a>
+<a href="tut-09-http.html">HTTP</a>
+<a href="tut-10-tasks-processes.html">Tasks and programs</a>
+<h4>Tutorials: Text and data formats</h4>
+<a href="tut-29-regex.html">Regular expressions</a>
+<a href="tut-129-formatting.html">Formatting numbers and dates</a>
+<a href="tut-52-unicode.html">Unicode and encodings</a>
+<a href="tut-132-text-encodings.html">Text files and encodings</a>
+<a href="tut-97-comparers.html">Comparing text</a>
+<a href="tut-104-text-readers-writers.html">Text readers and writers</a>
+<a href="tut-86-escaping.html">Escaping</a>
+<a href="tut-64-urls.html">URLs and encodings</a>
+<a href="tut-138-base64-hex.html">Bytes as text: Base64 and hex</a>
+<a href="tut-117-domain-names.html">International domain names</a>
+<a href="tut-121-mime-types.html">MIME types</a>
+<a href="tut-100-json-writer.html">Writing JSON as a stream</a>
+<a href="tut-80-json-nodes.html">JSON as a tree</a>
+<a href="tut-72-xml.html">XML in depth</a>
+<a href="tut-77-xslt.html">XSLT</a>
+<a href="tut-47-markdown.html">Markdown to HTML</a>
+<a href="tut-66-spelling.html">A spell checker</a>
+<a href="tut-144-mailmerge.html">Mail merge</a>
+<a href="tut-152-highlighter.html">A syntax highlighter</a>
+<h4>Tutorials: Numbers, dates and money</h4>
+<a href="tut-101-number-types.html">Number types</a>
+<a href="tut-126-rounding.html">Rounding and the Math class</a>
+<a href="tut-90-big-numbers.html">Big numbers</a>
+<a href="tut-67-bases.html">Number systems and big numbers</a>
+<a href="tut-57-money.html">Money</a>
+<a href="tut-99-vectors.html">Vectors and matrices</a>
+<a href="tut-69-random.html">Randomness</a>
+<a href="tut-44-statistics.html">Statistics, simulation</a>
+<a href="tut-103-dates-and-times.html">Dates and times</a>
+<a href="tut-68-timezones.html">Time zones</a>
+<a href="tut-43-calendar.html">Calendars and dates</a>
+<a href="tut-76-calendars.html">Other calendars</a>
+<a href="tut-135-workdays.html">Working days</a>
+<a href="tut-33-cultures.html">Cultures</a>
+<h4>Tutorials: Collections and algorithms</h4>
+<a href="tut-106-arrays.html">Arrays</a>
+<a href="tut-107-sets.html">Sets</a>
+<a href="tut-92-data-structures.html">More data structures</a>
+<a href="tut-89-concurrent-collections.html">Collections for many threads</a>
+<a href="tut-65-enums.html">Enums and flags</a>
+<a href="tut-93-identifiers.html">Identifiers and versions</a>
+<a href="tut-58-undo.html">Undo, redo and queues</a>
+<a href="tut-75-recursion.html">Recursion</a>
+<a href="tut-54-expression.html">An expression calculator</a>
+<h4>Tutorials: Files and streams</h4>
+<a href="tut-59-paths.html">Paths and the environment</a>
+<a href="tut-123-file-info.html">File information</a>
+<a href="tut-124-disks.html">Disks and free space</a>
+<a href="tut-56-streams.html">Streams and compression</a>
+<a href="tut-45-binary.html">Binary files</a>
+<a href="tut-130-random-access.html">Random access and file locks</a>
+<a href="tut-157-copy-progress.html">Copying a big file</a>
+<a href="tut-159-file-types.html">What kind of file is it?</a>
+<a href="tut-88-compression.html">Compression</a>
+<a href="tut-108-zip-in-memory.html">ZIP archives in memory</a>
+<a href="tut-96-tar.html">Tar archives</a>
+<a href="tut-112-globbing.html">File patterns (globbing)</a>
+<a href="tut-122-watch-folder.html">Watching a folder</a>
+<a href="tut-21-log-analyzer.html">A log analyzer</a>
+<a href="tut-31-duplicates.html">Duplicate files</a>
+<a href="tut-46-backup.html">A backup tool</a>
+<a href="tut-141-renamer.html">Rename many files</a>
+<a href="tut-145-diff.html">Compare two files</a>
+<a href="tut-147-checksums.html">Check that files did not change</a>
+<h4>Tutorials: Processes and performance</h4>
+<a href="tut-74-system.html">Asking the computer</a>
+<a href="tut-50-cli.html">A command-line tool</a>
+<a href="tut-51-logging.html">Logging</a>
+<a href="tut-136-tracing.html">Tracing</a>
+<a href="tut-85-feed-programs.html">Working with other programs</a>
+<a href="tut-79-processes-talk.html">Two programs talking</a>
+<a href="tut-82-shared-memory.html">Shared memory</a>
+<a href="tut-83-tasks-waiting.html">Tasks that wait</a>
+<a href="tut-71-dispose.html">Releasing resources</a>
+<a href="tut-53-speed.html">Speed: measure first</a>
+<a href="tut-98-memory.html">Memory and the garbage collector</a>
+<a href="tut-118-registry.html">The Windows Registry</a>
+<h4>Tutorials: Networking and the web</h4>
+<a href="tut-81-network-tools.html">Network tools</a>
+<a href="tut-102-ip-networks.html">IP networks</a>
+<a href="tut-25-sockets.html">Sockets</a>
+<a href="tut-158-framing.html">Messages on a TCP stream</a>
+<a href="tut-91-udp.html">UDP</a>
+<a href="tut-156-websockets.html">WebSockets</a>
+<a href="tut-84-http-client.html">HttpClient in depth</a>
+<a href="tut-39-rest-client.html">A REST client</a>
+<a href="tut-16-web-service.html">A web service</a>
+<a href="tut-26-website.html">A small web site</a>
+<a href="tut-55-miniweb.html">A tiny web framework</a>
+<a href="tut-120-routes.html">Route templates</a>
+<a href="tut-150-shortener.html">A link shortener</a>
+<a href="tut-94-mail-messages.html">E-mail messages</a>
+<h4>Tutorials: Security</h4>
+<a href="tut-78-crypto.html">Protecting and signing messages</a>
+<a href="tut-105-signatures.html">Digital signatures</a>
+<a href="tut-116-certificates.html">Certificates</a>
+<a href="tut-113-data-protection.html">Protecting data</a>
+<a href="tut-49-login.html">Login and sessions</a>
+<a href="tut-95-claims.html">Identities and claims</a>
+<a href="tut-114-rate-limiting.html">Rate limiting</a>
+<h4>Tutorials: Databases and services</h4>
+<a href="tut-17-databases.html">Databases</a>
+<a href="tut-30-tables.html">Tabular data</a>
+<a href="tut-73-sql-reports.html">Reports with SQL</a>
+<a href="tut-27-entities.html">Entities, migrations</a>
+<a href="tut-115-access.html">Microsoft Access databases</a>
+<a href="tut-32-settings.html">Settings</a>
+<a href="tut-111-configuration.html">Configuration</a>
+<a href="tut-109-memory-cache.html">Caching</a>
+<a href="tut-110-dependency-injection.html">Dependency injection</a>
+<h4>Tutorials: Windows Forms</h4>
+<a href="tut-11-first-window.html">Your first window</a>
+<a href="tut-12-controls.html">Many controls</a>
+<a href="tut-128-inputs.html">More input controls</a>
+<a href="tut-146-keyboard.html">The keyboard in a form</a>
+<a href="tut-23-layout.html">Layout and controls</a>
+<a href="tut-134-listview.html">A list with columns</a>
+<a href="tut-142-grid.html">Editing a grid</a>
+<a href="tut-13-editor.html">A text editor</a>
+<a href="tut-133-richtext.html">Formatted text</a>
+<a href="tut-127-clipboard.html">The clipboard</a>
+<a href="tut-154-dragdrop.html">Drag and drop</a>
+<a href="tut-40-dialog.html">Your own dialog</a>
+<a href="tut-137-closing.html">Closing a window</a>
+<a href="tut-149-windows.html">More than one window</a>
+<a href="tut-155-tray.html">A tray icon</a>
+<a href="tut-41-menus.html">Menus, toolbars, shortcuts</a>
+<a href="tut-34-timers.html">Timers and progress</a>
+<a href="tut-14-animation.html">Drawing and animation</a>
+<a href="tut-139-paint.html">Drawing with the mouse</a>
+<a href="tut-22-images.html">Images</a>
+<a href="tut-125-screenshot.html">Screens and pictures of windows</a>
+<a href="tut-153-printing.html">Printing</a>
+<a href="tut-36-chart.html">A chart</a>
+<a href="tut-42-browser.html">A folder browser</a>
+<h4>Tutorials: WPF</h4>
+<a href="tut-15-wpf.html">WPF</a>
+<a href="tut-38-wpf-layout.html">WPF layout, styles</a>
+<a href="tut-131-wpf-binding.html">WPF data binding</a>
+<a href="tut-140-wpf-menu.html">WPF menus and tabs</a>
+<a href="tut-148-wpf-lists.html">WPF lists and dynamic content</a>
+<a href="tut-70-wpf-animation.html">WPF animation</a>
+<h4>Tutorials: Projects with windows</h4>
+<a href="tut-24-todo.html">A to-do list</a>
+<a href="tut-35-tictactoe.html">Tic-Tac-Toe</a>
+<a href="tut-143-quiz.html">A quiz</a>
+<a href="tut-37-runner.html">A command runner</a>
+<a href="tut-48-addressbook.html">An address book</a>
+<a href="tut-60-sorting.html">Watching sorting algorithms</a>
+<a href="tut-61-maze.html">A maze</a>
+<a href="tut-62-filters.html">An image filter lab</a>
+<a href="tut-63-chat.html">A chat over TCP</a>
+<h4>Tutorials: Libraries and packages</h4>
+<a href="tut-19-callbacks.html">Callbacks and events</a>
+<a href="tut-20-reflection.html">Reflection</a>
+<a href="tut-151-inspector.html">An object inspector</a>
+<a href="tut-87-expressions.html">Expression trees</a>
+<a href="tut-18-csharp-library.html">A C# library</a>
+<a href="tut-160-generic-calls.html">The generic functions</a>
+<a href="tut-162-nuget.html">A NuGet package</a>
+<a href="tut-165-qr.html">A QR code</a>
+<a href="tut-167-excel.html">Excel files</a>
+<a href="tut-168-pictures.html">Pictures on every system</a>
+<a href="tut-169-pdf.html">PDF files</a>
+<a href="tut-170-speech.html">Text to speech</a>
+<a href="tut-164-sound.html">Sound</a>
+<a href="tut-163-native.html">Native DLLs</a>
+<a href="tut-171-csv-to-excel.html">A project: from CSV to Excel</a>
+<h4>Tutorials: Testing and release</h4>
+<a href="tut-161-common-errors.html">Common mistakes</a>
+<a href="tut-166-systems.html">More than one system</a>
+<a href="tut-28-testing.html">Testing</a>
+<a href="tut-119-distribution.html">Giving your program to others</a>
+<h4>Guide: the language bridge</h4>
+<a href="concepts.html">Core concepts</a>
+<a href="advanced-types.html">Advanced .NET types</a>
+<a href="core-api.html">Core functions</a>
+<a href="collections-linq.html">Collections & LINQ</a>
+<a href="callbacks-events.html">Callbacks & events</a>
+<a href="foundation.html">The .NET class library</a>
+<h4>Guide: desktop programs</h4>
+<a href="winforms.html">Windows Forms</a>
+<a href="gallery-forms.html">Forms samples</a>
+<a href="gallery-apps.html">Applications</a>
+<a href="wpf.html">WPF</a>
+<a href="gallery-wpf.html">WPF samples</a>
+<h4>Guide: web and data</h4>
+<a href="aspnet.html">ASP.NET Core</a>
+<a href="ef.html">Entity Framework Core</a>
+<a href="ef-reference.html">Entity Framework reference</a>
+<h4>Guide: extending</h4>
+<a href="own-assemblies.html">Your own assemblies</a>
+<a href="generator.html">Class generator</a>
+<h4>Testing and limits</h4>
+<a href="testing.html">Testing</a>
+<a href="rules-and-limits.html">Rules and limits</a>
+<h4>More Packages</h4>
+<a href="ml-chess.html">Machine learning: the chess end game</a>
+<a href="avalonia.html">Avalonia</a>
+<a href="gallery-avalonia.html" class="cur">Avalonia samples</a>
+<a href="gallery-avalonia-apps.html">Avalonia applications</a>
+<h4>Reference</h4>
+<a href="reference.html">Function index</a>
+<a href="api.html">Class reference</a>
+<h4>Appendix</h4>
+<a href="ring-intro.html">Quick introduction to Ring</a>
+</nav>
+<main>
+<article>
+<h1>Avalonia samples</h1><p class="lead">Short Avalonia programs — controls, layout, drawing, text, input, windows, themes and bindings.</p>
+<p>Run one with <code>ring 02_button_click.ring</code> from <code>samples/UsingDotNet/tests/packages/AvaloniaSamples</code>; with <code>--selftest</code> it checks itself and closes. See the <a href="avalonia.html">Avalonia guide</a> for the concepts.</p>
+<div class="gallery"><div class="item" id="hello-window"><div class="pic"><img src="img/shots/avalonia-01_hello_window.png" alt="Hello window" loading="lazy"></div><div class="info"><h3>Hello window</h3><p>The smallest Avalonia program: a window with a text</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 01_hello_window.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The smallest Avalonia program: a window with a text</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Hello Avalonia"</span>,<span class="n">360</span>,<span class="n">160</span>)
+oText = avText(<span class="s">"Hello from Avalonia and Ring"</span>)
+oText.FontSize = <span class="n">22</span>
+oText.HorizontalAlignment = <span class="s">"Center"</span>
+oText.VerticalAlignment = <span class="s">"Center"</span>
+oWindow.Content = oText
+
+avRun(oWindow)</code></pre></div></details></div></div><div class="item" id="button-click"><div class="pic"><img src="img/shots/avalonia-02_button_click.png" alt="Button click" loading="lazy"></div><div class="info"><h3>Button click</h3><p>A button counts its clicks (the Click event runs Ring code)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 02_button_click.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A button counts its clicks (the Click event runs Ring code)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+nClicks = <span class="n">0</span>
+oWindow = avWindow(<span class="s">"Click counter"</span>,<span class="n">300</span>,<span class="n">150</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">10</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oInfo = avText(<span class="s">"0 clicks"</span>)
+oButton = avButton(<span class="s">"Click me"</span>,<span class="s">"clicked()"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oInfo)
+	Children.<span class="f">Add</span>(oButton)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">clicked</span>
+
+	nClicks++
+	oInfo.Text = <span class="s">""</span> + nClicks + <span class="s">" clicks"</span></code></pre></div></details></div></div><div class="item" id="slider-text"><div class="pic"><img src="img/shots/avalonia-03_slider_text.png" alt="Slider text" loading="lazy"></div><div class="info"><h3>Slider text</h3><p>A slider and a progress bar that follow each other: the ValueChanged event of the slider</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 03_slider_text.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A slider and a progress bar that follow each other: the ValueChanged event of the slider</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Slider"</span>,<span class="n">360</span>,<span class="n">180</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">10</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oSlider = <span class="k">new</span> <span class="t">Slider</span>()
+oSlider {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Value = <span class="n">25</span>
+	setValueChangedEvent(<span class="s">"moved()"</span>)
+}
+oText = avText(<span class="s">"Value: 25"</span>)
+oBar = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oBar {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Value = <span class="n">25</span>
+	Height = <span class="n">20</span>
+}
+oPanel {
+	Children.<span class="f">Add</span>(oSlider)
+	Children.<span class="f">Add</span>(oText)
+	Children.<span class="f">Add</span>(oBar)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">moved</span>
+
+	oText.Text = <span class="s">"Value: "</span> + floor(oSlider.Value)
+	oBar.Value = oSlider.Value</code></pre></div></details></div></div><div class="item" id="checkbox-radio"><div class="pic"><img src="img/shots/avalonia-04_checkbox_radio.png" alt="Checkbox radio" loading="lazy"></div><div class="info"><h3>Checkbox radio</h3><p>Check boxes and radio buttons: the IsCheckedChanged event</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 04_checkbox_radio.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Check boxes and radio buttons: the IsCheckedChanged event</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Choices"</span>,<span class="n">340</span>,<span class="n">260</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">6</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oBold = <span class="k">new</span> <span class="t">CheckBox</span>()
+oBold {
+	Content = <span class="s">"Bold"</span>
+	setIsCheckedChangedEvent(<span class="s">"changed()"</span>)
+}
+oItalic = <span class="k">new</span> <span class="t">CheckBox</span>()
+oItalic {
+	Content = <span class="s">"Italic"</span>
+	setIsCheckedChangedEvent(<span class="s">"changed()"</span>)
+}
+oSmall = <span class="k">new</span> <span class="t">RadioButton</span>()
+oSmall {
+	Content = <span class="s">"Small"</span>
+	GroupName = <span class="s">"size"</span>
+	IsChecked = <span class="k">True</span>
+	setIsCheckedChangedEvent(<span class="s">"changed()"</span>)
+}
+oLarge = <span class="k">new</span> <span class="t">RadioButton</span>()
+oLarge {
+	Content = <span class="s">"Large"</span>
+	GroupName = <span class="s">"size"</span>
+	setIsCheckedChangedEvent(<span class="s">"changed()"</span>)
+}
+oSample = avText(<span class="s">"Sample text"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oBold)
+	Children.<span class="f">Add</span>(oItalic)
+	Children.<span class="f">Add</span>(oSmall)
+	Children.<span class="f">Add</span>(oLarge)
+	Children.<span class="f">Add</span>(oSample)
+}
+changed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	<span class="k">if</span> oBold.IsChecked
+		oSample.FontWeight = <span class="s">"Bold"</span>
+	<span class="k">else</span>
+		oSample.FontWeight = <span class="s">"Normal"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> oItalic.IsChecked
+		oSample.FontStyle = <span class="s">"Italic"</span>
+	<span class="k">else</span>
+		oSample.FontStyle = <span class="s">"Normal"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> oLarge.IsChecked
+		oSample.FontSize = <span class="n">28</span>
+	<span class="k">else</span>
+		oSample.FontSize = <span class="n">14</span>
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="list-combo"><div class="pic"><img src="img/shots/avalonia-05_list_combo.png" alt="List combo" loading="lazy"></div><div class="info"><h3>List combo</h3><p>A list box and a combo box: the SelectionChanged event</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 05_list_combo.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A list box and a combo box: the SelectionChanged event</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Lists"</span>,<span class="n">360</span>,<span class="n">300</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">8</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oList = <span class="k">new</span> <span class="t">ListBox</span>()
+oList {
+	Height = <span class="n">110</span>
+	setSelectionChangedEvent(<span class="s">"listChanged()"</span>)
+}
+<span class="k">for</span> cFruit <span class="k">in</span> [<span class="s">"Apple"</span>,<span class="s">"Banana"</span>,<span class="s">"Cherry"</span>,<span class="s">"Date"</span>,<span class="s">"Elderberry"</span>]
+	oList.Items.<span class="f">Add</span>(cFruit)
+<span class="k">next</span>
+oCombo = <span class="k">new</span> <span class="t">ComboBox</span>()
+oCombo {
+	Width = <span class="n">200</span>
+	setSelectionChangedEvent(<span class="s">"comboChanged()"</span>)
+}
+<span class="k">for</span> cColor <span class="k">in</span> [<span class="s">"Red"</span>,<span class="s">"Green"</span>,<span class="s">"Blue"</span>]
+	oCombo.Items.<span class="f">Add</span>(cColor)
+<span class="k">next</span>
+oFruit = avText(<span class="s">"Fruit: none"</span>)
+oColor = avText(<span class="s">"Color: none"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oList)
+	Children.<span class="f">Add</span>(oFruit)
+	Children.<span class="f">Add</span>(oCombo)
+	Children.<span class="f">Add</span>(oColor)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">listChanged</span>
+
+	<span class="k">if</span> oList.SelectedIndex &gt;= <span class="n">0</span>
+		oFruit.Text = <span class="s">"Fruit: "</span> + oList.SelectedItem
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">comboChanged</span>
+
+	<span class="k">if</span> oCombo.SelectedIndex &gt;= <span class="n">0</span>
+		oColor.Text = <span class="s">"Color: "</span> + oCombo.SelectedItem
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="layouts"><div class="pic"><img src="img/shots/avalonia-06_layouts.png" alt="Layouts" loading="lazy"></div><div class="info"><h3>Layouts</h3><p>Layouts: a Grid with sized columns and rows, a DockPanel, a WrapPanel and a StackPanel</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 06_layouts.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Layouts: a Grid with sized columns and rows, a DockPanel, a WrapPanel and a StackPanel</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Layouts"</span>,<span class="n">520</span>,<span class="n">360</span>)
+oGrid = <span class="k">new</span> <span class="t">Grid</span>()
+oGrid.ColumnDefinitions = (<span class="k">new</span> <span class="t">ColumnDefinitions</span>).<span class="f">Parse</span>(<span class="s">"120,*,2*"</span>)
+oGrid.RowDefinitions = (<span class="k">new</span> <span class="t">RowDefinitions</span>).<span class="f">Parse</span>(<span class="s">"60,*"</span>)
+oWindow.Content = oGrid
+
+<span class="c"># the cell that is 120 wide and 60 high: a title</span>
+oTitle = box(<span class="s">"Title"</span>,<span class="s">"#2E86AB"</span>)
+oGrid.<span class="f">SetColumn</span>(oTitle,<span class="n">0</span>)
+oGrid.<span class="f">SetRow</span>(oTitle,<span class="n">0</span>)
+
+<span class="c"># a dock panel: a header on top, a footer at the bottom, the rest in the middle</span>
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oHeader = box(<span class="s">"Top"</span>,<span class="s">"#F18F01"</span>)
+oFooter = box(<span class="s">"Bottom"</span>,<span class="s">"#C73E1D"</span>)
+oMiddle = box(<span class="s">"Fill"</span>,<span class="s">"#3B1F2B"</span>)
+oHeader.Height = <span class="n">40</span>
+oFooter.Height = <span class="n">40</span>
+oDock.<span class="f">SetDock</span>(oHeader,<span class="s">"Top"</span>)
+oDock.<span class="f">SetDock</span>(oFooter,<span class="s">"Bottom"</span>)
+oDock {
+	Children.<span class="f">Add</span>(oHeader)
+	Children.<span class="f">Add</span>(oFooter)
+	Children.<span class="f">Add</span>(oMiddle)
+}
+oGrid.<span class="f">SetColumn</span>(oDock,<span class="n">1</span>)
+oGrid.<span class="f">SetRow</span>(oDock,<span class="n">0</span>)
+oGrid.<span class="f">SetRowSpan</span>(oDock,<span class="n">2</span>)
+
+<span class="c"># a wrap panel: boxes that go to the next line when the line is full</span>
+oWrap = <span class="k">new</span> <span class="t">WrapPanel</span>()
+<span class="k">for</span> nBox = <span class="n">1</span> <span class="k">to</span> <span class="n">12</span>
+	oSmall = box(<span class="s">""</span> + nBox,<span class="s">"#6A4C93"</span>)
+	oSmall.Width = <span class="n">60</span>
+	oSmall.Height = <span class="n">40</span>
+	oSmall.Margin = avThickness(<span class="n">3</span>)
+	oWrap.Children.<span class="f">Add</span>(oSmall)
+<span class="k">next</span>
+oGrid.<span class="f">SetColumn</span>(oWrap,<span class="n">2</span>)
+oGrid.<span class="f">SetRow</span>(oWrap,<span class="n">0</span>)
+oGrid.<span class="f">SetRowSpan</span>(oWrap,<span class="n">2</span>)
+
+<span class="c"># a stack panel in the first column, below the title</span>
+oStack = <span class="k">new</span> <span class="t">StackPanel</span>()
+oStack.Spacing = <span class="n">4</span>
+<span class="k">for</span> cName <span class="k">in</span> [<span class="s">"One"</span>,<span class="s">"Two"</span>,<span class="s">"Three"</span>]
+	oStack.Children.<span class="f">Add</span>(box(cName,<span class="s">"#1B998B"</span>))
+<span class="k">next</span>
+oGrid.<span class="f">SetColumn</span>(oStack,<span class="n">0</span>)
+oGrid.<span class="f">SetRow</span>(oStack,<span class="n">1</span>)
+oGrid.Children.<span class="f">Add</span>(oTitle)
+oGrid.Children.<span class="f">Add</span>(oDock)
+oGrid.Children.<span class="f">Add</span>(oWrap)
+oGrid.Children.<span class="f">Add</span>(oStack)
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a colored border with a centered text</span>
+<span class="k">func</span> <span class="f">box</span> cText, cColor
+
+	oBorder = <span class="k">new</span> <span class="t">Border</span>()
+	oBorder.Background = avBrush(cColor)
+	oBorder.CornerRadius = (<span class="k">new</span> <span class="t">CornerRadius</span>).<span class="f">Parse</span>(<span class="s">"4"</span>)
+	oLabel = avText(cText)
+	oLabel.Foreground = avBrush(<span class="s">"White"</span>)
+	oLabel.HorizontalAlignment = <span class="s">"Center"</span>
+	oLabel.VerticalAlignment = <span class="s">"Center"</span>
+	oBorder.Child = oLabel
+	<span class="k">return</span> oBorder</code></pre></div></details></div></div><div class="item" id="shapes"><div class="pic"><img src="img/shots/avalonia-07_shapes.png" alt="Shapes" loading="lazy"></div><div class="info"><h3>Shapes</h3><p>Shapes on a Canvas: a rectangle, an ellipse, a line, a polygon and a path made from path text</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 07_shapes.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Shapes on a Canvas: a rectangle, an ellipse, a line, a polygon and a path made from path text</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Shapes"</span>,<span class="n">420</span>,<span class="n">300</span>)
+oCanvas = <span class="k">new</span> <span class="t">Canvas</span>()
+oWindow.Content = oCanvas
+
+oBox = <span class="k">new</span> <span class="t">Rectangle</span>()
+oBox {
+	Width = <span class="n">120</span>
+	Height = <span class="n">70</span>
+	Fill = avBrush(<span class="s">"#2E86AB"</span>)
+	Stroke = avBrush(<span class="s">"#1B4965"</span>)
+	StrokeThickness = <span class="n">3</span>
+}
+oCanvas.<span class="f">SetLeft</span>(oBox,<span class="n">20</span>)
+oCanvas.<span class="f">SetTop</span>(oBox,<span class="n">20</span>)
+
+oCircle = <span class="k">new</span> <span class="t">Ellipse</span>()
+oCircle {
+	Width = <span class="n">80</span>
+	Height = <span class="n">80</span>
+	Fill = avBrush(<span class="s">"#F18F01"</span>)
+}
+oCanvas.<span class="f">SetLeft</span>(oCircle,<span class="n">180</span>)
+oCanvas.<span class="f">SetTop</span>(oCircle,<span class="n">15</span>)
+
+oLine = <span class="k">new</span> <span class="t">Line</span>()
+oLine {
+	StartPoint = (<span class="k">new</span> <span class="t">Point</span>).@<span class="k">New</span>([ :<span class="t">x</span> = <span class="n">20</span>, :y = <span class="n">130</span> ])
+	EndPoint = (<span class="k">new</span> <span class="t">Point</span>).@<span class="k">New</span>([ :<span class="t">x</span> = <span class="n">260</span>, :y = <span class="n">130</span> ])
+	Stroke = avBrush(<span class="s">"#C73E1D"</span>)
+	StrokeThickness = <span class="n">4</span>
+}
+
+oTriangle = <span class="k">new</span> <span class="t">Polygon</span>()
+oTriangle {
+	Fill = avBrush(<span class="s">"#3B1F2B"</span>)
+}
+<span class="k">for</span> cPoint <span class="k">in</span> [<span class="s">"0,60"</span>,<span class="s">"40,0"</span>,<span class="s">"80,60"</span>]
+	oTriangle.Points.<span class="f">Add</span>((<span class="k">new</span> <span class="t">Point</span>).<span class="f">Parse</span>(cPoint))
+<span class="k">next</span>
+oCanvas.<span class="f">SetLeft</span>(oTriangle,<span class="n">300</span>)
+oCanvas.<span class="f">SetTop</span>(oTriangle,<span class="n">20</span>)
+
+oArrow = <span class="k">new</span> <span class="t">ShapesPath</span>()
+oArrow {
+	Data = (<span class="k">new</span> <span class="t">Geometry</span>).<span class="f">Parse</span>(<span class="s">"M 0,20 L 60,20 L 60,0 L 100,30 L 60,60 L 60,40 L 0,40 Z"</span>)
+	Fill = avBrush(<span class="s">"#1B998B"</span>)
+}
+oCanvas.<span class="f">SetLeft</span>(oArrow,<span class="n">20</span>)
+oCanvas.<span class="f">SetTop</span>(oArrow,<span class="n">160</span>)
+
+oCanvas {
+	Children.<span class="f">Add</span>(oBox)
+	Children.<span class="f">Add</span>(oCircle)
+	Children.<span class="f">Add</span>(oLine)
+	Children.<span class="f">Add</span>(oTriangle)
+	Children.<span class="f">Add</span>(oArrow)
+}
+
+avRun(oWindow)</code></pre></div></details></div></div><div class="item" id="menu-tabs"><div class="pic"><img src="img/shots/avalonia-08_menu_tabs.png" alt="Menu tabs" loading="lazy"></div><div class="info"><h3>Menu tabs</h3><p>A menu with commands (the Click event of a menu item) and a tab control</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 08_menu_tabs.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A menu with commands (the Click event of a menu item) and a tab control</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Menu and tabs"</span>,<span class="n">460</span>,<span class="n">300</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+
+oMenu = <span class="k">new</span> <span class="t">Menu</span>()
+oFile = menuItem(<span class="s">"File"</span>,<span class="s">""</span>)
+oNew = menuItem(<span class="s">"New note"</span>,<span class="s">"newNote()"</span>)
+oClear = menuItem(<span class="s">"Clear notes"</span>,<span class="s">"clearNotes()"</span>)
+oFile.Items.<span class="f">Add</span>(oNew)
+oFile.Items.<span class="f">Add</span>(oClear)
+oHelp = menuItem(<span class="s">"Help"</span>,<span class="s">""</span>)
+oAbout = menuItem(<span class="s">"About"</span>,<span class="s">"about()"</span>)
+oHelp.Items.<span class="f">Add</span>(oAbout)
+oMenu.Items.<span class="f">Add</span>(oFile)
+oMenu.Items.<span class="f">Add</span>(oHelp)
+oDock.<span class="f">SetDock</span>(oMenu,<span class="s">"Top"</span>)
+
+oStatus = avText(<span class="s">"Ready"</span>)
+oStatus.Margin = avThickness(<span class="n">6</span>)
+oDock.<span class="f">SetDock</span>(oStatus,<span class="s">"Bottom"</span>)
+
+oTabs = <span class="k">new</span> <span class="t">TabControl</span>()
+oNotes = <span class="k">new</span> <span class="t">TabItem</span>()
+oNotes.Header = <span class="s">"Notes"</span>
+oNoteList = <span class="k">new</span> <span class="t">ListBox</span>()
+oNotes.Content = oNoteList
+oInfo = <span class="k">new</span> <span class="t">TabItem</span>()
+oInfo.Header = <span class="s">"Info"</span>
+oInfo.Content = avText(<span class="s">"Use the File menu to add notes."</span>)
+oTabs.Items.<span class="f">Add</span>(oNotes)
+oTabs.Items.<span class="f">Add</span>(oInfo)
+oDock {
+	Children.<span class="f">Add</span>(oMenu)
+	Children.<span class="f">Add</span>(oStatus)
+	Children.<span class="f">Add</span>(oTabs)
+}
+
+nNotes = <span class="n">0</span>
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a menu item with a header and Ring code for its Click event</span>
+<span class="k">func</span> <span class="f">menuItem</span> cHeader, cCode
+
+	oItem = <span class="k">new</span> <span class="t">MenuItem</span>()
+	oItem.Header = cHeader
+	<span class="k">if</span> cCode != <span class="s">""</span>
+		oItem.<span class="f">setClickEvent</span>(cCode)
+	<span class="k">ok</span>
+	<span class="k">return</span> oItem
+
+<span class="k">func</span> <span class="f">newNote</span>
+
+	nNotes++
+	oNoteList.Items.<span class="f">Add</span>(<span class="s">"Note "</span> + nNotes)
+	oTabs.SelectedIndex = <span class="n">0</span>
+	oStatus.Text = <span class="s">"Added note "</span> + nNotes
+
+<span class="k">func</span> <span class="f">clearNotes</span>
+
+	oNoteList.Items.<span class="f">Clear</span>()
+	nNotes = <span class="n">0</span>
+	oStatus.Text = <span class="s">"Notes cleared"</span>
+
+<span class="k">func</span> <span class="f">about</span>
+
+	oTabs.SelectedIndex = <span class="n">1</span>
+	oStatus.Text = <span class="s">"A menu, a list and tabs"</span></code></pre></div></details></div></div><div class="item" id="timer-progress"><div class="pic"><img src="img/shots/avalonia-09_timer_progress.png" alt="Timer progress" loading="lazy"></div><div class="info"><h3>Timer progress</h3><p>A timer (DispatcherTimer) fills a progress bar; a button starts and stops it</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 09_timer_progress.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A timer (DispatcherTimer) fills a progress bar; a button starts and stops it</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Timer"</span>,<span class="n">360</span>,<span class="n">180</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">10</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oBar = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oBar {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Height = <span class="n">20</span>
+}
+oPercent = avText(<span class="s">"0 %"</span>)
+oToggle = avButton(<span class="s">"Start"</span>,<span class="s">"toggle()"</span>)
+oTimer = <span class="k">new</span> <span class="t">DispatcherTimer</span>()
+oTimer {
+	Interval = <span class="f">dnStatic</span>(<span class="s">"System.TimeSpan"</span>,<span class="s">"FromMilliseconds"</span>,[<span class="n">100</span>])
+	setTickEvent(<span class="s">"tick()"</span>)
+}
+oPanel {
+	Children.<span class="f">Add</span>(oBar)
+	Children.<span class="f">Add</span>(oPercent)
+	Children.<span class="f">Add</span>(oToggle)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">toggle</span>
+
+	<span class="k">if</span> oTimer.IsEnabled
+		oTimer.<span class="f">Stop</span>()
+		oToggle.Content = <span class="s">"Start"</span>
+	<span class="k">else</span>
+		oTimer.<span class="f">Start</span>()
+		oToggle.Content = <span class="s">"Stop"</span>
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">tick</span>
+
+	<span class="k">if</span> oBar.Value &gt;= <span class="n">100</span>
+		oTimer.<span class="f">Stop</span>()
+		oToggle.Content = <span class="s">"Start"</span>
+		oBar.Value = <span class="n">0</span>
+	<span class="k">else</span>
+		oBar.Value += <span class="n">5</span>
+	<span class="k">ok</span>
+	oPercent.Text = <span class="s">""</span> + floor(oBar.Value) + <span class="s">" %"</span></code></pre></div></details></div></div><div class="item" id="textbox-echo"><div class="pic"><img src="img/shots/avalonia-10_textbox_echo.png" alt="Textbox echo" loading="lazy"></div><div class="info"><h3>Textbox echo</h3><p>Text boxes: the TextChanged event, a password box, a multi-line box, a read-only box and the Watermark</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 10_textbox_echo.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Text boxes: the TextChanged event, a password box, a multi-line box, a read-only box and the Watermark</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Text boxes"</span>,<span class="n">400</span>,<span class="n">360</span>)
+oPanel = <span class="k">new</span> <span class="t">StackPanel</span>()
+oPanel {
+	Spacing = <span class="n">8</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oPanel
+oName = <span class="k">new</span> <span class="t">TextBox</span>()
+oName {
+	Watermark = <span class="s">"Type your name"</span>
+	setTextChangedEvent(<span class="s">"nameChanged()"</span>)
+}
+oGreeting = avText(<span class="s">"Hello, stranger"</span>)
+oSecret = <span class="k">new</span> <span class="t">TextBox</span>()
+oSecret {
+	PasswordChar = <span class="s">"*"</span>
+	Watermark = <span class="s">"Password"</span>
+	setTextChangedEvent(<span class="s">"secretChanged()"</span>)
+}
+oStrength = avText(<span class="s">"Password: empty"</span>)
+oNotes = <span class="k">new</span> <span class="t">TextBox</span>()
+oNotes {
+	AcceptsReturn = <span class="k">True</span>
+	TextWrapping = <span class="s">"Wrap"</span>
+	Height = <span class="n">80</span>
+	setTextChangedEvent(<span class="s">"notesChanged()"</span>)
+}
+oCount = avText(<span class="s">"0 characters, 0 lines"</span>)
+oLocked = <span class="k">new</span> <span class="t">TextBox</span>()
+oLocked {
+	Text = <span class="s">"This box is read only"</span>
+	IsReadOnly = <span class="k">True</span>
+}
+oPanel {
+	Children.<span class="f">Add</span>(oName)
+	Children.<span class="f">Add</span>(oGreeting)
+	Children.<span class="f">Add</span>(oSecret)
+	Children.<span class="f">Add</span>(oStrength)
+	Children.<span class="f">Add</span>(oNotes)
+	Children.<span class="f">Add</span>(oCount)
+	Children.<span class="f">Add</span>(oLocked)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the text of a box: a box that has no text gives null, which is not a text</span>
+<span class="k">func</span> <span class="f">textOf</span> oBox
+
+	cText = oBox.Text
+	<span class="k">if</span> isstring(cText)
+		<span class="k">return</span> cText
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">nameChanged</span>
+
+	cName = textOf(oName)
+	<span class="k">if</span> cName = <span class="s">""</span>
+		oGreeting.Text = <span class="s">"Hello, stranger"</span>
+	<span class="k">else</span>
+		oGreeting.Text = <span class="s">"Hello, "</span> + cName + <span class="s">"!"</span>
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">secretChanged</span>
+
+	nLength = len(textOf(oSecret))
+	<span class="k">if</span> nLength = <span class="n">0</span>
+		oStrength.Text = <span class="s">"Password: empty"</span>
+	<span class="k">but</span> nLength &lt; <span class="n">6</span>
+		oStrength.Text = <span class="s">"Password: weak ("</span> + nLength + <span class="s">")"</span>
+	<span class="k">else</span>
+		oStrength.Text = <span class="s">"Password: good ("</span> + nLength + <span class="s">")"</span>
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">notesChanged</span>
+
+	cText = textOf(oNotes)
+	nLines = <span class="n">0</span>
+	<span class="k">if</span> len(cText) &gt; <span class="n">0</span>
+		nLines = len(str2list(substr(cText,char(<span class="n">13</span>),<span class="s">""</span>)))
+	<span class="k">ok</span>
+	oCount.Text = <span class="s">""</span> + len(cText) + <span class="s">" characters, "</span> + nLines + <span class="s">" lines"</span></code></pre></div></details></div></div><div class="item" id="pointer-drawing"><div class="pic"><img src="img/shots/avalonia-11_pointer_drawing.png" alt="Pointer drawing" loading="lazy"></div><div class="info"><h3>Pointer drawing</h3><p>Drawing with the pointer: a click on the canvas adds a circle, a drag draws a line; the pointer events give the position</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 11_pointer_drawing.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Drawing with the pointer: a click on the canvas adds a circle, a drag draws a line; the pointer events give the position</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Pointer drawing"</span>,<span class="n">480</span>,<span class="n">360</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oInfo = avText(<span class="s">"Click to add a circle"</span>)
+oInfo.Margin = avThickness(<span class="n">6</span>)
+oDock.<span class="f">SetDock</span>(oInfo,<span class="s">"Bottom"</span>)
+oCanvas = <span class="k">new</span> <span class="t">Canvas</span>()
+oCanvas.Background = avBrush(<span class="s">"#F4F1DE"</span>)
+oCanvas {
+	setPointerPressedEvent(<span class="s">"pressed(aDotNetArgs[2].GetPosition(oCanvas))"</span>)
+	setPointerMovedEvent(<span class="s">"moved(aDotNetArgs[2].GetPosition(oCanvas))"</span>)
+	setPointerReleasedEvent(<span class="s">"released(aDotNetArgs[2].GetPosition(oCanvas))"</span>)
+}
+oDock {
+	Children.<span class="f">Add</span>(oInfo)
+	Children.<span class="f">Add</span>(oCanvas)
+}
+
+aColors = [<span class="s">"#E07A5F"</span>,<span class="s">"#3D405B"</span>,<span class="s">"#81B29A"</span>,<span class="s">"#F2CC8F"</span>]
+nCircles = <span class="n">0</span>
+lDown = <span class="k">False</span>
+oStart = <span class="s">""</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># each handler gets the position of the pointer on the canvas (a point)</span>
+<span class="k">func</span> <span class="f">pressed</span> oPosition
+
+	lDown = <span class="k">True</span>
+	oStart = oPosition
+
+<span class="k">func</span> <span class="f">moved</span> oPosition
+
+	oInfo.Text = <span class="s">"x = "</span> + floor(oPosition.X) + <span class="s">", y = "</span> + floor(oPosition.Y)
+
+<span class="k">func</span> <span class="f">released</span> oEnd
+
+	<span class="k">if</span> <span class="k">not</span> lDown
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	lDown = <span class="k">False</span>
+	<span class="k">if</span> fabs(oEnd.X - oStart.X) &lt; <span class="n">4</span> <span class="k">and</span> fabs(oEnd.Y - oStart.Y) &lt; <span class="n">4</span>
+		addCircle(oEnd.X,oEnd.Y)
+	<span class="k">else</span>
+		addLine(oStart,oEnd)
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">addCircle</span> nX, nY
+
+	nCircles++
+	oCircle = <span class="k">new</span> <span class="t">Ellipse</span>()
+	oCircle.Width = <span class="n">30</span>
+	oCircle.Height = <span class="n">30</span>
+	oCircle.Fill = avBrush(aColors[(nCircles - <span class="n">1</span>) % len(aColors) + <span class="n">1</span>])
+	oCanvas.<span class="f">SetLeft</span>(oCircle,nX - <span class="n">15</span>)
+	oCanvas.<span class="f">SetTop</span>(oCircle,nY - <span class="n">15</span>)
+	oCanvas.Children.<span class="f">Add</span>(oCircle)
+	oInfo.Text = <span class="s">""</span> + nCircles + <span class="s">" circles"</span>
+
+<span class="k">func</span> <span class="f">addLine</span> oFrom, oTo
+
+	oLine = <span class="k">new</span> <span class="t">Line</span>()
+	oLine.StartPoint = oFrom
+	oLine.EndPoint = oTo
+	oLine.Stroke = avBrush(<span class="s">"#3D405B"</span>)
+	oLine.StrokeThickness = <span class="n">3</span>
+	oCanvas.Children.<span class="f">Add</span>(oLine)</code></pre></div></details></div></div><div class="item" id="keyboard"><div class="pic"><img src="img/shots/avalonia-12_keyboard.png" alt="Keyboard" loading="lazy"></div><div class="info"><h3>Keyboard</h3><p>The keyboard: the arrow keys move a square on a canvas, the other keys are shown (the KeyDown event of the window)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 12_keyboard.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The keyboard: the arrow keys move a square on a canvas, the other keys are shown (the KeyDown event of the window)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Keyboard"</span>,<span class="n">420</span>,<span class="n">340</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oInfo = avText(<span class="s">"Press the arrow keys"</span>)
+oInfo.Margin = avThickness(<span class="n">6</span>)
+oDock.<span class="f">SetDock</span>(oInfo,<span class="s">"Bottom"</span>)
+oCanvas = <span class="k">new</span> <span class="t">Canvas</span>()
+oCanvas.Background = avBrush(<span class="s">"#E8F1F2"</span>)
+oSquare = <span class="k">new</span> <span class="t">Rectangle</span>()
+oSquare {
+	Width = <span class="n">40</span>
+	Height = <span class="n">40</span>
+	Fill = avBrush(<span class="s">"#006494"</span>)
+}
+nX = <span class="n">190</span>
+nY = <span class="n">120</span>
+oCanvas.<span class="f">SetLeft</span>(oSquare,nX)
+oCanvas.<span class="f">SetTop</span>(oSquare,nY)
+oCanvas.Children.<span class="f">Add</span>(oSquare)
+oDock {
+	Children.<span class="f">Add</span>(oInfo)
+	Children.<span class="f">Add</span>(oCanvas)
+}
+oWindow.<span class="f">setKeyDownEvent</span>(<span class="s">"keyDown(aDotNetArgs[2].Key)"</span>)
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the name of the key: Left, Right, Up, Down, A, Space ...</span>
+<span class="k">func</span> <span class="f">keyDown</span> cKey
+
+	<span class="k">switch</span> cKey
+	<span class="k">on</span> <span class="s">"Left"</span>
+		nX = max(<span class="n">0</span>,nX - <span class="n">10</span>)
+	<span class="k">on</span> <span class="s">"Right"</span>
+		nX = min(<span class="n">380</span>,nX + <span class="n">10</span>)
+	<span class="k">on</span> <span class="s">"Up"</span>
+		nY = max(<span class="n">0</span>,nY - <span class="n">10</span>)
+	<span class="k">on</span> <span class="s">"Down"</span>
+		nY = min(<span class="n">240</span>,nY + <span class="n">10</span>)
+	<span class="k">other</span>
+		oInfo.Text = <span class="s">"Key: "</span> + cKey
+		<span class="k">return</span>
+	<span class="k">off</span>
+	oCanvas.<span class="f">SetLeft</span>(oSquare,nX)
+	oCanvas.<span class="f">SetTop</span>(oSquare,nY)
+	oInfo.Text = <span class="s">"The square is at "</span> + nX + <span class="s">", "</span> + nY</code></pre></div></details></div></div><div class="item" id="numeric-updown"><div class="pic"><img src="img/shots/avalonia-13_numeric_updown.png" alt="Numeric updown" loading="lazy"></div><div class="info"><h3>Numeric updown</h3><p>Number boxes (NumericUpDown): a quantity and a price give a total; the ValueChanged event runs when a value changes</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 13_numeric_updown.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Number boxes (NumericUpDown): a quantity and a price give a total; the ValueChanged event runs when a value changes</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Order"</span>,<span class="n">360</span>,<span class="n">230</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oQuantity = numberBox(<span class="n">1</span>,<span class="n">1</span>,<span class="n">99</span>,<span class="n">1</span>)
+oPrice = numberBox(<span class="n">9.5</span>,<span class="n">0</span>,<span class="n">1000</span>,<span class="n">0.5</span>)
+oTotal = avText(<span class="s">""</span>)
+oTotal.FontSize = <span class="n">20</span>
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Quantity"</span>))
+	Children.<span class="f">Add</span>(oQuantity)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Price"</span>))
+	Children.<span class="f">Add</span>(oPrice)
+	Children.<span class="f">Add</span>(oTotal)
+}
+showTotal()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a number box with a start value, a range and a step</span>
+<span class="k">func</span> <span class="f">numberBox</span> nValue, nMinimum, nMaximum, nStep
+
+	oBox = <span class="k">new</span> <span class="t">NumericUpDown</span>()
+	oBox {
+		Minimum = nMinimum
+		Maximum = nMaximum
+		Increment = nStep
+		Value = nValue
+		setValueChangedEvent(<span class="s">"showTotal()"</span>)
+	}
+	<span class="k">return</span> oBox
+
+<span class="k">func</span> <span class="f">showTotal</span>
+
+	oTotal.Text = <span class="s">"Total: "</span> + (oQuantity.Value * oPrice.Value)</code></pre></div></details></div></div><div class="item" id="toggle-switch"><div class="pic"><img src="img/shots/avalonia-14_toggle_switch.png" alt="Toggle switch" loading="lazy"></div><div class="info"><h3>Toggle switch</h3><p>Toggle switches: a settings panel; each switch has a text for each state</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 14_toggle_switch.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Toggle switches: a settings panel; each switch has a text for each state</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Settings"</span>,<span class="n">360</span>,<span class="n">260</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oWifi = makeSwitch(<span class="s">"Wi-Fi"</span>)
+oBluetooth = makeSwitch(<span class="s">"Bluetooth"</span>)
+oAirplane = makeSwitch(<span class="s">"Airplane mode"</span>)
+oStatus = avText(<span class="s">""</span>)
+lBusy = <span class="k">False</span>
+oPanel {
+	Children.<span class="f">Add</span>(oWifi)
+	Children.<span class="f">Add</span>(oBluetooth)
+	Children.<span class="f">Add</span>(oAirplane)
+	Children.<span class="f">Add</span>(oStatus)
+}
+changed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">makeSwitch</span> cName
+
+	oSwitch = <span class="k">new</span> <span class="t">ToggleSwitch</span>()
+	oSwitch {
+		Content = cName
+		OnContent = cName + <span class="s">": on"</span>
+		OffContent = cName + <span class="s">": off"</span>
+		setIsCheckedChangedEvent(<span class="s">"changed()"</span>)
+	}
+	<span class="k">return</span> oSwitch
+
+<span class="c"># the airplane mode turns the other switches off</span>
+<span class="k">func</span> <span class="f">changed</span>
+
+	<span class="k">if</span> lBusy
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	lBusy = <span class="k">True</span>
+	<span class="k">if</span> oAirplane.IsChecked
+		oWifi.IsChecked = <span class="k">False</span>
+		oBluetooth.IsChecked = <span class="k">False</span>
+		oWifi.IsEnabled = <span class="k">False</span>
+		oBluetooth.IsEnabled = <span class="k">False</span>
+	<span class="k">else</span>
+		oWifi.IsEnabled = <span class="k">True</span>
+		oBluetooth.IsEnabled = <span class="k">True</span>
+	<span class="k">ok</span>
+	nOn = <span class="n">0</span>
+	<span class="k">for</span> oOne <span class="k">in</span> [oWifi,oBluetooth,oAirplane]
+		<span class="k">if</span> oOne.IsChecked
+			nOn++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oStatus.Text = <span class="s">""</span> + nOn + <span class="s">" of 3 switches are on"</span>
+	lBusy = <span class="k">False</span></code></pre></div></details></div></div><div class="item" id="date-picker"><div class="pic"><img src="img/shots/avalonia-15_date_picker.png" alt="Date picker" loading="lazy"></div><div class="info"><h3>Date picker</h3><p>A date picker (CalendarDatePicker): the days to a date and the weekday of a date</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 15_date_picker.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A date picker (CalendarDatePicker): the days to a date and the weekday of a date</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Dates"</span>,<span class="n">380</span>,<span class="n">230</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oPicker = <span class="k">new</span> <span class="t">CalendarDatePicker</span>()
+oPicker.<span class="f">setSelectedDateChangedEvent</span>(<span class="s">"picked()"</span>)
+oDay = avText(<span class="s">"Pick a date"</span>)
+oDays = avText(<span class="s">""</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Date"</span>))
+	Children.<span class="f">Add</span>(oPicker)
+	Children.<span class="f">Add</span>(oDay)
+	Children.<span class="f">Add</span>(oDays)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">picked</span>
+
+	oDate = oPicker.SelectedDate
+	<span class="k">if</span> oDate.<span class="f">isNull</span>()
+		oDay.Text = <span class="s">"Pick a date"</span>
+		oDays.Text = <span class="s">""</span>
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	oDay.Text = <span class="s">""</span> + oDate.DayOfWeek + <span class="s">", "</span> + oDate.Day + <span class="s">"/"</span> + oDate.Month + <span class="s">"/"</span> + oDate.Year
+	nDays = floor(oDate.<span class="f">Subtract</span>(<span class="f">dnStatic</span>(<span class="s">"System.DateTime"</span>,<span class="s">"get_Today"</span>,[])).TotalDays)
+	<span class="k">if</span> nDays &gt; <span class="n">0</span>
+		oDays.Text = <span class="s">""</span> + nDays + <span class="s">" days from today"</span>
+	<span class="k">but</span> nDays &lt; <span class="n">0</span>
+		oDays.Text = <span class="s">""</span> + (-nDays) + <span class="s">" days ago"</span>
+	<span class="k">else</span>
+		oDays.Text = <span class="s">"today"</span>
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="expander"><div class="pic"><img src="img/shots/avalonia-16_expander.png" alt="Expander" loading="lazy"></div><div class="info"><h3>Expander</h3><p>Expanders: sections that open and close (the Expanded and Collapsed events)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 16_expander.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Expanders: sections that open and close (the Expanded and Collapsed events)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Expanders"</span>,<span class="n">380</span>,<span class="n">320</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">12</span>)
+oWindow.Content = oPanel
+oStatus = avText(<span class="s">"Nothing opened yet"</span>)
+oAbout = section(<span class="s">"About"</span>,<span class="s">"Avalonia is a cross platform GUI library."</span>)
+oLicense = section(<span class="s">"License"</span>,<span class="s">"MIT"</span>)
+oContact = section(<span class="s">"Contact"</span>,<span class="s">"Ask the Ring community."</span>)
+oAbout.IsExpanded = <span class="k">True</span>
+oPanel {
+	Children.<span class="f">Add</span>(oAbout)
+	Children.<span class="f">Add</span>(oLicense)
+	Children.<span class="f">Add</span>(oContact)
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Collapse all"</span>,<span class="s">"collapseAll()"</span>))
+	Children.<span class="f">Add</span>(oStatus)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">section</span> cHeader, cText
+
+	oSection = <span class="k">new</span> <span class="t">Expander</span>()
+	oSection {
+		Header = cHeader
+		Content = avText(cText)
+		setExpandedEvent(<span class="s">"opened()"</span>)
+		setCollapsedEvent(<span class="s">"closed()"</span>)
+	}
+	<span class="k">return</span> oSection
+
+<span class="k">func</span> <span class="f">opened</span>
+
+	oStatus.Text = <span class="s">"Open sections: "</span> + openCount()
+
+<span class="k">func</span> <span class="f">closed</span>
+
+	oStatus.Text = <span class="s">"Open sections: "</span> + openCount()
+
+<span class="k">func</span> <span class="f">openCount</span>
+
+	nOpen = <span class="n">0</span>
+	<span class="k">for</span> oOne <span class="k">in</span> [oAbout,oLicense,oContact]
+		<span class="k">if</span> oOne.IsExpanded
+			nOpen++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> nOpen
+
+<span class="k">func</span> <span class="f">collapseAll</span>
+
+	oAbout.IsExpanded = <span class="k">False</span>
+	oLicense.IsExpanded = <span class="k">False</span>
+	oContact.IsExpanded = <span class="k">False</span></code></pre></div></details></div></div><div class="item" id="scrollviewer"><div class="pic"><img src="img/shots/avalonia-17_scrollviewer.png" alt="Scrollviewer" loading="lazy"></div><div class="info"><h3>Scrollviewer</h3><p>A scroll viewer: a long list of lines in a small window; buttons scroll to the top and to the end</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 17_scrollviewer.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A scroll viewer: a long list of lines in a small window; buttons scroll to the top and to the end</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Scrolling"</span>,<span class="n">360</span>,<span class="n">320</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oBar = avRow(<span class="n">6</span>)
+oBar.Margin = avThickness(<span class="n">6</span>)
+oDock.<span class="f">SetDock</span>(oBar,<span class="s">"Top"</span>)
+oBar {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Top"</span>,<span class="s">"toTop()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"End"</span>,<span class="s">"toEnd()"</span>))
+}
+oScroll = <span class="k">new</span> <span class="t">ScrollViewer</span>()
+oLines = <span class="k">new</span> <span class="t">StackPanel</span>()
+<span class="k">for</span> nLine = <span class="n">1</span> <span class="k">to</span> <span class="n">60</span>
+	oLines.Children.<span class="f">Add</span>(avText(<span class="s">"Line number "</span> + nLine))
+<span class="k">next</span>
+oScroll.Content = oLines
+oDock {
+	Children.<span class="f">Add</span>(oBar)
+	Children.<span class="f">Add</span>(oScroll)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">toTop</span>
+
+	oScroll.<span class="f">ScrollToHome</span>()
+
+<span class="k">func</span> <span class="f">toEnd</span>
+
+	oScroll.<span class="f">ScrollToEnd</span>()</code></pre></div></details></div></div><div class="item" id="treeview"><div class="pic"><img src="img/shots/avalonia-18_treeview.png" alt="Treeview" loading="lazy"></div><div class="info"><h3>Treeview</h3><p>A tree view: folders and files; selecting an item shows its path</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 18_treeview.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A tree view: folders and files; selecting an item shows its path</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Tree"</span>,<span class="n">420</span>,<span class="n">340</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oPath = avText(<span class="s">"Select an item"</span>)
+oPath.Margin = avThickness(<span class="n">6</span>)
+oDock.<span class="f">SetDock</span>(oPath,<span class="s">"Bottom"</span>)
+oTree = <span class="k">new</span> <span class="t">TreeView</span>()
+oTree.<span class="f">setSelectionChangedEvent</span>(<span class="s">"selected()"</span>)
+
+oProject = node(<span class="s">"project"</span>,[<span class="s">"src"</span>,<span class="s">"docs"</span>,<span class="s">"README.md"</span>])
+oSource = oProject.Items.<span class="f">toList</span>()[<span class="n">1</span>]
+<span class="k">for</span> cFile <span class="k">in</span> [<span class="s">"main.ring"</span>,<span class="s">"helpers.ring"</span>,<span class="s">"tests.ring"</span>]
+	oSource.Items.<span class="f">Add</span>(node(cFile,[]))
+<span class="k">next</span>
+oDocs = oProject.Items.<span class="f">toList</span>()[<span class="n">2</span>]
+oDocs.Items.<span class="f">Add</span>(node(<span class="s">"guide.md"</span>,[]))
+oDocs.Items.<span class="f">Add</span>(node(<span class="s">"api.md"</span>,[]))
+oTree.Items.<span class="f">Add</span>(oProject)
+oProject.IsExpanded = <span class="k">True</span>
+oDock {
+	Children.<span class="f">Add</span>(oPath)
+	Children.<span class="f">Add</span>(oTree)
+}
+aParents = []
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># an item with a header and children (the names of items)</span>
+<span class="k">func</span> <span class="f">node</span> cHeader, aChildren
+
+	oItem = <span class="k">new</span> <span class="t">TreeViewItem</span>()
+	oItem.Header = cHeader
+	<span class="k">for</span> cChild <span class="k">in</span> aChildren
+		oItem.Items.<span class="f">Add</span>(node(cChild,[]))
+	<span class="k">next</span>
+	<span class="k">return</span> oItem
+
+<span class="k">func</span> <span class="f">selected</span>
+
+	oItem = oTree.SelectedItem
+	<span class="k">if</span> isobject(oItem) <span class="k">and</span> <span class="k">not</span> oItem.<span class="f">isNull</span>()
+		oPath.Text = <span class="s">"Selected: "</span> + oItem.Header
+	<span class="k">ok</span>
+
+<span class="c"># the number of items of a tree (an item and everything below it)</span>
+<span class="k">func</span> <span class="f">countItems</span> oItem
+
+	nCount = <span class="n">1</span>
+	<span class="k">for</span> oChild <span class="k">in</span> oItem.Items.<span class="f">toList</span>()
+		nCount += countItems(oChild)
+	<span class="k">next</span>
+	<span class="k">return</span> nCount</code></pre></div></details></div></div><div class="item" id="tooltips"><div class="pic"><img src="img/shots/avalonia-19_tooltips.png" alt="Tooltips" loading="lazy"></div><div class="info"><h3>Tooltips</h3><p>Tool tips: a text that appears when the pointer rests on a control</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 19_tooltips.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Tool tips: a text that appears when the pointer rests on a control</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Tool tips"</span>,<span class="n">360</span>,<span class="n">200</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oSave = avButton(<span class="s">"Save"</span>,<span class="s">""</span>)
+oOpen = avButton(<span class="s">"Open"</span>,<span class="s">""</span>)
+oQuit = avButton(<span class="s">"Quit"</span>,<span class="s">""</span>)
+oTip = <span class="k">new</span> <span class="t">ToolTip</span>()
+oTip.<span class="f">SetTip</span>(oSave,<span class="s">"Save the document (Ctrl+S)"</span>)
+oTip.<span class="f">SetTip</span>(oOpen,<span class="s">"Open a document (Ctrl+O)"</span>)
+oTip.<span class="f">SetTip</span>(oQuit,<span class="s">"Close the program"</span>)
+oTip.<span class="f">SetShowDelay</span>(oSave,<span class="n">200</span>)
+oRow = avRow(<span class="n">8</span>)
+oRow {
+	Children.<span class="f">Add</span>(oSave)
+	Children.<span class="f">Add</span>(oOpen)
+	Children.<span class="f">Add</span>(oQuit)
+}
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Rest the pointer on a button"</span>))
+	Children.<span class="f">Add</span>(oRow)
+}
+
+avRun(oWindow)</code></pre></div></details></div></div><div class="item" id="context-menu"><div class="pic"><img src="img/shots/avalonia-20_context_menu.png" alt="Context menu" loading="lazy"></div><div class="info"><h3>Context menu</h3><p>A context menu (the right button) on a text box: commands that change the text</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 20_context_menu.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A context menu (the right button) on a text box: commands that change the text</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Context menu"</span>,<span class="n">420</span>,<span class="n">240</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oBox = <span class="k">new</span> <span class="t">TextBox</span>()
+oBox {
+	Text = <span class="s">"Right click here"</span>
+	Height = <span class="n">90</span>
+	AcceptsReturn = <span class="k">True</span>
+}
+oMenu = <span class="k">new</span> <span class="t">ContextMenu</span>()
+oUpper = item(<span class="s">"Upper case"</span>,<span class="s">"upperCase()"</span>)
+oLower = item(<span class="s">"Lower case"</span>,<span class="s">"lowerCase()"</span>)
+oClear = item(<span class="s">"Clear"</span>,<span class="s">"clearText()"</span>)
+oMenu.Items.<span class="f">Add</span>(oUpper)
+oMenu.Items.<span class="f">Add</span>(oLower)
+oMenu.Items.<span class="f">Add</span>(<span class="k">new</span> <span class="t">Separator</span>())
+oMenu.Items.<span class="f">Add</span>(oClear)
+oBox.ContextMenu = oMenu
+oInfo = avText(<span class="s">"Commands used: 0"</span>)
+nUsed = <span class="n">0</span>
+oPanel {
+	Children.<span class="f">Add</span>(oBox)
+	Children.<span class="f">Add</span>(oInfo)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">item</span> cHeader, cCode
+
+	oItem = <span class="k">new</span> <span class="t">MenuItem</span>()
+	oItem.Header = cHeader
+	oItem.<span class="f">setClickEvent</span>(cCode)
+	<span class="k">return</span> oItem
+
+<span class="k">func</span> <span class="f">used</span>
+
+	nUsed++
+	oInfo.Text = <span class="s">"Commands used: "</span> + nUsed
+
+<span class="k">func</span> <span class="f">textNow</span>
+
+	cText = oBox.Text
+	<span class="k">if</span> isstring(cText)
+		<span class="k">return</span> cText
+	<span class="k">ok</span>
+	<span class="k">return</span> <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">upperCase</span>
+
+	oBox.Text = upper(textNow())
+	used()
+
+<span class="k">func</span> <span class="f">lowerCase</span>
+
+	oBox.Text = lower(textNow())
+	used()
+
+<span class="k">func</span> <span class="f">clearText</span>
+
+	oBox.Text = <span class="s">""</span>
+	used()</code></pre></div></details></div></div><div class="item" id="borders-shadows"><div class="pic"><img src="img/shots/avalonia-21_borders_shadows.png" alt="Borders shadows" loading="lazy"></div><div class="info"><h3>Borders shadows</h3><p>Borders: thickness, corner radius, background and a shadow (BoxShadow); a slider changes the radius</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 21_borders_shadows.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Borders: thickness, corner radius, background and a shadow (BoxShadow); a slider changes the radius</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Borders"</span>,<span class="n">380</span>,<span class="n">300</span>)
+oPanel = avStack(<span class="n">12</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oCard = <span class="k">new</span> <span class="t">Border</span>()
+oCard {
+	Width = <span class="n">240</span>
+	Height = <span class="n">110</span>
+	Background = avBrush(<span class="s">"White"</span>)
+	BorderBrush = avBrush(<span class="s">"#2E86AB"</span>)
+	BorderThickness = avThickness(<span class="n">2</span>)
+	CornerRadius = (<span class="k">new</span> <span class="t">CornerRadius</span>).<span class="f">Parse</span>(<span class="s">"12"</span>)
+	BoxShadow = (<span class="k">new</span> <span class="t">BoxShadows</span>).<span class="f">Parse</span>(<span class="s">"4 6 12 0 #55000000"</span>)
+	Padding = avThickness(<span class="n">12</span>)
+}
+oCard.Child = avText(<span class="s">"A card with a rounded border and a shadow"</span>)
+oRadius = <span class="k">new</span> <span class="t">Slider</span>()
+oRadius {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">55</span>
+	Value = <span class="n">12</span>
+	setValueChangedEvent(<span class="s">"radiusChanged()"</span>)
+}
+oInfo = avText(<span class="s">"Radius: 12"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oCard)
+	Children.<span class="f">Add</span>(oRadius)
+	Children.<span class="f">Add</span>(oInfo)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">radiusChanged</span>
+
+	nRadius = floor(oRadius.Value)
+	oCard.CornerRadius = (<span class="k">new</span> <span class="t">CornerRadius</span>).<span class="f">Parse</span>(<span class="s">""</span> + nRadius)
+	oInfo.Text = <span class="s">"Radius: "</span> + nRadius</code></pre></div></details></div></div><div class="item" id="gradients"><div class="pic"><img src="img/shots/avalonia-22_gradients.png" alt="Gradients" loading="lazy"></div><div class="info"><h3>Gradients</h3><p>Gradients: a linear gradient and a radial gradient; the stops are a list that the program changes</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 22_gradients.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Gradients: a linear gradient and a radial gradient; the stops are a list that the program changes</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Gradients"</span>,<span class="n">440</span>,<span class="n">260</span>)
+oPanel = avRow(<span class="n">16</span>)
+oPanel.Margin = avThickness(<span class="n">16</span>)
+oWindow.Content = oPanel
+
+oLinear = <span class="k">new</span> <span class="t">LinearGradientBrush</span>()
+oLinear.StartPoint = (<span class="k">new</span> <span class="t">RelativePoint</span>).<span class="f">Parse</span>(<span class="s">"0%,0%"</span>)
+oLinear.EndPoint = (<span class="k">new</span> <span class="t">RelativePoint</span>).<span class="f">Parse</span>(<span class="s">"100%,100%"</span>)
+addStop(oLinear,<span class="s">"#FF6B6B"</span>,<span class="n">0</span>)
+addStop(oLinear,<span class="s">"#FFD93D"</span>,<span class="n">0.5</span>)
+addStop(oLinear,<span class="s">"#6BCB77"</span>,<span class="n">1</span>)
+oFirst = <span class="k">new</span> <span class="t">Rectangle</span>()
+oFirst {
+	Width = <span class="n">180</span>
+	Height = <span class="n">180</span>
+	Fill = oLinear
+}
+
+oRadial = <span class="k">new</span> <span class="t">RadialGradientBrush</span>()
+addStop(oRadial,<span class="s">"White"</span>,<span class="n">0</span>)
+addStop(oRadial,<span class="s">"#4D96FF"</span>,<span class="n">0.6</span>)
+addStop(oRadial,<span class="s">"#1B3A57"</span>,<span class="n">1</span>)
+oSecond = <span class="k">new</span> <span class="t">Ellipse</span>()
+oSecond {
+	Width = <span class="n">180</span>
+	Height = <span class="n">180</span>
+	Fill = oRadial
+}
+oPanel {
+	Children.<span class="f">Add</span>(oFirst)
+	Children.<span class="f">Add</span>(oSecond)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a stop of a gradient: a color at an offset from 0 to 1</span>
+<span class="k">func</span> <span class="f">addStop</span> oBrush, cColor, nOffset
+
+	oStop = (<span class="k">new</span> <span class="t">GradientStop</span>).@<span class="k">New</span>([ :<span class="t">color</span> = (<span class="k">new</span> <span class="t">Color</span>).<span class="f">Parse</span>(cColor), :offset = nOffset ])
+	oBrush.GradientStops.<span class="f">Add</span>(oStop)</code></pre></div></details></div></div><div class="item" id="transforms"><div class="pic"><img src="img/shots/avalonia-23_transforms.png" alt="Transforms" loading="lazy"></div><div class="info"><h3>Transforms</h3><p>Transforms: a rectangle is rotated, scaled and skewed with sliders (RenderTransform and a TransformGroup)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 23_transforms.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Transforms: a rectangle is rotated, scaled and skewed with sliders (RenderTransform and a TransformGroup)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Transforms"</span>,<span class="n">460</span>,<span class="n">380</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oControls = avStack(<span class="n">4</span>,<span class="n">10</span>)
+oDock.<span class="f">SetDock</span>(oControls,<span class="s">"Bottom"</span>)
+oRotate = <span class="k">new</span> <span class="t">RotateTransform</span>()
+oScale = <span class="k">new</span> <span class="t">ScaleTransform</span>()
+oSkew = <span class="k">new</span> <span class="t">SkewTransform</span>()
+oGroup = <span class="k">new</span> <span class="t">TransformGroup</span>()
+oGroup.Children.<span class="f">Add</span>(oScale)
+oGroup.Children.<span class="f">Add</span>(oSkew)
+oGroup.Children.<span class="f">Add</span>(oRotate)
+
+oAngle = slider(<span class="s">"Angle"</span>,-<span class="n">180</span>,<span class="n">180</span>,<span class="n">0</span>)
+oSize = slider(<span class="s">"Scale in percent"</span>,<span class="n">20</span>,<span class="n">200</span>,<span class="n">100</span>)
+oSlant = slider(<span class="s">"Skew"</span>,-<span class="n">45</span>,<span class="n">45</span>,<span class="n">0</span>)
+oInfo = avText(<span class="s">""</span>)
+oControls.Children.<span class="f">Add</span>(oInfo)
+
+oBox = <span class="k">new</span> <span class="t">Border</span>()
+oBox {
+	Width = <span class="n">120</span>
+	Height = <span class="n">80</span>
+	Background = avBrush(<span class="s">"#2E86AB"</span>)
+	CornerRadius = (<span class="k">new</span> <span class="t">CornerRadius</span>).<span class="f">Parse</span>(<span class="s">"8"</span>)
+	HorizontalAlignment = <span class="s">"Center"</span>
+	VerticalAlignment = <span class="s">"Center"</span>
+	RenderTransformOrigin = (<span class="k">new</span> <span class="t">RelativePoint</span>).<span class="f">Parse</span>(<span class="s">"50%,50%"</span>)
+	RenderTransform = oGroup
+}
+oBox.Child = avText(<span class="s">"Ring"</span>)
+oDock {
+	Children.<span class="f">Add</span>(oControls)
+	Children.<span class="f">Add</span>(oBox)
+}
+changed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a labeled slider in the panel of the controls</span>
+<span class="k">func</span> <span class="f">slider</span> cName, nMinimum, nMaximum, nValue
+
+	oSlider = <span class="k">new</span> <span class="t">Slider</span>()
+	oSlider {
+		Minimum = nMinimum
+		Maximum = nMaximum
+		Value = nValue
+		setValueChangedEvent(<span class="s">"changed()"</span>)
+	}
+	oControls.Children.<span class="f">Add</span>(avText(cName))
+	oControls.Children.<span class="f">Add</span>(oSlider)
+	<span class="k">return</span> oSlider
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	oRotate.Angle = oAngle.Value
+	oScale.ScaleX = oSize.Value / <span class="n">100</span>
+	oScale.ScaleY = oSize.Value / <span class="n">100</span>
+	oSkew.AngleX = oSlant.Value
+	oInfo.Text = <span class="s">"Angle "</span> + floor(oAngle.Value) + <span class="s">", scale "</span> + floor(oSize.Value) + <span class="s">" %, skew "</span> + floor(oSlant.Value)</code></pre></div></details></div></div><div class="item" id="dialogs"><div class="pic"><img src="img/shots/avalonia-24_dialogs.png" alt="Dialogs" loading="lazy"></div><div class="info"><h3>Dialogs</h3><p>A second window: a dialog that is shown on top of the main window; it gives its answer back when it closes</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 24_dialogs.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A second window: a dialog that is shown on top of the main window; it gives its answer back when it closes</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Main window"</span>,<span class="n">380</span>,<span class="n">200</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oAnswer = avText(<span class="s">"No answer yet"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Ask a question"</span>,<span class="s">"ask()"</span>))
+	Children.<span class="f">Add</span>(oAnswer)
+}
+oDialog = <span class="s">""</span>
+cAnswer = <span class="s">""</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the dialog: a question and two buttons; it closes when one is pressed</span>
+<span class="k">func</span> <span class="f">makeDialog</span> cQuestion
+
+	oBox = avWindow(<span class="s">"Question"</span>,<span class="n">300</span>,<span class="n">140</span>)
+	oBox.WindowStartupLocation = <span class="s">"CenterOwner"</span>
+	oContent = avStack(<span class="n">12</span>,<span class="n">16</span>)
+	oContent.Children.<span class="f">Add</span>(avText(cQuestion))
+	oButtons = avRow(<span class="n">8</span>)
+	oButtons {
+		Children.<span class="f">Add</span>(avButton(<span class="s">"Yes"</span>,<span class="s">"answer('Yes')"</span>))
+		Children.<span class="f">Add</span>(avButton(<span class="s">"No"</span>,<span class="s">"answer('No')"</span>))
+	}
+	oContent.Children.<span class="f">Add</span>(oButtons)
+	oBox.Content = oContent
+	<span class="k">return</span> oBox
+
+<span class="k">func</span> <span class="f">ask</span>
+
+	oDialog = makeDialog(<span class="s">"Do you like Avalonia?"</span>)
+	oDialog.<span class="f">Show</span>(oWindow)
+
+<span class="k">func</span> <span class="f">answer</span> cText
+
+	cAnswer = cText
+	oAnswer.Text = <span class="s">"You said: "</span> + cText
+	oDialog.<span class="f">Close</span>([])</code></pre></div></details></div></div><div class="item" id="window-state"><div class="pic"><img src="img/shots/avalonia-25_window_state.png" alt="Window state" loading="lazy"></div><div class="info"><h3>Window state</h3><p>The window: its title, size, state and position are properties that the program reads and changes</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 25_window_state.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># The window: its title, size, state and position are properties that the program reads and changes</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Window properties"</span>,<span class="n">420</span>,<span class="n">260</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oTitle = <span class="k">new</span> <span class="t">TextBox</span>()
+oTitle.Text = <span class="s">"Window properties"</span>
+oTitle.<span class="f">setTextChangedEvent</span>(<span class="s">"retitle()"</span>)
+oInfo = avText(<span class="s">""</span>)
+oRow = avRow(<span class="n">6</span>)
+oRow {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Wider"</span>,<span class="s">"wider()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Narrower"</span>,<span class="s">"narrower()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Maximize"</span>,<span class="s">"maximize()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Restore"</span>,<span class="s">"restore()"</span>))
+}
+oTopmost = <span class="k">new</span> <span class="t">CheckBox</span>()
+oTopmost.Content = <span class="s">"Always on top"</span>
+oTopmost.<span class="f">setIsCheckedChangedEvent</span>(<span class="s">"topmost()"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Title"</span>))
+	Children.<span class="f">Add</span>(oTitle)
+	Children.<span class="f">Add</span>(oRow)
+	Children.<span class="f">Add</span>(oTopmost)
+	Children.<span class="f">Add</span>(oInfo)
+}
+showInfo()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">showInfo</span>
+
+	oInfo.Text = <span class="s">"Width "</span> + floor(oWindow.Width) + <span class="s">", state "</span> + oWindow.WindowState
+
+<span class="k">func</span> <span class="f">retitle</span>
+
+	cText = oTitle.Text
+	<span class="k">if</span> isstring(cText)
+		oWindow.Title = cText
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">wider</span>
+
+	oWindow.Width = oWindow.Width + <span class="n">40</span>
+	showInfo()
+
+<span class="k">func</span> <span class="f">narrower</span>
+
+	oWindow.Width = oWindow.Width - <span class="n">40</span>
+	showInfo()
+
+<span class="k">func</span> <span class="f">maximize</span>
+
+	oWindow.WindowState = <span class="s">"Maximized"</span>
+	showInfo()
+
+<span class="k">func</span> <span class="f">restore</span>
+
+	oWindow.WindowState = <span class="s">"Normal"</span>
+	showInfo()
+
+<span class="k">func</span> <span class="f">topmost</span>
+
+	oWindow.Topmost = oTopmost.IsChecked</code></pre></div></details></div></div><div class="item" id="multi-window"><div class="pic"><img src="img/shots/avalonia-26_multi_window.png" alt="Multi window" loading="lazy"></div><div class="info"><h3>Multi window</h3><p>Several windows: the main window opens note windows; each one keeps its own text; closing the main window ends the program</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 26_multi_window.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Several windows: the main window opens note windows; each one keeps its own text; closing the main window ends the program</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Notes"</span>,<span class="n">340</span>,<span class="n">180</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oCount = avText(<span class="s">"0 note windows"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"New note"</span>,<span class="s">"newNote()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Close all notes"</span>,<span class="s">"closeNotes()"</span>))
+	Children.<span class="f">Add</span>(oCount)
+}
+aNotes = []          <span class="c"># the note windows</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">newNote</span>
+
+	oNote = avWindow(<span class="s">"Note "</span> + (len(aNotes) + <span class="n">1</span>),<span class="n">260</span>,<span class="n">180</span>)
+	oNote.Content = <span class="k">new</span> <span class="t">TextBox</span>()
+	oNote.Content.AcceptsReturn = <span class="k">True</span>
+	oNote.Content.Text = <span class="s">"Note "</span> + (len(aNotes) + <span class="n">1</span>)
+	oNote.<span class="f">Show</span>([])
+	aNotes + oNote
+	showCount()
+
+<span class="k">func</span> <span class="f">closeNotes</span>
+
+	<span class="k">for</span> oNote <span class="k">in</span> aNotes
+		oNote.<span class="f">Close</span>([])
+	<span class="k">next</span>
+	aNotes = []
+	showCount()
+
+<span class="k">func</span> <span class="f">showCount</span>
+
+	oCount.Text = <span class="s">""</span> + len(aNotes) + <span class="s">" note windows"</span></code></pre></div></details></div></div><div class="item" id="text-formatting"><div class="pic"><img src="img/shots/avalonia-27_text_formatting.png" alt="Text formatting" loading="lazy"></div><div class="info"><h3>Text formatting</h3><p>Text formatting: size, weight, style, wrapping, trimming and alignment of a TextBlock</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 27_text_formatting.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Text formatting: size, weight, style, wrapping, trimming and alignment of a TextBlock</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Text formatting"</span>,<span class="n">480</span>,<span class="n">420</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oControls = avStack(<span class="n">6</span>,<span class="n">12</span>)
+oDock.<span class="f">SetDock</span>(oControls,<span class="s">"Left"</span>)
+oControls.Width = <span class="n">170</span>
+oText = <span class="s">""</span>          <span class="c"># the text block that the controls format (made below)</span>
+oSize = <span class="k">new</span> <span class="t">Slider</span>()
+oSize {
+	Minimum = <span class="n">8</span>
+	Maximum = <span class="n">40</span>
+	Value = <span class="n">16</span>
+	setValueChangedEvent(<span class="s">"format()"</span>)
+}
+oBold = check(<span class="s">"Bold"</span>)
+oItalic = check(<span class="s">"Italic"</span>)
+oWrap = check(<span class="s">"Wrap text"</span>)
+oWrap.IsChecked = <span class="k">True</span>
+oUnderline = check(<span class="s">"Underline"</span>)
+oAlign = <span class="k">new</span> <span class="t">ComboBox</span>()
+<span class="k">for</span> cAlign <span class="k">in</span> [<span class="s">"Left"</span>,<span class="s">"Center"</span>,<span class="s">"Right"</span>,<span class="s">"Justify"</span>]
+	oAlign.Items.<span class="f">Add</span>(cAlign)
+<span class="k">next</span>
+oAlign.SelectedIndex = <span class="n">0</span>
+oAlign.<span class="f">setSelectionChangedEvent</span>(<span class="s">"format()"</span>)
+oControls {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Size"</span>))
+	Children.<span class="f">Add</span>(oSize)
+	Children.<span class="f">Add</span>(oBold)
+	Children.<span class="f">Add</span>(oItalic)
+	Children.<span class="f">Add</span>(oUnderline)
+	Children.<span class="f">Add</span>(oWrap)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Alignment"</span>))
+	Children.<span class="f">Add</span>(oAlign)
+}
+oText = <span class="k">new</span> <span class="t">TextBlock</span>()
+oText {
+	Text = <span class="s">"Avalonia draws text with its own layout engine: size, weight, style, wrapping, trimming and alignment are properties of a TextBlock."</span>
+	Margin = avThickness(<span class="n">12</span>)
+}
+oDock {
+	Children.<span class="f">Add</span>(oControls)
+	Children.<span class="f">Add</span>(oText)
+}
+format()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">check</span> cText
+
+	oBox = <span class="k">new</span> <span class="t">CheckBox</span>()
+	oBox {
+		Content = cText
+		setIsCheckedChangedEvent(<span class="s">"format()"</span>)
+	}
+	<span class="k">return</span> oBox
+
+<span class="k">func</span> <span class="f">format</span>
+
+	<span class="k">if</span> <span class="k">not</span> isobject(oText) <span class="k">or</span> <span class="k">not</span> isobject(oAlign)
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	oText.FontSize = oSize.Value
+	<span class="k">if</span> oBold.IsChecked
+		oText.FontWeight = <span class="s">"Bold"</span>
+	<span class="k">else</span>
+		oText.FontWeight = <span class="s">"Normal"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> oItalic.IsChecked
+		oText.FontStyle = <span class="s">"Italic"</span>
+	<span class="k">else</span>
+		oText.FontStyle = <span class="s">"Normal"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> oWrap.IsChecked
+		oText.TextWrapping = <span class="s">"Wrap"</span>
+	<span class="k">else</span>
+		oText.TextWrapping = <span class="s">"NoWrap"</span>
+	<span class="k">ok</span>
+	<span class="k">if</span> oAlign.SelectedIndex &gt;= <span class="n">0</span>
+		oText.TextAlignment = oAlign.SelectedItem
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="rich-text"><div class="pic"><img src="img/shots/avalonia-28_rich_text.png" alt="Rich text" loading="lazy"></div><div class="info"><h3>Rich text</h3><p>Rich text: one TextBlock with runs of different formats (Inlines: Run, Bold, Italic, Underline, LineBreak)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 28_rich_text.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Rich text: one TextBlock with runs of different formats (Inlines: Run, Bold, Italic, Underline, LineBreak)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Rich text"</span>,<span class="n">460</span>,<span class="n">260</span>)
+oText = <span class="k">new</span> <span class="t">TextBlock</span>()
+oText {
+	Margin = avThickness(<span class="n">16</span>)
+	TextWrapping = <span class="s">"Wrap"</span>
+	FontSize = <span class="n">16</span>
+}
+oWindow.Content = oText
+add(oText,<span class="s">"Plain text, "</span>,<span class="s">""</span>)
+add(oText,<span class="s">"bold text"</span>,<span class="s">"Bold"</span>)
+add(oText,<span class="s">", "</span>,<span class="s">""</span>)
+add(oText,<span class="s">"italic text"</span>,<span class="s">"Italic"</span>)
+add(oText,<span class="s">", "</span>,<span class="s">""</span>)
+add(oText,<span class="s">"underlined text"</span>,<span class="s">"Underline"</span>)
+oText.Inlines.<span class="f">Add</span>(<span class="k">new</span> <span class="t">DocumentsLineBreak</span>())
+add(oText,<span class="s">"A red word"</span>,<span class="s">"Red"</span>)
+add(oText,<span class="s">" and a big one"</span>,<span class="s">"Big"</span>)
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a run of text with a format</span>
+<span class="k">func</span> <span class="f">add</span> oBlock, cText, cFormat
+
+	oRun = <span class="k">new</span> <span class="t">Run</span>()
+	oRun.Text = cText
+	<span class="k">switch</span> cFormat
+	<span class="k">on</span> <span class="s">"Bold"</span>
+		oRun.FontWeight = <span class="s">"Bold"</span>
+	<span class="k">on</span> <span class="s">"Italic"</span>
+		oRun.FontStyle = <span class="s">"Italic"</span>
+	<span class="k">on</span> <span class="s">"Underline"</span>
+		oRun.TextDecorations = (<span class="k">new</span> <span class="t">TextDecorations</span>).<span class="f">getUnderline</span>()
+	<span class="k">on</span> <span class="s">"Red"</span>
+		oRun.Foreground = avBrush(<span class="s">"Red"</span>)
+	<span class="k">on</span> <span class="s">"Big"</span>
+		oRun.FontSize = <span class="n">30</span>
+	<span class="k">off</span>
+	oBlock.Inlines.<span class="f">Add</span>(oRun)</code></pre></div></details></div></div><div class="item" id="drawing-image"><div class="pic"><img src="img/shots/avalonia-29_drawing_image.png" alt="Drawing image" loading="lazy"></div><div class="info"><h3>Drawing image</h3><p>A picture made of drawings (DrawingImage): geometries with brushes and pens, shown by an Image control</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 29_drawing_image.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A picture made of drawings (DrawingImage): geometries with brushes and pens, shown by an Image control</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Drawing"</span>,<span class="n">340</span>,<span class="n">340</span>)
+oGroup = <span class="k">new</span> <span class="t">DrawingGroup</span>()
+oSky = drawing(<span class="s">"RectangleGeometry"</span>,<span class="s">"0,0,200,200"</span>,<span class="s">"#87CEEB"</span>,<span class="s">""</span>)
+oSun = <span class="k">new</span> <span class="t">GeometryDrawing</span>()
+oSun.Brush = avBrush(<span class="s">"#FFD93D"</span>)
+oSun.Geometry = (<span class="k">new</span> <span class="t">EllipseGeometry</span>).@<span class="k">New</span>([ :<span class="t">rect</span> = (<span class="k">new</span> <span class="t">Rect</span>).<span class="f">Parse</span>(<span class="s">"130,20,40,40"</span>) ])
+oGrass = drawing(<span class="s">"RectangleGeometry"</span>,<span class="s">"0,140,200,60"</span>,<span class="s">"#4CAF50"</span>,<span class="s">""</span>)
+oHouse = drawing(<span class="s">"RectangleGeometry"</span>,<span class="s">"40,90,70,60"</span>,<span class="s">"#E07A5F"</span>,<span class="s">"#3D405B"</span>)
+oRoof = <span class="k">new</span> <span class="t">GeometryDrawing</span>()
+oRoof.Brush = avBrush(<span class="s">"#3D405B"</span>)
+oRoof.Geometry = (<span class="k">new</span> <span class="t">Geometry</span>).<span class="f">Parse</span>(<span class="s">"M 30,90 L 75,50 L 120,90 Z"</span>)
+oGroup {
+	Children.<span class="f">Add</span>(oSky)
+	Children.<span class="f">Add</span>(oSun)
+	Children.<span class="f">Add</span>(oGrass)
+	Children.<span class="f">Add</span>(oHouse)
+	Children.<span class="f">Add</span>(oRoof)
+}
+oPicture = <span class="k">new</span> <span class="t">DrawingImage</span>()
+oPicture.Drawing = oGroup
+oImage = <span class="k">new</span> <span class="t">Image</span>()
+oImage {
+	Source = oPicture
+	Stretch = <span class="s">"Uniform"</span>
+	Margin = avThickness(<span class="n">16</span>)
+}
+oWindow.Content = oImage
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a rectangle drawing: the rectangle as text "x,y,width,height", the fill and the color of the line ("" for no line)</span>
+<span class="k">func</span> <span class="f">drawing</span> cKind, cRect, cFill, cLine
+
+	oDrawing = <span class="k">new</span> <span class="t">GeometryDrawing</span>()
+	oDrawing.Brush = avBrush(cFill)
+	oRectangle = (<span class="k">new</span> <span class="t">RectangleGeometry</span>).@<span class="k">New</span>([ :<span class="t">rect</span> = (<span class="k">new</span> <span class="t">Rect</span>).<span class="f">Parse</span>(cRect) ])
+	oDrawing.Geometry = oRectangle
+	<span class="k">if</span> cLine != <span class="s">""</span>
+		oPen = <span class="k">new</span> <span class="t">Pen</span>()
+		oPen.Brush = avBrush(cLine)
+		oPen.Thickness = <span class="n">2</span>
+		oDrawing.Pen = oPen
+	<span class="k">ok</span>
+	<span class="k">return</span> oDrawing</code></pre></div></details></div></div><div class="item" id="uniform-grid"><div class="pic"><img src="img/shots/avalonia-30_uniform_grid.png" alt="Uniform grid" loading="lazy"></div><div class="info"><h3>Uniform grid</h3><p>A uniform grid: cells of the same size; a button grid whose size changes with a slider</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 30_uniform_grid.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A uniform grid: cells of the same size; a button grid whose size changes with a slider</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Uniform grid"</span>,<span class="n">420</span>,<span class="n">380</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oSlider = <span class="k">new</span> <span class="t">Slider</span>()
+oSlider {
+	Minimum = <span class="n">1</span>
+	Maximum = <span class="n">6</span>
+	Value = <span class="n">3</span>
+	TickFrequency = <span class="n">1</span>
+	IsSnapToTickEnabled = <span class="k">True</span>
+	Margin = avThickness(<span class="n">8</span>)
+	setValueChangedEvent(<span class="s">"resize()"</span>)
+}
+oDock.<span class="f">SetDock</span>(oSlider,<span class="s">"Bottom"</span>)
+oGrid = <span class="k">new</span> <span class="t">UniformGrid</span>()
+oDock {
+	Children.<span class="f">Add</span>(oSlider)
+	Children.<span class="f">Add</span>(oGrid)
+}
+resize()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the grid has n columns and n rows of buttons</span>
+<span class="k">func</span> <span class="f">resize</span>
+
+	nSize = floor(oSlider.Value)
+	oGrid.Columns = nSize
+	oGrid.Rows = nSize
+	oGrid.Children.<span class="f">Clear</span>()
+	<span class="k">for</span> nCell = <span class="n">1</span> <span class="k">to</span> nSize * nSize
+		oButton = avButton(<span class="s">""</span> + nCell,<span class="s">""</span>)
+		oButton.HorizontalAlignment = <span class="s">"Stretch"</span>
+		oButton.VerticalAlignment = <span class="s">"Stretch"</span>
+		oButton.HorizontalContentAlignment = <span class="s">"Center"</span>
+		oButton.VerticalContentAlignment = <span class="s">"Center"</span>
+		oButton.Margin = avThickness(<span class="n">2</span>)
+		oGrid.Children.<span class="f">Add</span>(oButton)
+	<span class="k">next</span></code></pre></div></details></div></div><div class="item" id="viewbox"><div class="pic"><img src="img/shots/avalonia-31_viewbox.png" alt="Viewbox" loading="lazy"></div><div class="info"><h3>Viewbox</h3><p>A viewbox: its content is scaled to the space that it has; the Stretch property tells how</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 31_viewbox.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A viewbox: its content is scaled to the space that it has; the Stretch property tells how</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Viewbox"</span>,<span class="n">420</span>,<span class="n">360</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oChoice = <span class="k">new</span> <span class="t">ComboBox</span>()
+<span class="k">for</span> cStretch <span class="k">in</span> [<span class="s">"Uniform"</span>,<span class="s">"UniformToFill"</span>,<span class="s">"Fill"</span>,<span class="s">"None"</span>]
+	oChoice.Items.<span class="f">Add</span>(cStretch)
+<span class="k">next</span>
+oChoice.SelectedIndex = <span class="n">0</span>
+oChoice.Margin = avThickness(<span class="n">8</span>)
+oChoice.<span class="f">setSelectionChangedEvent</span>(<span class="s">"stretch()"</span>)
+oDock.<span class="f">SetDock</span>(oChoice,<span class="s">"Top"</span>)
+oBox = <span class="k">new</span> <span class="t">Viewbox</span>()
+oContent = <span class="k">new</span> <span class="t">Border</span>()
+oContent {
+	Width = <span class="n">100</span>
+	Height = <span class="n">50</span>
+	Background = avBrush(<span class="s">"#2E86AB"</span>)
+}
+oContent.Child = avText(<span class="s">"100 x 50"</span>)
+oBox.Child = oContent
+oDock {
+	Children.<span class="f">Add</span>(oChoice)
+	Children.<span class="f">Add</span>(oBox)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">stretch</span>
+
+	<span class="k">if</span> oChoice.SelectedIndex &gt;= <span class="n">0</span>
+		oBox.Stretch = oChoice.SelectedItem
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="grid-splitter"><div class="pic"><img src="img/shots/avalonia-32_grid_splitter.png" alt="Grid splitter" loading="lazy"></div><div class="info"><h3>Grid splitter</h3><p>A grid splitter: the bar between two columns; dragging it changes their widths (here a slider does the same)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 32_grid_splitter.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A grid splitter: the bar between two columns; dragging it changes their widths (here a slider does the same)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Splitter"</span>,<span class="n">480</span>,<span class="n">300</span>)
+oGrid = <span class="k">new</span> <span class="t">Grid</span>()
+oGrid.ColumnDefinitions = (<span class="k">new</span> <span class="t">ColumnDefinitions</span>).<span class="f">Parse</span>(<span class="s">"*,6,*"</span>)
+oWindow.Content = oGrid
+oLeft = pane(<span class="s">"Left pane"</span>,<span class="s">"#CDE7F0"</span>)
+oRight = pane(<span class="s">"Right pane"</span>,<span class="s">"#F4E1D2"</span>)
+oBar = <span class="k">new</span> <span class="t">GridSplitter</span>()
+oBar {
+	Background = avBrush(<span class="s">"#888888"</span>)
+	ResizeDirection = <span class="s">"Columns"</span>
+}
+oGrid.<span class="f">SetColumn</span>(oLeft,<span class="n">0</span>)
+oGrid.<span class="f">SetColumn</span>(oBar,<span class="n">1</span>)
+oGrid.<span class="f">SetColumn</span>(oRight,<span class="n">2</span>)
+oGrid {
+	Children.<span class="f">Add</span>(oLeft)
+	Children.<span class="f">Add</span>(oBar)
+	Children.<span class="f">Add</span>(oRight)
+}
+oInfo = avText(<span class="s">""</span>)
+oLeft.Child.Children.<span class="f">Add</span>(oInfo)
+oInfo.Text = <span class="s">"Drag the bar"</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a colored pane with a stack panel and a title</span>
+<span class="k">func</span> <span class="f">pane</span> cTitle, cColor
+
+	oBorder = <span class="k">new</span> <span class="t">Border</span>()
+	oBorder.Background = avBrush(cColor)
+	oContent = avStack(<span class="n">6</span>,<span class="n">10</span>)
+	oContent.Children.<span class="f">Add</span>(avText(cTitle))
+	oBorder.Child = oContent
+	<span class="k">return</span> oBorder
+
+<span class="c"># the left column gets a share of the width (the columns are 1: the left pane, 2: the bar, 3: the right pane)</span>
+<span class="k">func</span> <span class="f">share</span> nPercent
+
+	oColumns = oGrid.ColumnDefinitions.<span class="f">toList</span>()
+	oColumns[<span class="n">1</span>].Width = (<span class="k">new</span> <span class="t">GridLength</span>).@<span class="k">New</span>([ :<span class="t">value</span> = nPercent, :type = <span class="s">"Star"</span> ])
+	oColumns[<span class="n">3</span>].Width = (<span class="k">new</span> <span class="t">GridLength</span>).@<span class="k">New</span>([ :<span class="t">value</span> = <span class="n">100</span> - nPercent, :type = <span class="s">"Star"</span> ])</code></pre></div></details></div></div><div class="item" id="carousel"><div class="pic"><img src="img/shots/avalonia-33_carousel.png" alt="Carousel" loading="lazy"></div><div class="info"><h3>Carousel</h3><p>A carousel: one page at a time; the buttons go to the next and the previous page</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 33_carousel.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A carousel: one page at a time; the buttons go to the next and the previous page</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Carousel"</span>,<span class="n">380</span>,<span class="n">260</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oBar = avRow(<span class="n">8</span>)
+oBar.Margin = avThickness(<span class="n">8</span>)
+oBar.HorizontalAlignment = <span class="s">"Center"</span>
+oBar {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Previous"</span>,<span class="s">"previousPage()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Next"</span>,<span class="s">"nextPage()"</span>))
+}
+oDock.<span class="f">SetDock</span>(oBar,<span class="s">"Bottom"</span>)
+oPages = <span class="k">new</span> <span class="t">Carousel</span>()
+aColors = [<span class="s">"#E07A5F"</span>,<span class="s">"#81B29A"</span>,<span class="s">"#3D405B"</span>,<span class="s">"#F2CC8F"</span>]
+nPage = <span class="n">0</span>
+<span class="k">for</span> cColor <span class="k">in</span> aColors
+	nPage++
+	oPage = <span class="k">new</span> <span class="t">Border</span>()
+	oPage.Background = avBrush(cColor)
+	oLabel = avText(<span class="s">"Page "</span> + nPage)
+	oLabel.FontSize = <span class="n">32</span>
+	oLabel.Foreground = avBrush(<span class="s">"White"</span>)
+	oLabel.HorizontalAlignment = <span class="s">"Center"</span>
+	oLabel.VerticalAlignment = <span class="s">"Center"</span>
+	oPage.Child = oLabel
+	oPages.Items.<span class="f">Add</span>(oPage)
+<span class="k">next</span>
+oPages.SelectedIndex = <span class="n">0</span>
+oInfo = avText(<span class="s">"Page 1 of 4"</span>)
+oInfo.HorizontalAlignment = <span class="s">"Center"</span>
+oDock {
+	Children.<span class="f">Add</span>(oBar)
+	Children.<span class="f">Add</span>(oPages)
+}
+oBar.Children.<span class="f">Add</span>(oInfo)
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">nextPage</span>
+
+	oPages.@<span class="k">Next</span>()
+	showPage()
+
+<span class="k">func</span> <span class="f">previousPage</span>
+
+	oPages.<span class="f">Previous</span>()
+	showPage()
+
+<span class="k">func</span> <span class="f">showPage</span>
+
+	oInfo.Text = <span class="s">"Page "</span> + (oPages.SelectedIndex + <span class="n">1</span>) + <span class="s">" of "</span> + oPages.Items.Count</code></pre></div></details></div></div><div class="item" id="theme-variants"><div class="pic"><img src="img/shots/avalonia-34_theme_variants.png" alt="Theme variants" loading="lazy"></div><div class="info"><h3>Theme variants</h3><p>Themes: the application switches between the light and the dark variant of the Fluent theme; the window follows</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 34_theme_variants.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Themes: the application switches between the light and the dark variant of the Fluent theme; the window follows</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Theme variants"</span>,<span class="n">360</span>,<span class="n">220</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oText = avText(<span class="s">""</span>)
+oText.FontSize = <span class="n">18</span>
+oLight = <span class="k">new</span> <span class="t">RadioButton</span>()
+oLight.Content = <span class="s">"Light"</span>
+oLight.GroupName = <span class="s">"theme"</span>
+oLight.<span class="f">setIsCheckedChangedEvent</span>(<span class="s">"themeChanged()"</span>)
+oDark = <span class="k">new</span> <span class="t">RadioButton</span>()
+oDark.Content = <span class="s">"Dark"</span>
+oDark.GroupName = <span class="s">"theme"</span>
+oDark.<span class="f">setIsCheckedChangedEvent</span>(<span class="s">"themeChanged()"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Choose a theme"</span>))
+	Children.<span class="f">Add</span>(oLight)
+	Children.<span class="f">Add</span>(oDark)
+	Children.<span class="f">Add</span>(oText)
+}
+oLight.IsChecked = <span class="k">True</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the theme variants are static values of the class ThemeVariant</span>
+<span class="k">func</span> <span class="f">variant</span> cName
+
+	<span class="k">return</span> <span class="f">dnType</span>(<span class="s">"Avalonia.Styling.ThemeVariant, Avalonia.Base"</span>).<span class="f">getProp</span>(cName)
+
+<span class="k">func</span> <span class="f">themeChanged</span>
+
+	<span class="k">if</span> oDark.IsChecked
+		oAvApp.RequestedThemeVariant = variant(<span class="s">"Dark"</span>)
+	<span class="k">else</span>
+		oAvApp.RequestedThemeVariant = variant(<span class="s">"Light"</span>)
+	<span class="k">ok</span>
+	oText.Text = <span class="s">"The theme is "</span> + oAvApp.ActualThemeVariant.<span class="f">ToString</span>()</code></pre></div></details></div></div><div class="item" id="toggle-repeat"><div class="pic"><img src="img/shots/avalonia-35_toggle_repeat.png" alt="Toggle repeat" loading="lazy"></div><div class="info"><h3>Toggle repeat</h3><p>A toggle button and a repeat button: the toggle keeps its state, the repeat button clicks again and again while it is held down</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 35_toggle_repeat.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A toggle button and a repeat button: the toggle keeps its state, the repeat button clicks again and again while it is held down</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Toggle and repeat"</span>,<span class="n">380</span>,<span class="n">230</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+nCount = <span class="n">0</span>
+oToggle = <span class="k">new</span> <span class="t">ToggleButton</span>()
+oToggle {
+	Content = <span class="s">"Mute is off"</span>
+	setIsCheckedChangedEvent(<span class="s">"toggled()"</span>)
+}
+oRepeat = <span class="k">new</span> <span class="t">RepeatButton</span>()
+oRepeat {
+	Content = <span class="s">"Hold me"</span>
+	Delay = <span class="n">300</span>
+	Interval = <span class="n">80</span>
+	setClickEvent(<span class="s">"counted()"</span>)
+}
+oCount = avText(<span class="s">"Clicks: 0"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oToggle)
+	Children.<span class="f">Add</span>(oRepeat)
+	Children.<span class="f">Add</span>(oCount)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">toggled</span>
+
+	<span class="k">if</span> oToggle.IsChecked
+		oToggle.Content = <span class="s">"Mute is on"</span>
+	<span class="k">else</span>
+		oToggle.Content = <span class="s">"Mute is off"</span>
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">counted</span>
+
+	nCount++
+	oCount.Text = <span class="s">"Clicks: "</span> + nCount</code></pre></div></details></div></div><div class="item" id="listbox-multi"><div class="pic"><img src="img/shots/avalonia-36_listbox_multi.png" alt="Listbox multi" loading="lazy"></div><div class="info"><h3>Listbox multi</h3><p>A list box with several selected items: select all, none, invert; the selected items are counted</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 36_listbox_multi.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A list box with several selected items: select all, none, invert; the selected items are counted</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Multiple selection"</span>,<span class="n">380</span>,<span class="n">360</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oList = <span class="k">new</span> <span class="t">ListBox</span>()
+oList.SelectionMode = <span class="s">"Multiple"</span>
+oList.Height = <span class="n">150</span>
+oList.<span class="f">setSelectionChangedEvent</span>(<span class="s">"changed()"</span>)
+aNames = [<span class="s">"Alpha"</span>,<span class="s">"Beta"</span>,<span class="s">"Gamma"</span>,<span class="s">"Delta"</span>,<span class="s">"Epsilon"</span>,<span class="s">"Zeta"</span>,<span class="s">"Eta"</span>,<span class="s">"Theta"</span>]
+<span class="k">for</span> cName <span class="k">in</span> aNames
+	oList.Items.<span class="f">Add</span>(cName)
+<span class="k">next</span>
+oInfo = avText(<span class="s">""</span>)
+oRow = avRow(<span class="n">6</span>)
+oRow {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"All"</span>,<span class="s">"oList.SelectAll()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"None"</span>,<span class="s">"oList.UnselectAll()"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Invert"</span>,<span class="s">"invert()"</span>))
+}
+oPanel {
+	Children.<span class="f">Add</span>(oList)
+	Children.<span class="f">Add</span>(oRow)
+	Children.<span class="f">Add</span>(oInfo)
+}
+changed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	oInfo.Text = <span class="s">""</span> + oList.SelectedItems.Count + <span class="s">" of "</span> + oList.Items.Count + <span class="s">" selected"</span>
+
+<span class="c"># the selected items become not selected and the others selected</span>
+<span class="k">func</span> <span class="f">invert</span>
+
+	aWas = []
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		aWas + oList.SelectedItems.<span class="f">Contains</span>(cName)
+	<span class="k">next</span>
+	oList.<span class="f">UnselectAll</span>()
+	nName = <span class="n">0</span>
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		nName++
+		<span class="k">if</span> <span class="k">not</span> aWas[nName]
+			oList.SelectedItems.<span class="f">Add</span>(cName)
+		<span class="k">ok</span>
+	<span class="k">next</span></code></pre></div></details></div></div><div class="item" id="keyboard-shortcuts"><div class="pic"><img src="img/shots/avalonia-37_keyboard_shortcuts.png" alt="Keyboard shortcuts" loading="lazy"></div><div class="info"><h3>Keyboard shortcuts</h3><p>Keyboard shortcuts: Ctrl+N, Ctrl+S and Ctrl+Q with the KeyDown event of the window (the key and its modifiers)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 37_keyboard_shortcuts.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Keyboard shortcuts: Ctrl+N, Ctrl+S and Ctrl+Q with the KeyDown event of the window (the key and its modifiers)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Shortcuts"</span>,<span class="n">400</span>,<span class="n">240</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oLast = avText(<span class="s">"Press Ctrl+N, Ctrl+S or Ctrl+Q"</span>)
+oLast.FontSize = <span class="n">18</span>
+oLog = <span class="k">new</span> <span class="t">ListBox</span>()
+oLog.Height = <span class="n">110</span>
+oPanel {
+	Children.<span class="f">Add</span>(oLast)
+	Children.<span class="f">Add</span>(oLog)
+}
+oWindow.<span class="f">setKeyDownEvent</span>(<span class="s">"shortcut(aDotNetArgs[2].Key,aDotNetArgs[2].KeyModifiers)"</span>)
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the name of a command for a key and its modifiers ("" when it is not a shortcut)</span>
+<span class="k">func</span> <span class="f">commandOf</span> cKey, cModifiers
+
+	cKey = <span class="s">""</span> + cKey
+	cModifiers = <span class="s">""</span> + cModifiers
+	<span class="k">if</span> substr(cModifiers,<span class="s">"Control"</span>) = <span class="n">0</span>
+		<span class="k">return</span> <span class="s">""</span>
+	<span class="k">ok</span>
+	<span class="k">switch</span> cKey
+	<span class="k">on</span> <span class="s">"N"</span>
+		<span class="k">return</span> <span class="s">"New"</span>
+	<span class="k">on</span> <span class="s">"S"</span>
+		<span class="k">return</span> <span class="s">"Save"</span>
+	<span class="k">on</span> <span class="s">"Q"</span>
+		<span class="k">return</span> <span class="s">"Quit"</span>
+	<span class="k">off</span>
+	<span class="k">return</span> <span class="s">""</span>
+
+<span class="k">func</span> <span class="f">shortcut</span> cKey, cModifiers
+
+	cCommand = commandOf(cKey,cModifiers)
+	<span class="k">if</span> cCommand != <span class="s">""</span>
+		oLast.Text = cCommand + <span class="s">" (Ctrl+"</span> + cKey + <span class="s">")"</span>
+		oLog.Items.<span class="f">Add</span>(cCommand)
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="focus"><div class="pic"><img src="img/shots/avalonia-38_focus.png" alt="Focus" loading="lazy"></div><div class="info"><h3>Focus</h3><p>Focus: the text boxes tell when they get and lose the focus; a button moves the focus to a box</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 38_focus.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Focus: the text boxes tell when they get and lose the focus; a button moves the focus to a box</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Focus"</span>,<span class="n">380</span>,<span class="n">270</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oFirst = box(<span class="s">"First box"</span>)
+oSecond = box(<span class="s">"Second box"</span>)
+oThird = box(<span class="s">"Third box"</span>)
+oInfo = avText(<span class="s">"No box has the focus"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oFirst)
+	Children.<span class="f">Add</span>(oSecond)
+	Children.<span class="f">Add</span>(oThird)
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Focus the third box"</span>,<span class="s">"oThird.Focus([])"</span>))
+	Children.<span class="f">Add</span>(oInfo)
+}
+nGot = <span class="n">0</span>
+nLost = <span class="n">0</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">box</span> cName
+
+	oBox = <span class="k">new</span> <span class="t">TextBox</span>()
+	oBox {
+		Watermark = cName
+		setGotFocusEvent(<span class="s">"got()"</span>)
+		setLostFocusEvent(<span class="s">"lost()"</span>)
+	}
+	<span class="k">return</span> oBox
+
+<span class="k">func</span> <span class="f">which</span>
+
+	<span class="k">for</span> oBox <span class="k">in</span> [oFirst,oSecond,oThird]
+		<span class="k">if</span> oBox.IsFocused
+			<span class="k">return</span> oBox.Watermark
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> <span class="s">"none"</span>
+
+<span class="k">func</span> <span class="f">got</span>
+
+	nGot++
+	oInfo.Text = <span class="s">"Focus: "</span> + which()
+
+<span class="k">func</span> <span class="f">lost</span>
+
+	nLost++</code></pre></div></details></div></div><div class="item" id="autocomplete"><div class="pic"><img src="img/shots/avalonia-39_autocomplete.png" alt="Autocomplete" loading="lazy"></div><div class="info"><h3>Autocomplete</h3><p>An auto complete box: the text is completed from a list of items that a .NET list holds</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 39_autocomplete.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># An auto complete box: the text is completed from a list of items that a .NET list holds</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Auto complete"</span>,<span class="n">400</span>,<span class="n">220</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+aCountryNames = [<span class="s">"Argentina"</span>,<span class="s">"Australia"</span>,<span class="s">"Austria"</span>,<span class="s">"Belgium"</span>,<span class="s">"Brazil"</span>,<span class="s">"Canada"</span>,<span class="s">"Chile"</span>,<span class="s">"China"</span>,<span class="s">"Egypt"</span>,<span class="s">"Estonia"</span>,<span class="s">"France"</span>,<span class="s">"Germany"</span>,<span class="s">"Greece"</span>,<span class="s">"India"</span>,<span class="s">"Italy"</span>,<span class="s">"Japan"</span>]
+oCountries = <span class="f">dnNewGeneric</span>(<span class="s">"System.Collections.Generic.List"</span>,[<span class="s">"System.String"</span>],[])
+<span class="k">for</span> cName <span class="k">in</span> aCountryNames
+	oCountries.<span class="f">callMethod</span>(<span class="s">"Add"</span>,[cName])
+<span class="k">next</span>
+oBox = <span class="k">new</span> <span class="t">AutoCompleteBox</span>()
+oBox {
+	ItemsSource = oCountries
+	MinimumPrefixLength = <span class="n">1</span>
+	Watermark = <span class="s">"Type a country"</span>
+}
+oInfo = avText(<span class="s">""</span>)
+oPanel {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Country"</span>))
+	Children.<span class="f">Add</span>(oBox)
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Count the matches"</span>,<span class="s">"typed()"</span>))
+	Children.<span class="f">Add</span>(oInfo)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">typed</span>
+
+	cText = oBox.Text
+	<span class="k">if</span> isstring(cText) <span class="k">and</span> cText != <span class="s">""</span>
+		nMatches = <span class="n">0</span>
+		<span class="k">for</span> cName <span class="k">in</span> aCountryNames
+			<span class="k">if</span> left(lower(cName),len(cText)) = lower(cText)
+				nMatches++
+			<span class="k">ok</span>
+		<span class="k">next</span>
+		oInfo.Text = <span class="s">""</span> + nMatches + <span class="s">" countries start with "</span> + cText
+	<span class="k">else</span>
+		oInfo.Text = <span class="s">""</span>
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="calendar-control"><div class="pic"><img src="img/shots/avalonia-40_calendar_control.png" alt="Calendar control" loading="lazy"></div><div class="info"><h3>Calendar control</h3><p>A calendar control: the selected date and the month that is shown; the program counts the weekdays of the month</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 40_calendar_control.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A calendar control: the selected date and the month that is shown; the program counts the weekdays of the month</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Calendar"</span>,<span class="n">420</span>,<span class="n">420</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oInfo = avText(<span class="s">""</span>)
+oInfo.Margin = avThickness(<span class="n">10</span>)
+oDock.<span class="f">SetDock</span>(oInfo,<span class="s">"Bottom"</span>)
+oCalendar = <span class="k">new</span> <span class="t">ControlsCalendar</span>()
+oCalendar.<span class="f">setSelectedDatesChangedEvent</span>(<span class="s">"changed()"</span>)
+oDock {
+	Children.<span class="f">Add</span>(oInfo)
+	Children.<span class="f">Add</span>(oCalendar)
+}
+oCalendar.SelectedDate = <span class="f">dnNew</span>(<span class="s">"System.DateTime"</span>,[<span class="n">2024</span>,<span class="n">3</span>,<span class="n">15</span>])
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the number of days of a month that are not Saturday or Sunday</span>
+<span class="k">func</span> <span class="f">weekdaysOf</span> nYear, nMonth
+
+	nDays = <span class="f">dnStatic</span>(<span class="s">"System.DateTime"</span>,<span class="s">"DaysInMonth"</span>,[nYear,nMonth])
+	nWeekdays = <span class="n">0</span>
+	<span class="k">for</span> nDay = <span class="n">1</span> <span class="k">to</span> nDays
+		cName = <span class="s">""</span> + <span class="f">dnNew</span>(<span class="s">"System.DateTime"</span>,[nYear,nMonth,nDay]).DayOfWeek
+		<span class="k">if</span> cName != <span class="s">"Saturday"</span> <span class="k">and</span> cName != <span class="s">"Sunday"</span>
+			nWeekdays++
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	<span class="k">return</span> nWeekdays
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	oDate = oCalendar.SelectedDate
+	<span class="k">if</span> oDate.<span class="f">isNull</span>()
+		oInfo.Text = <span class="s">"Select a day"</span>
+	<span class="k">else</span>
+		oInfo.Text = <span class="s">""</span> + oDate.DayOfWeek + <span class="s">" "</span> + oDate.Day + <span class="s">"/"</span> + oDate.Month + <span class="s">"/"</span> + oDate.Year + <span class="s">", "</span> + weekdaysOf(oDate.Year,oDate.Month) + <span class="s">" weekdays in the month"</span>
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="flyout"><div class="pic"><img src="img/shots/avalonia-41_flyout.png" alt="Flyout" loading="lazy"></div><div class="info"><h3>Flyout</h3><p>A flyout: a small panel that opens next to a button with a question and two answers</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 41_flyout.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A flyout: a small panel that opens next to a button with a question and two answers</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Flyout"</span>,<span class="n">360</span>,<span class="n">200</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oAnswer = avText(<span class="s">"No answer yet"</span>)
+oMenuButton = avButton(<span class="s">"Delete the file"</span>,<span class="s">""</span>)
+oFlyout = <span class="k">new</span> <span class="t">Flyout</span>()
+oContent = avStack(<span class="n">8</span>,<span class="n">10</span>)
+oContent {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Delete this file for ever?"</span>))
+}
+oChoices = avRow(<span class="n">8</span>)
+oChoices {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Delete"</span>,<span class="s">"answer('Deleted')"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Keep"</span>,<span class="s">"answer('Kept')"</span>))
+}
+oContent.Children.<span class="f">Add</span>(oChoices)
+oFlyout.Content = oContent
+oMenuButton.Flyout = oFlyout
+oPanel {
+	Children.<span class="f">Add</span>(oMenuButton)
+	Children.<span class="f">Add</span>(oAnswer)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">answer</span> cText
+
+	oAnswer.Text = <span class="s">"The file was "</span> + lower(cText)
+	oFlyout.<span class="f">Hide</span>()</code></pre></div></details></div></div><div class="item" id="slider-ticks"><div class="pic"><img src="img/shots/avalonia-42_slider_ticks.png" alt="Slider ticks" loading="lazy"></div><div class="info"><h3>Slider ticks</h3><p>Sliders: ticks every 10 and a value that is shown rounded to the nearest tick, a free slider and a vertical slider</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 42_slider_ticks.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Sliders: ticks every 10 and a value that is shown rounded to the nearest tick, a free slider and a vertical slider</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Sliders"</span>,<span class="n">420</span>,<span class="n">300</span>)
+oPanel = avRow(<span class="n">24</span>)
+oPanel.Margin = avThickness(<span class="n">16</span>)
+oWindow.Content = oPanel
+oLeft = avStack(<span class="n">10</span>,<span class="n">0</span>)
+oSnap = <span class="k">new</span> <span class="t">Slider</span>()
+oSnap {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	TickFrequency = <span class="n">10</span>
+	TickPlacement = <span class="s">"BottomRight"</span>
+	Width = <span class="n">220</span>
+	setValueChangedEvent(<span class="s">"snapped()"</span>)
+}
+oSnapText = avText(<span class="s">""</span>)
+oFree = <span class="k">new</span> <span class="t">Slider</span>()
+oFree {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">1</span>
+	Value = <span class="n">0.5</span>
+	Width = <span class="n">220</span>
+	setValueChangedEvent(<span class="s">"freed()"</span>)
+}
+oFreeText = avText(<span class="s">""</span>)
+oLeft {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Ticks every 10"</span>))
+	Children.<span class="f">Add</span>(oSnap)
+	Children.<span class="f">Add</span>(oSnapText)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Free"</span>))
+	Children.<span class="f">Add</span>(oFree)
+	Children.<span class="f">Add</span>(oFreeText)
+}
+oVertical = <span class="k">new</span> <span class="t">Slider</span>()
+oVertical {
+	Orientation = <span class="s">"Vertical"</span>
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">50</span>
+	Value = <span class="n">20</span>
+	Height = <span class="n">200</span>
+}
+oPanel {
+	Children.<span class="f">Add</span>(oLeft)
+	Children.<span class="f">Add</span>(oVertical)
+}
+snapped()
+freed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># the nearest multiple of the tick frequency</span>
+<span class="k">func</span> <span class="f">nearestTick</span> nValue
+
+	nTick = <span class="n">10</span>
+	<span class="k">return</span> floor(nValue / nTick + <span class="n">0.5</span>) * nTick
+
+<span class="k">func</span> <span class="f">snapped</span>
+
+	<span class="k">if</span> isobject(oSnapText)
+		oSnapText.Text = <span class="s">"Nearest tick: "</span> + nearestTick(oSnap.Value)
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">freed</span>
+
+	<span class="k">if</span> isobject(oFreeText)
+		oFreeText.Text = <span class="s">"Value: "</span> + (floor(oFree.Value * <span class="n">100</span> + <span class="n">0.5</span>) / <span class="n">100</span>)
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="progress-bars"><div class="pic"><img src="img/shots/avalonia-43_progress_bars.png" alt="Progress bars" loading="lazy"></div><div class="info"><h3>Progress bars</h3><p>Progress bars: horizontal, vertical, with a text, and indeterminate; a button advances them</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 43_progress_bars.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Progress bars: horizontal, vertical, with a text, and indeterminate; a button advances them</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Progress bars"</span>,<span class="n">440</span>,<span class="n">300</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oBar = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oBar {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Value = <span class="n">20</span>
+	ShowProgressText = <span class="k">True</span>
+	ProgressTextFormat = <span class="s">"{1:0}%"</span>
+	Height = <span class="n">24</span>
+}
+oBusy = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oBusy.IsIndeterminate = <span class="k">True</span>
+oVertical = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oVertical {
+	Orientation = <span class="s">"Vertical"</span>
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Value = <span class="n">60</span>
+	Height = <span class="n">100</span>
+}
+oRow = avRow(<span class="n">10</span>)
+oRow {
+	Children.<span class="f">Add</span>(avButton(<span class="s">"+10"</span>,<span class="s">"advance(10)"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"-10"</span>,<span class="s">"advance(-10)"</span>))
+	Children.<span class="f">Add</span>(avButton(<span class="s">"Busy on/off"</span>,<span class="s">"toggleBusy()"</span>))
+}
+oPanel {
+	Children.<span class="f">Add</span>(oBar)
+	Children.<span class="f">Add</span>(oBusy)
+	Children.<span class="f">Add</span>(oVertical)
+	Children.<span class="f">Add</span>(oRow)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">advance</span> nStep
+
+	oBar.Value = min(<span class="n">100</span>,max(<span class="n">0</span>,oBar.Value + nStep))
+	oVertical.Value = oBar.Value
+
+<span class="k">func</span> <span class="f">toggleBusy</span>
+
+	oBusy.IsIndeterminate = <span class="k">not</span> oBusy.IsIndeterminate</code></pre></div></details></div></div><div class="item" id="path-icons"><div class="pic"><img src="img/shots/avalonia-44_path_icons.png" alt="Path icons" loading="lazy"></div><div class="info"><h3>Path icons</h3><p>Icons made from path text (PathIcon): buttons with an icon and a text; the icon color follows the button</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 44_path_icons.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Icons made from path text (PathIcon): buttons with an icon and a text; the icon color follows the button</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Icons"</span>,<span class="n">460</span>,<span class="n">220</span>)
+oPanel = avStack(<span class="n">12</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oRow = avRow(<span class="n">10</span>)
+aIcons = []
+oRow {
+	Children.<span class="f">Add</span>(iconButton(<span class="s">"Home"</span>,<span class="s">"M10,20 L10,40 L50,40 L50,20 L30,5 Z"</span>,<span class="s">"#2E86AB"</span>))
+	Children.<span class="f">Add</span>(iconButton(<span class="s">"Star"</span>,<span class="s">"M25,2 L31,18 L48,18 L35,28 L40,45 L25,35 L10,45 L15,28 L2,18 L19,18 Z"</span>,<span class="s">"#F18F01"</span>))
+	Children.<span class="f">Add</span>(iconButton(<span class="s">"Plus"</span>,<span class="s">"M20,5 L30,5 L30,20 L45,20 L45,30 L30,30 L30,45 L20,45 L20,30 L5,30 L5,20 L20,20 Z"</span>,<span class="s">"#2A9D8F"</span>))
+}
+oInfo = avText(<span class="s">"Click an icon"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oRow)
+	Children.<span class="f">Add</span>(oInfo)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a button with an icon and a text</span>
+<span class="k">func</span> <span class="f">iconButton</span> cName, cPath, cColor
+
+	oIcon = <span class="k">new</span> <span class="t">PathIcon</span>()
+	oIcon.Data = (<span class="k">new</span> <span class="t">Geometry</span>).<span class="f">Parse</span>(cPath)
+	oIcon.Foreground = avBrush(cColor)
+	oIcon.Width = <span class="n">24</span>
+	oIcon.Height = <span class="n">24</span>
+	aIcons + oIcon
+	oContent = avRow(<span class="n">6</span>)
+	oContent.Children.<span class="f">Add</span>(oIcon)
+	oContent.Children.<span class="f">Add</span>(avText(cName))
+	oButton = avButton(<span class="s">""</span>,<span class="s">"clicked('"</span> + cName + <span class="s">"')"</span>)
+	oButton.Content = oContent
+	<span class="k">return</span> oButton
+
+<span class="k">func</span> <span class="f">clicked</span> cName
+
+	oInfo.Text = <span class="s">"You clicked "</span> + cName</code></pre></div></details></div></div><div class="item" id="canvas-zindex"><div class="pic"><img src="img/shots/avalonia-45_canvas_zindex.png" alt="Canvas zindex" loading="lazy"></div><div class="info"><h3>Canvas zindex</h3><p>Overlapping shapes on a canvas: the Z index tells which one is in front; a click brings a shape to the front</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 45_canvas_zindex.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Overlapping shapes on a canvas: the Z index tells which one is in front; a click brings a shape to the front</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Z order"</span>,<span class="n">380</span>,<span class="n">300</span>)
+oCanvas = <span class="k">new</span> <span class="t">Canvas</span>()
+oWindow.Content = oCanvas
+aShapes = []
+aColors = [<span class="s">"#E63946"</span>,<span class="s">"#2A9D8F"</span>,<span class="s">"#264653"</span>]
+nTop = <span class="n">3</span>
+<span class="k">for</span> nShape = <span class="n">1</span> <span class="k">to</span> <span class="n">3</span>
+	oBox = <span class="k">new</span> <span class="t">Rectangle</span>()
+	oBox {
+		Width = <span class="n">140</span>
+		Height = <span class="n">100</span>
+		Fill = avBrush(aColors[nShape])
+		setPointerPressedEvent(<span class="s">"front("</span> + nShape + <span class="s">")"</span>)
+	}
+	oCanvas.<span class="f">SetLeft</span>(oBox,<span class="n">30</span> + (nShape - <span class="n">1</span>) * <span class="n">60</span>)
+	oCanvas.<span class="f">SetTop</span>(oBox,<span class="n">30</span> + (nShape - <span class="n">1</span>) * <span class="n">40</span>)
+	oBox.ZIndex = nShape
+	oCanvas.Children.<span class="f">Add</span>(oBox)
+	aShapes + oBox
+<span class="k">next</span>
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="c"># a shape comes in front of the others</span>
+<span class="k">func</span> <span class="f">front</span> nShape
+
+	nTop++
+	aShapes[nShape].ZIndex = nTop</code></pre></div></details></div></div><div class="item" id="menu-checkable"><div class="pic"><img src="img/shots/avalonia-46_menu_checkable.png" alt="Menu checkable" loading="lazy"></div><div class="info"><h3>Menu checkable</h3><p>A menu with items that can be checked: check boxes (View) and a group of radio items (Size); the status shows the choices</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 46_menu_checkable.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A menu with items that can be checked: check boxes (View) and a group of radio items (Size); the status shows the choices</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Checkable menu"</span>,<span class="n">420</span>,<span class="n">260</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oMenu = <span class="k">new</span> <span class="t">Menu</span>()
+oView = <span class="k">new</span> <span class="t">MenuItem</span>()
+oView.Header = <span class="s">"View"</span>
+oToolbar = checkItem(<span class="s">"Toolbar"</span>,<span class="k">True</span>)
+oStatusBar = checkItem(<span class="s">"Status bar"</span>,<span class="k">True</span>)
+oGrid = checkItem(<span class="s">"Grid lines"</span>,<span class="k">False</span>)
+oView.Items.<span class="f">Add</span>(oToolbar)
+oView.Items.<span class="f">Add</span>(oStatusBar)
+oView.Items.<span class="f">Add</span>(oGrid)
+oSize = <span class="k">new</span> <span class="t">MenuItem</span>()
+oSize.Header = <span class="s">"Size"</span>
+oSmall = radioItem(<span class="s">"Small"</span>,<span class="s">"size"</span>)
+oMedium = radioItem(<span class="s">"Medium"</span>,<span class="s">"size"</span>)
+oLarge = radioItem(<span class="s">"Large"</span>,<span class="s">"size"</span>)
+oMedium.IsChecked = <span class="k">True</span>
+oSize.Items.<span class="f">Add</span>(oSmall)
+oSize.Items.<span class="f">Add</span>(oMedium)
+oSize.Items.<span class="f">Add</span>(oLarge)
+oMenu.Items.<span class="f">Add</span>(oView)
+oMenu.Items.<span class="f">Add</span>(oSize)
+oDock.<span class="f">SetDock</span>(oMenu,<span class="s">"Top"</span>)
+oInfo = avText(<span class="s">""</span>)
+oInfo.Margin = avThickness(<span class="n">12</span>)
+oDock {
+	Children.<span class="f">Add</span>(oMenu)
+	Children.<span class="f">Add</span>(oInfo)
+}
+changed()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">checkItem</span> cHeader, lChecked
+
+	oItem = <span class="k">new</span> <span class="t">MenuItem</span>()
+	oItem.Header = cHeader
+	oItem.ToggleType = <span class="s">"CheckBox"</span>
+	oItem.IsChecked = lChecked
+	oItem.<span class="f">setClickEvent</span>(<span class="s">"changed()"</span>)
+	<span class="k">return</span> oItem
+
+<span class="k">func</span> <span class="f">radioItem</span> cHeader, cGroup
+
+	oItem = <span class="k">new</span> <span class="t">MenuItem</span>()
+	oItem.Header = cHeader
+	oItem.ToggleType = <span class="s">"Radio"</span>
+	oItem.GroupName = cGroup
+	oItem.<span class="f">setClickEvent</span>(<span class="s">"changed()"</span>)
+	<span class="k">return</span> oItem
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	<span class="k">if</span> <span class="k">not</span> isobject(oInfo)
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	cText = <span class="s">""</span>
+	<span class="k">for</span> oItem <span class="k">in</span> [oToolbar,oStatusBar,oGrid]
+		<span class="k">if</span> oItem.IsChecked
+			cText += oItem.Header + <span class="s">", "</span>
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	cSize = <span class="s">"none"</span>
+	<span class="k">for</span> oItem <span class="k">in</span> [oSmall,oMedium,oLarge]
+		<span class="k">if</span> oItem.IsChecked
+			cSize = oItem.Header
+		<span class="k">ok</span>
+	<span class="k">next</span>
+	oInfo.Text = <span class="s">"Shown: "</span> + cText + <span class="s">"size: "</span> + cSize</code></pre></div></details></div></div><div class="item" id="binding"><div class="pic"><img src="img/shots/avalonia-47_binding.png" alt="Binding" loading="lazy"></div><div class="info"><h3>Binding</h3><p>Bindings: a text that follows the value of a slider, with no code that runs when the slider moves (the binding of Avalonia does the work)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 47_binding.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Bindings: a text that follows the value of a slider, with no code that runs when the slider moves (the binding of Avalonia does the work)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Binding"</span>,<span class="n">380</span>,<span class="n">220</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oSlider = <span class="k">new</span> <span class="t">Slider</span>()
+oSlider {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Value = <span class="n">40</span>
+}
+oValue = <span class="k">new</span> <span class="t">TextBlock</span>()
+oBar = <span class="k">new</span> <span class="t">ProgressBar</span>()
+oBar {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">100</span>
+	Height = <span class="n">18</span>
+}
+<span class="c"># the text and the bar read the property Value of the slider</span>
+oValueBinding = (<span class="k">new</span> <span class="t">Binding</span>).@<span class="k">New</span>(<span class="s">"Value"</span>)
+oValueBinding.Source = oSlider
+oValue.<span class="f">Bind</span>([ :property = oValue.TextProperty, :binding = oValueBinding ])
+oBarBinding = (<span class="k">new</span> <span class="t">Binding</span>).@<span class="k">New</span>(<span class="s">"Value"</span>)
+oBarBinding.Source = oSlider
+oBar.<span class="f">Bind</span>([ :property = oBar.ValueProperty, :binding = oBarBinding ])
+oPanel {
+	Children.<span class="f">Add</span>(oSlider)
+	Children.<span class="f">Add</span>(oValue)
+	Children.<span class="f">Add</span>(oBar)
+}
+
+avRun(oWindow)</code></pre></div></details></div></div><div class="item" id="style-classes"><div class="pic"><img src="img/shots/avalonia-48_style_classes.png" alt="Style classes" loading="lazy"></div><div class="info"><h3>Style classes</h3><p>Style classes: the Classes of a control choose styles of the theme (accent buttons, a heading); a check box adds and removes a class</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 48_style_classes.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Style classes: the Classes of a control choose styles of the theme (accent buttons, a heading); a check box adds and removes a class</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Style classes"</span>,<span class="n">420</span>,<span class="n">280</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oHeading = avText(<span class="s">"A heading made with a class"</span>)
+oHeading.Classes.<span class="f">Add</span>(<span class="s">"h1"</span>)
+oNormal = avButton(<span class="s">"A normal button"</span>,<span class="s">""</span>)
+oAccent = avButton(<span class="s">"An accent button"</span>,<span class="s">""</span>)
+oAccent.Classes.<span class="f">Add</span>(<span class="s">"accent"</span>)
+oSwitch = <span class="k">new</span> <span class="t">CheckBox</span>()
+oSwitch.Content = <span class="s">"Make the first button an accent button"</span>
+oSwitch.<span class="f">setIsCheckedChangedEvent</span>(<span class="s">"switched()"</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oHeading)
+	Children.<span class="f">Add</span>(oNormal)
+	Children.<span class="f">Add</span>(oAccent)
+	Children.<span class="f">Add</span>(oSwitch)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">switched</span>
+
+	<span class="k">if</span> oSwitch.IsChecked
+		oNormal.Classes.<span class="f">Add</span>(<span class="s">"accent"</span>)
+	<span class="k">else</span>
+		oNormal.Classes.<span class="f">Remove</span>(<span class="s">"accent"</span>)
+	<span class="k">ok</span></code></pre></div></details></div></div><div class="item" id="text-trimming"><div class="pic"><img src="img/shots/avalonia-49_text_trimming.png" alt="Text trimming" loading="lazy"></div><div class="info"><h3>Text trimming</h3><p>Long text in a narrow space: wrapping, trimming with an ellipsis and a limit of lines; a slider changes the width</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 49_text_trimming.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Long text in a narrow space: wrapping, trimming with an ellipsis and a limit of lines; a slider changes the width</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+cLong = <span class="s">"Avalonia can wrap a long text to several lines, cut it with an ellipsis or limit the number of lines that it uses."</span>
+
+oWindow = avWindow(<span class="s">"Text trimming"</span>,<span class="n">460</span>,<span class="n">380</span>)
+oPanel = avStack(<span class="n">8</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oWidth = <span class="k">new</span> <span class="t">Slider</span>()
+oWidth {
+	Minimum = <span class="n">100</span>
+	Maximum = <span class="n">420</span>
+	Value = <span class="n">260</span>
+	setValueChangedEvent(<span class="s">"resize()"</span>)
+}
+oWidthText = avText(<span class="s">""</span>)
+oWrapped = sample(<span class="s">"Wrap"</span>,<span class="s">"None"</span>,<span class="n">0</span>)
+oTrimmed = sample(<span class="s">"NoWrap"</span>,<span class="s">"CharacterEllipsis"</span>,<span class="n">0</span>)
+oLimited = sample(<span class="s">"Wrap"</span>,<span class="s">"CharacterEllipsis"</span>,<span class="n">2</span>)
+oPanel {
+	Children.<span class="f">Add</span>(oWidth)
+	Children.<span class="f">Add</span>(oWidthText)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Wrap"</span>))
+	Children.<span class="f">Add</span>(oWrapped)
+	Children.<span class="f">Add</span>(avText(<span class="s">"One line with an ellipsis"</span>))
+	Children.<span class="f">Add</span>(oTrimmed)
+	Children.<span class="f">Add</span>(avText(<span class="s">"At most two lines"</span>))
+	Children.<span class="f">Add</span>(oLimited)
+}
+resize()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">sample</span> cWrapping, cTrimming, nLines
+
+	oText = <span class="k">new</span> <span class="t">TextBlock</span>()
+	oText.Text = cLong
+	oText.TextWrapping = cWrapping
+	oText.TextTrimming = <span class="f">dnType</span>(<span class="s">"Avalonia.Media.TextTrimming, Avalonia.Base"</span>).<span class="f">getProp</span>(cTrimming)
+	<span class="k">if</span> nLines &gt; <span class="n">0</span>
+		oText.MaxLines = nLines
+	<span class="k">ok</span>
+	oText.HorizontalAlignment = <span class="s">"Left"</span>
+	<span class="k">return</span> oText
+
+<span class="k">func</span> <span class="f">resize</span>
+
+	<span class="k">if</span> <span class="k">not</span> isobject(oLimited)
+		<span class="k">return</span>
+	<span class="k">ok</span>
+	nWidth = floor(oWidth.Value)
+	oWidthText.Text = <span class="s">"Width: "</span> + nWidth
+	oWrapped.Width = nWidth
+	oTrimmed.Width = nWidth
+	oLimited.Width = nWidth</code></pre></div></details></div></div><div class="item" id="grid-spans"><div class="pic"><img src="img/shots/avalonia-50_grid_spans.png" alt="Grid spans" loading="lazy"></div><div class="info"><h3>Grid spans</h3><p>A grid with rows and columns of different sizes (fixed, auto and star) and children that span several cells</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 50_grid_spans.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># A grid with rows and columns of different sizes (fixed, auto and star) and children that span several cells</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Grid spans"</span>,<span class="n">480</span>,<span class="n">340</span>)
+oGrid = <span class="k">new</span> <span class="t">Grid</span>()
+oGrid.ColumnDefinitions = (<span class="k">new</span> <span class="t">ColumnDefinitions</span>).<span class="f">Parse</span>(<span class="s">"100,Auto,*"</span>)
+oGrid.RowDefinitions = (<span class="k">new</span> <span class="t">RowDefinitions</span>).<span class="f">Parse</span>(<span class="s">"50,*,2*"</span>)
+oWindow.Content = oGrid
+
+oHeader = cell(<span class="s">"Header (3 columns)"</span>,<span class="s">"#2E86AB"</span>)
+oGrid.<span class="f">SetColumnSpan</span>(oHeader,<span class="n">3</span>)
+oSide = cell(<span class="s">"Side (2 rows)"</span>,<span class="s">"#F18F01"</span>)
+oGrid.<span class="f">SetRow</span>(oSide,<span class="n">1</span>)
+oGrid.<span class="f">SetRowSpan</span>(oSide,<span class="n">2</span>)
+oAuto = cell(<span class="s">"Auto column"</span>,<span class="s">"#2A9D8F"</span>)
+oAuto.Width = <span class="n">90</span>
+oGrid.<span class="f">SetRow</span>(oAuto,<span class="n">1</span>)
+oGrid.<span class="f">SetColumn</span>(oAuto,<span class="n">1</span>)
+oFill = cell(<span class="s">"Star cell"</span>,<span class="s">"#8E44AD"</span>)
+oGrid.<span class="f">SetRow</span>(oFill,<span class="n">1</span>)
+oGrid.<span class="f">SetColumn</span>(oFill,<span class="n">2</span>)
+oBottom = cell(<span class="s">"Bottom (2 columns)"</span>,<span class="s">"#C73E1D"</span>)
+oGrid.<span class="f">SetRow</span>(oBottom,<span class="n">2</span>)
+oGrid.<span class="f">SetColumn</span>(oBottom,<span class="n">1</span>)
+oGrid.<span class="f">SetColumnSpan</span>(oBottom,<span class="n">2</span>)
+oGrid {
+	Children.<span class="f">Add</span>(oHeader)
+	Children.<span class="f">Add</span>(oSide)
+	Children.<span class="f">Add</span>(oAuto)
+	Children.<span class="f">Add</span>(oFill)
+	Children.<span class="f">Add</span>(oBottom)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">cell</span> cText, cColor
+
+	oBorder = <span class="k">new</span> <span class="t">Border</span>()
+	oBorder.Background = avBrush(cColor)
+	oBorder.Margin = avThickness(<span class="n">2</span>)
+	oLabel = avText(cText)
+	oLabel.Foreground = avBrush(<span class="s">"White"</span>)
+	oLabel.HorizontalAlignment = <span class="s">"Center"</span>
+	oLabel.VerticalAlignment = <span class="s">"Center"</span>
+	oBorder.Child = oLabel
+	<span class="k">return</span> oBorder</code></pre></div></details></div></div><div class="item" id="opacity-visibility"><div class="pic"><img src="img/shots/avalonia-51_opacity_visibility.png" alt="Opacity visibility" loading="lazy"></div><div class="info"><h3>Opacity visibility</h3><p>Opacity, visibility and enabled: a slider fades a box, check boxes hide and disable a button; a hidden control leaves its space</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 51_opacity_visibility.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Opacity, visibility and enabled: a slider fades a box, check boxes hide and disable a button; a hidden control leaves its space</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Opacity and visibility"</span>,<span class="n">420</span>,<span class="n">320</span>)
+oPanel = avStack(<span class="n">10</span>,<span class="n">16</span>)
+oWindow.Content = oPanel
+oBox = <span class="k">new</span> <span class="t">Border</span>()
+oBox {
+	Height = <span class="n">60</span>
+	Background = avBrush(<span class="s">"#2E86AB"</span>)
+	CornerRadius = (<span class="k">new</span> <span class="t">CornerRadius</span>).<span class="f">Parse</span>(<span class="s">"8"</span>)
+}
+oOpacity = <span class="k">new</span> <span class="t">Slider</span>()
+oOpacity {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">1</span>
+	Value = <span class="n">1</span>
+	setValueChangedEvent(<span class="s">"faded()"</span>)
+}
+oOpacityText = avText(<span class="s">""</span>)
+oButton = avButton(<span class="s">"A button"</span>,<span class="s">"clicked()"</span>)
+oVisible = check(<span class="s">"Visible"</span>,<span class="k">True</span>)
+oEnabled = check(<span class="s">"Enabled"</span>,<span class="k">True</span>)
+oClicks = avText(<span class="s">"Clicks: 0"</span>)
+nClicks = <span class="n">0</span>
+oPanel {
+	Children.<span class="f">Add</span>(oBox)
+	Children.<span class="f">Add</span>(oOpacity)
+	Children.<span class="f">Add</span>(oOpacityText)
+	Children.<span class="f">Add</span>(oVisible)
+	Children.<span class="f">Add</span>(oEnabled)
+	Children.<span class="f">Add</span>(oButton)
+	Children.<span class="f">Add</span>(oClicks)
+}
+faded()
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">check</span> cText, lChecked
+
+	oBoxCheck = <span class="k">new</span> <span class="t">CheckBox</span>()
+	oBoxCheck.Content = cText
+	oBoxCheck.IsChecked = lChecked
+	oBoxCheck.<span class="f">setIsCheckedChangedEvent</span>(<span class="s">"changed()"</span>)
+	<span class="k">return</span> oBoxCheck
+
+<span class="k">func</span> <span class="f">faded</span>
+
+	<span class="k">if</span> isobject(oOpacityText)
+		oBox.Opacity = oOpacity.Value
+		oOpacityText.Text = <span class="s">"Opacity: "</span> + (floor(oOpacity.Value * <span class="n">100</span> + <span class="n">0.5</span>) / <span class="n">100</span>)
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">changed</span>
+
+	<span class="k">if</span> isobject(oEnabled)
+		oButton.IsVisible = oVisible.IsChecked
+		oButton.IsEnabled = oEnabled.IsChecked
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">clicked</span>
+
+	nClicks++
+	oClicks.Text = <span class="s">"Clicks: "</span> + nClicks</code></pre></div></details></div></div><div class="item" id="alignment-margins"><div class="pic"><img src="img/shots/avalonia-52_alignment_margins.png" alt="Alignment margins" loading="lazy"></div><div class="info"><h3>Alignment margins</h3><p>Alignment and margins: a box in a bigger space; the alignments and the margin change where it is and how big (a layout lab)</p><div class="run"><code>cd samples/UsingDotNet/tests/packages/AvaloniaSamples  then  ring 52_alignment_margins.ring</code></div><details><summary>Source code</summary><div class="code"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span>Ring</span><button class="copy" type="button">Copy</button></div><pre><code><span class="c"># Alignment and margins: a box in a bigger space; the alignments and the margin change where it is and how big (a layout lab)</span>
+
+<span class="k">load</span> <span class="s">"avalonia.ring"</span>
+avUse()
+
+oWindow = avWindow(<span class="s">"Alignment"</span>,<span class="n">480</span>,<span class="n">400</span>)
+oDock = <span class="k">new</span> <span class="t">DockPanel</span>()
+oWindow.Content = oDock
+oControls = avStack(<span class="n">6</span>,<span class="n">10</span>)
+oControls.Width = <span class="n">150</span>
+oDock.<span class="f">SetDock</span>(oControls,<span class="s">"Left"</span>)
+oHorizontal = choice([<span class="s">"Left"</span>,<span class="s">"Center"</span>,<span class="s">"Right"</span>,<span class="s">"Stretch"</span>],<span class="s">"horizontalChanged()"</span>)
+oVertical = choice([<span class="s">"Top"</span>,<span class="s">"Center"</span>,<span class="s">"Bottom"</span>,<span class="s">"Stretch"</span>],<span class="s">"verticalChanged()"</span>)
+oMargin = <span class="k">new</span> <span class="t">Slider</span>()
+oMargin {
+	Minimum = <span class="n">0</span>
+	Maximum = <span class="n">40</span>
+	Value = <span class="n">0</span>
+	setValueChangedEvent(<span class="s">"marginChanged()"</span>)
+}
+oInfo = avText(<span class="s">""</span>)
+oInfo.TextWrapping = <span class="s">"Wrap"</span>
+oControls {
+	Children.<span class="f">Add</span>(avText(<span class="s">"Horizontal"</span>))
+	Children.<span class="f">Add</span>(oHorizontal)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Vertical"</span>))
+	Children.<span class="f">Add</span>(oVertical)
+	Children.<span class="f">Add</span>(avText(<span class="s">"Margin"</span>))
+	Children.<span class="f">Add</span>(oMargin)
+	Children.<span class="f">Add</span>(oInfo)
+}
+oSpace = <span class="k">new</span> <span class="t">Border</span>()
+oSpace.Background = avBrush(<span class="s">"#EEEEEE"</span>)
+oBox = <span class="k">new</span> <span class="t">Border</span>()
+oBox {
+	Width = <span class="n">100</span>
+	Height = <span class="n">70</span>
+	Background = avBrush(<span class="s">"#2E86AB"</span>)
+}
+oSpace.Child = oBox
+oDock {
+	Children.<span class="f">Add</span>(oControls)
+	Children.<span class="f">Add</span>(oSpace)
+}
+
+avRun(oWindow)
+
+<span class="c"># --------------------------------------------------------------------------</span>
+
+<span class="k">func</span> <span class="f">choice</span> aNames, cCode
+
+	oList = <span class="k">new</span> <span class="t">ComboBox</span>()
+	<span class="k">for</span> cName <span class="k">in</span> aNames
+		oList.Items.<span class="f">Add</span>(cName)
+	<span class="k">next</span>
+	oList.SelectedIndex = <span class="n">0</span>
+	oList.<span class="f">setSelectionChangedEvent</span>(cCode)
+	<span class="k">return</span> oList
+
+<span class="k">func</span> <span class="f">horizontalChanged</span>
+
+	<span class="k">if</span> isobject(oBox) <span class="k">and</span> oHorizontal.SelectedIndex &gt;= <span class="n">0</span>
+		oBox.HorizontalAlignment = oHorizontal.SelectedItem
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">verticalChanged</span>
+
+	<span class="k">if</span> isobject(oBox) <span class="k">and</span> oVertical.SelectedIndex &gt;= <span class="n">0</span>
+		oBox.VerticalAlignment = oVertical.SelectedItem
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">marginChanged</span>
+
+	<span class="k">if</span> isobject(oBox)
+		oBox.Margin = avThickness(floor(oMargin.Value))
+	<span class="k">ok</span>
+
+<span class="k">func</span> <span class="f">layout</span>
+
+	oSpace.<span class="f">InvalidateMeasure</span>()
+	oSpace.<span class="f">Measure</span>((<span class="k">new</span> <span class="t">Size</span>).@<span class="k">New</span>([ :<span class="t">width</span> = <span class="n">300</span>, :height = <span class="n">300</span> ]))
+	oSpace.<span class="f">Arrange</span>((<span class="k">new</span> <span class="t">Rect</span>).<span class="f">Parse</span>(<span class="s">"0,0,300,300"</span>))
+	oInfo.Text = <span class="s">"The box is at "</span> + floor(oBox.Bounds.X) + <span class="s">", "</span> + floor(oBox.Bounds.Y) + <span class="s">" and "</span> + floor(oBox.Bounds.Width) + <span class="s">" x "</span> + floor(oBox.Bounds.Height)</code></pre></div></details></div></div></div>
+<div class="pager"><a href="avalonia.html"><small>Previous</small>Avalonia</a><a class="next" href="gallery-avalonia-apps.html"><small>Next</small>Avalonia applications</a></div>
+<footer class="site">RingDotNet — use .NET classes and methods from Ring programs. Screenshots and output on these pages come from the real samples.</footer>
+</article>
+<aside class="toc" id="toc"></aside>
+</main>
+</body>
+</html>
